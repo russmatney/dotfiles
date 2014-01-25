@@ -26,3 +26,8 @@ setopt appendhistory beep nomatch notify
 unsetopt autocd
 bindkey -v
 # End of lines configured by zsh-newuser-install
+
+
+# Git Aliases
+alias 'glp'="git log --graph --pretty=format:'%Cred%h%Creset -%Cblue %an %Creset - %C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+
