@@ -21,6 +21,10 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 
+# for boxen
+source /opt/boxen/env.sh
+
+
 # Lines configured by zsh-newuser-install
 setopt appendhistory beep nomatch notify
 unsetopt autocd
