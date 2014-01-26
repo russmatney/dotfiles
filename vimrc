@@ -36,3 +36,14 @@ let g:html_indent_style1 = "inc"
 
 filetype plugin indent on
 syntax on
+
+" make switch to normal mode easier
+inoremap jj <ESC>
+
+" Make sure we hilight extra whitespace in the most annoying way possible.
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
