@@ -23,3 +23,4 @@ end
 
 symlink_files
 
+exec "vim -u #{File.expand_path('~/.vim/vundle.vim')} +BundleInstall +q +q; zsh"
