@@ -28,6 +28,8 @@ source /opt/boxen/env.sh
 # Lines configured by zsh-newuser-install
 setopt appendhistory beep nomatch notify
 unsetopt autocd
+
+# enables vim keybindings on shell commands
 bindkey -v
 # End of lines configured by zsh-newuser-install
 
@@ -35,3 +37,6 @@ bindkey -v
 # Git Aliases
 alias 'glp'="git log --graph --pretty=format:'%Cred%h%Creset -%Cblue %an %Creset - %C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 
+alias cgrep="grep --color=auto"
+alias :q="exit"
+alias :wq="exit"
