@@ -21,6 +21,15 @@ def symlink_files
   end
 end
 
+def update_submodules
+  submodules = ['oh-my-zsh', 'vim/bundle/vundle']
+  submodules.each do |s|
+    `git submodule init #{s}`
+    `git submodule update #{s}`
+  end
+end
+
+update_submodules
 symlink_files
 
 exec "vim -u #{File.expand_path('~/.vim/vundle.vim')} +BundleInstall +q +q; zsh"
