@@ -8,9 +8,13 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Themes
+Bundle 'cseelus/vim-colors-clearance'
 Bundle 'w0ng/vim-hybrid'
 
 " Syntax Plugins
+Bundle 'pangloss/vim-javascript'
+Bundle 'othree/html5.vim'
+Bundle 'uggedal/go-vim'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'kchmck/vim-coffee-script'
 
@@ -19,3 +23,5 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'mattn/emmet-vim'
 Bundle 'tpope/vim-surround'
 Bundle 'kien/ctrlp.vim'
+Bundle 'nathanaelkane/vim-indent-guides'
+
