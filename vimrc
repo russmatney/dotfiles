@@ -1,5 +1,7 @@
 set t_Co=256 " color
 
+source ~/.vim/filetype_settings.vim
+
 set encoding=utf-8
 
 set nowrap
