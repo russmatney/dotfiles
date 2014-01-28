@@ -1,0 +1,14 @@
+[user]
+    name = Russell Matney
+    email = russell.matney@gmail.com
+[push]
+    default = simple
+[merge]
+    tool = vimdiff
+[mergetool "splice"]
+    cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'Splice Init'"
+    trustExitCode = true
+[color]
+    ui = auto
+[core]
+    editor = vim
