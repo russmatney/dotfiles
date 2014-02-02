@@ -1,4 +1,5 @@
 set t_Co=256 " color
+set background=dark
 
 source ~/.vim/filetype_settings.vim
 source ~/.vim/plugin_config.vim
