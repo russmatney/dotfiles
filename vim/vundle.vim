@@ -24,4 +24,5 @@ Bundle 'mattn/emmet-vim'
 Bundle 'tpope/vim-surround'
 Bundle 'kien/ctrlp.vim'
 Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'christoomey/vim-tmux-navigator'
 
