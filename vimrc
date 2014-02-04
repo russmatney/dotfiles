@@ -5,6 +5,9 @@ source ~/.vim/filetype_settings.vim
 source ~/.vim/plugin_config.vim
 source ~/.vim/vundle.vim
 
+set backupdir=~/.vim-tmp
+set directory=~/.vim-tmp
+
 set encoding=utf-8
 
 set nowrap

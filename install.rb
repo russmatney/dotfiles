@@ -29,6 +29,14 @@ def update_submodules
   end
 end
 
+def make_vim_temp
+  vim_temp = File.join(HOME, '.vim-tmp')
+  unless File.exists? vim_temp
+    `mkdir #{vim_temp}`
+  end
+end
+
+make_vim_temp
 update_submodules
 symlink_files
 
