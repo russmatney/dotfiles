@@ -20,6 +20,7 @@ Bundle 'kchmck/vim-coffee-script'
 
 " Utilities
 Bundle 'scrooloose/nerdtree'
+Bundle 'The-NERD-Commenter'
 Bundle 'mattn/emmet-vim'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
