@@ -21,6 +21,7 @@ Bundle 'kchmck/vim-coffee-script'
 " Utilities
 Bundle 'scrooloose/nerdtree'
 Bundle 'The-NERD-Commenter'
+Bundle 'airblade/vim-gitgutter'
 Bundle 'mattn/emmet-vim'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
