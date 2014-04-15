@@ -52,5 +52,9 @@ alias cgrep="grep --color=auto"
 alias :q="exit"
 alias :wq="exit"
 
+alias 'amnesia'='update-index --assume-unchanged'
+alias 'recall'='update-index --no-assume-unchanged'
+alias 'forgetfulness'="!sh -c 'git ls-files -v | grep ~[a-z]'"
+
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
