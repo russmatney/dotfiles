@@ -33,7 +33,7 @@ export GOPATH=$HOME/projects/go-projects
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 
 # Lines configured by zsh-newuser-install
