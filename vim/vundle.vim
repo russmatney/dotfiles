@@ -28,4 +28,5 @@ Bundle 'tpope/vim-repeat'
 Bundle 'kien/ctrlp.vim'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'christoomey/vim-tmux-navigator'
+Bundle 'rking/ag.vim'
 
