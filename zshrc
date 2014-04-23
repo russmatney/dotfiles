@@ -32,6 +32,10 @@ export PATH=$PATH:$GOROOT/bin
 export GOPATH=$HOME/projects/go-projects
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+#goenv
+export PATH="$HOME/.goenv/bin:$PATH"
+eval "$(goenv init -)"
+
 # ssh
 export SSH_KEY_PATH="~/.ssh/dsa_id"
 
