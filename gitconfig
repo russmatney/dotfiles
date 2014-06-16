@@ -12,3 +12,7 @@
     ui = auto
 [core]
     editor = vim
+[alias]
+    amnesia = !sh -c 'git update-index --assume-unchanged $0'
+    recall = !sh -c 'git update-index --no-assume-unchanged $0'
+    forgetfulness = !sh -c 'git ls-files -v | grep ^[a-z]'
