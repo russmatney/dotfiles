@@ -10,3 +10,4 @@ autocmd BufReadPre *.txt setlocal textwidth=80
 autocmd BufReadPre *.txt setlocal spell spelllang=en_us
 
 autocmd BufReadPre *.ejs set ft=html
+autocmd BufReadPre *.less set ft=css
