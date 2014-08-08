@@ -14,7 +14,7 @@ COMPLETION_WAITING_DOTS="true"
 DISABLE_AUTO_TITLE=true
 
 # oh-my-zsh plugins
-plugins=(git)
+plugins=(git brew heroku osx rvm)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -23,8 +23,8 @@ source ~/.nvm/nvm.sh
 [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
 export PATH=./node_modules/.bin:$PATH
 
-#rbenv source
-eval "$(rbenv init -)"
+#rvm source
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 #golang
 export GOROOT=/usr/local/go
@@ -64,3 +64,5 @@ alias 'letsgo'='cd `go env GOPATH`/src/github.com/moveline'
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
