@@ -35,7 +35,7 @@ set incsearch
 set history=1000
 set undolevels=1000
 
-color hybrid
+color Tomorrow-Night
 
 let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
