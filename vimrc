@@ -24,6 +24,12 @@ set autoindent
 set copyindent
 set expandtab
 
+" Paste toggle
+set pastetoggle=<leader>p
+
+" Clipboard
+set clipboard=unnamed
+
 set showmatch " show matching parens
 
 " search settings - highlighting and case smarts
