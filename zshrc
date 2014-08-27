@@ -30,6 +30,7 @@ export PATH=./node_modules/.bin:$PATH
 export GOROOT=/usr/local/go
 export PATH=$PATH:$GOROOT/bin
 export GOPATH=$HOME/projects/go-projects
+export PATH=$PATH:$GOPATH/bin
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 #goenv
@@ -60,7 +61,7 @@ alias 'amnesia'='update-index --assume-unchanged'
 alias 'recall'='update-index --no-assume-unchanged'
 alias 'forgetfulness'="!sh -c 'git ls-files -v | grep ~[a-z]'"
 
-alias 'letsgo'='cd `go env GOPATH`/src/github.com/moveline'
+alias 'letsgo'='cd `go env GOPATH`/src/github.com'
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
