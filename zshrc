@@ -2,7 +2,7 @@
 ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
-ZSH_THEME="moveline"
+ZSH_THEME="jbergantine"
 
 # disable command autocorrection
 DISABLE_CORRECTION="true"

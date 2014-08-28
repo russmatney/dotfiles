@@ -1,5 +1,4 @@
 set t_Co=256 " color
-set background=dark
 
 source ~/.vim/filetype_settings.vim
 source ~/.vim/plugin_config.vim
@@ -41,7 +40,10 @@ set incsearch
 set history=1000
 set undolevels=1000
 
-color Tomorrow-Night
+"color solarized
+"color Tomorrow-Night
+color wombat
+set background=dark
 
 let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
