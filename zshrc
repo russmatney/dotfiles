@@ -69,10 +69,10 @@ export PATH="/usr/local/heroku/bin:$PATH"
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 #TMUX aliases (thanks to/ripped from @rschmukler)
-tmux_search_paths=( ~/projects ~/projects/go-projects/src/github.com/russmatney ~/projects/go-projects/src/github.com/moveline )
+tmux_search_paths=( )
 
 function tt() {
-  if ! tmux has-session -t "$1" 2> /dev/null; then
+  if ! tmux has-session -t "$1" 2> ~/projects/null; then
     tmux_script=~/dotfiles/files/tmux-scripts/$1
     if [[ -e $tmux_script ]]; then
       zsh "$tmux_script"
@@ -103,10 +103,10 @@ function tt() {
 
 # gather files for auto-complete
 function _tls() {
-  reply=( $(tmux list-sessions 2> /dev/null | cut -d: -f1) )
+  reply=( $(tmux list-sessions 2> ~/projects/null | cut -d: -f1) )
 }
 function _tscripts() {
-  reply=( $(tmux list-sessions 2> /dev/null | cut -d: -f1) )
+  reply=( $(tmux list-sessions 2> ~/projects/null | cut -d: -f1) )
   reply+=( $(ls ~/dotfiles/files/tmux-scripts) )
   for dir in $tmux_search_paths; do
     reply+=( $(ls $dir/*/) )
