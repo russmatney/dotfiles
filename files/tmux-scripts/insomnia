@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+SESSION_NAME=insomnia
+
+TMUX= tmux new-session -d -s $SESSION_NAME -n mongod -c ~/projects
+tmux new-window -t$SESSION_NAME:2 -n utopia -c ~/projects/insomnia.utopia
+tmux new-window -t$SESSION_NAME:3 -n hypnotic -c ~/projects/insomnia.hypnotic
+
+tmux select-window -t$SESSION_NAME:2
