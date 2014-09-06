@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+SESSION_NAME=moveline
+
+TMUX= tmux new-session -d -s $SESSION_NAME -n mongod -c ~/projects
+tmux new-window -t$SESSION_NAME:2 -n tractor -c ~/projects/moveline.tractor
+tmux new-window -t$SESSION_NAME:3 -n shop -c ~/projects/moveline.shop
+tmux new-window -t$SESSION_NAME:4 -n roadmap -c ~/projects/moveline.roadmap
+tmux new-window -t$SESSION_NAME:5 -n conductor -c ~/projects/moveline.conductor
+tmux new-window -t$SESSION_NAME:6 -n speedo -c ~/projects/go-projects/src/github.com/moveline/speedometer
+tmux new-window -t$SESSION_NAME:7 -n dev -c ~/projects
+
+tmux select-window -t$SESSION_NAME:7
