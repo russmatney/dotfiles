@@ -73,7 +73,6 @@ tmux_search_paths=( ~/projects )
 
 function tt() {
   sessionName=${1#*.}
-  echo sessionName
   if ! tmux has-session -t "$sessionName" 2> ~/projects/null; then
     tmux_script=~/dotfiles/files/tmux-scripts/$1
     if [[ -e $tmux_script ]]; then
@@ -81,14 +80,11 @@ function tt() {
     else
       oldTMUX=$TMUX
       unset TMUX
-
       tmux new -d -s $sessionName
-
       export TMUX=$oldTMUX
       unset oldTMUX
       for searches in $tmux_search_paths; do
         dir=$searches/$1
-        echo $dir
         if [[ -d $dir ]]; then
           tmux send-keys -t "${sessionName}" "cd $dir; clear" "C-m"
           break
@@ -128,9 +124,6 @@ function tk() {
 }
 function tm() {
   tmux new-session -t $1
-}
-function ta() {
-  tmux attach -t "$1"
 }
 
 # autocompletion attached to functions
