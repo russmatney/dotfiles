@@ -72,20 +72,25 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 tmux_search_paths=( ~/projects )
 
 function tt() {
-  if ! tmux has-session -t "$1" 2> ~/projects/null; then
+  sessionName=${1#*.}
+  echo sessionName
+  if ! tmux has-session -t "$sessionName" 2> ~/projects/null; then
     tmux_script=~/dotfiles/files/tmux-scripts/$1
     if [[ -e $tmux_script ]]; then
       zsh "$tmux_script"
     else
       oldTMUX=$TMUX
       unset TMUX
-      tmux new -d -s $1
+
+      tmux new -d -s $sessionName
+
       export TMUX=$oldTMUX
       unset oldTMUX
       for searches in $tmux_search_paths; do
         dir=$searches/$1
+        echo $dir
         if [[ -d $dir ]]; then
-          tmux send-keys -t "${1}" "cd $dir; clear" "C-m"
+          tmux send-keys -t "${sessionName}" "cd $dir; clear" "C-m"
           break
         fi
       done
@@ -95,10 +100,11 @@ function tt() {
     fi
   fi
   if [[ -n $TMUX ]]; then
-    tmux switch-client -t $1
+    tmux switch-client -t $sessionName
   else
-    tmux attach -t $1
+    tmux attach -t $sessionName
   fi
+  unset sessionName
 }
 
 # gather files for auto-complete
