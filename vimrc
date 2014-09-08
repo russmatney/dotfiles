@@ -43,7 +43,7 @@ set undolevels=1000
 "color solarized
 "color Tomorrow-Night
 color wombat
-set background=dark
+set background=light
 
 let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
