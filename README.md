@@ -17,6 +17,8 @@ I use vundle to handle plugins, and the install.rb will automagically pull + ins
 
 ##tmux.conf
 
+Tmux handles windows and panes within iTerm, and with a few conveniences, can make for a very efficient workflow.
+
 ##TODO:
 
 - Baby stepping blog post
