@@ -10,6 +10,11 @@ This will setup symlinks for your files and install vim plugins.
 
 ##zshrc
 ##vimrc
+
+I love me some vim!
+
+I use vundle to handle plugins, and the install.rb will automagically pull + install any repos you add to the vundle file.
+
 ##tmux.conf
 
 ##TODO:
