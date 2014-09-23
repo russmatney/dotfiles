@@ -17,6 +17,7 @@ Bundle 'othree/html5.vim'
 Bundle 'uggedal/go-vim'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'groenewege/vim-less'
 
 " Utilities
 Bundle 'scrooloose/nerdtree'

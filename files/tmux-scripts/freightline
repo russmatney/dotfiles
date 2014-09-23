@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+SESSION_NAME=freightline
+
+TMUX= tmux new-session -d -s $SESSION_NAME -n shared -c ~/projects/moveline.shared-modules
+tmux new-window -t$SESSION_NAME:2 -n freightline -c ~/projects/moveline.freightline
+
+tmux select-window -t$SESSION_NAME:2
