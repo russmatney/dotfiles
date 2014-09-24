@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+SESSION_NAME=bible-api
+
+TMUX= tmux new-session -d -s $SESSION_NAME -n gin -c ~/projects/go-projects/src/github.com/russmatney/bible-api
+tmux new-session -d -s $SESSION_NAME -n gulp -c ~/projects/go-projects/src/github.com/russmatney/bible-api
+
+tmux select-window -t$SESSION_NAME:1
+
