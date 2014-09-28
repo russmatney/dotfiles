@@ -3,6 +3,11 @@
 SESSION_NAME=freightline
 
 TMUX= tmux new-session -d -s $SESSION_NAME -n shared -c ~/projects/moveline.shared-modules
-tmux new-window -t$SESSION_NAME:2 -n freightline -c ~/projects/moveline.freightline
+tmux new-window -t$SESSION_NAME:2 -n mongod -c ~/projects
+tmux new-window -t$SESSION_NAME:3 -n freightline -c ~/projects/moveline.freightline
+tmux new-window -t$SESSION_NAME:4 -n gulp -c ~/projects/moveline.freightline
+tmux new-window -t$SESSION_NAME:4 -n juggernaut -c ~/projects/moveline.juggernaut
+tmux new-window -t$SESSION_NAME:4 -n backbrace -c ~/projects/moveline.backbrace
+tmux new-window -t$SESSION_NAME:4 -n maxheadroom -c ~/projects/moveline.maxheadroom
 
-tmux select-window -t$SESSION_NAME:2
+tmux select-window -t$SESSION_NAME:4
