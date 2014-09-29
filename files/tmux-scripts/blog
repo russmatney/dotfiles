@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+SESSION_NAME=blog
+
+TMUX= tmux new-session -d -s $SESSION_NAME -n jekyll -c ~/projects/russmatney.github.io
+tmux new-window -t$SESSION_NAME:2 -n edit -c ~/projects/russmatney.github.io
+
+tmux select-window -t$SESSION_NAME:2
