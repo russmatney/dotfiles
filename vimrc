@@ -49,6 +49,9 @@ let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
 
+"force markdown syntax
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
 filetype plugin indent on
 syntax on
 
