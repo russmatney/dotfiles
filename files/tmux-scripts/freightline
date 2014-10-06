@@ -9,6 +9,6 @@ tmux new-window -t$SESSION_NAME:4 -n gulp -c ~/projects/moveline.freightline
 tmux new-window -t$SESSION_NAME:5 -n juggernaut -c ~/projects/moveline.juggernaut
 tmux new-window -t$SESSION_NAME:6 -n backbrace -c ~/projects/moveline.backbrace
 tmux new-window -t$SESSION_NAME:7 -n maxheadroom -c ~/projects/moveline.maxheadroom
-tmux new-window -t$SESSION_NAME:7 -n reckon -c ~/projects/moveline.reckon
+tmux new-window -t$SESSION_NAME:8 -n reckon -c ~/projects/moveline.reckon
 
 tmux select-window -t$SESSION_NAME:4
