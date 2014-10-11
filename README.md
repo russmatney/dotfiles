@@ -10,6 +10,10 @@ This will setup symlinks for your files and install vim plugins.
 
 ##zshrc
 ###oh-my-zsh
+
+Oh-My-Zsh is an awesome way to get started and maintain themes for your zsh
+setup.
+
 ##vimrc
 
 I love me some vim!
