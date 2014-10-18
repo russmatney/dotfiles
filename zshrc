@@ -52,13 +52,11 @@ bindkey -v
 
 # Git Aliases
 alias 'glp'="git log --graph --pretty=format:'%Cred%h%Creset -%Cblue %an %Creset - %C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+alias 'gpb'="git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -d"
 
 alias cgrep="grep --color=auto"
 alias :q="exit"
 alias :wq="exit"
-
-#removes local branches that don't exist on origin
-alias 'prune local' = "git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -d"
 
 alias 'amnesia'='update-index --assume-unchanged'
 alias 'recall'='update-index --no-assume-unchanged'
