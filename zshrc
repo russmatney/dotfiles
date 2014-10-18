@@ -57,6 +57,9 @@ alias cgrep="grep --color=auto"
 alias :q="exit"
 alias :wq="exit"
 
+#removes local branches that don't exist on origin
+alias 'prune local' = "git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -d"
+
 alias 'amnesia'='update-index --assume-unchanged'
 alias 'recall'='update-index --no-assume-unchanged'
 alias 'forgetfulness'="!sh -c 'git ls-files -v | grep ~[a-z]'"
