@@ -49,6 +49,11 @@ separate front-end and back-end apps, and often larger apps need one-off apps to
 support whatever stuff. These scripts let you leap between flows with no
 overhead.
 
+##[mjolnir](http://mjolnir.io/)
+
+For fast app switching and window-resizing. Much thanks to @ajoslin for the tip
+and dotfiles.
+
 ##install.rb
 ##gitconfig
 
