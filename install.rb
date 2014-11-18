@@ -4,6 +4,14 @@ HOME = File.expand_path('~')
 
 def symlink_files
   Dir['*'].each do |file|
+    next if file =~ /install/
+    target = File.join(HOME, ".#{file}")
+    unless File.exists? target
+      `ln -s #{File.expand_path file} #{target}`
+    end
+  end
+
+  Dir['mjolnir/init.lua'].each do |file|
     target = File.join(HOME, ".#{file}")
     unless File.exists? target
       `ln -s #{File.expand_path file} #{target}`
