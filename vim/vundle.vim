@@ -21,6 +21,7 @@ Bundle 'groenewege/vim-less'
 
 " Utilities
 Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
 Bundle 'The-NERD-Commenter'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'mattn/emmet-vim'

@@ -18,3 +18,6 @@ let NERDTreeIgnore=['^node_modules/', '^.tmp/']
 
 " Markdown
 let g:markdown_fenced_languages = ['coffee', 'css', 'javascript', 'js=javascript', 'json=javascript', 'styl=stylus']
+
+" Syntastic
+let g:syntastic_javascript_checkers = ['jshint']
