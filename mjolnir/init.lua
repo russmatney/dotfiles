@@ -3,7 +3,7 @@ local hotkey = require "mjolnir.hotkey"
 local window = require "mjolnir.window"
 local fnutils = require "mjolnir.fnutils"
 
-local modalKey = {"ctrl"}
+local modalKey = {"alt"}
 
 local resizeMappings = {
   h={x=0, y=0, w=0.5, h=1},
