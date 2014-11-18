@@ -10,7 +10,7 @@ local resizeMappings = {
   j={x=0, y=0.5, w=1, h=0.5},
   k={x=0, y=0, w=1, h=0.5},
   l={x=0.5, y=0, w=0.5, h=1},
-  m={x=0, y=0, w=1, h=1}
+  f={x=0, y=0, w=1, h=1}
 }
 
 for key in pairs(resizeMappings) do
