@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+SESSION_NAME=mvln-client
+
+TMUX= tmux new-session -d -s $SESSION_NAME -n mongod -c ~/projects
+tmux new-window -t$SESSION_NAME:2 -n mvln-client -c ~/projects/moveline.api-client-js
+tmux new-window -t$SESSION_NAME:3 -n tractor-gulp -c ~/projects/moveline.tractor
+tmux new-window -t$SESSION_NAME:4 -n tractor-dev -c ~/projects/moveline.tractor
+tmux new-window -t$SESSION_NAME:5 -n freight-dev -c ~/projects/moveline.freightline
+tmux new-window -t$SESSION_NAME:6 -n freight-gulp -c ~/projects/moveline.freightline
+
+tmux select-window -t$SESSION_NAME:2
