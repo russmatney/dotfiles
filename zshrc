@@ -1,3 +1,7 @@
+alias getfortune='curl --max-time 3'
+alias fortune='getfortune http://www.iheartquotes.com/api/v1/random'
+fortune
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
