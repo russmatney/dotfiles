@@ -27,7 +27,7 @@ end)
 local focusKeys = {
   c='Google Chrome',
   t='iTerm',
-  a='Hipchat',
+  a='Slack',
   p='Spotify',
   s='iOS Simulator',
   m='Messages',
