@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+SESSION_NAME=karta
+
+TMUX= tmux new-session -d -s $SESSION_NAME -n mongod -c ~/projects
+tmux new-window -t$SESSION_NAME:2 -n heathledger -c ~/projects/karta.heathledger
+tmux new-window -t$SESSION_NAME:3 -n pshoffman -c ~/projects/karta.pshoffman
+
+tmux select-window -t$SESSION_NAME:3

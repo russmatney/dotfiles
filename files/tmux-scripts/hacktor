@@ -1,9 +1,0 @@
-#!/bin/zsh
-
-SESSION_NAME=hacktor
-
-TMUX= tmux new-session -d -s $SESSION_NAME -n mongod -c ~/projects
-tmux new-window -t$SESSION_NAME:2 -n heathledger -c ~/projects/hacktor.heathledger
-tmux new-window -t$SESSION_NAME:3 -n pshoffman -c ~/projects/hacktor.pshoffman
-
-tmux select-window -t$SESSION_NAME:3
