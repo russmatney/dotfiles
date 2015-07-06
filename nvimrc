@@ -5,6 +5,7 @@ set showcmd
 
 source ~/dotfiles/nvim/filetype-settings.vim
 source ~/dotfiles/nvim/vim-plugins.vim
+source ~/dotfiles/nvim/plugin-config.vim
 
 set shell=zsh\ -l
 
