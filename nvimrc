@@ -3,6 +3,9 @@ set t_Co=256 " color
 let mapleader=" "
 set showcmd
 
+color default
+set background=light
+
 source ~/dotfiles/nvim/filetype-settings.vim
 source ~/dotfiles/nvim/vim-plugins.vim
 source ~/dotfiles/nvim/plugin-config.vim
@@ -40,8 +43,11 @@ set incsearch
 set history=1000
 set undolevels=1000
 
-filetype plugin indent on
 syntax on
+filetype plugin indent on
+
+"force markdown syntax
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 inoremap jj <ESC>
 

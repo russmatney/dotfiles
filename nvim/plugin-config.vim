@@ -18,7 +18,7 @@ let g:ctrlp_max_files = 10000
 let g:ctrlp_working_path_mode = 'ra'   " Always use the current working directory rather than the location of the current file
 
 " Markdown
-let g:markdown_fenced_languages = ['coffee', 'css', 'javascript', 'js=javascript', 'json=javascript']
+let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'json=javascript']
 
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
