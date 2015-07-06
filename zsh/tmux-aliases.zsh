@@ -4,7 +4,7 @@ tmux_search_paths=( ~/projects )
 function tt() {
   sessionName=${1#*.}
   if ! tmux has-session -t "$sessionName" 2> ~/projects/null; then
-    tmux_script=~/dotfiles/files/tmux-scripts/$1
+    tmux_script=~/dotfiles/flows/$1
     if [[ -e $tmux_script ]]; then
       zsh "$tmux_script"
     else
@@ -39,7 +39,7 @@ function _tls() {
 }
 function _tscripts() {
   reply=( $(tmux list-sessions 2> ~/projects/null | cut -d: -f1) )
-  reply+=( $(ls ~/dotfiles/files/tmux-scripts) )
+  reply+=( $(ls ~/dotfiles/flows) )
   for dir in $tmux_search_paths; do
     reply+=( $(ls $dir) )
   done
