@@ -5,6 +5,8 @@ Plug 'pangloss/vim-javascript'
 Plug 'othree/html5.vim'
 Plug 'digitaltoad/vim-jade'
 
+" Colorschemes
+
 " Shortcuts
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
