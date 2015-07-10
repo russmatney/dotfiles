@@ -4,7 +4,7 @@ let g:hybrid_use_Xresources = 1
 let mapleader=" "
 set showcmd
 
-color default
+color slate
 set background=light
 
 source ~/dotfiles/nvim/filetype-settings.vim
@@ -23,6 +23,8 @@ set number
 
 set backspace=2
 
+set clipboard=unnamed
+
 " indents and tab stuff
 set smartindent
 set tabstop=2
@@ -33,8 +35,6 @@ set smarttab
 set autoindent
 set copyindent
 set expandtab
-
-set clipboard=unnamed
 
 set ignorecase
 set smartcase
@@ -68,3 +68,4 @@ nnoremap <leader>E :Explore<CR>
 "window resizing
 nnoremap <leader>l <c-w>10<
 nnoremap <leader>h <c-w>10>
+
