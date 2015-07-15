@@ -3,6 +3,7 @@
 SESSION_NAME=om
 
 TMUX= tmux new-session -d -s $SESSION_NAME -n front-end -c ~/projects/offmarket/front-end.off-market
+TMUX= tmux new-session -d -s $SESSION_NAME -n back-end -c ~/projects/offmarket/back-end.off-market-api
 
 tmux select-window -t$SESSION_NAME:1
 
