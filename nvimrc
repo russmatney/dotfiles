@@ -53,7 +53,7 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 inoremap jj <ESC>
 
 "quick splits
-nnoremap <leader>vs <c-w>v<c-w>l
+nnoremap <leader>v <c-w>v<c-w>l
 nnoremap <leader>s <c-w>s<c-w>k
 
 "quick swap

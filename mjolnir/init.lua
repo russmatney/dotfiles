@@ -18,6 +18,7 @@ end
 
 local focusKeys = {
   c='Google Chrome',
+  d='Dash',
   e='System Preferences',
   p='Spotify',
   i='iTunes',
