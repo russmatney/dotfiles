@@ -71,14 +71,20 @@ endfunction
 nnoremap <Leader>[ :call <SID>LocationPrevious()<CR>
 nnoremap <Leader>] :call <SID>LocationNext()<CR>
 
-"  Tsuquyomi
+" Tsuquyomi
 autocmd FileType typescript setlocal completeopt+=menu,preview
 autocmd FileType typescript nmap <buffer> <Space>t : <C-u>echo tsuquyomi#hint()<CR>
 let g:tsuquyomi_disable_quickfix = 1
 
-"Tern
+" Tern
 let g:tern_map_keys=1
 
 " Supertab
 let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+
+" Goyo
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+let g:limelight_conceal_ctermfg = 'gray'
+let g:limelight_conceal_ctermfg = 240
 
