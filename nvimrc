@@ -4,6 +4,7 @@ let g:hybrid_use_Xresources = 1
 let mapleader=" "
 set showcmd
 
+
 color slate
 set background=light
 
@@ -51,6 +52,9 @@ filetype plugin indent on
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 inoremap jj <ESC>
+
+"quick goyo
+nnoremap <leader>g :Goyo<CR>
 
 "quick splits
 nnoremap <leader>v <c-w>v<c-w>l
