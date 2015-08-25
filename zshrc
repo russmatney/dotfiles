@@ -15,3 +15,15 @@ alias 'gprom'="git pull --rebase origin master"
 
 source ~/dotfiles/zsh/tmux-aliases.zsh
 
+alias pg_start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
+alias pg_stop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
+
+alias dm='docker-machine'
+alias dc='docker-compose'
+
+function dme() {
+  eval "$(docker-machine env $1)"
+}
+
+alias dps='docker ps -a'
+alias dmls='docker-machine ls'
