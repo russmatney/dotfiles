@@ -2,7 +2,7 @@
 
 SESSION_NAME=om
 
-TMUX= tmux new-session -d -s $SESSION_NAME -n docker -c ~/projects/offmarket/data.syphon
+TMUX= tmux new-session -d -s $SESSION_NAME -n docker -c ~/projects/offmarket/devops.docker-images
 tmux new-window -t$SESSION_NAME:2 -n syphon -c ~/projects/offmarket/data.syphon
 tmux new-window -t$SESSION_NAME:3 -n gumshoe -c ~/projects/offmarket/data.gumshoe
 

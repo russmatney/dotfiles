@@ -17,6 +17,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'rschmukler/pangloss-vim-indent'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
+Plug 'othree/es.next.syntax.vim'
 
 " Navigation
 Plug 'christoomey/vim-tmux-navigator'

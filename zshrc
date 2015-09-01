@@ -25,5 +25,9 @@ function dme() {
   eval "$(docker-machine env $1)"
 }
 
+function drm() {
+  docker stop "$1"; docker rm "$1";
+}
+
 alias dps='docker ps -a'
 alias dmls='docker-machine ls'
