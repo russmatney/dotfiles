@@ -2,7 +2,8 @@ source ~/dotfiles/zsh/antigen-plugins.zsh
 
 export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
 
-alias vim='nvim'
+alias vim='NVIM_TUI_ENABLE_TRUE_COLOR=true nvim'
+alias vi='NVIM_TUI_ENABLE_TRUE_COLOR=true nvim'
 alias ls='gls --color=always'
 
 COMPLETION_WAITING_DOTS=true

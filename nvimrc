@@ -4,8 +4,7 @@ let g:hybrid_use_Xresources = 1
 let mapleader=" "
 set showcmd
 
-
-color slate
+autocmd VimEnter * color slate
 set background=light
 
 source ~/dotfiles/nvim/filetype-settings.vim
