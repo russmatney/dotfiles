@@ -27,7 +27,8 @@ function dme() {
 }
 
 function drm() {
-  docker stop "$1"; docker rm "$1";
+  docker stop "$1";
+  docker rm -v "$1";
 }
 
 alias dps='docker ps -a'
