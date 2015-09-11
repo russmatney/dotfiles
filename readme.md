@@ -142,3 +142,11 @@ npm i -g typescript
 :VimProcInstall
 
 brew install httpie
+
+
+Truecolor in iterm2/tmux/vim:
+
+- install [nightly iterm](https://iterm2.com/downloads/nightly/#/section/home)
+- [patch tmux](https://github.com/rschmukler/dotfiles/blob/master/files/brew-patches/tmux.txt) and brew reinstall --with-truecolor
+- install a [true color theme](https://github.com/kristijanhusak/vim-hybrid-material), plus some vim related things
+
