@@ -33,3 +33,4 @@ function drm() {
 
 alias dps='docker ps -a'
 alias dmls='docker-machine ls'
+alias dip='docker-machine ip'
