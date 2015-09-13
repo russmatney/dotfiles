@@ -34,3 +34,5 @@ function drm() {
 alias dps='docker ps -a'
 alias dmls='docker-machine ls'
 alias dip='docker-machine ip'
+
+test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh

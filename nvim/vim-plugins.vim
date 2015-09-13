@@ -25,6 +25,10 @@ Plug 'othree/es.next.syntax.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'kien/ctrlp.vim'
 
+" Color
+Plug 'morhetz/gruvbox'
+Plug 'Slava/vim-colors-tomorrow'
+
 " Search
 Plug 'rking/ag.vim'
 
