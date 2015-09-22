@@ -163,8 +163,9 @@ Alfred Workflows:
 
 - [workflow search](https://github.com/hzlzh/Alfred-Workflows/raw/master/Downloads/Workflow-Searcher.alfredworkflow) - for when you know there's a better/faster way
 - [stackoverflow](https://github.com/xhinking/Alfred/blob/master/stackoverflow.alfredworkflow)
-- [github](https://github.com/xhinking/Alfred/blob/master/Github.alfredworkflow)
+- [github](https://github.com/gharlan/alfred-github-workflow)
 - [top (including kill)](http://zhaocai.github.io/alfred2-top-workflow/) - because the activity monitor is just too slow, especially when something needs to DIE
+- [ip](http://dferg.us/ip-address-workflow/) - quick local/external ip lookup
 
 
 
