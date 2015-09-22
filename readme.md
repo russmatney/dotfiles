@@ -150,3 +150,14 @@ Truecolor in iterm2/tmux/vim:
 - [patch tmux](https://github.com/rschmukler/dotfiles/blob/master/files/brew-patches/tmux.txt) and brew reinstall --with-truecolor
 - install a [true color theme](https://github.com/kristijanhusak/vim-hybrid-material), plus some vim related things
 
+
+Airline installed, powerline installed and powerline fonts downloaded installed
+via script. font chosen via iTerm2 profile settings. (hack)
+
+Alfred Workflows:
+
+- [pkgman](https://github.com/willfarrell/alfred-pkgman-workflow) - better/faster than googling for packages
+- [dash](https://github.com/Kapeli/Dash-Alfred-Workflow) - better/faster than googling for docs
+- [spotifious](http://ben.stolovitz.com/Spotify-for-Alfred/) - better/faster search/control of spotify
+
+

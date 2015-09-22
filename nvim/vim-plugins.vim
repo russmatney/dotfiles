@@ -24,6 +24,7 @@ Plug 'othree/es.next.syntax.vim'
 " Navigation
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'kien/ctrlp.vim'
+Plug 'bling/vim-airline'
 
 " Color
 Plug 'morhetz/gruvbox'

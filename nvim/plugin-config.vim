@@ -91,3 +91,8 @@ autocmd! User GoyoLeave Limelight!
 let g:limelight_conceal_ctermfg = 'gray'
 let g:limelight_conceal_ctermfg = 240
 
+
+" Airline
+let g:airline_powerline_fonts = 1
+" Powerline
+let g:Powerline_symbols = 'fancy'
