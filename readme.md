@@ -161,7 +161,7 @@ Alfred Workflows:
 - [dash](https://github.com/Kapeli/Dash-Alfred-Workflow) - better/faster than googling for docs
 - [spotifious](http://ben.stolovitz.com/Spotify-for-Alfred/) - better/faster search/control of spotify
 
-- [workflow search]() - for when you know there's a better/faster way
+- [workflow search](https://github.com/hzlzh/Alfred-Workflows/raw/master/Downloads/Workflow-Searcher.alfredworkflow) - for when you know there's a better/faster way
 - [stackoverflow](https://github.com/xhinking/Alfred/blob/master/stackoverflow.alfredworkflow)
 - [github](https://github.com/xhinking/Alfred/blob/master/Github.alfredworkflow)
 - [top (including kill)](http://zhaocai.github.io/alfred2-top-workflow/) - because the activity monitor is just too slow, especially when something needs to DIE
