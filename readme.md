@@ -151,13 +151,21 @@ Truecolor in iterm2/tmux/vim:
 - install a [true color theme](https://github.com/kristijanhusak/vim-hybrid-material), plus some vim related things
 
 
-Airline installed, powerline installed and powerline fonts downloaded installed
-via script. font chosen via iTerm2 profile settings. (hack)
+Airline installed, powerline installed and [powerline
+fonts](https://github.com/powerline/fonts) downloaded installed
+via script. font chosen via iTerm2 profile settings. ([Hack](https://github.com/powerline/fonts/tree/master/Hack))
 
 Alfred Workflows:
 
 - [pkgman](https://github.com/willfarrell/alfred-pkgman-workflow) - better/faster than googling for packages
 - [dash](https://github.com/Kapeli/Dash-Alfred-Workflow) - better/faster than googling for docs
 - [spotifious](http://ben.stolovitz.com/Spotify-for-Alfred/) - better/faster search/control of spotify
+
+- [workflow search]() - for when you know there's a better/faster way
+- [stackoverflow](https://github.com/xhinking/Alfred/blob/master/stackoverflow.alfredworkflow)
+- [github](https://github.com/xhinking/Alfred/blob/master/Github.alfredworkflow)
+- [top (including kill)](http://zhaocai.github.io/alfred2-top-workflow/) - because the activity monitor is just too slow, especially when something needs to DIE
+
+
 
 
