@@ -69,6 +69,15 @@ nnoremap <leader>a =ip
 nnoremap <leader>E :Explore<CR>
 
 "window resizing
-nnoremap <leader>l <c-w>10<
-nnoremap <leader>h <c-w>10>
+"nnoremap <leader>l <c-w>10<
+"nnoremap <leader>h <c-w>10>
+
+"rerun syntax highlighting (helpful for large files)
+nmap <leader>f :syntax sync fromstart<CR>
+
+"for those mofoking binaries
+nmap <leader>j :setf javascript<CR>
+
+"unhighlight
+nmap <leader>h :nohlsearch<CR>
 
