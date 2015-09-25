@@ -153,7 +153,7 @@ Truecolor in iterm2/tmux/vim:
 
 Airline installed, powerline installed and [powerline
 fonts](https://github.com/powerline/fonts) downloaded installed
-via script. font chosen via iTerm2 profile settings. ([Hack](https://github.com/powerline/fonts/tree/master/Hack))
+via script. font chosen via iTerm2 profile settings. ([Hack](https://github.com/powerline/fonts/tree/master/Hack), (or [patched Hack for powerline](https://github.com/chrissimpkins/Hack/issues/33)))
 
 Alfred Workflows:
 
@@ -168,5 +168,6 @@ Alfred Workflows:
 - [ip](http://dferg.us/ip-address-workflow/) - quick local/external ip lookup
 
 
-
-
+brew install python
+pip install powerline-status
+pip install psutil
