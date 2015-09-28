@@ -5,8 +5,10 @@ SESSION_NAME=om
 TMUX= tmux new-session -d -s $SESSION_NAME -n docker -c ~/projects/offmarket/devops.docker-images
 tmux new-window -t$SESSION_NAME:2 -n syphon -c ~/projects/offmarket/data.syphon
 tmux new-window -t$SESSION_NAME:3 -n gumshoe -c ~/projects/offmarket/data.gumshoe
-tmux new-window -t$SESSION_NAME:4 -n graph -c ~/projects/offmarket/acris.graph
-tmux new-window -t$SESSION_NAME:5 -n scratch -c ~/projects/offmarket
+tmux new-window -t$SESSION_NAME:4 -n vectorizer -c ~/projects/offmarket/data.vectorizer
+tmux new-window -t$SESSION_NAME:5 -n hive-mind -c ~/projects/offmarket/node-libs.hive-mind
+tmux new-window -t$SESSION_NAME:6 -n graph -c ~/projects/offmarket/acris.graph
+tmux new-window -t$SESSION_NAME:7 -n scratch -c ~/projects/offmarket
 
-tmux select-window -t$SESSION_NAME:2
+tmux select-window -t$SESSION_NAME:3
 
