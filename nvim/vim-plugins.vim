@@ -5,7 +5,8 @@ Plug 'pangloss/vim-javascript'
 Plug 'othree/html5.vim'
 Plug 'digitaltoad/vim-jade'
 
-
+" Covim
+Plug 'FredKSchott/CoVim'
 
 " Shortcuts
 Plug 'tpope/vim-surround'
@@ -20,6 +21,8 @@ Plug 'junegunn/limelight.vim'
 Plug 'othree/yajs.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'othree/es.next.syntax.vim'
+
+Plug 'tpope/vim-commentary'
 
 " Navigation
 Plug 'christoomey/vim-tmux-navigator'

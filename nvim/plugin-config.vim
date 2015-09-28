@@ -96,3 +96,4 @@ let g:limelight_conceal_ctermfg = 240
 let g:airline_powerline_fonts = 1
 " Powerline
 let g:Powerline_symbols = 'fancy'
+
