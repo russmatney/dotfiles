@@ -97,3 +97,12 @@ let g:airline_powerline_fonts = 1
 " Powerline
 let g:Powerline_symbols = 'fancy'
 
+
+"Nerdtree
+nnoremap <leader>n :NERDTreeToggle<CR>
+let NERDTreeHijackNetrw = 0
+autocmd vimenter * if !argc() | NERDTree | wincmd l | endif
+let NERDTreeIgnore=['^components/', '^node_modules/', '^bower_components/', '^dist/']
+
+
+

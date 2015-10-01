@@ -4,6 +4,7 @@ call plug#begin()
 Plug 'pangloss/vim-javascript'
 Plug 'othree/html5.vim'
 Plug 'digitaltoad/vim-jade'
+Plug 'vim-scripts/SyntaxComplete'
 
 " Covim
 Plug 'FredKSchott/CoVim'
@@ -28,10 +29,12 @@ Plug 'tpope/vim-commentary'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'kien/ctrlp.vim'
 Plug 'bling/vim-airline'
+Plug 'scrooloose/nerdtree'
 
 " Color
 Plug 'morhetz/gruvbox'
 Plug 'Slava/vim-colors-tomorrow'
+Plug 'jscappini/material.vim'
 
 " Search
 Plug 'rking/ag.vim'
@@ -41,7 +44,7 @@ Plug 'benekastah/neomake'
 Plug 'Shougo/vimproc.vim'
 
 " TypeScript
-Plug 'leafgarland/typescript-vim'
+Plug 'rschmukler/typescript-vim'
 Plug 'Quramy/tsuquyomi'
 Plug 'marijnh/tern_for_vim'
 
