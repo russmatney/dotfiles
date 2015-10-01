@@ -171,3 +171,5 @@ Alfred Workflows:
 brew install python
 pip install powerline-status
 pip install psutil
+
+brew install cloc
