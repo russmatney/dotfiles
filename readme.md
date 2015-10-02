@@ -173,3 +173,8 @@ pip install powerline-status
 pip install psutil
 
 brew install cloc
+
+
+tsd!
+
+vimproc install requires naving to plugged/vimproc clone and running `make`
