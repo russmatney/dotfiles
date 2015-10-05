@@ -1,6 +1,6 @@
 source ~/dotfiles/zsh/antigen-plugins.zsh
 
-export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
+export PATH=$(brew --prefix coreutils)/libexec/gnubin:./node_modules/.bin:$PATH
 
 alias vim='NVIM_TUI_ENABLE_TRUE_COLOR=true nvim'
 alias vi='NVIM_TUI_ENABLE_TRUE_COLOR=true nvim'
