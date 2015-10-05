@@ -121,10 +121,13 @@ Python, Node (for some plugins)
 ####Install
 
 1. Install Neovim
+  - `brew tap neovim/neovim`
+  - `brew install --HEAD neovim`
   - (requires python?) (see python section?)
   - `pip install neovim`
 1. `alias vim=nvim` >> zshrc
 1. Start `nvimrc` in dotfiles
+
 1. Install vim-plug, write vim-plugins.vim
 
 ####Nvimrc Notables:
