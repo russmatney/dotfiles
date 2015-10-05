@@ -206,3 +206,8 @@ still need luarocks?
 1. `brew reinstall --with-truecolor`
 1. install a [true color theme](https://github.com/kristijanhusak/vim-hybrid-material), plus some vim related things (TODO:)
 
+##Docker
+
+Download and install the [toolbox](https://www.docker.com/toolbox).
+
+zsh aliases.
