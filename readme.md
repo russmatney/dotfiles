@@ -79,7 +79,6 @@ workflow, in installed order, from scratch on a freshly restored mac.
 ##Zsh with Antigen
 
 1. [Set zsh as default shell](http://stackoverflow.com/questions/13476232/make-iterm2-launch-with-zsh)
-
 1. install [antigen]() as a submodule
   - i did this in this repo via `git submodule init` and `git submodule update`
 1. symlink your zshrc to ~/.zshrc
@@ -110,7 +109,7 @@ workflow, in installed order, from scratch on a freshly restored mac.
   - `pip install powerline-status`
   - `pip install psutil`
 1. [Powerline fonts](https://github.com/powerline/fonts) downloaded installed to your osx
-  - [Hack](https://github.com/chrissimpkins/Hack/issues/111) is nice
+  - [Hack](https://github.com/chrissimpkins/Hack#desktop-usage) is nice
 1. Fonts set via iTerm2 profile settings
 
 ##(N)vim
