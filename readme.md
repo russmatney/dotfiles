@@ -61,7 +61,7 @@ workflow, in installed order, from scratch on a freshly restored mac.
 - `brew install node`
 - `npm install -g n`
 - `n latest`
-- `npm i -g bower gulp babel eslint typescript`
+- `npm i -g bower gulp babel eslint babel-eslint typescript`
 
 ##Python
 
@@ -211,3 +211,10 @@ still need luarocks?
 Download and install the [toolbox](https://www.docker.com/toolbox).
 
 zsh aliases.
+
+
+#raw notes
+
+turn off ctrl + UP
+install tern w/ npm install in vim-plugins/[tern dir]
+install vimProc via :vimProcInstall
