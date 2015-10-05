@@ -78,7 +78,14 @@ workflow, in installed order, from scratch on a freshly restored mac.
 
 ##Zsh with Antigen
 
+1. [Set zsh as default shell](http://stackoverflow.com/questions/13476232/make-iterm2-launch-with-zsh)
+
 1. install [antigen]() as a submodule
+  - i did this in this repo via `git submodule init` and `git submodule update`
+1. symlink your zshrc to ~/.zshrc
+  - `ln -s ~/dotfiles/zshrc ~/.zshrc`
+1. `source .zshrc`
+
   - basic antigen plugin config
   - brew, git, nvm, a theme
 
