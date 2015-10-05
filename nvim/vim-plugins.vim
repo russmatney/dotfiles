@@ -1,13 +1,10 @@
-call plug#begin()
+call plug#begin('~/dotfiles/nvim/vim-plugins')
 
 " Syntax Plugins
 Plug 'pangloss/vim-javascript'
 Plug 'othree/html5.vim'
 Plug 'digitaltoad/vim-jade'
 Plug 'vim-scripts/SyntaxComplete'
-
-" Covim
-Plug 'FredKSchott/CoVim'
 
 " Shortcuts
 Plug 'tpope/vim-surround'
