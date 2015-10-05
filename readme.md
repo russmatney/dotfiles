@@ -7,29 +7,30 @@ workflow, in installed order, from scratch on a freshly restored mac.
 
 1. (If you prefer chrome) [Download Chrome](http://www.google.com/chrome/) from Safari, sign-in to resync
 1. Some chrome extensions
-  - [Pocket]()
-  - [1password]()
-  - [What the Font]()
-  - [Vimium]()
+  - [Pocket](https://getpocket.com/)
+  - [1password](https://agilebits.com/onepassword/mac)
+  - [WhatFont](http://chengyinliu.com/whatfont.html)
+  - [Vimium](https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb)
 
 ##OSX Apps
 
-1. [1password]()
-1. [Dropbox]()
-1. [nvault]()
+1. [1password](https://agilebits.com/onepassword/mac)
+1. [Dropbox](http://www.dropbox.com/)
+1. [nvALT (notational velocity)](http://brettterpstra.com/projects/nvalt/)
   - set up to read/write plain text files from dropbox
-  - [NVault workflow blog post]()
-1. [Limechat]()
-1. [BetterSnapTool]()
-1. Xcode (from App Store)
+1. [Limechat](http://limechat.net/mac/)
+1. [BetterSnapTool](https://itunes.apple.com/us/app/bettersnaptool/id417375580?mt=12)
+1. [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12)
   - Install the command line tools
-1. [Evernote]()
-1. [Slack]()
+1. [Evernote](https://evernote.com/download/)
+1. [Slack](https://slack.com/apps)
 1. [Colorsnapper2]()
+1. [CloudApp]()
+1. [Pomodoro Time](https://itunes.apple.com/us/app/pomodoro-time-focus-timer/id973134470?mt=12)
 
 ##Alfred
 
-1. [Alfred]()
+1. [Alfred](https://www.alfredapp.com/)
 1. [Dash]()
   - Dash-Alfred integration
 
@@ -51,8 +52,7 @@ workflow, in installed order, from scratch on a freshly restored mac.
 
 ##Homebrew
 
-1. [Homebrew]()
-  - `` - 
+1. [Homebrew](http://brew.sh/)
   - `brew install coreutils`
   - `brew install caskroom/cask/brew-cask` - generic req for brew casks
 
