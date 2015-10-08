@@ -173,7 +173,7 @@ Based on [this]() and/or [this](), [here]() is mine.
 - `pip install grip` - [Grip]() - easy offline github markdown readme server
 - `brew install cloc`
 
-##Mjolnir
+##Mjolnir or Hammerspoon?
 
 ####Prereqs
 
