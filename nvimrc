@@ -2,7 +2,7 @@ set t_Co=256 " color
 let g:hybrid_use_Xresources = 1
 
 let mapleader=" "
-set showcmd
+"set showcmd
 
 autocmd VimEnter * color hybrid-material
 set background=light

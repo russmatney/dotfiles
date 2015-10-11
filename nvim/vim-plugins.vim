@@ -6,6 +6,9 @@ Plug 'othree/html5.vim'
 Plug 'digitaltoad/vim-jade'
 Plug 'vim-scripts/SyntaxComplete'
 
+" Git
+Plug 'tpope/vim-fugitive'
+
 " Shortcuts
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
