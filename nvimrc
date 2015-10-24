@@ -81,3 +81,8 @@ nmap <leader>j :setf javascript<CR>
 "unhighlight
 nmap <leader>h :nohlsearch<CR>
 
+"move split in direction
+nmap <leader>H <C-W>H
+nmap <leader>L <C-W>L
+nmap <leader>K <C-W>K
+nmap <leader>J <C-W>J
