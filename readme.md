@@ -202,8 +202,7 @@ still need luarocks?
 ##Truecolor in iTerm2/Tmux/nvim:
 
 1. Make sure you have the [nightly iTerm2](https://iterm2.com/downloads/nightly/#/section/home)
-1. [patch tmux](https://github.com/rschmukler/dotfiles/blob/master/files/brew-patches/tmux.txt)
-1. `brew reinstall --with-truecolor`
+1. `brew uninstall tmux` and the reinstall via [choppsv1/homebrew-term24](https://github.com/choppsv1/homebrew-term24)
 1. install a [true color theme](https://github.com/kristijanhusak/vim-hybrid-material), plus some vim related things (TODO:)
 
 ##Docker
