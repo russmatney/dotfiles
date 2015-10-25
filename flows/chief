@@ -4,7 +4,7 @@ SESSION_NAME=chief
 
 TMUX= tmux new-session -d -s $SESSION_NAME -n docker -c ~/projects/offmarket/devops.docker-images
 tmux new-window -t$SESSION_NAME:2 -n chief -c ~/projects/offmarket/syphons.chief
-tmux new-window -t$SESSION_NAME:3 -n syphon -c ~/projects/offmarket/syphons.syphon
+tmux new-window -t$SESSION_NAME:3 -n cadet -c ~/projects/offmarket/syphons.cadet
 tmux new-window -t$SESSION_NAME:4 -n hive-mind -c ~/projects/offmarket/node-libs.hive-mind
 tmux new-window -t$SESSION_NAME:5 -n pluto -c ~/projects/offmarket/syphons.pluto
 
