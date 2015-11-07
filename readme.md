@@ -173,26 +173,18 @@ Based on [this]() and/or [this](), [here]() is mine.
 - `pip install grip` - [Grip]() - easy offline github markdown readme server
 - `brew install cloc`
 
-##Mjolnir or Hammerspoon?
-
-####Prereqs
-
-- Lua
+##Hammerspoon
 
 ####Install
 
 mjolnir config for easy app access
 
-still need luarocks?
-
-- echo 'rocks_servers = { "http://rocks.moonscript.org" }' >> /usr/local/etc/luarocks52/config-5.2.lua
-- `luarocks install mjolnir.hotkey`
-- `luarocks install mjolnir.application`
-- `brew cask install mjolnir`
-
 ####Notables:
 
-- `option + [any letter]` to quick hop to any app by name
+Automate your Mac already! This makes it easy to add shortcuts to do basically
+anything. I use it to jump between any apps with one shortcut.
+
+- `option + [any letter]` to quick hop to any app by name. (Eg: 'opt+C' for Chrome, 'opt+T' for Terminal, 'opt+M' for Messages)
 
 ##Caps-lock -> Esc remapping
 
