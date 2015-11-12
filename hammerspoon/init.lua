@@ -18,6 +18,7 @@ appShortcut(alt, 'C', 'Google Chrome')
 appShortcut(alt, 'T', 'iTerm')
 appShortcut(alt, 'P', 'Spotify')
 appShortcut(alt, 'M', 'Messages')
+appShortcut(alt, 'N', 'nvALT')
 
 
 
