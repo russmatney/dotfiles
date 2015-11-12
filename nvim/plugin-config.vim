@@ -106,6 +106,7 @@ nnoremap <leader>n :NERDTreeToggle<CR>
 let NERDTreeHijackNetrw = 0
 autocmd vimenter * if !argc() | NERDTree | wincmd l | endif
 let NERDTreeIgnore=['^components/', '^node_modules/', '^bower_components/', '^dist/']
-
+"nnoremap <leader>x :NERDTreeMapOpenSplit<CR>
+"nnoremap <leader>v :NERDTreeMapOpenVSplit<CR>
 
 

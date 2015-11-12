@@ -209,3 +209,11 @@ zsh aliases.
 turn off ctrl + UP
 install tern w/ npm install in vim-plugins/[tern dir]
 install vimProc via :vimProcInstall
+
+##Quicklook
+
+[Great collection of quicklooks here](https://github.com/sindresorhus/quick-look-plugins)
+
+- `brew cask install quicklook-csv`
+
+
