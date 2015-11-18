@@ -99,6 +99,7 @@ let g:goyo_width = 200
 let g:airline_powerline_fonts = 1
 " Powerline
 let g:Powerline_symbols = 'fancy'
+let g:airline_theme='luna'
 
 
 "Nerdtree
