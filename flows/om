@@ -3,12 +3,18 @@
 SESSION_NAME=om
 
 TMUX= tmux new-session -d -s $SESSION_NAME -n docker -c ~/projects/offmarket/devops.docker-images
-tmux new-window -t$SESSION_NAME:2 -n syphon -c ~/projects/offmarket/data.syphon
-tmux new-window -t$SESSION_NAME:3 -n gumshoe -c ~/projects/offmarket/data.gumshoe
-tmux new-window -t$SESSION_NAME:4 -n vectorizer -c ~/projects/offmarket/data.vectorizer
-tmux new-window -t$SESSION_NAME:5 -n hive-mind -c ~/projects/offmarket/node-libs.hive-mind
-tmux new-window -t$SESSION_NAME:6 -n graph -c ~/projects/offmarket/acris.graph
-tmux new-window -t$SESSION_NAME:7 -n scratch -c ~/projects/offmarket
+tmux new-window -t$SESSION_NAME:2 -n chief -c ~/projects/offmarket/syphons.chief
+tmux new-window -t$SESSION_NAME:3 -n cadet -c ~/projects/offmarket/syphons.cadet
+tmux new-window -t$SESSION_NAME:4 -n hive-mind -c ~/projects/offmarket/node-libs.hive-mind
+tmux new-window -t$SESSION_NAME:5 -n pluto -c ~/projects/offmarket/syphons.pluto
+tmux new-window -t$SESSION_NAME:6 -n acris -c ~/projects/offmarket/syphons.acris
+tmux new-window -t$SESSION_NAME:7 -n hpd -c ~/projects/offmarket/syphons.hpd
+tmux new-window -t$SESSION_NAME:8 -n dob -c ~/projects/offmarket/syphons.dob
+tmux new-window -t$SESSION_NAME:9 -n dof -c ~/projects/offmarket/syphons.dof
+tmux new-window -t$SESSION_NAME:10 -n pad -c ~/projects/offmarket/syphons.pad
+tmux new-window -t$SESSION_NAME:11 -n gumshoe -c ~/projects/offmarket/data.gumshoe
+tmux new-window -t$SESSION_NAME:12 -n vectorizer -c ~/projects/offmarket/data.vectorizer
 
-tmux select-window -t$SESSION_NAME:3
+
+tmux select-window -t$SESSION_NAME:2
 
