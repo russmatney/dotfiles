@@ -44,6 +44,7 @@ workflow, in installed order, from scratch on a freshly restored mac.
 - [github](https://github.com/gharlan/alfred-github-workflow) - `gh [search|repo|etc]`
 - [top (including kill)](http://zhaocai.github.io/alfred2-top-workflow/) - because the activity monitor is just too slow, especially when something needs to DIE
 - [ip](http://dferg.us/ip-address-workflow/) - quick local/external ip lookup
+- [uuid](https://github.com/eliasmaier/uuidgen.alfred)
 
 ##iTerm
 
@@ -172,6 +173,9 @@ Based on [this]() and/or [this](), [here]() is mine.
 - `brew install httpie` - [HTTPie]() - colorized and easy to use cURL tool
 - `pip install grip` - [Grip]() - easy offline github markdown readme server
 - `brew install cloc`
+
+- `brew install Caskroom/cask/xquartz`
+- `brew install homebrew/x11/xpdf`
 
 ##Hammerspoon
 
