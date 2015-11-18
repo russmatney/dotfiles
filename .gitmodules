@@ -2,3 +2,6 @@
 	path = antigen
 	url = https://github.com/zsh-users/antigen.git
 	ignore = dirty
+[submodule "tmux-powerline"]
+	path = tmux-powerline
+	url = https://github.com/erikw/tmux-powerline.git
