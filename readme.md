@@ -173,6 +173,8 @@ Based on [this]() and/or [this](), [here]() is mine.
 - `brew install httpie` - [HTTPie]() - colorized and easy to use cURL tool
 - `pip install grip` - [Grip]() - easy offline github markdown readme server
 - `brew install cloc`
+- `npm i -g clog-cli`
+- `brew install git-extras`
 
 - `brew install Caskroom/cask/xquartz`
 - `brew install homebrew/x11/xpdf`
@@ -220,4 +222,10 @@ install vimProc via :vimProcInstall
 
 - `brew cask install quicklook-csv`
 
+##Rust
+
+- `brew install multirust`
+- `multirust update beta`
+- `racer`
+- `multirust run beta cargo install --git https://github.com/rust-lang-nursery/rustfmt`
 
