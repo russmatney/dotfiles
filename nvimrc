@@ -3,9 +3,11 @@ let g:hybrid_use_Xresources = 1
 
 let mapleader=" "
 "set showcmd
+set hidden
 
-autocmd VimEnter * color hybrid-material
-set background=light
+"autocmd VimEnter * color hybrid-material
+autocmd VimEnter * color tomorrow
+set background=dark
 
 source ~/dotfiles/nvim/filetype-settings.vim
 source ~/dotfiles/nvim/vim-plugins.vim
@@ -76,7 +78,7 @@ nnoremap <leader>E :Explore<CR>
 nmap <leader>f :syntax sync fromstart<CR>
 
 "for those mofoking binaries
-nmap <leader>j :setf javascript<CR>
+"nmap <leader>j :setf javascript<CR>
 
 "unhighlight
 nmap <leader>h :nohlsearch<CR>

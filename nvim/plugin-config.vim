@@ -34,7 +34,7 @@ nnoremap <leader>} :lnext<CR>
 autocmd! BufWritePost * Neomake
 let g:neomake_typescript_tsc_maker= {
   \ 'args': [
-  \ '--noEmit', '-t', 'ES6', '--experimentalAsyncFunctions', '--experimentalDecorators'
+  \ '--noEmit', '-t', 'ES6', '--experimentalDecorators', '--moduleResolution', 'node'
   \ ],
   \ 'errorformat':
   \ '%E%f %#(%l\,%c): error %m,' .
@@ -44,7 +44,30 @@ let g:neomake_typescript_tsc_maker= {
 \ }
 
 let g:neomake_typescript_enabled_makers = ['tsc', 'tslint']
-let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_open_list = 0
+
+let g:neomake_rust_cargo_maker = {
+      \ 'exe': 'cargo',
+      \ 'args': ['rustc', '--', '-Z', 'no-trans' ],
+      \ 'append_file': 0,
+      \ 'errorformat':
+      \   '%E%f:%l:%c: %\d%#:%\d%# %.%\{-}error:%.%\{-} %m,'   .
+      \   '%E%f:%l:%c: %\d%#:%\d%# %.%\{-}error: %m,'   .
+      \   '%W%f:%l:%c: %\d%#:%\d%# %.%\{-}warning:%.%\{-} %m,' .
+      \   '%W%f:%l:%c: %\d%#:%\d%# %.%\{-}warning: %m,' .
+      \   '%Z%f:%l %m,' .
+      \   '%C%f:%l %m,' .
+      \   '%C   %m,' .
+      \   '%C%m,' .
+      \   '%-Z%.%#'
+      \ }
+
+if filereadable("Cargo.toml")
+  let g:neomake_rust_enabled_makers = ['cargo']
+else
+  let g:neomake_rust_enabled_makers = ['rustc']
+endif
+
 let g:neomake_error_sign = {
              \ 'text': '>>',
              \ 'texthl': 'ErrorMsg',
@@ -81,6 +104,10 @@ let g:tsuquyomi_disable_quickfix = 1
 nnoremap <Leader>d :TsuDefinition<CR>
 nnoremap <Leader>D :TsuGoBack<CR>
 
+"js-template highlighting
+autocmd FileType typescript nnoremap <leader>T :JsPreTmpl html<CR>
+autocmd FileType javascript nnoremap <leader>T :JsPreTmpl html<CR>
+
 " Tern
 let g:tern_map_keys=1
 
@@ -110,4 +137,15 @@ let NERDTreeIgnore=['^components/', '^node_modules/', '^bower_components/', '^di
 "nnoremap <leader>x :NERDTreeMapOpenSplit<CR>
 "nnoremap <leader>v :NERDTreeMapOpenVSplit<CR>
 
+
+"Rust and Vim Racer
+let g:racer_cmd = "~/.multirust/toolchains/beta/cargo/bin/racer"
+let $RUST_SRC_PATH="/usr/local/src/rust/beta"
+au FileType rust nmap <Leader>d :call RacerGoToDefinition()<CR>
+let g:rustfmt_autosave = 1
+let g:rustfmt_fail_silently = 1
+
+au FileType rust command! Nofmt set paste | normal O#[cfg_attr(rustfmt, rustfmt_skip)]<ESC>:set nopaste<CR>^j
+au FileType rust nmap <Leader>i :Nofmt<CR>
+au FileType rust nmap <Leader>r :RustRun<CR>
 

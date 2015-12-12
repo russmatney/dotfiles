@@ -5,6 +5,8 @@ Plug 'pangloss/vim-javascript'
 Plug 'othree/html5.vim'
 Plug 'digitaltoad/vim-jade'
 Plug 'vim-scripts/SyntaxComplete'
+Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/vim-racer'
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -22,6 +24,7 @@ Plug 'junegunn/limelight.vim'
 Plug 'othree/yajs.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'othree/es.next.syntax.vim'
+Plug 'Quramy/vim-js-pretty-template'
 
 Plug 'tpope/vim-commentary'
 
