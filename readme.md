@@ -170,7 +170,6 @@ Based on [this]() and/or [this](), [here]() is mine.
 - `brew install Ag` (or maybe [sift]() - both are super fast `grep`s
 - `brew cask install qlmarkdown` - QuickLook (space-bar preview) for markdown files
 - `brew install reattach-to-user-namespace` - for tmux sessions, i believe
-- `brew install httpie` - [HTTPie]() - colorized and easy to use cURL tool
 - `pip install grip` - [Grip]() - easy offline github markdown readme server
 - `brew install cloc`
 - `npm i -g clog-cli`
@@ -178,6 +177,21 @@ Based on [this]() and/or [this](), [here]() is mine.
 
 - `brew install Caskroom/cask/xquartz`
 - `brew install homebrew/x11/xpdf`
+
+##HTTPie
+
+A colorized and easy to use cURL tool 
+
+You can use brew.... (`brew install httpie`), but i've moved to using `pip` for this for easier cert usage.
+
+Also: 
+
+- `pip install httpie --upgrade`
+- `pip install requests --upgrade`
+- `pip install ndg-httpsclient --upgrade`
+- `pip install pyasn1 --upgrade`
+- `pip install pyopenssl --upgrade`
+
 
 ##Hammerspoon
 
