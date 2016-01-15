@@ -37,10 +37,18 @@ alias dip='docker-machine ip'
 
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
 
-
 alias pip-upgrade-all="pip freeze --local | tee before_upgrade.txt | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
 
+#dat rustiness
 if hash cargo 2>/dev/null; then
   export PATH=~/.multirust/toolchains/beta/cargo/bin:$PATH
   export RUST_SRC_PATH=/usr/local/src/rust/beta/
 fi
+
+#dat golang
+export PATH=$PATH:/usr/local/opt/go/libexec/bin
+export GOPATH=~/projects/go
+export GO15VENDOREXPERIMENT=1
+
+
+[[ -s "/Users/whiskers/.gvm/scripts/gvm" ]] && source "/Users/whiskers/.gvm/scripts/gvm"

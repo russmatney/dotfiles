@@ -51,6 +51,10 @@ Plug 'rschmukler/typescript-vim'
 Plug 'Quramy/tsuquyomi'
 Plug 'marijnh/tern_for_vim'
 
+" Go
+Plug 'fatih/vim-go'
+Plug 'rhysd/vim-go-impl'
+
 " Completion
 Plug 'ervandew/supertab'
 
