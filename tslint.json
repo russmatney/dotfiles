@@ -24,6 +24,7 @@
         "variables-before-functions"
     ],
     "no-any": false,
+		"noImplicitAny": true,
     "no-arg": true,
     "no-bitwise": true,
     "no-conditional-assignment": true,

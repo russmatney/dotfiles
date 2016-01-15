@@ -32,9 +32,9 @@ nnoremap <leader>} :lnext<CR>
 
 " NeoMake
 autocmd! BufWritePost * Neomake
-let g:neomake_typescript_tsc_maker= {
+let g:neomake_typescript_tsc_maker = {
   \ 'args': [
-  \ '--noEmit', '-t', 'ES6', '--experimentalDecorators', '--moduleResolution', 'node'
+  \ '--noEmit', '-t', 'ES6', '--experimentalDecorators'
   \ ],
   \ 'errorformat':
   \ '%E%f %#(%l\,%c): error %m,' .
@@ -67,6 +67,9 @@ if filereadable("Cargo.toml")
 else
   let g:neomake_rust_enabled_makers = ['rustc']
 endif
+
+let g:neomake_javascript_enabled_makers = ['eslint']
+
 
 let g:neomake_error_sign = {
              \ 'text': '>>',
@@ -137,6 +140,7 @@ let NERDTreeIgnore=['^components/', '^node_modules/', '^bower_components/', '^di
 "nnoremap <leader>x :NERDTreeMapOpenSplit<CR>
 "nnoremap <leader>v :NERDTreeMapOpenVSplit<CR>
 
+set completeopt=longest,menuone,preview
 
 "Rust and Vim Racer
 let g:racer_cmd = "~/.multirust/toolchains/beta/cargo/bin/racer"
