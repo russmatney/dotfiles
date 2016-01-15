@@ -88,3 +88,5 @@ nmap <leader>H <C-W>H
 nmap <leader>L <C-W>L
 nmap <leader>K <C-W>K
 nmap <leader>J <C-W>J
+
+set completeopt=longest,menuone,preview
