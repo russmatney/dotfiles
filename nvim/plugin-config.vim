@@ -153,3 +153,7 @@ au FileType rust command! Nofmt set paste | normal O#[cfg_attr(rustfmt, rustfmt_
 au FileType rust nmap <Leader>i :Nofmt<CR>
 au FileType rust nmap <Leader>r :RustRun<CR>
 
+"Golang
+au FileType go nmap <Leader>d :GoDoc<CR>
+
+
