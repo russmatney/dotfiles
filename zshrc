@@ -50,5 +50,4 @@ export PATH=$PATH:/usr/local/opt/go/libexec/bin
 export GOPATH=~/projects/go
 export GO15VENDOREXPERIMENT=1
 
-
-[[ -s "/Users/whiskers/.gvm/scripts/gvm" ]] && source "/Users/whiskers/.gvm/scripts/gvm"
+[[ -s ~/.gvm/scripts/gvm ]] && source ~/.gvm/scripts/gvm
