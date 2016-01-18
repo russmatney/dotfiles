@@ -47,7 +47,7 @@ fi
 
 #dat golang
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
+[[ -s ~/.gvm/scripts/gvm ]] && source ~/.gvm/scripts/gvm
 export GOPATH=~/projects/go
 export GO15VENDOREXPERIMENT=1
 
-[[ -s ~/.gvm/scripts/gvm ]] && source ~/.gvm/scripts/gvm
