@@ -153,7 +153,12 @@ au FileType rust command! Nofmt set paste | normal O#[cfg_attr(rustfmt, rustfmt_
 au FileType rust nmap <Leader>i :Nofmt<CR>
 au FileType rust nmap <Leader>r :RustRun<CR>
 
-"Golang
+" vim-go
 au FileType go nmap <Leader>d :GoDoc<CR>
-
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_interfaces = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
 
