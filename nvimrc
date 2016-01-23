@@ -5,8 +5,8 @@ let mapleader=" "
 "set showcmd
 set hidden
 
-"autocmd VimEnter * color hybrid-material
-autocmd VimEnter * color tomorrow
+autocmd VimEnter * color hybrid-material
+"autocmd VimEnter * color tomorrow
 set background=dark
 
 source ~/dotfiles/nvim/filetype-settings.vim
@@ -90,3 +90,6 @@ nmap <leader>K <C-W>K
 nmap <leader>J <C-W>J
 
 set completeopt=longest,menuone,preview
+
+" // to search for visually selected text
+vnoremap // y/<C-R>"<CR>

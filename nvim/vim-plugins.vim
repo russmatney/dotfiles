@@ -58,5 +58,6 @@ Plug 'rhysd/vim-go-impl'
 
 " Completion
 Plug 'ervandew/supertab'
+Plug 'mattn/emmet-vim'
 
 call plug#end()

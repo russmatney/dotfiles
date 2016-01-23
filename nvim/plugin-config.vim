@@ -34,7 +34,7 @@ nnoremap <leader>} :lnext<CR>
 autocmd! BufWritePost * Neomake
 let g:neomake_typescript_tsc_maker = {
   \ 'args': [
-  \ '--noEmit', '-t', 'ES6', '--experimentalDecorators'
+  \ '--noEmit', '-t', 'ES5', '--module', 'commonjs', '--experimentalDecorators'
   \ ],
   \ 'errorformat':
   \ '%E%f %#(%l\,%c): error %m,' .
