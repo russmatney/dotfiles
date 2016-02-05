@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+SESSION_NAME=downloads
+
+TMUX= tmux new-session -d -s $SESSION_NAME -n downloads -c ~/Downloads
+
+tmux select-window -t$SESSION_NAME:1
+
