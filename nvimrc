@@ -93,3 +93,5 @@ set completeopt=longest,menuone,preview
 
 " // to search for visually selected text
 vnoremap // y/<C-R>"<CR>
+
+nmap <leader>r :redraw!<CR>
