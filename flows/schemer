@@ -1,0 +1,11 @@
+#!/bin/zsh
+
+SESSION_NAME=schemer
+
+TMUX= tmux new-session -d -s $SESSION_NAME -n scratch -c ~/projects
+tmux new-window -t$SESSION_NAME:2 -n vim-to-schema -c ~/projects/vim-to-schema
+tmux new-window -t$SESSION_NAME:3 -n web-content-pipe -c ~/projects/go/src/github.com/russmatney/web-content-pipe
+tmux new-window -t$SESSION_NAME:4 -n story-compiler -c ~/projects/story-compiler
+
+tmux select-window -t$SESSION_NAME:2
+
