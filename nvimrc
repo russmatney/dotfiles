@@ -38,7 +38,8 @@ set autoindent
 set copyindent
 set expandtab
 
-set ignorecase
+set wildmode=longest,list,full
+
 set smartcase
 set hlsearch
 set incsearch
