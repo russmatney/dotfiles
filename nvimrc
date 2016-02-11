@@ -40,6 +40,7 @@ set expandtab
 
 set wildmode=longest,list,full
 
+set ignorecase
 set smartcase
 set hlsearch
 set incsearch
