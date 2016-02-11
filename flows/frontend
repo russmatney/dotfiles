@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+SESSION_NAME=frontend
+
+TMUX= tmux new-session -d -s $SESSION_NAME -n docker -c ~/projects/offmarket/devops.docker-images
+tmux new-window -t$SESSION_NAME:2 -n offmarket -c ~/projects/offmarket/front-end.offmarket
+tmux new-window -t$SESSION_NAME:3 -n splash -c ~/projects/offmarket/front-end.splash
+
+tmux select-window -t$SESSION_NAME:2
+
