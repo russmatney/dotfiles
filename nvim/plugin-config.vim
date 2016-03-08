@@ -32,10 +32,34 @@ nnoremap <leader>} :lnext<CR>
 
 " NeoMake
 autocmd! BufWritePost * Neomake
+autocmd! BufWritePost *_test.go Neomake go govet gotest golint
+
+let g:neomake_go_enabled_makers = ['go', 'govet', 'golint']
+let g:neomake_go_go_maker = {
+    \ 'exe': 'sh',
+    \ 'args': ['-c', 'go build -o ' . neomake#utils#DevNull() . ' ./\$0', '%:h'],
+    \ 'errorformat':
+        \ '%W%f:%l: warning: %m,' .
+        \ '%E%f:%l:%c:%m,' .
+        \ '%E%f:%l:%m,' .
+        \ '%C%\s%\+%m,' .
+        \ '%-G#%.%#'
+    \ }
+
+let g:neomake_go_gotest_maker = {
+    \ 'exe': 'sh',
+    \ 'args': ['-c', 'go test ./\$0', '%:h'],
+    \ 'errorformat':
+        \ '%W%f:%l: warning: %m,' .
+        \ '%E%f:%l:%c:%m,' .
+        \ '%E%f:%l:%m,' .
+        \ '%C%\s%\+%m,' .
+        \ '%-G#%.%#'
+    \ }
+
 let g:neomake_typescript_tsc_maker = {
-  \ 'args': [
-  \ '--noEmit', '-t', 'ES5', '--module', 'commonjs', '--experimentalDecorators'
-  \ ],
+  \ 'args': [ '--noEmit' ],
+  \ 'append_file': 0,
   \ 'errorformat':
   \ '%E%f %#(%l\,%c): error %m,' .
   \ '%E%f %#(%l\,%c): %m,' .
@@ -154,11 +178,17 @@ au FileType rust nmap <Leader>i :Nofmt<CR>
 au FileType rust nmap <Leader>r :RustRun<CR>
 
 " vim-go
-au FileType go nmap <Leader>d :GoDoc<CR>
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+au FileType go nmap <leader>d <Plug>(go-doc)
+au FileType go nmap <leader>l <Plug>(go-def)
+au FileType go nmap <leader>i :GoImports<CR>
+let g:go_highlight_interfaces = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
-let g:go_highlight_interfaces = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
-
+let g:go_fmt_fail_silently = 1
