@@ -27,6 +27,7 @@ let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'json=j
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_html_checkers = []
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_go_checkers = ['govet', 'golint', 'errcheck']
 nnoremap <leader>{ :lprev<CR>
 nnoremap <leader>} :lnext<CR>
 
@@ -178,8 +179,6 @@ au FileType rust nmap <Leader>i :Nofmt<CR>
 au FileType rust nmap <Leader>r :RustRun<CR>
 
 " vim-go
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
 au FileType go nmap <leader>d <Plug>(go-doc)

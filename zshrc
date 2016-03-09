@@ -46,8 +46,8 @@ if hash cargo 2>/dev/null; then
 fi
 
 #dat golang
-export PATH=$PATH:/usr/local/opt/go/libexec/bin
-[[ -s ~/.gvm/scripts/gvm ]] && source ~/.gvm/scripts/gvm
-export GOPATH=~/projects/go
-export GO15VENDOREXPERIMENT=1
+if hash go 2>/dev/null; then
+  export GOPATH=~/projects/go
+  export PATH=`go env GOROOT`/bin/:`go env GOPATH`/bin/:$PATH
+fi
 
