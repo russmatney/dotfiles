@@ -32,7 +32,8 @@ Plug 'tpope/vim-commentary'
 " Navigation
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'kien/ctrlp.vim'
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 
 " Color
@@ -52,9 +53,10 @@ Plug 'rschmukler/typescript-vim'
 Plug 'Quramy/tsuquyomi'
 Plug 'marijnh/tern_for_vim'
 
-" Go
+" Golang
 Plug 'fatih/vim-go'
 Plug 'rhysd/vim-go-impl'
+Plug 'majutsushi/tagbar'
 
 " Completion
 Plug 'ervandew/supertab'

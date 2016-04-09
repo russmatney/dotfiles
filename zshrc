@@ -51,3 +51,4 @@ if hash go 2>/dev/null; then
   export PATH=`go env GOROOT`/bin/:`go env GOPATH`/bin/:$PATH
 fi
 
+unalias gvt
