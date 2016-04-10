@@ -9,9 +9,9 @@ autocmd VimEnter * color hybrid-material
 "autocmd VimEnter * color tomorrow
 set background=dark
 
+source ~/dotfiles/nvim/plugins.vim
 source ~/dotfiles/nvim/filetype-settings.vim
-source ~/dotfiles/nvim/vim-plugins.vim
-source ~/dotfiles/nvim/plugin-config.vim
+source ~/dotfiles/nvim/config.vim
 
 set shell=zsh\ -l
 
