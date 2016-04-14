@@ -54,9 +54,9 @@ Plug 'Quramy/tsuquyomi'
 Plug 'marijnh/tern_for_vim'
 
 " Golang
-Plug 'fatih/vim-go'
-Plug 'rhysd/vim-go-impl'
-Plug 'majutsushi/tagbar'
+Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'rhysd/vim-go-impl', { 'for': 'go' }
+Plug 'majutsushi/tagbar', { 'for': 'go' }
 
 " Completion
 Plug 'ervandew/supertab'
