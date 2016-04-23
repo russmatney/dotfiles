@@ -3,3 +3,4 @@ nvim/.net*
 before_upgrade.txt
 nvim/shada/
 flows
+nvim/init.vim

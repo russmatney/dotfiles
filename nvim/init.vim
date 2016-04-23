@@ -1,1 +1,0 @@
-/Users/max/dotfiles/nvimrc
