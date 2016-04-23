@@ -1,4 +1,10 @@
-call plug#begin('~/dotfiles/nvim/vim-plugins')
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
+
+call plug#begin('~/dotfiles/nvim/plugins')
 
 " Syntax Plugins
 Plug 'pangloss/vim-javascript'
@@ -57,6 +63,12 @@ Plug 'marijnh/tern_for_vim'
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'rhysd/vim-go-impl', { 'for': 'go' }
 Plug 'majutsushi/tagbar', { 'for': 'go' }
+Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/dotfiles/nvim/plugins/gocode/nvim/symlink.sh' }
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
+Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+Plug 'zchee/deoplete-go', { 'do': 'make' }
 
 " Completion
 Plug 'ervandew/supertab'

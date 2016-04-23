@@ -24,21 +24,21 @@ let g:ctrlp_working_path_mode = 'ra'   " Always use the current working director
 let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'json=javascript']
 
 " Syntastic
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_html_checkers = []
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_go_checkers = ['govet', 'golint', 'errcheck']
-nnoremap <leader>{ :lprev<CR>
-nnoremap <leader>} :lnext<CR>
+" let g:syntastic_always_populate_loc_list = 0
+" let g:syntastic_html_checkers = []
+" let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_go_checkers = ['govet', 'golint', 'errcheck']
+" nnoremap <leader>{ :lprev<CR>
+" nnoremap <leader>} :lnext<CR>
 
 " NeoMake
 autocmd! BufWritePost * Neomake
-autocmd! BufWritePost *_test.go Neomake go govet gotest golint
+autocmd! BufWritePost *_test.go Neomake gotest
 
 let g:neomake_go_enabled_makers = ['go', 'govet', 'golint']
 let g:neomake_go_go_maker = {
     \ 'exe': 'sh',
-    \ 'args': ['-c', 'go build -o ' . neomake#utils#DevNull() . ' ./\$0', '%:h'],
+    \ 'args': ['-c', 'go build -o /dev/null ./\$0', '%:h'],
     \ 'errorformat':
         \ '%W%f:%l: warning: %m,' .
         \ '%E%f:%l:%c:%m,' .
@@ -141,6 +141,8 @@ let g:tern_map_keys=1
 
 " Supertab
 let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+let g:SuperTabClosePreviewOnPopupClose = 1
+autocmd FileType go setlocal completeopt-=preview
 
 " Goyo
 autocmd! User GoyoEnter Limelight
@@ -165,8 +167,6 @@ let NERDTreeIgnore=['^components/', '^node_modules/', '^bower_components/', '^di
 "nnoremap <leader>x :NERDTreeMapOpenSplit<CR>
 "nnoremap <leader>v :NERDTreeMapOpenVSplit<CR>
 
-set completeopt=longest,menuone,preview
-
 "Rust and Vim Racer
 let g:racer_cmd = "~/.multirust/toolchains/beta/cargo/bin/racer"
 let $RUST_SRC_PATH="/usr/local/src/rust/beta"
@@ -177,6 +177,10 @@ let g:rustfmt_fail_silently = 1
 au FileType rust command! Nofmt set paste | normal O#[cfg_attr(rustfmt, rustfmt_skip)]<ESC>:set nopaste<CR>^j
 au FileType rust nmap <Leader>i :Nofmt<CR>
 au FileType rust nmap <Leader>r :RustRun<CR>
+
+
+"" GOLANG
+let g:deoplete#enable_at_startup = 1
 
 " vim-go
 au FileType go nmap <leader>t <Plug>(go-test)
@@ -193,35 +197,33 @@ let g:go_highlight_build_constraints = 1
 let g:go_fmt_fail_silently = 1
 
 " Vim tagbar config (for gotags) via: https://github.com/jstemmer/gotags
-let g:tagbar_ctags_bin = 'gotags'
-let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \ ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \ },
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \ },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
-  \ }
+" let g:tagbar_ctags_bin = 'gotags'
+" let g:tagbar_type_go = {
+"     \ 'ctagstype' : 'go',
+"     \ 'kinds'     : [
+"         \ 'p:package',
+"         \ 'i:imports:1',
+"         \ 'c:constants',
+"         \ 'v:variables',
+"         \ 't:types',
+"         \ 'n:interfaces',
+"         \ 'w:fields',
+"         \ 'e:embedded',
+"         \ 'm:methods',
+"         \ 'r:constructor',
+"         \ 'f:functions'
+"     \ ],
+"     \ 'sro' : '.',
+"     \ 'kind2scope' : {
+"         \ 't' : 'ctype',
+"         \ 'n' : 'ntype'
+"     \ },
+"     \ 'scope2kind' : {
+"         \ 'ctype' : 't',
+"         \ 'ntype' : 'n'
+"     \ },
+"     \ 'ctagsbin'  : 'gotags',
+"     \ 'ctagsargs' : '-sort -silent'
+"   \ }
 
 nmap <leader>o :TagbarToggle<CR>
-
-

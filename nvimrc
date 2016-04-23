@@ -13,7 +13,9 @@ source ~/dotfiles/nvim/plugins.vim
 source ~/dotfiles/nvim/filetype-settings.vim
 source ~/dotfiles/nvim/config.vim
 
-set shell=zsh\ -l
+set completeopt=longest,menuone,preview
+
+set shell=zsh
 
 set backupdir=~/.vim-tmp
 set directory=~/.vim-tmp
@@ -90,8 +92,6 @@ nmap <leader>H <C-W>H
 nmap <leader>L <C-W>L
 nmap <leader>K <C-W>K
 nmap <leader>J <C-W>J
-
-set completeopt=longest,menuone,preview
 
 " // to search for visually selected text
 vnoremap // y/<C-R>"<CR>
