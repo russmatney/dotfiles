@@ -1,5 +1,6 @@
 set t_Co=256 " color
 let g:hybrid_use_Xresources = 1
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 let mapleader=" "
 "set showcmd
