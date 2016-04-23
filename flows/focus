@@ -1,6 +1,0 @@
-SESSION_NAME=focus
-
-TMUX= tmux new-session -d -s $SESSION_NAME -n writing -c ~/Dropbox/Writing
-
-tmux select-window -t$SESSION_NAME:1
-

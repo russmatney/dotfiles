@@ -1,8 +1,0 @@
-#!/bin/zsh
-
-SESSION_NAME=jack
-
-TMUX= tmux new-session -d -s $SESSION_NAME -n dev -c ~/projects/killer-kilby
-
-tmux select-window -t$SESSION_NAME:1
-
