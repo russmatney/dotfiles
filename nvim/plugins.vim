@@ -46,6 +46,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'morhetz/gruvbox'
 Plug 'Slava/vim-colors-tomorrow'
 Plug 'jscappini/material.vim'
+Plug 'mhartington/oceanic-next'
 
 " Search
 Plug 'rking/ag.vim'

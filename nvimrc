@@ -1,14 +1,15 @@
-set t_Co=256 " color
+set t_Co=256
 let g:hybrid_use_Xresources = 1
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+autocmd VimEnter * color OceanicNext
+" autocmd VimEnter * color hybrid-material
+" autocmd VimEnter * color tomorrow
+set background=dark
 
 let mapleader=" "
 "set showcmd
 set hidden
-
-autocmd VimEnter * color hybrid-material
-"autocmd VimEnter * color tomorrow
-set background=dark
 
 source ~/dotfiles/nvim/plugins.vim
 source ~/dotfiles/nvim/filetype-settings.vim
@@ -52,6 +53,7 @@ set history=1000
 set undolevels=1000
 
 syntax on
+syntax enable
 filetype plugin indent on
 
 "force markdown syntax
