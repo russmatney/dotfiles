@@ -16,6 +16,9 @@ alias 'gprom'="git pull --rebase origin master"
 
 source ~/dotfiles/zsh/tmux-aliases.zsh
 
+# Autojump `j`
+[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+
 alias pg_start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
 alias pg_stop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
 
