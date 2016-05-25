@@ -42,6 +42,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 
+Plug 'vimoutliner/vimoutliner'
+
 " Color
 Plug 'morhetz/gruvbox'
 Plug 'Slava/vim-colors-tomorrow'

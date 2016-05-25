@@ -47,6 +47,14 @@ let g:neomake_go_go_maker = {
         \ '%-G#%.%#'
     \ }
 
+let g:neomake_go_golint_maker = {
+    \ 'exe': 'golint',
+    \ 'cwd': '%:h',
+    \ 'errorformat':
+        \ '%W%f:%l:%c: %m,' .
+        \ '%-G%.%#'
+    \ }
+
 let g:neomake_go_gotest_maker = {
     \ 'exe': 'sh',
     \ 'args': ['-c', 'go test ./\$0', '%:h'],
