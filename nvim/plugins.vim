@@ -49,6 +49,7 @@ Plug 'morhetz/gruvbox'
 Plug 'Slava/vim-colors-tomorrow'
 Plug 'jscappini/material.vim'
 Plug 'mhartington/oceanic-next'
+Plug 'NLKNguyen/papercolor-theme'
 
 " Search
 Plug 'rking/ag.vim'
