@@ -62,3 +62,6 @@ if hash source-highlight 2>/dev/null; then
 fi
 
 unalias gvt
+
+#dat elixir, yo
+export PATH=$PATH:/path/to/elixir/bin

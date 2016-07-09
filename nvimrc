@@ -2,8 +2,8 @@ set t_Co=256
 let g:hybrid_use_Xresources = 1
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-autocmd VimEnter * color OceanicNext
-" autocmd VimEnter * color PaperColor
+" autocmd VimEnter * color OceanicNext
+autocmd VimEnter * color PaperColor
 " autocmd VimEnter * color hybrid-material
 " autocmd VimEnter * color tomorrow
 set background=dark
