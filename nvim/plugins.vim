@@ -75,6 +75,9 @@ endfunction
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'zchee/deoplete-go', { 'do': 'make' }
 
+" Elixir
+Plug 'elixir-lang/vim-elixir'
+
 " Completion
 Plug 'ervandew/supertab'
 Plug 'mattn/emmet-vim'
