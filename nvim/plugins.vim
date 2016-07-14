@@ -14,7 +14,7 @@ Plug 'vim-scripts/SyntaxComplete'
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
 Plug 'cespare/vim-toml'
-Plug 'lambdatoast/elm.vim'
+Plug 'lambdatoast/elm.vim', { 'for': 'elm' }
 
 " Git
 Plug 'tpope/vim-fugitive'
