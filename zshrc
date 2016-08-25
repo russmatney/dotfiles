@@ -61,7 +61,7 @@ if hash source-highlight 2>/dev/null; then
   alias less='less -m -g -i -J --underline-special --SILENT'
 fi
 
-unalias gvt
+#unalias gvt
 
 #dat elixir, yo
 export PATH=$PATH:/path/to/elixir/bin

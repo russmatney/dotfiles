@@ -77,6 +77,8 @@ Plug 'zchee/deoplete-go', { 'do': 'make' }
 
 " Elixir
 Plug 'elixir-lang/vim-elixir'
+Plug 'slashmili/alchemist.vim'
+Plug 'powerman/vim-plugin-AnsiEsc'
 
 " Completion
 Plug 'ervandew/supertab'

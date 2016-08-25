@@ -103,6 +103,23 @@ endif
 
 let g:neomake_javascript_enabled_makers = ['eslint']
 
+" `mixy` courtesy of github.com/rschmukler/mixy
+let g:neomake_elixir_mix_maker = {
+      \ 'exe': 'mixy',
+      \ 'args': ['compile'],
+      \ 'append_file': 0,
+      \ 'errorformat':
+      \   '%Wwarning: %m,' .
+      \   '%C%f:%l%.%#,' .
+      \   '%E** (%s) %f:%l: %m,' .
+      \   '%C%.%#,' .
+      \   '%E** (%s) %m,' .
+      \   '%C%.%#,' .
+      \   '%C%f:%l%.%#,' .
+      \   '%-Z%.%#'
+      \ }
+
+let g:neomake_elixir_enabled_makers = ['mix']
 
 let g:neomake_error_sign = {
              \ 'text': '>>',
