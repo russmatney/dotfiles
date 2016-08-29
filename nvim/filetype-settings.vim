@@ -19,3 +19,4 @@ autocmd BufReadPre *.ru set ft=ruby
 autocmd FileType php setlocal colorcolumn=100 noexpandtab tabstop=2 shiftwidth=2
 autocmd FileType php setlocal errorformat=%m\ in\ %f\ on\ line\ %l
 autocmd FileType php setlocal noeol binary fileformats="mac,unix,dos"
+

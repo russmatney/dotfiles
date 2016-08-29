@@ -51,6 +51,9 @@ Plug 'Slava/vim-colors-tomorrow'
 Plug 'jscappini/material.vim'
 Plug 'mhartington/oceanic-next'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'cseelus/vim-colors-lucid'
+Plug 'bcicen/vim-vice'
+Plug 'roosta/srcery'
 
 " Search
 Plug 'rking/ag.vim'

@@ -3,7 +3,7 @@ let g:hybrid_use_Xresources = 1
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 " autocmd VimEnter * color OceanicNext
-autocmd VimEnter * color PaperColor
+autocmd VimEnter * color srcery
 " autocmd VimEnter * color hybrid-material
 " autocmd VimEnter * color tomorrow
 set background=dark
@@ -17,6 +17,8 @@ source ~/dotfiles/nvim/filetype-settings.vim
 source ~/dotfiles/nvim/config.vim
 
 set completeopt=longest,menuone,preview
+
+autocmd BufWritePre * %s/\s\+$//e
 
 set shell=zsh
 
