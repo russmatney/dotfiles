@@ -21,6 +21,7 @@ appShortcut(alt, 'M', 'Messages')
 appShortcut(alt, 'N', 'nvALT')
 appShortcut(alt, 'A', 'Activity Monitor')
 appShortcut(alt, 'L', 'Slack')
+appShortcut(alt, 'D', 'Dash')
 
 
 
