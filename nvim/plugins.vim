@@ -60,7 +60,7 @@ Plug 'rking/ag.vim'
 
 " Proc managers
 Plug 'benekastah/neomake'
-Plug 'Shougo/vimproc.vim'
+Plug 'Shougo/vimproc.vim', {'do': 'make'}
 
 " TypeScript
 Plug 'rschmukler/typescript-vim'

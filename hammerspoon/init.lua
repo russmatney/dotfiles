@@ -22,6 +22,7 @@ appShortcut(alt, 'N', 'nvALT')
 appShortcut(alt, 'A', 'Activity Monitor')
 appShortcut(alt, 'L', 'Slack')
 appShortcut(alt, 'D', 'Dash')
+appShortcut(alt, 'F', 'Firefox')
 
 
 

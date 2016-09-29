@@ -218,7 +218,7 @@ let g:airline_theme='oceanicnext'
 
 
 "Nerdtree
-nnoremap <leader>n :NERDTreeToggle<CR>
+nnoremap <leader>n :NERDTreeFind<CR>
 let NERDTreeHijackNetrw = 0
 autocmd vimenter * if !argc() | NERDTree | wincmd l | endif
 let NERDTreeIgnore=['^components/', '^node_modules/', '^bower_components/', '^dist/']
@@ -252,7 +252,7 @@ let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_fmt_fail_silently = 1
-let g:go_auto_type_info = 1
+" let g:go_auto_type_info = 1
 let g:go_gocode_autobuild = 1
 let g:go_gocode_propose_builtins = 1
 
