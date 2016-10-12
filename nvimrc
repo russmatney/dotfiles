@@ -106,3 +106,8 @@ nmap <leader>r :redraw!<CR>
 
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
+
+
+" Custom commands - ripped from rschmukler
+command -nargs=1 DE :e `dirname %`/<args>
+
