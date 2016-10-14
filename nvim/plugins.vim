@@ -14,7 +14,6 @@ Plug 'vim-scripts/SyntaxComplete'
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
 Plug 'cespare/vim-toml'
-Plug 'lambdatoast/elm.vim', { 'for': 'elm' }
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -82,6 +81,9 @@ Plug 'zchee/deoplete-go', { 'do': 'make' }
 Plug 'elixir-lang/vim-elixir'
 Plug 'slashmili/alchemist.vim'
 Plug 'powerman/vim-plugin-AnsiEsc'
+
+" Elm
+Plug 'elmcast/elm-vim', {'for': 'elm'}
 
 " Completion
 Plug 'ervandew/supertab'
