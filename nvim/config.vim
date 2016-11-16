@@ -266,3 +266,11 @@ let g:elixir_showerror=0
 au FileType elixir nmap <Leader>d :ExDoc<CR>
 au FileType elixir nmap <Leader>l :ExDef<CR>
 " au FileType elixir nmap <Leader>r :ElixirExec<CR>
+
+" Elm
+au FileType elm nmap <leader>d :ElmShowDocs<CR>
+autocmd! BufWritePost *.elm silent exec "!ctags"
+let g:elm_detailed_complete = 1
+let g:ycm_semantic_triggers = {
+     \ 'elm' : ['.'],
+     \}

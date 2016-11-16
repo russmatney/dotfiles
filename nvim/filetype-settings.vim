@@ -20,3 +20,9 @@ autocmd FileType php setlocal colorcolumn=100 noexpandtab tabstop=2 shiftwidth=2
 autocmd FileType php setlocal errorformat=%m\ in\ %f\ on\ line\ %l
 autocmd FileType php setlocal noeol binary fileformats="mac,unix,dos"
 
+" Elm
+au BufReadPre * setlocal tabstop=2
+au BufReadPre * setlocal shiftwidth=2
+
+au BufReadPre *.elm setlocal tabstop=4
+au BufReadPre *.elm setlocal shiftwidth=4

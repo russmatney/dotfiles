@@ -90,5 +90,6 @@ Plug 'elmcast/elm-vim', {'for': 'elm'}
 " Completion
 Plug 'ervandew/supertab'
 Plug 'mattn/emmet-vim'
+Plug 'Valloric/YouCompleteMe', { 'for': ['typescript', 'elm'] }
 
 call plug#end()
