@@ -5,3 +5,9 @@
 [submodule "tmux-powerline"]
 	path = tmux-powerline
 	url = https://github.com/erikw/tmux-powerline.git
+[submodule "fonts"]
+	path = fonts
+	url = https://github.com/powerline/fonts.git
+[submodule "iterm2-colors"]
+	path = iterm2-colors
+	url = https://github.com/mbadolato/iTerm2-Color-Schemes.git
