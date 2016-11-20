@@ -103,7 +103,6 @@ nmap <leader>J <C-W>J
 vnoremap // y/<C-R>"<CR>
 
 nmap <leader>r :redraw!<CR>
-nmap <leader>s :syntax sync fromstart<CR>
 
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
