@@ -55,6 +55,7 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'cseelus/vim-colors-lucid'
 Plug 'bcicen/vim-vice'
 Plug 'roosta/srcery'
+Plug 'flazz/vim-colorschemes'
 
 " Search
 Plug 'rking/ag.vim'

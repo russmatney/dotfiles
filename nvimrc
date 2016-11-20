@@ -2,8 +2,8 @@ set t_Co=256
 let g:hybrid_use_Xresources = 1
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-" autocmd VimEnter * color OceanicNext
-autocmd VimEnter * color srcery
+autocmd VimEnter * color OceanicNext
+" autocmd VimEnter * color srcery
 " autocmd VimEnter * color hybrid-material
 " autocmd VimEnter * color tomorrow
 set background=dark
@@ -103,6 +103,7 @@ nmap <leader>J <C-W>J
 vnoremap // y/<C-R>"<CR>
 
 nmap <leader>r :redraw!<CR>
+nmap <leader>s :syntax sync fromstart<CR>
 
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
