@@ -1,29 +1,13 @@
 #TMUX aliases (ripped from @rschmukler)
-tmux_search_paths=( ~/projects )
 
 function tt() {
   sessionName=${1#*.}
   if ! tmux has-session -t "$sessionName" 2> ~/projects/null; then
-    tmux_script=~/dotfiles/flows/$1
-    if [[ -e $tmux_script ]]; then
-      zsh "$tmux_script"
-    else
-      oldTMUX=$TMUX
-      unset TMUX
-      tmux new -d -s $sessionName
-      export TMUX=$oldTMUX
-      unset oldTMUX
-      for searches in $tmux_search_paths; do
-        dir=$searches/$1
-        if [[ -d $dir ]]; then
-          tmux send-keys -t "${sessionName}" "cd $dir; clear" "C-m"
-          break
-        fi
-      done
-      unset searches
-      unset tmux_scripts
-      unset dir
-    fi
+    oldTMUX=$TMUX
+    unset TMUX
+    tmux new -d -s $sessionName
+    export TMUX=$oldTMUX
+    unset oldTMUX
   fi
   if [[ -n $TMUX ]]; then
     tmux switch-client -t $sessionName
