@@ -80,6 +80,11 @@ nnoremap <leader>a =ip
 "open file in same dir
 nnoremap <leader>E :Explore<CR>
 
+" Conventional Emacs line-editor defaults
+" yanked from: @wpcarro
+inoremap <C-a> <Esc>I
+inoremap <C-e> <Esc>A
+
 "window resizing
 "nnoremap <leader>l <c-w>10<
 "nnoremap <leader>h <c-w>10>
