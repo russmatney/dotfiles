@@ -162,7 +162,13 @@ Based on [this]() and/or [this](), [here]() is mine.
 
 ####Notables:
 
-- fast repeat is a game-changer 
+- fast repeat is a game-changer
+
+```
+defaults write -g KeyRepeat -int 1
+defaults write -g InitialKeyRepeat -int 10
+```
+
 - shut down + restart required.
 
 ##Other CLI tools
@@ -180,11 +186,11 @@ Based on [this]() and/or [this](), [here]() is mine.
 
 ##HTTPie
 
-A colorized and easy to use cURL tool 
+A colorized and easy to use cURL tool
 
 You can use brew.... (`brew install httpie`), but i've moved to using `pip` for this for easier cert usage.
 
-Also: 
+Also:
 
 - `pip install httpie --upgrade`
 - `pip install requests --upgrade`
