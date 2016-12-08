@@ -26,3 +26,31 @@ au BufReadPre * setlocal shiftwidth=2
 
 au BufReadPre *.elm setlocal tabstop=4
 au BufReadPre *.elm setlocal shiftwidth=4
+
+
+" Elixir
+" Run elixir tests on that line. Credit to: @wpcarro
+nnoremap <leader>t :call ExTestToggle()<CR>
+
+" Jumps from an Elixir module file to an Elixir test file.
+fun! ExTestToggle()
+  if expand('%:e') == "ex"
+
+    let test_file_name = expand('%:t:r') . "_test.exs"
+    let test_file_dir = substitute(expand('%:p:h'), "/lib/", "/test/", "")
+    let full_test_path = join([test_file_dir, test_file_name], "/")
+
+    e `=full_test_path`
+
+  elseif match(expand('%:t'), "_test.exs") != -1
+
+    let test_file_name = expand('%:t:r')
+    let offset_amt = strlen(test_file_name) - strlen("_test")
+    let module_file_name = strpart(test_file_name, 0, offset_amt) . ".ex"
+    let module_file_dir = substitute(expand('%:p:h'), "/test/", "/lib/", "")
+    let full_module_path = join([module_file_dir, module_file_name], "/")
+
+    e `=full_module_path`
+
+  endif
+endfun
