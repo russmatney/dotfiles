@@ -33,9 +33,13 @@ Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'othree/es.next.syntax.vim'
 Plug 'Quramy/vim-js-pretty-template'
 
+"Alignment
+Plug 'godlygeek/tabular'
+
 "Util
 Plug 'tpope/vim-commentary'
 Plug 'sjl/clam.vim'
+Plug 'terryma/vim-multiple-cursors'
 
 " Navigation
 Plug 'christoomey/vim-tmux-navigator'

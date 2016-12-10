@@ -2,6 +2,9 @@ set t_Co=256
 let g:hybrid_use_Xresources = 1
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
+" Comments to italics
+highlight Comment cterm=italic
+
 autocmd VimEnter * color OceanicNext
 " autocmd VimEnter * color srcery
 " autocmd VimEnter * color hybrid-material
@@ -11,10 +14,6 @@ set background=dark
 let mapleader=" "
 "set showcmd
 set hidden
-
-source ~/dotfiles/nvim/plugins.vim
-source ~/dotfiles/nvim/filetype-settings.vim
-source ~/dotfiles/nvim/config.vim
 
 set completeopt=longest,menuone,preview
 
@@ -95,6 +94,10 @@ nmap <leader>f :syntax sync fromstart<CR>
 "for those mofoking binaries
 "nmap <leader>j :setf javascript<CR>
 
+"Repeat last colon-command @wpcarro
+nnoremap ;; @:<CR>
+vnoremap ;; @:<CR>
+
 "unhighlight
 nmap <leader>h :nohlsearch<CR>
 
@@ -112,7 +115,12 @@ nmap <leader>r :redraw!<CR>
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 
+nnoremap <Tab> :1bnext<CR>
+nnoremap <S-Tab> :1bprev<CR>
 
 " Custom commands - ripped from rschmukler
 command -nargs=1 DE :e `dirname %`/<args>
 
+source ~/dotfiles/nvim/plugins.vim
+source ~/dotfiles/nvim/filetype-settings.vim
+source ~/dotfiles/nvim/config.vim

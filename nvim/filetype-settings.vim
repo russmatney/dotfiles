@@ -31,6 +31,7 @@ au BufReadPre *.elm setlocal shiftwidth=4
 " Elixir
 " Run elixir tests on that line. Credit to: @wpcarro
 nnoremap <leader>t :call ExTestToggle()<CR>
+nnoremap <leader>T :call RunInLineTest()<CR>
 
 " Jumps from an Elixir module file to an Elixir test file.
 fun! ExTestToggle()
@@ -53,4 +54,12 @@ fun! ExTestToggle()
     e `=full_module_path`
 
   endif
+endfun
+
+fun! RunInLineTest()
+  let full_file_and_line = join([expand('%'), line('.')], ":")
+  let file_and_line = substitute(full_file_and_line, "apps/assemble/", "", "")
+  let test_command = join(["Mix", "test", file_and_line], " ")
+
+  execute(test_command)
 endfun

@@ -210,12 +210,6 @@ let g:limelight_conceal_ctermfg = 240
 let g:goyo_width = 200
 
 
-" Airline
-let g:airline_powerline_fonts = 1
-" Powerline
-let g:Powerline_symbols = 'fancy'
-let g:airline_theme='oceanicnext'
-
 
 "Nerdtree
 nnoremap <leader>n :NERDTreeFind<CR>
@@ -274,3 +268,13 @@ let g:elm_detailed_complete = 1
 let g:ycm_semantic_triggers = {
      \ 'elm' : ['.'],
      \}
+
+
+" Powerline
+let g:Powerline_symbols = 'fancy'
+" Airline
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline_theme='oceanicnext'
+
