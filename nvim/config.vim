@@ -230,9 +230,11 @@ au FileType rust command! Nofmt set paste | normal O#[cfg_attr(rustfmt, rustfmt_
 au FileType rust nmap <Leader>i :Nofmt<CR>
 au FileType rust nmap <Leader>r :RustRun<CR>
 
-"" GOLANG
+"Deoplete
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#ignore_sources={}
 
+"" GOLANG
 " vim-go
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
@@ -253,13 +255,13 @@ let g:go_gocode_propose_builtins = 1
 nmap <leader>o :TagbarToggle<CR>
 
 " Elixir
-let g:deoplete#ignore_sources={}
 let g:deoplete#ignore_sources.elixir=['member']
 let g:elixir_autobuild=1
 let g:elixir_showerror=0
 au FileType elixir nmap <Leader>d :ExDoc<CR>
 au FileType elixir nmap <Leader>l :ExDef<CR>
 " au FileType elixir nmap <Leader>r :ElixirExec<CR>
+let g:alchemist#elixir_erlang_src = "/usr/local/share/src"
 
 " Elm
 au FileType elm nmap <leader>d :ElmShowDocs<CR>
@@ -276,5 +278,6 @@ let g:Powerline_symbols = 'fancy'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline_theme='oceanicnext'
 

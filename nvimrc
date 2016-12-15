@@ -90,6 +90,7 @@ inoremap <C-e> <Esc>A
 
 "rerun syntax highlighting (helpful for large files)
 nmap <leader>f :syntax sync fromstart<CR>
+inoremap <C-f> <Esc>:syntax sync fromstart<CR>i
 
 "for those mofoking binaries
 "nmap <leader>j :setf javascript<CR>
@@ -117,6 +118,35 @@ nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 
 nnoremap <Tab> :1bnext<CR>
 nnoremap <S-Tab> :1bprev<CR>
+
+nnoremap <leader>= <C-w>=
+
+function! DeleteEmptyBuffers()
+    let [i, n; empty] = [1, bufnr('$')]
+    while i <= n
+        if bufexists(i) && bufname(i) == ''
+            call add(empty, i)
+        endif
+        let i += 1
+    endwhile
+    if len(empty) > 0
+        exe 'bdelete' join(empty)
+    endif
+endfunction
+
+nmap <leader>bd :call DeleteEmptyBuffers()<CR>
+nmap <leader>1 :1b<CR>
+nmap <leader>2 :2b<CR>
+nmap <leader>3 :3b<CR>
+nmap <leader>4 :4b<CR>
+nmap <leader>5 :5b<CR>
+nmap <leader>6 :6b<CR>
+nmap <leader>7 :7b<CR>
+nmap <leader>8 :8b<CR>
+nmap <leader>9 :9b<CR>
+nmap <leader>0 :10b<CR>
+
+exec 'set viminfo=%,' . &viminfo
 
 " Custom commands - ripped from rschmukler
 command -nargs=1 DE :e `dirname %`/<args>

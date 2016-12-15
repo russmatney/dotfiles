@@ -64,3 +64,5 @@ if hash source-highlight 2>/dev/null; then
   export LESS=" -R "
   alias less='less -m -g -i -J --underline-special --SILENT'
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
