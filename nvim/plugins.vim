@@ -47,8 +47,12 @@ Plug 'kien/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
+Plug 'ton/vim-bufsurf'
+Plug 'yegappan/mru'
 
 Plug 'vimoutliner/vimoutliner'
+
+Plug 'vim-scripts/BufOnly.vim'
 
 " Color
 Plug 'morhetz/gruvbox'
@@ -60,6 +64,9 @@ Plug 'cseelus/vim-colors-lucid'
 Plug 'bcicen/vim-vice'
 Plug 'roosta/srcery'
 Plug 'flazz/vim-colorschemes'
+
+"Docs
+Plug 'rizzatti/dash.vim'
 
 " Search
 Plug 'rking/ag.vim'

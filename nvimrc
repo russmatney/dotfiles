@@ -116,8 +116,8 @@ nmap <leader>r :redraw!<CR>
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 
-nnoremap <Tab> :1bnext<CR>
-nnoremap <S-Tab> :1bprev<CR>
+nnoremap <Tab> :BufSurfForward<CR>
+nnoremap <S-Tab> :BufSurfBack<CR>
 
 nnoremap <leader>= <C-w>=
 
@@ -133,6 +133,8 @@ function! DeleteEmptyBuffers()
         exe 'bdelete' join(empty)
     endif
 endfunction
+
+nmap <C-s> :w<CR>
 
 nmap <leader>bd :call DeleteEmptyBuffers()<CR>
 nmap <leader>1 :1b<CR>
@@ -150,6 +152,10 @@ exec 'set viminfo=%,' . &viminfo
 
 " Custom commands - ripped from rschmukler
 command -nargs=1 DE :e `dirname %`/<args>
+
+
+" Dash
+nnoremap <leader>d :Dash<CR>
 
 source ~/dotfiles/nvim/plugins.vim
 source ~/dotfiles/nvim/filetype-settings.vim

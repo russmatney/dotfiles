@@ -19,6 +19,10 @@ let g:ctrlp_user_command = 'Ag %s -i --nocolor --nogroup --ignore ''.git'' --hid
 let g:ctrlp_use_caching = 0 " Ag is so fast that caching isn’t necessary
 let g:ctrlp_max_files = 10000
 let g:ctrlp_working_path_mode = 'ra'   " Always use the current working directory rather than the location of the current file
+let g:ctrlp_mruf_last_entered = 1
+
+" MRU
+nnoremap <leader>p :MRU<CR>
 
 " Markdown
 let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'json=javascript']

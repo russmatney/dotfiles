@@ -31,6 +31,7 @@ au BufReadPre *.elm setlocal shiftwidth=4
 " Elixir
 " Run elixir tests on that line. Credit to: @wpcarro
 nnoremap <leader>t :call ExTestToggle()<CR>
+nnoremap <leader>vt :vs<CR>:call ExTestToggle()<CR>
 nnoremap <leader>T :call RunInLineTest()<CR>
 
 " Jumps from an Elixir module file to an Elixir test file.
@@ -63,3 +64,10 @@ fun! RunInLineTest()
 
   execute(test_command)
 endfun
+
+if has("autocmd")
+  augroup filetype_elixir
+    au!
+    autocmd FileType elixir autocmd BufEnter * :syntax sync fromstart
+  augroup END
+endif
