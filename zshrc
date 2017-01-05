@@ -65,4 +65,7 @@ if hash source-highlight 2>/dev/null; then
   alias less='less -m -g -i -J --underline-special --SILENT'
 fi
 
+#elixir mix escripts
+export PATH=$PATH:~/.mix/escripts
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
