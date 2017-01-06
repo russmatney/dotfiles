@@ -40,6 +40,7 @@ Plug 'godlygeek/tabular'
 Plug 'tpope/vim-commentary'
 Plug 'sjl/clam.vim'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-endwise'
 
 " Navigation
 Plug 'christoomey/vim-tmux-navigator'
