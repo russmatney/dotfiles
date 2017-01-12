@@ -135,6 +135,7 @@ function! DeleteEmptyBuffers()
 endfunction
 
 nmap <C-s> :w<CR>
+nmap <leader>w :w<CR>
 
 nmap <leader>bd :call DeleteEmptyBuffers()<CR>
 nmap <leader>1 :1b<CR>
