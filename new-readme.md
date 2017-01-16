@@ -5,11 +5,15 @@
 
 ## Utils
 
-  - `fzf`
-  - `j/autojump`
-  - `Ag/sift`
-  - `httpie`
-  - `tig`
+### [`fzf`](https://github.com/junegunn/fzf)
+
+### `j/autojump`
+
+### `Ag/sift`
+
+### `httpie`
+
+### `tig`
 
 ## Zsh
 

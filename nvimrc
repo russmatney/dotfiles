@@ -5,10 +5,11 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " Comments to italics
 highlight Comment cterm=italic
 
-autocmd VimEnter * color OceanicNext
+" autocmd VimEnter * color OceanicNext
 " autocmd VimEnter * color srcery
 " autocmd VimEnter * color hybrid-material
 " autocmd VimEnter * color tomorrow
+autocmd VimEnter * color tomorrow-night-eighties
 set background=dark
 
 let mapleader=" "
