@@ -285,3 +285,8 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline_theme='oceanicnext'
 
+let g:airline_section_b = ''
+let g:airline_section_x = '%t'
+let g:airline_section_y = ''
+let g:airline_section_z = ''
+
