@@ -17,13 +17,16 @@
  '(custom-safe-themes
    (quote
     ("08b8807d23c290c840bbb14614a83878529359eaba1805618b3be7d61b0b0a32" default)))
- '(package-selected-packages (quote (helm-projectile magit evil-tutor helm))))
+ '(package-selected-packages
+   (quote
+    (flycheck helm-company discover helm-projectile magit evil-tutor helm))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -33,7 +36,35 @@
 (setq ns-use-native-fullscreen nil)
 (global-set-key (kbd "<s-return>") 'toggle-frame-fullscreen)
 
-(global-unset-key (kbd "C-w"))
+;; Window movement
+(global-set-key (kbd "C-l") 'windmove-right)
+(global-set-key (kbd "C-h") 'windmove-left)
+(global-set-key (kbd "C-k") 'windmove-up)
+(global-set-key (kbd "C-j") 'windmove-down)
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; General Settings
+;; Hide the menu-bar
+(setq ns-auto-hide-menu-bar t)
+
+;; Native App Settings
+(tool-bar-mode -1)
+
+;; Disable GUI scrollbars
+(scroll-bar-mode -1)
+
+;; Use spaces instead of tabs
+(setq-default indent-tabs-mode nil)
+
+;; Change font settings
+(set-frame-font "Operator Mono 14")
+
+;; Add transparency
+(set-frame-parameter (selected-frame) 'alpha '(95 . 95))
+(add-to-list 'default-frame-alist '(alpha . (95 . 95)))
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -43,11 +74,19 @@
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; pretty colors
 
 ;; Colorscheme
 (load-theme 'atom-one-dark)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Completion
+
+(add-hook 'after-init-hook 'global-company-mode)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -56,6 +95,13 @@
 ;; Scrolling Settings (@wpcarro)
 (setq scroll-step 1)
 (setq scroll-conservatively 10000)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Dired Settings
+(require 'dired)
+(define-key dired-mode-map (kbd "c") 'find-file)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helm config
@@ -83,13 +129,24 @@
 
 (setq helm-locate-fuzzy-match t)
 
+(helm-projectile-on)
+(setq projectile-switch-project-action 'helm-projectile)
+(defvar helm-source-file-not-found
+(helm-build-dummy-source
+    "Create file"
+    :action 'find-file))
+(add-to-list 'helm-projectile-sources-list helm-source-file-not-found t)
+
 (helm-mode 1)
+
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Search
 
 ;; Global search in projects
 (global-set-key (kbd "C-x p") 'helm-projectile-ack)
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -106,3 +163,28 @@
 (setq evil-operator-state-cursor '("red" hollow))
 
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; discovery!
+
+(require 'discover)
+(global-discover-mode 1)
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; elixir
+
+;; Alchemist Settings
+(require 'alchemist)
+
+(setq alchemist-hooks-test-on-save t)
+(setq alchemist-hooks-compile-on-save t)
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Linting
+
+(add-hook 'after-init-hook #'global-flycheck-mode)
