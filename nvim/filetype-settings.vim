@@ -71,3 +71,4 @@ if has("autocmd")
     autocmd FileType elixir autocmd BufEnter * :syntax sync fromstart
   augroup END
 endif
+

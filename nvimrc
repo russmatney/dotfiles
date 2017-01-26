@@ -2,8 +2,6 @@ set t_Co=256
 let g:hybrid_use_Xresources = 1
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-" Comments to italics
-highlight Comment cterm=italic
 
 " autocmd VimEnter * color OceanicNext
 " autocmd VimEnter * color srcery
@@ -152,7 +150,7 @@ nmap <leader>0 :10b<CR>
 
 exec 'set viminfo=%,' . &viminfo
 
-" Custom commands - ripped from rschmukler
+" New file in same dir - ripped from rschmukler
 command -nargs=1 DE :e `dirname %`/<args>
 
 
@@ -162,3 +160,12 @@ nnoremap <leader>d :Dash<CR>
 source ~/dotfiles/nvim/plugins.vim
 source ~/dotfiles/nvim/filetype-settings.vim
 source ~/dotfiles/nvim/config.vim
+
+
+
+nnoremap <leader>p :FilesMru --tiebreak=end<cr>
+
+
+"transparent bg
+nmap <leader>o :hi Normal guibg=NONE ctermbg=NONE<CR>
+

@@ -16,7 +16,7 @@ local alt = {'alt'}
 
 appShortcut(alt, 'C', 'Google Chrome')
 appShortcut(alt, 'E', 'Emacs')
-appShortcut(alt, 'T', 'Emacs')
+appShortcut(alt, 'T', 'iTerm')
 appShortcut(alt, 'P', 'Spotify')
 appShortcut(alt, 'M', 'Messages')
 appShortcut(alt, 'N', 'nvALT')

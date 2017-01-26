@@ -21,9 +21,6 @@ let g:ctrlp_max_files = 10000
 let g:ctrlp_working_path_mode = 'ra'   " Always use the current working directory rather than the location of the current file
 let g:ctrlp_mruf_last_entered = 1
 
-" MRU
-nnoremap <leader>p :MRU<CR>
-
 " Markdown
 let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'json=javascript']
 
@@ -284,9 +281,17 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline_theme='oceanicnext'
+let g:airline_section_b = ''
+let g:airline_section_x = ''
+let g:airline_section_y = '%t'
+let g:airline_section_z = ''
 
 let g:airline_section_b = ''
 let g:airline_section_x = '%t'
 let g:airline_section_y = ''
 let g:airline_section_z = ''
 
+
+
+" fzf.vim
+let $FZF_DEFAULT_COMMAND = 'Ag -g ""'

@@ -50,6 +50,9 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 Plug 'ton/vim-bufsurf'
 Plug 'yegappan/mru'
+Plug 'tweekmonster/fzf-filemru'
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 Plug 'vimoutliner/vimoutliner'
 

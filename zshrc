@@ -13,6 +13,7 @@ DISABLE_AUTO_TITLE=true
 alias 'glp'="git log --graph --pretty=format:'%Cred%h%Creset -%Cblue %an %Creset - %C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 alias 'gpb'="git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -d"
 alias 'gprom'="git pull --rebase origin master"
+alias 'gcv'="git commit --verbose"
 
 source ~/dotfiles/zsh/tmux-aliases.zsh
 
@@ -69,3 +70,7 @@ fi
 export PATH=$PATH:~/.mix/escripts
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export EDITOR=nvim
+
+fpath=(~/.zsh $fpath)
