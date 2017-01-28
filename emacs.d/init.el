@@ -57,6 +57,8 @@
 (load-file "~/dotfiles/emacs.d/projectile.el")
 (load-file "~/dotfiles/emacs.d/neotree.el")
 
+;; auto-save-files not in same dir as original
+(setq backup-directory-alist `(("." . "~/.emacs/auto-save-list")))
 
 ;; Hide the menu-bar
 (setq ns-auto-hide-menu-bar t)

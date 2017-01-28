@@ -21,7 +21,7 @@
         (evil-leader/set-leader "<SPC>")
 
         (evil-leader/set-key
-         "n" 'neotree-toggle
+         "n" 'neotree-find
          "g" 'magit-status
          "k" 'kill-buffer
          )))
