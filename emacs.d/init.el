@@ -42,7 +42,7 @@
     ("08b8807d23c290c840bbb14614a83878529359eaba1805618b3be7d61b0b0a32" default)))
  '(package-selected-packages
    (quote
-    (use-package ack xpm flycheck helm-company discover helm-projectile magit evil-tutor helm))))
+    (neotree use-package ack xpm flycheck helm-company discover helm-projectile magit evil-tutor helm))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -50,11 +50,12 @@
  ;; If there is more than one, they won't work right.
  )
 
-(load-file "~/dotfiles/emacs.d/init-evil.el")
-(load-file "~/dotfiles/emacs.d/init-helm.el")
-(load-file "~/dotfiles/emacs.d/init-alchemist.el")
-(load-file "~/dotfiles/emacs.d/init-company.el")
-(load-file "~/dotfiles/emacs.d/init-projectile.el")
+(load-file "~/dotfiles/emacs.d/evil.el")
+(load-file "~/dotfiles/emacs.d/helm.el")
+(load-file "~/dotfiles/emacs.d/alchemist.el")
+(load-file "~/dotfiles/emacs.d/company.el")
+(load-file "~/dotfiles/emacs.d/projectile.el")
+(load-file "~/dotfiles/emacs.d/neotree.el")
 
 
 ;; Hide the menu-bar

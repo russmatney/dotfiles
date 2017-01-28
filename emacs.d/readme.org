@@ -1,0 +1,37 @@
+# Emacs Config Notes
+
+Dev environment requirements:
+
+- [x] solid movement (evil-mode or otherwise)
+- [x] fast file search (helm)
+- [x] fast file creation
+- [x] file tree viewer
+- [ ] project level search for string/regex
+- [ ] jump to source of function (local or otherwise)
+- [ ] quick view docs of function (local or otherwise)
+- [ ] list uses of function in current project
+- [ ] toggle test file for current file
+- [ ] simple window split and movement between
+- [x] fast auto-complete
+
+
+# Package management
+
+`use-package` seems to be the choice to wrap everything
+
+`(setq use-package-always-ensure t)` will auto-download missing packages when I switch machines
+
+# Packages
+
+## evil
+
+Movement
+
+## helm
+
+Find file or command to run
+
+## company
+
+Auto complete
+
