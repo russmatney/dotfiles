@@ -7,6 +7,7 @@
 (use-package helm
   :init
   (progn
+
     (helm-mode 1))
 
   :bind (("M-x" . helm-M-x)

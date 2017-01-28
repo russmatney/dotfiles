@@ -42,7 +42,7 @@
     ("08b8807d23c290c840bbb14614a83878529359eaba1805618b3be7d61b0b0a32" default)))
  '(package-selected-packages
    (quote
-    (neotree use-package ack xpm flycheck helm-company discover helm-projectile magit evil-tutor helm))))
+    (ag helm-ag neotree use-package ack xpm flycheck helm-company discover helm-projectile magit evil-tutor helm))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -56,6 +56,9 @@
 (load-file "~/dotfiles/emacs.d/company.el")
 (load-file "~/dotfiles/emacs.d/projectile.el")
 (load-file "~/dotfiles/emacs.d/neotree.el")
+
+(use-package ag)
+(use-package helm-ag)
 
 ;; auto-save-files not in same dir as original
 (setq backup-directory-alist `(("." . "~/.emacs/auto-save-list")))
