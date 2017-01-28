@@ -21,10 +21,14 @@
         (evil-leader/set-leader "<SPC>")
 
         (evil-leader/set-key
+         "<SPC>" 'evil-switch-to-windows-last-buffer
          "n" 'neotree-find
          "g" 'magit-status
          "k" 'kill-buffer
-         "s" 'helm-projectile-ag
+         "S" 'helm-projectile-ag
+         "s" 'split-window-below
+         "v" 'split-window-right
+         "/" 'helm-swoop
          )))
 
     (evil-mode 1))

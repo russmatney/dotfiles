@@ -1,11 +1,18 @@
+;;; neotree.el --- Neotree mode configuration
+
+;;; Commentary:
+
+;; Neotree with vim-like bindings, including v and s for vert/horiz split.
+
+;;; Code:
+
 (use-package neotree
     :init
     (progn
       ;; Every time when the neotree window is opened, it will try to find current
       ;; file and jump to node.
       (setq-default neo-smart-open t)
-      ;; Do not allow neotree to be the only open window
-      (setq-default neo-dont-be-alone t))
+      )
 
     :config
     (progn
@@ -54,3 +61,7 @@
             (user             neo-vc-user-face)
             (t                neo-vc-default-face)))))
     )
+
+(provide 'setup-neotree)
+
+;;; neotree.el ends here
