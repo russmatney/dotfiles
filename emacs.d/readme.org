@@ -6,7 +6,7 @@ Dev environment requirements:
 - [x] fast file search (helm)
 - [x] fast file creation
 - [x] file tree viewer
-- [ ] project level search for string/regex
+- [x] project level search for string/regex
 - [ ] jump to source of function (local or otherwise)
 - [ ] quick view docs of function (local or otherwise)
 - [ ] list uses of function in current project

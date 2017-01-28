@@ -30,8 +30,7 @@
 
     (setq helm-locate-fuzzy-match t)
 
-    (helm-projectile-on)
-    (setq projectile-switch-project-action 'projectile-find-file)))
+    (helm-projectile-on)))
 
 
 (provide 'init-helm)

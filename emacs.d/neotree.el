@@ -30,9 +30,6 @@
       (kbd "v")   'neotree-enter-vertical-split
       ))
 
-      ;; follow with projectile
-      (setq projectile-switch-project-action 'neotree-projectile-action)
-
       ;; neo vc integration
       (setq neo-vc-integration '(face char))
 

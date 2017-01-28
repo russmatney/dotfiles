@@ -1,8 +1,8 @@
-;;; init-evil.el --- Evil mode configuration
+;;; evil.el --- Evil mode configuration
 
 ;;; Commentary:
 
-;; originally taken from: https://github.com/bradwright/emacs-d/blob/master/packages/init-evil.el
+;; Evil mode, space as leader key
 
 ;;; Code:
 
@@ -24,6 +24,7 @@
          "n" 'neotree-find
          "g" 'magit-status
          "k" 'kill-buffer
+         "s" 'helm-projectile-ag
          )))
 
     (evil-mode 1))
@@ -40,6 +41,6 @@
     (define-key minibuffer-local-isearch-map [escape] 'abort-recursive-edit)
   ))
 
-(provide 'init-evil)
+(provide 'setup-evil)
 
-;;; init-evil.el ends here
+;;; evil.el ends here

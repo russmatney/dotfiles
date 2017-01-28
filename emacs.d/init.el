@@ -40,6 +40,7 @@
  '(custom-safe-themes
    (quote
     ("08b8807d23c290c840bbb14614a83878529359eaba1805618b3be7d61b0b0a32" default)))
+ '(initial-buffer-choice t)
  '(package-selected-packages
    (quote
     (ag helm-ag neotree use-package ack xpm flycheck helm-company discover helm-projectile magit evil-tutor helm))))
@@ -95,6 +96,9 @@
 ;; Scrolling Settings (@wpcarro)
 (setq scroll-step 1)
 (setq scroll-conservatively 10000)
+
+;; line numbers
+(global-linum-mode t)
 
 ;;; init-use-package.el ends here
 
