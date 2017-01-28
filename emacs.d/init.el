@@ -19,7 +19,7 @@
     ("08b8807d23c290c840bbb14614a83878529359eaba1805618b3be7d61b0b0a32" default)))
  '(package-selected-packages
    (quote
-    (flycheck helm-company discover helm-projectile magit evil-tutor helm))))
+    (ack xpm flycheck helm-company discover helm-projectile magit evil-tutor helm))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -28,9 +28,8 @@
  )
 
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; window configs
+;; Window configs
 
 ;; Fullscreen settings (@wpcarro)
 (setq ns-use-native-fullscreen nil)
@@ -130,12 +129,7 @@
 (setq helm-locate-fuzzy-match t)
 
 (helm-projectile-on)
-(setq projectile-switch-project-action 'helm-projectile)
-(defvar helm-source-file-not-found
-(helm-build-dummy-source
-    "Create file"
-    :action 'find-file))
-(add-to-list 'helm-projectile-sources-list helm-source-file-not-found t)
+(setq projectile-switch-project-action 'projectile-find-file)
 
 (helm-mode 1)
 
@@ -148,6 +142,10 @@
 (global-set-key (kbd "C-x p") 'helm-projectile-ack)
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Projectile
+
+(projectile-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; evil mode
