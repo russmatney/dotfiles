@@ -29,8 +29,8 @@
         helm-imenu-fuzzy-match    t)
 
     (setq helm-locate-fuzzy-match t)
-
-    (helm-projectile-on)))
+  )
+)
 
 
 (provide 'init-helm)

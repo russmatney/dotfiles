@@ -40,10 +40,10 @@
  '(custom-safe-themes
    (quote
     ("08b8807d23c290c840bbb14614a83878529359eaba1805618b3be7d61b0b0a32" default)))
- '(initial-buffer-choice t)
+ '(initial-buffer-choice "~/Dropbox/todo/2017-january.org")
  '(package-selected-packages
    (quote
-    (flycheck-credo flycheck-mix evil-surround evil-matchit helm-swoop ag helm-ag neotree use-package ack xpm flycheck helm-company discover helm-projectile magit evil-tutor helm))))
+    (atom-one-dark-theme flycheck-credo flycheck-mix evil-surround evil-matchit helm-swoop ag helm-ag neotree use-package ack xpm flycheck helm-company discover helm-projectile magit evil-tutor helm))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -51,14 +51,17 @@
  ;; If there is more than one, they won't work right.
  )
 
+
 (load-file "~/dotfiles/emacs.d/evil.el")
+(load-file "~/dotfiles/emacs.d/projectile.el")
 (load-file "~/dotfiles/emacs.d/helm.el")
 (load-file "~/dotfiles/emacs.d/alchemist.el")
 (load-file "~/dotfiles/emacs.d/company.el")
-(load-file "~/dotfiles/emacs.d/projectile.el")
 (load-file "~/dotfiles/emacs.d/neotree.el")
 (load-file "~/dotfiles/emacs.d/swoop.el")
 (load-file "~/dotfiles/emacs.d/flycheck.el")
+
+(helm-projectile-on)
 
 (use-package ag)
 (use-package helm-ag)
@@ -102,5 +105,10 @@
 ;; line numbers
 (global-linum-mode t)
 
-;;; init-use-package.el ends here
 
+;; file to open at startup
+(find-file "~/Dropbox/todo/2017-january.org")
+
+(provide 'init)
+
+;;; init.el ends here

@@ -10,7 +10,6 @@
   :commands (evil-mode local-evil-mode)
   :bind (:map evil-insert-state-map
          ("<escape>" . evil-force-normal-state)
-         ("k j" . evil-force-normal-state)
 
          :map evil-motion-state-map
          ("<return>" . nil)
