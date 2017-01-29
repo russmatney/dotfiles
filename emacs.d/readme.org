@@ -7,12 +7,14 @@ Dev environment requirements:
 - [x] fast file creation
 - [x] file tree viewer
 - [x] project level search for string/regex
-- [ ] jump to source of function (local or otherwise)
-- [ ] quick view docs of function (local or otherwise)
-- [ ] list uses of function in current project
-- [ ] toggle test file for current file
+- [x] jump to source of function (local or otherwise)
+- [x] quick view docs of function (local or otherwise)
+- [x] toggle test file for current file
 - [x] simple window split and movement between
 - [x] fast auto-complete
+- [x] linting
+- [x] tests run on save
+- [ ] list uses of function in current project
 
 
 # Package management

@@ -8,7 +8,9 @@
 
 (use-package company
   :config
-  (global-company-mode))
+  (setq company-idle-delay 0)
+  (global-company-mode)
+)
 
 (provide 'setup-company)
 

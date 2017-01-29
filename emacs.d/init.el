@@ -43,7 +43,7 @@
  '(initial-buffer-choice t)
  '(package-selected-packages
    (quote
-    (helm-swoop ag helm-ag neotree use-package ack xpm flycheck helm-company discover helm-projectile magit evil-tutor helm))))
+    (flycheck-credo flycheck-mix evil-surround evil-matchit helm-swoop ag helm-ag neotree use-package ack xpm flycheck helm-company discover helm-projectile magit evil-tutor helm))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -58,6 +58,7 @@
 (load-file "~/dotfiles/emacs.d/projectile.el")
 (load-file "~/dotfiles/emacs.d/neotree.el")
 (load-file "~/dotfiles/emacs.d/swoop.el")
+(load-file "~/dotfiles/emacs.d/flycheck.el")
 
 (use-package ag)
 (use-package helm-ag)

@@ -7,9 +7,28 @@
 ;;; Code:
 
 (use-package evil
+  :commands (evil-mode local-evil-mode)
+  :bind (:map evil-insert-state-map
+         ("<escape>" . evil-force-normal-state)
+         ("k j" . evil-force-normal-state)
+
+         :map evil-motion-state-map
+         ("<return>" . nil)
+         ("<tab>" . nil)
+         ("SPC" . nil)
+         ("M-." . nil)
+         ("/" . helm-do-ag-this-file)
+
+         :map evil-normal-state-map
+         ("<return>" . nil)
+         ("<tab>" . nil)
+         ("M-." . nil)
+         )
+
   :init
   (progn
     (setq evil-default-cursor t)
+    (setq evil-shift-width 2)
 
     (use-package evil-leader
       :init (global-evil-leader-mode)
@@ -25,10 +44,16 @@
          "n" 'neotree-find
          "g" 'magit-status
          "k" 'kill-buffer
+         "b" 'helm-mini
          "S" 'helm-projectile-ag
          "s" 'split-window-below
          "v" 'split-window-right
          "/" 'helm-swoop
+         "x" 'alchemist-mix
+         "r" 'alchemist-mix-rerun-last-test
+         "t" 'alchemist-project-toggle-file-and-tests
+         "T" 'alchemist-project-toggle-file-and-tests-other-window
+         "d" 'alchemist-help-search-at-point
          )))
 
     (evil-mode 1))
@@ -43,6 +68,15 @@
     (define-key minibuffer-local-completion-map [escape] 'abort-recursive-edit)
     (define-key minibuffer-local-must-match-map [escape] 'abort-recursive-edit)
     (define-key minibuffer-local-isearch-map [escape] 'abort-recursive-edit)
+
+    ;; Evil Match-it
+    (use-package evil-matchit
+      :config (global-evil-matchit-mode t))
+
+    ;; Evil Surround
+    (use-package evil-surround
+      :config (global-evil-surround-mode t))
+
   ))
 
 (provide 'setup-evil)
