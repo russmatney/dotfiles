@@ -4,7 +4,7 @@
 // Hotkeys for quickly opening apps & changing window size
 
 
-var modal_key = ":s,ctrl";
+var modal_key = ":`,ctrl";
 
 // Configs
 S.cfga({
@@ -46,6 +46,7 @@ function appIsOpen(name) {
 
 var focus_apps = {
   e: 'Emacs',
+  d: 'Dash',
   t: 'iTerm2',
   m: 'Messages',
   p: 'Spotify',
