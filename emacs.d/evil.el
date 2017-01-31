@@ -43,6 +43,7 @@
 
         (evil-leader/set-key
          "<SPC>" 'evil-switch-to-windows-last-buffer
+         "c" 'comment-or-uncomment-region
          "n" 'neotree-find
          "g" 'magit-status
          "k" 'kill-buffer
@@ -63,8 +64,10 @@
   :config
   (progn
     ;; vim ex command remaps
-    (define-key evil-ex-map "e " 'helm-find-files)
-    (define-key evil-ex-map "b " 'helm-buffers-list)
+    (define-key evil-ex-map "e" 'helm-find-files)
+    (define-key evil-ex-map "b" 'helm-buffers-list)
+    (define-key evil-ex-map "tb" 'alchemist-mix-test-this-buffer)
+    (define-key evil-ex-map "lt" 'alchemist-mix-rerun-last-test)
 
     ;; esc should always quit: http://stackoverflow.com/a/10166400/61435
     (define-key evil-normal-state-map [escape] 'keyboard-quit)
