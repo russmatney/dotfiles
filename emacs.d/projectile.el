@@ -2,7 +2,7 @@
 
 ;;; Commentary:
 
-;; Find File after project select, followed by neotree update.
+;; Find File after project select.
 
 ;;; Code:
 

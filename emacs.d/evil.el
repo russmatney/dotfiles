@@ -25,7 +25,7 @@
          ("M-." . nil)
          ("/" . helm-swoop)
          ("*" . helm-swoop)
-         )
+        )
 
   :init
   (progn
@@ -55,12 +55,17 @@
          "t" 'alchemist-project-toggle-file-and-tests
          "T" 'alchemist-project-toggle-file-and-tests-other-window
          "d" 'alchemist-help-search-at-point
+         "=" 'balance-windows
          )))
 
     (evil-mode 1))
 
   :config
   (progn
+    ;; vim ex command remaps
+    (define-key evil-ex-map "e " 'helm-find-files)
+    (define-key evil-ex-map "b " 'helm-buffers-list)
+
     ;; esc should always quit: http://stackoverflow.com/a/10166400/61435
     (define-key evil-normal-state-map [escape] 'keyboard-quit)
     (define-key evil-visual-state-map [escape] 'keyboard-quit)

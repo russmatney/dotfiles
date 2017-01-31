@@ -12,7 +12,22 @@
          ("C-x b" . helm-mini)
          ("C-x C-b" . helm-buffers-list)
          :map helm-map
-          ([tab] . helm-next-source))
+          ([tab] . helm-next-source)
+          ("C-j" . helm-next-line)
+          ("C-k" . helm-previous-line)
+          ("C-?" . describe-key)
+          ([escape] . helm-keyboard-quit)
+
+         :map helm-find-files-map
+          ("C-l" . helm-execute-persistent-action)
+          ("C-h" . helm-find-files-up-one-level)
+          ("C-?" . describe-key)
+
+         :map helm-read-file-map
+          ("C-l" . helm-execute-persistent-action)
+          ("C-h" . helm-find-files-up-one-level)
+          ("C-?" . describe-key)
+         )
 
   :init
   (progn
