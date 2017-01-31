@@ -31,24 +31,24 @@
   (exec-path-from-shell-initialize))
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
-  '(custom-enabled-themes (quote (atom-one-dark)))
-  '(custom-safe-themes
-    (quote
-      ("08b8807d23c290c840bbb14614a83878529359eaba1805618b3be7d61b0b0a32" default)))
-  '(initial-buffer-choice "~/Dropbox/todo/2017-january.org")
-  '(package-selected-packages
-    (quote
-      (highlight-indent-guides atom-one-dark-theme flycheck-credo flycheck-mix evil-surround evil-matchit helm-swoop ag helm-ag neotree use-package ack xpm flycheck helm-company discover helm-projectile magit evil-tutor helm))))
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-enabled-themes (quote (atom-one-dark)))
+ '(custom-safe-themes
+   (quote
+    ("08b8807d23c290c840bbb14614a83878529359eaba1805618b3be7d61b0b0a32" default)))
+ '(initial-buffer-choice "~/Dropbox/todo/2017-january.org")
+ '(package-selected-packages
+   (quote
+    (evil-magit highlight-indent-guides atom-one-dark-theme flycheck-credo flycheck-mix evil-surround evil-matchit helm-swoop ag helm-ag neotree use-package ack xpm flycheck helm-company discover helm-projectile magit evil-tutor helm))))
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
-)
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
 
 
 (load-file "~/dotfiles/emacs.d/evil.el")
