@@ -9,8 +9,7 @@
 ;; Update package-archive lists
 (require 'package)
 (setq package-enable-at-startup nil)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/")) (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
 (package-initialize)
 
@@ -61,8 +60,6 @@
 (load-file "~/dotfiles/emacs.d/swoop.el")
 (load-file "~/dotfiles/emacs.d/flycheck.el")
 
-(global-set-key (kbd "C-b") 'describe-bindings)
-
 (use-package ag)
 (use-package helm-ag)
 
@@ -91,6 +88,10 @@
 ;; Fullscreen settings (@wpcarro)
 (setq ns-use-native-fullscreen nil)
 (global-set-key (kbd "<s-return>") 'toggle-frame-fullscreen)
+
+;; default full screen
+(setq default-frame-alist
+    '((fullscreen . fullboth) (fullscreen-restore . fullheight)))
 
 ;; Window movement
 (global-set-key (kbd "C-l") 'windmove-right)

@@ -9,8 +9,7 @@
 (use-package neotree
     :init
     (progn
-      ;; Every time when the neotree window is opened, it will try to find current
-      ;; file and jump to node.
+      ;; Every time when the neotree window is opened, it will try to find current file and jump to node.
       (setq-default neo-smart-open t)
       )
 

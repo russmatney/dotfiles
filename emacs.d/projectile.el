@@ -10,7 +10,6 @@
   :config
   (progn
     (setq projectile-switch-project-action 'projectile-find-file)
-    (add-hook 'projectile-after-switch-project-hook 'neotree-projectile-action)
     (projectile-mode)
     )
 )
