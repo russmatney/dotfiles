@@ -5,6 +5,7 @@
 
 
 var modal_key = ":`,ctrl";
+var normal_key = ":alt,ctrl";
 
 // Configs
 S.cfga({
@@ -56,5 +57,5 @@ var focus_apps = {
 
 
 _(focus_apps).forEach(function(app, key) {
-  S.bind(key + modal_key, S.op("focus", {app: app}));
+  S.bind(key + normal_key, S.op("focus", {app: app}));
 });
