@@ -61,7 +61,7 @@
 (load-file "~/dotfiles/emacs.d/swoop.el")
 (load-file "~/dotfiles/emacs.d/flycheck.el")
 
-(helm-projectile-on)
+(global-set-key (kbd "C-b") 'describe-bindings)
 
 (use-package ag)
 (use-package helm-ag)
@@ -105,9 +105,6 @@
 ;; line numbers
 (global-linum-mode t)
 
-
-;; file to open at startup
-(find-file "~/Dropbox/todo/2017-january.org")
 
 (provide 'init)
 

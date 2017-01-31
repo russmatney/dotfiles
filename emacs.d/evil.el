@@ -16,12 +16,15 @@
          ("<tab>" . nil)
          ("SPC" . nil)
          ("M-." . nil)
-         ("/" . helm-do-ag-this-file)
+         ("/" . helm-swoop)
+         ("*" . helm-swoop)
 
          :map evil-normal-state-map
          ("<return>" . nil)
          ("<tab>" . nil)
          ("M-." . nil)
+         ("/" . helm-swoop)
+         ("*" . helm-swoop)
          )
 
   :init
@@ -47,7 +50,6 @@
          "S" 'helm-projectile-ag
          "s" 'split-window-below
          "v" 'split-window-right
-         "/" 'helm-swoop
          "x" 'alchemist-mix
          "r" 'alchemist-mix-rerun-last-test
          "t" 'alchemist-project-toggle-file-and-tests
@@ -76,7 +78,8 @@
     (use-package evil-surround
       :config (global-evil-surround-mode t))
 
-  ))
+  )
+)
 
 (provide 'setup-evil)
 
