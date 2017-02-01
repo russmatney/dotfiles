@@ -25,6 +25,7 @@
          ("M-." . nil)
          ("/" . helm-swoop)
          ("*" . helm-swoop)
+         ("C-p" . helm-projectile)
 
          :map evil-visual-state-map
          ("g c" . comment-or-uncomment-region)

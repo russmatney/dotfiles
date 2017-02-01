@@ -11,6 +11,7 @@
          ("M-y" . helm-show-kill-ring)
          ("C-x b" . helm-mini)
          ("C-x C-b" . helm-buffers-list)
+
          :map helm-map
           ([tab] . helm-next-source)
           ("C-j" . helm-next-line)
@@ -27,6 +28,10 @@
           ("C-l" . helm-execute-persistent-action)
           ("C-h" . helm-find-files-up-one-level)
           ("C-?" . describe-key)
+
+         :map helm-swoop-map
+         ([tab] . helm-next-line)
+         ([backtab] . helm-previous-line)
          )
 
   :init
