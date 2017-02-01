@@ -12,7 +12,7 @@
     (setq alchemist-goto-erlang-source-dir "/usr/local/share/src/otp")
 
     (setq alchemist-test-display-compilation-output t)
-    (setq alchemist-hooks-test-on-save t)
+    ;;(setq alchemist-hooks-test-on-save t)
     (setq alchemist-hooks-compile-on-save t)
 
     ;; fix to return from erlang dives

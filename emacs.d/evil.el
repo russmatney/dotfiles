@@ -67,6 +67,7 @@
     (define-key evil-ex-map "e" 'helm-find-files)
     (define-key evil-ex-map "b" 'helm-buffers-list)
     (define-key evil-ex-map "tb" 'alchemist-mix-test-this-buffer)
+    (define-key evil-ex-map "tap" 'alchemist-mix-test-at-point)
     (define-key evil-ex-map "lt" 'alchemist-mix-rerun-last-test)
 
     ;; esc should always quit: http://stackoverflow.com/a/10166400/61435
@@ -77,6 +78,9 @@
     (define-key minibuffer-local-completion-map [escape] 'abort-recursive-edit)
     (define-key minibuffer-local-must-match-map [escape] 'abort-recursive-edit)
     (define-key minibuffer-local-isearch-map [escape] 'abort-recursive-edit)
+
+    ;; ensure company completion via number repeats as it should
+    ;;(evil-declare-change-repeat 'company-complete-number)
 
     ;; Evil Match-it
     (use-package evil-matchit

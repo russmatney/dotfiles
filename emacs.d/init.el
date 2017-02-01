@@ -85,7 +85,7 @@
 (setq-default indent-tabs-mode nil)
 
 ;; Change font settings
-(set-frame-font "Operator Mono 14")
+(set-frame-font "Operator Mono 12")
 
 ;; Add transparency
 (set-frame-parameter (selected-frame) 'alpha '(99 . 99))
@@ -111,6 +111,10 @@
 
 ;; line numbers
 (global-linum-mode t)
+
+;; line wrap
+(setq-default word-wrap t)
+(toggle-truncate-lines -1)
 
 
 (provide 'init)
