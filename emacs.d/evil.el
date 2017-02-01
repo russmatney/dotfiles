@@ -25,6 +25,16 @@
          ("M-." . nil)
          ("/" . helm-swoop)
          ("*" . helm-swoop)
+
+         :map evil-visual-state-map
+         ("g c" . comment-or-uncomment-region)
+
+         :map evil-ex-map
+         ("e" . helm-find-files)
+         ("b" . helm-buffers-list)
+         ("tb" . alchemist-mix-test-this-buffer)
+         ("tap" . alchemist-mix-test-at-point)
+         ("lt" . alchemist-mix-rerun-last-test)
         )
 
   :init
@@ -63,12 +73,6 @@
 
   :config
   (progn
-    ;; vim ex command remaps
-    (define-key evil-ex-map "e" 'helm-find-files)
-    (define-key evil-ex-map "b" 'helm-buffers-list)
-    (define-key evil-ex-map "tb" 'alchemist-mix-test-this-buffer)
-    (define-key evil-ex-map "tap" 'alchemist-mix-test-at-point)
-    (define-key evil-ex-map "lt" 'alchemist-mix-rerun-last-test)
 
     ;; esc should always quit: http://stackoverflow.com/a/10166400/61435
     (define-key evil-normal-state-map [escape] 'keyboard-quit)
