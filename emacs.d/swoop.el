@@ -8,6 +8,7 @@
 
 (use-package helm-swoop
   :bind (
+    :map helm-swoop-map
     ([tab] . helm-next-line)
     ([backtab] . helm-previous-line)
   )

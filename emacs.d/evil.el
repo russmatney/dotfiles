@@ -8,10 +8,7 @@
 
 (use-package evil
   :commands (evil-mode local-evil-mode)
-  :bind (:map evil-insert-state-map
-         ("<escape>" . evil-force-normal-state)
-
-         :map evil-motion-state-map
+  :bind (:map evil-motion-state-map
          ("<return>" . nil)
          ("<tab>" . nil)
          ("SPC" . nil)
@@ -90,14 +87,6 @@
 
     ;; ensure company completion via number repeats as it should
     ;;(evil-declare-change-repeat 'company-complete-number)
-
-    ;; Evil Match-it
-    (use-package evil-matchit
-      :config (global-evil-matchit-mode t))
-
-    ;; Evil Surround
-    (use-package evil-surround
-      :config (global-evil-surround-mode t))
 
   )
 )

@@ -5,30 +5,31 @@
 ;;; Code:
 
 (use-package helm
-  :bind (("M-x" . helm-M-x)
-         ("C-x C-f" . helm-find-files)
-         ("C-x f" . helm-projectile)
-         ("M-y" . helm-show-kill-ring)
-         ("C-x b" . helm-mini)
-         ("C-x C-b" . helm-buffers-list)
+  :bind (
+    ("M-x" . helm-M-x)
+    ("C-x C-f" . helm-find-files)
+    ("C-x f" . helm-projectile)
+    ("M-y" . helm-show-kill-ring)
+    ("C-x b" . helm-mini)
+    ("C-x C-b" . helm-buffers-list)
 
-         :map helm-map
-          ([tab] . helm-next-source)
-          ("C-j" . helm-next-line)
-          ("C-k" . helm-previous-line)
-          ("C-?" . describe-key)
-          ([escape] . helm-keyboard-quit)
+    :map helm-map
+    ([tab] . helm-next-source)
+    ("C-j" . helm-next-line)
+    ("C-k" . helm-previous-line)
+    ("C-?" . describe-key)
+    ([escape] . helm-keyboard-quit)
 
-         :map helm-find-files-map
-          ("C-l" . helm-execute-persistent-action)
-          ("C-h" . helm-find-files-up-one-level)
-          ("C-?" . describe-key)
+    :map helm-find-files-map
+    ("C-l" . helm-execute-persistent-action)
+    ("C-h" . helm-find-files-up-one-level)
+    ("C-?" . describe-key)
 
-         :map helm-read-file-map
-          ("C-l" . helm-execute-persistent-action)
-          ("C-h" . helm-find-files-up-one-level)
-          ("C-?" . describe-key)
-         )
+    :map helm-read-file-map
+    ("C-l" . helm-execute-persistent-action)
+    ("C-h" . helm-find-files-up-one-level)
+    ("C-?" . describe-key)
+  )
 
   :init
   (progn
