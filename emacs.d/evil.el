@@ -18,6 +18,8 @@
          ("M-." . nil)
          ("/" . helm-swoop)
          ("*" . helm-swoop)
+         ("(" . backward-sexp)
+         (")" . forward-sexp)
 
          :map evil-normal-state-map
          ("<return>" . nil)
@@ -56,7 +58,6 @@
          "<SPC>" 'evil-switch-to-windows-last-buffer
          "c" 'comment-or-uncomment-region
          "n" 'neotree-find
-         "g" 'magit-status
          "k" 'kill-buffer
          "b" 'helm-mini
          "p" 'helm-mini
@@ -69,6 +70,8 @@
          "T" 'alchemist-project-toggle-file-and-tests-other-window
          "d" 'alchemist-help-search-at-point
          "=" 'balance-windows
+         "a" 'ace-window
+         "l" 'avy-goto-line
          )))
 
     (evil-mode 1))

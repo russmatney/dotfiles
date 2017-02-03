@@ -7,10 +7,9 @@
 ;;; Code:
 
 (use-package helm-swoop
-  :bind
-    (:map helm-swoop-map
-	  ([tab] . helm-next-line)
-	  ([backtab] . helm-previous-line)
+  :bind (
+    ([tab] . helm-next-line)
+    ([backtab] . helm-previous-line)
   )
 
   :config

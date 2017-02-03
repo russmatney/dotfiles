@@ -42,7 +42,7 @@
  '(initial-buffer-choice "~/Dropbox/todo/2017-january.org")
  '(package-selected-packages
    (quote
-    (zoom-frm material-theme evil-magit highlight-indent-guides atom-one-dark-theme flycheck-credo flycheck-mix evil-surround evil-matchit helm-swoop ag helm-ag neotree use-package ack xpm flycheck helm-company discover helm-projectile magit evil-tutor helm))))
+    (zoom-frm material-theme popwin ace-window evil-magit highlight-indent-guides atom-one-dark-theme flycheck-credo flycheck-mix evil-surround evil-matchit helm-swoop ag helm-ag neotree use-package ack xpm flycheck helm-company discover helm-projectile magit evil-tutor helm))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -63,11 +63,25 @@
 (load-file "~/dotfiles/emacs.d/swoop.el")
 (load-file "~/dotfiles/emacs.d/flycheck.el")
 
+(add-to-list 'display-buffer-alist
+             `(,(rx bos (or "*alchemist test report*"
+                            "*alchemist mix*"
+                            "*alchemist help*"))
+                    (display-buffer-reuse-window)
+                    (inhibit-switch-frame t)
+                    (reusable-frames . visible)))
+
 (use-package highlight-indent-guides
   :config
   (setq highlight-indent-guides-method 'character)
   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
 )
+
+(use-package ace-window
+  :config
+  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+)
+(use-package avy)
 
 (use-package ag)
 (use-package helm-ag)
