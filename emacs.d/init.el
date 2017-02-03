@@ -38,17 +38,20 @@
  '(custom-enabled-themes (quote (atom-one-dark)))
  '(custom-safe-themes
    (quote
-    ("08b8807d23c290c840bbb14614a83878529359eaba1805618b3be7d61b0b0a32" default)))
+    ("98cc377af705c0f2133bb6d340bf0becd08944a588804ee655809da5d8140de6" "5dc0ae2d193460de979a463b907b4b2c6d2c9c4657b2e9e66b8898d2592e3de5" "08b8807d23c290c840bbb14614a83878529359eaba1805618b3be7d61b0b0a32" default)))
  '(initial-buffer-choice "~/Dropbox/todo/2017-january.org")
  '(package-selected-packages
    (quote
-    (evil-magit highlight-indent-guides atom-one-dark-theme flycheck-credo flycheck-mix evil-surround evil-matchit helm-swoop ag helm-ag neotree use-package ack xpm flycheck helm-company discover helm-projectile magit evil-tutor helm))))
+    (zoom-frm material-theme evil-magit highlight-indent-guides atom-one-dark-theme flycheck-credo flycheck-mix evil-surround evil-matchit helm-swoop ag helm-ag neotree use-package ack xpm flycheck helm-company discover helm-projectile magit evil-tutor helm))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;; nothing else before starter kit
+(load-file "~/dotfiles/emacs.d/starter-kit.el")
 
 
 (load-file "~/dotfiles/emacs.d/evil.el")
@@ -68,53 +71,6 @@
 
 (use-package ag)
 (use-package helm-ag)
-
-;; auto-save-files not in same dir as original
-(setq backup-directory-alist `(("." . "~/.emacs/auto-save-list")))
-
-;; Hide the menu-bar
-(setq ns-auto-hide-menu-bar t)
-
-;; Native App Settings
-(tool-bar-mode -1)
-
-;; Disable GUI scrollbars
-(scroll-bar-mode -1)
-
-;; Use spaces instead of tabs
-(setq-default indent-tabs-mode nil)
-
-;; Change font settings
-(set-frame-font "Operator Mono 12")
-
-;; Add transparency
-(set-frame-parameter (selected-frame) 'alpha '(99 . 99))
-(add-to-list 'default-frame-alist '(alpha . (99 . 99)))
-
-;; Fullscreen settings (@wpcarro)
-(setq ns-use-native-fullscreen nil)
-(global-set-key (kbd "<s-return>") 'toggle-frame-fullscreen)
-
-;; default full screen
-(setq default-frame-alist
-    '((fullscreen . fullboth) (fullscreen-restore . fullheight)))
-
-;; Window movement
-(global-set-key (kbd "C-l") 'windmove-right)
-(global-set-key (kbd "C-h") 'windmove-left)
-(global-set-key (kbd "C-k") 'windmove-up)
-(global-set-key (kbd "C-j") 'windmove-down)
-
-;; Scrolling Settings (@wpcarro)
-(setq scroll-step 1)
-(setq scroll-conservatively 10000)
-
-;; line numbers
-(global-linum-mode t)
-
-;; line wrap
-(setq-default word-wrap t)
-(toggle-truncate-lines -1)
 
 
 (provide 'init)

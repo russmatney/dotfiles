@@ -59,6 +59,7 @@
          "g" 'magit-status
          "k" 'kill-buffer
          "b" 'helm-mini
+         "p" 'helm-mini
          "S" 'helm-projectile-ag
          "s" 'split-window-below
          "v" 'split-window-right
