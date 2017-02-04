@@ -24,6 +24,7 @@
          ("M-." . nil)
          ("/" . helm-swoop)
          ("*" . helm-swoop)
+         ("n" . helm-swoop)
          ("C-p" . helm-projectile)
 
          :map evil-visual-state-map

@@ -19,6 +19,14 @@
 
     ;; Split direcion. 'split-window-vertically or 'split-window-horizontally
     (setq helm-swoop-split-direction 'split-window-vertically)
+
+    ;; If there is no symbol at the cursor, use the last used words instead.
+    (setq helm-swoop-pre-input-function
+      (lambda ()
+        (let (($pre-input (thing-at-point 'symbol)))
+          (if (eq (length $pre-input) 0)
+              helm-swoop-pattern ;; this variable keeps the last used words
+            $pre-input))))
 )
 
 (provide 'setup-swoop)

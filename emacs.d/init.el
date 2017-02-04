@@ -52,6 +52,13 @@
 
 ;; nothing else before starter kit
 (load-file "~/dotfiles/emacs.d/starter-kit.el")
+ 
+(global-auto-revert-mode t)
+
+;; org mode
+(setq org-todo-keywords
+       '((sequence "TODO" "IDEA" "WORKFLOW" "STORYX" "TRIAGE" "JACK" "BLOG" "POST" "OPENSOURCE" "|" "TODOLOL" "INACTIVE" "REMINDER" "DONE" "BLOCKED" "SCHEDULED")))
+
 
 
 (load-file "~/dotfiles/emacs.d/evil.el")
@@ -70,6 +77,9 @@
                     (display-buffer-reuse-window)
                     (inhibit-switch-frame t)
                     (reusable-frames . visible)))
+
+(add-hook 'elixir-mode
+          (lambda () (modify-syntax-entry ?_ "w")))
 
 (use-package highlight-indent-guides
   :config
