@@ -43,6 +43,14 @@
     '((fullscreen . fullboth) (fullscreen-restore . fullheight)))
 
 ;; Window movement
+;; (global-set-key (kbd "C-l C-l") 'windmove-right)
+;; (global-set-key (kbd "C-l l") 'windmove-right)
+;; (global-set-key (kbd "C-h C-h") 'windmove-left)
+;; (global-set-key (kbd "C-h h") 'windmove-left)
+;; (global-set-key (kbd "C-k C-k") 'windmove-up)
+;; (global-set-key (kbd "C-k k") 'windmove-up)
+;; (global-set-key (kbd "C-j C-j") 'windmove-down)
+;; (global-set-key (kbd "C-j j") 'windmove-down)
 (global-set-key (kbd "C-l") 'windmove-right)
 (global-set-key (kbd "C-h") 'windmove-left)
 (global-set-key (kbd "C-k") 'windmove-up)
