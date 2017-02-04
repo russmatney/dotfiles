@@ -8,7 +8,6 @@
 
 (use-package company
   :bind ("<tab>" . company-complete-common)
-        )
 
   :config
   (setq company-show-numbers t)

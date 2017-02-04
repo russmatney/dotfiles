@@ -32,8 +32,7 @@
   )
 
   :init
-  (progn
-    (helm-mode 1))
+    (helm-mode 1)
 
   :config
   (progn
@@ -43,6 +42,16 @@
 
     (setq helm-locate-fuzzy-match t)
 
+    (add-to-list 'helm-mini-default-sources
+      (helm-build-sync-source "MY ALWAYS FILES"
+        :action 'helm-type-file-actions
+        :candidates '(
+          "~/dotfiles/emacs.d/init.el"
+          "~/Dropbox/todo/2017-january.org"
+          "~/Dropbox/Writing/writing-february-2017.org"
+        )
+      )
+      'append)
 
     (use-package helm-projectile
       :config
