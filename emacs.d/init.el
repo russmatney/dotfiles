@@ -316,6 +316,7 @@
 
 (use-package company
   :bind ("<tab>" . company-complete-common)
+        ("<escape>" . company-abort)
 
   :config
   (setq company-show-numbers t)
