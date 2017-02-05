@@ -28,44 +28,10 @@
 #+end_src
 ** Initial Buffer
 #+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-;;(initial-buffer-choice ("~/Dropbox/todo/todo.org" "~/dotfiles/emacs.d/init.org"))
-#+end_src
-** Org mode
-*** Custom keywords
-#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-(setq org-todo-keywords
-       '((sequence "TODO"
-                   "WORKFLOW" "FIX" "FANCY" "RESEARCH"
-                   "IDEA" "MOVE" "INFO" "BLOG" "POST" "JACK"
-                   "OPENSOURCE"
-                   "STORYX"
-                   "PROTOTYPE"
-                   "TRIAGE"          
-                   "|"               ;; <------- more likely to be typed
-                   "TODOLOL"         ;; at the center
-                   "INACTIVE"
-                   "REMINDER"
-                   "SCHEDULED"
-                   "BLOCKED"         ;; closer to 0 == quicker scrolling
-                   "DONE"            ;; <------- closer for Shift-<left> wrapping
-        ))
-)
-#+end_src
-*** Source block syntax highlighting
-#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-(setq org-src-fontify-natively t)
-#+end_src
-*** Run babel-tangle on file-save
-Originally from [[http://emacs.stackexchange.com/questions/20707/automatically-tangle-org-files-in-a-specific-directory][StackOverflow]].
-#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-(defun my/tangle-dotfiles ()
-  "If the current file is in '~/.dotfiles', the code blocks are tangled"
-  (when (equal (file-name-directory (directory-file-name buffer-file-name))
-               (concat (getenv "HOME") "/dotfiles/emacs.d/"))
-    (org-babel-tangle)
-    (message "%s tangled" buffer-file-name)))
-
-(add-hook 'after-save-hook #'my/tangle-dotfiles)
+(setq inhibit-startup-screen t)
+(find-file "~/dotfiles/emacs.d/init.org")
+(split-window-right)
+(find-file-other-window "~/Dropbox/todo/todo.org")
 #+end_src
 ** `$Path` set in `M-x shell`
 #+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
@@ -102,6 +68,57 @@ Not working yet.
 )
 #+end_src
 
+* Org mode
+*** Custom keywords
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(setq org-todo-keywords
+       '((sequence "TODO"
+                   "WORKFLOW" "FIX" "FANCY" "RESEARCH"
+                   "IDEA" "MOVE" "INFO" "BLOG" "POST" "JACK"
+                   "OPENSOURCE"
+                   "STORYX"
+                   "PROTOTYPE"
+                   "TRIAGE"          
+                   "|"               ;; <------- more likely to be typed
+                   "TODOLOL"         ;; at the center
+                   "INACTIVE"
+                   "REMINDER"
+                   "SCHEDULED"
+                   "BLOCKED"         ;; closer to 0 == quicker scrolling
+                   "DONE"            ;; <------- closer for Shift-<left> wrapping
+        ))
+)
+#+end_src
+*** Source block syntax highlighting
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(setq org-src-fontify-natively t)
+#+end_src
+*** Run babel-tangle on file-save
+Originally from [[http://emacs.stackexchange.com/questions/20707/automatically-tangle-org-files-in-a-specific-directory][StackOverflow]].
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(defun my/tangle-dotfiles ()
+  "If the current file is in '~/.dotfiles', the code blocks are tangled"
+  (when (equal (file-name-directory (directory-file-name buffer-file-name))
+               (concat (getenv "HOME") "/dotfiles/emacs.d/"))
+    (org-babel-tangle)
+    (message "%s tangled" buffer-file-name)))
+
+(add-hook 'after-save-hook #'my/tangle-dotfiles)
+#+end_src
+*** OrgMobile
+Config
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(setq org-directory "~/Dropbox/todo/")
+(setq org-mobile-inbox-for-pull "~/Dropbox/todo/inbox.org")
+(setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
+(setq org-mobile-files '("~/Dropbox/todo"))
+#+end_src
+Auto-Sync
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+;;(add-hook 'after-init-hook 'org-mobile-pull)
+(add-hook 'kill-emacs-hook 'org-mobile-push)
+#+end_src
+** TODO fix auto-pull
 * Starter Kit
 ** Zoom/Text Scaling
 zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers. (does it?)
@@ -283,6 +300,7 @@ zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers. (does it?)
     ("C-x C-b" . helm-buffers-list)
 
     :map helm-map
+    ([backtab] . helm-previous-source)
     ([tab] . helm-next-source)
     ("C-j" . helm-next-line)
     ("C-k" . helm-previous-line)

@@ -20,7 +20,32 @@
 
 (load-theme 'atom-one-dark t)
 
-;;(initial-buffer-choice ("~/Dropbox/todo/todo.org" "~/dotfiles/emacs.d/init.org"))
+(setq inhibit-startup-screen t)
+(find-file "~/dotfiles/emacs.d/init.org")
+(split-window-right)
+(find-file-other-window "~/Dropbox/todo/todo.org")
+
+(use-package exec-path-from-shell
+  :config
+  (exec-path-from-shell-initialize))
+
+(global-auto-revert-mode t)
+
+(eval-when-compile (require 'cl))
+ (defun toggle-transparency ()
+   (interactive)
+   (if (/=
+        (cadr (frame-parameter nil 'alpha))
+        100)
+       (set-frame-parameter nil 'alpha '(100 100))
+     (set-frame-parameter nil 'alpha '(85 50))))
+ (global-set-key (kbd "C-c t") 'toggle-transparency)
+
+(use-package highlight-indent-guides
+  :config
+  (setq highlight-indent-guides-method 'character)
+  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+)
 
 (setq org-todo-keywords
        '((sequence "TODO"
@@ -51,27 +76,13 @@
 
 (add-hook 'after-save-hook #'my/tangle-dotfiles)
 
-(use-package exec-path-from-shell
-  :config
-  (exec-path-from-shell-initialize))
+(setq org-directory "~/Dropbox/todo/")
+(setq org-mobile-inbox-for-pull "~/Dropbox/todo/inbox.org")
+(setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
+(setq org-mobile-files '("~/Dropbox/todo"))
 
-(global-auto-revert-mode t)
-
-(eval-when-compile (require 'cl))
- (defun toggle-transparency ()
-   (interactive)
-   (if (/=
-        (cadr (frame-parameter nil 'alpha))
-        100)
-       (set-frame-parameter nil 'alpha '(100 100))
-     (set-frame-parameter nil 'alpha '(85 50))))
- (global-set-key (kbd "C-c t") 'toggle-transparency)
-
-(use-package highlight-indent-guides
-  :config
-  (setq highlight-indent-guides-method 'character)
-  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
-)
+;;(add-hook 'after-init-hook 'org-mobile-pull)
+(add-hook 'kill-emacs-hook 'org-mobile-push)
 
 (require 'zoom-frm)
 (global-set-key (kbd "s-+") 'zoom-frm-in)
@@ -220,6 +231,7 @@
     ("C-x C-b" . helm-buffers-list)
 
     :map helm-map
+    ([backtab] . helm-previous-source)
     ([tab] . helm-next-source)
     ("C-j" . helm-next-line)
     ("C-k" . helm-previous-line)
