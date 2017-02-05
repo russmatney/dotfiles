@@ -1,4 +1,7 @@
-
+#+TITLE: ~/.emacs.d/init.org
+* General
+** Package management (must come first) 
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
@@ -17,16 +20,29 @@
 
 ;; Always download missing use-package packages
 (setq use-package-always-ensure t)
+#+END_SRC
 
+** Color Theme
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (load-theme 'atom-one-dark t)
-
+#+end_src
+** Initial Buffer
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 ;;(initial-buffer-choice ("~/Dropbox/todo/todo.org" "~/dotfiles/emacs.d/init.org"))
-
+#+end_src
+** Org mode
+*** Custom keywords
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (setq org-todo-keywords
        '((sequence "TODO" "IDEA" "MOVE" "WORKFLOW" "STORYX" "INFO" "TRIAGE" "JACK" "BLOG" "POST" "OPENSOURCE" "|" "TODOLOL" "INACTIVE" "REMINDER" "DONE" "BLOCKED" "SCHEDULED")))
-
+#+end_src
+*** Source block syntax highlighting
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (setq org-src-fontify-natively t)
-
+#+end_src
+*** Run babel-tangle on file-save
+Originally from [[http://emacs.stackexchange.com/questions/20707/automatically-tangle-org-files-in-a-specific-directory][StackOverflow]].
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (defun my/tangle-dotfiles ()
   "If the current file is in '~/.dotfiles', the code blocks are tangled"
   (when (equal (file-name-directory (directory-file-name buffer-file-name))
@@ -35,13 +51,22 @@
     (message "%s tangled" buffer-file-name)))
 
 (add-hook 'after-save-hook #'my/tangle-dotfiles)
-
+#+end_src
+** `$Path` set in `M-x shell`
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package exec-path-from-shell
   :config
   (exec-path-from-shell-initialize))
-
+#+END_SRC
+** Always revert to file on disc
+NOTE: this overwrites your unsaved buffers when you switch git branches!
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (global-auto-revert-mode t)
+#+END_SRC
+** TODO Transparency
+Not working yet.
 
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (eval-when-compile (require 'cl))
  (defun toggle-transparency ()
    (interactive)
@@ -51,41 +76,67 @@
        (set-frame-parameter nil 'alpha '(100 100))
      (set-frame-parameter nil 'alpha '(85 50))))
  (global-set-key (kbd "C-c t") 'toggle-transparency)
+#+END_SRC
 
+** Highlight indent guides
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package highlight-indent-guides
   :config
   (setq highlight-indent-guides-method 'character)
   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
 )
+#+end_src
 
+* Starter Kit
+** Zoom/Text Scaling
+zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers. (does it?)
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (require 'zoom-frm)
 (global-set-key (kbd "s-+") 'zoom-frm-in)
 (global-set-key (kbd "s-=") 'zoom-frm-in)
 (global-set-key (kbd "s--") 'zoom-frm-out)
 (global-set-key (kbd "s-_") 'zoom-frm-out)
-
+#+END_SRC
+** Temp files stored elsewhere
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 ;; auto-save-files not in same dir as original
 (setq backup-directory-alist `(("." . "~/.emacs/auto-save-list")))
-
+#+END_SRC
+** Hide the menu-bar
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (setq ns-auto-hide-menu-bar t)
-
+#+END_SRC
+** Native App Settings
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
-
+#+END_SRC
+** Spaces, not tabs
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (setq-default indent-tabs-mode nil)
-
+#+END_SRC
+** Font settings
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (set-frame-font "Operator Mono 12")
-
+#+END_SRC
+** Transparency
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (set-frame-parameter (selected-frame) 'alpha '(99 . 99))
 (add-to-list 'default-frame-alist '(alpha . (99 . 99)))
-
+#+END_SRC
+** Full-screen settings
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (setq ns-use-native-fullscreen nil)
 (global-set-key (kbd "<s-return>") 'toggle-frame-fullscreen)
-
+#+END_SRC
+*** Default to full screen
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 ;; default full screen
 (setq default-frame-alist
     '((fullscreen . fullboth) (fullscreen-restore . fullheight)))
+#+END_SRC
 
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 ;; Window movement
 ;; (global-set-key (kbd "C-l C-l") 'windmove-right)
 ;; (global-set-key (kbd "C-l l") 'windmove-right)
@@ -99,18 +150,27 @@
 (global-set-key (kbd "C-h") 'windmove-left)
 (global-set-key (kbd "C-k") 'windmove-up)
 (global-set-key (kbd "C-j") 'windmove-down)
+#+END_SRC
 
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 ;; Scrolling Settings (@wpcarro)
 (setq scroll-step 1)
 (setq scroll-conservatively 10000)
+#+END_SRC
 
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 ;; line numbers
 (global-linum-mode t)
+#+END_SRC
 
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 ;; line wrap
 (setq-default word-wrap t)
 (toggle-truncate-lines -1)
-
+#+END_SRC
+* Evil mode
+** Evil bindings, evil leader commands
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package evil
   :commands (evil-mode local-evil-mode)
   :bind (:map evil-motion-state-map
@@ -194,7 +254,10 @@
     (define-key minibuffer-local-isearch-map [escape] 'abort-recursive-edit)
   )
 )
+#+END_SRC
 
+* Helm
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package helm
   :bind (
     ("M-x" . helm-M-x)
@@ -251,18 +314,28 @@
     )
   )
 )
-
+#+END_SRC
+* Ace window
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package ace-window
   :config
   (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
 )
-
+#+end_src
+* Avy
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package avy)
-
+#+end_src
+* Ag
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package ag)
-
+#+end_src
+* Helm-Ag
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package helm-ag)
-
+#+end_src
+* Alchemist
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package alchemist
   :config
     (setq alchemist-goto-elixir-source-dir "/usr/local/share/src/elixir")
@@ -286,7 +359,9 @@
                     (display-buffer-reuse-window)
                     (inhibit-switch-frame t)
                     (reusable-frames . visible)))
-
+#+END_SRC
+* Company
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package company
   :bind ("<tab>" . company-complete-common)
 
@@ -306,7 +381,9 @@
 
   (global-company-mode)
 )
-
+#+END_SRC
+* Flycheck
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package flycheck
   :config
   (global-flycheck-mode)
@@ -321,12 +398,16 @@
     :init
     (flycheck-credo-setup))
   )
-
+#+END_SRC
+* Magit
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package magit
   :init (progn)
   :config (progn (use-package evil-magit))
 )
-
+#+END_SRC
+* Neotree
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package neotree
   :init
   (progn
@@ -381,7 +462,9 @@
           (user             neo-vc-user-face)
           (t                neo-vc-default-face)))))
   )
-
+#+END_SRC
+* Projectile
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package projectile
   :config
   (progn
@@ -389,7 +472,9 @@
     (projectile-mode)
   )
 )
-
+#+END_SRC
+* Swoop
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package helm-swoop
   :bind (
     :map helm-swoop-map
@@ -412,3 +497,4 @@
               helm-swoop-pattern ;; this variable keeps the last used words
             $pre-input))))
 )
+#+END_SRC
