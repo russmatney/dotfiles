@@ -9,7 +9,8 @@
 ;; Update package-archive lists
 (require 'package)
 (setq package-enable-at-startup nil)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/")) (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
 (package-initialize)
 
@@ -42,7 +43,7 @@
  '(initial-buffer-choice "~/Dropbox/todo/2017-january.org")
  '(package-selected-packages
    (quote
-    (jade-mode zoom-frm material-theme popwin ace-window evil-magit highlight-indent-guides atom-one-dark-theme flycheck-credo flycheck-mix evil-surround evil-matchit helm-swoop ag helm-ag neotree use-package ack xpm flycheck helm-company discover helm-projectile magit evil-tutor helm))))
+    (highlight-parentheses jade-mode zoom-frm material-theme popwin ace-window evil-magit highlight-indent-guides atom-one-dark-theme flycheck-credo flycheck-mix evil-surround evil-matchit helm-swoop ag helm-ag neotree use-package ack xpm flycheck helm-company discover helm-projectile magit evil-tutor helm))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

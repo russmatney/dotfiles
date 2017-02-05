@@ -12,18 +12,18 @@ function appShortcut(modifier, character, application)
   hs.hotkey.bind(modifier, character, function() hs.application.launchOrFocus(application) end)
 end
 
-local alt = {'alt'}
+local mod = {'alt,ctrl'}
 
-appShortcut(alt, 'C', 'Google Chrome')
-appShortcut(alt, 'E', 'Emacs')
-appShortcut(alt, 'T', 'iTerm')
-appShortcut(alt, 'P', 'Spotify')
-appShortcut(alt, 'M', 'Messages')
-appShortcut(alt, 'N', 'nvALT')
-appShortcut(alt, 'A', 'Activity Monitor')
-appShortcut(alt, 'L', 'Slack')
-appShortcut(alt, 'D', 'Dash')
-appShortcut(alt, 'F', 'Firefox')
+appShortcut(mod, 'C', 'Google Chrome')
+appShortcut(mod, 'E', 'Emacs')
+appShortcut(mod, 'T', 'iTerm')
+appShortcut(mod, 'P', 'Spotify')
+appShortcut(mod, 'M', 'Messages')
+appShortcut(mod, 'N', 'nvALT')
+appShortcut(mod, 'A', 'Activity Monitor')
+appShortcut(mod, 'L', 'Slack')
+appShortcut(mod, 'D', 'Dash')
+appShortcut(mod, 'F', 'Firefox')
 
 
 

@@ -70,6 +70,8 @@
          "=" 'balance-windows
          "a" 'ace-window
          "l" 'avy-goto-line
+         ">" 'evil-window-increase-width
+         "<" 'evil-window-decrease-width
          )))
 
     (evil-mode 1))
