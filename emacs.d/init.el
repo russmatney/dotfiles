@@ -23,7 +23,22 @@
 ;;(initial-buffer-choice ("~/Dropbox/todo/todo.org" "~/dotfiles/emacs.d/init.org"))
 
 (setq org-todo-keywords
-       '((sequence "TODO" "IDEA" "MOVE" "WORKFLOW" "STORYX" "INFO" "TRIAGE" "JACK" "BLOG" "POST" "OPENSOURCE" "|" "TODOLOL" "INACTIVE" "REMINDER" "DONE" "BLOCKED" "SCHEDULED")))
+       '((sequence "TODO"
+                   "WORKFLOW" "FIX" "FANCY" "RESEARCH"
+                   "IDEA" "MOVE" "INFO" "BLOG" "POST" "JACK"
+                   "OPENSOURCE"
+                   "STORYX"
+                   "PROTOTYPE"
+                   "TRIAGE"          
+                   "|"               ;; <------- more likely to be typed
+                   "TODOLOL"         ;; at the center
+                   "INACTIVE"
+                   "REMINDER"
+                   "SCHEDULED"
+                   "BLOCKED"         ;; closer to 0 == quicker scrolling
+                   "DONE"            ;; <------- closer for Shift-<left> wrapping
+        ))
+)
 
 (setq org-src-fontify-natively t)
 

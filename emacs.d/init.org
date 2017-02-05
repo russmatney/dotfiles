@@ -34,7 +34,22 @@
 *** Custom keywords
 #+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (setq org-todo-keywords
-       '((sequence "TODO" "IDEA" "MOVE" "WORKFLOW" "STORYX" "INFO" "TRIAGE" "JACK" "BLOG" "POST" "OPENSOURCE" "|" "TODOLOL" "INACTIVE" "REMINDER" "DONE" "BLOCKED" "SCHEDULED")))
+       '((sequence "TODO"
+                   "WORKFLOW" "FIX" "FANCY" "RESEARCH"
+                   "IDEA" "MOVE" "INFO" "BLOG" "POST" "JACK"
+                   "OPENSOURCE"
+                   "STORYX"
+                   "PROTOTYPE"
+                   "TRIAGE"          
+                   "|"               ;; <------- more likely to be typed
+                   "TODOLOL"         ;; at the center
+                   "INACTIVE"
+                   "REMINDER"
+                   "SCHEDULED"
+                   "BLOCKED"         ;; closer to 0 == quicker scrolling
+                   "DONE"            ;; <------- closer for Shift-<left> wrapping
+        ))
+)
 #+end_src
 *** Source block syntax highlighting
 #+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
