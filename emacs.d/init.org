@@ -1,4 +1,11 @@
 #+TITLE: ~/.emacs.d/init.org
+* Handy
+** Unsetting a key
+Ex:
+#+begin_src emacs-lisp
+(global-unset-key (kbd "C-e"))
+#+end_src
+
 * General
 ** Package management (must come first) 
 #+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
@@ -48,7 +55,6 @@ NOTE: this overwrites your unsaved buffers when you switch git branches!
 Not working yet.
 
 #+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-(eval-when-compile (require 'cl))
  (defun toggle-transparency ()
    (interactive)
    (if (/=
@@ -198,7 +204,7 @@ zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers. (does it?)
 #+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 ;; line wrap
 (setq-default word-wrap t)
-(toggle-truncate-lines -1)
+(toggle-truncate-lines 1)
 #+END_SRC
 * Evil mode
 ** Evil bindings, evil leader commands
@@ -210,7 +216,6 @@ zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers. (does it?)
          ("<tab>" . nil)
          ("SPC" . nil)
          ("M-." . nil)
-         ("/" . helm-swoop)
          ("*" . helm-swoop)
          ("(" . backward-sexp)
          (")" . forward-sexp)
@@ -219,7 +224,6 @@ zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers. (does it?)
          ("<return>" . nil)
          ("<tab>" . nil)
          ("M-." . nil)
-         ("/" . helm-swoop)
          ("*" . helm-swoop)
          ("n" . helm-swoop)
          ("C-p" . helm-projectile)
@@ -261,12 +265,12 @@ zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers. (does it?)
          "v" 'split-window-right
          "x" 'alchemist-mix
          "r" 'alchemist-mix-rerun-last-test
+         "l" 'alchemist-mix-rerun-last-test
          "t" 'alchemist-project-toggle-file-and-tests
-         "T" 'alchemist-project-toggle-file-and-tests-other-window
+         "T" 'alchemist-mix-test-this-buffer
          "d" 'alchemist-help-search-at-point
          "=" 'balance-windows
          "a" 'ace-window
-         "l" 'avy-goto-line
          ">" 'evil-window-increase-width
          "<" 'evil-window-decrease-width
          )))
@@ -508,6 +512,7 @@ zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers. (does it?)
 )
 #+END_SRC
 * Swoop
+
 #+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package helm-swoop
   :bind (
@@ -531,4 +536,9 @@ zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers. (does it?)
               helm-swoop-pattern ;; this variable keeps the last used words
             $pre-input))))
 )
+#+END_SRC
+* iedit
+  
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(use-package iedit)
 #+END_SRC

@@ -31,15 +31,14 @@
 
 (global-auto-revert-mode t)
 
-(eval-when-compile (require 'cl))
- (defun toggle-transparency ()
-   (interactive)
-   (if (/=
-        (cadr (frame-parameter nil 'alpha))
-        100)
-       (set-frame-parameter nil 'alpha '(100 100))
-     (set-frame-parameter nil 'alpha '(85 50))))
- (global-set-key (kbd "C-c t") 'toggle-transparency)
+(defun toggle-transparency ()
+  (interactive)
+  (if (/=
+       (cadr (frame-parameter nil 'alpha))
+       100)
+      (set-frame-parameter nil 'alpha '(100 100))
+    (set-frame-parameter nil 'alpha '(85 50))))
+(global-set-key (kbd "C-c t") 'toggle-transparency)
 
 (use-package highlight-indent-guides
   :config
@@ -135,7 +134,7 @@
 
 ;; line wrap
 (setq-default word-wrap t)
-(toggle-truncate-lines -1)
+(toggle-truncate-lines 1)
 
 (use-package evil
   :commands (evil-mode local-evil-mode)
@@ -144,7 +143,6 @@
          ("<tab>" . nil)
          ("SPC" . nil)
          ("M-." . nil)
-         ("/" . helm-swoop)
          ("*" . helm-swoop)
          ("(" . backward-sexp)
          (")" . forward-sexp)
@@ -153,7 +151,6 @@
          ("<return>" . nil)
          ("<tab>" . nil)
          ("M-." . nil)
-         ("/" . helm-swoop)
          ("*" . helm-swoop)
          ("n" . helm-swoop)
          ("C-p" . helm-projectile)
@@ -195,12 +192,12 @@
          "v" 'split-window-right
          "x" 'alchemist-mix
          "r" 'alchemist-mix-rerun-last-test
+         "l" 'alchemist-mix-rerun-last-test
          "t" 'alchemist-project-toggle-file-and-tests
-         "T" 'alchemist-project-toggle-file-and-tests-other-window
+         "T" 'alchemist-mix-test-this-buffer
          "d" 'alchemist-help-search-at-point
          "=" 'balance-windows
          "a" 'ace-window
-         "l" 'avy-goto-line
          ">" 'evil-window-increase-width
          "<" 'evil-window-decrease-width
          )))
@@ -440,3 +437,5 @@
               helm-swoop-pattern ;; this variable keeps the last used words
             $pre-input))))
 )
+
+(use-package iedit)
