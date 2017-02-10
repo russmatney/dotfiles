@@ -62,7 +62,7 @@ NOTE: this overwrites your unsaved buffers when you switch git branches!
                    (if (equal current (car ring)) last (car ring))
                  (or (cadr (member current ring)) (car ring)))))
     (set-frame-parameter nil 'alpha next)))
-(global-set-key (kbd "C-c C-t") 'toggle-transparency)
+(global-set-key (kbd "C-c t") 'toggle-transparency)
 #+END_SRC
 
 ** Highlight indent guides
@@ -105,7 +105,9 @@ NOTE: this overwrites your unsaved buffers when you switch git branches!
 (setq org-src-fontify-natively t)
 #+end_src
 *** Run babel-tangle on file-save
-Originally from [[http://emacs.stackexchange.com/questions/20707/automatically-tangle-org-files-in-a-specific-directory][StackOverflow]].
+
+Originally from [[http://emacs.stackexchange.com/questions/20707/automatically-tangle-org-files-in-a-specific-directory][StackOverflow]]
+
 #+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (defun my/tangle-dotfiles ()
   "If the current file is in '~/.dotfiles', the code blocks are tangled"
@@ -231,7 +233,6 @@ zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers. (does it?)
          ("<tab>" . nil)
          ("M-." . nil)
          ("*" . helm-swoop)
-         ("n" . helm-swoop)
          ("C-p" . helm-projectile)
          ("K" . nil)
 
@@ -270,7 +271,11 @@ zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers. (does it?)
          "p" 'helm-mini
          "S" 'helm-projectile-ag
          "s" 'split-window-below
+         "-" 'split-window-below
+         "_" 'split-window-below
          "v" 'split-window-right
+         "\\" 'split-window-right
+         "|" 'split-window-right
          "x" 'alchemist-mix
          "r" 'alchemist-mix-rerun-last-test
          "l" 'alchemist-mix-rerun-last-test
@@ -301,6 +306,7 @@ zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers. (does it?)
     (with-eval-after-load 'evil
         (defalias #'forward-evil-word #'forward-evil-symbol))
   )
+
 )
 #+END_SRC
 
@@ -313,6 +319,66 @@ hello + <ysw'> = 'hello'
 )
 #+end_src
 
+* Window management
+** Balancing advice
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(defadvice split-window-below (after restore-balanace-below activate)
+  (balance-windows))
+
+(defadvice split-window-right (after restore-balance-right activate)
+  (balance-windows))
+
+(defadvice delete-window (after restore-balance activate)
+  (balance-windows))
+#+end_src
+** Ace window
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(use-package ace-window
+  :config
+  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+)
+#+end_src
+** Popwin
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(use-package popwin
+  :config
+
+  (add-to-list 'popwin:special-display-config '("^\\*helm.*\\*$" :regexp t))
+
+  (defun helm-popwin-help-mode-off ()
+    "Turn `popwin-mode' off for *Help* buffers."
+    (when (boundp 'popwin:special-display-config)
+      (popwin:display-buffer helm-buffer t)
+      (customize-set-variable 'popwin:special-display-config
+                              (delq 'help-mode popwin:special-display-config))))
+
+  (defun helm-popwin-help-mode-on ()
+    "Turn `popwin-mode' on for *Help* buffers."
+    (when (boundp 'popwin:special-display-config)
+      (customize-set-variable 'popwin:special-display-config
+                              (add-to-list 'popwin:special-display-config 'help-mode nil #'eq))))
+
+  (add-hook 'helm-after-initialize-hook #'helm-popwin-help-mode-off)
+  (add-hook 'helm-cleanup-hook #'helm-popwin-help-mode-on)
+
+  (when (featurep 'golden-ratio)
+    (add-to-list 'golden-ratio-inhibit-functions 'helm-alive-p))
+
+)
+#+end_src
+
+** Golden Ratio
+Disabled until settings can be tweaked into not-annoying.
+Current solution: Balancing advice above
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+;; (use-package golden-ratio
+;;   :config
+;;     (golden-ratio-mode 1)
+;;     (setq golden-ratio-auto-scale nil)
+;;     (setq golden-ratio-adjust-factor .5
+;;       golden-ratio-wide-adjust-factor .9)
+;; )
+#+end_src
 * Helm
 #+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package helm
@@ -374,52 +440,6 @@ hello + <ysw'> = 'hello'
   )
 )
 #+END_SRC
-* Ace window
-#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-(use-package ace-window
-  :config
-  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
-)
-#+end_src
-* Popwin
-#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-(use-package popwin
-  :config
-
-  (add-to-list 'popwin:special-display-config '("^\\*helm.*\\*$" :regexp t))
-
-  (defun helm-popwin-help-mode-off ()
-    "Turn `popwin-mode' off for *Help* buffers."
-    (when (boundp 'popwin:special-display-config)
-      (popwin:display-buffer helm-buffer t)
-      (customize-set-variable 'popwin:special-display-config
-                              (delq 'help-mode popwin:special-display-config))))
-
-  (defun helm-popwin-help-mode-on ()
-    "Turn `popwin-mode' on for *Help* buffers."
-    (when (boundp 'popwin:special-display-config)
-      (customize-set-variable 'popwin:special-display-config
-                              (add-to-list 'popwin:special-display-config 'help-mode nil #'eq))))
-
-  (add-hook 'helm-after-initialize-hook #'helm-popwin-help-mode-off)
-  (add-hook 'helm-cleanup-hook #'helm-popwin-help-mode-on)
-
-  (when (featurep 'golden-ratio)
-    (add-to-list 'golden-ratio-inhibit-functions 'helm-alive-p))
-
-)
-#+end_src
-
-* Golden Ratio
-#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-(use-package golden-ratio
-  :config
-    (golden-ratio-mode 1)
-    (setq golden-ratio-auto-scale nil)
-    (setq golden-ratio-adjust-factor .5
-      golden-ratio-wide-adjust-factor .9)
-)
-#+end_src
 * Avy
 #+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package avy)
@@ -432,7 +452,7 @@ hello + <ysw'> = 'hello'
 #+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package helm-ag)
 #+end_src
-* Alchemist
+* Alchemist (Elixir mode)
 #+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package alchemist
   :config
@@ -458,7 +478,7 @@ hello + <ysw'> = 'hello'
                     (inhibit-switch-frame t)
                     (reusable-frames . visible)))
 #+END_SRC
-* Company
+* Company (Auto complete)
 #+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package company
   :bind ("<tab>" . company-complete-common)
@@ -481,7 +501,7 @@ hello + <ysw'> = 'hello'
   (global-company-mode)
 )
 #+END_SRC
-* Flycheck
+* Flycheck (Syntax errors ++)
 #+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package flycheck
   :config
@@ -499,6 +519,7 @@ hello + <ysw'> = 'hello'
   )
 #+END_SRC
 * Magit
+A great interface, but quite slow.
 #+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package magit
   :init (progn)
@@ -606,5 +627,6 @@ hello + <ysw'> = 'hello'
 
 * Comments
 
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package evil-nerd-commenter)
-#+end_src
+#+END_SRC

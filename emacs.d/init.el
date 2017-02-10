@@ -40,7 +40,7 @@
                    (if (equal current (car ring)) last (car ring))
                  (or (cadr (member current ring)) (car ring)))))
     (set-frame-parameter nil 'alpha next)))
-(global-set-key (kbd "C-c C-t") 'toggle-transparency)
+(global-set-key (kbd "C-c t") 'toggle-transparency)
 
 (use-package highlight-indent-guides
   :config
@@ -157,7 +157,6 @@
          ("<tab>" . nil)
          ("M-." . nil)
          ("*" . helm-swoop)
-         ("n" . helm-swoop)
          ("C-p" . helm-projectile)
          ("K" . nil)
 
@@ -196,7 +195,11 @@
          "p" 'helm-mini
          "S" 'helm-projectile-ag
          "s" 'split-window-below
+         "-" 'split-window-below
+         "_" 'split-window-below
          "v" 'split-window-right
+         "\\" 'split-window-right
+         "|" 'split-window-right
          "x" 'alchemist-mix
          "r" 'alchemist-mix-rerun-last-test
          "l" 'alchemist-mix-rerun-last-test
@@ -227,12 +230,61 @@
     (with-eval-after-load 'evil
         (defalias #'forward-evil-word #'forward-evil-symbol))
   )
+
 )
 
 (use-package evil-surround
   :config
   (global-evil-surround-mode 1)
 )
+
+(defadvice split-window-below (after restore-balanace-below activate)
+  (balance-windows))
+
+(defadvice split-window-right (after restore-balance-right activate)
+  (balance-windows))
+
+(defadvice delete-window (after restore-balance activate)
+  (balance-windows))
+
+(use-package ace-window
+  :config
+  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+)
+
+(use-package popwin
+  :config
+
+  (add-to-list 'popwin:special-display-config '("^\\*helm.*\\*$" :regexp t))
+
+  (defun helm-popwin-help-mode-off ()
+    "Turn `popwin-mode' off for *Help* buffers."
+    (when (boundp 'popwin:special-display-config)
+      (popwin:display-buffer helm-buffer t)
+      (customize-set-variable 'popwin:special-display-config
+                              (delq 'help-mode popwin:special-display-config))))
+
+  (defun helm-popwin-help-mode-on ()
+    "Turn `popwin-mode' on for *Help* buffers."
+    (when (boundp 'popwin:special-display-config)
+      (customize-set-variable 'popwin:special-display-config
+                              (add-to-list 'popwin:special-display-config 'help-mode nil #'eq))))
+
+  (add-hook 'helm-after-initialize-hook #'helm-popwin-help-mode-off)
+  (add-hook 'helm-cleanup-hook #'helm-popwin-help-mode-on)
+
+  (when (featurep 'golden-ratio)
+    (add-to-list 'golden-ratio-inhibit-functions 'helm-alive-p))
+
+)
+
+;; (use-package golden-ratio
+;;   :config
+;;     (golden-ratio-mode 1)
+;;     (setq golden-ratio-auto-scale nil)
+;;     (setq golden-ratio-adjust-factor .5
+;;       golden-ratio-wide-adjust-factor .9)
+;; )
 
 (use-package helm
   :bind (
@@ -291,45 +343,6 @@
         (helm-projectile-on))
     )
   )
-)
-
-(use-package ace-window
-  :config
-  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
-)
-
-(use-package popwin
-  :config
-
-  (add-to-list 'popwin:special-display-config '("^\\*helm.*\\*$" :regexp t))
-
-  (defun helm-popwin-help-mode-off ()
-    "Turn `popwin-mode' off for *Help* buffers."
-    (when (boundp 'popwin:special-display-config)
-      (popwin:display-buffer helm-buffer t)
-      (customize-set-variable 'popwin:special-display-config
-                              (delq 'help-mode popwin:special-display-config))))
-
-  (defun helm-popwin-help-mode-on ()
-    "Turn `popwin-mode' on for *Help* buffers."
-    (when (boundp 'popwin:special-display-config)
-      (customize-set-variable 'popwin:special-display-config
-                              (add-to-list 'popwin:special-display-config 'help-mode nil #'eq))))
-
-  (add-hook 'helm-after-initialize-hook #'helm-popwin-help-mode-off)
-  (add-hook 'helm-cleanup-hook #'helm-popwin-help-mode-on)
-
-  (when (featurep 'golden-ratio)
-    (add-to-list 'golden-ratio-inhibit-functions 'helm-alive-p))
-
-)
-
-(use-package golden-ratio
-  :config
-    (golden-ratio-mode 1)
-    (setq golden-ratio-auto-scale nil)
-    (setq golden-ratio-adjust-factor .5
-      golden-ratio-wide-adjust-factor .9)
 )
 
 (use-package avy)
@@ -490,3 +503,5 @@
 )
 
 (use-package iedit)
+
+(use-package evil-nerd-commenter)
