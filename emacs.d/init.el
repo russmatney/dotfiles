@@ -31,14 +31,16 @@
 
 (global-auto-revert-mode t)
 
-(defun toggle-transparency ()
-  (interactive)
-  (if (/=
-       (cadr (frame-parameter nil 'alpha))
-       100)
-      (set-frame-parameter nil 'alpha '(100 100))
-    (set-frame-parameter nil 'alpha '(85 50))))
-(global-set-key (kbd "C-c t") 'toggle-transparency)
+(defun toggle-transparency (arg)
+  (interactive "P")
+  (let* ((ring '(100 90 80 50))
+         (current (frame-parameter nil 'alpha))
+         (last (car (last ring)))
+         (next (if arg
+                   (if (equal current (car ring)) last (car ring))
+                 (or (cadr (member current ring)) (car ring)))))
+    (set-frame-parameter nil 'alpha next)))
+(global-set-key (kbd "C-c C-t") 'toggle-transparency)
 
 (use-package highlight-indent-guides
   :config
