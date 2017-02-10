@@ -7,7 +7,7 @@ Ex:
 #+end_src
 
 * General
-** Package management (must come first) 
+** Package management (must come first)
 #+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -74,6 +74,11 @@ Not working yet.
 )
 #+end_src
 
+** Highlight whitespace
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(setq-default show-trailing-whitespace t)
+#+end_src
+
 * Org mode
 *** Custom keywords
 #+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
@@ -84,7 +89,7 @@ Not working yet.
                    "OPENSOURCE"
                    "STORYX"
                    "PROTOTYPE"
-                   "TRIAGE"          
+                   "TRIAGE"
                    "|"               ;; <------- more likely to be typed
                    "TODOLOL"         ;; at the center
                    "INACTIVE"
@@ -219,6 +224,7 @@ zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers. (does it?)
          ("*" . helm-swoop)
          ("(" . backward-sexp)
          (")" . forward-sexp)
+         ("K" . nil)
 
          :map evil-normal-state-map
          ("<return>" . nil)
@@ -227,9 +233,10 @@ zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers. (does it?)
          ("*" . helm-swoop)
          ("n" . helm-swoop)
          ("C-p" . helm-projectile)
+         ("K" . nil)
 
          :map evil-visual-state-map
-         ("g c" . comment-or-uncomment-region)
+         ("g c" . evilnc-comment-or-uncomment-lines)
 
          :map evil-ex-map
          ("e" . helm-find-files)
@@ -255,8 +262,9 @@ zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers. (does it?)
 
         (evil-leader/set-key
          "<SPC>" 'evil-switch-to-windows-last-buffer
-         "c" 'comment-or-uncomment-region
+         "c" 'evilnc-comment-or-uncomment-lines
          "n" 'neotree-find
+         "W" 'delete-trailing-whitespace
          "k" 'kill-buffer
          "b" 'helm-mini
          "p" 'helm-mini
@@ -288,9 +296,22 @@ zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers. (does it?)
     (define-key minibuffer-local-completion-map [escape] 'abort-recursive-edit)
     (define-key minibuffer-local-must-match-map [escape] 'abort-recursive-edit)
     (define-key minibuffer-local-isearch-map [escape] 'abort-recursive-edit)
+
+
+    (with-eval-after-load 'evil
+        (defalias #'forward-evil-word #'forward-evil-symbol))
   )
 )
 #+END_SRC
+
+** Vim surround
+hello + <ysw'> = 'hello'
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(use-package evil-surround
+  :config
+  (global-evil-surround-mode 1)
+)
+#+end_src
 
 * Helm
 #+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
@@ -333,11 +354,12 @@ zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers. (does it?)
     (setq helm-locate-fuzzy-match t)
 
     (add-to-list 'helm-mini-default-sources
-      (helm-build-sync-source "MY ALWAYS FILES"
+      (helm-build-sync-source "Org Files"
         :action 'helm-type-file-actions
         :candidates '(
           "~/dotfiles/emacs.d/init.org"
           "~/Dropbox/todo/todo.org"
+          "~/Dropbox/todo/notes.org"
           "~/Dropbox/Writing/writing-february-2017.org"
           "~/Dropbox/Writing/triage.org"
         )
@@ -357,6 +379,45 @@ zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers. (does it?)
 (use-package ace-window
   :config
   (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+)
+#+end_src
+* Popwin
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(use-package popwin
+  :config
+
+  (add-to-list 'popwin:special-display-config '("^\\*helm.*\\*$" :regexp t))
+
+  (defun helm-popwin-help-mode-off ()
+    "Turn `popwin-mode' off for *Help* buffers."
+    (when (boundp 'popwin:special-display-config)
+      (popwin:display-buffer helm-buffer t)
+      (customize-set-variable 'popwin:special-display-config
+                              (delq 'help-mode popwin:special-display-config))))
+
+  (defun helm-popwin-help-mode-on ()
+    "Turn `popwin-mode' on for *Help* buffers."
+    (when (boundp 'popwin:special-display-config)
+      (customize-set-variable 'popwin:special-display-config
+                              (add-to-list 'popwin:special-display-config 'help-mode nil #'eq))))
+
+  (add-hook 'helm-after-initialize-hook #'helm-popwin-help-mode-off)
+  (add-hook 'helm-cleanup-hook #'helm-popwin-help-mode-on)
+
+  (when (featurep 'golden-ratio)
+    (add-to-list 'golden-ratio-inhibit-functions 'helm-alive-p))
+
+)
+#+end_src
+
+* Golden Ratio
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(use-package golden-ratio
+  :config
+    (golden-ratio-mode 1)
+    (setq golden-ratio-auto-scale nil)
+    (setq golden-ratio-adjust-factor .5
+      golden-ratio-wide-adjust-factor .9)
 )
 #+end_src
 * Avy
@@ -538,7 +599,12 @@ zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers. (does it?)
 )
 #+END_SRC
 * iedit
-  
+
 #+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package iedit)
 #+END_SRC
+
+* Comments
+
+(use-package evil-nerd-commenter)
+#+end_src

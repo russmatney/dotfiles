@@ -46,6 +46,8 @@
   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
 )
 
+(setq-default show-trailing-whitespace t)
+
 (setq org-todo-keywords
        '((sequence "TODO"
                    "WORKFLOW" "FIX" "FANCY" "RESEARCH"
@@ -53,7 +55,7 @@
                    "OPENSOURCE"
                    "STORYX"
                    "PROTOTYPE"
-                   "TRIAGE"          
+                   "TRIAGE"
                    "|"               ;; <------- more likely to be typed
                    "TODOLOL"         ;; at the center
                    "INACTIVE"
@@ -146,6 +148,7 @@
          ("*" . helm-swoop)
          ("(" . backward-sexp)
          (")" . forward-sexp)
+         ("K" . nil)
 
          :map evil-normal-state-map
          ("<return>" . nil)
@@ -154,9 +157,10 @@
          ("*" . helm-swoop)
          ("n" . helm-swoop)
          ("C-p" . helm-projectile)
+         ("K" . nil)
 
          :map evil-visual-state-map
-         ("g c" . comment-or-uncomment-region)
+         ("g c" . evilnc-comment-or-uncomment-lines)
 
          :map evil-ex-map
          ("e" . helm-find-files)
@@ -182,8 +186,9 @@
 
         (evil-leader/set-key
          "<SPC>" 'evil-switch-to-windows-last-buffer
-         "c" 'comment-or-uncomment-region
+         "c" 'evilnc-comment-or-uncomment-lines
          "n" 'neotree-find
+         "W" 'delete-trailing-whitespace
          "k" 'kill-buffer
          "b" 'helm-mini
          "p" 'helm-mini
@@ -215,7 +220,16 @@
     (define-key minibuffer-local-completion-map [escape] 'abort-recursive-edit)
     (define-key minibuffer-local-must-match-map [escape] 'abort-recursive-edit)
     (define-key minibuffer-local-isearch-map [escape] 'abort-recursive-edit)
+
+
+    (with-eval-after-load 'evil
+        (defalias #'forward-evil-word #'forward-evil-symbol))
   )
+)
+
+(use-package evil-surround
+  :config
+  (global-evil-surround-mode 1)
 )
 
 (use-package helm
@@ -257,11 +271,12 @@
     (setq helm-locate-fuzzy-match t)
 
     (add-to-list 'helm-mini-default-sources
-      (helm-build-sync-source "MY ALWAYS FILES"
+      (helm-build-sync-source "Org Files"
         :action 'helm-type-file-actions
         :candidates '(
           "~/dotfiles/emacs.d/init.org"
           "~/Dropbox/todo/todo.org"
+          "~/Dropbox/todo/notes.org"
           "~/Dropbox/Writing/writing-february-2017.org"
           "~/Dropbox/Writing/triage.org"
         )
@@ -279,6 +294,40 @@
 (use-package ace-window
   :config
   (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+)
+
+(use-package popwin
+  :config
+
+  (add-to-list 'popwin:special-display-config '("^\\*helm.*\\*$" :regexp t))
+
+  (defun helm-popwin-help-mode-off ()
+    "Turn `popwin-mode' off for *Help* buffers."
+    (when (boundp 'popwin:special-display-config)
+      (popwin:display-buffer helm-buffer t)
+      (customize-set-variable 'popwin:special-display-config
+                              (delq 'help-mode popwin:special-display-config))))
+
+  (defun helm-popwin-help-mode-on ()
+    "Turn `popwin-mode' on for *Help* buffers."
+    (when (boundp 'popwin:special-display-config)
+      (customize-set-variable 'popwin:special-display-config
+                              (add-to-list 'popwin:special-display-config 'help-mode nil #'eq))))
+
+  (add-hook 'helm-after-initialize-hook #'helm-popwin-help-mode-off)
+  (add-hook 'helm-cleanup-hook #'helm-popwin-help-mode-on)
+
+  (when (featurep 'golden-ratio)
+    (add-to-list 'golden-ratio-inhibit-functions 'helm-alive-p))
+
+)
+
+(use-package golden-ratio
+  :config
+    (golden-ratio-mode 1)
+    (setq golden-ratio-auto-scale nil)
+    (setq golden-ratio-adjust-factor .5
+      golden-ratio-wide-adjust-factor .9)
 )
 
 (use-package avy)
