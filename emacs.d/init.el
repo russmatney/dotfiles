@@ -33,7 +33,7 @@
 
 (defun toggle-transparency (arg)
   (interactive "P")
-  (let* ((ring '(100 90 80 50))
+  (let* ((ring '(100 90 80 75 50))
          (current (frame-parameter nil 'alpha))
          (last (car (last ring)))
          (next (if arg
@@ -49,6 +49,8 @@
 )
 
 (setq-default show-trailing-whitespace t)
+
+(setq visible-bell 1)
 
 (setq org-todo-keywords
        '((sequence "TODO"
@@ -86,6 +88,25 @@
 
 ;;(add-hook 'after-init-hook 'org-mobile-pull)
 (add-hook 'kill-emacs-hook 'org-mobile-push)
+
+(setq org-default-notes-file (concat org-directory "/captured.org"))
+     (define-key global-map "\C-cc" 'org-capture)
+
+(setq org-capture-templates
+      '(("t" "Todo (any)" entry (file+headline "~/Dropbox/todo/todo.org" "Captured")
+             "* TODO %?\n  %i\n  %a")
+        ("w" "Workflow todo" entry (file+headline "~/Dropbox/todo/todo.org" "Workflow")
+             "** WORKFLOW %?\n  %i\n  %a")
+        ("c" "Chore todo" entry (file+headline "~/Dropbox/todo/todo.org" "Chore")
+             "** CHORE %?\n  %i\n  %a")
+        ("o" "Open Source idea" entry (file+headline "~/Dropbox/todo/todo.org" "Open Source")
+             "** OPENSOURCE %?\n  %i\n  %a")
+        ("r" "Read/Research" entry (file+headline "~/Dropbox/todo/todo.org" "Read")
+             "** READ %?\n  %i\n  %a")
+        ("u" "Urbint" entry (file+headline "~/Dropbox/todo/todo.org" "Urbint")
+             "** URBINT %?\n  %i\n  %a")
+      )
+)
 
 (require 'zoom-frm)
 (global-set-key (kbd "s-+") 'zoom-frm-in)
@@ -189,6 +210,7 @@
          "<SPC>" 'evil-switch-to-windows-last-buffer
          "c" 'evilnc-comment-or-uncomment-lines
          "n" 'neotree-find
+         "w" 'save-buffer
          "W" 'delete-trailing-whitespace
          "k" 'kill-buffer
          "b" 'helm-mini
@@ -273,9 +295,6 @@
   (add-hook 'helm-after-initialize-hook #'helm-popwin-help-mode-off)
   (add-hook 'helm-cleanup-hook #'helm-popwin-help-mode-on)
 
-  (when (featurep 'golden-ratio)
-    (add-to-list 'golden-ratio-inhibit-functions 'helm-alive-p))
-
 )
 
 ;; (use-package golden-ratio
@@ -285,6 +304,11 @@
 ;;     (setq golden-ratio-adjust-factor .5
 ;;       golden-ratio-wide-adjust-factor .9)
 ;; )
+
+(use-package smart-mode-line
+  :config
+  (sml/setup)
+)
 
 (use-package helm
   :bind (
@@ -342,6 +366,15 @@
       (progn
         (helm-projectile-on))
     )
+
+    (setq helm-boring-buffer-regexp-list
+      (quote ( "\\Minibuf.+\\*"
+               "\\` "
+               "\\*.+\\*"
+             )
+      )
+    )
+
   )
 )
 

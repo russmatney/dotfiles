@@ -55,7 +55,7 @@ NOTE: this overwrites your unsaved buffers when you switch git branches!
 #+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (defun toggle-transparency (arg)
   (interactive "P")
-  (let* ((ring '(100 90 80 50))
+  (let* ((ring '(100 90 80 75 50))
          (current (frame-parameter nil 'alpha))
          (last (car (last ring)))
          (next (if arg
@@ -64,6 +64,9 @@ NOTE: this overwrites your unsaved buffers when you switch git branches!
     (set-frame-parameter nil 'alpha next)))
 (global-set-key (kbd "C-c t") 'toggle-transparency)
 #+END_SRC
+
+#+RESULTS:
+: toggle-transparency
 
 ** Highlight indent guides
 #+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
@@ -77,6 +80,11 @@ NOTE: this overwrites your unsaved buffers when you switch git branches!
 ** Highlight whitespace
 #+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (setq-default show-trailing-whitespace t)
+#+end_src
+
+** Disable bell sound
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(setq visible-bell 1)
 #+end_src
 
 * Org mode
@@ -131,6 +139,36 @@ Auto-Sync
 ;;(add-hook 'after-init-hook 'org-mobile-pull)
 (add-hook 'kill-emacs-hook 'org-mobile-push)
 #+end_src
+*** Capture
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(setq org-default-notes-file (concat org-directory "/captured.org"))
+     (define-key global-map "\C-cc" 'org-capture)
+#+end_src
+*** Capture Templates
+#+begin_src emacs-lisp  :tangle ~/dotfiles/emacs.d/init.el
+(setq org-capture-templates
+      '(("t" "Todo (any)" entry (file+headline "~/Dropbox/todo/todo.org" "Captured")
+             "* TODO %?\n  %i\n  %a")
+        ("w" "Workflow todo" entry (file+headline "~/Dropbox/todo/todo.org" "Workflow")
+             "** WORKFLOW %?\n  %i\n  %a")
+        ("c" "Chore todo" entry (file+headline "~/Dropbox/todo/todo.org" "Chore")
+             "** CHORE %?\n  %i\n  %a")
+        ("o" "Open Source idea" entry (file+headline "~/Dropbox/todo/todo.org" "Open Source")
+             "** OPENSOURCE %?\n  %i\n  %a")
+        ("r" "Read/Research" entry (file+headline "~/Dropbox/todo/todo.org" "Read")
+             "** READ %?\n  %i\n  %a")
+        ("u" "Urbint" entry (file+headline "~/Dropbox/todo/todo.org" "Urbint")
+             "** URBINT %?\n  %i\n  %a")
+      )
+)
+#+end_src
+
+#+RESULTS:
+| t | Todo             | entry | (file+headline ~/Dropbox/todo/todo.org Captured)    | * TODO %?\n  %i\n  %a        |
+| w | Workflow todo    | entry | (file+headline ~/Dropbox/todo/todo.org Workflow)    | ** WORKFLOW %?\n  %i\n  %a   |
+| c | Chore todo       | entry | (file+headline ~/Dropbox/todo/todo.org Chore)       | ** CHORE %?\n  %i\n  %a      |
+| o | Open Source idea | entry | (file+headline ~/Dropbox/todo/todo.org Open Source) | ** OPENSOURCE %?\n  %i\n  %a |
+
 ** TODO fix auto-pull
 * Starter Kit
 ** Zoom/Text Scaling
@@ -265,6 +303,7 @@ zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers. (does it?)
          "<SPC>" 'evil-switch-to-windows-last-buffer
          "c" 'evilnc-comment-or-uncomment-lines
          "n" 'neotree-find
+         "w" 'save-buffer
          "W" 'delete-trailing-whitespace
          "k" 'kill-buffer
          "b" 'helm-mini
@@ -361,9 +400,6 @@ hello + <ysw'> = 'hello'
   (add-hook 'helm-after-initialize-hook #'helm-popwin-help-mode-off)
   (add-hook 'helm-cleanup-hook #'helm-popwin-help-mode-on)
 
-  (when (featurep 'golden-ratio)
-    (add-to-list 'golden-ratio-inhibit-functions 'helm-alive-p))
-
 )
 #+end_src
 
@@ -379,6 +415,17 @@ Current solution: Balancing advice above
 ;;       golden-ratio-wide-adjust-factor .9)
 ;; )
 #+end_src
+* Smart mode line (Status Line)
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(use-package smart-mode-line
+  :config
+  (sml/setup)
+)
+#+end_src
+
+#+RESULTS:
+: t
+
 * Helm
 #+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package helm
@@ -437,6 +484,15 @@ Current solution: Balancing advice above
       (progn
         (helm-projectile-on))
     )
+
+    (setq helm-boring-buffer-regexp-list
+      (quote ( "\\Minibuf.+\\*"
+               "\\` "
+               "\\*.+\\*"
+             )
+      )
+    )
+
   )
 )
 #+END_SRC
@@ -446,7 +502,7 @@ Current solution: Balancing advice above
 #+end_src
 * Ag
 #+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-(use-package ag)
+  (use-package ag)
 #+end_src
 * Helm-Ag
 #+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
