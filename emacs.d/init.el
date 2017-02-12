@@ -138,21 +138,7 @@
 (setq default-frame-alist
     '((fullscreen . fullboth) (fullscreen-restore . fullheight)))
 
-;; Window movement
-;; (global-set-key (kbd "C-l C-l") 'windmove-right)
-;; (global-set-key (kbd "C-l l") 'windmove-right)
-;; (global-set-key (kbd "C-h C-h") 'windmove-left)
-;; (global-set-key (kbd "C-h h") 'windmove-left)
-;; (global-set-key (kbd "C-k C-k") 'windmove-up)
-;; (global-set-key (kbd "C-k k") 'windmove-up)
-;; (global-set-key (kbd "C-j C-j") 'windmove-down)
-;; (global-set-key (kbd "C-j j") 'windmove-down)
-(global-set-key (kbd "C-l") 'windmove-right)
-(global-set-key (kbd "C-h") 'windmove-left)
-(global-set-key (kbd "C-k") 'windmove-up)
-(global-set-key (kbd "C-j") 'windmove-down)
-
-;; Scrolling Settings (@wpcarro)
+;; Scrolling Settings
 (setq scroll-step 1)
 (setq scroll-conservatively 10000)
 
@@ -161,7 +147,7 @@
 
 ;; line wrap
 (setq-default word-wrap t)
-(toggle-truncate-lines 1)
+;; (toggle-truncate-lines 1)
 
 (use-package evil
   :commands (evil-mode local-evil-mode)
@@ -229,7 +215,7 @@
          "l" 'alchemist-mix-rerun-last-test
          "t" 'alchemist-project-toggle-file-and-tests
          "T" 'alchemist-mix-test-this-buffer
-         "d" 'alchemist-help-search-at-point
+         "q" 'evil-window-delete
          "=" 'balance-windows
          "a" 'ace-window
          ">" 'evil-window-increase-width
@@ -261,6 +247,12 @@
   :config
   (global-evil-surround-mode 1)
 )
+
+;; Window movement
+(global-set-key (kbd "C-l") 'windmove-right)
+(global-set-key (kbd "C-h") 'windmove-left)
+(global-set-key (kbd "C-k") 'windmove-up)
+(global-set-key (kbd "C-j") 'windmove-down)
 
 (defadvice split-window-below (after restore-balanace-below activate)
   (balance-windows))
@@ -297,6 +289,9 @@
   (add-hook 'helm-after-initialize-hook #'helm-popwin-help-mode-off)
   (add-hook 'helm-cleanup-hook #'helm-popwin-help-mode-on)
 
+  (push '("*helm mini*" :height 40) popwin:special-display-config)
+  (push '("*helm projectile" :height 40) popwin:special-display-config)
+
 )
 
 ;; (use-package golden-ratio
@@ -309,6 +304,7 @@
 
 (use-package smart-mode-line
   :config
+  (setq sml/no-confirm-load-theme t)
   (sml/setup)
 )
 
@@ -376,6 +372,30 @@
              )
       )
     )
+
+    ;; TODO: doesn't work for un'opened' files, only existing buffers
+    (defun helm-buffer-switch-to-new-window (_candidate)
+      "Display buffers in new windows."
+      ;; Select the bottom right window
+      (require 'winner)
+      (select-window (car (last (winner-sorted-window-list))))
+      ;; Display buffers in new windows
+      (dolist (buf (helm-marked-candidates))
+        (select-window (split-window-right))
+        (switch-to-buffer buf))
+      ;; Adjust size of windows
+      (balance-windows))
+
+    (add-to-list 'helm-type-buffer-actions
+                '("Display buffer(s) in new window(s) `M-o'" .
+                  helm-buffer-switch-new-window) 'append)
+
+    (defun helm-buffer-switch-new-window ()
+      (interactive)
+      (with-helm-alive-p
+        (helm-quit-and-execute-action 'helm-buffer-switch-to-new-window)))
+
+    (define-key helm-map (kbd "M-o") #'helm-buffer-switch-new-window)
 
   )
 )
@@ -452,16 +472,14 @@
 )
 
 (use-package neotree
-  :init
-  (progn
-    ;; Every time when the neotree window is opened, it will try to find current file and jump to node.
-    (setq-default neo-smart-open t)
-  )
-
   :config
   (progn
+
     ;; theme
-    (setq neo-theme 'ascii)
+    (use-package all-the-icons
+      ;; install fonts from this package too
+    )
+    (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 
     ;; evil mappings
     (evil-set-initial-state 'neotree-mode 'normal)
@@ -540,3 +558,17 @@
 (use-package iedit)
 
 (use-package evil-nerd-commenter)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (all-the-icons zoom-frm yasnippet use-package smart-mode-line popwin neotree material-theme markdown-mode iedit highlight-indent-guides helm-swoop helm-projectile helm-company helm-ag golden-ratio flycheck-mix flycheck-credo exec-path-from-shell evil-tutor evil-surround evil-nerd-commenter evil-matchit evil-magit evil-leader discover atom-one-dark-theme alchemist ag ace-window))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

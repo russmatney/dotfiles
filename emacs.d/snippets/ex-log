@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Elixir Log
+# key: L.
+# --
+Apex.ap($0)
