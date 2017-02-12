@@ -169,6 +169,11 @@ Auto-Sync
 | c | Chore todo       | entry | (file+headline ~/Dropbox/todo/todo.org Chore)       | ** CHORE %?\n  %i\n  %a      |
 | o | Open Source idea | entry | (file+headline ~/Dropbox/todo/todo.org Open Source) | ** OPENSOURCE %?\n  %i\n  %a |
 
+*** Timestamp on done
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(setq org-log-done 'time)
+#+end_src
+
 ** TODO fix auto-pull
 * Starter Kit
 ** Zoom/Text Scaling

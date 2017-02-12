@@ -108,6 +108,8 @@
       )
 )
 
+(setq org-log-done 'time)
+
 (require 'zoom-frm)
 (global-set-key (kbd "s-+") 'zoom-frm-in)
 (global-set-key (kbd "s-=") 'zoom-frm-in)
