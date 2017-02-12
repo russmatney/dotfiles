@@ -50,7 +50,49 @@
 
 (setq-default show-trailing-whitespace t)
 
+(global-hl-line-mode 1)
+
 (setq visible-bell 1)
+
+(require 'zoom-frm)
+(global-set-key (kbd "s-+") 'zoom-frm-in)
+(global-set-key (kbd "s-=") 'zoom-frm-in)
+(global-set-key (kbd "s--") 'zoom-frm-out)
+(global-set-key (kbd "s-_") 'zoom-frm-out)
+(global-set-key (kbd "s-0") 'zoom-frm-unzoom)
+
+;; auto-save-files not in same dir as original
+(setq backup-directory-alist `(("." . "~/.emacs/auto-save-list")))
+
+(setq ns-auto-hide-menu-bar t)
+
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+
+(setq-default indent-tabs-mode nil)
+
+(set-frame-font "Operator Mono 12")
+
+(set-frame-parameter (selected-frame) 'alpha '(99 . 99))
+(add-to-list 'default-frame-alist '(alpha . (99 . 99)))
+
+(setq ns-use-native-fullscreen nil)
+(global-set-key (kbd "<s-return>") 'toggle-frame-fullscreen)
+
+;; default full screen
+(setq default-frame-alist
+    '((fullscreen . fullboth) (fullscreen-restore . fullheight)))
+
+;; Scrolling Settings
+(setq scroll-step 1)
+(setq scroll-conservatively 10000)
+
+;; line numbers
+(global-linum-mode t)
+
+;; line wrap
+(setq-default word-wrap t)
+;; (toggle-truncate-lines 1)
 
 (setq org-todo-keywords
        '((sequence "TODO"
@@ -109,45 +151,6 @@
 )
 
 (setq org-log-done 'time)
-
-(require 'zoom-frm)
-(global-set-key (kbd "s-+") 'zoom-frm-in)
-(global-set-key (kbd "s-=") 'zoom-frm-in)
-(global-set-key (kbd "s--") 'zoom-frm-out)
-(global-set-key (kbd "s-_") 'zoom-frm-out)
-
-;; auto-save-files not in same dir as original
-(setq backup-directory-alist `(("." . "~/.emacs/auto-save-list")))
-
-(setq ns-auto-hide-menu-bar t)
-
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-
-(setq-default indent-tabs-mode nil)
-
-(set-frame-font "Operator Mono 12")
-
-(set-frame-parameter (selected-frame) 'alpha '(99 . 99))
-(add-to-list 'default-frame-alist '(alpha . (99 . 99)))
-
-(setq ns-use-native-fullscreen nil)
-(global-set-key (kbd "<s-return>") 'toggle-frame-fullscreen)
-
-;; default full screen
-(setq default-frame-alist
-    '((fullscreen . fullboth) (fullscreen-restore . fullheight)))
-
-;; Scrolling Settings
-(setq scroll-step 1)
-(setq scroll-conservatively 10000)
-
-;; line numbers
-(global-linum-mode t)
-
-;; line wrap
-(setq-default word-wrap t)
-;; (toggle-truncate-lines 1)
 
 (use-package evil
   :commands (evil-mode local-evil-mode)
@@ -485,6 +488,7 @@
 
     (evil-define-key 'normal neotree-mode-map
     (kbd "RET") 'neotree-enter
+    (kbd "TAB") 'neotree-enter
     (kbd "c")   'neotree-create-node
     (kbd "r")   'neotree-rename-node
     (kbd "d")   'neotree-delete-node
@@ -520,8 +524,12 @@
           (ignored          neo-vc-ignored-face)
           (unregistered     neo-vc-unregistered-face)
           (user             neo-vc-user-face)
-          (t                neo-vc-default-face)))))
+          (t                neo-vc-default-face)
+        )
+      )
+    )
   )
+)
 
 (use-package projectile
   :config

@@ -82,11 +82,80 @@ NOTE: this overwrites your unsaved buffers when you switch git branches!
 (setq-default show-trailing-whitespace t)
 #+end_src
 
+** Cursor guide
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(global-hl-line-mode 1)
+#+end_src
 ** Disable bell sound
 #+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (setq visible-bell 1)
 #+end_src
 
+** Zoom/Text Scaling
+zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers.
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(require 'zoom-frm)
+(global-set-key (kbd "s-+") 'zoom-frm-in)
+(global-set-key (kbd "s-=") 'zoom-frm-in)
+(global-set-key (kbd "s--") 'zoom-frm-out)
+(global-set-key (kbd "s-_") 'zoom-frm-out)
+(global-set-key (kbd "s-0") 'zoom-frm-unzoom)
+#+END_SRC
+** Temp files stored elsewhere
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+;; auto-save-files not in same dir as original
+(setq backup-directory-alist `(("." . "~/.emacs/auto-save-list")))
+#+END_SRC
+** Hide the menu-bar
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(setq ns-auto-hide-menu-bar t)
+#+END_SRC
+** Native App Settings
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+#+END_SRC
+** Spaces, not tabs
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(setq-default indent-tabs-mode nil)
+#+END_SRC
+** Font settings
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(set-frame-font "Operator Mono 12")
+#+END_SRC
+** Transparency
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(set-frame-parameter (selected-frame) 'alpha '(99 . 99))
+(add-to-list 'default-frame-alist '(alpha . (99 . 99)))
+#+END_SRC
+** Full-screen settings
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(setq ns-use-native-fullscreen nil)
+(global-set-key (kbd "<s-return>") 'toggle-frame-fullscreen)
+#+END_SRC
+*** Default to full screen
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+;; default full screen
+(setq default-frame-alist
+    '((fullscreen . fullboth) (fullscreen-restore . fullheight)))
+#+END_SRC
+** Smooth scroll
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+;; Scrolling Settings
+(setq scroll-step 1)
+(setq scroll-conservatively 10000)
+#+END_SRC
+** Line numbers
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+;; line numbers
+(global-linum-mode t)
+#+END_SRC
+** Line wrap
+#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+;; line wrap
+(setq-default word-wrap t)
+;; (toggle-truncate-lines 1)
+#+END_SRC
 * Org mode
 *** Custom keywords
 #+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
@@ -175,71 +244,6 @@ Auto-Sync
 #+end_src
 
 ** TODO fix auto-pull
-* Starter Kit
-** Zoom/Text Scaling
-zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers. (does it?)
-#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-(require 'zoom-frm)
-(global-set-key (kbd "s-+") 'zoom-frm-in)
-(global-set-key (kbd "s-=") 'zoom-frm-in)
-(global-set-key (kbd "s--") 'zoom-frm-out)
-(global-set-key (kbd "s-_") 'zoom-frm-out)
-#+END_SRC
-** Temp files stored elsewhere
-#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-;; auto-save-files not in same dir as original
-(setq backup-directory-alist `(("." . "~/.emacs/auto-save-list")))
-#+END_SRC
-** Hide the menu-bar
-#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-(setq ns-auto-hide-menu-bar t)
-#+END_SRC
-** Native App Settings
-#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-#+END_SRC
-** Spaces, not tabs
-#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-(setq-default indent-tabs-mode nil)
-#+END_SRC
-** Font settings
-#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-(set-frame-font "Operator Mono 12")
-#+END_SRC
-** Transparency
-#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-(set-frame-parameter (selected-frame) 'alpha '(99 . 99))
-(add-to-list 'default-frame-alist '(alpha . (99 . 99)))
-#+END_SRC
-** Full-screen settings
-#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-(setq ns-use-native-fullscreen nil)
-(global-set-key (kbd "<s-return>") 'toggle-frame-fullscreen)
-#+END_SRC
-*** Default to full screen
-#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-;; default full screen
-(setq default-frame-alist
-    '((fullscreen . fullboth) (fullscreen-restore . fullheight)))
-#+END_SRC
-** Smooth scroll
-#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-;; Scrolling Settings
-(setq scroll-step 1)
-(setq scroll-conservatively 10000)
-#+END_SRC
-** Line numbers
-#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-;; line numbers
-(global-linum-mode t)
-#+END_SRC
-** Line wrap
-#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-;; line wrap
-(setq-default word-wrap t)
-;; (toggle-truncate-lines 1)
-#+END_SRC
 * Evil mode
 ** Evil bindings, evil leader commands
 #+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
@@ -623,6 +627,7 @@ A great interface, but quite slow.
 
     (evil-define-key 'normal neotree-mode-map
     (kbd "RET") 'neotree-enter
+    (kbd "TAB") 'neotree-enter
     (kbd "c")   'neotree-create-node
     (kbd "r")   'neotree-rename-node
     (kbd "d")   'neotree-delete-node
@@ -658,8 +663,12 @@ A great interface, but quite slow.
           (ignored          neo-vc-ignored-face)
           (unregistered     neo-vc-unregistered-face)
           (user             neo-vc-user-face)
-          (t                neo-vc-default-face)))))
+          (t                neo-vc-default-face)
+        )
+      )
+    )
   )
+)
 #+END_SRC
 * Yasnippet
 #+begin_src emacs-lisp
