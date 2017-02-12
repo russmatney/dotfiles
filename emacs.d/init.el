@@ -289,8 +289,7 @@
   (add-hook 'helm-after-initialize-hook #'helm-popwin-help-mode-off)
   (add-hook 'helm-cleanup-hook #'helm-popwin-help-mode-on)
 
-  (push '("*helm mini*" :height 40) popwin:special-display-config)
-  (push '("*helm projectile" :height 40) popwin:special-display-config)
+  (push '("^\\*helm.*\\*$" :regexp t :height 50) popwin:special-display-config)
 
 )
 
@@ -558,17 +557,3 @@
 (use-package iedit)
 
 (use-package evil-nerd-commenter)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (all-the-icons zoom-frm yasnippet use-package smart-mode-line popwin neotree material-theme markdown-mode iedit highlight-indent-guides helm-swoop helm-projectile helm-company helm-ag golden-ratio flycheck-mix flycheck-credo exec-path-from-shell evil-tutor evil-surround evil-nerd-commenter evil-matchit evil-magit evil-leader discover atom-one-dark-theme alchemist ag ace-window))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )

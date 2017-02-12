@@ -397,8 +397,7 @@ hello + <ysw'> = 'hello'
   (add-hook 'helm-after-initialize-hook #'helm-popwin-help-mode-off)
   (add-hook 'helm-cleanup-hook #'helm-popwin-help-mode-on)
 
-  (push '("*helm mini*" :height 40) popwin:special-display-config)
-  (push '("*helm projectile" :height 40) popwin:special-display-config)
+  (push '("^\\*helm.*\\*$" :regexp t :height 50) popwin:special-display-config)
 
 )
 #+end_src
