@@ -31,17 +31,6 @@
 
 (global-auto-revert-mode t)
 
-(defun toggle-transparency (arg)
-  (interactive "P")
-  (let* ((ring '(100 90 80 75 50))
-         (current (frame-parameter nil 'alpha))
-         (last (car (last ring)))
-         (next (if arg
-                   (if (equal current (car ring)) last (car ring))
-                 (or (cadr (member current ring)) (car ring)))))
-    (set-frame-parameter nil 'alpha next)))
-(global-set-key (kbd "C-c t") 'toggle-transparency)
-
 (use-package highlight-indent-guides
   :config
   (setq highlight-indent-guides-method 'character)
@@ -54,12 +43,12 @@
 
 (setq visible-bell 1)
 
-(require 'zoom-frm)
-(global-set-key (kbd "s-+") 'zoom-frm-in)
-(global-set-key (kbd "s-=") 'zoom-frm-in)
-(global-set-key (kbd "s--") 'zoom-frm-out)
-(global-set-key (kbd "s-_") 'zoom-frm-out)
-(global-set-key (kbd "s-0") 'zoom-frm-unzoom)
+(use-package zoom-frm
+  :config
+  (global-set-key (kbd "s-=") 'zoom-frm-in)
+  (global-set-key (kbd "s--") 'zoom-frm-out)
+  (global-set-key (kbd "s-0") 'zoom-frm-unzoom)
+)
 
 ;; auto-save-files not in same dir as original
 (setq backup-directory-alist `(("." . "~/.emacs/auto-save-list")))
@@ -73,8 +62,13 @@
 
 (set-frame-font "Operator Mono 12")
 
-(set-frame-parameter (selected-frame) 'alpha '(99 . 99))
-(add-to-list 'default-frame-alist '(alpha . (99 . 99)))
+(use-package seethru
+  :config
+  (global-set-key (kbd "s-+") (lambda () (interactive) (seethru-relative -5)))
+  (global-set-key (kbd "s-_") (lambda () (interactive) (seethru-relative 5)))
+  (global-set-key (kbd "s-)") (lambda () (interactive) (seethru 100)))
+  (global-set-key (kbd "s-(") (lambda () (interactive) (seethru 0)))
+)
 
 (setq ns-use-native-fullscreen nil)
 (global-set-key (kbd "<s-return>") 'toggle-frame-fullscreen)

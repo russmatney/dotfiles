@@ -51,23 +51,6 @@ NOTE: this overwrites your unsaved buffers when you switch git branches!
 #+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (global-auto-revert-mode t)
 #+END_SRC
-** Toggle Transparency
-#+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-(defun toggle-transparency (arg)
-  (interactive "P")
-  (let* ((ring '(100 90 80 75 50))
-         (current (frame-parameter nil 'alpha))
-         (last (car (last ring)))
-         (next (if arg
-                   (if (equal current (car ring)) last (car ring))
-                 (or (cadr (member current ring)) (car ring)))))
-    (set-frame-parameter nil 'alpha next)))
-(global-set-key (kbd "C-c t") 'toggle-transparency)
-#+END_SRC
-
-#+RESULTS:
-: toggle-transparency
-
 ** Highlight indent guides
 #+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package highlight-indent-guides
@@ -94,12 +77,12 @@ NOTE: this overwrites your unsaved buffers when you switch git branches!
 ** Zoom/Text Scaling
 zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers.
 #+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-(require 'zoom-frm)
-(global-set-key (kbd "s-+") 'zoom-frm-in)
-(global-set-key (kbd "s-=") 'zoom-frm-in)
-(global-set-key (kbd "s--") 'zoom-frm-out)
-(global-set-key (kbd "s-_") 'zoom-frm-out)
-(global-set-key (kbd "s-0") 'zoom-frm-unzoom)
+(use-package zoom-frm
+  :config
+  (global-set-key (kbd "s-=") 'zoom-frm-in)
+  (global-set-key (kbd "s--") 'zoom-frm-out)
+  (global-set-key (kbd "s-0") 'zoom-frm-unzoom)
+)
 #+END_SRC
 ** Temp files stored elsewhere
 #+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
@@ -124,9 +107,15 @@ zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers.
 (set-frame-font "Operator Mono 12")
 #+END_SRC
 ** Transparency
+*** package: seethru
 #+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-(set-frame-parameter (selected-frame) 'alpha '(99 . 99))
-(add-to-list 'default-frame-alist '(alpha . (99 . 99)))
+(use-package seethru
+  :config
+  (global-set-key (kbd "s-+") (lambda () (interactive) (seethru-relative -5)))
+  (global-set-key (kbd "s-_") (lambda () (interactive) (seethru-relative 5)))
+  (global-set-key (kbd "s-)") (lambda () (interactive) (seethru 100)))
+  (global-set-key (kbd "s-(") (lambda () (interactive) (seethru 0)))
+)
 #+END_SRC
 ** Full-screen settings
 #+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
