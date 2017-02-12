@@ -6,6 +6,94 @@ Ex:
 (global-unset-key (kbd "C-e"))
 #+end_src
 
+* Org mode
+*** Custom keywords
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(setq org-todo-keywords
+       '((sequence "TODO"
+                   "WORKFLOW" "FIX" "FANCY" "RESEARCH"
+                   "IDEA" "MOVE" "INFO" "BLOG" "POST" "JACK"
+                   "OPENSOURCE"
+                   "STORYX"
+                   "PROTOTYPE"
+                   "TRIAGE"
+                   "|"               ;; <------- more likely to be typed
+                   "TODOLOL"         ;; at the center
+                   "INACTIVE"
+                   "REMINDER"
+                   "SCHEDULED"
+                   "BLOCKED"         ;; closer to 0 == quicker scrolling
+                   "DONE"            ;; <------- closer for Shift-<left> wrapping
+        ))
+)
+#+end_src
+*** Source block syntax highlighting
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(setq org-src-fontify-natively t)
+#+end_src
+*** Run babel-tangle on file-save
+
+Originally from [[http://emacs.stackexchange.com/questions/20707/automatically-tangle-org-files-in-a-specific-directory][StackOverflow]]
+
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(defun my/tangle-dotfiles ()
+  "If the current file is in '~/.dotfiles', the code blocks are tangled"
+  (when (equal (file-name-directory (directory-file-name buffer-file-name))
+               (concat (getenv "HOME") "/dotfiles/emacs.d/"))
+    (org-babel-tangle)
+    (message "%s tangled" buffer-file-name)))
+
+(add-hook 'after-save-hook #'my/tangle-dotfiles)
+#+end_src
+*** OrgMobile
+Config
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(setq org-directory "~/Dropbox/todo/")
+(setq org-mobile-inbox-for-pull "~/Dropbox/todo/inbox.org")
+(setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
+(setq org-mobile-files '("~/Dropbox/todo"))
+#+end_src
+Auto-Sync
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+;;(add-hook 'after-init-hook 'org-mobile-pull)
+(add-hook 'kill-emacs-hook 'org-mobile-push)
+#+end_src
+*** Capture
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(setq org-default-notes-file (concat org-directory "/captured.org"))
+     (define-key global-map "\C-cc" 'org-capture)
+#+end_src
+*** Capture Templates
+#+begin_src emacs-lisp  :tangle ~/dotfiles/emacs.d/init.el
+(setq org-capture-templates
+      '(("t" "Todo (any)" entry (file+headline "~/Dropbox/todo/todo.org" "Captured")
+             "* TODO %?\n  %i\n  %a")
+        ("w" "Workflow todo" entry (file+headline "~/Dropbox/todo/todo.org" "Workflow")
+             "** WORKFLOW %?\n  %i\n  %a")
+        ("c" "Chore todo" entry (file+headline "~/Dropbox/todo/todo.org" "Chore")
+             "** CHORE %?\n  %i\n  %a")
+        ("o" "Open Source idea" entry (file+headline "~/Dropbox/todo/todo.org" "Open Source")
+             "** OPENSOURCE %?\n  %i\n  %a")
+        ("r" "Read/Research" entry (file+headline "~/Dropbox/todo/todo.org" "Read")
+             "** READ %?\n  %i\n  %a")
+        ("u" "Urbint" entry (file+headline "~/Dropbox/todo/todo.org" "Urbint")
+             "** URBINT %?\n  %i\n  %a")
+      )
+)
+#+end_src
+
+#+RESULTS:
+| t | Todo             | entry | (file+headline ~/Dropbox/todo/todo.org Captured)    | * TODO %?\n  %i\n  %a        |
+| w | Workflow todo    | entry | (file+headline ~/Dropbox/todo/todo.org Workflow)    | ** WORKFLOW %?\n  %i\n  %a   |
+| c | Chore todo       | entry | (file+headline ~/Dropbox/todo/todo.org Chore)       | ** CHORE %?\n  %i\n  %a      |
+| o | Open Source idea | entry | (file+headline ~/Dropbox/todo/todo.org Open Source) | ** OPENSOURCE %?\n  %i\n  %a |
+
+*** Timestamp on done
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(setq org-log-done 'time)
+#+end_src
+
+** TODO fix auto-pull
 * General
 ** Package management (must come first)
 #+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
@@ -145,94 +233,6 @@ zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers.
 (setq-default word-wrap t)
 ;; (toggle-truncate-lines 1)
 #+END_SRC
-* Org mode
-*** Custom keywords
-#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-(setq org-todo-keywords
-       '((sequence "TODO"
-                   "WORKFLOW" "FIX" "FANCY" "RESEARCH"
-                   "IDEA" "MOVE" "INFO" "BLOG" "POST" "JACK"
-                   "OPENSOURCE"
-                   "STORYX"
-                   "PROTOTYPE"
-                   "TRIAGE"
-                   "|"               ;; <------- more likely to be typed
-                   "TODOLOL"         ;; at the center
-                   "INACTIVE"
-                   "REMINDER"
-                   "SCHEDULED"
-                   "BLOCKED"         ;; closer to 0 == quicker scrolling
-                   "DONE"            ;; <------- closer for Shift-<left> wrapping
-        ))
-)
-#+end_src
-*** Source block syntax highlighting
-#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-(setq org-src-fontify-natively t)
-#+end_src
-*** Run babel-tangle on file-save
-
-Originally from [[http://emacs.stackexchange.com/questions/20707/automatically-tangle-org-files-in-a-specific-directory][StackOverflow]]
-
-#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-(defun my/tangle-dotfiles ()
-  "If the current file is in '~/.dotfiles', the code blocks are tangled"
-  (when (equal (file-name-directory (directory-file-name buffer-file-name))
-               (concat (getenv "HOME") "/dotfiles/emacs.d/"))
-    (org-babel-tangle)
-    (message "%s tangled" buffer-file-name)))
-
-(add-hook 'after-save-hook #'my/tangle-dotfiles)
-#+end_src
-*** OrgMobile
-Config
-#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-(setq org-directory "~/Dropbox/todo/")
-(setq org-mobile-inbox-for-pull "~/Dropbox/todo/inbox.org")
-(setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
-(setq org-mobile-files '("~/Dropbox/todo"))
-#+end_src
-Auto-Sync
-#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-;;(add-hook 'after-init-hook 'org-mobile-pull)
-(add-hook 'kill-emacs-hook 'org-mobile-push)
-#+end_src
-*** Capture
-#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-(setq org-default-notes-file (concat org-directory "/captured.org"))
-     (define-key global-map "\C-cc" 'org-capture)
-#+end_src
-*** Capture Templates
-#+begin_src emacs-lisp  :tangle ~/dotfiles/emacs.d/init.el
-(setq org-capture-templates
-      '(("t" "Todo (any)" entry (file+headline "~/Dropbox/todo/todo.org" "Captured")
-             "* TODO %?\n  %i\n  %a")
-        ("w" "Workflow todo" entry (file+headline "~/Dropbox/todo/todo.org" "Workflow")
-             "** WORKFLOW %?\n  %i\n  %a")
-        ("c" "Chore todo" entry (file+headline "~/Dropbox/todo/todo.org" "Chore")
-             "** CHORE %?\n  %i\n  %a")
-        ("o" "Open Source idea" entry (file+headline "~/Dropbox/todo/todo.org" "Open Source")
-             "** OPENSOURCE %?\n  %i\n  %a")
-        ("r" "Read/Research" entry (file+headline "~/Dropbox/todo/todo.org" "Read")
-             "** READ %?\n  %i\n  %a")
-        ("u" "Urbint" entry (file+headline "~/Dropbox/todo/todo.org" "Urbint")
-             "** URBINT %?\n  %i\n  %a")
-      )
-)
-#+end_src
-
-#+RESULTS:
-| t | Todo             | entry | (file+headline ~/Dropbox/todo/todo.org Captured)    | * TODO %?\n  %i\n  %a        |
-| w | Workflow todo    | entry | (file+headline ~/Dropbox/todo/todo.org Workflow)    | ** WORKFLOW %?\n  %i\n  %a   |
-| c | Chore todo       | entry | (file+headline ~/Dropbox/todo/todo.org Chore)       | ** CHORE %?\n  %i\n  %a      |
-| o | Open Source idea | entry | (file+headline ~/Dropbox/todo/todo.org Open Source) | ** OPENSOURCE %?\n  %i\n  %a |
-
-*** Timestamp on done
-#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-(setq org-log-done 'time)
-#+end_src
-
-** TODO fix auto-pull
 * Evil mode
 ** Evil bindings, evil leader commands
 #+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
