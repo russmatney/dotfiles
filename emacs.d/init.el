@@ -122,8 +122,8 @@
 
 (use-package seethru
   :config
-  (global-set-key (kbd "s-+") (lambda () (interactive) (seethru-relative -5)))
-  (global-set-key (kbd "s-_") (lambda () (interactive) (seethru-relative 5)))
+  (global-set-key (kbd "s-+") (lambda () (interactive) (seethru-relative 5)))
+  (global-set-key (kbd "s-_") (lambda () (interactive) (seethru-relative -5)))
   (global-set-key (kbd "s-)") (lambda () (interactive) (seethru 100)))
   (global-set-key (kbd "s-(") (lambda () (interactive) (seethru 0)))
 )
