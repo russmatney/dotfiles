@@ -99,7 +99,8 @@
 
 (global-hl-line-mode 1)
 
-(setq visible-bell 1)
+(setq visible-bell nil)
+;; (setq visible-bell 1)
 
 (use-package zoom-frm
   :config
@@ -195,6 +196,7 @@
          "<SPC>" 'evil-switch-to-windows-last-buffer
          "c" 'evilnc-comment-or-uncomment-lines
          "n" 'neotree-find
+         "N" 'neotree-find
          "w" 'save-buffer
          "W" 'delete-trailing-whitespace
          "k" 'kill-buffer
@@ -482,7 +484,7 @@
 
     (evil-define-key 'normal neotree-mode-map
     (kbd "RET") 'neotree-enter
-    (kbd "TAB") 'neotree-enter
+    ;;(kbd "TAB") 'neotree-enter
     (kbd "c")   'neotree-create-node
     (kbd "r")   'neotree-rename-node
     (kbd "d")   'neotree-delete-node

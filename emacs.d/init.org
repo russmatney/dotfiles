@@ -159,7 +159,8 @@ NOTE: this overwrites your unsaved buffers when you switch git branches!
 #+end_src
 ** Disable bell sound
 #+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-(setq visible-bell 1)
+(setq visible-bell nil)
+;; (setq visible-bell 1)
 #+end_src
 
 ** Zoom/Text Scaling
@@ -285,6 +286,7 @@ zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers.
          "<SPC>" 'evil-switch-to-windows-last-buffer
          "c" 'evilnc-comment-or-uncomment-lines
          "n" 'neotree-find
+         "N" 'neotree-find
          "w" 'save-buffer
          "W" 'delete-trailing-whitespace
          "k" 'kill-buffer
@@ -616,7 +618,7 @@ A great interface, but quite slow.
 
     (evil-define-key 'normal neotree-mode-map
     (kbd "RET") 'neotree-enter
-    (kbd "TAB") 'neotree-enter
+    ;;(kbd "TAB") 'neotree-enter
     (kbd "c")   'neotree-create-node
     (kbd "r")   'neotree-rename-node
     (kbd "d")   'neotree-delete-node
