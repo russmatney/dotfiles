@@ -80,6 +80,37 @@
 ;; Always download missing use-package packages
 (setq use-package-always-ensure t)
 
+;; Upgrade all packages
+(defun package-upgrade-all ()
+  "Upgrade all packages automatically without showing *Packages* buffer."
+  (interactive)
+  (package-refresh-contents)
+  (let (upgrades)
+    (cl-flet ((get-version (name where)
+                (let ((pkg (cadr (assq name where))))
+                  (when pkg
+                    (package-desc-version pkg)))))
+      (dolist (package (mapcar #'car package-alist))
+        (let ((in-archive (get-version package package-archive-contents)))
+          (when (and in-archive
+                     (version-list-< (get-version package package-alist)
+                                     in-archive))
+            (push (cadr (assq package package-archive-contents))
+                  upgrades)))))
+    (if upgrades
+        (when (yes-or-no-p
+               (message "Upgrade %d package%s (%s)? "
+                        (length upgrades)
+                        (if (= (length upgrades) 1) "" "s")
+                        (mapconcat #'package-desc-full-name upgrades ", ")))
+          (save-window-excursion
+            (dolist (package-desc upgrades)
+              (let ((old-package (cadr (assq (package-desc-name package-desc)
+                                             package-alist))))
+                (package-install package-desc)
+                (package-delete  old-package)))))
+      (message "All packages are up to date"))))
+
 (load-theme 'atom-one-dark t)
 
 (setq inhibit-startup-screen t)
@@ -199,8 +230,8 @@
         (evil-leader/set-key
          "<SPC>" 'evil-switch-to-windows-last-buffer
          "c" 'evilnc-comment-or-uncomment-lines
-         "n" 'neotree-find
-         "N" 'neotree-find
+         "n" 'neotree-project-dir
+         "N" 'neotree-reveal-current-buffer
          "w" 'save-buffer
          "W" 'delete-trailing-whitespace
          "k" 'kill-buffer
@@ -476,6 +507,36 @@
 (use-package neotree
   :config
   (progn
+
+    (setq-default neo-show-hidden-files t)
+
+    (defun neotree-project-dir ()
+      "Open NeoTree using the git root."
+      (interactive)
+      (let ((project-dir (projectile-project-root)))
+        (neotree-toggle)
+        (if project-dir
+            (if (neo-global--window-exists-p)
+                (progn
+                  (neotree-dir project-dir)
+                  (neotree-show)))
+      (message "Could not find git project root."))))
+
+    (defun neotree-reveal-current-buffer ()
+      "Reveal current buffer in Neotree."
+      (interactive)
+      (let ((project-dir (projectile-project-root))
+            (file-name (buffer-file-name)))
+
+        (neotree-show)
+        (if project-dir
+            (if (neo-global--window-exists-p)
+                (progn
+                  (neotree-dir project-dir)
+                  (neotree-find file-name)
+                  (evil-window-mru)))
+      (message "Could not find git project root."))))
+
 
     ;; theme
     (use-package all-the-icons
