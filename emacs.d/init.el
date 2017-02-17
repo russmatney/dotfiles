@@ -10,7 +10,8 @@
                    "|"               ;; <------- more likely to be typed
                    "TODOLOL"         ;; at the center
                    "INACTIVE"
-                   "REMINDER"
+                   "SATURDAY"
+                   "SUNDAY"
                    "SCHEDULED"
                    "BLOCKED"         ;; closer to 0 == quicker scrolling
                    "DONE"            ;; <------- closer for Shift-<left> wrapping
@@ -60,6 +61,8 @@
 )
 
 (setq org-log-done 'time)
+
+(fset 'yes-or-no-p 'y-or-n-p)
 
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -182,6 +185,8 @@
 (setq-default word-wrap t)
 ;; (toggle-truncate-lines 1)
 
+;; (use-package evil-visual-mark-mode)
+
 (use-package evil
   :commands (evil-mode local-evil-mode)
   :bind (:map evil-motion-state-map
@@ -201,6 +206,7 @@
          ("*" . helm-swoop)
          ("C-p" . helm-projectile)
          ("K" . nil)
+         ("t n" . neotree-toggle) ;; TODO: open without changing focus
 
          :map evil-visual-state-map
          ("g c" . evilnc-comment-or-uncomment-lines)
@@ -218,43 +224,45 @@
     (setq evil-default-cursor t)
     (setq evil-shift-width 2)
 
-    (use-package evil-leader
-      :init (global-evil-leader-mode)
+(use-package evil-leader
+  :init (global-evil-leader-mode)
 
-      :config
-      (progn
-        (setq evil-leader/in-all-states t)
+  :config
+  (progn
+    (setq evil-leader/in-all-states t)
 
-        (evil-leader/set-leader "<SPC>")
+    (evil-leader/set-leader "<SPC>")
 
-        (evil-leader/set-key
-         "<SPC>" 'evil-switch-to-windows-last-buffer
-         "c" 'evilnc-comment-or-uncomment-lines
-         "n" 'neotree-project-dir
-         "N" 'neotree-reveal-current-buffer
-         "w" 'save-buffer
-         "W" 'delete-trailing-whitespace
-         "k" 'kill-buffer
-         "b" 'helm-mini
-         "p" 'helm-mini
-         "S" 'helm-projectile-ag
-         "s" 'split-window-below
-         "-" 'split-window-below
-         "_" 'split-window-below
-         "v" 'split-window-right
-         "\\" 'split-window-right
-         "|" 'split-window-right
-         "x" 'alchemist-mix
-         "r" 'alchemist-mix-rerun-last-test
-         "l" 'alchemist-mix-rerun-last-test
-         "t" 'alchemist-project-toggle-file-and-tests
-         "T" 'alchemist-mix-test-this-buffer
-         "q" 'evil-window-delete
-         "=" 'balance-windows
-         "a" 'ace-window
-         ">" 'evil-window-increase-width
-         "<" 'evil-window-decrease-width
-         )))
+    (evil-leader/set-key
+      "<SPC>" 'evil-switch-to-windows-last-buffer
+      "c" 'evilnc-comment-or-uncomment-lines
+      "n" 'neotree-find-current-file
+      "N" 'neotree-reveal-current-buffer
+      "w" 'save-buffer
+      "W" 'delete-trailing-whitespace
+      "k" 'kill-buffer
+      "b" 'helm-mini
+      "p" 'helm-mini
+      "S" 'helm-projectile-ag
+      "s" 'split-window-below
+      "-" 'split-window-below
+      "_" 'split-window-below
+      "v" 'split-window-right
+      "\\" 'split-window-right
+      "|" 'split-window-right
+      "x" 'alchemist-mix
+      "r" 'alchemist-mix-rerun-last-test
+      "l" 'alchemist-mix-rerun-last-test
+      "t" 'alchemist-project-toggle-file-and-tests
+      "T" 'alchemist-mix-test-this-buffer
+      "q" 'evil-window-delete
+      "=" 'balance-windows
+      "a" 'ace-window
+      ">" 'evil-window-increase-width
+      "<" 'evil-window-decrease-width
+    )
+  )
+)
 
     (evil-mode 1))
 
@@ -274,7 +282,6 @@
     (with-eval-after-load 'evil
         (defalias #'forward-evil-word #'forward-evil-symbol))
   )
-
 )
 
 (use-package evil-surround
@@ -509,18 +516,21 @@
   (progn
 
     (setq-default neo-show-hidden-files t)
+    (setq-default neo-window-fixed-size nil)
 
-    (defun neotree-project-dir ()
-      "Open NeoTree using the git root."
+    (defun neotree-find-current-file ()
+      "Reveal current buffer in Neotree."
       (interactive)
-      (let ((project-dir (projectile-project-root)))
-        (neotree-toggle)
+      (let ((project-dir (projectile-project-root))
+            (file-name (buffer-file-name)))
+
+        (neotree-show)
         (if project-dir
             (if (neo-global--window-exists-p)
                 (progn
                   (neotree-dir project-dir)
-                  (neotree-show)))
-      (message "Could not find git project root."))))
+                  (neotree-find file-name))))
+      (message "Could not find git project root.")))
 
     (defun neotree-reveal-current-buffer ()
       "Reveal current buffer in Neotree."
@@ -544,6 +554,18 @@
     )
     (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 
+
+    (defun helm-ag-neotree-node ()
+      "Run Helm-ag on Neotree directory."
+      (interactive)
+      (let* ((search-root (neo-buffer--get-filename-current-line)))
+        (if search-root
+            ;; search directory
+            (progn
+              (evil-window-right 1)
+              (helm-ag search-root))
+          (message "Could not find directory at point."))))
+
     ;; evil mappings
     (evil-set-initial-state 'neotree-mode 'normal)
 
@@ -561,6 +583,7 @@
     (kbd "q")   'neotree-hide
     (kbd "s")   'neotree-enter-horizontal-split
     (kbd "v")   'neotree-enter-vertical-split
+    (kbd "p")   'helm-ag-neotree-node
     ))
 
     ;; neo vc integration
@@ -589,6 +612,7 @@
         )
       )
     )
+
   )
 )
 
