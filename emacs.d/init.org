@@ -17,6 +17,9 @@ Ex:
                    "STORYX"
                    "PROTOTYPE"
                    "TRIAGE"
+                   "SHARE"
+                   "WIKI"
+                   "LINK"
                    "|"               ;; <------- more likely to be typed
                    "TODOLOL"         ;; at the center
                    "INACTIVE"
@@ -529,6 +532,10 @@ Current solution: Balancing advice above
           "~/Dropbox/todo/notes.org"
           "~/Dropbox/Writing/writing-february-2017.org"
           "~/Dropbox/Writing/triage.org"
+          "~/Dropbox/todo/blog.org"
+          "~/Dropbox/todo/storyx.org"
+          "~/Dropbox/todo/opensource.org"
+          "~/Dropbox/todo/urbint.org"
         )
       )
       'append)
@@ -574,6 +581,9 @@ Current solution: Balancing advice above
   )
 )
 #+END_SRC
+
+#+RESULTS:
+
 * Avy
 #+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package avy)

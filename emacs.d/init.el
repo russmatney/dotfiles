@@ -7,6 +7,9 @@
                    "STORYX"
                    "PROTOTYPE"
                    "TRIAGE"
+                   "SHARE"
+                   "WIKI"
+                   "LINK"
                    "|"               ;; <------- more likely to be typed
                    "TODOLOL"         ;; at the center
                    "INACTIVE"
@@ -395,6 +398,10 @@
           "~/Dropbox/todo/notes.org"
           "~/Dropbox/Writing/writing-february-2017.org"
           "~/Dropbox/Writing/triage.org"
+          "~/Dropbox/todo/blog.org"
+          "~/Dropbox/todo/storyx.org"
+          "~/Dropbox/todo/opensource.org"
+          "~/Dropbox/todo/urbint.org"
         )
       )
       'append)
@@ -650,15 +657,3 @@
 (use-package iedit)
 
 (use-package evil-nerd-commenter)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(org-catch-invisible-edits (quote smart)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
