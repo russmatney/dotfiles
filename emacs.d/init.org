@@ -69,7 +69,7 @@ Config
 Auto-Sync
 #+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 ;;(add-hook 'after-init-hook 'org-mobile-pull)
-(add-hook 'kill-emacs-hook 'org-mobile-push)
+;;(add-hook 'kill-emacs-hook 'org-mobile-push)
 #+end_src
 *** Capture
 #+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el

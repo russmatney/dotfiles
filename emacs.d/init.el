@@ -43,7 +43,7 @@
 (setq org-mobile-files '("~/Dropbox/todo"))
 
 ;;(add-hook 'after-init-hook 'org-mobile-pull)
-(add-hook 'kill-emacs-hook 'org-mobile-push)
+;;(add-hook 'kill-emacs-hook 'org-mobile-push)
 
 (setq org-default-notes-file (concat org-directory "/captured.org"))
      (define-key global-map "\C-cc" 'org-capture)
