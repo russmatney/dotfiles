@@ -23,6 +23,11 @@
 
 (setq org-src-fontify-natively t)
 
+;;(org-babel-do-load-languages
+;;  'org-babel-load-languages
+;;  '((lisp . t))
+;;)
+
 (defun my/tangle-dotfiles ()
   "If the current file is in '~/.dotfiles', the code blocks are tangled"
   (when (equal (file-name-directory (directory-file-name buffer-file-name))
@@ -657,3 +662,10 @@
 (use-package iedit)
 
 (use-package evil-nerd-commenter)
+
+(use-package slime
+  :config
+  (add-hook 'lisp-mode-hook (lambda () (slime-mode t)))
+  (add-hook 'inferior-lisp-mode-hook (lambda () (inferior-slime-mode t)))
+  (setq inferior-lisp-program "clisp")
+)

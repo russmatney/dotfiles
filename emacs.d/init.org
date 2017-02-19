@@ -31,10 +31,19 @@ Ex:
         ))
 )
 #+end_src
-*** Source block syntax highlighting
+*** Source code blocks
+Syntax highlighting
 #+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (setq org-src-fontify-natively t)
 #+end_src
+
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+;;(org-babel-do-load-languages
+;;  'org-babel-load-languages
+;;  '((lisp . t))
+;;)
+#+end_src
+
 *** Run babel-tangle on file-save
 
 Originally from [[http://emacs.stackexchange.com/questions/20707/automatically-tangle-org-files-in-a-specific-directory][StackOverflow]]
@@ -839,3 +848,12 @@ A great interface, but quite slow.
 #+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package evil-nerd-commenter)
 #+END_SRC
+* slime
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(use-package slime
+  :config
+  (add-hook 'lisp-mode-hook (lambda () (slime-mode t)))
+  (add-hook 'inferior-lisp-mode-hook (lambda () (inferior-slime-mode t)))
+  (setq inferior-lisp-program "clisp")
+)
+#+end_src
