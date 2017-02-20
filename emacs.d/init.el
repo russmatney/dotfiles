@@ -1,26 +1,4 @@
 
-(setq org-todo-keywords
-       '((sequence "TODO"
-                   "WORKFLOW" "FIX" "FANCY" "RESEARCH"
-                   "IDEA" "MOVE" "INFO" "BLOG" "POST" "JACK"
-                   "OPENSOURCE"
-                   "STORYX"
-                   "PROTOTYPE"
-                   "TRIAGE"
-                   "SHARE"
-                   "WIKI"
-                   "LINK"
-                   "|"               ;; <------- more likely to be typed
-                   "TODOLOL"         ;; at the center
-                   "INACTIVE"
-                   "SATURDAY"
-                   "SUNDAY"
-                   "SCHEDULED"
-                   "BLOCKED"         ;; closer to 0 == quicker scrolling
-                   "DONE"            ;; <------- closer for Shift-<left> wrapping
-        ))
-)
-
 (setq org-src-fontify-natively t)
 
 ;;(org-babel-do-load-languages
@@ -51,24 +29,17 @@
 (setq org-capture-templates
       '(("t" "Todo (any)" entry (file+headline "~/Dropbox/todo/todo.org" "Captured")
              "* TODO %?\n  Captured: %U\n  %a")
-        ("w" "Workflow todo" entry (file+headline "~/Dropbox/todo/todo.org" "Workflow")
-             "** WORKFLOW %?\n  Captured: %U\n  %a")
-        ("c" "Chore todo" entry (file+headline "~/Dropbox/todo/todo.org" "Chore")
-             "** CHORE %?\n  Captured: %U\n  %a")
-        ("o" "Open Source idea" entry (file+headline "~/Dropbox/todo/todo.org" "Open Source")
-             "** OPENSOURCE %?\n  Captured: %U\n  %a")
         ("r" "Read/Research" entry (file+headline "~/Dropbox/todo/todo.org" "Read")
-             "** READ %?\n  Captured: %U\n  %a")
-        ("u" "Urbint" entry (file+headline "~/Dropbox/todo/todo.org" "Urbint")
-             "** URBINT %?\n  Captured: %U\n  %a")
-        ("g" "Triage" entry (file+headline "~/Dropbox/todo/todo.org" "Triage")
-             "** TRIAGE %?\n  Captured: %U\n  %a")
-        ("b" "Blog" entry (file+headline "~/Dropbox/todo/todo.org" "Blog")
-             "** BLOG %?\n  Captured: %U\n  %a")
+             "* READ %?\n  Captured: %U\n  %a")
       )
 )
 
 (setq org-log-done 'time)
+
+(setq org-agenda-files
+      '("todo.org" "done.org" "read.org"))
+
+(setq org-refile-use-outline-path 'file)
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -225,6 +196,8 @@
          ("tb" . alchemist-mix-test-this-buffer)
          ("tap" . alchemist-mix-test-at-point)
          ("lt" . alchemist-mix-rerun-last-test)
+         ("ag" . helm-projectile-ag)
+         ("Ag" . helm-projectile-ag)
         )
 
   :init
