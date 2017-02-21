@@ -47,11 +47,8 @@ test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_in
 
 alias pip-upgrade-all="pip freeze --local | tee before_upgrade.txt | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
 
-#dat rustiness
-if hash cargo 2>/dev/null; then
-  export PATH=~/.multirust/toolchains/beta/cargo/bin:$PATH
-  export RUST_SRC_PATH=/usr/local/src/rust/beta/
-fi
+#rust (installed via rustup)
+export PATH="$HOME/.cargo/bin:$PATH"
 
 #dat golang
 if hash go 2>/dev/null; then
