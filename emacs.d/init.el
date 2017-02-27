@@ -164,6 +164,10 @@
 (setq-default word-wrap t)
 ;; (toggle-truncate-lines 1)
 
+(column-number-mode)
+(show-paren-mode)
+(eldoc-mode)
+
 ;; (use-package evil-visual-mark-mode)
 
 (use-package evil
@@ -185,7 +189,6 @@
          ("*" . helm-swoop)
          ("C-p" . helm-projectile)
          ("K" . nil)
-         ("t n" . neotree-toggle) ;; TODO: open without changing focus
 
          :map evil-visual-state-map
          ("g c" . evilnc-comment-or-uncomment-lines)
@@ -193,8 +196,10 @@
          :map evil-ex-map
          ("e" . helm-find-files)
          ("b" . helm-buffers-list)
+         ("tn" . neotree-toggle)
          ("tb" . alchemist-mix-test-this-buffer)
          ("tap" . alchemist-mix-test-at-point)
+         ("tl" . toggle-truncate-lines)
          ("lt" . alchemist-mix-rerun-last-test)
          ("ag" . helm-projectile-ag)
          ("Ag" . helm-projectile-ag)
@@ -239,8 +244,8 @@
       "q" 'evil-window-delete
       "=" 'balance-windows
       "a" 'ace-window
-      ">" 'evil-window-increase-width
-      "<" 'evil-window-decrease-width
+      ">" '(lambda () (interactive) (evil-window-increase-width 20))
+      "<" '(lambda () (interactive) (evil-window-decrease-width 20))
     )
   )
 )
@@ -361,11 +366,12 @@
 
   :config
   (progn
-    (setq helm-buffers-fuzzy-matching t helm-recentf-fuzzy-match t)
-
-    (setq helm-semantic-fuzzy-match t helm-imenu-fuzzy-match t)
-
-    (setq helm-locate-fuzzy-match t)
+    (setq helm-buffers-fuzzy-matching t
+          helm-recentf-fuzzy-match t
+          helm-semantic-fuzzy-match t
+          helm-imenu-fuzzy-match t
+          helm-locate-fuzzy-match t
+          helm-M-x-fuzzy-match t)
 
     (add-to-list 'helm-mini-default-sources
       (helm-build-sync-source "Org Files"

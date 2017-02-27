@@ -7,13 +7,13 @@ Ex:
 #+end_src
 
 * Org mode
-*** Custom keywords
+** Custom keywords
 per org file, with "C-c C-c" to re-eval (when cursor is on line)
 
 #+begin_src emacs-lisp
 #+TODO: TODO CUSTOM KEYWORD | DONE BLOCKED
 #+end_src
-*** Source code blocks
+** Source code blocks
 Syntax highlighting
 #+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (setq org-src-fontify-natively t)
@@ -26,7 +26,7 @@ Syntax highlighting
 ;;)
 #+end_src
 
-*** Run babel-tangle on file-save
+** Run babel-tangle on file-save
 
 Originally from [[http://emacs.stackexchange.com/questions/20707/automatically-tangle-org-files-in-a-specific-directory][StackOverflow]]
 
@@ -40,7 +40,7 @@ Originally from [[http://emacs.stackexchange.com/questions/20707/automatically-t
 
 (add-hook 'after-save-hook #'my/tangle-dotfiles)
 #+end_src
-*** OrgMobile
+** OrgMobile
 Config
 #+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (setq org-directory "~/Dropbox/todo/")
@@ -53,12 +53,12 @@ Auto-Sync
 ;;(add-hook 'after-init-hook 'org-mobile-pull)
 ;;(add-hook 'kill-emacs-hook 'org-mobile-push)
 #+end_src
-*** Capture
+** Capture
 #+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (setq org-default-notes-file (concat org-directory "/captured.org"))
      (define-key global-map "\C-cc" 'org-capture)
 #+end_src
-*** Capture Templates
+** Capture Templates
 #+begin_src emacs-lisp  :tangle ~/dotfiles/emacs.d/init.el
 (setq org-capture-templates
       '(("t" "Todo (any)" entry (file+headline "~/Dropbox/todo/todo.org" "Captured")
@@ -73,12 +73,12 @@ Auto-Sync
 | t | Todo (any)    | entry | (file+headline ~/Dropbox/todo/todo.org Captured) | * TODO %?\n  Captured: %U\n  %a |
 | r | Read/Research | entry | (file+headline ~/Dropbox/todo/todo.org Read)     | * READ %?\n  Captured: %U\n  %a |
 
-*** Timestamp on done
+** Timestamp on done
 #+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (setq org-log-done 'time)
 #+end_src
 
-*** Refile
+** Refile
 #+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (setq org-agenda-files
       '("todo.org" "done.org" "read.org"))
@@ -271,6 +271,16 @@ zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers.
 (setq-default word-wrap t)
 ;; (toggle-truncate-lines 1)
 #+END_SRC
+** Junk Drawer
+[[http://adereth.github.io/blog/2013/12/08/most-frequently-enabled-emacs-packages/][mostly from here]]
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(column-number-mode)
+(show-paren-mode)
+(eldoc-mode)
+#+end_src
+
+#+RESULTS:
+
 * Evil mode
 ** Evil leader
 ** Evil marks
@@ -298,7 +308,6 @@ zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers.
          ("*" . helm-swoop)
          ("C-p" . helm-projectile)
          ("K" . nil)
-         ("t n" . neotree-toggle) ;; TODO: open without changing focus
 
          :map evil-visual-state-map
          ("g c" . evilnc-comment-or-uncomment-lines)
@@ -306,8 +315,10 @@ zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers.
          :map evil-ex-map
          ("e" . helm-find-files)
          ("b" . helm-buffers-list)
+         ("tn" . neotree-toggle)
          ("tb" . alchemist-mix-test-this-buffer)
          ("tap" . alchemist-mix-test-at-point)
+         ("tl" . toggle-truncate-lines)
          ("lt" . alchemist-mix-rerun-last-test)
          ("ag" . helm-projectile-ag)
          ("Ag" . helm-projectile-ag)
@@ -352,8 +363,8 @@ zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers.
       "q" 'evil-window-delete
       "=" 'balance-windows
       "a" 'ace-window
-      ">" 'evil-window-increase-width
-      "<" 'evil-window-decrease-width
+      ">" '(lambda () (interactive) (evil-window-increase-width 20))
+      "<" '(lambda () (interactive) (evil-window-decrease-width 20))
     )
   )
 )
@@ -503,11 +514,12 @@ Current solution: Balancing advice above
 
   :config
   (progn
-    (setq helm-buffers-fuzzy-matching t helm-recentf-fuzzy-match t)
-
-    (setq helm-semantic-fuzzy-match t helm-imenu-fuzzy-match t)
-
-    (setq helm-locate-fuzzy-match t)
+    (setq helm-buffers-fuzzy-matching t
+          helm-recentf-fuzzy-match t
+          helm-semantic-fuzzy-match t
+          helm-imenu-fuzzy-match t
+          helm-locate-fuzzy-match t
+          helm-M-x-fuzzy-match t)
 
     (add-to-list 'helm-mini-default-sources
       (helm-build-sync-source "Org Files"
