@@ -187,7 +187,6 @@
          ("<tab>" . nil)
          ("M-." . nil)
          ("*" . helm-swoop)
-         ("C-p" . helm-projectile)
          ("K" . nil)
 
          :map evil-visual-state-map
@@ -228,7 +227,7 @@
       "W" 'delete-trailing-whitespace
       "k" 'kill-buffer
       "b" 'helm-mini
-      "p" 'helm-mini
+      "p" 'helm-projectile
       "S" 'helm-projectile-ag
       "s" 'split-window-below
       "-" 'split-window-below
@@ -648,3 +647,17 @@
   (add-hook 'inferior-lisp-mode-hook (lambda () (inferior-slime-mode t)))
   (setq inferior-lisp-program "clisp")
 )
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (projectile magit helm-core helm frame-fns frame-cmds font-lock+ flycheck evil company async zoom-frm xpm use-package typescript-mode smart-mode-line slime seethru popwin neotree material-theme jade-mode iedit highlight-parentheses highlight-indent-guides helm-swoop helm-projectile helm-company helm-ag golden-ratio flycheck-mix flycheck-credo exec-path-from-shell evil-visual-mark-mode evil-surround evil-nerd-commenter evil-matchit evil-magit evil-leader elm-mode discover atom-one-dark-theme all-the-icons alchemist ag ack ace-window))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

@@ -306,7 +306,6 @@ zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers.
          ("<tab>" . nil)
          ("M-." . nil)
          ("*" . helm-swoop)
-         ("C-p" . helm-projectile)
          ("K" . nil)
 
          :map evil-visual-state-map
@@ -347,7 +346,7 @@ zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers.
       "W" 'delete-trailing-whitespace
       "k" 'kill-buffer
       "b" 'helm-mini
-      "p" 'helm-mini
+      "p" 'helm-projectile
       "S" 'helm-projectile-ag
       "s" 'split-window-below
       "-" 'split-window-below
