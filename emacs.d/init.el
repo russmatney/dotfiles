@@ -188,6 +188,7 @@
          ("M-." . nil)
          ("*" . helm-swoop)
          ("K" . nil)
+         ("]" . flycheck-tip-cycle)
 
          :map evil-visual-state-map
          ("g c" . evilnc-comment-or-uncomment-lines)
@@ -221,7 +222,7 @@
     (evil-leader/set-key
       "<SPC>" 'evil-switch-to-windows-last-buffer
       "c" 'evilnc-comment-or-uncomment-lines
-      "n" 'neotree-find-current-file
+      "n" 'neotree-toggle
       "N" 'neotree-reveal-current-buffer
       "w" 'save-buffer
       "W" 'delete-trailing-whitespace
@@ -231,6 +232,7 @@
       "S" 'helm-projectile-ag
       "s" 'split-window-below
       "-" 'split-window-below
+      "f" 'helm-find-files
       "_" 'split-window-below
       "v" 'split-window-right
       "\\" 'split-window-right
@@ -243,6 +245,9 @@
       "q" 'evil-window-delete
       "=" 'balance-windows
       "a" 'ace-window
+      "o" 'projectile-multi-occur
+      "i" 'popup-imenu
+      "I" 'helm-semantic-or-imenu
       ">" '(lambda () (interactive) (evil-window-increase-width 20))
       "<" '(lambda () (interactive) (evil-window-decrease-width 20))
     )
@@ -336,10 +341,8 @@
 (use-package helm
   :bind (
     ("M-x" . helm-M-x)
-    ("C-x C-f" . helm-find-files)
     ("C-x f" . helm-projectile)
     ("M-y" . helm-show-kill-ring)
-    ("C-x b" . helm-mini)
     ("C-x C-b" . helm-buffers-list)
 
     :map helm-map
@@ -496,6 +499,8 @@
     (flycheck-credo-setup))
   )
 
+(use-package flycheck-tip)
+
 (use-package magit
   :init (progn)
   :config (progn (use-package evil-magit))
@@ -647,17 +652,23 @@
   (add-hook 'inferior-lisp-mode-hook (lambda () (inferior-slime-mode t)))
   (setq inferior-lisp-program "clisp")
 )
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (projectile magit helm-core helm frame-fns frame-cmds font-lock+ flycheck evil company async zoom-frm xpm use-package typescript-mode smart-mode-line slime seethru popwin neotree material-theme jade-mode iedit highlight-parentheses highlight-indent-guides helm-swoop helm-projectile helm-company helm-ag golden-ratio flycheck-mix flycheck-credo exec-path-from-shell evil-visual-mark-mode evil-surround evil-nerd-commenter evil-matchit evil-magit evil-leader elm-mode discover atom-one-dark-theme all-the-icons alchemist ag ack ace-window))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
+(use-package pos-tip)
+(setq pos-tip-foreground-color "red")
+(setq pos-tip-background-color "blue")
+
+(pos-tip-show "message")
+
+(use-package popup)
+(setq pos-tip-foreground-color "red")
+(setq pos-tip-background-color "blue")
+
+(pos-tip-show "message")
+
+(use-package popup-imenu
+  :config (define-key popup-isearch-keymap (kbd "<escape>") 'popup-isearch-cancel)
+)
+
+(ido-mode 1)
+(setq ido-everywhere t)
+(setq ido-enable-flex-matching t)
