@@ -41,6 +41,11 @@
 
 (setq org-refile-use-outline-path 'file)
 
+(eval-after-load 'org
+  (progn
+    (define-key org-mode-map (kbd "C-k") 'windmove-up))
+    (define-key org-mode-map (kbd "C-j") 'windmove-down)))
+
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (require 'package)
@@ -93,7 +98,8 @@
                 (package-delete  old-package)))))
       (message "All packages are up to date"))))
 
-(load-theme 'atom-one-dark t)
+;; (load-theme 'atom-one-dark)
+(load-theme 'doom-one)
 
 (setq inhibit-startup-screen t)
 (find-file "~/dotfiles/emacs.d/init.org")
@@ -188,7 +194,6 @@
          ("M-." . nil)
          ("*" . helm-swoop)
          ("K" . nil)
-         ("]" . flycheck-tip-cycle)
 
          :map evil-visual-state-map
          ("g c" . evilnc-comment-or-uncomment-lines)
@@ -220,7 +225,7 @@
     (evil-leader/set-leader "<SPC>")
 
     (evil-leader/set-key
-      "<SPC>" 'evil-switch-to-windows-last-buffer
+      "<SPC>" 'evil-switch-to-windows-last-buffer ;; TODO this command doesn't toggle properly after helm-semantic-or-imenu
       "c" 'evilnc-comment-or-uncomment-lines
       "e" 'neotree-toggle
       "n" 'neotree-find-current-file
@@ -228,6 +233,7 @@
       "w" 'save-buffer
       "W" 'delete-trailing-whitespace
       "k" 'kill-buffer
+      "f" 'helm-find-files
       "b" 'helm-mini
       "p" 'helm-projectile
       "S" 'helm-projectile-ag
@@ -238,8 +244,10 @@
       "v" 'split-window-right
       "\\" 'split-window-right
       "|" 'split-window-right
-      "x" 'alchemist-mix
-      "r" 'alchemist-mix-rerun-last-test
+      "e" 'helm-M-x
+      "x" 'helm-M-x
+      "i" 'helm-semantic-or-imenu
+      "r" 'org-ctrl-c-ctrl-c
       "l" 'alchemist-mix-rerun-last-test
       "t" 'alchemist-project-toggle-file-and-tests
       "T" 'alchemist-mix-test-this-buffer
@@ -485,20 +493,20 @@
   (global-company-mode)
 )
 
-(use-package flycheck
-  :config
-  (global-flycheck-mode)
+;; (use-package flycheck
+;;   :config
+;;   (global-flycheck-mode)
 
-  ; Flycheck Mix Settings
-  (use-package flycheck-mix
-    :init
-    (flycheck-mix-setup))
+;;   ; Flycheck Mix Settings
+;;   (use-package flycheck-mix
+;;     :init
+;;     (flycheck-mix-setup))
 
-  ;; Flycheck Credo Settings
-  (use-package flycheck-credo
-    :init
-    (flycheck-credo-setup))
-  )
+;;   ;; Flycheck Credo Settings
+;;   (use-package flycheck-credo
+;;     :init
+;;     (flycheck-credo-setup))
+;;   )
 
 (use-package flycheck-tip)
 
