@@ -222,7 +222,8 @@
     (evil-leader/set-key
       "<SPC>" 'evil-switch-to-windows-last-buffer
       "c" 'evilnc-comment-or-uncomment-lines
-      "n" 'neotree-toggle
+      "e" 'neotree-toggle
+      "n" 'neotree-find-current-file
       "N" 'neotree-reveal-current-buffer
       "w" 'save-buffer
       "W" 'delete-trailing-whitespace
