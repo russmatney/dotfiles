@@ -41,10 +41,10 @@
 
 (setq org-refile-use-outline-path 'file)
 
-(eval-after-load 'org
-  (progn
-    (define-key org-mode-map (kbd "C-k") 'windmove-up))
-    (define-key org-mode-map (kbd "C-j") 'windmove-down)))
+;; (eval-after-load 'org
+;;   (progn
+;;     (define-key org-mode-map (kbd "C-k") 'windmove-up)
+;;     (define-key org-mode-map (kbd "C-j") 'windmove-down)))
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -97,9 +97,6 @@
                 (package-install package-desc)
                 (package-delete  old-package)))))
       (message "All packages are up to date"))))
-
-;; (load-theme 'atom-one-dark)
-(load-theme 'doom-one)
 
 (setq inhibit-startup-screen t)
 (find-file "~/dotfiles/emacs.d/init.org")
@@ -200,9 +197,7 @@
 
          :map evil-ex-map
          ("e" . helm-find-files)
-         ("b" . helm-buffers-list)
          ("tn" . neotree-toggle)
-         ("tb" . alchemist-mix-test-this-buffer)
          ("tap" . alchemist-mix-test-at-point)
          ("tl" . toggle-truncate-lines)
          ("lt" . alchemist-mix-rerun-last-test)
@@ -226,37 +221,34 @@
 
     (evil-leader/set-key
       "<SPC>" 'evil-switch-to-windows-last-buffer ;; TODO this command doesn't toggle properly after helm-semantic-or-imenu
+      "a" 'ace-window
+      "b" 'helm-mini
       "c" 'evilnc-comment-or-uncomment-lines
-      "e" 'neotree-toggle
+      "e" 'helm-M-x
+      "f" 'helm-find-files
+      "i" 'popup-imenu
+      "I" 'helm-imenu-anywhere
+      "k" 'kill-buffer
+      "l" 'alchemist-mix-rerun-last-test
       "n" 'neotree-find-current-file
       "N" 'neotree-reveal-current-buffer
-      "w" 'save-buffer
-      "W" 'delete-trailing-whitespace
-      "k" 'kill-buffer
-      "f" 'helm-find-files
-      "b" 'helm-mini
+      "o" 'projectile-multi-occur
       "p" 'helm-projectile
+      "q" 'evil-window-delete
+      "r" 'org-ctrl-c-ctrl-c
       "S" 'helm-projectile-ag
       "s" 'split-window-below
-      "-" 'split-window-below
-      "f" 'helm-find-files
-      "_" 'split-window-below
-      "v" 'split-window-right
-      "\\" 'split-window-right
-      "|" 'split-window-right
-      "e" 'helm-M-x
-      "x" 'helm-M-x
-      "i" 'helm-semantic-or-imenu
-      "r" 'org-ctrl-c-ctrl-c
-      "l" 'alchemist-mix-rerun-last-test
       "t" 'alchemist-project-toggle-file-and-tests
       "T" 'alchemist-mix-test-this-buffer
-      "q" 'evil-window-delete
+      "v" 'split-window-right
+      "w" 'save-buffer
+      "W" 'delete-trailing-whitespace
+      "x" 'helm-M-x
       "=" 'balance-windows
-      "a" 'ace-window
-      "o" 'projectile-multi-occur
-      "i" 'popup-imenu
-      "I" 'helm-semantic-or-imenu
+      "-" 'split-window-below
+      "_" 'split-window-below
+      "\\" 'split-window-right
+      "|" 'split-window-right
       ">" '(lambda () (interactive) (evil-window-increase-width 20))
       "<" '(lambda () (interactive) (evil-window-decrease-width 20))
     )
@@ -341,6 +333,40 @@
 ;;       golden-ratio-wide-adjust-factor .9)
 ;; )
 
+;; (load-theme 'atom-one-dark)
+(use-package doom-themes
+  :init
+  ;;; Settings (defaults)
+  (setq doom-enable-bold t
+      doom-enable-italic t
+
+      ;; doom-one specific settings
+      doom-one-brighter-comments t
+  )
+
+  (setq org-fontify-whole-heading-line t
+      org-fontify-done-headline t
+      org-fontify-quote-and-verse-blocks t)
+
+  ;; brighter source buffers (that represent files)
+  (add-hook 'find-file-hook 'doom-buffer-mode-maybe)
+  ;; if you use auto-revert-mode
+  (add-hook 'after-revert-hook 'doom-buffer-mode-maybe)
+  ;; you can brighten other buffers (unconditionally) with:
+  (add-hook 'ediff-prepare-buffer-hook 'doom-buffer-mode)
+
+  ;; brighter minibuffer when active
+  (add-hook 'minibuffer-setup-hook 'doom-brighten-minibuffer)
+
+  :config
+  (load-theme 'doom-one t)
+
+  ;; Enable custom neotree theme
+  (require 'doom-neotree)
+  ;; Enable nlinum line highlighting
+  (require 'doom-nlinum)
+)
+
 (use-package smart-mode-line
   :config
   (setq sml/no-confirm-load-theme t)
@@ -350,7 +376,6 @@
 (use-package helm
   :bind (
     ("M-x" . helm-M-x)
-    ("C-x f" . helm-projectile)
     ("M-y" . helm-show-kill-ring)
     ("C-x C-b" . helm-buffers-list)
 
@@ -384,14 +409,36 @@
           helm-locate-fuzzy-match t
           helm-M-x-fuzzy-match t)
 
-    (add-to-list 'helm-mini-default-sources
+    (defvar helm-source-emacs-commands
+      (helm-build-sync-source "Emacs commands"
+        :candidates (lambda ()
+                      (let ((cmds))
+                        (mapatoms
+                        (lambda (elt) (when (commandp elt) (push elt cmds))))
+                        cmds))
+        :coerce #'intern-soft
+        :action #'command-execute)
+      "A simple helm source for Emacs commands.")
+
+    (defvar helm-source-emacs-commands-history
+      (helm-build-sync-source "Emacs commands history"
+        :candidates (lambda ()
+                      (let ((cmds))
+                        (dolist (elem extended-command-history)
+                          (push (intern elem) cmds))
+                        cmds))
+        :coerce #'intern-soft
+        :action #'command-execute)
+      "Emacs commands history")
+
+    (defvar helm-source-my-org-files
       (helm-build-sync-source "Org Files"
         :action 'helm-type-file-actions
         :candidates '(
           "~/dotfiles/emacs.d/init.org"
           "~/Dropbox/todo/todo.org"
           "~/Dropbox/todo/notes.org"
-          "~/Dropbox/Writing/writing-february-2017.org"
+          "~/Dropbox/Writing/writing-march-2017.org"
           "~/Dropbox/Writing/triage.org"
           "~/Dropbox/todo/blog.org"
           "~/Dropbox/todo/storyx.org"
@@ -399,12 +446,32 @@
           "~/Dropbox/todo/urbint.org"
         )
       )
-      'append)
+    )
+
+    (use-package helm-ls-git)
+
+    (setq helm-mini-default-sources '(helm-source-buffers-list
+                                      helm-source-recentf
+                                      helm-source-ls-git-status
+                                      helm-source-my-org-files
+                                      helm-source-emacs-commands-history
+                                      helm-source-emacs-commands
+                                      helm-source-buffer-not-found))
 
     (use-package helm-projectile
       :config
       (progn
-        (helm-projectile-on))
+        (helm-projectile-on)
+
+        (setq helm-projectile-sources-list
+          '(helm-source-projectile-buffers-list
+            helm-source-projectile-recentf-list
+            helm-source-projectile-files-list
+            helm-source-projectile-projects
+            helm-source-my-org-files
+           )
+        )
+      )
     )
 
     (setq helm-boring-buffer-regexp-list
@@ -493,22 +560,20 @@
   (global-company-mode)
 )
 
-;; (use-package flycheck
-;;   :config
-;;   (global-flycheck-mode)
+(use-package flycheck
+  :config
+  (global-flycheck-mode)
 
-;;   ; Flycheck Mix Settings
-;;   (use-package flycheck-mix
-;;     :init
-;;     (flycheck-mix-setup))
+  ; Flycheck Mix Settings
+  (use-package flycheck-mix
+    :init
+    (flycheck-mix-setup))
 
-;;   ;; Flycheck Credo Settings
-;;   (use-package flycheck-credo
-;;     :init
-;;     (flycheck-credo-setup))
-;;   )
-
-(use-package flycheck-tip)
+  ;; Flycheck Credo Settings
+  (use-package flycheck-credo
+    :init
+    (flycheck-credo-setup))
+  )
 
 (use-package magit
   :init (progn)
@@ -588,35 +653,7 @@
     (kbd "s")   'neotree-enter-horizontal-split
     (kbd "v")   'neotree-enter-vertical-split
     (kbd "p")   'helm-ag-neotree-node
-    ))
-
-    ;; neo vc integration
-    (setq neo-vc-integration '(face char))
-
-    ;; Patch to fix vc integration
-    (defun neo-vc-for-node (node)
-    (let* ((backend (vc-backend node))
-      (vc-state (when backend (vc-state node backend))))
-      ;; (message "%s %s %s" node backend vc-state)
-      (cons (cdr (assoc vc-state neo-vc-state-char-alist))
-        (cl-case vc-state
-          (up-to-date       neo-vc-up-to-date-face)
-          (edited           neo-vc-edited-face)
-          (needs-update     neo-vc-needs-update-face)
-          (needs-merge      neo-vc-needs-merge-face)
-          (unlocked-changes neo-vc-unlocked-changes-face)
-          (added            neo-vc-added-face)
-          (removed          neo-vc-removed-face)
-          (conflict         neo-vc-conflict-face)
-          (missing          neo-vc-missing-face)
-          (ignored          neo-vc-ignored-face)
-          (unregistered     neo-vc-unregistered-face)
-          (user             neo-vc-user-face)
-          (t                neo-vc-default-face)
-        )
-      )
     )
-
   )
 )
 
@@ -678,6 +715,11 @@
   :config (define-key popup-isearch-keymap (kbd "<escape>") 'popup-isearch-cancel)
 )
 
+(use-package imenu-anywhere)
+
 (ido-mode 1)
 (setq ido-everywhere t)
 (setq ido-enable-flex-matching t)
+
+(setq recentf-max-saved-items 50)
+(run-at-time (current-time) 300 'recentf-save-list)
