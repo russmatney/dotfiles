@@ -177,7 +177,6 @@
   :commands (evil-mode local-evil-mode)
   :bind (:map evil-motion-state-map
          ("<return>" . nil)
-         ("<tab>" . nil)
          ("SPC" . nil)
          ("M-." . nil)
          ("*" . helm-swoop)
@@ -187,7 +186,6 @@
 
          :map evil-normal-state-map
          ("<return>" . nil)
-         ("<tab>" . nil)
          ("M-." . nil)
          ("*" . helm-swoop)
          ("K" . nil)
@@ -540,8 +538,7 @@
                     (reusable-frames . visible)))
 
 (use-package company
-  :bind ("<tab>" . company-complete-common)
-        ("<escape>" . company-abort)
+  :bind ("<escape>" . company-abort)
 
   :config
   (setq company-show-numbers t)
@@ -557,7 +554,7 @@
   (define-key company-active-map (kbd "C-j") 'company-select-next)
   (define-key company-active-map (kbd "C-k") 'company-select-previous)
 
-  (global-company-mode)
+  (add-hook 'after-init-hook 'global-company-mode)
 )
 
 (use-package flycheck

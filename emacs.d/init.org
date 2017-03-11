@@ -302,7 +302,6 @@ zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers.
   :commands (evil-mode local-evil-mode)
   :bind (:map evil-motion-state-map
          ("<return>" . nil)
-         ("<tab>" . nil)
          ("SPC" . nil)
          ("M-." . nil)
          ("*" . helm-swoop)
@@ -312,7 +311,6 @@ zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers.
 
          :map evil-normal-state-map
          ("<return>" . nil)
-         ("<tab>" . nil)
          ("M-." . nil)
          ("*" . helm-swoop)
          ("K" . nil)
@@ -712,8 +710,7 @@ Current solution: Balancing advice above
 * Company (Auto complete)
 #+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package company
-  :bind ("<tab>" . company-complete-common)
-        ("<escape>" . company-abort)
+  :bind ("<escape>" . company-abort)
 
   :config
   (setq company-show-numbers t)
@@ -729,7 +726,7 @@ Current solution: Balancing advice above
   (define-key company-active-map (kbd "C-j") 'company-select-next)
   (define-key company-active-map (kbd "C-k") 'company-select-previous)
 
-  (global-company-mode)
+  (add-hook 'after-init-hook 'global-company-mode)
 )
 #+END_SRC
 * Flycheck (Syntax errors ++)
