@@ -907,29 +907,6 @@ A great interface, but quite slow.
   (setq inferior-lisp-program "clisp")
 )
 #+end_src
-* popups and pos-tips
-** pos-tip customize attempt
-#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-(use-package pos-tip)
-(setq pos-tip-foreground-color "red")
-(setq pos-tip-background-color "blue")
-
-(pos-tip-show "message")
-#+end_src
-
-#+RESULTS:
-: (31 . 437)
-** pos-tip customize attempt
-#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-(use-package popup)
-(setq pos-tip-foreground-color "red")
-(setq pos-tip-background-color "blue")
-
-(pos-tip-show "message")
-#+end_src
-
-#+RESULTS:
-: (31 . 437)
 * imenu
 #+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package popup-imenu

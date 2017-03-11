@@ -699,18 +699,6 @@
   (setq inferior-lisp-program "clisp")
 )
 
-(use-package pos-tip)
-(setq pos-tip-foreground-color "red")
-(setq pos-tip-background-color "blue")
-
-(pos-tip-show "message")
-
-(use-package popup)
-(setq pos-tip-foreground-color "red")
-(setq pos-tip-background-color "blue")
-
-(pos-tip-show "message")
-
 (use-package popup-imenu
   :config (define-key popup-isearch-keymap (kbd "<escape>") 'popup-isearch-cancel)
 )
