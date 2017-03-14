@@ -301,6 +301,7 @@ zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers.
 (use-package evil
   :commands (evil-mode local-evil-mode)
   :bind (:map evil-motion-state-map
+         ("<tab>" . evil-indent-line)
          ("<return>" . nil)
          ("SPC" . nil)
          ("M-." . nil)
@@ -310,6 +311,8 @@ zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers.
          ("K" . nil)
 
          :map evil-normal-state-map
+         ("S-<tab>" . org-cycle)
+         ("<tab>" . evil-indent-line)
          ("<return>" . nil)
          ("M-." . nil)
          ("*" . helm-swoop)
@@ -720,7 +723,9 @@ Current solution: Balancing advice above
   (dotimes (i 10)
     (define-key company-active-map (kbd (format "C-%d" i)) 'company-complete-number))
 
-  (define-key company-active-map (kbd "<tab>") 'company-complete-selection)
+  (define-key company-active-map (kbd "<tab>") 'evil-indent-line)
+  (define-key company-active-map (kbd "C-h") 'evil-indent-line)
+  (define-key company-active-map (kbd "C-l") 'company-complete-selection)
   (define-key company-active-map (kbd "C-n") 'company-select-next)
   (define-key company-active-map (kbd "C-p") 'company-select-previous)
   (define-key company-active-map (kbd "C-j") 'company-select-next)
@@ -729,6 +734,9 @@ Current solution: Balancing advice above
   (add-hook 'after-init-hook 'global-company-mode)
 )
 #+END_SRC
+
+#+RESULTS:
+
 * Flycheck (Syntax errors ++)
 #+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package flycheck
@@ -757,11 +765,15 @@ A great interface, but quite slow.
 * Neotree
 #+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package neotree
+  :init
+  (setq neo-smart-open t)
+
   :config
   (progn
 
     (setq-default neo-show-hidden-files t)
     (setq-default neo-window-fixed-size nil)
+    ;; (setq-default neo-window-fixed-size 344)
 
     (defun neotree-find-current-file ()
       "Reveal current buffer in Neotree."
@@ -934,4 +946,22 @@ A great interface, but quite slow.
 
 #+RESULTS:
 : [nil 22715 30756 10774 300 recentf-save-list nil nil 0]
+
+
+* which key
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(use-package which-key
+  :ensure t
+  :defer t
+  :diminish which-key-mode
+  :init
+  (setq which-key-sort-order 'which-key-key-order-alpha)
+  :bind* (("M-m ?" . which-key-show-top-level))
+  :config
+  (which-key-mode)
+  (which-key-add-key-based-replacements
+    "M-m ?" "top level bindings"))
+#+end_src
+
+#+RESULTS:
 

@@ -176,6 +176,7 @@
 (use-package evil
   :commands (evil-mode local-evil-mode)
   :bind (:map evil-motion-state-map
+         ("<tab>" . evil-indent-line)
          ("<return>" . nil)
          ("SPC" . nil)
          ("M-." . nil)
@@ -185,6 +186,8 @@
          ("K" . nil)
 
          :map evil-normal-state-map
+         ("S-<tab>" . org-cycle)
+         ("<tab>" . evil-indent-line)
          ("<return>" . nil)
          ("M-." . nil)
          ("*" . helm-swoop)
@@ -548,7 +551,9 @@
   (dotimes (i 10)
     (define-key company-active-map (kbd (format "C-%d" i)) 'company-complete-number))
 
-  (define-key company-active-map (kbd "<tab>") 'company-complete-selection)
+  (define-key company-active-map (kbd "<tab>") 'evil-indent-line)
+  (define-key company-active-map (kbd "C-h") 'evil-indent-line)
+  (define-key company-active-map (kbd "C-l") 'company-complete-selection)
   (define-key company-active-map (kbd "C-n") 'company-select-next)
   (define-key company-active-map (kbd "C-p") 'company-select-previous)
   (define-key company-active-map (kbd "C-j") 'company-select-next)
@@ -578,11 +583,15 @@
 )
 
 (use-package neotree
+  :init
+  (setq neo-smart-open t)
+
   :config
   (progn
 
     (setq-default neo-show-hidden-files t)
     (setq-default neo-window-fixed-size nil)
+    ;; (setq-default neo-window-fixed-size 344)
 
     (defun neotree-find-current-file ()
       "Reveal current buffer in Neotree."
@@ -708,3 +717,15 @@
 
 (setq recentf-max-saved-items 50)
 (run-at-time (current-time) 300 'recentf-save-list)
+
+(use-package which-key
+  :ensure t
+  :defer t
+  :diminish which-key-mode
+  :init
+  (setq which-key-sort-order 'which-key-key-order-alpha)
+  :bind* (("M-m ?" . which-key-show-top-level))
+  :config
+  (which-key-mode)
+  (which-key-add-key-based-replacements
+    "M-m ?" "top level bindings"))
