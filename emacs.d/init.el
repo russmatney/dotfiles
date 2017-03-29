@@ -180,7 +180,6 @@
          ("<return>" . nil)
          ("SPC" . nil)
          ("M-." . nil)
-         ("*" . helm-swoop)
          ("(" . backward-sexp)
          (")" . forward-sexp)
          ("K" . nil)
@@ -190,7 +189,6 @@
          ("<tab>" . evil-indent-line)
          ("<return>" . nil)
          ("M-." . nil)
-         ("*" . helm-swoop)
          ("K" . nil)
 
          :map evil-visual-state-map
@@ -235,7 +233,8 @@
       "N" 'neotree-reveal-current-buffer
       "o" 'projectile-multi-occur
       "p" 'helm-projectile
-      "q" 'evil-window-delete
+      "qn" 'neotree-toggle
+      "qq" 'evil-window-delete
       "r" 'org-ctrl-c-ctrl-c
       "S" 'helm-projectile-ag
       "s" 'split-window-below
@@ -454,6 +453,7 @@
     (setq helm-mini-default-sources '(helm-source-buffers-list
                                       helm-source-recentf
                                       helm-source-ls-git-status
+                                      helm-source-projectile-projects
                                       helm-source-my-org-files
                                       helm-source-emacs-commands-history
                                       helm-source-emacs-commands
@@ -514,7 +514,12 @@
 
 (use-package ag)
 
-(use-package helm-ag)
+(use-package helm-ag
+  :config
+  (custom-set-variables
+  '(helm-ag-ignore-patterns '(".*//doc//.*'"))
+  )
+)
 
 (use-package alchemist
   :config
@@ -523,7 +528,7 @@
 
     (setq alchemist-test-display-compilation-output t)
     ;;(setq alchemist-hooks-test-on-save t)
-    (setq alchemist-hooks-compile-on-save t)
+    ;;(setq alchemist-hooks-compile-on-save t)
 
     ;; fix to return from erlang dives
     (defun custom-erlang-mode-hook ()
@@ -591,7 +596,6 @@
 
     (setq-default neo-show-hidden-files t)
     (setq-default neo-window-fixed-size nil)
-    ;; (setq-default neo-window-fixed-size 344)
 
     (defun neotree-find-current-file ()
       "Reveal current buffer in Neotree."
@@ -729,3 +733,7 @@
   (which-key-mode)
   (which-key-add-key-based-replacements
     "M-m ?" "top level bindings"))
+
+;; (use-package desktop+
+;;   :config
+;;   (global-define-key (kbd "M-s") 'desktop+-load))

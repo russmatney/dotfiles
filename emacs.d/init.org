@@ -305,7 +305,6 @@ zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers.
          ("<return>" . nil)
          ("SPC" . nil)
          ("M-." . nil)
-         ("*" . helm-swoop)
          ("(" . backward-sexp)
          (")" . forward-sexp)
          ("K" . nil)
@@ -315,7 +314,6 @@ zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers.
          ("<tab>" . evil-indent-line)
          ("<return>" . nil)
          ("M-." . nil)
-         ("*" . helm-swoop)
          ("K" . nil)
 
          :map evil-visual-state-map
@@ -360,7 +358,8 @@ zoom-frm fixes a `text-scale-adjust` bug in 'linum line numbers.
       "N" 'neotree-reveal-current-buffer
       "o" 'projectile-multi-occur
       "p" 'helm-projectile
-      "q" 'evil-window-delete
+      "qn" 'neotree-toggle
+      "qq" 'evil-window-delete
       "r" 'org-ctrl-c-ctrl-c
       "S" 'helm-projectile-ag
       "s" 'split-window-below
@@ -613,6 +612,7 @@ Current solution: Balancing advice above
     (setq helm-mini-default-sources '(helm-source-buffers-list
                                       helm-source-recentf
                                       helm-source-ls-git-status
+                                      helm-source-projectile-projects
                                       helm-source-my-org-files
                                       helm-source-emacs-commands-history
                                       helm-source-emacs-commands
@@ -682,8 +682,17 @@ Current solution: Balancing advice above
 #+end_src
 * Helm-Ag
 #+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-(use-package helm-ag)
+(use-package helm-ag
+  :config
+  (custom-set-variables
+  '(helm-ag-ignore-patterns '(".*//doc//.*'"))
+  )
+)
 #+end_src
+
+#+RESULTS:
+: t
+
 * Alchemist (Elixir mode)
 #+BEGIN_SRC emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package alchemist
@@ -693,7 +702,7 @@ Current solution: Balancing advice above
 
     (setq alchemist-test-display-compilation-output t)
     ;;(setq alchemist-hooks-test-on-save t)
-    (setq alchemist-hooks-compile-on-save t)
+    ;;(setq alchemist-hooks-compile-on-save t)
 
     ;; fix to return from erlang dives
     (defun custom-erlang-mode-hook ()
@@ -773,7 +782,6 @@ A great interface, but quite slow.
 
     (setq-default neo-show-hidden-files t)
     (setq-default neo-window-fixed-size nil)
-    ;; (setq-default neo-window-fixed-size 344)
 
     (defun neotree-find-current-file ()
       "Reveal current buffer in Neotree."
@@ -947,7 +955,6 @@ A great interface, but quite slow.
 #+RESULTS:
 : [nil 22715 30756 10774 300 recentf-save-list nil nil 0]
 
-
 * which key
 #+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
 (use-package which-key
@@ -964,4 +971,14 @@ A great interface, but quite slow.
 #+end_src
 
 #+RESULTS:
+
+* desktop plus (desktop+)
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+;; (use-package desktop+
+;;   :config
+;;   (global-define-key (kbd "M-s") 'desktop+-load))
+#+end_src
+
+#+RESULTS:
+: t
 
