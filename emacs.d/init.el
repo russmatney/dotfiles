@@ -242,7 +242,10 @@
       "T" 'alchemist-mix-test-this-buffer
       "v" 'split-window-right
       "w" 'save-buffer
-      "W" 'delete-trailing-whitespace
+      "Wl" '(lambda () (interactive) (evil-window-move-far-right))
+      "WL" '(lambda () (interactive) (evil-window-move-far-right))
+      "Wh" '(lambda () (interactive) (evil-window-move-far-left))
+      "WH" '(lambda () (interactive) (evil-window-move-far-left))
       "x" 'helm-M-x
       "=" 'balance-windows
       "-" 'split-window-below
