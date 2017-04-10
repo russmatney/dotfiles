@@ -985,3 +985,19 @@ A great interface, but quite slow.
 
 #+RESULTS:
 : t
+* javascript mode
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(setq js-indent-level 2)
+#+end_src
+
+#+RESULTS:
+: 2
+
+* css/scss mode
+#+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
+(setq css-indent-offset 2)
+#+end_src
+
+#+RESULTS:
+: 2
+

@@ -741,3 +741,7 @@
 ;; (use-package desktop+
 ;;   :config
 ;;   (global-define-key (kbd "M-s") 'desktop+-load))
+
+(setq js-indent-level 2)
+
+(setq css-indent-offset 2)
