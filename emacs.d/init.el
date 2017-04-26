@@ -233,6 +233,8 @@
       "N" 'neotree-reveal-current-buffer
       "o" 'projectile-multi-occur
       "p" 'helm-projectile
+      "!" 'flycheck-list-errors
+      "1" 'flycheck-list-errors
       "qn" 'neotree-toggle
       "qq" 'evil-window-delete
       "r" 'org-ctrl-c-ctrl-c
@@ -582,6 +584,19 @@
   (add-to-list 'flycheck-checkers 'elixir-credo t)
 
   (flycheck-add-next-checker 'elixir-mix '(error . elixir-credo))
+
+  (add-to-list 'display-buffer-alist
+             `(,(rx bos "*Flycheck errors*" eos)
+               (display-buffer-reuse-window
+                display-buffer-in-side-window)
+               (reusable-frames . visible)
+               (side            . bottom)
+               (window-height   . 0.2)))
+
+  (use-package flycheck-dialyzer
+    :config
+    (flycheck-add-next-checker 'elixir-credo '(error . elixir-dialyzer))
+  )
 )
 
 (use-package magit
