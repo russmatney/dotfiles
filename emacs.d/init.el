@@ -43,8 +43,8 @@
 
 ;; (eval-after-load 'org
 ;;   (progn
-;;     (define-key org-mode-map (kbd "C-k") 'windmove-up)
-;;     (define-key org-mode-map (kbd "C-j") 'windmove-down)))
+;;     (global-set-key (kbd "C-k") 'windmove-up)
+;;     (global-set-key (kbd "C-j") 'windmove-down)))
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -574,16 +574,15 @@
   :config
   (global-flycheck-mode)
 
-  ; Flycheck Mix Settings
-  (use-package flycheck-mix
-    :init
-    (flycheck-mix-setup))
+  (require 'flycheck-mix)
+  (add-to-list 'flycheck-checkers 'elixir-mix t)
 
-  ;; Flycheck Credo Settings
-  (use-package flycheck-credo
-    :init
-    (flycheck-credo-setup))
-  )
+  (require 'flycheck-credo)
+  (setq flycheck-elixir-credo-strict t)
+  (add-to-list 'flycheck-checkers 'elixir-credo t)
+
+  (flycheck-add-next-checker 'elixir-mix '(error . elixir-credo))
+)
 
 (use-package magit
   :init (progn)
@@ -719,9 +718,9 @@
 
 (use-package imenu-anywhere)
 
-(ido-mode 1)
-(setq ido-everywhere t)
-(setq ido-enable-flex-matching t)
+;; (ido-mode 1)
+;; (setq ido-everywhere t)
+;; (setq ido-enable-flex-matching t)
 
 (setq recentf-max-saved-items 50)
 (run-at-time (current-time) 300 'recentf-save-list)
