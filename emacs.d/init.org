@@ -486,7 +486,7 @@ Current solution: Balancing advice above
 #+end_src
 * Color Theme
 #+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/init.el
-;; (load-theme 'atom-one-dark)
+(load-theme 'atom-one-dark)
 (use-package doom-themes
   :init
   ;;; Settings (defaults)
@@ -512,7 +512,7 @@ Current solution: Balancing advice above
   (add-hook 'minibuffer-setup-hook 'doom-brighten-minibuffer)
 
   :config
-  (load-theme 'doom-one t)
+  ;; (load-theme 'doom-one t)
 
   ;; Enable custom neotree theme
   (require 'doom-neotree)
@@ -772,11 +772,6 @@ Current solution: Balancing advice above
                (reusable-frames . visible)
                (side            . bottom)
                (window-height   . 0.2)))
-
-  (use-package flycheck-dialyzer
-    :config
-    (flycheck-add-next-checker 'elixir-credo '(error . elixir-dialyzer))
-  )
 )
 #+END_SRC
 

@@ -338,7 +338,7 @@
 ;;       golden-ratio-wide-adjust-factor .9)
 ;; )
 
-;; (load-theme 'atom-one-dark)
+(load-theme 'atom-one-dark)
 (use-package doom-themes
   :init
   ;;; Settings (defaults)
@@ -364,7 +364,7 @@
   (add-hook 'minibuffer-setup-hook 'doom-brighten-minibuffer)
 
   :config
-  (load-theme 'doom-one t)
+  ;; (load-theme 'doom-one t)
 
   ;; Enable custom neotree theme
   (require 'doom-neotree)
@@ -592,11 +592,6 @@
                (reusable-frames . visible)
                (side            . bottom)
                (window-height   . 0.2)))
-
-  (use-package flycheck-dialyzer
-    :config
-    (flycheck-add-next-checker 'elixir-credo '(error . elixir-dialyzer))
-  )
 )
 
 (use-package magit
@@ -759,3 +754,18 @@
 (setq js-indent-level 2)
 
 (setq css-indent-offset 2)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("08b8807d23c290c840bbb14614a83878529359eaba1805618b3be7d61b0b0a32" default)))
+ '(helm-ag-ignore-patterns (quote (".*//doc//.*'"))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
