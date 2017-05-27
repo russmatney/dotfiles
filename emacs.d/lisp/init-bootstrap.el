@@ -18,8 +18,6 @@
     init-window-management
     init-themes
     init-extra
-
-    init-yas
     init-evil
     init-helm
     init-elixir
@@ -28,6 +26,7 @@
     init-neotree
     init-projectile
     init-web
+    init-yas
   )
 )
 

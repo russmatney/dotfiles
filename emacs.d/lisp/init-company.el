@@ -13,8 +13,8 @@
   (dotimes (i 10)
     (define-key company-active-map (kbd (format "C-%d" i)) 'company-complete-number))
 
-  (define-key company-active-map (kbd "<tab>") 'evil-indent-line)
   (define-key company-active-map (kbd "C-h") 'evil-indent-line)
+  (define-key company-active-map (kbd "<tab>") 'company-complete-selection)
   (define-key company-active-map (kbd "C-l") 'company-complete-selection)
   (define-key company-active-map (kbd "C-n") 'company-select-next)
   (define-key company-active-map (kbd "C-p") 'company-select-previous)

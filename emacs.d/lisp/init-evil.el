@@ -33,6 +33,9 @@
          ("lt" . alchemist-mix-rerun-last-test)
          ("ag" . helm-projectile-ag)
          ("Ag" . helm-projectile-ag)
+
+         :map evil-insert-state-map
+         ("C-y" . company-yasnippet)
         )
 
   :init
@@ -68,6 +71,8 @@
       "1" 'flycheck-list-errors
       "qn" 'neotree-toggle
       "qq" 'evil-window-delete
+      "qk" 'kill-this-buffer
+      "qa" 'ace-delete-window
       "r" 'org-ctrl-c-ctrl-c
       "S" 'helm-projectile-ag
       "s" 'split-window-below
@@ -87,6 +92,7 @@
       "|" 'split-window-right
       ">" '(lambda () (interactive) (evil-window-increase-width 20))
       "<" '(lambda () (interactive) (evil-window-decrease-width 20))
+      ;; "y" '(lambda () (interactive) ((evil-insert) (company-yasnippet)))
     )
   )
 )
