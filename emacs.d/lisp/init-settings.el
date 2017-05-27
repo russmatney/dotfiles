@@ -15,18 +15,26 @@
 
 (global-auto-revert-mode t)
 
+;;; Variables
+(setq create-lockfiles nil
+      make-backup-files nil
+      auto-save-default nil
+      backup-inhibited t
+      backup-directory-alist `(("." . "~/.emacs/auto-save-list"))
+
+      visible-bell nil
+
+      show-trailing-whitespace t
+)
+
 (use-package highlight-indent-guides
   :config
   (setq highlight-indent-guides-method 'character)
   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
 )
 
-(setq-default show-trailing-whitespace t)
 
 (global-hl-line-mode 1)
-
-(setq visible-bell nil)
-;; (setq visible-bell 1)
 
 (use-package zoom-frm
   :config
@@ -34,9 +42,6 @@
   (global-set-key (kbd "s--") 'zoom-frm-out)
   (global-set-key (kbd "s-0") 'zoom-frm-unzoom)
 )
-
-;; auto-save-files not in same dir as original
-(setq backup-directory-alist `(("." . "~/.emacs/auto-save-list")))
 
 (setq ns-auto-hide-menu-bar t)
 
@@ -63,15 +68,13 @@
     '((fullscreen . fullboth) (fullscreen-restore . fullheight)))
 
 ;; Scrolling Settings
-(setq scroll-step 1)
-(setq scroll-conservatively 10000)
+(setq redisplay-dont-pause t
+      scroll-margin 1
+      scroll-step 1
+      scroll-conservatively 10000
+      scroll-preserve-screen-position nil)
 
-;; line numbers
 (global-linum-mode t)
-
-;; line wrap
-(setq-default word-wrap t)
-;; (toggle-truncate-lines 1)
 
 (column-number-mode)
 (show-paren-mode)
@@ -79,6 +82,13 @@
 
 (setq recentf-max-saved-items 50)
 (run-at-time (current-time) 300 'recentf-save-list)
+
+
+
+;;; HOOKS
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(add-hook 'css-mode-hook 'rainbow-mode)
+
 
 (provide 'init-settings)
 ;;; init-settings.el ends here
