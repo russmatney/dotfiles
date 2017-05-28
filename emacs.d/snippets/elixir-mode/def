@@ -2,6 +2,6 @@
 # name: def with @spec
 # key: def
 # --
-  @spec ${0:fun}() :: :ok
-  def ${0:fun}() do
+  @spec ${1:fun}() :: :ok
+  def ${1:fun}() do
   end
