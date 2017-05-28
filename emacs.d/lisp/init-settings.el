@@ -4,24 +4,15 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
-
-(setq inhibit-startup-screen t)
-(split-window-right)
-(find-file-other-window "~/Dropbox/todo/todo.org")
-
-(use-package exec-path-from-shell
-  :config
-  (exec-path-from-shell-initialize))
-
 (global-auto-revert-mode t)
 
 (setq-default truncate-lines 1)
 
-;; after copy Ctrl+c in Linux X11, you can paste by `yank' in emacs
-(setq x-select-enable-clipboard t)
+;; ;; after copy Ctrl+c in Linux X11, you can paste by `yank' in emacs
+;; (setq x-select-enable-clipboard t)
 
-;; after mouse selection in X11, you can paste by `yank' in emacs
-(setq x-select-enable-primary t)
+;; ;; after mouse selection in X11, you can paste by `yank' in emacs
+;; (setq x-select-enable-primary t)
 
 ;;; Variables
 (setq create-lockfiles nil

@@ -14,7 +14,7 @@
   '(
     init-org
     init-packages
-    init-ansi-term
+    init-term
     init-defaults
     init-settings
     init-window-management

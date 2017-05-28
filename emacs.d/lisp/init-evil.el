@@ -100,7 +100,7 @@
       "|" 'split-window-right
       ">" '(lambda () (interactive) (evil-window-increase-width 20))
       "<" '(lambda () (interactive) (evil-window-decrease-width 20))
-      ;; "y" '(lambda () (interactive) ((evil-insert) (company-yasnippet)))
+      ;; "y" '((evil-insert) (company-yasnippet))
       "z" 'ansi-term
     )
   )

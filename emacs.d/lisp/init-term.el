@@ -1,4 +1,4 @@
-;;; init-extra.el --- Misc config without a home
+;;; init-term.el --- Configuration for
 ;;; Commentary:
 ;;;   much thanks to:
 ;;;     - http://echosa.github.io/blog/2012/06/06/improving-ansi-term/
@@ -26,10 +26,10 @@
 
 
 (defun my-term-paste (_)
- (interactive)
- (process-send-string
-  (get-buffer-process (current-buffer))
-  (if string string (current-kill 0))))
+  (interactive)
+  (process-send-string
+   (get-buffer-process (current-buffer))
+   (if string string (current-kill 0))))
 
 (defun my-term-hook ()
   (goto-address-mode)
@@ -39,7 +39,7 @@
 (add-hook 'term-mode-hook 'my-term-hook)
 
 
-;; prevent term-mode from consuming the passed binding
+;; force term-mode to expose the passed global binding
 (defun expose-global-binding-in-term (binding)
    (define-key term-raw-map binding
      (lookup-key (current-global-map) binding)))
@@ -50,6 +50,12 @@
 (expose-global-binding-in-term (kbd "C-j"))
 (expose-global-binding-in-term (kbd "C-k"))
 
+;; no line numbers in term
+(add-hook 'shell-mode-hook (lambda () (linum-mode -1)))
+(add-hook 'term-mode-hook (lambda () (linum-mode -1)))
 
-(provide 'init-extra)
-;;; init-extra.el ends here
+;; (global-set-key (kbd "C-z") 'ansi-term)
+
+
+(provide 'init-term)
+;;; init-term.el ends here
