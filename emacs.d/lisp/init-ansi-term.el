@@ -1,5 +1,6 @@
 ;;; init-extra.el --- Misc config without a home
 ;;; Commentary:
+;;; much thanks to: http://echosa.github.io/blog/2012/06/06/improving-ansi-term/
 ;;; Code:
 
 (defadvice term-sentinel (around my-advice-term-sentinel (proc msg))
@@ -30,6 +31,8 @@
 
 (add-hook 'term-exec-hook 'my-term-use-utf8)
 (add-hook 'term-mode-hook 'my-term-hook)
+
+
 
 
 (provide 'init-extra)
