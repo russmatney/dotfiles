@@ -16,6 +16,7 @@ alias 'gprom'="git pull --rebase origin master"
 alias 'gcv'="git commit --verbose"
 
 source ~/dotfiles/zsh/tmux-aliases.zsh
+source ~/dotfiles/zsh/discovery.zsh
 
 # Autojump `j`
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
@@ -69,5 +70,11 @@ export PATH=$PATH:~/.mix/escripts
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export EDITOR=nvim
+
+if [ -n "$INSIDE_EMACS" ]; then
+  chpwd() { print -P "\033AnSiTc %d" }
+  print -P "\033AnSiTu %n"
+  print -P "\033AnSiTc %d"
+fi
 
 fpath=(~/.zsh $fpath)
