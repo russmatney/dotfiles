@@ -50,6 +50,9 @@
 (expose-global-binding-in-term (kbd "C-j"))
 (expose-global-binding-in-term (kbd "C-k"))
 
+;; keep M-x
+(expose-global-binding-in-term (kbd "M-x"))
+
 ;; no line numbers in term
 (add-hook 'shell-mode-hook (lambda () (linum-mode -1)))
 (add-hook 'term-mode-hook (lambda () (linum-mode -1)))

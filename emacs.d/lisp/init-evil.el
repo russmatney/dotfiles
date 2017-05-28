@@ -21,6 +21,9 @@
          ("<return>" . nil)
          ("M-." . nil)
          ("K" . nil)
+         ("C-y" . yas-insert-snippet)
+         ("C-z" . ansi-term)
+         ("C-b" . eval-buffer)
 
          :map evil-visual-state-map
          ("g c" . evilnc-comment-or-uncomment-lines)
@@ -100,7 +103,7 @@
       "|" 'split-window-right
       ">" '(lambda () (interactive) (evil-window-increase-width 20))
       "<" '(lambda () (interactive) (evil-window-decrease-width 20))
-      ;; "y" '((evil-insert) (company-yasnippet))
+      "y" 'yas-insert-snippet
       "z" 'ansi-term
     )
   )
