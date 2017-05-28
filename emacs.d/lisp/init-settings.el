@@ -15,7 +15,13 @@
 
 (global-auto-revert-mode t)
 
-(setq-default 'truncate-lines nil)
+(setq-default truncate-lines 1)
+
+;; after copy Ctrl+c in Linux X11, you can paste by `yank' in emacs
+(setq x-select-enable-clipboard t)
+
+;; after mouse selection in X11, you can paste by `yank' in emacs
+(setq x-select-enable-primary t)
 
 ;;; Variables
 (setq create-lockfiles nil
