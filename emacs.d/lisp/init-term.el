@@ -55,6 +55,14 @@
 ;; keep M-x
 (expose-global-binding-in-term (kbd "M-x"))
 
+(define-key evil-insert-state-map (kbd "C-k") nil)
+(define-key evil-insert-state-map (kbd "C-p") nil)
+(define-key evil-insert-state-map (kbd "C-n") nil)
+(define-key evil-insert-state-map (kbd "C-r") nil)
+(define-key evil-insert-state-map (kbd "C-t") nil)
+(define-key evil-insert-state-map (kbd "C-e") nil)
+(define-key evil-insert-state-map (kbd "C-a") nil)
+
 
 (provide 'init-term)
 ;;; init-term.el ends here

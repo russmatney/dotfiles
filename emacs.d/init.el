@@ -38,7 +38,7 @@
  '(org-fontify-whole-heading-line t)
  '(package-selected-packages
    (quote
-    (multi-term with-editor s projectile magit helm-core helm git-commit frame-cmds flycheck evil diminish dash company async all-the-icons yasnippet zoom-frm which-key use-package smart-mode-line slime seethru popwin popup-imenu neotree less-css-mode imenu-anywhere iedit highlight-indent-guides helm-swoop helm-projectile helm-ls-git helm-ag flycheck-mix flycheck-credo exec-path-from-shell evil-surround evil-nerd-commenter evil-matchit evil-magit evil-leader elm-mode doom-themes atom-one-dark-theme alchemist ag ace-window)))
+    (markdown-mode helm-company f dockerfile-mode clojure-mode bookmark+ avy multi-term with-editor s projectile magit helm-core helm git-commit frame-cmds flycheck evil diminish dash company async all-the-icons yasnippet zoom-frm which-key use-package smart-mode-line slime seethru popwin popup-imenu neotree less-css-mode imenu-anywhere iedit highlight-indent-guides helm-swoop helm-projectile helm-ls-git helm-ag flycheck-mix flycheck-credo exec-path-from-shell evil-surround evil-nerd-commenter evil-matchit evil-magit evil-leader elm-mode doom-themes atom-one-dark-theme alchemist ag ace-window)))
  '(popwin:special-display-config
    (quote
     (help-mode
