@@ -33,10 +33,12 @@
 
 (defun my-term-hook ()
   (goto-address-mode)
+  (linum-mode -1)
   (define-key term-raw-map "\C-y" 'my-term-paste))
 
 (add-hook 'term-exec-hook 'my-term-use-utf8)
 (add-hook 'term-mode-hook 'my-term-hook)
+(add-hook 'shell-mode-hook (lambda () (linum-mode -1)))
 
 
 ;; force term-mode to expose the passed global binding
@@ -52,12 +54,6 @@
 
 ;; keep M-x
 (expose-global-binding-in-term (kbd "M-x"))
-
-;; no line numbers in term
-(add-hook 'shell-mode-hook (lambda () (linum-mode -1)))
-(add-hook 'term-mode-hook (lambda () (linum-mode -1)))
-
-;; (global-set-key (kbd "C-z") 'ansi-term)
 
 
 (provide 'init-term)

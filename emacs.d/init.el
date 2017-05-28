@@ -3,21 +3,17 @@
 ;;;   Pulled and refactored from: https://github.com/rranelli/emacs-dotfiles
 ;;; Code:
 
-;; (package-initialize)
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
 
 (add-to-list 'load-path (expand-file-name "lisp" "~/dotfiles/emacs.d"))
 
 (setq rm/init-errors nil)
 
-(require 'init-bootstrap)
-(rr/safe-load-init-files)
-
-(message "======================================")
-(message (if rm/init-errors
-             (mapconcat #'identity rm/init-errors "\n")
-           "Init.el finished with no errors."))
-(message "======================================")
-;;; init.el ends here
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -90,3 +86,13 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+(require 'init-bootstrap)
+(rr/safe-load-init-files)
+
+(message "======================================")
+(message (if rm/init-errors
+             (mapconcat #'identity rm/init-errors "\n")
+           "Init.el finished with no errors."))
+(message "======================================")
+;;; init.el ends here

@@ -41,7 +41,5 @@
   (sml/setup)
 )
 
-(load-theme 'atom-one-dark)
-
 (provide 'init-themes)
 ;;; init-themes.el ends here

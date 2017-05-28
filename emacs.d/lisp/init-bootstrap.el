@@ -15,7 +15,6 @@
     init-org
     init-packages
     init-term
-    init-defaults
     init-settings
     init-window-management
     init-themes
@@ -29,6 +28,7 @@
     init-projectile
     init-web
     init-yas
+    init-home
   )
 )
 
