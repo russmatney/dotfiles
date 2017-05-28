@@ -36,6 +36,14 @@
 
          :map evil-insert-state-map
          ("C-y" . company-yasnippet)
+         ("C-k" . nil)
+         ("C-p" . nil)
+         ("C-n" . nil)
+         ("C-r" . nil)
+         ("C-t" . nil)
+         ("C-e" . nil)
+         ("C-a" . nil)
+
         )
 
   :init
@@ -93,6 +101,7 @@
       ">" '(lambda () (interactive) (evil-window-increase-width 20))
       "<" '(lambda () (interactive) (evil-window-decrease-width 20))
       ;; "y" '(lambda () (interactive) ((evil-insert) (company-yasnippet)))
+      "z" 'ansi-term
     )
   )
 )

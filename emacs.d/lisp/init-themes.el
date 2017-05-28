@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-;; (load-theme 'atom-one-dark)
 (use-package doom-themes
   :init
   ;;; Settings (defaults)
@@ -42,6 +41,7 @@
   (sml/setup)
 )
 
+(load-theme 'atom-one-dark)
 
 (provide 'init-themes)
 ;;; init-themes.el ends here

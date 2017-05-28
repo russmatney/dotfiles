@@ -107,7 +107,7 @@
     (setq helm-boring-buffer-regexp-list
       (quote ( "\\Minibuf.+\\*"
                "\\` "
-               "\\*.+\\*"
+               ;; "\\*.+\\*"
              )
       )
     )

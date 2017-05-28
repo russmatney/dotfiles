@@ -15,6 +15,8 @@
 
 (global-auto-revert-mode t)
 
+(setq-default 'truncate-lines nil)
+
 ;;; Variables
 (setq create-lockfiles nil
       make-backup-files nil

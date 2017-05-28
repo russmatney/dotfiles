@@ -45,5 +45,10 @@
 ;; Now activate this global minor mode
 ;; (bzg-big-fringe-mode 1)
 
+(require 'multi-term)
+
+(add-hook 'shell-mode-hook (lambda () (linum-mode -1)))
+
+
 (provide 'init-extra)
 ;;; init-extra.el ends here
