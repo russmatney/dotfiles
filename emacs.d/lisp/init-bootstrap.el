@@ -14,13 +14,13 @@
   '(
     init-org
     init-packages
-    init-term
     init-settings
     init-window-management
     init-themes
     init-extra
     init-evil
     init-helm
+    init-term
     init-elixir
     init-company
     init-flycheck
