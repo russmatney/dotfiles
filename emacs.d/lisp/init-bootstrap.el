@@ -20,7 +20,6 @@
     init-extra
     init-evil
     init-helm
-    init-term
     init-elixir
     init-company
     init-flycheck
@@ -28,6 +27,7 @@
     init-projectile
     init-web
     init-yas
+    init-term
     init-home
   )
 )
