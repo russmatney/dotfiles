@@ -61,6 +61,7 @@
   (define-key evil-insert-state-map (kbd "C-e") nil)
   (define-key evil-insert-state-map (kbd "C-a") nil)
   (define-key evil-insert-state-map (kbd "C-c") 'term-interrupt-subjob)
+  (define-key evil-normal-state-map (kbd "C-c") 'term-interrupt-subjob)
 
   (define-key term-raw-map "\C-y" 'my-term-paste)
 )
