@@ -3,6 +3,7 @@
 ;;;   much thanks to:
 ;;;     - http://echosa.github.io/blog/2012/06/06/improving-ansi-term/
 ;;;     - https://emacs.stackexchange.com/questions/328/how-to-override-keybindings-for-term
+;;;     - http://oremacs.com/2015/01/01/three-ansi-term-tips/
 ;;; Code:
 
 (use-package exec-path-from-shell
