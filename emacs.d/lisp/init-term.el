@@ -25,13 +25,6 @@
   (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))
 
 
-(defun my-term-paste (_)
-  (interactive)
-  (process-send-string
-   (get-buffer-process (current-buffer))
-   (if string string (current-kill 0))))
-
-
 ;; force term-mode to expose the passed global binding
 (defun expose-global-binding-in-term (binding)
    (define-key term-raw-map binding
@@ -51,7 +44,6 @@
   ;; keep M-x
   (expose-global-binding-in-term (kbd "M-x"))
 
-
   ;; ensure these are unset in term
   (define-key evil-insert-state-map (kbd "C-k") nil)
   (define-key evil-insert-state-map (kbd "C-p") nil)
@@ -63,7 +55,7 @@
   (define-key evil-insert-state-map (kbd "C-c") 'term-interrupt-subjob)
   (define-key evil-normal-state-map (kbd "C-c") 'term-interrupt-subjob)
 
-  (define-key term-raw-map "\C-y" 'my-term-paste)
+  (define-key term-raw-map (kbd "s-v") 'term-paste)
 )
 
 (add-hook 'term-exec-hook 'my-term-use-utf8)
