@@ -36,6 +36,8 @@ function drm() {
   docker rm -v "$1";
 }
 
+alias exdollarbill='mix compile --force && mix credo --strict && mix dialyzer && mix test'
+
 alias dps='docker ps -a'
 alias dmls='docker-machine ls'
 alias dip='docker-machine ip'

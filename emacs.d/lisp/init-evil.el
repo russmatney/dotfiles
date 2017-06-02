@@ -82,7 +82,9 @@
       "1" 'flycheck-list-errors
       "qn" 'neotree-toggle
       "qq" 'evil-window-delete
+      "qw" 'evil-window-delete
       "qk" 'kill-this-buffer
+      "qb" 'kill-this-buffer
       "qa" 'ace-delete-window
       "r" 'org-ctrl-c-ctrl-c
       "S" 'helm-projectile-ag

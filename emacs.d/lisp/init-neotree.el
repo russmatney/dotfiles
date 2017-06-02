@@ -79,6 +79,7 @@
     (kbd "s")   'neotree-enter-horizontal-split
     (kbd "v")   'neotree-enter-vertical-split
     (kbd "p")   'helm-ag-neotree-node
+    ;; (kbd "x")   'neo-buffer--toggle-expand
     )
   )
 )

@@ -3,5 +3,5 @@
 # key: def
 # --
   @spec ${1:fun}() :: :ok
-  def ${1:fun}() do
+  def ${1}() do
   end

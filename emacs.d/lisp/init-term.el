@@ -6,6 +6,10 @@
 ;;;     - http://oremacs.com/2015/01/01/three-ansi-term-tips/
 ;;; Code:
 
+;;; git diff and glp are too tall
+;;; fzf -> use helm for c-r, c-t, c-y
+
+
 (use-package exec-path-from-shell
   :config
   (exec-path-from-shell-initialize))
@@ -14,7 +18,8 @@
   (if (memq (process-status proc) '(signal exit))
       (let ((buffer (process-buffer proc)))
         ad-do-it
-        (kill-buffer buffer))
+        (kill-buffer-and-window)
+        )
     ad-do-it))
 (ad-activate 'term-sentinel)
 

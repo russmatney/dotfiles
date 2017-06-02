@@ -19,3 +19,4 @@ fzf-branch-widget() {
 }
 zle     -N   fzf-branch-widget
 bindkey '^Y' fzf-branch-widget
+alias 'gbz'='fzf-branch-widget'
