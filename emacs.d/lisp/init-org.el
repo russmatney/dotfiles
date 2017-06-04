@@ -45,10 +45,14 @@
 (setq org-refile-use-outline-path 'file)
 
 
-;; (eval-after-load 'org
-;;   (progn
-;;     (global-set-key (kbd "C-k") 'windmove-up)
-;;     (global-set-key (kbd "C-j") 'windmove-down)))
+;; bindings to fix in org-mode
+(defun rm/org-mode-hook ()
+  ;; restore vertical window movement
+  (define-key org-mode-map (kbd "C-k") nil)
+  (define-key org-mode-map (kbd "C-j") nil)
+)
+
+(add-hook 'org-mode-hook 'rm/org-mode-hook)
 
 (provide 'init-org)
 ;;; init-org.el ends here

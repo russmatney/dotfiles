@@ -29,6 +29,7 @@
     init-yas
     init-term
     init-home
+    init-todo
   )
 )
 

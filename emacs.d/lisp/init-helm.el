@@ -38,17 +38,6 @@
           helm-locate-fuzzy-match t
           helm-M-x-fuzzy-match t)
 
-    ;; (defvar helm-source-emacs-commands
-    ;;   (helm-build-sync-source "Emacs commands"
-    ;;     :candidates (lambda ()
-    ;;                   (let ((cmds))
-    ;;                     (mapatoms
-    ;;                     (lambda (elt) (when (commandp elt) (push elt cmds))))
-    ;;                     cmds))
-    ;;     :coerce #'intern-soft
-    ;;     :action #'command-execute)
-    ;;   "A simple helm source for Emacs commands.")
-
     (defvar helm-source-emacs-commands-history
       (helm-build-sync-source "Emacs commands history"
         :candidates (lambda ()
@@ -64,8 +53,8 @@
       (helm-build-sync-source "Org Files"
         :action 'helm-type-file-actions
         :candidates '(
-          ;; "~/dotfiles/emacs.d/init.org"
           "~/Dropbox/todo/todo.org"
+          "~/dotfiles/emacs.d/lisp/todo.org"
           "~/Dropbox/todo/notes.org"
           "~/Dropbox/Writing/writing-may-2017.org"
           "~/Dropbox/Writing/triage.org"
@@ -76,18 +65,6 @@
         )
       )
     )
-
-    ;; (defvar rm/helm-ansi-term--source
-    ;;   '((name . "Open terminal")
-    ;;     (volatile)
-    ;;     (candidates . rm/ansiterm-list)
-    ;;     (action . (("Open selected term"
-    ;;                 . (lambda (candidate)
-    ;;                     (find-file candidate)
-    ;;                     )
-    ;;                 )))
-    ;;     )
-    ;;   )
 
     (defun rm/ansiterm-list ()
       "Lists all projects given project sources."
@@ -102,13 +79,11 @@
     (use-package helm-ls-git)
 
     (setq helm-mini-default-sources '(helm-source-buffers-list
-                                      ;; rm/helm-ansi-term--source
                                       helm-source-recentf
                                       helm-source-ls-git-status
                                       helm-source-projectile-projects
                                       helm-source-my-org-files
                                       helm-source-emacs-commands-history
-                                      ;; helm-source-emacs-commands
                                       helm-source-buffer-not-found))
 
     (use-package helm-projectile
