@@ -84,6 +84,7 @@
   (define-key term-raw-map (kbd "C-r") 'wc/helm-shell-history)
   (define-key term-raw-map (kbd "M-j") 'wc/helm-autojump)
   (define-key term-raw-map (kbd "M-g") 'wc/helm-git-branches)
+  (define-key term-raw-map (kbd "M-m") 'rm/helm-mix-commands)
 
   (define-key term-raw-map (kbd "s-v") 'term-paste)
 
@@ -152,6 +153,23 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; end raid
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; list of mix commands to immediately send "M-m"
+(defun rm/helm-mix-commands
+  "Helm interface to fire mix commands"
+  (interactive)
+  (helm :sources (helm-build-in-buffer-source "helm-autojump"
+                   :data '(
+                           "mix deps.get"
+                           "mix deps.get\n"
+                           "mix compile --force\n"
+                           "iex -S mix\n"
+                           "MIX_ENV=test iex -S mix\n"
+                           )
+                 :action 'term-send-raw-string)
+        :buffer "*helm mix commands*"
+  )
+)
 
 (provide 'init-term)
 ;;; init-term.el ends here

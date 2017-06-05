@@ -77,18 +77,17 @@
     ;;   )
     ;; )
 
-    (defvar rm/term-sessions
-      (helm-build-async-source "Open Term Sessions"
-        :action 'helm-type-buffer-actions
-        :candidates-process '(lambda () (rm/ansiterm-list))
-      )
-    )
+    ;; (defvar rm/term-sessions
+    ;;   (helm-build-async-source "Open Term Sessions"
+    ;;     :action 'helm-type-buffer-actions
+    ;;     :candidates-process '(lambda () (rm/ansiterm-list))
+    ;;   )
+    ;; )
 
     (use-package helm-ls-git)
 
     ;; (setq helm-mini-default-sources '(rm/term-sessions
-    (setq helm-mini-default-sources '(
-                                      helm-source-buffers-list
+    (setq helm-mini-default-sources '(helm-source-buffers-list
                                       helm-source-recentf
                                       helm-source-ls-git-status
                                       helm-source-projectile-projects
