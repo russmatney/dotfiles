@@ -137,6 +137,8 @@
   (setq evil-insert-state-cursor '("red" bar))
   (setq evil-replace-state-cursor '("red" bar))
   (setq evil-operator-state-cursor '("red" hollow))
+
+  ;; (setq evil-move-cursor-back nil)
 )
 
 (use-package evil-surround

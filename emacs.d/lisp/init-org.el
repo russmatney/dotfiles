@@ -50,9 +50,14 @@
   ;; restore vertical window movement
   (define-key org-mode-map (kbd "C-k") nil)
   (define-key org-mode-map (kbd "C-j") nil)
+
+  (evil-define-key 'normal org-mode-map
+    (kbd "TAB") 'org-cycle
+  )
 )
 
 (add-hook 'org-mode-hook 'rm/org-mode-hook)
+
 
 (provide 'init-org)
 ;;; init-org.el ends here

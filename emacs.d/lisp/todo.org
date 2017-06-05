@@ -18,6 +18,9 @@ It generates the init-todo.el sibling file via `M-x org-babel-tangle`
 * TODO ace-kill-windows
 (with multi-select and enter to close all selected)
 * TODO projectile/neotree find file (space-N) should always change project root (no prompt)
+* TODO helm ansi-term C-r
+* TODO helm ansi-term git branches
+* TODO imenu refresh on file save?
 * It should be easier to mix writing with CLI
 If I want an iex shell anywhere, C-i,C-e,C-x (or C-{iex}) should work.
 

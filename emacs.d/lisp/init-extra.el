@@ -45,5 +45,9 @@
 ;; Now activate this global minor mode
 ;; (bzg-big-fringe-mode 1)
 
+;; invoke to see all keybindings in a mode
+(use-package discover-my-major)
+
+
 (provide 'init-extra)
 ;;; init-extra.el ends here

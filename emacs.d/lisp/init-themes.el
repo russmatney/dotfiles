@@ -35,11 +35,23 @@
   (require 'doom-nlinum)
 )
 
+
+;; (use-package powerline
+;;   :config
+;;   (powerline-evil-vim-color-theme)
+;;   (display-time-mode t)
+;; )
+
 (use-package smart-mode-line
   :config
   (setq sml/no-confirm-load-theme t)
   (sml/setup)
 )
+
+;; (package 'color-identifiers-mode)
+;; (global-color-identifiers-mode)
+;; (package 'rainbow-delimiters)
+;; (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
 (provide 'init-themes)
 ;;; init-themes.el ends here
