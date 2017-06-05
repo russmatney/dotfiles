@@ -66,19 +66,29 @@
       )
     )
 
-    (defun rm/ansiterm-list ()
-      "Lists all projects given project sources."
-      (->> (buffer-list)
-          (-map 'buffer-name)
-          (cons helm-pattern)
-          (-filter (-partial 's-contains? "*ansi-term*"))
-          (-sort 's-less?)
-          )
+    ;; (defun rm/ansiterm-list ()
+    ;;   "Lists all projects given project sources."
+    ;;   ;; (->> (buffer-list)
+    ;;   (->> helm-source-buffers-list
+    ;;       (-map (lambda (entry) (car entry)))
+    ;;       (cons helm-pattern)
+    ;;       (-filter (-partial 's-contains? "term"))
+    ;;       (-sort 's-less?)
+    ;;   )
+    ;; )
+
+    (defvar rm/term-sessions
+      (helm-build-async-source "Open Term Sessions"
+        :action 'helm-type-buffer-actions
+        :candidates-process '(lambda () (rm/ansiterm-list))
       )
+    )
 
     (use-package helm-ls-git)
 
-    (setq helm-mini-default-sources '(helm-source-buffers-list
+    ;; (setq helm-mini-default-sources '(rm/term-sessions
+    (setq helm-mini-default-sources '(
+                                      helm-source-buffers-list
                                       helm-source-recentf
                                       helm-source-ls-git-status
                                       helm-source-projectile-projects
