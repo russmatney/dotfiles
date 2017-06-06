@@ -119,7 +119,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun wc/shell-history ()
   ;; TODO fix history command (w/ shell script?)
-  (setq history (shell-command-to-string "cat ~/.zsh_history"))
+  (setq history (shell-command-to-string "tac ~/.zsh_history | sed 's/^.*;//'"))
   (split-string history "\n"))
 
 (defun wc/git-branches ()

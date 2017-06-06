@@ -12,6 +12,7 @@
     (setq-default neo-show-hidden-files t)
     (setq-default neo-window-fixed-size nil)
     (setq-default neo-window-width 40)
+    (setq neo-force-change-root t)
 
     (defun neotree-find-current-file ()
       "Reveal current buffer in Neotree."
