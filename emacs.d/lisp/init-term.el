@@ -165,20 +165,57 @@
 ;;;; end raid
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defun rm/send-projectile-buffer-raw-string (command)
+  "Invoke `command' root ansi-term session"
+  (interactive)
+  (let* ((term (concat "term " (projectile-project-name)))
+         (buffer (concat "*" term "*")))
+    (unless (get-buffer buffer)
+      (let ((program "/bin/zsh"))
+        (projectile-with-default-dir (projectile-project-root)
+          (set-buffer (make-term term program))
+          (term-mode)
+          (term-char-mode)
+        )
+      )
+    )
+    (switch-to-buffer buffer)
+    (term-send-raw-string (format "%s\n" command))
+  )
+)
+
+(defvar rm/common-mix-commands
+  (helm-build-in-buffer-source "Common mix commands"
+    :data '(
+            "MIX_ENV=test iex -S mix"
+            "iex -S mix"
+            "mix docs.dash"
+            "mix deps.get"
+            "mix compile --force"
+            "mix credo --strict"
+            "mix dialyzer"
+            )
+    :action 'rm/send-projectile-buffer-raw-string
+  )
+)
+
+(defvar rm/common-cli-commands
+  (helm-build-in-buffer-source "Common cli commands"
+    :data '(
+            "git commit --amend --no-edit"
+            ;; "git diff" > to list of branches or last few commit hashes w/ messages
+            ;; "gco" > to list of branches, clubhouse cards, and last few commit hashes w/ messages
+            )
+    :action 'rm/send-projectile-buffer-raw-string
+  )
+)
+
 ;; list of mix commands to immediately send "M-m"
-(defun rm/helm-mix-commands
+(defun rm/helm-mix-commands ()
   "Helm interface to fire mix commands"
   (interactive)
-  (helm :sources (helm-build-in-buffer-source "helm-autojump"
-                   :data '(
-                           "mix deps.get"
-                           "mix deps.get\n"
-                           "mix compile --force\n"
-                           "iex -S mix\n"
-                           "MIX_ENV=test iex -S mix\n"
-                           )
-                 :action 'term-send-raw-string)
-        :buffer "*helm mix commands*"
+  (helm :sources '( rm/common-mix-commands rm/common-cli-commands )
+  :buffer "*helm mix commands*"
   )
 )
 

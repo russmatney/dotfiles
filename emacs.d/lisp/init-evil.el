@@ -14,6 +14,7 @@
          ("(" . backward-sexp)
          (")" . forward-sexp)
          ("K" . nil)
+         ("C-m" . 'rm/helm-mix-commands)
 
          :map evil-normal-state-map
          ("S-<tab>" . org-cycle)
