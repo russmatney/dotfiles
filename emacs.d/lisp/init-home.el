@@ -6,6 +6,7 @@
 
 (find-file "~/Dropbox/todo/todo.org")
 (split-window-right)
+(find-file "~/dotfiles/emacs.d/lisp/todo.org")
 (ansi-term "/bin/zsh")
 
 (load-theme 'atom-one-dark)

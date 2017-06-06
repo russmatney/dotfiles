@@ -25,10 +25,23 @@
     ad-do-it))
 (ad-activate 'term-sentinel)
 
-;; TODO figure out what this does
-;; (defadvice ansi-term (before force-zsh)
-;;   (interactive (list "/bin/zsh")))
-;; (ad-activate 'ansi-term)
+(defadvice ansi-term (before force-zsh)
+  (interactive (ansi-term "/bin/zsh")))
+(ad-activate 'ansi-term)
+
+(defun rm/projectile-run-term ()
+  "Invoke `term' in the project's root."
+  (interactive)
+  (let* ((term (concat "term " (projectile-project-name)))
+         (buffer (concat "*" term "*")))
+    (unless (get-buffer buffer)
+      (require 'term)
+      (let ((program "/bin/zsh"))
+        (projectile-with-default-dir (projectile-project-root)
+          (set-buffer (make-term term program))
+          (term-mode)
+          (term-char-mode))))
+    (switch-to-buffer buffer)))
 
 (defun rm/term-exec-hook ()
   (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix)
@@ -44,6 +57,7 @@
   (end-of-buffer)
   (evil-insert-state 1)
 )
+
 (eval-after-load "term"
   '(progn
      ;; ensure that scrolling doesn't break on output
@@ -71,30 +85,27 @@
   (expose-global-binding-in-term (kbd "M-:"))
 
   ;; ensure these are unset in term
-  (define-key evil-insert-state-map (kbd "C-k") nil)
-  (define-key evil-insert-state-map (kbd "C-p") nil)
-  (define-key evil-insert-state-map (kbd "C-n") nil)
-  (define-key evil-insert-state-map (kbd "C-r") nil)
-  (define-key evil-insert-state-map (kbd "C-t") nil)
-  (define-key evil-insert-state-map (kbd "C-e") nil)
-  (define-key evil-insert-state-map (kbd "C-a") nil)
-  (define-key evil-insert-state-map (kbd "C-c") 'term-interrupt-subjob)
-  (define-key evil-normal-state-map (kbd "C-c") 'term-interrupt-subjob)
+  (evil-define-key 'insert term-raw-map
+    (kbd "C-k") nil
+    (kbd "C-p") nil
+    (kbd "C-n") nil
+    (kbd "C-r") nil
+    (kbd "C-t") nil
+    (kbd "C-e") nil
+    (kbd "C-a") nil
+    (kbd "C-c") 'term-interrupt-subjob
+  ;;   (kbd "ESC") 'term-pager-discard
+  )
+  (evil-define-key 'normal term-raw-map
+    (kbd "C-c") 'term-interrupt-subjob
+    (kbd "i") 'rm/evil-open-at-bottom
+  )
 
   (define-key term-raw-map (kbd "C-r") 'wc/helm-shell-history)
   (define-key term-raw-map (kbd "M-j") 'wc/helm-autojump)
   (define-key term-raw-map (kbd "M-g") 'wc/helm-git-branches)
   (define-key term-raw-map (kbd "M-m") 'rm/helm-mix-commands)
-
   (define-key term-raw-map (kbd "s-v") 'term-paste)
-
-  ;; (evil-define-key 'insert term-pager-break-map
-  ;;   (kbd "ESC") 'term-pager-discard
-  ;; )
-
-  (evil-define-key 'normal term-raw-map
-    (kbd "i") 'rm/evil-open-at-bottom
-  )
 )
 
 (add-hook 'term-exec-hook 'rm/term-exec-hook)

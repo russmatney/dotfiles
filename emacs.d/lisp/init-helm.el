@@ -66,6 +66,22 @@
       )
     )
 
+
+    (defvar rm/quick-config-files
+      (helm-build-sync-source "Config Files"
+        :action 'helm-type-file-actions
+        :candidates '(
+          "~/dotfiles/emacs.d/lisp/todo.org"
+          "~/dotfiles/emacs.d/lisp/init-term.el"
+          "~/dotfiles/emacs.d/lisp/init-evil.el"
+          "~/dotfiles/emacs.d/lisp/init-helm.el"
+          "~/dotfiles/emacs.d/lisp/init-extra.el"
+          "~/dotfiles/emacs.d/lisp/init-org.el"
+          "~/dotfiles/zshrc"
+        )
+      )
+    )
+
     ;; (defun rm/ansiterm-list ()
     ;;   "Lists all projects given project sources."
     ;;   ;; (->> (buffer-list)
@@ -93,7 +109,10 @@
                                       helm-source-projectile-projects
                                       helm-source-my-org-files
                                       helm-source-emacs-commands-history
-                                      helm-source-buffer-not-found))
+                                      helm-source-buffer-not-found
+                                      rm/quick-config-files
+                                    )
+    )
 
     (use-package helm-projectile
       :config

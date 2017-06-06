@@ -14,6 +14,7 @@ alias 'glp'="git log --graph --pretty=format:'%Cred%h%Creset -%Cblue %an %Creset
 alias 'gpb'="git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -d"
 alias 'gprom'="git pull --rebase origin master"
 alias 'gcv'="git commit --verbose"
+alias 'gcan'="git commit --amend --no-edit"
 
 source ~/dotfiles/zsh/tmux-aliases.zsh
 source ~/dotfiles/zsh/discovery.zsh
