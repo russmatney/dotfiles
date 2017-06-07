@@ -41,10 +41,13 @@
           (set-buffer (make-term term program))
           (term-mode)
           (term-char-mode))))
-    (switch-to-buffer buffer)))
+    (display-buffer buffer 'display-buffer-reuse-window)
+  )
+)
 
 (defun rm/term-exec-hook ()
   (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix)
+  ;; (term-send-raw-string (format "export LINES=%s\n" (truncate (* (/ 2.0 3) (window-height)))))
 )
 
 ;; force term-mode to expose the passed global binding
@@ -56,6 +59,7 @@
   (interactive)
   (end-of-buffer)
   (evil-insert-state 1)
+  (term-send-raw-string "\b")
 )
 
 (eval-after-load "term"
@@ -71,8 +75,7 @@
   (linum-mode -1)
 
   (setq window-max-chars-per-line 1000)
-  (setq term-scroll-show-maximum-output t)
-
+  ;; (setq term-scroll-show-maximum-output t)
 
   ;; expose for Ctrl-{h,j,k,l} window movement
   (expose-global-binding-in-term (kbd "C-l"))
@@ -104,7 +107,7 @@
   (define-key term-raw-map (kbd "C-r") 'wc/helm-shell-history)
   (define-key term-raw-map (kbd "M-j") 'wc/helm-autojump)
   (define-key term-raw-map (kbd "M-g") 'wc/helm-git-branches)
-  (define-key term-raw-map (kbd "M-m") 'rm/helm-mix-commands)
+  ;; (define-key term-raw-map (kbd "C-m") 'rm/helm-mix-commands)
   (define-key term-raw-map (kbd "s-v") 'term-paste)
 )
 
@@ -179,16 +182,23 @@
         )
       )
     )
-    (switch-to-buffer buffer)
+    (set-buffer buffer)
     (term-send-raw-string (format "%s\n" command))
+    (display-buffer buffer 'display-buffer-reuse-window)
   )
 )
+
+(add-to-list
+ 'display-buffer-alist
+ '("\\*term machina\\*" display-buffer-reuse-window
+                         (reusable-frames . t)))
 
 (defvar rm/common-mix-commands
   (helm-build-in-buffer-source "Common mix commands"
     :data '(
             "MIX_ENV=test iex -S mix"
             "iex -S mix"
+            "mix test"
             "mix docs.dash"
             "mix deps.get"
             "mix compile --force"
@@ -205,6 +215,8 @@
             "git commit --amend --no-edit"
             ;; "git diff" > to list of branches or last few commit hashes w/ messages
             ;; "gco" > to list of branches, clubhouse cards, and last few commit hashes w/ messages
+            "gst"
+            "git diff --staged"
             )
     :action 'rm/send-projectile-buffer-raw-string
   )
