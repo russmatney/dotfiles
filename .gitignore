@@ -10,4 +10,4 @@ nvim/ftplugin/*
 nvim/.init.vim*
 .DS_Store
 *~
-\#*\#
+\#*\#zsh/secrets
