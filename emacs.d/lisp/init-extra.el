@@ -49,5 +49,17 @@
 (use-package discover-my-major)
 
 
+;; C-u M-x align-regexp RET SPC RET RET RET y RET
+(defun align-multi-column-by-wsp (p1 p2)
+  (interactive "r")
+  (align-regexp p1 p2 ",\\(\\s-*\\)" 1 1 t)
+  (evil-visual)
+)
+
+(evil-leader/set-key
+   "," 'align-multi-column-by-wsp
+)
+
+
 (provide 'init-extra)
 ;;; init-extra.el ends here

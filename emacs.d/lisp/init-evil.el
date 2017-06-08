@@ -14,7 +14,8 @@
          ("(" . backward-sexp)
          (")" . forward-sexp)
          ("K" . nil)
-         ("C-m" . rm/helm-mix-commands)
+         ("C-z" . nil)
+         ("C-z C-x" . rm/helm-shell-commands)
 
          :map evil-normal-state-map
          ("S-<tab>" . org-cycle)
@@ -23,8 +24,12 @@
          ("M-." . nil)
          ("K" . nil)
          ("C-y" . yas-insert-snippet)
-         ("C-z" . rm/projectile-run-term)
          ("C-b" . eval-buffer)
+         ("C-z" . nil)
+         ("C-z C-z" . rm/projectile-run-term)
+         ;; ("C-z C-a" . (lambda () (ansi-term "/bin/zsh"))
+         ("C-z C-x" . rm/helm-shell-commands)
+         ("C-z C-." . rm/repeat-last-shell-command)
 
          :map evil-visual-state-map
          ("g c" . evilnc-comment-or-uncomment-lines)
@@ -47,6 +52,7 @@
          ("C-t" . nil)
          ("C-e" . nil)
          ("C-a" . nil)
+         ("C-z" . nil)
 
         )
 
@@ -90,7 +96,8 @@
       "r" 'org-ctrl-c-ctrl-c
       "S" 'helm-projectile-ag
       "s" 'split-window-below
-      "t" 'alchemist-project-toggle-file-and-tests
+      "t" 'rm/alchemist-project-toggle-file-and-tests
+      "m" 'alchemist-macroexpand
       "T" 'org-babel-tangle
       "v" 'split-window-right
       "w" 'save-buffer

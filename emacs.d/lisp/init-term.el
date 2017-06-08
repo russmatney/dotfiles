@@ -30,7 +30,7 @@
 (ad-activate 'ansi-term)
 
 (defun rm/projectile-run-term ()
-  "Invoke `term' in the project's root."
+  "Switch to the project's root term instance, create it if it doesn't exist."
   (interactive)
   (let* ((term (concat "term " (projectile-project-name)))
          (buffer (concat "*" term "*")))
@@ -100,15 +100,17 @@
   ;;   (kbd "ESC") 'term-pager-discard
   )
   (evil-define-key 'normal term-raw-map
+    (kbd "C-r") nil
     (kbd "C-c") 'term-interrupt-subjob
     (kbd "i") 'rm/evil-open-at-bottom
+    (kbd ".") 'rm/repeat-last-shell-command
   )
 
   (define-key term-raw-map (kbd "C-r") 'wc/helm-shell-history)
   (define-key term-raw-map (kbd "M-j") 'wc/helm-autojump)
   (define-key term-raw-map (kbd "M-g") 'wc/helm-git-branches)
-  ;; (define-key term-raw-map (kbd "C-m") 'rm/helm-mix-commands)
   (define-key term-raw-map (kbd "s-v") 'term-paste)
+  (define-key term-raw-map (kbd "C-z") 'rm/helm-shell-commands)
 )
 
 (add-hook 'term-exec-hook 'rm/term-exec-hook)
@@ -184,14 +186,26 @@
     )
     (set-buffer buffer)
     (term-send-raw-string (format "%s\n" command))
-    (display-buffer buffer 'display-buffer-reuse-window)
+
+    ;; FIXME only call if this is not the buffer
+    (unless (eq (current-buffer) buffer)
+      (display-buffer buffer 'display-buffer-reuse-window)
+    )
   )
 )
 
-(add-to-list
- 'display-buffer-alist
- '("\\*term machina\\*" display-buffer-reuse-window
-                         (reusable-frames . t)))
+;; (defclass my-helm-source-terminal-buffers-class (helm-source-buffers)
+;;    ((candidates :initform
+;;                (lambda ()
+;;                  (mapcar 'buffer-name multi-term-buffer-list)))))
+
+;; (setq my-helm-source-terminal-buffers-list
+;;       (helm-make-source "Terminals" 'my-helm-source-terminal-buffers-class))
+
+;; (defun my-helm-terminal-buffers ()
+;;   (interactive)
+;;   (helm :sources 'my-helm-source-terminal-buffers-list
+;;         :buffer "*helm terminals*"))
 
 (defvar rm/common-mix-commands
   (helm-build-in-buffer-source "Common mix commands"
@@ -222,11 +236,35 @@
   )
 )
 
+(defun rm/send-projectile-buffer-raw-string-from-prompt (string)
+  (rm/send-projectile-buffer-raw-string
+   (read-from-minibuffer "Send command to shell: ")
+  )
+)
+
+(defvar rm/custom-command
+  (helm-build-in-buffer-source "Custom"
+    :data '(
+            "ENTER via prompt"
+            )
+    :action 'rm/send-projectile-buffer-raw-string-from-prompt
+  )
+)
+
+(defun rm/repeat-last-shell-command ()
+  (interactive)
+  (rm/send-projectile-buffer-raw-string "!!\n\n")
+)
+
 ;; list of mix commands to immediately send "M-m"
-(defun rm/helm-mix-commands ()
+(defun rm/helm-shell-commands ()
   "Helm interface to fire mix commands"
   (interactive)
-  (helm :sources '( rm/common-mix-commands rm/common-cli-commands )
+  (helm :sources '(
+                   rm/custom-command
+                   rm/common-cli-commands
+                   rm/common-mix-commands
+                  )
   :buffer "*helm mix commands*"
   )
 )

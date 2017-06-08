@@ -12,6 +12,10 @@
 
 (defvar init-files
   '(
+    ;; local packages
+    window-numbering
+
+    ;; configs
     init-org
     init-packages
     init-settings
@@ -32,6 +36,7 @@
     init-todo
   )
 )
+
 
 (defun safe-require (feature)
   "Safely requires FEATURE."

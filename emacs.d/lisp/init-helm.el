@@ -1,5 +1,6 @@
 ;;; init-helm.el --- Helm config
 ;;; Commentary:
+;;;   - https://emacs.stackexchange.com/questions/13440/decomposing-helm-source-buffers-list-in-two-parts
 ;;; Code:
 
 (use-package helm
@@ -37,6 +38,23 @@
           helm-imenu-fuzzy-match t
           helm-locate-fuzzy-match t
           helm-M-x-fuzzy-match t)
+
+    (defclass my-helm-source-file-buffers-class (helm-source-buffers)
+      ((candidates :initform
+                   (lambda ()
+                     (mapcar 'buffer-name
+                             (cl-remove-if-not #'buffer-file-name (buffer-list)))))))
+
+    (defclass my-helm-source-nonfile-buffers-class (helm-source-buffers)
+      ((candidates :initform
+                   (lambda ()
+                     (mapcar 'buffer-name
+                             (cl-remove-if #'buffer-file-name (buffer-list)))))))
+
+    (setq
+        my-helm-source-file-buffers-list (helm-make-source "File-Buffers" 'my-helm-source-file-buffers-class)
+        my-helm-source-nonfile-buffers-list (helm-make-source "Other" 'my-helm-source-nonfile-buffers-class)
+    )
 
     (defvar helm-source-emacs-commands-history
       (helm-build-sync-source "Emacs commands history"
@@ -84,7 +102,8 @@
 
     (use-package helm-ls-git)
 
-    (setq helm-mini-default-sources '(helm-source-buffers-list
+    (setq helm-mini-default-sources '(my-helm-source-file-buffers-list
+                                      my-helm-source-nonfile-buffers-list
                                       helm-source-recentf
                                       helm-source-ls-git-status
                                       helm-source-projectile-projects
