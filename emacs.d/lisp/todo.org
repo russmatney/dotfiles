@@ -13,7 +13,6 @@ It generates the init-todo.el sibling file via `M-x org-babel-tangle`
 #+end_src
 * TODO fix term git-diff and glp printing
 * TODO fix click-to-move-cursor (insert-cursor) in ansi-term
-* TODO ace-kill-windows (with multi-select and enter to close all selected)
 * TODO imenu refresh local menu on file save
 * TODO helm-projectile: first source should be 'ansi-term' for that dir
 * TODO helm ctrl-k or ctrl-p should wrap to bottom of source
@@ -23,6 +22,7 @@ It generates the init-todo.el sibling file via `M-x org-babel-tangle`
 * TODO other helm sources should have colors the way the buffer list does
 * TODO remove create buffer and directory prompts
 * TODO fix elixir file/test toggle
+* TODO never open file from nerd tree over *term* window
 * It should be easier to mix writing with CLI
 If I want an iex shell anywhere, C-i,C-e,C-x (or C-{iex}) should work.
 

@@ -242,6 +242,26 @@
   )
 )
 
+(defun rm/term-checkout-branch (branch)
+  (rm/send-projectile-buffer-raw-string (format "gco %s" branch)))
+
+(defun rm/helm-gco-git-branch (str)
+  "Checkout a git branch with helm"
+  (interactive)
+  (helm :sources (helm-build-in-buffer-source "git branches"
+                 :data (wc/git-branches)
+                 :action 'rm/term-checkout-branch)
+      :buffer "*helm git branches*"))
+
+(defvar rm/git-chain-commands
+  (helm-build-in-buffer-source "Git branch commands"
+    :data '(
+            "gco [branch-to-checkout]"
+            )
+    :action 'rm/helm-gco-branches
+  )
+)
+
 (defvar rm/custom-command
   (helm-build-in-buffer-source "Custom"
     :data '(
@@ -262,6 +282,7 @@
   (interactive)
   (helm :sources '(
                    rm/custom-command
+                   rm/git-chain-commands
                    rm/common-cli-commands
                    rm/common-mix-commands
                   )

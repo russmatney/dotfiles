@@ -96,7 +96,8 @@
       "r" 'org-ctrl-c-ctrl-c
       "S" 'helm-projectile-ag
       "s" 'split-window-below
-      "t" 'rm/alchemist-project-toggle-file-and-tests
+      "t" 'alchemist-project-toggle-file-and-tests
+      ;; "t" 'rm/alchemist-project-toggle-file-and-tests
       "m" 'alchemist-macroexpand
       "T" 'org-babel-tangle
       "v" 'split-window-right
