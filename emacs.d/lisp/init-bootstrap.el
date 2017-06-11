@@ -20,7 +20,6 @@
     init-packages
     init-settings
     init-window-management
-    init-themes
     init-extra
     init-evil
     init-helm
@@ -33,6 +32,7 @@
     init-yas
     init-term
     init-home
+    init-themes
     init-todo
   )
 )

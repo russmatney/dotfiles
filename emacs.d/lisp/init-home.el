@@ -9,7 +9,9 @@
 (find-file "~/dotfiles/emacs.d/lisp/todo.org")
 (rm/projectile-run-term)
 
-(load-theme 'atom-one-dark)
+;; (load-theme 'atom-one-dark)
+(load-theme 'github)
+(load-theme 'smart-mode-line-light)
 
 (provide 'init-home)
 ;;; init-home.el ends here

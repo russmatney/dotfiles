@@ -290,5 +290,9 @@
   )
 )
 
+
+(quelpa '(emacs-pager :repo "tripleee/emacs-pager" :fetcher github))
+
+
 (provide 'init-term)
 ;;; init-term.el ends here
