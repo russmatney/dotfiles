@@ -26,8 +26,7 @@
          ("C-y" . yas-insert-snippet)
          ("C-b" . eval-buffer)
          ("C-z" . nil)
-         ("C-z C-z" . rm/projectile-run-term)
-         ;; ("C-z C-a" . (lambda () (ansi-term "/bin/zsh"))
+         ("C-z C-z" . rm/switch-to-terminal)
          ("C-z C-x" . rm/helm-shell-commands)
          ("C-z C-." . rm/repeat-last-shell-command)
 
@@ -115,7 +114,6 @@
       ">" '(lambda () (interactive) (evil-window-increase-width 20))
       "<" '(lambda () (interactive) (evil-window-decrease-width 20))
       "y" 'yas-insert-snippet
-      "z" 'rm/projectile-run-term
     )
   )
 )

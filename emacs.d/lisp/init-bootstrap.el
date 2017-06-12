@@ -34,6 +34,7 @@
     init-home
     init-themes
     init-todo
+    init-scratch
   )
 )
 

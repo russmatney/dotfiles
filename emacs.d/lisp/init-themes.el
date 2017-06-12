@@ -49,9 +49,9 @@
 )
 
 ;; (package 'color-identifiers-mode)
-;; (global-color-identifiers-mode)
+(global-color-identifiers-mode)
 ;; (package 'rainbow-delimiters)
-;; (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
 (provide 'init-themes)
 ;;; init-themes.el ends here

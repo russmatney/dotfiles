@@ -4,6 +4,8 @@
 ;;;     - http://echosa.github.io/blog/2012/06/06/improving-ansi-term/
 ;;;     - https://emacs.stackexchange.com/questions/328/how-to-override-keybindings-for-term
 ;;;     - http://oremacs.com/2015/01/01/three-ansi-term-tips/
+;;;     - https://emacs.stackexchange.com/questions/18672/how-to-define-a-function-that-calls-a-console-process-using-ansi-term
+;;;     - https://github.com/wpcarro/pc_settings/commit/aab701e10e52afec790b069a5e14c961c6f32307
 ;;; Code:
 
 ;;; git diff and glp are too tall
@@ -20,7 +22,7 @@
   (if (memq (process-status proc) '(signal exit))
       (let ((buffer (process-buffer proc)))
         ad-do-it
-        (kill-buffer)
+        ;; (kill-window)
         )
     ad-do-it))
 (ad-activate 'term-sentinel)
@@ -29,20 +31,10 @@
   (interactive (ansi-term "/bin/zsh")))
 (ad-activate 'ansi-term)
 
-(defun rm/projectile-run-term ()
+(defun rm/switch-to-terminal ()
   "Switch to the project's root term instance, create it if it doesn't exist."
   (interactive)
-  (let* ((term (concat "term " (projectile-project-name)))
-         (buffer (concat "*" term "*")))
-    (unless (get-buffer buffer)
-      (require 'term)
-      (let ((program "/bin/zsh"))
-        (projectile-with-default-dir (projectile-project-root)
-          (set-buffer (make-term term program))
-          (term-mode)
-          (term-char-mode))))
-    (display-buffer buffer 'display-buffer-reuse-window)
-  )
+  (rm/run-shell-command "" nil t)
 )
 
 (defun rm/term-exec-hook ()
@@ -118,94 +110,25 @@
 (add-hook 'shell-mode-hook (lambda () (linum-mode -1)))
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;; RAIDED from @wpcarro, TODO formalize
-;;;; https://github.com/wpcarro/pc_settings/commit/aab701e10e52afec790b069a5e14c961c6f32307
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun wc/shell-history ()
-  ;; TODO fix history command (w/ shell script?)
-  (setq history (shell-command-to-string "tac ~/.zsh_history | sed 's/^.*;//'"))
-  (split-string history "\n"))
 
 (defun wc/git-branches ()
   (setq branches (shell-command-to-string "git branch -a | tr -d '* ' | sed 's/^remotes\\/origin\\///' | sort | uniq"))
   (split-string branches "\n"))
 
-(defun wc/helm-git-branches ()
-  "Reverse-I search using Helm."
-  (interactive)
-  (helm :sources (helm-build-in-buffer-source "git branches"
-                 :data (wc/git-branches)
-                 :action 'wc/handle-branch)
-      :buffer "*helm git branches*"))
+(defun wc/shell-history ()
+  ;; TODO fix history command (w/ shell script?)
+  (setq history (shell-command-to-string "tac ~/.zsh_history | sed 's/^.*;//'"))
+  (split-string history "\n"))
 
-(defun wc/autojump-directories ()
-  (setq directories (shell-command-to-string "j -s | awk '{ if($2 ~ /^\\// && $1 != \"data:\") print;}' | sort -rn | head -n 100 | awk '{print $2}'"))
-  (split-string directories "\n"))
-
-(defun wc/helm-autojump ()
-  "Helm interface to autojump."
-  (interactive)
-  (helm :sources (helm-build-in-buffer-source "helm-autojump"
-                 :data (wc/autojump-directories)
-                 :action (lambda (path) (wc/exec-cmd (format "cd %s" path))))
-      :buffer "*helm git branches*"))
-
-(defun wc/handle-branch (branch)
-  (setq action "git diff")
-  (term-send-raw-string (format "%s %s" action branch)))
 
 (defun wc/helm-shell-history ()
   "Reverse-I search using Helm."
   (interactive)
   (helm :sources (helm-build-in-buffer-source "helm-shell-history"
                  :data (wc/shell-history)
-                 :action 'wc/exec-cmd)
+                 :action 'rm/run-shell-command)
       :buffer "*helm shell history*"))
 
-(defun wc/exec-cmd (cmd)
-  (term-send-raw-string (format "%s\n" cmd)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;; end raid
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defun rm/send-projectile-buffer-raw-string (command)
-  "Invoke `command' root ansi-term session"
-  (interactive)
-  (let* ((term (concat "term " (projectile-project-name)))
-         (buffer (concat "*" term "*")))
-    (unless (get-buffer buffer)
-      (let ((program "/bin/zsh"))
-        (projectile-with-default-dir (projectile-project-root)
-          (set-buffer (make-term term program))
-          (term-mode)
-          (term-char-mode)
-        )
-      )
-    )
-    (set-buffer buffer)
-    (term-send-raw-string (format "%s\n" command))
-
-    ;; FIXME only call if this is not the buffer
-    (unless (eq (current-buffer) buffer)
-      (display-buffer buffer 'display-buffer-reuse-window)
-    )
-  )
-)
-
-;; (defclass my-helm-source-terminal-buffers-class (helm-source-buffers)
-;;    ((candidates :initform
-;;                (lambda ()
-;;                  (mapcar 'buffer-name multi-term-buffer-list)))))
-
-;; (setq my-helm-source-terminal-buffers-list
-;;       (helm-make-source "Terminals" 'my-helm-source-terminal-buffers-class))
-
-;; (defun my-helm-terminal-buffers ()
-;;   (interactive)
-;;   (helm :sources 'my-helm-source-terminal-buffers-list
-;;         :buffer "*helm terminals*"))
 
 (defvar rm/common-mix-commands
   (helm-build-in-buffer-source "Common mix commands"
@@ -219,9 +142,10 @@
             "mix credo --strict"
             "mix dialyzer"
             )
-    :action 'rm/send-projectile-buffer-raw-string
+    :action 'rm/run-shell-command
   )
 )
+
 
 (defvar rm/common-cli-commands
   (helm-build-in-buffer-source "Common cli commands"
@@ -232,20 +156,14 @@
             "gst"
             "git diff --staged"
             )
-    :action 'rm/send-projectile-buffer-raw-string
-  )
-)
-
-(defun rm/send-projectile-buffer-raw-string-from-prompt (string)
-  (rm/send-projectile-buffer-raw-string
-   (read-from-minibuffer "Send command to shell: ")
+    :action 'rm/run-shell-command
   )
 )
 
 (defun rm/term-checkout-branch (branch)
-  (rm/send-projectile-buffer-raw-string (format "gco %s" branch)))
+  (rm/run-shell-command (format "gco %s" branch) nil t))
 
-(defun rm/helm-gco-git-branch (str)
+(defun rm/helm-gco-branches (str)
   "Checkout a git branch with helm"
   (interactive)
   (helm :sources (helm-build-in-buffer-source "git branches"
@@ -267,32 +185,139 @@
     :data '(
             "ENTER via prompt"
             )
-    :action 'rm/send-projectile-buffer-raw-string-from-prompt
+    :action 'rm/run-shell-command-from-minibuffer-action
   )
 )
 
-(defun rm/repeat-last-shell-command ()
-  (interactive)
-  (rm/send-projectile-buffer-raw-string "!!\n\n")
-)
-
-;; list of mix commands to immediately send "M-m"
 (defun rm/helm-shell-commands ()
-  "Helm interface to fire mix commands"
+  "Helm interface to fire shell commands in a local terminal session"
   (interactive)
   (helm :sources '(
                    rm/custom-command
                    rm/git-chain-commands
                    rm/common-cli-commands
                    rm/common-mix-commands
+                   ;; wc/discover-shell-commands
                   )
   :buffer "*helm mix commands*"
   )
 )
 
+(defun rm/repeat-last-shell-command ()
+  "Rerun the last shell command in the local project terminal"
+  (interactive)
+  (rm/run-shell-command "!!\n")
+)
 
-(quelpa '(emacs-pager :repo "tripleee/emacs-pager" :fetcher github))
+(defun rm/run-shell-command-from-minibuffer-action (string)
+  (rm/run-shell-command-from-minibuffer-action)
+)
 
+
+(defun rm/run-shell-command-from-minibuffer (command)
+  "Runs COMMAND in a `term' buffer."
+  (interactive
+   (list (read-from-minibuffer "$ ")))
+  (rm/run-shell-command command t t)
+)
+
+
+(defun rm/run-shell-command (command &optional start-new-session focus-on-term-window) ;; string
+  """
+    Runs a passed string as a CLI command in the project's local terminal.
+
+    If no term for the current project exists, it is created and the command is fired.
+
+    If new-session-p is non-nil, a new session will be created, even if one already exists.
+
+    If focus-on-term-window is non-nil, emacs will select on the window the term session is in after sending the string.
+
+    Usage:
+
+      (rm/run-shell-command 'gst') ;; runs `gst` in an existing terminal session
+
+      (rm/run-shell-command 'glp' t) ;; runs `glp` in a new terminal session
+
+      (rm/run-shell-command 'git diff' nil t) ;; run `git diff` and move cursor to the term window running it
+
+  """
+  (cond ((or start-new-session (not (rm/term-session-exists-p)))
+         (rm/send-command-to-new-terminal (format "%s\n" command))
+        )
+        (t (rm/send-command-to-existing-terminal (format "%s\n" command)))
+  )
+
+  (rm/show-terminal-other-window)
+
+  (if focus-on-term-window
+      (rm/focus-on-terminal-window)
+  )
+)
+
+(defun rm/start-new-terminal ()
+  "Creates a new terminal session."
+  (projectile-with-default-dir (projectile-project-root)
+    (set-buffer (make-term (replace-regexp-in-string "\*" "" (rm/new-term-buffer-name)) "/bin/zsh"))
+    (term-mode)
+    (term-char-mode)
+  )
+)
+
+(defun rm/send-command-to-new-terminal (command)
+  "Creates a new terminal session in the current projectile root, and fires the passed command."
+  (rm/start-new-terminal)
+  (term-send-raw-string command)
+)
+
+(defun rm/send-command-to-existing-terminal (command)
+  """
+    Sends the command to the passed buffer name via term-send-raw-string/1.
+    Crashes if the buffer name does not exist, or the buffer has no terminal process.
+  """
+  (set-buffer (rm/local-term-buffer-name))
+  (term-send-raw-string command))
+
+
+(defun rm/local-term-buffer-name ()
+  "Returns a name for a terminal buffer based on the projectile project it is in."
+  (concat "*term " (projectile-project-name) "*"))
+
+(defun rm/new-term-buffer-name ()
+  "Return a new buffer name for the current context.  If one exists, append`<n>`."
+  (generate-new-buffer-name
+    (rm/local-term-buffer-name)))
+
+
+(defun rm/term-session-exists-p ()
+  "Returns non-nil if a session for the current context exists."
+  (get-buffer (rm/local-term-buffer-name))
+)
+
+
+(defun rm/show-terminal-other-window ()
+  "Crashes if a terminal session does not exist."
+  (display-buffer (get-buffer (rm/local-term-buffer-name)) 'display-buffer-reuse-window)
+)
+
+
+(defun rm/focus-on-terminal-window ()
+  "Crashes if a terminal session does not exist."
+  (select-window
+    (get-buffer-window (rm/local-term-buffer-name))
+  )
+)
+
+
+(defun rm/make-term (name program &optional startfile &rest switches)
+"Pulled from term.el"
+  (let ((buffer (get-buffer-create name)))
+    ;; If no process, or nuked process, crank up a new one and put buffer in
+    ;; term mode.  Otherwise, leave buffer and existing process alone.
+    (cond ((not (term-check-proc buffer))
+	   (with-current-buffer buffer
+	     (term-mode)) ; Install local vars, mode, keymap, ...
+	   (term-exec buffer name program startfile switches)))
+    buffer))
 
 (provide 'init-term)
 ;;; init-term.el ends here

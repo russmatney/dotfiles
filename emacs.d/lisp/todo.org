@@ -12,12 +12,13 @@ It generates the init-todo.el sibling file via `M-x org-babel-tangle`
 ;;; Code:
 #+end_src
 * TODO term fixes
-** TODO non-term C-z C-z open other if closed, switch focus if open
-** TODO term C-z C-z switch focus back
 ** TODO fix term git-diff and glp printing
 ** TODO fix click-to-move-cursor (insert-cursor) in ansi-term
 ** TODO helm-projectile: first source should be 'ansi-term' for that dir
 ** TODO never open file from nerd tree over *term* window
+** TODO use emacs buffer as pager
+** TODO 'ex' should close the window, not the shell
+** TODO kill term buffers with running processes without prompting
 * TODO imenu refresh local menu on file save
 * TODO helm ctrl-k or ctrl-p should wrap to bottom of source
 * TODO evil repeat ring?

@@ -27,6 +27,9 @@
 (use-package imenu-anywhere)
 
 
+(savehist-mode 1) ;; remembers minibuffer histories between sessions
+
+
 ;;; focus mode
 (defvar bzg-big-fringe-mode nil)
 (define-minor-mode bzg-big-fringe-mode

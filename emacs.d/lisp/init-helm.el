@@ -45,7 +45,13 @@
                      (mapcar 'buffer-name
                              (cl-remove-if-not #'buffer-file-name (buffer-list)))))))
 
-    (defclass my-helm-source-nonfile-buffers-class (helm-source-buffers)
+    (defclass my-helm-source-term-buffers-class (helm-source-buffers)
+      ((candidates :initform
+                   (lambda ()
+                     (mapcar 'buffer-name
+                             (cl-remove-if-not (lambda (buffer) (string-prefix-p "*term" (buffer-name buffer))) (buffer-list)))))))
+
+    (defclass my-helm-source-other-buffers (helm-source-buffers)
       ((candidates :initform
                    (lambda ()
                      (mapcar 'buffer-name
@@ -53,7 +59,8 @@
 
     (setq
         my-helm-source-file-buffers-list (helm-make-source "File-Buffers" 'my-helm-source-file-buffers-class)
-        my-helm-source-nonfile-buffers-list (helm-make-source "Other" 'my-helm-source-nonfile-buffers-class)
+        my-helm-source-term-buffers-list (helm-make-source "Term Buffers" 'my-helm-source-term-buffers-class)
+        my-helm-source-other-buffers-list (helm-make-source "Other" 'my-helm-source-other-buffers)
     )
 
     (defvar helm-source-emacs-commands-history
@@ -103,7 +110,8 @@
     (use-package helm-ls-git)
 
     (setq helm-mini-default-sources '(my-helm-source-file-buffers-list
-                                      my-helm-source-nonfile-buffers-list
+                                      my-helm-source-term-buffers-list
+                                      my-helm-source-other-buffers-list
                                       helm-source-recentf
                                       helm-source-ls-git-status
                                       helm-source-projectile-projects
