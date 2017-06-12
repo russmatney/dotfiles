@@ -64,5 +64,15 @@
 )
 
 
+(require 'server)
+(setq server-socket-dir "~/.emacs.d/server")
+(server-start)
+
+(defun rm/open-in-pager (file)
+  ;; (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix)
+  (find-file file)
+  (emacs-pager-mode)
+)
+
 (provide 'init-extra)
 ;;; init-extra.el ends here

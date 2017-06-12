@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+# - https://github.com/tripleee/emacs-pager/blob/2f9cca859da4f593ec95ad9e513f6a447caf2b35/emacs-pager
+#
+# Depends:
+#  mktemp
+#  emacsclient
+
+file=$(mktemp -t "$USER-"XXXXXXXX.emacs-pager) || exit 127
+trap 'rm -f "$file"' EXIT
+trap 'exit 255' HUP INT QUIT TERM
+cat "$@" >"$file"
+emacsclient -e "(rm/open-in-pager \"$file\")" -s ~/.emacs.d/server/server
