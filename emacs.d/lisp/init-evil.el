@@ -30,6 +30,7 @@
          ("C-z C-o" . rm/switch-to-terminal-other-window)
          ("C-z C-x" . rm/helm-shell-commands)
          ("C-z C-." . rm/repeat-last-shell-command)
+         ("C-q C-q" . evil-window-delete)
 
          :map evil-visual-state-map
          ("g c" . evilnc-comment-or-uncomment-lines)
@@ -53,6 +54,7 @@
          ("C-e" . nil)
          ("C-a" . nil)
          ("C-z" . nil)
+         ("C-q C-q" . evil-window-delete)
 
         )
 
@@ -75,6 +77,7 @@
       "a" 'ace-window
       "b" 'helm-mini
       "c" 'evilnc-comment-or-uncomment-lines
+      "d" 'vc-diff
       "e" 'helm-M-x
       "f" 'helm-find-files
       "i" 'popup-imenu

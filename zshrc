@@ -63,7 +63,7 @@ fi
 
 #colorful less
 if hash source-highlight 2>/dev/null; then
-  # export LESSOPEN="| src-hilite-lesspipe.sh %s"
+  export LESSOPEN="| src-hilite-lesspipe.sh %s"
   export LESS=" -R "
   alias less='less -m -g -i -J --underline-special --SILENT'
 fi
