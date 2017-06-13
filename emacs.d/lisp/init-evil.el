@@ -26,7 +26,8 @@
          ("C-y" . yas-insert-snippet)
          ("C-b" . eval-buffer)
          ("C-z" . nil)
-         ("C-z C-z" . rm/switch-to-terminal)
+         ("C-z C-z" . rm/switch-to-terminal-this-window)
+         ("C-z C-o" . rm/switch-to-terminal-other-window)
          ("C-z C-x" . rm/helm-shell-commands)
          ("C-z C-." . rm/repeat-last-shell-command)
 

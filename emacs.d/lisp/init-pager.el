@@ -49,7 +49,13 @@
                                 (point)))
 
   (setq buffer-name "*pager*")
-  (read-only-mode))
+  (set-buffer-modified-p nil)
+  (read-only-mode)
+  (evil-define-key 'normal emacs-pager-mode-map
+    (kbd "q") 'kill-this-buffer
+    (kbd "ESC") 'kill-this-buffer
+  )
+)
 
 (provide 'init-pager)
 

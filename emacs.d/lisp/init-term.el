@@ -31,16 +31,23 @@
   (interactive (ansi-term "/bin/zsh")))
 (ad-activate 'ansi-term)
 
-(defun rm/switch-to-terminal ()
+(defun rm/switch-to-terminal-other-window ()
   "Switch to the project's root term instance, create it if it doesn't exist."
   (interactive)
   (rm/run-shell-command "" nil t)
+)
+
+(defun rm/switch-to-terminal-this-window ()
+  "Switch to the project's root term instance, create it if it doesn't exist."
+  (interactive)
+  (rm/run-shell-command "" nil t t)
 )
 
 (defun rm/term-exec-hook ()
   (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix)
   ;; (term-send-raw-string (format "export LINES=%s\n" (truncate (* (/ 2.0 3) (window-height)))))
 )
+(add-hook 'term-exec-hook 'rm/term-exec-hook)
 
 ;; force term-mode to expose the passed global binding
 (defun expose-global-binding-in-term (binding)
@@ -104,9 +111,8 @@
   (define-key term-raw-map (kbd "s-v") 'term-paste)
   (define-key term-raw-map (kbd "C-z") 'rm/helm-shell-commands)
 )
-
-(add-hook 'term-exec-hook 'rm/term-exec-hook)
 (add-hook 'term-mode-hook 'rm/term-mode-hook)
+
 (add-hook 'shell-mode-hook (lambda () (linum-mode -1)))
 
 
@@ -206,7 +212,7 @@
 (defun rm/repeat-last-shell-command ()
   "Rerun the last shell command in the local project terminal"
   (interactive)
-  (rm/run-shell-command "!!\n")
+  (rm/run-shell-command "!! ")
 )
 
 (defun rm/run-shell-command-from-minibuffer-action (string)
@@ -222,22 +228,18 @@
 )
 
 
-(defun rm/run-shell-command (command &optional start-new-session focus-on-term-window) ;; string
+(defun rm/run-shell-command (command &optional start-new-session focus-on-term-window use-this-window) ;; string
   """
     Runs a passed string as a CLI command in the project's local terminal.
 
     If no term for the current project exists, it is created and the command is fired.
-
     If new-session-p is non-nil, a new session will be created, even if one already exists.
-
     If focus-on-term-window is non-nil, emacs will select on the window the term session is in after sending the string.
 
     Usage:
 
       (rm/run-shell-command 'gst') ;; runs `gst` in an existing terminal session
-
       (rm/run-shell-command 'glp' t) ;; runs `glp` in a new terminal session
-
       (rm/run-shell-command 'git diff' nil t) ;; run `git diff` and move cursor to the term window running it
 
   """
@@ -247,7 +249,11 @@
         (t (rm/send-command-to-existing-terminal (format "%s\n" command)))
   )
 
-  (rm/show-terminal-other-window)
+  (if use-this-window
+      (rm/show-terminal-this-window))
+
+  (unless use-this-window
+      (rm/show-terminal-other-window))
 
   (if focus-on-term-window
       (rm/focus-on-terminal-window)
@@ -294,6 +300,11 @@
 )
 
 
+(defun rm/show-terminal-this-window ()
+  "Crashes if a terminal session does not exist."
+  (display-buffer-same-window (get-buffer (rm/local-term-buffer-name)) nil)
+)
+
 (defun rm/show-terminal-other-window ()
   "Crashes if a terminal session does not exist."
   (display-buffer (get-buffer (rm/local-term-buffer-name)) 'display-buffer-reuse-window)
@@ -305,6 +316,7 @@
   (select-window
     (get-buffer-window (rm/local-term-buffer-name))
   )
+  (evil-insert 1)
 )
 
 
