@@ -215,16 +215,17 @@
   (rm/run-shell-command "!! ")
 )
 
-(defun rm/run-shell-command-from-minibuffer-action (string)
-  (rm/run-shell-command-from-minibuffer-action)
+(defun rm/run-shell-command-from-minibuffer-action (command)
+  (interactive)
+  (rm/run-shell-command-from-minibuffer)
 )
 
-
-(defun rm/run-shell-command-from-minibuffer (command)
+(defun rm/run-shell-command-from-minibuffer ()
   "Runs COMMAND in a `term' buffer."
-  (interactive
-   (list (read-from-minibuffer "$ ")))
-  (rm/run-shell-command command t t)
+  (interactive)
+  (let* ((command (read-from-minibuffer "$ ")))
+    (rm/run-shell-command command nil t)
+  )
 )
 
 

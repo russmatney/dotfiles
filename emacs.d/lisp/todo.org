@@ -3,6 +3,7 @@ The place for emacs hopes and dreams.
 
 This file houses emacs TODOs,
 and features in-progress and mvp source blocks.
+
 It generates the init-todo.el sibling file via `M-x org-babel-tangle`
 * Header
 #+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/lisp/init-todo.el
@@ -31,6 +32,6 @@ It's like elm's state machine,
 but in your editor.
 * Footer
 #+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/lisp/init-todo.el
-(provide 'init-extra)
-;;; init-extra.el ends here
+(provide 'init-todo)
+;;; init-todo.el ends here
 #+end_src
