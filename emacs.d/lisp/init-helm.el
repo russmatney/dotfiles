@@ -37,7 +37,8 @@
           helm-semantic-fuzzy-match t
           helm-imenu-fuzzy-match t
           helm-locate-fuzzy-match t
-          helm-M-x-fuzzy-match t)
+          helm-M-x-fuzzy-match t
+          helm-ff-newfile-prompt-p nil)
 
     (defclass my-helm-source-file-buffers-class (helm-source-buffers)
       ((candidates :initform

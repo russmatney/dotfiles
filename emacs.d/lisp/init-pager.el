@@ -27,6 +27,12 @@
 
 ;;; Code:
 
+(defun rm/open-in-pager (file)
+  ;; (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix)
+  (find-file file)
+  (emacs-pager-mode)
+)
+
 (defvar emacs-pager-mode-map
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd "q") 'kill-this-buffer)

@@ -68,11 +68,14 @@
 (setq server-socket-dir "~/.emacs.d/server")
 (server-start)
 
-(defun rm/open-in-pager (file)
-  ;; (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix)
-  (find-file file)
-  (emacs-pager-mode)
+(use-package keyfreq
+  :config
+  (keyfreq-mode 1)
+  (keyfreq-autosave-mode 1)
 )
+
+(add-to-list 'auto-mode-alist '("zshrc" . shell-script-mode))
+
 
 (provide 'init-extra)
 ;;; init-extra.el ends here
