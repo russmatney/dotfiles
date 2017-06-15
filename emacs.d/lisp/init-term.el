@@ -12,6 +12,7 @@
 ;;; fzf -> use helm for c-r, c-t, c-y
 
 (defadvice term-sentinel (around my-advice-term-sentinel (proc msg))
+  "Kill the window after term exits."
   (if (memq (process-status proc) '(signal exit))
       (let ((buffer (process-buffer proc)))
         ad-do-it
@@ -21,6 +22,7 @@
 (ad-activate 'term-sentinel)
 
 (defadvice ansi-term (before force-zsh)
+  "Attempt to choose zsh everytime."
   (interactive (ansi-term "/bin/zsh")))
 (ad-activate 'ansi-term)
 
