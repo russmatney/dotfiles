@@ -31,6 +31,10 @@
          ("C-z C-x" . rm/helm-shell-commands)
          ("C-z C-." . rm/repeat-last-shell-command)
          ("C-q C-q" . evil-window-delete)
+         ("C-q C-n" . neotree-toggle)
+         ("C-n" . neotree-toggle)
+         ("C-u" . evil-scroll-up)
+         ("C-d" . evil-scroll-down)
 
          :map evil-visual-state-map
          ("g c" . evilnc-comment-or-uncomment-lines)
@@ -55,6 +59,10 @@
          ("C-a" . nil)
          ("C-z" . nil)
          ("C-q C-q" . evil-window-delete)
+         ("C-q C-n" . neotree-toggle)
+         ("C-n" . neotree-toggle)
+         ("C-u" . evil-scroll-up)
+         ("C-d" . evil-scroll-down)
 
         )
 

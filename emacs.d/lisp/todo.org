@@ -18,8 +18,10 @@ It generates the init-todo.el sibling file via `M-x org-babel-tangle`
 * TODO resize windows with simpler commands (arrow keys)
 * TODO page up and down term window from other buffers
 * TODO alchemist find function across umbrella apps (don't know how to find ...)
-* TODO page up and down w/ ctrl u/d
 * TODO kill buffers from helm mini
+* TODO kill ansi-terms without asking
+* TODO show always-terminal across bottom in projectile project root
+* TODO toggle terminal full-screen, partial-screen, off-screen
 * It should be easier to mix writing with CLI
 If I want an iex shell anywhere, C-i,C-e,C-x (or C-{iex}) should work.
 

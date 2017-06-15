@@ -59,5 +59,11 @@
   (dolist (file init-files)
     (require file)))
 
+;; add shell env
+(use-package exec-path-from-shell
+  :config
+  (exec-path-from-shell-initialize))
+
+
 (provide 'init-bootstrap)
 ;;; init-bootstrap.el ends here

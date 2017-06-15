@@ -28,7 +28,7 @@
 ;;; Code:
 
 (defun rm/open-in-pager (file)
-  ;; (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix)
+  "Opens the passed FILE in the current buffer."
   (find-file file)
   (emacs-pager-mode)
 )
@@ -38,11 +38,11 @@
     (define-key map (kbd "q") 'kill-this-buffer)
 
     map)
-  "Keymap for emacs pager mode.")
+  "Keymap for Emacs pager mode.")
 
 (defcustom emacs-pager-max-line-coloring 500
-  "Maximum number of lines to ansi-color. If performance is bad when
-   loading data, reduce this number"
+  "Maximum number of lines to ansi-color.
+If performance is bad when loading data, reduce this number."
   :group 'emacs-pager)
 
 ;;;###autoload
@@ -54,13 +54,12 @@
                                 (forward-line emacs-pager-max-line-coloring)
                                 (point)))
 
-  (setq buffer-name "*pager*")
-  (set-buffer-modified-p nil)
-  (read-only-mode)
-  (evil-define-key 'normal emacs-pager-mode-map
-    (kbd "q") 'kill-this-buffer
-    (kbd "ESC") 'kill-this-buffer
-  )
+  (let* ((buffer-name "*pager*"))
+    (set-buffer-modified-p nil)
+    (read-only-mode)
+    (evil-define-key 'normal emacs-pager-mode-map
+      (kbd "q") 'kill-this-buffer
+      (kbd "ESC") 'kill-this-buffer))
 )
 
 (provide 'init-pager)

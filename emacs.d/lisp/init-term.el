@@ -11,13 +11,6 @@
 ;;; git diff and glp are too tall
 ;;; fzf -> use helm for c-r, c-t, c-y
 
-;;; TODO show always-terminal across bottom in projectile project root
-;;; TODO toggle terminal full-screen, partial-screen, off-screen
-
-(use-package exec-path-from-shell
-  :config
-  (exec-path-from-shell-initialize))
-
 (defadvice term-sentinel (around my-advice-term-sentinel (proc msg))
   (if (memq (process-status proc) '(signal exit))
       (let ((buffer (process-buffer proc)))
@@ -32,13 +25,19 @@
 (ad-activate 'ansi-term)
 
 (defun rm/switch-to-terminal-other-window ()
-  "Switch to the project's root term instance, create it if it doesn't exist."
+  "Switch to the project's root term instance.
+Creates it if it doesn't exist.
+If the window is already open, moves focus to that window.
+Otherwise, opens the terminal in 'other' window."
   (interactive)
   (rm/run-shell-command "" nil t)
 )
 
-(defun rm/switch-to-terminal-this-window ()
-  "Switch to the project's root term instance, create it if it doesn't exist."
+(defun rm/switch-to-terminal-window ()
+  "Switch to the project's root term instance.
+Creates it if it doesn't exist.
+If the window is already open, moves focus to that window.
+Otherwise, opens the terminal in this window."
   (interactive)
   (rm/run-shell-command "" nil t t)
 )
@@ -122,7 +121,6 @@
   (split-string branches "\n"))
 
 (defun wc/shell-history ()
-  ;; TODO fix history command (w/ shell script?)
   (setq history (shell-command-to-string "tac ~/.zsh_history | sed 's/^.*;//'"))
   (split-string history "\n"))
 
@@ -157,8 +155,6 @@
   (helm-build-in-buffer-source "Common cli commands"
     :data '(
             "git commit --amend --no-edit"
-            ;; "git diff" > to list of branches or last few commit hashes w/ messages
-            ;; "gco" > to list of branches, clubhouse cards, and last few commit hashes w/ messages
             "gst"
             "git diff --staged"
             )
@@ -228,41 +224,41 @@
   )
 )
 
+(defun rm/term-scroll-page-up ()
+  ;; find window with term
+  ;; scroll page up
+)
+
+(defun rm/term-scroll-page-down ()
+  ;; find window with term
+  ;; page down
+)
+
 
 (defun rm/run-shell-command (command &optional start-new-session focus-on-term-window use-this-window) ;; string
-  """
-    Runs a passed string as a CLI command in the project's local terminal.
+  "Runs a passed string as a CLI command in the project's local terminal.
 
-    If no term for the current project exists, it is created and the command is fired.
-    If new-session-p is non-nil, a new session will be created, even if one already exists.
-    If focus-on-term-window is non-nil, emacs will select on the window the term session is in after sending the string.
+If no term for the current project exists, it is created and the command is fired.
+If new-session-p is non-nil, a new session will be created, even if one already exists.
+If focus-on-term-window is non-nil, Emacs will select on the window the term session is in after sending the string.
 
-    Usage:
+(rm/run-shell-command 'gst') ;; runs `gst` in an existing terminal session.
+(rm/run-shell-command 'glp' t) ;; runs `glp` in a new terminal session.
+(rm/run-shell-command 'git diff' nil t) ;; run `git diff` and move cursor to the term window running it."
+  (cond ((rm/is-term-window-p) ())
+        ((use-this-window (unless (rm/term-window-open-p) (rm/show-terminal-this-window))))
+        (t (rm/show-terminal-other-window)))
 
-      (rm/run-shell-command 'gst') ;; runs `gst` in an existing terminal session
-      (rm/run-shell-command 'glp' t) ;; runs `glp` in a new terminal session
-      (rm/run-shell-command 'git diff' nil t) ;; run `git diff` and move cursor to the term window running it
-
-  """
   (cond ((or start-new-session (not (rm/term-session-exists-p)))
          (rm/send-command-to-new-terminal (format "%s\n" command))
         )
-        (t (rm/send-command-to-existing-terminal (format "%s\n" command)))
-  )
+        (t (rm/send-command-to-existing-terminal (format "%s\n" command))))
 
-  (if use-this-window
-      (rm/show-terminal-this-window))
-
-  (unless use-this-window
-      (rm/show-terminal-other-window))
-
-  (if focus-on-term-window
-      (rm/focus-on-terminal-window)
-  )
-)
+  (if (or focus-on-term-window use-this-window)
+      (rm/focus-on-terminal-window)))
 
 (defun rm/start-new-terminal ()
-  "Creates a new terminal session."
+  "Create a new terminal session."
   (projectile-with-default-dir (projectile-project-root)
     (set-buffer (make-term (replace-regexp-in-string "\*" "" (rm/new-term-buffer-name)) "/bin/zsh"))
     (term-mode)
@@ -271,22 +267,22 @@
 )
 
 (defun rm/send-command-to-new-terminal (command)
-  "Creates a new terminal session in the current projectile root, and fires the passed command."
+  "COMMAND is the command to send.
+Creates a new terminal session in the current projectile root, and fires the passed command."
   (rm/start-new-terminal)
   (term-send-raw-string command)
 )
 
 (defun rm/send-command-to-existing-terminal (command)
-  """
-    Sends the command to the passed buffer name via term-send-raw-string/1.
-    Crashes if the buffer name does not exist, or the buffer has no terminal process.
-  """
+  "COMMAND is the command to send.
+Sends the command to the passed buffer name via term-send-raw-string.
+Crashes if the buffer name does not exist, or the buffer has no terminal process."
   (set-buffer (rm/local-term-buffer-name))
   (term-send-raw-string command))
 
 
 (defun rm/local-term-buffer-name ()
-  "Returns a name for a terminal buffer based on the projectile project it is in."
+  "Return a name for a terminal buffer based on the projectile project it is in."
   (concat "*term " (projectile-project-name) "*"))
 
 (defun rm/new-term-buffer-name ()
@@ -296,8 +292,19 @@
 
 
 (defun rm/term-session-exists-p ()
-  "Returns non-nil if a session for the current context exists."
+  "Return non-nil if a session for the current context exists."
   (get-buffer (rm/local-term-buffer-name))
+)
+
+(defun rm/is-term-window-p ()
+  "Return non-nil if the current window is a *term window."
+  (string-prefix-p "*term " (buffer-name (current-buffer)))
+)
+
+(defun rm/term-window-open-p ()
+  "Return non-nil if the project's term window is already open."
+  (if (get-buffer-window (rm/local-term-buffer-name)) t
+    nil)
 )
 
 
@@ -315,22 +322,10 @@
 (defun rm/focus-on-terminal-window ()
   "Crashes if a terminal session does not exist."
   (select-window
-    (get-buffer-window (rm/local-term-buffer-name))
+    (get-buffer-window (rm/local-term-buffer-name) t)
   )
   (evil-insert 1)
 )
-
-
-(defun rm/make-term (name program &optional startfile &rest switches)
-"Pulled from term.el"
-  (let ((buffer (get-buffer-create name)))
-    ;; If no process, or nuked process, crank up a new one and put buffer in
-    ;; term mode.  Otherwise, leave buffer and existing process alone.
-    (cond ((not (term-check-proc buffer))
-	   (with-current-buffer buffer
-	     (term-mode)) ; Install local vars, mode, keymap, ...
-	   (term-exec buffer name program startfile switches)))
-    buffer))
 
 (provide 'init-term)
 ;;; init-term.el ends here
