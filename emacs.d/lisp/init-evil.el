@@ -35,6 +35,10 @@
          ("C-n" . neotree-toggle)
          ("C-u" . evil-scroll-up)
          ("C-d" . evil-scroll-down)
+         ("C-z C-k" . rm/term-scroll-page-up)
+         ("C-z C-j" . rm/term-scroll-page-down)
+         ;; ("C-." . (lambda () (interactive) (evil-window-increase-width 20)))
+         ;; ("C-," . (lambda () (interactive) (evil-window-decrease-width 20)))
 
          :map evil-visual-state-map
          ("g c" . evilnc-comment-or-uncomment-lines)
@@ -63,6 +67,10 @@
          ("C-n" . neotree-toggle)
          ("C-u" . evil-scroll-up)
          ("C-d" . evil-scroll-down)
+         ("C-z C-k" . rm/term-scroll-page-up)
+         ("C-z C-j" . rm/term-scroll-page-down)
+         ;; ("C-." . (lambda () (interactive) (evil-window-increase-width 20)))
+         ;; ("C-," . (lambda () (interactive) (evil-window-decrease-width 20)))
 
         )
 
@@ -123,8 +131,6 @@
       "_" 'split-window-below
       "\\" 'split-window-right
       "|" 'split-window-right
-      ">" '(lambda () (interactive) (evil-window-increase-width 20))
-      "<" '(lambda () (interactive) (evil-window-decrease-width 20))
       "y" 'yas-insert-snippet
     )
   )

@@ -39,8 +39,7 @@ Creates it if it doesn't exist.
 If the window is already open, moves focus to that window.
 Otherwise, opens the terminal in this window."
   (interactive)
-  (rm/run-shell-command "" nil t t)
-)
+  (rm/run-shell-command "" nil t t))
 
 (defun rm/term-exec-hook ()
   (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix)
@@ -57,15 +56,12 @@ Otherwise, opens the terminal in this window."
   (interactive)
   (end-of-buffer)
   (evil-insert-state 1)
-  (term-send-raw-string "\b")
-)
+  (term-send-raw-string "\b"))
 
 (eval-after-load "term"
   '(progn
      ;; ensure that scrolling doesn't break on output
-     (setq term-scroll-to-bottom-on-output t)
-  )
-)
+     (setq term-scroll-to-bottom-on-output t)))
 
 
 (defun rm/term-mode-hook ()
@@ -146,9 +142,7 @@ Otherwise, opens the terminal in this window."
             "mix credo --strict"
             "mix dialyzer"
             )
-    :action 'rm/run-shell-command
-  )
-)
+    :action 'rm/run-shell-command))
 
 
 (defvar rm/common-cli-commands
@@ -158,15 +152,16 @@ Otherwise, opens the terminal in this window."
             "gst"
             "git diff --staged"
             )
-    :action 'rm/run-shell-command
-  )
-)
+    :action 'rm/run-shell-command))
 
 (defun rm/term-checkout-branch (branch)
+  "Fires `gco` BRANCH in a local term."
   (rm/run-shell-command (format "gco %s" branch) nil t))
 
 (defun rm/helm-gco-branches (str)
-  "Checkout a git branch with helm"
+  "Checkout a git branch with helm.
+STR is ignored.
+This is a convenience function for helm actions."
   (interactive)
   (helm :sources (helm-build-in-buffer-source "git branches"
                  :data (wc/git-branches)
@@ -178,21 +173,17 @@ Otherwise, opens the terminal in this window."
     :data '(
             "gco [branch-to-checkout]"
             )
-    :action 'rm/helm-gco-branches
-  )
-)
+    :action 'rm/helm-gco-branches))
 
 (defvar rm/custom-command
   (helm-build-in-buffer-source "Custom"
     :data '(
             "ENTER via prompt"
             )
-    :action 'rm/run-shell-command-from-minibuffer-action
-  )
-)
+    :action 'rm/run-shell-command-from-minibuffer-action))
 
 (defun rm/helm-shell-commands ()
-  "Helm interface to fire shell commands in a local terminal session"
+  "Helm interface to fire shell commands in a local terminal session."
   (interactive)
   (helm :sources '(
                    rm/custom-command
@@ -201,42 +192,42 @@ Otherwise, opens the terminal in this window."
                    rm/common-mix-commands
                    ;; wc/discover-shell-commands
                   )
-  :buffer "*helm mix commands*"
-  )
-)
+  :buffer "*helm mix commands*"))
 
 (defun rm/repeat-last-shell-command ()
-  "Rerun the last shell command in the local project terminal"
+  "Rerun the last shell command in the local project terminal."
   (interactive)
-  (rm/run-shell-command "!! ")
-)
+  (rm/run-shell-command "!! "))
 
 (defun rm/run-shell-command-from-minibuffer-action (command)
+  "Open the mini-buffer for command input.
+COMMAND is ignored.
+This is a convenience function for helm."
   (interactive)
-  (rm/run-shell-command-from-minibuffer)
-)
+  (rm/run-shell-command-from-minibuffer))
 
 (defun rm/run-shell-command-from-minibuffer ()
-  "Runs COMMAND in a `term' buffer."
+  "Run COMMAND in a `term' buffer."
   (interactive)
   (let* ((command (read-from-minibuffer "$ ")))
-    (rm/run-shell-command command nil t)
-  )
-)
+    (rm/run-shell-command command nil t)))
+
 
 (defun rm/term-scroll-page-up ()
-  ;; find window with term
-  ;; scroll page up
-)
+  "Scroll the term window up."
+  (interactive)
+  (setq other-window-scroll-buffer (rm/get-term-buffer))
+  (scroll-other-window))
 
 (defun rm/term-scroll-page-down ()
-  ;; find window with term
-  ;; page down
-)
+  "Scroll the term window down."
+  (interactive)
+  (setq other-window-scroll-buffer (rm/get-term-buffer))
+  (scroll-other-window-down))
 
 
 (defun rm/run-shell-command (command &optional start-new-session focus-on-term-window use-this-window) ;; string
-  "Runs a passed string as a CLI command in the project's local terminal.
+  "Run a passed string as a CLI command in the project's local terminal.
 
 If no term for the current project exists, it is created and the command is fired.
 If new-session-p is non-nil, a new session will be created, even if one already exists.
@@ -246,7 +237,7 @@ If focus-on-term-window is non-nil, Emacs will select on the window the term ses
 (rm/run-shell-command 'glp' t) ;; runs `glp` in a new terminal session.
 (rm/run-shell-command 'git diff' nil t) ;; run `git diff` and move cursor to the term window running it."
   (cond ((rm/is-term-window-p) ())
-        ((use-this-window (unless (rm/term-window-open-p) (rm/show-terminal-this-window))))
+        (use-this-window (unless (rm/term-window-open-p) (rm/show-terminal-this-window)))
         (t (rm/show-terminal-other-window)))
 
   (cond ((or start-new-session (not (rm/term-session-exists-p)))
@@ -290,42 +281,40 @@ Crashes if the buffer name does not exist, or the buffer has no terminal process
   (generate-new-buffer-name
     (rm/local-term-buffer-name)))
 
+(defun rm/get-term-buffer ()
+  "Return the current local term buffer."
+  (get-buffer (rm/local-term-buffer-name)))
 
 (defun rm/term-session-exists-p ()
   "Return non-nil if a session for the current context exists."
-  (get-buffer (rm/local-term-buffer-name))
-)
+  (get-buffer (rm/local-term-buffer-name)))
 
 (defun rm/is-term-window-p ()
   "Return non-nil if the current window is a *term window."
-  (string-prefix-p "*term " (buffer-name (current-buffer)))
-)
+  (string-prefix-p "*term " (buffer-name (current-buffer))))
 
 (defun rm/term-window-open-p ()
   "Return non-nil if the project's term window is already open."
   (if (get-buffer-window (rm/local-term-buffer-name)) t
-    nil)
-)
+    nil))
 
 
 (defun rm/show-terminal-this-window ()
   "Crashes if a terminal session does not exist."
-  (display-buffer-same-window (get-buffer (rm/local-term-buffer-name)) nil)
-)
+  (display-buffer-same-window (get-buffer (rm/local-term-buffer-name)) nil))
 
 (defun rm/show-terminal-other-window ()
   "Crashes if a terminal session does not exist."
-  (display-buffer (get-buffer (rm/local-term-buffer-name)) 'display-buffer-reuse-window)
-)
+  (display-buffer (get-buffer (rm/local-term-buffer-name)) 'display-buffer-reuse-window))
 
+(defun rm/get-term-window ()
+  "Gets the window for terminal buffer."
+  (get-buffer-window (rm/local-term-buffer-name) t))
 
 (defun rm/focus-on-terminal-window ()
   "Crashes if a terminal session does not exist."
-  (select-window
-    (get-buffer-window (rm/local-term-buffer-name) t)
-  )
-  (evil-insert 1)
-)
+  (select-window (rm/get-term-window))
+  (evil-insert 1))
 
 (provide 'init-term)
 ;;; init-term.el ends here

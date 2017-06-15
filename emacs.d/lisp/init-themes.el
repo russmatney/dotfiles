@@ -48,10 +48,13 @@
   (sml/setup)
 )
 
-;; (package 'color-identifiers-mode)
-(global-color-identifiers-mode)
-;; (package 'rainbow-delimiters)
-(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+(use-package color-identifiers-mode
+  :config
+  (global-color-identifiers-mode))
+
+(use-package rainbow-delimiters
+  :config
+  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
 (provide 'init-themes)
 ;;; init-themes.el ends here

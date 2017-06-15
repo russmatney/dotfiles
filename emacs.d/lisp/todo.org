@@ -16,7 +16,6 @@ It generates the init-todo.el sibling file via `M-x org-babel-tangle`
 * TODO helm persistant actions from helm mini/projectile
 * TODO other helm sources should have colors the way the buffer list does
 * TODO resize windows with simpler commands (arrow keys)
-* TODO page up and down term window from other buffers
 * TODO alchemist find function across umbrella apps (don't know how to find ...)
 * TODO kill buffers from helm mini
 * TODO kill ansi-terms without asking

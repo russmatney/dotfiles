@@ -1,30 +1,6 @@
-;;; emacs-pager.el --- incredibly simple mode for showing data paged by emacs-pager
-
-;; Copyright (C) 2014 Matt Briggs <http://mattbriggs.net>
-
-;; Author: Matt Briggs
-;; URL: http://github.com/mbriggs/emacs-pager
-;; Version: 0.0.1
-;; Keywords: pager shell
-
-;; This file is NOT part of GNU Emacs.
-;;
-;; This program is free software: you can redistribute it and/or modify
-;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation, either version 3 of the License, or
-;; (at your option) any later version.
-;;
-;; This program is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;; GNU General Public License for more details.
-;;
-;; See <http://www.gnu.org/licenses/> for a copy of the GNU General
-;; Public License.
-
+;;; init-pager.el --- mode for term-like paging
+;; derived from Matt Briggs here: https://github.com/mbriggs/emacs-pager
 ;;; Commentary:
-;; See readme (http://mattbriggs.net/emacs-pager/) for installation / usage
-
 ;;; Code:
 
 (defun rm/open-in-pager (file)
@@ -59,9 +35,10 @@ If performance is bad when loading data, reduce this number."
     (read-only-mode)
     (evil-define-key 'normal emacs-pager-mode-map
       (kbd "q") 'kill-this-buffer
-      (kbd "ESC") 'kill-this-buffer))
+      (kbd "ESC") 'kill-this-buffer
+      ;; (kbd "SPC") 'evil-scroll-page-down))
+      ))
 )
 
 (provide 'init-pager)
-
-;;; emacs-pager.el ends here
+;;; init-pager.el ends here
