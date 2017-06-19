@@ -16,6 +16,7 @@
     ("C-k" . helm-previous-line)
     ("C-?" . describe-key)
     ([escape] . helm-keyboard-quit)
+    ("C-z" . helm-select-action)
 
     :map helm-find-files-map
     ("C-l" . helm-execute-persistent-action)

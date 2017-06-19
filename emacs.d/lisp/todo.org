@@ -21,6 +21,7 @@ It generates the init-todo.el sibling file via `M-x org-babel-tangle`
 * TODO kill ansi-terms without asking
 * TODO show always-terminal across bottom in projectile project root
 * TODO toggle terminal full-screen, partial-screen, off-screen
+* TODO credo errors in-line
 * It should be easier to mix writing with CLI
 If I want an iex shell anywhere, C-i,C-e,C-x (or C-{iex}) should work.
 
