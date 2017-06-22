@@ -98,6 +98,7 @@ Otherwise, opens the terminal in this window."
   (evil-define-key 'normal term-raw-map
     (kbd "C-r") nil
     (kbd "C-c") 'term-interrupt-subjob
+    (kbd "C-r") 'wc/helm-shell-history
     (kbd "i") 'rm/evil-open-at-bottom
     (kbd ".") 'rm/repeat-last-shell-command
   )

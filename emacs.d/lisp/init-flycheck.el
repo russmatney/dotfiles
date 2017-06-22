@@ -15,6 +15,7 @@
 
   (flycheck-add-next-checker 'elixir-mix '(error . elixir-credo))
 
+
   (add-to-list 'display-buffer-alist
              `(,(rx bos "*Flycheck errors*" eos)
                (display-buffer-reuse-window
@@ -22,6 +23,8 @@
                (reusable-frames . visible)
                (side            . bottom)
                (window-height   . 0.2)))
+
+  (setq flycheck-display-errors-delay 0)
 )
 
 

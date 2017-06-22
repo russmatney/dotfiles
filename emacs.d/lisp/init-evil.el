@@ -37,6 +37,7 @@
          ("C-d" . evil-scroll-down)
          ("C-z C-k" . rm/term-scroll-page-up)
          ("C-z C-j" . rm/term-scroll-page-down)
+         ("C-SPC" . wc/switch-to-mru-buffer)
          ;; ("C-." . (lambda () (interactive) (evil-window-increase-width 20)))
          ;; ("C-," . (lambda () (interactive) (evil-window-decrease-width 20)))
 
@@ -69,9 +70,9 @@
          ("C-d" . evil-scroll-down)
          ("C-z C-k" . rm/term-scroll-page-up)
          ("C-z C-j" . rm/term-scroll-page-down)
+         ("C-SPC" . wc/switch-to-mru-buffer)
          ;; ("C-." . (lambda () (interactive) (evil-window-increase-width 20)))
          ;; ("C-," . (lambda () (interactive) (evil-window-decrease-width 20)))
-
         )
 
   :init
@@ -89,7 +90,7 @@
     (evil-leader/set-leader "<SPC>")
 
     (evil-leader/set-key
-      "<SPC>" 'evil-switch-to-windows-last-buffer ;; TODO this command doesn't toggle properly after helm-semantic-or-imenu
+      "<SPC>" 'wc/switch-to-mru-buffer
       "a" 'ace-window
       "b" 'helm-mini
       "c" 'evilnc-comment-or-uncomment-lines
@@ -106,6 +107,8 @@
       "p" 'helm-projectile
       "!" 'flycheck-list-errors
       "1" 'flycheck-list-errors
+      "]" 'flycheck-next-error
+      "[" 'flycheck-previous-error
       "qn" 'neotree-toggle
       "qq" 'evil-window-delete
       "qw" 'evil-window-delete
