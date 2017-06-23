@@ -26,6 +26,14 @@
   (interactive (ansi-term "/bin/zsh")))
 (ad-activate 'ansi-term)
 
+(defun rm/toggle-terminal-side-window ()
+  "Toggle the display of the terminal window.
+Should already exist before being toggled."
+  (interactive)
+  (if (rm/term-window-open-p) (rm/hide-terminal-window)
+    (rm/show-terminal-side-window))
+)
+
 (defun rm/switch-to-terminal-other-window ()
   "Switch to the project's root term instance.
 Creates it if it doesn't exist.
@@ -171,6 +179,7 @@ This is a convenience function for helm actions."
                  :action 'rm/term-checkout-branch)
       :buffer "*helm git branches*"))
 
+
 (defvar rm/git-chain-commands
   (helm-build-in-buffer-source "Git branch commands"
     :data '(
@@ -301,6 +310,13 @@ Crashes if the buffer name does not exist, or the buffer has no terminal process
   (if (get-buffer-window (rm/local-term-buffer-name)) t
     nil))
 
+(defun rm/hide-terminal-window ()
+  "Deletes the terminal window."
+  (delete-window (rm/get-term-window)))
+
+(defun rm/show-terminal-side-window ()
+  "Crashes if a terminal session does not exist."
+  (display-buffer-in-side-window (get-buffer (rm/local-term-buffer-name)) '((side . right))))
 
 (defun rm/show-terminal-this-window ()
   "Crashes if a terminal session does not exist."

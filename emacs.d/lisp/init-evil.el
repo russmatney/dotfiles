@@ -40,6 +40,7 @@
          ("C-SPC" . wc/switch-to-mru-buffer)
          ("n" . rm/evil-search-next-and-center)
          ("N" . rm/evil-search-previous-and-center)
+         ("M-s" . rm/helm-term-buffers)
          ;; ("C-." . (lambda () (interactive) (evil-window-increase-width 20)))
          ;; ("C-," . (lambda () (interactive) (evil-window-decrease-width 20)))
 

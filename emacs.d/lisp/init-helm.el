@@ -173,7 +173,14 @@
     (define-key helm-map (kbd "M-o") #'helm-buffer-switch-new-window)
 
   )
-)
+
+
+  (defun rm/helm-term-buffers ()
+  "List *term * buffers"
+  (interactive)
+  (helm :sources my-helm-source-term-buffers-list)
+    :buffer "*helm term buffers*")
+  )
 
 (use-package helm-ag
   :config
