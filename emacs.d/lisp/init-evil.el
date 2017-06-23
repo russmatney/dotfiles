@@ -38,6 +38,8 @@
          ("C-z C-k" . rm/term-scroll-page-up)
          ("C-z C-j" . rm/term-scroll-page-down)
          ("C-SPC" . wc/switch-to-mru-buffer)
+         ("n" . rm/evil-search-next-and-center)
+         ("N" . rm/evil-search-previous-and-center)
          ;; ("C-." . (lambda () (interactive) (evil-window-increase-width 20)))
          ;; ("C-," . (lambda () (interactive) (evil-window-decrease-width 20)))
 
@@ -168,6 +170,16 @@
 
   ;; (setq evil-move-cursor-back nil)
 )
+
+(defun rm/evil-search-next-and-center ()
+    (interactive)
+  (call-interactively 'evil-search-next)
+  (call-interactively 'evil-scroll-line-to-center))
+
+(defun rm/evil-search-previous-and-center ()
+    (interactive)
+  (call-interactively 'evil-search-previous)
+  (call-interactively 'evil-scroll-line-to-center))
 
 (use-package evil-surround
   :config

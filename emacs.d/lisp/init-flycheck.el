@@ -24,7 +24,7 @@
                (side            . bottom)
                (window-height   . 0.2)))
 
-  (setq flycheck-display-errors-delay 0)
+  (setq flycheck-display-errors-delay 0.0)
 )
 
 
