@@ -30,9 +30,11 @@
 Position is one of 'left 'right 'above 'below,
 and is eventually passed to shackle."
   (interactive)
-  (setq rm/term-alignment position)
-  (rm/hide-terminal-window)
-  (rm/display-terminal-buffer nil))
+  (if (and (eq position rm/term-alignment) (rm/term-window-open-p))
+      (rm/hide-terminal-window)
+    (setq rm/term-alignment position)
+    (rm/hide-terminal-window)
+    (rm/display-terminal-buffer nil)))
 
 (defun rm/term-on-right ()
   "Displays the terminal buffer on the right side of the frame."
@@ -281,7 +283,8 @@ Otherwise, the terminal is displayed in the dedicated side bar."
 
 (defun rm/hide-terminal-window ()
   "Deletes the terminal window."
-  (delete-window (rm/get-term-window)))
+  (if (rm/term-window-open-p)
+      (delete-window (rm/get-term-window))))
 
 (defun rm/get-term-window ()
   "Gets the window for terminal buffer."
