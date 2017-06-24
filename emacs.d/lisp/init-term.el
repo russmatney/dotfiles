@@ -31,7 +31,9 @@ Position is one of 'left 'right 'above 'below,
 and is eventually passed to shackle."
   (interactive)
   (if (and (eq position rm/term-alignment) (rm/term-window-open-p))
-      (rm/hide-terminal-window)
+      (progn
+        (rm/select-previous-window)
+        (rm/hide-terminal-window))
     (setq rm/term-alignment position)
     (rm/hide-terminal-window)
     (rm/display-terminal-buffer nil)))
