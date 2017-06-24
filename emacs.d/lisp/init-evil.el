@@ -27,10 +27,10 @@
          ("C-b" . eval-buffer)
          ("C-z" . nil)
          ("C-SPC" . wc/switch-to-mru-buffer)
-         ("C-n" . neotree-reveal-current-buffer)
-         ("C-t" . rm/toggle-terminal-side-window)
+         ;; ("C-n" . neotree-reveal-current-buffer)
+         ("C-n" . neotree-toggle) ;; TODO toggle on at project root
+         ("C-t" . rm/toggle-terminal-window-display)
          ("C-z C-s" . rm/switch-this-window-to-terminal-window)
-         ;; ("C-z C-z" . rm/switch-to-terminal-window)
          ("C-z C-z" . rm/toggle-terminal-window-focus)
          ("C-z C-o" . rm/display-terminal-buffer-keep-focus)
          ("C-z C-x" . rm/helm-shell-commands)
@@ -44,8 +44,6 @@
          ("n" . rm/evil-search-next-and-center)
          ("N" . rm/evil-search-previous-and-center)
          ("M-s" . rm/helm-term-buffers)
-         ;; ("C-." . (lambda () (interactive) (evil-window-increase-width 20)))
-         ;; ("C-," . (lambda () (interactive) (evil-window-decrease-width 20)))
 
          :map evil-visual-state-map
          ("g c" . evilnc-comment-or-uncomment-lines)
@@ -63,7 +61,7 @@
          ("C-y" . company-yasnippet)
          ("C-k" . nil)
          ("C-p" . nil)
-         ("C-n" . nil)
+         ("C-n" . neotree-toggle)
          ("C-r" . nil)
          ("C-t" . nil)
          ("C-e" . nil)
@@ -79,8 +77,6 @@
          ("C-z C-j" . rm/term-scroll-page-down)
          ("C-SPC" . wc/switch-to-mru-buffer)
          ("M-s" . rm/helm-term-buffers)
-         ;; ("C-." . (lambda () (interactive) (evil-window-increase-width 20)))
-         ;; ("C-," . (lambda () (interactive) (evil-window-decrease-width 20)))
         )
 
   :init

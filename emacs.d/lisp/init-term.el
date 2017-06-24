@@ -8,19 +8,6 @@
 ;;;     - https://github.com/wpcarro/pc_settings/commit/aab701e10e52afec790b069a5e14c961c6f32307
 ;;; Code:
 
-;;; git diff and glp are too tall
-;;; fzf -> use helm for c-r, c-t, c-y
-
-(defadvice term-sentinel (around my-advice-term-sentinel (proc msg))
-  "Kill the window after term exits."
-  (if (memq (process-status proc) '(signal exit))
-      (let ((buffer (process-buffer proc)))
-        ad-do-it
-        ;; (kill-window)
-        )
-    ad-do-it))
-(ad-activate 'term-sentinel)
-
 (defadvice ansi-term (before force-zsh)
   "Attempt to choose zsh everytime."
   (interactive (ansi-term "/bin/zsh")))
@@ -28,11 +15,12 @@
 
 
 (defun rm/toggle-terminal-window-focus ()
+  "Toggle the cursor between the project term buffer and the last window selected."
   (interactive)
   (if (rm/is-term-window-p) (rm/select-previous-window)
     (rm/select-terminal-window)))
 
-(defun rm/toggle-terminal-side-window ()
+(defun rm/toggle-terminal-window-display ()
   "Toggle the display of the terminal window.
 Should already exist before being toggled."
   (interactive)
@@ -66,7 +54,6 @@ Otherwise, opens the terminal in this window."
 (defun rm/term-exec-hook ()
   "Hook to run when term exec hook run."
   (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix)
-  ;; (term-send-raw-string (format "export LINES=%s\n" (truncate (* (/ 2.0 3) (window-height)))))
 )
 (add-hook 'term-exec-hook 'rm/term-exec-hook)
 
@@ -116,7 +103,6 @@ Otherwise, opens the terminal in this window."
     (kbd "C-e") nil
     (kbd "C-a") nil
     (kbd "C-c") 'term-interrupt-subjob
-  ;;   (kbd "ESC") 'term-pager-discard
   )
   (evil-define-key 'normal term-raw-map
     (kbd "C-r") nil
@@ -156,7 +142,7 @@ This is a convenience function for helm."
 
 
 
-(defun rm/run-shell-command (command &optional start-new-session send-focus-to-term use-this-window) ;; string
+(defun rm/run-shell-command (command &optional start-new-session send-focus-to-term use-this-window)
   "Run a passed string as a CLI COMMAND in the project's local terminal.
 
 The command is fired to either an existing terminal buffer
@@ -249,11 +235,12 @@ Otherwise, the terminal is displayed in the dedicated side bar."
   "Deletes the terminal window."
   (delete-window (rm/get-term-window)))
 
+(setq shackle-rules '(("\\`\\*term.*?\\*\\'" :regexp t :align right :ratio 0.3)))
+(shackle-mode)
+
 (defun rm/show-terminal-side-window ()
   "Crashes if a terminal session does not exist."
-  (display-buffer-in-side-window (get-buffer (rm/local-term-buffer-name)) '((side . right)))
-  ;; (set-window-dedicated-p (rm/get-term-window) t)
-  )
+  (display-buffer (get-buffer (rm/local-term-buffer-name))))
 
 (defun rm/show-terminal-this-window ()
   "Crashes if a terminal session does not exist."
