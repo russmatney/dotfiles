@@ -24,6 +24,35 @@
     ad-do-it))
 (ad-activate 'term-sentinel)
 
+(defun rm/set-term-position (position)
+  "Displays the terminal buffer in the POSITION passed.
+
+Position is one of 'left 'right 'above 'below,
+and is eventually passed to shackle."
+  (interactive)
+  (setq rm/term-alignment position)
+  (rm/hide-terminal-window)
+  (rm/display-terminal-buffer nil))
+
+(defun rm/term-on-right ()
+  "Displays the terminal buffer on the right side of the frame."
+  (interactive)
+  (rm/set-term-position 'right))
+
+(defun rm/term-on-bottom ()
+  "Displays the terminal buffer along the top of the frame."
+  (interactive)
+  (rm/set-term-position 'below))
+
+(defun rm/term-on-top ()
+  "Displays the terminal buffer along the top of the frame."
+  (interactive)
+  (rm/set-term-position 'above))
+
+(defun rm/term-on-left ()
+  "Displays the terminal buffer on the left side of the frame."
+  (interactive)
+  (rm/set-term-position 'left))
 
 (defun rm/toggle-terminal-window-focus ()
   "Toggle the cursor between the project term buffer and the last window selected."
@@ -264,6 +293,7 @@ Otherwise, the terminal is displayed in the dedicated side bar."
   (evil-insert 1))
 
 (defun rm/select-previous-window ()
+  "Move the point to the window that was active before the current."
   (interactive)
   (evil-window-mru)
 )

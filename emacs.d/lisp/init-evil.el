@@ -24,7 +24,7 @@
          ("M-." . nil)
          ("K" . nil)
          ("C-w" . nil)
-         ;; ("C-w C-d" . toggle-window-dedicated)
+         ("C-w C-d" . toggle-window-dedicated)
          ("C-y" . yas-insert-snippet)
          ("C-b" . eval-buffer)
          ("C-z" . nil)
@@ -43,6 +43,10 @@
          ("C-d" . evil-scroll-down)
          ("C-z C-k" . rm/term-scroll-page-up)
          ("C-z C-j" . rm/term-scroll-page-down)
+         ("<C-up>" . rm/term-on-top)
+         ("<C-left>" . rm/term-on-left)
+         ("<C-down>" . rm/term-on-bottom)
+         ("<C-right>" . rm/term-on-right)
          ("n" . rm/evil-search-next-and-center)
          ("N" . rm/evil-search-previous-and-center)
          ("M-s" . rm/helm-term-buffers)
@@ -145,10 +149,7 @@
       "_" 'split-window-below
       "\\" 'split-window-right
       "|" 'split-window-right
-      "y" 'yas-insert-snippet
-    )
-  )
-)
+      "y" 'yas-insert-snippet)))
 
     (evil-mode 1))
 
@@ -181,11 +182,13 @@
 )
 
 (defun rm/evil-search-next-and-center ()
+  "Hack to center the found search term in the window."
     (interactive)
   (call-interactively 'evil-search-next)
   (call-interactively 'evil-scroll-line-to-center))
 
 (defun rm/evil-search-previous-and-center ()
+  "Hack to center the found search term in the window."
     (interactive)
   (call-interactively 'evil-search-previous)
   (call-interactively 'evil-scroll-line-to-center))
