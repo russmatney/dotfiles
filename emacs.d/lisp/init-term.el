@@ -13,12 +13,23 @@
   (interactive (ansi-term "/bin/zsh")))
 (ad-activate 'ansi-term)
 
+(defadvice term-sentinel (around my-advice-term-sentinel (proc msg))
+  "Kill the window after term exits."
+  (if (memq (process-status proc) '(signal exit))
+      (let ((buffer (process-buffer proc)))
+        ad-do-it
+        ;; derp. TODO figure out how to kill the proper window
+        ;; (quit-window nil (rm/get-term-window)))
+        )
+    ad-do-it))
+(ad-activate 'term-sentinel)
+
 
 (defun rm/toggle-terminal-window-focus ()
   "Toggle the cursor between the project term buffer and the last window selected."
   (interactive)
   (if (rm/is-term-window-p) (rm/select-previous-window)
-    (rm/select-terminal-window)))
+    (rm/switch-to-terminal-window)))
 
 (defun rm/toggle-terminal-window-display ()
   "Toggle the display of the terminal window.
@@ -39,7 +50,7 @@ Creates it if it doesn't exist.
 If the window is already open, moves focus to that window.
 Otherwise, opens the terminal in this window."
   (interactive)
-  (rm/display-terminal-buffer t)
+  (rm/display-terminal-buffer nil)
   (rm/select-terminal-window))
 
 (defun rm/switch-this-window-to-terminal-window ()
@@ -48,7 +59,7 @@ Creates it if it doesn't exist.
 If the window is already open, moves focus to that window.
 Otherwise, opens the terminal in this window."
   (interactive)
-  (rm/display-terminal-buffer nil)
+  (rm/display-terminal-buffer t)
   (rm/select-terminal-window))
 
 (defun rm/term-exec-hook ()
@@ -162,13 +173,15 @@ otherwise a dedicated side-window will be used."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun rm/start-new-terminal ()
-  "Create a new terminal session."
+  "Create a new terminal session.
+Return the created buffer."
   (projectile-with-default-dir (projectile-project-root)
-    (set-buffer (make-term (replace-regexp-in-string "\*" "" (rm/new-term-buffer-name)) "/bin/zsh"))
-    (term-mode)
-    (term-char-mode)
-  )
-)
+    (let ((buffer
+           (make-term (replace-regexp-in-string "\*" "" (rm/new-term-buffer-name)) "/bin/zsh")))
+      (set-buffer buffer)
+      (term-mode)
+      (term-char-mode)
+      buffer)))
 
 (defun rm/send-command-to-terminal (command &optional in-new-term)
   "COMMAND is the command to send.
@@ -183,8 +196,7 @@ Sends the command to the buffer via term-send-raw-string."
   (if (or in-new-term (not (rm/term-session-exists-p))) (rm/start-new-terminal))
   ;; should get 'newest' term-buffer name or it should be returned from rm/start-new-terminal
   (set-buffer (rm/local-term-buffer-name))
-  (term-send-raw-string command)
-)
+  (term-send-raw-string command))
 
 (defun rm/display-terminal-buffer (use-this-window)
   "USE-THIS-WINDOW is a boolean flag.
@@ -193,9 +205,12 @@ If the current window is the terminal window, do nothing.
 If use-this-window is t and there is not an open terminal window,
 the current window displays the terminal window.
 Otherwise, the terminal is displayed in the dedicated side bar."
-  (cond ((rm/is-term-window-p) ())
-        (use-this-window (unless (rm/term-window-open-p) (rm/show-terminal-this-window)))
-        (t (rm/show-terminal-side-window))))
+  (let ((buffer
+         (if (not (rm/term-session-exists-p)) (rm/start-new-terminal)
+           (rm/get-term-buffer))))
+    (cond (use-this-window (display-buffer-same-window buffer nil))
+          (t (display-buffer buffer)))))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Term Buffer Helpers
@@ -234,17 +249,6 @@ Otherwise, the terminal is displayed in the dedicated side bar."
 (defun rm/hide-terminal-window ()
   "Deletes the terminal window."
   (delete-window (rm/get-term-window)))
-
-(setq shackle-rules '(("\\`\\*term.*?\\*\\'" :regexp t :align right :ratio 0.3)))
-(shackle-mode)
-
-(defun rm/show-terminal-side-window ()
-  "Crashes if a terminal session does not exist."
-  (display-buffer (get-buffer (rm/local-term-buffer-name))))
-
-(defun rm/show-terminal-this-window ()
-  "Crashes if a terminal session does not exist."
-  (display-buffer-same-window (get-buffer (rm/local-term-buffer-name)) nil))
 
 (defun rm/get-term-window ()
   "Gets the window for terminal buffer."

@@ -49,6 +49,11 @@
 
 (require 'window-numbering)
 
+(use-package shackle
+  :config
+  (setq shackle-rules '(("\\`\\*term.*?\\*\\'" :regexp t :align right :ratio 0.3)))
+  (shackle-mode))
+
 
 (provide 'init-window-management)
 ;;; init-window-management.el ends here

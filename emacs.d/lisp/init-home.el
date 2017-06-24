@@ -7,7 +7,7 @@
 (find-file "~/Dropbox/todo/todo.org")
 (split-window-right)
 (find-file "~/dotfiles/emacs.d/lisp/todo.org")
-(rm/run-shell-command "ls" nil t)
+;; (rm/run-shell-command "ls" nil t)
 
 (load-theme 'atom-one-dark)
 ;; (load-theme 'github)
