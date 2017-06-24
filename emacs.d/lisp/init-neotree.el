@@ -10,8 +10,8 @@
   (progn
 
     (setq-default neo-show-hidden-files t)
-    (setq-default neo-window-fixed-size nil)
-    (setq-default neo-window-width 40)
+    (setq neo-window-width 40)
+    (setq-default neo-window-fixed-size t)
     (setq neo-force-change-root t)
 
     (defun neotree-find-current-file ()

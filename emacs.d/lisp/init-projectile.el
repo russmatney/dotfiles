@@ -6,9 +6,7 @@
   :config
   (progn
     (setq projectile-switch-project-action 'projectile-find-file)
-    (projectile-mode)
-  )
-)
+    (projectile-mode)))
 
 
 (provide 'init-projectile)

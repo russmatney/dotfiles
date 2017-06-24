@@ -56,5 +56,7 @@
   :config
   (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
+(load-theme 'doom-tomorrow-night)
+
 (provide 'init-themes)
 ;;; init-themes.el ends here

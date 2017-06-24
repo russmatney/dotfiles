@@ -26,18 +26,21 @@
          ("C-y" . yas-insert-snippet)
          ("C-b" . eval-buffer)
          ("C-z" . nil)
-         ("C-z C-z" . rm/switch-to-terminal-window)
-         ("C-z C-o" . rm/switch-to-terminal-other-window)
+         ("C-SPC" . wc/switch-to-mru-buffer)
+         ("C-n" . neotree-reveal-current-buffer)
+         ("C-t" . rm/toggle-terminal-side-window)
+         ("C-z C-s" . rm/switch-this-window-to-terminal-window)
+         ;; ("C-z C-z" . rm/switch-to-terminal-window)
+         ("C-z C-z" . rm/toggle-terminal-window-focus)
+         ("C-z C-o" . rm/display-terminal-buffer-keep-focus)
          ("C-z C-x" . rm/helm-shell-commands)
          ("C-z C-." . rm/repeat-last-shell-command)
          ("C-q C-q" . evil-window-delete)
          ("C-q C-n" . neotree-toggle)
-         ("C-n" . neotree-toggle)
          ("C-u" . evil-scroll-up)
          ("C-d" . evil-scroll-down)
          ("C-z C-k" . rm/term-scroll-page-up)
          ("C-z C-j" . rm/term-scroll-page-down)
-         ("C-SPC" . wc/switch-to-mru-buffer)
          ("n" . rm/evil-search-next-and-center)
          ("N" . rm/evil-search-previous-and-center)
          ("M-s" . rm/helm-term-buffers)
@@ -71,9 +74,11 @@
          ("C-n" . neotree-toggle)
          ("C-u" . evil-scroll-up)
          ("C-d" . evil-scroll-down)
+         ("C-z C-z" . rm/toggle-terminal-window-focus)
          ("C-z C-k" . rm/term-scroll-page-up)
          ("C-z C-j" . rm/term-scroll-page-down)
          ("C-SPC" . wc/switch-to-mru-buffer)
+         ("M-s" . rm/helm-term-buffers)
          ;; ("C-." . (lambda () (interactive) (evil-window-increase-width 20)))
          ;; ("C-," . (lambda () (interactive) (evil-window-decrease-width 20)))
         )
@@ -100,6 +105,7 @@
       "d" 'vc-diff
       "e" 'helm-M-x
       "f" 'helm-find-files
+      "h" 'evil-window-delete
       "i" 'popup-imenu
       "I" 'helm-imenu-anywhere
       "k" 'kill-buffer

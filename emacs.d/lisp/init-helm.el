@@ -33,6 +33,12 @@
 
   :config
   (progn
+    ;; (add-to-list 'display-buffer-alist
+    ;;              `(,(rx bos "*helm" (* not-newline) "*" eos)
+    ;;                (display-buffer-in-side-window)
+    ;;                (inhibit-same-window . t)
+    ;;                (window-height . 0.4)))
+
     (setq helm-buffers-fuzzy-matching t
           helm-recentf-fuzzy-match t
           helm-semantic-fuzzy-match t
@@ -172,8 +178,90 @@
 
     (define-key helm-map (kbd "M-o") #'helm-buffer-switch-new-window)
 
-  )
 
+    (defun wc/git-branches ()
+      (setq branches (shell-command-to-string "git branch -a | tr -d '* ' | sed 's/^remotes\\/origin\\///' | sort | uniq"))
+      (split-string branches "\n"))
+
+    (defun wc/shell-history ()
+      (setq history (shell-command-to-string "tac ~/.zsh_history | sed 's/^.*;//'"))
+      (split-string history "\n"))
+
+
+    (defun wc/helm-shell-history ()
+      "Reverse-I search using Helm."
+      (interactive)
+      (helm :sources (helm-build-in-buffer-source "helm-shell-history"
+                       :data (wc/shell-history)
+                       :action 'rm/run-shell-command)
+            :buffer "*helm shell history*"))
+
+
+    (defvar rm/common-mix-commands
+      (helm-build-in-buffer-source "Common mix commands"
+        :data '(
+                "MIX_ENV=test iex -S mix"
+                "iex -S mix"
+                "mix test"
+                "mix docs.dash"
+                "mix deps.get"
+                "mix compile --force"
+                "mix credo --strict"
+                "mix dialyzer"
+                )
+        :action 'rm/run-shell-command))
+
+
+    (defvar rm/common-cli-commands
+      (helm-build-in-buffer-source "Common cli commands"
+        :data '(
+                "git commit --amend --no-edit"
+                "gst"
+                "git diff --staged"
+                )
+        :action 'rm/run-shell-command))
+
+    (defun rm/term-checkout-branch (branch)
+      "Fires `gco` BRANCH in a local term."
+      (rm/run-shell-command (format "gco %s" branch) nil t))
+
+    (defun rm/helm-gco-branches (str)
+      "Checkout a git branch with helm.
+STR is ignored.
+This is a convenience function for helm actions."
+      (interactive)
+      (helm :sources (helm-build-in-buffer-source "git branches"
+                       :data (wc/git-branches)
+                       :action 'rm/term-checkout-branch)
+            :buffer "*helm git branches*"))
+
+
+    (defvar rm/git-chain-commands
+      (helm-build-in-buffer-source "Git branch commands"
+        :data '(
+                "gco [branch-to-checkout]"
+                )
+        :action 'rm/helm-gco-branches))
+
+    (defvar rm/custom-command
+      (helm-build-in-buffer-source "Custom"
+        :data '(
+                "ENTER via prompt"
+                )
+        :action 'rm/run-shell-command-from-minibuffer-action))
+
+    (defun rm/helm-shell-commands ()
+      "Helm interface to fire shell commands in a local terminal session."
+      (interactive)
+      (helm :sources '(
+                       rm/custom-command
+                       rm/git-chain-commands
+                       rm/common-cli-commands
+                       rm/common-mix-commands
+                       ;; wc/discover-shell-commands
+                       )
+            :buffer "*helm mix commands*"))
+  )
 
   (defun rm/helm-term-buffers ()
   "List *term * buffers"
