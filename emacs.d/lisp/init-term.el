@@ -88,6 +88,7 @@ Otherwise, opens the terminal in this window."
 
 
 (defun rm/term-mode-hook ()
+  "Config term mode bindings."
   (goto-address-mode)
   (linum-mode -1)
 
@@ -209,7 +210,8 @@ Otherwise, the terminal is displayed in the dedicated side bar."
          (if (not (rm/term-session-exists-p)) (rm/start-new-terminal)
            (rm/get-term-buffer))))
     (cond (use-this-window (display-buffer-same-window buffer nil))
-          (t (display-buffer buffer)))))
+          (t (display-buffer buffer)))
+    (set-window-dedicated-p (get-buffer-window buffer) t)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

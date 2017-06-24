@@ -5,13 +5,14 @@
 
 (defun rm/open-in-pager (file)
   "Opens the passed FILE in the current buffer."
+  (set-window-dedicated-p (get-buffer-window (current-buffer)) nil)
   (find-file file)
   (emacs-pager-mode)
 )
 
 (defvar emacs-pager-mode-map
   (let ((map (make-sparse-keymap)))
-    (define-key map (kbd "q") 'kill-this-buffer)
+    (define-key map (kbd "q") 'kill-pager-buffer-and-rededicate-term-window)
 
     map)
   "Keymap for Emacs pager mode.")
@@ -34,11 +35,17 @@ If performance is bad when loading data, reduce this number."
     (set-buffer-modified-p nil)
     (read-only-mode)
     (evil-define-key 'normal emacs-pager-mode-map
-      (kbd "q") 'kill-this-buffer
-      (kbd "ESC") 'kill-this-buffer
+      (kbd "q") 'kill-pager-buffer-and-rededicate-term-window
+      (kbd "ESC") 'kill-pager-buffer-and-rededicate-term-window
       ;; (kbd "SPC") 'evil-scroll-page-down))
       ))
 )
+
+(defun kill-pager-buffer-and-rededicate-term-window ()
+  "Kill the paging buffer and rededicate the term window."
+  (interactive)
+  (kill-this-buffer)
+  (set-window-dedicated-p (rm/get-term-window) t))
 
 (provide 'init-pager)
 ;;; init-pager.el ends here
