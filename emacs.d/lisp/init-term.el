@@ -184,6 +184,7 @@ Return the created buffer."
       (term-char-mode)
       buffer)))
 
+
 (defun rm/send-command-to-terminal (command &optional in-new-term)
   "COMMAND is the command to send.
 IN-NEW-TERM is whether or not to create a new term buffer to run the command.
@@ -198,6 +199,7 @@ Sends the command to the buffer via term-send-raw-string."
   ;; should get 'newest' term-buffer name or it should be returned from rm/start-new-terminal
   (set-buffer (rm/local-term-buffer-name))
   (term-send-raw-string command))
+
 
 (defun rm/display-terminal-buffer (use-this-window)
   "USE-THIS-WINDOW is a boolean flag.

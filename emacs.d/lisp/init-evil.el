@@ -24,7 +24,7 @@
          ("M-." . nil)
          ("K" . nil)
          ("C-w" . nil)
-         ("C-w C-d" . toggle-window-dedicated)
+         ;; ("C-w C-d" . toggle-window-dedicated)
          ("C-y" . yas-insert-snippet)
          ("C-b" . eval-buffer)
          ("C-z" . nil)
@@ -46,6 +46,8 @@
          ("n" . rm/evil-search-next-and-center)
          ("N" . rm/evil-search-previous-and-center)
          ("M-s" . rm/helm-term-buffers)
+         ("=" . balance-windows-area)
+
 
          :map evil-visual-state-map
          ("g c" . evilnc-comment-or-uncomment-lines)

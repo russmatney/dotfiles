@@ -8,14 +8,19 @@
 (global-set-key (kbd "C-k") 'windmove-up)
 (global-set-key (kbd "C-j") 'windmove-down)
 
-(defadvice split-window-below (after restore-balanace-below activate)
-  (balance-windows))
+(global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
+(global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "S-C-<down>") 'shrink-window)
+(global-set-key (kbd "S-C-<up>") 'enlarge-window)
 
-(defadvice split-window-right (after restore-balance-right activate)
-  (balance-windows))
+;; (defadvice split-window-below (after restore-balanace-below activate)
+;;   (balance-windows))
 
-(defadvice delete-window (after restore-balance activate)
-  (balance-windows))
+;; (defadvice split-window-right (after restore-balance-right activate)
+;;   (balance-windows))
+
+;; (defadvice delete-window (after restore-balance activate)
+;;   (balance-windows))
 
 (use-package ace-window
   :config
@@ -24,8 +29,6 @@
 
 (use-package popwin
   :config
-
-  (add-to-list 'popwin:special-display-config '("^\\*helm.*\\*$" :regexp t))
 
   (defun helm-popwin-help-mode-off ()
     "Turn `popwin-mode' off for *Help* buffers."
@@ -43,6 +46,7 @@
   (add-hook 'helm-after-initialize-hook #'helm-popwin-help-mode-off)
   (add-hook 'helm-cleanup-hook #'helm-popwin-help-mode-on)
 
+  (add-to-list 'popwin:special-display-config '("^\\*helm.*\\*$" :regexp t))
   (push '("^\\*helm.*\\*$" :regexp t :height 30) popwin:special-display-config)
 
 )
@@ -51,44 +55,8 @@
 
 (use-package shackle
   :config
-  (setq shackle-rules '(("\\`\\*term.*?\\*\\'"
-                         :regexp t :align right
-                         :size 70)))
+  (setq shackle-rules '(("\\`\\*term.*?\\*\\'" :regexp t :align right :size 0.3)))
   (shackle-mode))
-
-(defun rm/window-config-change-hook ()
-  "Run after window configuration change."
-  (rm/handle-term-window-dedicate))
-(add-hook 'window-configuration-change-hook 'rm/window-config-change-hook)
-
-
-(defun rm/handle-term-window-dedicate ()
-  "If the term window is the only one, undedicate it.
-Otherwise, dedicate it."
-  (set-window-dedicated-p (rm/get-term-window) (rm/term-only-window-p)))
-
-(defun rm/term-only-window-p ()
-  "If the term window is the only one, undedicate it.
-Otherwise, dedicate it."
-  (and (rm/term-window-open-p)
-           (eq 1 (length (rm/filter-non-file-windows (window-list))))))
-
-(defun rm/filter-non-file-windows (windows)
-  "Filter the passed WINDOWS that match the buffer prefixes."
-  (remove t
-          (mapcar
-           #'(lambda (window)
-              (let ((buffer (window-buffer window)))
-                (if (or
-                     ;; NOTE THE GODDAMN SPACE IN " *NeoTree*"
-                     (string-prefix-p " *NeoTree*" (buffer-name buffer))
-                     (string-prefix-p "*NeoTree*" (buffer-name buffer))
-                     )
-                    t
-                  window)
-                    ))
-           windows)))
-
 
 
 (provide 'init-window-management)

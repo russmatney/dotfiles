@@ -33,12 +33,6 @@
 
   :config
   (progn
-    ;; (add-to-list 'display-buffer-alist
-    ;;              `(,(rx bos "*helm" (* not-newline) "*" eos)
-    ;;                (display-buffer-in-side-window)
-    ;;                (inhibit-same-window . t)
-    ;;                (window-height . 0.4)))
-
     (setq helm-buffers-fuzzy-matching t
           helm-recentf-fuzzy-match t
           helm-semantic-fuzzy-match t
@@ -154,29 +148,29 @@
       )
     )
 
-    ;; TODO: doesn't work for un'opened' files, only existing buffers
-    (defun helm-buffer-switch-to-new-window (_candidate)
-      "Display buffers in new windows."
-      ;; Select the bottom right window
-      (require 'winner)
-      (select-window (car (last (winner-sorted-window-list))))
-      ;; Display buffers in new windows
-      (dolist (buf (helm-marked-candidates))
-        (select-window (split-window-right))
-        (switch-to-buffer buf))
-      ;; Adjust size of windows
-      (balance-windows))
+    ;; ;; TODO: doesn't work for un'opened' files, only existing buffers
+    ;; (defun helm-buffer-switch-to-new-window (_candidate)
+    ;;   "Display buffers in new windows."
+    ;;   ;; Select the bottom right window
+    ;;   (require 'winner)
+    ;;   (select-window (car (last (winner-sorted-window-list))))
+    ;;   ;; Display buffers in new windows
+    ;;   (dolist (buf (helm-marked-candidates))
+    ;;     (select-window (split-window-right))
+    ;;     (switch-to-buffer buf))
+    ;;   ;; Adjust size of windows
+    ;;   (balance-windows))
 
-    (add-to-list 'helm-type-buffer-actions
-                '("Display buffer(s) in new window(s) `M-o'" .
-                  helm-buffer-switch-new-window) 'append)
+    ;; (add-to-list 'helm-type-buffer-actions
+    ;;             '("Display buffer(s) in new window(s) `M-o'" .
+    ;;               helm-buffer-switch-new-window) 'append)
 
-    (defun helm-buffer-switch-new-window ()
-      (interactive)
-      (with-helm-alive-p
-        (helm-quit-and-execute-action 'helm-buffer-switch-to-new-window)))
+    ;; (defun helm-buffer-switch-new-window ()
+    ;;   (interactive)
+    ;;   (with-helm-alive-p
+    ;;     (helm-quit-and-execute-action 'helm-buffer-switch-to-new-window)))
 
-    (define-key helm-map (kbd "M-o") #'helm-buffer-switch-new-window)
+    ;; (define-key helm-map (kbd "M-o") #'helm-buffer-switch-new-window)
 
 
     (defun wc/git-branches ()
