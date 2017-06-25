@@ -88,5 +88,11 @@ buffer in current window."
      "%s is up for grabs.")
    (current-buffer)))
 
+
+(use-package multi-line
+  :config
+  (global-set-key (kbd "C-c d") 'multi-line))
+
+
 (provide 'init-extra)
 ;;; init-extra.el ends here

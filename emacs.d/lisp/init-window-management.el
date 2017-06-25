@@ -13,6 +13,15 @@
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
 
+;; (defadvice split-window-below (after restore-balanace-below activate)
+;;   (balance-windows-area))
+
+;; (defadvice split-window-right (after restore-balance-right activate)
+;;   (balance-windows-area))
+
+;; (defadvice delete-window (after restore-balance activate)
+;;   (balance-windows-area))
+
 (use-package ace-window
   :config
   (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))

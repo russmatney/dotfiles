@@ -29,7 +29,7 @@
          ("C-b" . eval-buffer)
          ("C-SPC" . wc/switch-to-mru-buffer)
          ;; ("C-n" . neotree-reveal-current-buffer)
-         ("C-n" . neotree-toggle) ;; TODO toggle on at project root
+         ("C-n" . rm/neotree-toggle) ;; TODO toggle on at project root
          ("C-q C-q" . evil-window-delete)
          ("C-q C-n" . neotree-toggle)
          ("C-u" . evil-scroll-up)
@@ -81,7 +81,7 @@
          ("C-w C-d" . toggle-window-dedicated)
          ("C-q C-q" . evil-window-delete)
          ("C-q C-n" . neotree-toggle)
-         ("C-n" . neotree-toggle)
+         ("C-n" . rm/neotree-toggle)
          ("C-u" . evil-scroll-up)
          ("C-d" . evil-scroll-down)
 
@@ -121,7 +121,6 @@
       "k" 'kill-buffer
       "l" 'alchemist-mix-rerun-last-test
       "n" 'neotree-find-current-file
-      "N" 'neotree-reveal-current-buffer
       "o" 'projectile-multi-occur
       "p" 'helm-projectile
       "!" 'flycheck-list-errors

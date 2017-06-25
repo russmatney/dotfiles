@@ -14,14 +14,17 @@ It generates the init-todo.el sibling file via `M-x org-babel-tangle`
 #+end_src
 * TODO helm persistent actions from helm mini/projectile
 * TODO alchemist find function across umbrella apps (don't know how to find ...)
-* TODO kill ansi-terms without asking
 * TODO other helm sources should have colors/be fancy the way helm-mini is
 * TODO credo + dialyzer errors in-line
-* TODO neotree toggle at project root
+* TODO kill ansi-terms without asking
 * TODO EMUX highlight file paths in term output, enter to visit
-* TODO EMUX term position move reselect window if selected before move
+* TODO EMUX reselect window after move if was selected before move
 * TODO EMUX helm recommendations/extensions (shell commands, existing buffers)
+* TODO EMUX cycle terminal buffers
+* TODO EMUX remove session language
+* TODO EMUX independent buffer positions
 * TODO EMUX Detail dependencies, install recommendations, usage details
+  create git repo, write readme, fork melpa, write + test recipe, submit pr
 * WC mru buffer switching
 #+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/lisp/init-todo.el
 (defun wc/switch-to-mru-buffer ()

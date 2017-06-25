@@ -28,20 +28,13 @@
                   (neotree-find file-name))))
       (message "Could not find git project root.")))
 
-    (defun neotree-reveal-current-buffer ()
-      "Reveal current buffer in Neotree."
+    (defun rm/neotree-toggle ()
+      "Reveal current buffer in Neotree, or close Neotree if it's already open."
       (interactive)
-      (let ((project-dir (projectile-project-root))
-            (file-name (buffer-file-name)))
-
-        (neotree-show)
-        (if project-dir
-            (if (neo-global--window-exists-p)
-                (progn
-                  (neotree-dir project-dir)
-                  (neotree-find file-name)
-                  (evil-window-mru)))
-      (message "Could not find git project root."))))
+      (if (neo-global--window-exists-p)
+          (neotree-hide)
+        (neotree-find-current-file)
+        (neotree-enter)))
 
 
     ;; theme
