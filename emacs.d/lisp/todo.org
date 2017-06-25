@@ -18,7 +18,6 @@ It generates the init-todo.el sibling file via `M-x org-babel-tangle`
 * TODO credo + dialyzer errors in-line
 * TODO kill ansi-terms without asking
 * TODO EMUX highlight file paths in term output, enter to visit
-* TODO EMUX reselect window after move if was selected before move
 * TODO EMUX helm recommendations/extensions (shell commands, existing buffers)
 * TODO EMUX cycle terminal buffers
 * TODO EMUX remove session language

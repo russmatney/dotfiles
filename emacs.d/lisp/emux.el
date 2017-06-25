@@ -43,7 +43,7 @@
 (defun emux-toggle-terminal-window-focus ()
   "Toggle the cursor position between the project term buffer and the last window selected."
   (interactive)
-  (if (emux-is-term-window-p) (emux-select-previous-window)
+  (if (emux-term-window-selected-p) (emux-select-previous-window)
     (emux-switch-to-terminal-window)))
 
 (defun emux-switch-to-terminal-window ()
@@ -81,15 +81,19 @@ Otherwise, display the terminal and then select it."
   "Displays the terminal buffer in the POSITION passed.
 
 Position is one of 'left 'right 'above 'below,
-and is eventually passed to shackle."
+and is eventually passed to shackle.
+
+Handles reselecting the terminal buffer if it was selected before the move."
   (interactive)
   (if (and (eq position emux-term-alignment) (emux-term-window-open-p))
       (progn
         (emux-select-previous-window)
         (emux-hide-terminal-window))
-    (setq emux-term-alignment position)
-    (emux-hide-terminal-window)
-    (emux-display-terminal-buffer nil)))
+    (let ((reselect (emux-term-window-selected-p)))
+      (setq emux-term-alignment position)
+      (emux-hide-terminal-window)
+      (emux-display-terminal-buffer nil)
+      (if reselect (emux-select-terminal-window)))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -225,7 +229,7 @@ If one exists, `<n>` is appended."
 ;; Term Window Helpers
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defun emux-is-term-window-p ()
+(defun emux-term-window-selected-p ()
   "Return non-nil if the current window is a *term window."
   (string-prefix-p "*term " (buffer-name (current-buffer))))
 
