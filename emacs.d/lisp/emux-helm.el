@@ -17,7 +17,7 @@
 (defun emux-helm-term-buffers ()
   "List *term * buffers."
   (interactive)
-  (helm :sources (emux-helm-source-term-buffers-list)
+  (helm :sources '(emux-helm-source-term-buffers-list)
   :buffer "*helm term buffers*"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -21,7 +21,11 @@ It generates the init-todo.el sibling file via `M-x org-babel-tangle`
 * TODO EMUX remove session language
 * TODO EMUX cycle terminal buffers
 * TODO EMUX independent buffer positions
+* TODO EMUX handle multiple buffers (only one open?)
+  bug when you 'toggle' one closed while another is open (kills other window)
 * TODO EMUX handle shackle usage in emux package
+* TODO EMUX select buffer from helm should open in term window (not current)
+* TODO EMUX select buffer from helm when in term buffer should replace current window (and update position)
 * TODO EMUX refactor to autoload functions properly/follow deps as needed
 * TODO EMUX readme write up:Detail dependencies, install recommendations, usage details
 * TODO EMUX create git repo, write readme, fork melpa, write + test recipe, submit pr
