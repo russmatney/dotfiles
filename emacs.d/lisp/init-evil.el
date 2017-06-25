@@ -15,7 +15,7 @@
          (")" . forward-sexp)
          ("K" . nil)
          ("C-z" . nil)
-         ("C-z C-x" . rm/helm-shell-commands)
+         ("C-z C-x" . emux-helm-shell-commands)
 
          :map evil-normal-state-map
          ("S-<tab>" . org-cycle)
@@ -40,7 +40,7 @@
          ("C-z C-s" . emux-switch-this-window-to-terminal-window)
          ("C-z C-z" . emux-toggle-terminal-window-focus)
          ("C-z C-o" . emux-display-terminal-buffer-keep-focus)
-         ("C-z C-x" . rm/helm-shell-commands)
+         ("C-z C-x" . emux-helm-shell-commands)
          ("C-z C-." . emux-repeat-last-shell-command)
          ("C-z C-k" . emux-term-scroll-page-up)
          ("C-z C-j" . emux-term-scroll-page-down)
@@ -51,7 +51,7 @@
 
          ("n" . rm/evil-search-next-and-center)
          ("N" . rm/evil-search-previous-and-center)
-         ("M-s" . rm/helm-term-buffers)
+         ("M-s" . emux-helm-term-buffers)
          ("=" . balance-windows-area)
 
 
@@ -90,7 +90,7 @@
          ("C-z C-j" . emux-term-scroll-page-down)
 
          ("C-SPC" . wc/switch-to-mru-buffer)
-         ("M-s" . rm/helm-term-buffers)
+         ("M-s" . emux-helm-term-buffers)
         )
 
   :init

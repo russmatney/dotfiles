@@ -16,6 +16,7 @@
     window-numbering
     emux
     emux-pager
+    emux-helm
 
     ;; configs
     init-org

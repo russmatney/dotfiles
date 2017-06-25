@@ -17,13 +17,14 @@ It generates the init-todo.el sibling file via `M-x org-babel-tangle`
 * TODO other helm sources should have colors/be fancy the way helm-mini is
 * TODO credo + dialyzer errors in-line
 * TODO kill ansi-terms without asking
-* TODO EMUX highlight file paths in term output, enter to visit
-* TODO EMUX helm recommendations/extensions (shell commands, existing buffers)
-* TODO EMUX cycle terminal buffers
+* WISH EMUX highlight file paths in term output, enter to visit
 * TODO EMUX remove session language
+* TODO EMUX cycle terminal buffers
 * TODO EMUX independent buffer positions
-* TODO EMUX Detail dependencies, install recommendations, usage details
-  create git repo, write readme, fork melpa, write + test recipe, submit pr
+* TODO EMUX handle shackle usage in emux package
+* TODO EMUX refactor to autoload functions properly/follow deps as needed
+* TODO EMUX readme write up:Detail dependencies, install recommendations, usage details
+* TODO EMUX create git repo, write readme, fork melpa, write + test recipe, submit pr
 * WC mru buffer switching
 #+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/lisp/init-todo.el
 (defun wc/switch-to-mru-buffer ()

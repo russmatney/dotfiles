@@ -54,14 +54,12 @@
   (evil-define-key 'normal term-raw-map
     (kbd "C-r") nil
     (kbd "C-c") 'term-interrupt-subjob
-    (kbd "C-r") 'wc/helm-shell-history
+    (kbd "C-r") 'emux-helm-shell-history
     (kbd "i") 'rm/evil-open-at-bottom
     (kbd ".") 'emux-repeat-last-shell-command
   )
 
-  (define-key term-raw-map (kbd "C-r") 'wc/helm-shell-history)
-  (define-key term-raw-map (kbd "M-j") 'wc/helm-autojump)
-  (define-key term-raw-map (kbd "M-g") 'wc/helm-git-branches)
+  (define-key term-raw-map (kbd "C-r") 'emux-helm-shell-history)
 )
 (add-hook 'term-mode-hook 'rm/term-mode-hook)
 

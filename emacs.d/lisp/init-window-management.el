@@ -38,8 +38,8 @@
         '(
           ("\\`\\*term.*?\\*\\'" :regexp t :align emux-get-term-alignment :size 0.3)
           ("\\`\\*helm.*?\\*\\'" :regexp t :align t :size 0.3)
+          ("\\`\\*emux helm.*?\\*\\'" :regexp t :align t :size 0.3)
           ))
-
 
   (shackle-mode))
 

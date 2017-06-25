@@ -15,7 +15,9 @@ alias 'gpb'="git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git bran
 alias 'gprom'="git pull --rebase origin master"
 alias 'gcv'="git commit --verbose"
 alias 'gcan'="git commit --amend --no-edit"
+alias 'gdsta'="git diff --staged"
 alias 'gds'="git diff --staged"
+alias 'gad'="git add ."
 
 source ~/dotfiles/zsh/tmux-aliases.zsh
 source ~/dotfiles/zsh/discovery.zsh
