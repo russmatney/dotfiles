@@ -230,6 +230,13 @@ This is a convenience function for helm actions."
                        ;; wc/discover-shell-commands
                        )
             :buffer "*helm mix commands*"))
+
+    (defun emux-run-shell-command-from-minibuffer-action (command)
+      "Open the mini-buffer for command input.
+COMMAND is ignored.
+This is a convenience function for helm."
+      (interactive)
+      (emux-run-shell-command-from-minibuffer))
   )
 
   (defun rm/helm-term-buffers ()

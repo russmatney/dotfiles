@@ -14,6 +14,8 @@
   '(
     ;; local packages
     window-numbering
+    emux
+    emux-pager
 
     ;; configs
     init-org
