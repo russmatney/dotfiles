@@ -24,19 +24,21 @@
 
   (setq helm-display-function 'pop-to-buffer) ; make helm play nice
 
+  ;; TODO append to shackle rules, add to emux
   (setq shackle-rules
         '(
-          ("\\`\\*term.*?\\*\\'" :regexp t :align rm/get-term-alignment :size 0.3)
+          ("\\`\\*term.*?\\*\\'" :regexp t :align emux-get-term-alignment :size 0.3)
           ("\\`\\*helm.*?\\*\\'" :regexp t :align t :size 0.3)
           ))
 
 
   (shackle-mode))
 
-(setq-default rm/term-alignment 'right)
+;; TODO alignment per project?
+(setq-default emux-term-alignment 'right)
 
-(defun rm/get-term-alignment ()
-  rm/term-alignment)
+(defun emux-get-term-alignment ()
+  emux-term-alignment)
 
 (provide 'init-window-management)
 ;;; init-window-management.el ends here

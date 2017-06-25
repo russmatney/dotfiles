@@ -162,7 +162,7 @@
       (interactive)
       (helm :sources (helm-build-in-buffer-source "helm-shell-history"
                        :data (wc/shell-history)
-                       :action 'rm/run-shell-command)
+                       :action 'emux-run-shell-command)
             :buffer "*helm shell history*"))
 
 
@@ -178,7 +178,7 @@
                 "mix credo --strict"
                 "mix dialyzer"
                 )
-        :action 'rm/run-shell-command))
+        :action 'emux-run-shell-command))
 
 
     (defvar rm/common-cli-commands
@@ -188,11 +188,11 @@
                 "gst"
                 "git diff --staged"
                 )
-        :action 'rm/run-shell-command))
+        :action 'emux-run-shell-command))
 
     (defun rm/term-checkout-branch (branch)
       "Fires `gco` BRANCH in a local term."
-      (rm/run-shell-command (format "gco %s" branch) nil t))
+      (emux-run-shell-command (format "gco %s" branch) nil t))
 
     (defun rm/helm-gco-branches (str)
       "Checkout a git branch with helm.
@@ -231,7 +231,7 @@ This is a convenience function for helm actions."
                        )
             :buffer "*helm mix commands*"))
 
-    (defun emux-run-shell-command-from-minibuffer-action (command)
+    (defun rm/run-shell-command-from-minibuffer-action (command)
       "Open the mini-buffer for command input.
 COMMAND is ignored.
 This is a convenience function for helm."

@@ -33,7 +33,6 @@
     init-web
     init-yas
     init-term
-    init-pager
     init-home
     init-themes
     init-todo

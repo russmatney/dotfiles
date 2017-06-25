@@ -3,8 +3,13 @@
 ;;; Commentary:
 ;;; Code:
 
-(defun rm/open-in-pager (file)
-  "Opens the passed FILE in the current buffer."
+(defun emux-open-in-pager (file)
+  "Opens the passed FILE in the current buffer.
+
+First un-dedicates the window to allow it to be reused by the pager.
+
+Currently the window dedication is reset via
+kill-pager-buffer-and-rededicate-term-window.  Yuk."
   (set-window-dedicated-p (get-buffer-window (current-buffer)) nil)
   (find-file file)
   (emacs-pager-mode)
@@ -17,7 +22,7 @@
     map)
   "Keymap for Emacs pager mode.")
 
-(defcustom emacs-pager-max-line-coloring 500
+(defcustom emacs-pager-max-line-coloring 1000
   "Maximum number of lines to ansi-color.
 If performance is bad when loading data, reduce this number."
   :group 'emacs-pager)
@@ -45,7 +50,7 @@ If performance is bad when loading data, reduce this number."
   "Kill the paging buffer and rededicate the term window."
   (interactive)
   (kill-this-buffer)
-  (set-window-dedicated-p (rm/get-term-window) t))
+  (set-window-dedicated-p (emux-get-term-window) t))
 
-(provide 'init-pager)
-;;; init-pager.el ends here
+(provide 'emux-pager)
+;;; emux-pager.el ends here

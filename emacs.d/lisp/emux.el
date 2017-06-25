@@ -18,7 +18,10 @@
 (defun emux-term-mode-hook ()
   "Config term mode bindings."
   (goto-address-mode)
-  (linum-mode -1))
+  (linum-mode -1)
+
+  (define-key term-raw-map (kbd "s-v") 'term-paste)
+  )
 (add-hook 'term-mode-hook 'emux-term-mode-hook)
 
 (defadvice ansi-term (before force-zsh)

@@ -3,26 +3,26 @@
 ;;; Code:
 
 
-(defun rm/window-config-change-hook ()
+(defun emux-window-config-change-hook ()
   "Run after window configuration change."
-  ;; (rm/handle-term-window-dedicate)
+  ;; (emux-handle-term-window-dedicate)
   )
-(add-hook 'window-configuration-change-hook 'rm/window-config-change-hook)
+(add-hook 'window-configuration-change-hook 'emux-window-config-change-hook)
 
 
 ;; TODO fix this - it's dedicating the wrong window/wrong time
-(defun rm/handle-term-window-dedicate ()
+(defun emux-handle-term-window-dedicate ()
   "If the term window is the only one, undedicate it.
 Otherwise, dedicate it."
-  (set-window-dedicated-p (rm/get-term-window) (rm/term-only-window-p)))
+  (set-window-dedicated-p (emux-get-term-window) (emux-term-only-window-p)))
 
-(defun rm/term-only-window-p ()
+(defun emux-term-only-window-p ()
   "If the term window is the only one, undedicate it.
 Otherwise, dedicate it."
-  (and (rm/term-window-open-p)
-           (eq 1 (length (rm/filter-non-file-windows (window-list))))))
+  (and (emux-term-window-open-p)
+           (eq 1 (length (emux-filter-non-file-windows (window-list))))))
 
-(defun rm/filter-non-file-windows (windows)
+(defun emux-filter-non-file-windows (windows)
   "Filter the passed WINDOWS that match the buffer prefixes."
   (remove t
           (mapcar

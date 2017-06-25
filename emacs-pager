@@ -10,4 +10,4 @@ file=$(mktemp -t "$USER-"XXXXXXXX.emacs-pager) || exit 127
 trap 'rm -f "$file"' EXIT
 trap 'exit 255' HUP INT QUIT TERM
 cat "$@" >"$file"
-emacsclient -e "(rm/open-in-pager \"$file\")" -s ~/.emacs.d/server/server &> /dev/null
+emacsclient -e "(emux-open-in-pager \"$file\")" -s ~/.emacs.d/server/server &> /dev/null
