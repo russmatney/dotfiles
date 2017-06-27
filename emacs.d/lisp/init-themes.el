@@ -56,6 +56,14 @@
   :config
   (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
+
+(use-package solaire-mode
+  :config
+  ;; brighten buffers (that represent real files)
+  (add-hook 'after-change-major-mode-hook #'turn-on-solaire-mode)
+  ;; ...if you use auto-revert-mode:
+  (add-hook 'after-revert-hook #'turn-on-solaire-mode))
+
 (load-theme 'doom-tomorrow-night)
 
 (provide 'init-themes)

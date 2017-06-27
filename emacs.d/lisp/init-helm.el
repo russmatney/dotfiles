@@ -104,7 +104,15 @@
           "~/dotfiles/emacs.d/lisp/init-helm.el"
           "~/dotfiles/emacs.d/lisp/init-extra.el"
           "~/dotfiles/emacs.d/lisp/init-org.el"
+          "~/dotfiles/emacs.d/lisp/init-themes.el"
+          "~/dotfiles/emacs.d/lisp/init-home.el"
+          "~/dotfiles/emacs.d/lisp/init-settings.el"
+          "~/dotfiles/emacs.d/lisp/init-window-management.el"
           "~/dotfiles/zshrc"
+
+          "~/dotfiles/emacs.d/lisp/emux.el"
+          "~/dotfiles/emacs.d/lisp/emux-pager.el"
+          "~/dotfiles/emacs.d/lisp/emux-helm.el"
         )
       )
     )

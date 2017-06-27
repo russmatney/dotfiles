@@ -93,6 +93,11 @@ buffer in current window."
   :config
   (global-set-key (kbd "C-c d") 'multi-line))
 
+;; (setq semantic-load-turn-useful-things-on t)
+(add-to-list 'semantic-default-submodes 'global-semantic-stickyfunc-mode)
+(semantic-mode 1)
+(require 'stickyfunc-enhance)
+
 
 (provide 'init-extra)
 ;;; init-extra.el ends here

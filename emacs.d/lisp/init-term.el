@@ -8,11 +8,6 @@
 ;;;     - https://github.com/wpcarro/pc_settings/commit/aab701e10e52afec790b069a5e14c961c6f32307
 ;;; Code:
 
-(defun expose-global-binding-in-term (binding)
-  "Expose BINDING that is otherwise blocked/used by term mode."
-   (define-key term-raw-map binding
-     (lookup-key (current-global-map) binding)))
-
 (defun rm/evil-open-at-bottom ()
   "Move the cursor to the bottom of the terminal when entering insert mode."
   (interactive)

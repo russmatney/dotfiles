@@ -14,6 +14,7 @@
   '(
     ;; local packages
     window-numbering
+
     emux
     emux-pager
     emux-helm
@@ -38,6 +39,7 @@
     init-themes
     init-todo
     init-scratch
+
   )
 )
 

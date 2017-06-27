@@ -94,7 +94,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun emux-shell-history ()
-  "List previously shell command history."
+  "List shell command history."
   (let ((history (shell-command-to-string "tac ~/.zsh_history | sed 's/^.*;//'")))
     (split-string history "\n")))
 

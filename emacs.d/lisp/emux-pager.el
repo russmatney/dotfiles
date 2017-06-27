@@ -12,8 +12,7 @@ Currently the window dedication is reset via
 kill-pager-buffer-and-rededicate-term-window.  Yuk."
   (set-window-dedicated-p (get-buffer-window (current-buffer)) nil)
   (find-file file)
-  (emacs-pager-mode)
-)
+  (emacs-pager-mode))
 
 (defvar emacs-pager-mode-map
   (let ((map (make-sparse-keymap)))
@@ -22,12 +21,11 @@ kill-pager-buffer-and-rededicate-term-window.  Yuk."
     map)
   "Keymap for Emacs pager mode.")
 
-(defcustom emacs-pager-max-line-coloring 1000
+(defcustom emacs-pager-max-line-coloring 500
   "Maximum number of lines to ansi-color.
 If performance is bad when loading data, reduce this number."
   :group 'emacs-pager)
 
-;;;###autoload
 (define-derived-mode emacs-pager-mode fundamental-mode "Pager"
   "Mode for viewing data paged by emacs-pager"
   (setq-local make-backup-files nil)
@@ -43,8 +41,7 @@ If performance is bad when loading data, reduce this number."
       (kbd "q") 'kill-pager-buffer-and-rededicate-term-window
       (kbd "ESC") 'kill-pager-buffer-and-rededicate-term-window
       ;; (kbd "SPC") 'evil-scroll-page-down))
-      ))
-)
+      )))
 
 (defun kill-pager-buffer-and-rededicate-term-window ()
   "Kill the paging buffer and rededicate the term window."

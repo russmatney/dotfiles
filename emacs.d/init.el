@@ -22,23 +22,23 @@
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(ansi-color-names-vector
-   ["#181e26" "#ff665c" "#7bc275" "#ECBE7B" "#51afef" "#C57BDB" "#46D9FF" "#DFDFDF"])
+   [("#0d0d0d" "#cc6666" "#b5bd68" "#f0c674" "#81a2be" "#c9b4cf" "#8abeb7" "#ffffff")])
  '(custom-enabled-themes (quote (smart-mode-line-dark)))
  '(custom-safe-themes
    (quote
     ("0f0022c8091326c9894b707df2ae58dd51527b0cf7abcb0a310fb1e7bda78cd2" "98cc377af705c0f2133bb6d340bf0becd08944a588804ee655809da5d8140de6" "ed763cdf0b7c523cdc094ba137080e7f2c4e7a28303e0cbeb0eda159f964f1b6" "16fd69242d5383a431bc49ed3b567dbce148a4991242baa11ee6367ca93705e2" "c9321e2db48a21fc656a907e97ee85d8cd86967855bf0bed3998bcf9195c758b" "0f97285f9e0c7d9cad04f2130859d20d6c9b3142877b2bca52d958f4f1cf346f" "63b822ccd7a1928a7cbc88037dddf7b74b2f8a507e1bccd7281f20646f72cd0a" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "9f3181dc1fabe5d58bbbda8c48ef7ece59b01bed606cfb868dd147e8b36af97c" "7f4b67cb8aff9eb76ef818b3e41ed5f03581799f8e31899c93ec85b0ef049ceb" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "227e2c160b0df776257e1411de60a9a181f890cfdf9c1f45535fc83c9b34406b" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "08b8807d23c290c840bbb14614a83878529359eaba1805618b3be7d61b0b0a32" default)))
- '(fci-rule-color "#3E4451")
+ '(fci-rule-color "#5c5e5e")
  '(helm-ag-ignore-patterns (quote (".*//doc//.*'")))
- '(jdee-db-active-breakpoint-face-colors (cons "#181e26" "#51afef"))
- '(jdee-db-requested-breakpoint-face-colors (cons "#181e26" "#7bc275"))
- '(jdee-db-spec-breakpoint-face-colors (cons "#181e26" "#3D3D48"))
+ '(jdee-db-active-breakpoint-face-colors (cons "#0d0d0d" "#41728e"))
+ '(jdee-db-requested-breakpoint-face-colors (cons "#0d0d0d" "#b5bd68"))
+ '(jdee-db-spec-breakpoint-face-colors (cons "#0d0d0d" "#5a5b5a"))
  '(org-ellipsis "  ")
  '(org-fontify-done-headline t)
  '(org-fontify-quote-and-verse-blocks t)
  '(org-fontify-whole-heading-line t)
  '(package-selected-packages
    (quote
-    (multi-line shackle key-chord darktooth-theme websocket rainbow-delimiters color-identifiers-mode emacs-pager package-build github-theme powerline-evil powerline discover-my-major keyfreq fzf rust-mode markdown-mode helm-company f dockerfile-mode clojure-mode bookmark+ avy multi-term with-editor s projectile magit helm-core helm git-commit frame-cmds flycheck evil diminish dash company async all-the-icons yasnippet zoom-frm which-key use-package smart-mode-line slime seethru popwin popup-imenu neotree less-css-mode imenu-anywhere iedit highlight-indent-guides helm-swoop helm-projectile helm-ls-git helm-ag flycheck-mix flycheck-credo exec-path-from-shell evil-surround evil-nerd-commenter evil-matchit evil-magit evil-leader elm-mode doom-themes atom-one-dark-theme alchemist ag ace-window)))
+    (stickyfunc-enhance quelpa haml-mode solaire-mode multi-line shackle key-chord darktooth-theme websocket rainbow-delimiters color-identifiers-mode emacs-pager package-build github-theme powerline-evil powerline discover-my-major keyfreq fzf rust-mode markdown-mode helm-company f dockerfile-mode clojure-mode bookmark+ avy multi-term with-editor s projectile magit helm-core helm git-commit frame-cmds flycheck evil diminish dash company async all-the-icons yasnippet zoom-frm which-key use-package smart-mode-line slime seethru popwin popup-imenu neotree less-css-mode imenu-anywhere iedit highlight-indent-guides helm-swoop helm-projectile helm-ls-git helm-ag flycheck-mix flycheck-credo exec-path-from-shell evil-surround evil-nerd-commenter evil-matchit evil-magit evil-leader elm-mode doom-themes atom-one-dark-theme alchemist ag ace-window)))
  '(popwin:special-display-config
    (quote
     (help-mode
@@ -60,27 +60,27 @@
      slime-repl-mode slime-connection-list-mode)))
  '(pos-tip-background-color "#36473A")
  '(pos-tip-foreground-color "#FFFFC8")
- '(vc-annotate-background "#000000")
+ '(vc-annotate-background "#0d0d0d")
  '(vc-annotate-color-map
-   (quote
-    ((20 . "#B6E63E")
-     (40 . "#c4db4e")
-     (60 . "#d3d15f")
-     (80 . "#E2C770")
-     (100 . "#ebb755")
-     (120 . "#f3a73a")
-     (140 . "#FD971F")
-     (160 . "#fb713a")
-     (180 . "#fa4b56")
-     (200 . "#F92672")
-     (220 . "#f33260")
-     (240 . "#ed3f4e")
-     (260 . "#E74C3C")
-     (280 . "#dd6a60")
-     (300 . "#d38885")
-     (320 . "#c9a6aa")
-     (340 . "#C0C5CF")
-     (360 . "#C0C5CF"))))
+   (list
+    (cons 20 "#b5bd68")
+    (cons 40 "#c8c06c")
+    (cons 60 "#dcc370")
+    (cons 80 "#f0c674")
+    (cons 100 "#eab56d")
+    (cons 120 "#e3a366")
+    (cons 140 "#de935f")
+    (cons 160 "#d79e84")
+    (cons 180 "#d0a9a9")
+    (cons 200 "#c9b4cf")
+    (cons 220 "#ca9aac")
+    (cons 240 "#cb8089")
+    (cons 260 "#cc6666")
+    (cons 280 "#af6363")
+    (cons 300 "#936060")
+    (cons 320 "#765d5d")
+    (cons 340 "#5c5e5e")
+    (cons 360 "#5c5e5e")))
  '(vc-annotate-very-old-color nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

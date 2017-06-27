@@ -1,5 +1,10 @@
 ;;; emux.el --- An Emacs Terminal Multiplexer
 ;;; Commentary:
+
+
+;;; TODO: easier toggle into/out of term
+;;; TODO: expose send custom func to term
+
 ;;; Code:
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -45,6 +50,9 @@
   (interactive)
   (if (emux-term-window-selected-p) (emux-select-previous-window)
     (emux-switch-to-terminal-window)))
+
+
+;; TODO toggle focus that opens + focuses/closes + refocuses
 
 (defun emux-switch-to-terminal-window ()
   "Switch to the project's root term instance.
