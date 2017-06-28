@@ -1,10 +1,6 @@
 ;;; emux.el --- An Emacs Terminal Multiplexer
 ;;; Commentary:
 
-
-;;; TODO: easier toggle into/out of term
-;;; TODO: expose send custom func to term
-
 ;;; Code:
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -46,23 +42,29 @@
     (emux-display-terminal-buffer nil)))
 
 (defun emux-toggle-terminal-window-focus ()
-  "Toggle the cursor position between the project term buffer and the last window selected."
+  "Toggle the cursor position between the term buffer and the last window selected."
+  ;; TODO if not project term, close + open project term, then toggle
+  ;; TODO handle open term if closed
   (interactive)
   (if (emux-term-window-selected-p) (emux-select-previous-window)
-    (emux-switch-to-terminal-window)))
+    (emux-select-terminal-window)))
 
 
-;; TODO toggle focus that opens + focuses/closes + refocuses
-
-(defun emux-switch-to-terminal-window ()
-  "Switch to the project's root term instance.
+(defun emux-toggle-terminal-window ()
+  "Switch to the term buffer.
 Create it if it doesn't exist.
 
 If the window is already open, select that window.
-Otherwise, display the terminal and then select it."
+If the window is closed, display the terminal and then select it.
+If the terminal buffer is selected, close it and return to the previous window."
   (interactive)
-  (emux-display-terminal-buffer nil)
-  (emux-select-terminal-window))
+  (if (emux-term-window-open-p)
+      (progn
+        (if (emux-term-window-selected-p)
+            (emux-select-previous-window))
+        (emux-hide-terminal-window))
+    (emux-display-terminal-buffer nil)
+    (emux-select-terminal-window)))
 
 (defun emux-term-on-right ()
   "Displays the terminal buffer on the right side of the frame."
@@ -97,11 +99,11 @@ Handles reselecting the terminal buffer if it was selected before the move."
       (progn
         (emux-select-previous-window)
         (emux-hide-terminal-window))
-    (let ((reselect (emux-term-window-selected-p)))
+    (let ((reselect-p (emux-term-window-selected-p)))
       (setq emux-term-alignment position)
       (emux-hide-terminal-window)
       (emux-display-terminal-buffer nil)
-      (if reselect (emux-select-terminal-window)))))
+      (if reselect-p (emux-select-terminal-window)))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -126,7 +128,7 @@ Handles reselecting the terminal buffer if it was selected before the move."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun emux-run-shell-command (command &optional force-new-term select-term-window use-this-window)
-  "Run a passed string as a COMMAND in the project's local terminal buffer.
+  "Run a passed string as a COMMAND in the project's terminal buffer.
 
 The command is fired to either an existing terminal buffer
 or a new one if none exists.  FORCE-NEW-TERM forces a new one.
@@ -141,7 +143,7 @@ otherwise a dedicated side-window will be used."
   (if (or select-term-window use-this-window) (emux-select-terminal-window)))
 
 (defun emux-repeat-last-shell-command ()
-  "Rerun the last shell command in the local project terminal."
+  "Rerun the last shell command in the project terminal buffer."
   (interactive)
   (emux-run-shell-command "!! "))
 
@@ -159,7 +161,7 @@ Select the window with the term buffer after running the command."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun emux-start-new-terminal ()
-  "Create a new terminal session in a buffer.
+  "Create a new terminal buffer.
 Return the created buffer."
   (projectile-with-default-dir (projectile-project-root)
     (let ((buffer
@@ -182,7 +184,7 @@ and is sent the passed command.
 If FORCE-NEW-TERM is nil and the buffer exists,
 Sends the command to the buffer via term-send-raw-string."
   (let ((buffer
-         (if (or force-new-term (not (emux-term-session-exists-p))) (emux-start-new-terminal)
+         (if (or force-new-term (not (emux-term-buffer-exists-p))) (emux-start-new-terminal)
            (emux-get-term-buffer))))
 
     (set-buffer buffer)
@@ -200,12 +202,14 @@ Otherwise, use `display-buffer`.
 
 The buffer is always dedicated via `set-window-dedicated-p`."
   (let ((buffer
-         (if (not (emux-term-session-exists-p)) (emux-start-new-terminal)
+         (if (not (emux-term-buffer-exists-p)) (emux-start-new-terminal)
            (emux-get-term-buffer))))
 
     (if use-this-window
         (display-buffer-same-window buffer nil)
-      (display-buffer buffer))
+      (if (emux-term-open-is-not-project-term buffer)
+          (emux-hide-terminal-window))
+        (display-buffer buffer))
 
     (set-window-dedicated-p (get-buffer-window buffer) t)))
 
@@ -228,7 +232,7 @@ If one exists, `<n>` is appended."
   "Return the current project term buffer."
   (get-buffer (emux-local-term-buffer-name)))
 
-(defun emux-term-session-exists-p ()
+(defun emux-term-buffer-exists-p ()
   "Return non-nil if a local project term buffer already exists."
   (get-buffer (emux-local-term-buffer-name)))
 
@@ -239,25 +243,32 @@ If one exists, `<n>` is appended."
 
 (defun emux-term-window-selected-p ()
   "Return non-nil if the current window is a *term window."
+  (is-term-window-p))
+
+(defun is-term-window-p ()
+  "Return non-nil if the current window is a *term window."
   (string-prefix-p "*term " (buffer-name (current-buffer))))
 
 (defun emux-term-window-open-p ()
-  "Return `t` if the project's term window is already open."
-  (if (get-buffer-window (emux-local-term-buffer-name))
+  "Return `t` if any term window is already open."
+  (if (emux-get-term-window)
       t
     nil))
 
 (defun emux-hide-terminal-window ()
-  "Deletes the project term window (not the buffer)."
+  "Delete the open term window (not the buffer)."
   (if (emux-term-window-open-p)
       (delete-window (emux-get-term-window))))
 
 (defun emux-get-term-window ()
-  "Gets the window for the local project term buffer."
-  (get-buffer-window (emux-local-term-buffer-name) t))
+  "Gets the window for an open term buffer."
+  (catch 'loop
+    (dolist (window (window-list))
+      (when (string-prefix-p "*term " (buffer-name (window-buffer window)))
+        (throw 'loop window)))))
 
 (defun emux-select-terminal-window ()
-  "Select the window with the local project term buffer."
+  "Select the window with the open term buffer."
   (if (not (emux-term-window-open-p))
       (message "No term window ready to select.")
     (select-window (emux-get-term-window))
@@ -268,6 +279,13 @@ If one exists, `<n>` is appended."
   (interactive)
   (evil-window-mru)
 )
+
+(defun emux-term-open-is-not-project-term (buffer)
+  "Return true if there is an open term window, and it does not match the passed BUFFER."
+  (and (emux-term-window-open-p)
+       (not (eq
+             (buffer-name buffer)
+             (buffer-name (window-buffer (emux-get-term-window)))))))
 
 
 

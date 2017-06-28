@@ -47,6 +47,7 @@ If performance is bad when loading data, reduce this number."
   "Kill the paging buffer and rededicate the term window."
   (interactive)
   (kill-this-buffer)
+  ;; make this cross-dep safer
   (set-window-dedicated-p (emux-get-term-window) t))
 
 (provide 'emux-pager)

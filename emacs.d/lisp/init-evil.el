@@ -35,11 +35,10 @@
          ("C-u" . evil-scroll-up)
          ("C-d" . evil-scroll-down)
 
-         ("C-t" . emux-toggle-terminal-window-display)
+         ("C-t" . emux-toggle-terminal-window)
          ("C-z" . nil)
          ("C-z C-s" . emux-switch-this-window-to-terminal-window)
          ("C-z C-z" . emux-toggle-terminal-window-focus)
-         ("C-z C-o" . emux-display-terminal-buffer-keep-focus)
          ("C-z C-x" . emux-helm-shell-commands)
          ("C-z C-." . emux-repeat-last-shell-command)
          ("C-z C-k" . emux-term-scroll-page-up)

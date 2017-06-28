@@ -16,7 +16,6 @@
     window-numbering
 
     emux
-    emux-pager
     emux-helm
 
     ;; configs
@@ -40,6 +39,7 @@
     init-todo
     init-scratch
 
+    emux-pager
   )
 )
 

@@ -30,6 +30,7 @@
   (expose-global-binding-in-term (kbd "C-h"))
   (expose-global-binding-in-term (kbd "C-j"))
   (expose-global-binding-in-term (kbd "C-k"))
+  (expose-global-binding-in-term (kbd "C-t"))
 
   ;; keep M-x
   (expose-global-binding-in-term (kbd "M-x"))
@@ -41,7 +42,7 @@
     (kbd "C-p") nil
     (kbd "C-n") nil
     (kbd "C-r") nil
-    (kbd "C-t") nil
+    (kbd "C-t") 'emux-toggle-terminal-window
     (kbd "C-e") nil
     (kbd "C-a") nil
     (kbd "C-c") 'term-interrupt-subjob
