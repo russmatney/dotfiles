@@ -38,7 +38,7 @@
  '(org-fontify-whole-heading-line t)
  '(package-selected-packages
    (quote
-    (flycheck-credo flycheck-mix exec-path-from-shell rainbow-delimiters smart-mode-line yasnippet all-the-icons neotree flycheck alchemist helm-ag helm-projectile helm-ls-git helm evil-nerd-commenter evil-surround evil-leader evil discover-my-major imenu-anywhere popup-imenu which-key ag iedit shackle ace-window seethru zoom-frm highlight-indent-guides use-package)))
+    (doom-nlinum doom-neotree flycheck-credo flycheck-mix exec-path-from-shell rainbow-delimiters smart-mode-line yasnippet all-the-icons neotree flycheck alchemist helm-ag helm-projectile helm-ls-git helm evil-nerd-commenter evil-surround evil-leader evil discover-my-major imenu-anywhere popup-imenu which-key ag iedit shackle ace-window seethru zoom-frm highlight-indent-guides use-package)))
  '(popwin:special-display-config
    (quote
     (help-mode

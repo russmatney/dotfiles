@@ -32,10 +32,6 @@
       doom-one-brighter-comments t
   )
 
-  ;; (setq org-fontify-whole-heading-line t
-  ;;     org-fontify-done-headline t
-  ;;     org-fontify-quote-and-verse-blocks t)
-
   ;; brighter source buffers (that represent files)
   (add-hook 'find-file-hook 'doom-buffer-mode-maybe)
   ;; if you use auto-revert-mode
@@ -47,12 +43,13 @@
   (add-hook 'minibuffer-setup-hook 'doom-brighten-minibuffer)
 
   :config
-  ;; Enable custom neotree theme
-  (require 'doom-neotree)
-  ;; Enable nlinum line highlighting
-  (require 'doom-nlinum)
+  (load-theme 'doom-tomorrow-night)
 
-  (load-theme 'doom-tomorrow-night))
+  ;; Enable custom neotree theme
+  ;; (require 'doom-neotree)
+  ;; Enable nlinum line highlighting
+  ;; (require 'doom-nlinum)
+  )
 
 (provide 'init-themes)
 ;;; init-themes.el ends here
