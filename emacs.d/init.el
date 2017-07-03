@@ -38,7 +38,7 @@
  '(org-fontify-whole-heading-line t)
  '(package-selected-packages
    (quote
-    (ess stickyfunc-enhance quelpa haml-mode solaire-mode multi-line shackle key-chord darktooth-theme websocket rainbow-delimiters color-identifiers-mode emacs-pager package-build github-theme powerline-evil powerline discover-my-major keyfreq fzf rust-mode markdown-mode helm-company f dockerfile-mode clojure-mode bookmark+ avy multi-term with-editor s projectile magit helm-core helm git-commit frame-cmds flycheck evil diminish dash company async all-the-icons yasnippet zoom-frm which-key use-package smart-mode-line slime seethru popwin popup-imenu neotree less-css-mode imenu-anywhere iedit highlight-indent-guides helm-swoop helm-projectile helm-ls-git helm-ag flycheck-mix flycheck-credo exec-path-from-shell evil-surround evil-nerd-commenter evil-matchit evil-magit evil-leader elm-mode doom-themes atom-one-dark-theme alchemist ag ace-window)))
+    (flycheck-credo flycheck-mix exec-path-from-shell rainbow-delimiters smart-mode-line yasnippet all-the-icons neotree flycheck alchemist helm-ag helm-projectile helm-ls-git helm evil-nerd-commenter evil-surround evil-leader evil discover-my-major imenu-anywhere popup-imenu which-key ag iedit shackle ace-window seethru zoom-frm highlight-indent-guides use-package)))
  '(popwin:special-display-config
    (quote
     (help-mode

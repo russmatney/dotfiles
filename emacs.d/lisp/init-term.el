@@ -59,5 +59,11 @@
 )
 (add-hook 'term-mode-hook 'rm/term-mode-hook)
 
+
+; ;; add shell env
+(use-package exec-path-from-shell
+  :config
+  (exec-path-from-shell-initialize))
+
 (provide 'init-term)
 ;;; init-term.el ends here

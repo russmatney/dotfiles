@@ -12,6 +12,7 @@
 
 (defvar init-files
   '(
+    init-packages
     ;; local packages
     window-numbering
 
@@ -20,7 +21,6 @@
 
     ;; configs
     init-org
-    init-packages
     init-settings
     init-window-management
     init-extra
@@ -62,11 +62,6 @@
 (defun rr/unsafe-load-init-files ()
   (dolist (file init-files)
     (require file)))
-
-;; add shell env
-(use-package exec-path-from-shell
-  :config
-  (exec-path-from-shell-initialize))
 
 
 (provide 'init-bootstrap)

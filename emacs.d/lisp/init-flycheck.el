@@ -6,15 +6,15 @@
   :config
   (global-flycheck-mode)
 
-  (require 'flycheck-mix)
-  (add-to-list 'flycheck-checkers 'elixir-mix t)
+  (use-package flycheck-mix
+    :config
+    (add-to-list 'flycheck-checkers 'elixir-mix t))
 
-  (require 'flycheck-credo)
-  (setq flycheck-elixir-credo-strict t)
-  (add-to-list 'flycheck-checkers 'elixir-credo t)
-
-  (flycheck-add-next-checker 'elixir-mix '(error . elixir-credo))
-
+  (use-package flycheck-credo
+    :config
+    (setq flycheck-elixir-credo-strict t)
+    (add-to-list 'flycheck-checkers 'elixir-credo t)
+    (flycheck-add-next-checker 'elixir-mix '(error . elixir-credo)))
 
   (add-to-list 'display-buffer-alist
              `(,(rx bos "*Flycheck errors*" eos)
@@ -24,8 +24,7 @@
                (side            . bottom)
                (window-height   . 0.2)))
 
-  (setq flycheck-display-errors-delay 0.0)
-)
+  (setq flycheck-display-errors-delay 0.0))
 
 
 (provide 'init-flycheck)

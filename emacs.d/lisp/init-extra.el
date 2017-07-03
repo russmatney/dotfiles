@@ -57,8 +57,7 @@
 (defun align-multi-column-by-wsp (p1 p2)
   (interactive "r")
   (align-regexp p1 p2 ",\\(\\s-*\\)" 1 1 t)
-  (evil-visual)
-)
+  (evil-visual))
 
 (evil-leader/set-key
    "," 'align-multi-column-by-wsp
@@ -72,8 +71,7 @@
 (use-package keyfreq
   :config
   (keyfreq-mode 1)
-  (keyfreq-autosave-mode 1)
-)
+  (keyfreq-autosave-mode 1))
 
 (add-to-list 'auto-mode-alist '("zshrc" . shell-script-mode))
 
@@ -93,10 +91,13 @@ buffer in current window."
   :config
   (global-set-key (kbd "C-c d") 'multi-line))
 
-;; (setq semantic-load-turn-useful-things-on t)
-(add-to-list 'semantic-default-submodes 'global-semantic-stickyfunc-mode)
-(semantic-mode 1)
-(require 'stickyfunc-enhance)
+(use-package stickyfunc-enhance
+  :init
+  (semantic-mode 1)
+  :config
+  (add-to-list 'semantic-default-submodes 'global-semantic-stickyfunc-mode)
+  ;; (setq semantic-load-turn-useful-things-on t)
+  )
 
 
 (provide 'init-extra)
