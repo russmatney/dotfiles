@@ -26,13 +26,17 @@ kill-pager-buffer-and-rededicate-term-window.  Yuk."
 If performance is bad when loading data, reduce this number."
   :group 'emacs-pager)
 
-(define-derived-mode emacs-pager-mode fundamental-mode "Pager"
-  "Mode for viewing data paged by emacs-pager"
-  (setq-local make-backup-files nil)
+(defun colorize ()
+  (interactive)
   (ansi-color-apply-on-region (goto-char (point-min))
                               (save-excursion
                                 (forward-line emacs-pager-max-line-coloring)
-                                (point)))
+                                (point))))
+
+(define-derived-mode emacs-pager-mode fundamental-mode "Pager"
+  "Mode for viewing data paged by emacs-pager"
+  (setq-local make-backup-files nil)
+  (colorize)
 
   (let* ((buffer-name "*pager*"))
     (set-buffer-modified-p nil)

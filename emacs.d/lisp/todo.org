@@ -25,6 +25,7 @@ It generates the init-todo.el sibling file via `M-x org-babel-tangle`
 * TODO EMUX refactor to autoload functions properly/follow deps as needed
 * TODO EMUX readme write up:Detail dependencies, install recommendations, usage details
 * TODO EMUX create git repo, write readme, fork melpa, write + test recipe, submit pr
+* TODO recentf error on startup?
 * TODO kill all non-this-project windows
 * WC mru buffer switching
 #+begin_src emacs-lisp :tangle ~/dotfiles/emacs.d/lisp/init-todo.el

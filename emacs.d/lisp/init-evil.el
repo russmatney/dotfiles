@@ -34,10 +34,10 @@
          ("C-q C-n" . neotree-toggle)
          ("C-u" . evil-scroll-up)
          ("C-d" . evil-scroll-down)
+         ;; ("C-s" . projectile-Ag-search-for-current-term)
 
          ("C-t" . emux-toggle-terminal-window)
          ("C-z" . nil)
-         ("C-z C-s" . emux-switch-this-window-to-terminal-window)
          ("C-z C-z" . emux-toggle-terminal-window-focus)
          ("C-z C-x" . emux-helm-shell-commands)
          ("C-z C-." . emux-repeat-last-shell-command)

@@ -4,9 +4,8 @@
 
 (setq inhibit-startup-screen t)
 
-(find-file "~/Dropbox/todo/todo.org")
-(split-window-right)
 (find-file "~/dotfiles/emacs.d/lisp/todo.org")
+(emux-toggle-terminal-window)
 
 (provide 'init-home)
 ;;; init-home.el ends here
