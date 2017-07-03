@@ -99,6 +99,8 @@ buffer in current window."
   ;; (setq semantic-load-turn-useful-things-on t)
   )
 
+(use-package rc-mode)
+
 
 (provide 'init-extra)
 ;;; init-extra.el ends here
