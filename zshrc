@@ -85,7 +85,7 @@ fi
 
 if [ $INSIDE_EMACS ]; then
     export PAGER="emacs-pager"
-    export PATH=$PATH:~/dotfiles
+    export PATH=$PATH:~/dotfiles/bin
 elif [ -x "`which less`" ]; then
     export PAGER="`which less`"
     export LESS="-isR"
