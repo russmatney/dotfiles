@@ -63,13 +63,6 @@ if hash go 2>/dev/null; then
   export PATH=`go env GOROOT`/bin/:`go env GOPATH`/bin/:$PATH
 fi
 
-#colorful less
-if hash source-highlight 2>/dev/null; then
-  export LESSOPEN="| src-hilite-lesspipe.sh %s"
-  export LESS=" -R "
-  alias less='less -m -g -i -J --underline-special --SILENT'
-fi
-
 #elixir mix escripts
 export PATH=$PATH:~/.mix/escripts
 
@@ -86,12 +79,14 @@ fi
 if [ $INSIDE_EMACS ]; then
     export PAGER="emacs-pager"
     export PATH=$PATH:~/dotfiles/bin
-elif [ -x "`which less`" ]; then
-    export PAGER="`which less`"
-    export LESS="-isR"
-    alias lv="less"
 else
-    export PAGER="/bin/more"
+    #colorful less
+    if hash source-highlight 2>/dev/null; then
+        export LESSOPEN="| src-hilite-lesspipe.sh %s"
+        export LESS=" -R "
+        alias less='less -m -g -i -J --underline-special --SILENT'
+    fi
+    export PAGER="less"
 fi
 
 fpath=(~/.zsh $fpath)
