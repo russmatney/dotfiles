@@ -76,10 +76,6 @@ if [ -n "$INSIDE_EMACS" ]; then
   print -P "\033AnSiTc %d"
 fi
 
-if [ $INSIDE_EMACS ]; then
-    export PAGER="emacs-pager"
-    export PATH=$PATH:~/dotfiles/bin
-else
     #colorful less
     if hash source-highlight 2>/dev/null; then
         export LESSOPEN="| src-hilite-lesspipe.sh %s"
@@ -87,6 +83,5 @@ else
         alias less='less -m -g -i -J --underline-special --SILENT'
     fi
     export PAGER="less"
-fi
 
 fpath=(~/.zsh $fpath)
