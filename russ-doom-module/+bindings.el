@@ -33,8 +33,8 @@
  "C-`"    #'doom/popup-toggle
  "M-t"    #'+workspace/new
  "M-T"    #'+workspace/display
- "M-w"    #'delete-window
- "M-W"    #'delete-frame
+ ;"M-w"    #'delete-window
+ ;"M-W"    #'delete-frame
  "M-n"    #'evil-buffer-new
  "M-N"    #'make-frame
  "M-1"    (λ! (+workspace/switch-to 1))
@@ -64,9 +64,15 @@
  "M-v"    #'clipboard-yank
  "M-f"    #'swiper
  "C-M-f"  #'doom/toggle-fullscreen
- "M-RET"  #'doom/toggle-fullscreen
  :m "A-j" #'+hlissner:multi-next-line
  :m "A-k" #'+hlissner:multi-previous-line
+
+ "A-b"    #'+eval/buffer
+ "M-RET"  #'doom/toggle-fullscreen
+ "A-n"    #'+neotree/toggle
+ ;"A-y"    #'helm-yank-ring ; TODO
+ ;"A-b"    #'helm-mini ; TODO
+ ;"A-w"    #'save-buffer ; TODO
 
 
  ;; --- <leader> -------------------------------------
@@ -85,6 +91,8 @@
    :desc "Eval expression"         :n "`"   #'eval-expression
    :desc "Blink cursor line"       :n "DEL" #'+doom/blink-cursor
    :desc "Jump to bookmark"        :n "RET" #'bookmark-jump
+
+   :desc "Open vertical split"     :n "v" #'evil-window-vsplit
 
    ;; C-u is used by evil
    :desc "Universal argument"    :n "u"  #'universal-argument

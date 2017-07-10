@@ -38,7 +38,7 @@ private/hlissner/snippets."
 
 ;;;###autoload (autoload '+hlissner/find-in-dotfiles "private/hlissner/autoload/hlissner" nil t)
 ;;;###autoload (autoload '+hlissner/browse-dotfiles "private/hlissner/autoload/hlissner" nil t)
-(+hlissner-def-finder! dotfiles (expand-file-name ".dotfiles" "~"))
+(+hlissner-def-finder! dotfiles (expand-file-name "dotfiles" "~"))
 
 ;;;###autoload (autoload '+hlissner/find-in-emacsd "private/hlissner/autoload/hlissner" nil t)
 ;;;###autoload (autoload '+hlissner/browse-emacsd "private/hlissner/autoload/hlissner" nil t)

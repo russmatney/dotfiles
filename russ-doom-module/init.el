@@ -1,9 +1,5 @@
 ;;; private/hlissner/init.el -*- lexical-binding: t; -*-
 
-;; I've swapped these keys on my keyboard
-;(setq x-super-keysym 'meta
-;      x-alt-keysym   'alt)
-
 (setq user-mail-address "russell.matney@gmail.com"
       user-full-name    "Russell matney")
 
