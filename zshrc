@@ -25,9 +25,16 @@ source ~/dotfiles/zsh/discovery.zsh
 # Autojump `j`
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
+# Postgres
 alias pg_start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
 alias pg_stop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
 
+# Elixir
+alias exdollarbill='mix compile --force && mix credo --strict && mix dialyzer && mix test'
+alias 'ism'="iex -S mix"
+alias 'tism'="MIX_ENV=test iex -S mix"
+
+# Docker
 alias dm='docker-machine'
 alias dc='docker-compose'
 
@@ -40,11 +47,10 @@ function drm() {
   docker rm -v "$1";
 }
 
-alias exdollarbill='mix compile --force && mix credo --strict && mix dialyzer && mix test'
-
 alias dps='docker ps -a'
 alias dmls='docker-machine ls'
 alias dip='docker-machine ip'
+
 
 function cm() {
   codemod -m -d "$1" --extensions "$2" --exclude-paths "/deps" "$3" "$4";
