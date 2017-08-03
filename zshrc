@@ -33,6 +33,7 @@ alias pg_stop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
 alias exdollarbill='mix compile --force && mix credo --strict && mix dialyzer && mix test'
 alias 'ism'="iex -S mix"
 alias 'tism'="MIX_ENV=test iex -S mix"
+export ERL_AFLAGS="-kernel shell_history enabled"
 
 # Docker
 alias dm='docker-machine'
