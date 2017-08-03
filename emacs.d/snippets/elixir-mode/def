@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: def with @spec
+# key: def
+# --
+  @spec ${1:fun}() :: :ok
+  def ${1}() do
+  end
