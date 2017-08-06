@@ -27,6 +27,9 @@
                            ("~/Dropbox/todo/someday.org" :level . 1)
                            ("~/Dropbox/todo/tickler.org" :maxlevel . 2)))
 
+;; note the voodoo: this string needs to end in a double colon. `::`
+(setq org-archive-location (concat "~/Dropbox/todo/archive/" (format-time-string "%Y-%m") ".org::"))
+
 ;; (setq org-agenda-custom-commands
 ;;       '(("o" "At the office" tags-todo "@office"
 ;;          ((org-agenda-overriding-header "Office")))))

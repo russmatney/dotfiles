@@ -80,15 +80,13 @@
       (helm-build-sync-source "Org Files"
         :action 'helm-type-file-actions
         :candidates '(
-          "~/Dropbox/todo/todo.org"
-          "~/dotfiles/emacs.d/lisp/todo.org"
-          "~/Dropbox/todo/notes.org"
+          "~/Dropbox/todo/inbox.org"
+          "~/Dropbox/todo/tickler.org"
+          "~/Dropbox/todo/gtd.org"
+          "~/Dropbox/todo/someday.org"
           "~/Dropbox/Writing/writing-may-2017.org"
           "~/Dropbox/Writing/triage.org"
-          "~/Dropbox/todo/blog.org"
-          "~/Dropbox/todo/storyx.org"
-          "~/Dropbox/todo/opensource.org"
-          "~/Dropbox/todo/urbint.org"
+          "~/dotfiles/emacs.d/lisp/wip.org"
         )
       )
     )
@@ -98,7 +96,7 @@
       (helm-build-sync-source "Config Files"
         :action 'helm-type-file-actions
         :candidates '(
-          "~/dotfiles/emacs.d/lisp/todo.org"
+          "~/dotfiles/emacs.d/lisp/wip.org"
           "~/dotfiles/emacs.d/lisp/init-term.el"
           "~/dotfiles/emacs.d/lisp/init-evil.el"
           "~/dotfiles/emacs.d/lisp/init-helm.el"

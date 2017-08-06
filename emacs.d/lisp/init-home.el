@@ -4,7 +4,8 @@
 
 (setq inhibit-startup-screen t)
 
-(find-file "~/dotfiles/emacs.d/lisp/todo.org")
+(find-file "~/Dropbox/todo/gtd.org")
+(find-file-other-window "~/Dropbox/todo/inbox.org")
 (emux-toggle-terminal-window)
 
 (provide 'init-home)
