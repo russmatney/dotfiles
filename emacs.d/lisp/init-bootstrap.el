@@ -36,7 +36,7 @@
     init-term
     init-home
     init-themes
-    init-todo
+    init-wip
     init-scratch
 
     emux-pager
