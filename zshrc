@@ -4,7 +4,8 @@ export PATH=$(brew --prefix coreutils)/libexec/gnubin:./node_modules/.bin:$PATH
 
 alias vim='NVIM_TUI_ENABLE_TRUE_COLOR=true nvim'
 alias vi='NVIM_TUI_ENABLE_TRUE_COLOR=true nvim'
-alias ls='gls --color=always'
+# alias ls='gls --color=always'
+alias ls='exa'
 
 COMPLETION_WAITING_DOTS=true
 DISABLE_AUTO_TITLE=true
