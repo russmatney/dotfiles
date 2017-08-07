@@ -35,9 +35,14 @@
 ;;          ((org-agenda-overriding-header "Office")))))
 
 (setq org-agenda-custom-commands
-      '(("o" "At the office" tags-todo "@office"
-         ((org-agenda-overriding-header "Office")
-          (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))))
+      '(("n" todo "TODO"
+         ((org-agenda-overriding-header "Next Actions")
+          (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))
+        ("u" "Unscheduled TODO"
+         ((todo ""
+                ((org-agenda-overriding-header "\nUnscheduled TODO")
+                 (org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled)))))
+         nil)))
 
 (defun my-org-agenda-skip-all-siblings-but-first ()
   "Skip all but the first non-done entry."
