@@ -1,4 +1,4 @@
-;;; private/hlissner/init.el -*- lexical-binding: t; -*-
+;;; private/russ/init.el -*- lexical-binding: t; -*-
 
 (setq user-mail-address "russell.matney@gmail.com"
       user-full-name    "Russell matney")

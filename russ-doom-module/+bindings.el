@@ -1,4 +1,4 @@
-;;; private/hlissner/+bindings.el -*- lexical-binding: t; -*-
+;;; private/russ/+bindings.el -*- lexical-binding: t; -*-
 
 (defmacro find-file-in! (path &optional project-p)
   "Returns an interactive function for searching files."
@@ -64,15 +64,8 @@
  "M-v"    #'clipboard-yank
  "M-f"    #'swiper
  "C-M-f"  #'doom/toggle-fullscreen
- :m "A-j" #'+hlissner:multi-next-line
- :m "A-k" #'+hlissner:multi-previous-line
-
- "A-b"    #'+eval/buffer
- "M-RET"  #'doom/toggle-fullscreen
- "A-n"    #'+neotree/toggle
- ;"A-y"    #'helm-yank-ring ; TODO
- ;"A-b"    #'helm-mini ; TODO
- ;"A-w"    #'save-buffer ; TODO
+ :m "A-j" #'+russ:multi-next-line
+ :m "A-k" #'+russ:multi-previous-line
 
 
  ;; --- <leader> -------------------------------------
@@ -181,13 +174,13 @@
      :desc "Find file from here"       :n "?" #'counsel-file-jump
      :desc "Find other file"           :n "a" #'projectile-find-other-file
      :desc "Open project editorconfig" :n "c" #'editorconfig-find-current-editorconfig
-     :desc "Find file in dotfiles"     :n "d" #'+hlissner/find-in-dotfiles
-     :desc "Browse dotfiles"           :n "D" #'+hlissner/browse-dotfiles
-     :desc "Find file in emacs.d"      :n "e" #'+hlissner/find-in-emacsd
-     :desc "Browse emacs.d"            :n "E" #'+hlissner/browse-emacsd
+     :desc "Find file in dotfiles"     :n "d" #'+russ/find-in-dotfiles
+     :desc "Browse dotfiles"           :n "D" #'+russ/browse-dotfiles
+     :desc "Find file in emacs.d"      :n "e" #'+russ/find-in-emacsd
+     :desc "Browse emacs.d"            :n "E" #'+russ/browse-emacsd
      :desc "Recent files"              :n "r" #'recentf
      :desc "Recent project files"      :n "R" #'projectile-recentf
-     :desc "Yank filename"             :n "y" #'+hlissner/yank-buffer-filename)
+     :desc "Yank filename"             :n "y" #'+russ/yank-buffer-filename)
 
    (:desc "git" :prefix "g"
      :desc "Git status"        :n  "s" #'magit-status
@@ -226,8 +219,8 @@
      :desc "From snippet"   :nv "s" #'yas-insert-snippet)
 
    (:desc "notes" :prefix "n"
-     :desc "Find file in notes"    :n "n" #'+hlissner/find-in-notes
-     :desc "Browse notes"          :n "N" #'+hlissner/browse-notes
+     :desc "Find file in notes"    :n "n" #'+russ/find-in-notes
+     :desc "Browse notes"          :n "N" #'+russ/browse-notes
      :desc "Org capture"           :n "x" #'+org/capture
      :desc "Browse mode notes"     :n "m" #'+org/browse-notes-for-major-mode
      :desc "Browse project notes"  :n "p" #'+org/browse-notes-for-project)
@@ -282,7 +275,7 @@
      :desc "New snippet"           :n  "n" #'yas-new-snippet
      :desc "Insert snippet"        :nv "i" #'yas-insert-snippet
      :desc "Find snippet for mode" :n  "s" #'yas-visit-snippet-file
-     :desc "Find snippet"          :n  "S" #'+hlissner/find-in-snippets)
+     :desc "Find snippet"          :n  "S" #'+russ/find-in-snippets)
 
    (:desc "toggle" :prefix "t"
      :desc "Flyspell"               :n "s" #'flyspell-mode
@@ -506,8 +499,10 @@
  (:after helm
    (:map helm-map
      "ESC"        nil
-     "C-S-n"      #'helm-next-source
-     "C-S-p"      #'helm-previous-source
+     ;; "C-S-n"      #'helm-next-source
+     ;; "C-S-p"      #'helm-previous-source
+     [tab]      #'helm-next-source
+     [backtab]      #'helm-previous-source
      "C-u"        #'helm-delete-minibuffer-contents
      "C-w"        #'backward-kill-word
      "C-r"        #'evil-paste-from-register ; Evil registers in helm! Glorious!
@@ -515,7 +510,7 @@
      [left]       #'backward-char
      [right]      #'forward-char
      [escape]     #'helm-keyboard-quit
-     [tab]        #'helm-execute-persistent-action)
+     "C-p"        #'helm-execute-persistent-action)
 
    (:after helm-files
      (:map helm-generic-files-map
@@ -657,7 +652,18 @@
    :n "]]"  #'vc-annotate-next-revision
    :n "[["  #'vc-annotate-prev-revision
    :n "TAB" #'vc-annotate-toggle-annotation-visibility
-   :n "RET" #'vc-annotate-find-revision-at-line))
+   :n "RET" #'vc-annotate-find-revision-at-line)
+
+
+ "A-b"    #'helm-mini
+ "M-RET"  #'doom/toggle-fullscreen
+ "A-n"    #'+neotree/toggle ; TODO should hide/show
+ ;"A-y"    #'helm-yank-ring ; TODO
+ ;"A-b"    #'helm-mini ; TODO
+ ;"A-w"    #'save-buffer ; TODO
+ ;; "A-p"   #'(lambda () (interactive) (message "hi"))
+ "A-c"   #'evil-commentary ; TODO replace with something that auto-comments my current line
+ )
 
 
 
