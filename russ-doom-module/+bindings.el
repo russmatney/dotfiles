@@ -663,6 +663,7 @@
  ;"A-w"    #'save-buffer ; TODO
  ;; "A-p"   #'(lambda () (interactive) (message "hi"))
  "A-c"   #'evil-commentary ; TODO replace with something that auto-comments my current line
+ "M-A-c" #'org-capture ; TODO get this to work
  )
 
 
