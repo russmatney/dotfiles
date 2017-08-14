@@ -37,3 +37,25 @@
                 (delete 'yas-installed-snippets-dir
                         yas-snippet-dirs))))
 
+
+(after! company
+  (setq company-idle-delay 0))
+
+(add-hook! elixir-mode
+  (flycheck-mode))
+
+(add-hook! elm-mode
+  (flycheck-mode))
+
+(add-hook! rust-mode
+  (flycheck-mode))
+
+(def-package! flycheck-mix
+  :after elixir-mode
+  :config
+  (add-hook 'flycheck-mode-hook #'flycheck-mix-setup))
+
+(def-package! flycheck-credo
+  :after elixir-mode
+  :config
+  (add-hook 'flycheck-mode-hook #'flycheck-credo-setup))

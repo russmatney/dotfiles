@@ -362,6 +362,8 @@
      "C-o"        #'company-search-kill-others
      "C-n"        #'company-select-next
      "C-p"        #'company-select-previous
+     "C-j"        #'company-select-next
+     "C-k"        #'company-select-previous
      "C-h"        #'company-quickhelp-manual-begin
      "C-S-h"      #'company-show-doc-buffer
      "C-S-s"      #'company-search-candidates
@@ -499,10 +501,8 @@
  (:after helm
    (:map helm-map
      "ESC"        nil
-     ;; "C-S-n"      #'helm-next-source
-     ;; "C-S-p"      #'helm-previous-source
-     [tab]      #'helm-next-source
-     [backtab]      #'helm-previous-source
+     [tab]        #'helm-next-source
+     [backtab]    #'helm-previous-source
      "C-u"        #'helm-delete-minibuffer-contents
      "C-w"        #'backward-kill-word
      "C-r"        #'evil-paste-from-register ; Evil registers in helm! Glorious!
@@ -510,13 +510,16 @@
      [left]       #'backward-char
      [right]      #'forward-char
      [escape]     #'helm-keyboard-quit
-     "C-p"        #'helm-execute-persistent-action)
+     "C-p"        #'helm-execute-persistent-action
+     "C-j"        #'helm-next-line
+     "C-k"        #'helm-previous-line)
 
    (:after helm-files
      (:map helm-generic-files-map
        :e "ESC"     #'helm-keyboard-quit)
      (:map helm-find-files-map
-       "C-w" #'helm-find-files-up-one-level
+       "C-h" #'helm-find-files-up-one-level
+       "C-l" #'helm-execute-persistent-action
        "TAB" #'helm-execute-persistent-action))
 
    (:after helm-ag
@@ -537,6 +540,7 @@
    "C-k" #'ivy-previous-line
    "C-j" #'ivy-next-line
    "C-l" #'ivy-alt-done
+   "C-h" #'ivy-backward-kill-word
    "C-w" #'ivy-backward-kill-word
    "C-u" #'ivy-kill-line
    "C-b" #'backward-word
