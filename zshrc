@@ -20,6 +20,7 @@ alias 'gdsta'="git diff --staged"
 alias 'gds'="git diff --staged"
 alias 'gad'="git add ."
 
+
 source ~/dotfiles/zsh/tmux-aliases.zsh
 source ~/dotfiles/zsh/discovery.zsh
 
@@ -34,7 +35,11 @@ alias pg_stop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
 alias exdollarbill='mix compile --force && mix credo --strict && mix dialyzer && mix test'
 alias 'ism'="iex -S mix"
 alias 'tism'="MIX_ENV=test iex -S mix"
+alias 'mdg'='mix deps.get'
 export ERL_AFLAGS="-kernel shell_history enabled"
+
+# npm
+alias 'nrd'='npm run dev'
 
 # Docker
 alias dm='docker-machine'
@@ -50,6 +55,7 @@ function drm() {
 }
 
 alias dps='docker ps -a'
+alias dls='docker images'
 alias dmls='docker-machine ls'
 alias dip='docker-machine ip'
 
