@@ -368,6 +368,7 @@
      "C-S-h"      #'company-show-doc-buffer
      "C-S-s"      #'company-search-candidates
      "C-s"        #'company-filter-candidates
+     "C-l"        #'company-complete-selection
      "C-SPC"      #'company-complete-common
      "C-h"        #'company-quickhelp-manual-begin
      [tab]        #'company-complete-common-or-cycle
