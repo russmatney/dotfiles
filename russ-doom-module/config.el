@@ -3,10 +3,16 @@
 (when (featurep 'evil)
   (load! +functions)
   (load! +bindings)
+  (load! +evil)
+  (load! +git)
+  (load! +kb-fixes)
+  (load! +leader)
   (load! +commands)
+  (load! +helm)
   (load! +helm-mini)
-  (load! +org)
-  )
+  (load! +company)
+  (load! +neotree)
+  (load! +org))
 
 (defvar +russ-dir
   (file-name-directory load-file-name))
