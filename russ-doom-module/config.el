@@ -1,8 +1,9 @@
 ;;; private/russ/config.el -*- lexical-binding: t; -*-
 
 (when (featurep 'evil)
-  (load! +bindings)  ; my key bindings
-  (load! +commands) ; my custom ex commands
+  (load! +functions)
+  (load! +bindings)
+  (load! +commands)
   (load! +helm-mini)
   (load! +org)
   )
@@ -59,3 +60,6 @@
   :after elixir-mode
   :config
   (add-hook 'flycheck-mode-hook #'flycheck-credo-setup))
+
+
+(add-hook! 'before-save-hook 'whitespace-cleanup)

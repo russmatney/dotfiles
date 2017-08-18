@@ -84,6 +84,7 @@
    :desc "Eval expression"         :n "`"   #'eval-expression
    :desc "Blink cursor line"       :n "DEL" #'+doom/blink-cursor
    :desc "Jump to bookmark"        :n "RET" #'bookmark-jump
+   :desc "Helm-Mini"               :n "ESC" #'helm-mini
 
    :desc "Open vertical split"     :n "v" #'evil-window-vsplit
 
@@ -662,13 +663,13 @@
 
  "A-b"    #'helm-mini
  "M-RET"  #'doom/toggle-fullscreen
- "A-n"    #'+neotree/toggle ; TODO should hide/show
+ "A-n"    #'+russ/neotree-project-root-dir-or-current-dir
  ;"A-y"    #'helm-yank-ring ; TODO
- ;"A-b"    #'helm-mini ; TODO
- ;"A-w"    #'save-buffer ; TODO
- ;; "A-p"   #'(lambda () (interactive) (message "hi"))
- "A-c"   #'evil-commentary ; TODO replace with something that auto-comments my current line
- "M-A-c" #'org-capture ; TODO get this to work
+ "A-c"    #'evil-commentary-line
+ "M-RET"  #'doom/toggle-fullscreen
+ "A-<tab>" #'markdown-cycle
+
+ "A-p" #'(lambda () (interactive) (message "hello"))
  )
 
 
