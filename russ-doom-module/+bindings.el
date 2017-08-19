@@ -28,12 +28,19 @@
  "A-0"    (λ! (+workspace/switch-to 0))
  "A-l"    #'+workspace/switch-to-last
  "A-s"    #'+workspace/switch-to
+ :n  "]w" #'+workspace/switch-right
+ :n  "[w" #'+workspace/switch-left
 
  ;; window nav
+ "C-`"    #'doom/popup-toggle
  "C-h"    #'evil-window-left
  "C-j"    #'evil-window-down
  "C-k"    #'evil-window-up
  "C-l"    #'evil-window-right
+
+ ;; buffers
+ :n  "]b" #'doom/next-buffer
+ :n  "[b" #'doom/previous-buffer
 
  ;; eval exp and buffer
  "M-;"    #'eval-last-sexp
@@ -53,7 +60,16 @@
 
  ;; quick hops
  :m "A-j" #'+russ:multi-next-line
- :m "A-k" #'+russ:multi-previous-line)
+ :m "A-k" #'+russ:multi-previous-line
+
+ ;; jump to def/ref/doc
+ "A-."    #'+jump/definition
+ :m  "gd" #'+jump/definition
+ "A->"    #'+jump/references
+ :m  "gD" #'+jump/references
+ "A-d"    #'+jump/documentation
+ :m  "gh" #'+jump/documentation
+ )
 
 (map!
  ;; counsel
@@ -98,6 +114,14 @@
      "<M-left>"    nil
      "<M-right>"   nil
      "A-<tab>"     #'markdown-cycle))
+
+ ;; help mode
+ (:map help-mode-map
+   :n "[["  #'help-go-back
+   :n "]]"  #'help-go-forward
+   :n "o"   #'ace-link-help
+   :n "q"   #'quit-window
+   :n "Q"   #'+ivy-quit-and-resume)
 
  ;; --- Built-in plugins -----------------------------
  (:after comint

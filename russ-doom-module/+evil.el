@@ -2,21 +2,6 @@
 
 (map!
  ;; --- Personal vim-esque bindings ------------------
- :n  "zx" #'doom/kill-this-buffer
- :n  "ZX" #'bury-buffer
- :n  "]b" #'doom/next-buffer
- :n  "[b" #'doom/previous-buffer
- :n  "]w" #'+workspace/switch-right
- :n  "[w" #'+workspace/switch-left
- :m  "gt" #'+workspace/switch-right
- :m  "gT" #'+workspace/switch-left
- :m  "gd" #'+jump/definition
- :m  "gD" #'+jump/references
- :m  "gh" #'+jump/documentation
- :n  "gp" #'+evil/reselect-paste
- :n  "gr" #'+eval:region
- :n  "gR" #'+eval/buffer
- :v  "gR" #'+eval:replace-region
  :v  "@"  #'+evil:macro-on-all-lines
  :n  "g@" #'+evil:macro-on-all-lines
  ;; repeat in visual mode (FIXME buggy)
@@ -35,12 +20,6 @@
 
  ;; evil-matchit
  :nv [tab] #'+evil/matchit-or-toggle-fold
-
- ;; evil-magit
- (:after evil-magit
-   :map (magit-status-mode-map magit-revision-mode-map)
-   :n "C-j" nil
-   :n "C-k" nil)
 
  ;; evil-mc
  (:prefix "gz"
@@ -81,10 +60,7 @@
    ;; Binding to switch to evil-easymotion/avy after a snipe
    :map evil-snipe-parent-transient-map
    "C-;" (λ! (require 'evil-easymotion)
-             (call-interactively +evil--snipe-repeat-fn))
-   :map neotree-mode-map
-   "r" nil
-   )
+             (call-interactively +evil--snipe-repeat-fn)))
 
  ;; evil-surround
  :v  "S"  #'evil-surround-region
@@ -97,8 +73,16 @@
  :textobj "i" #'evil-indent-plus-i-indent         #'evil-indent-plus-a-indent
  :textobj "I" #'evil-indent-plus-i-indent-up      #'evil-indent-plus-a-indent-up
  :textobj "J" #'evil-indent-plus-i-indent-up-down #'evil-indent-plus-a-indent-up-down
-
  )
+
+
+(after! evil-mc
+  ;; if I'm in insert mode, chances are I want cursors to resume
+  (add-hook! 'evil-mc-before-cursors-created
+    (add-hook 'evil-insert-state-entry-hook #'evil-mc-resume-cursors nil t))
+  (add-hook! 'evil-mc-after-cursors-deleted
+    (remove-hook 'evil-insert-state-entry-hook #'evil-mc-resume-cursors t)))
+
 
 
 ;; --- Custom key functionality ---------------------

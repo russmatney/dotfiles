@@ -2,50 +2,7 @@
 
 (defalias 'ex! 'evil-ex-define-cmd)
 
-;;; Commands defined elsewhere
-;;(ex! "al[ign]"      #'+evil:align)
-;;(ex! "g[lobal]"     #'+evil:global)
-
-;;; Custom commands
-;; Emacs utilities
-(ex! "bc[omp]"      #'+russ:byte-compile)
-(ex! "re[load]"     #'doom/reload)
-(ex! "re[load]au"   #'doom/reload-autoloads)
-
-;; Editing
-(ex! "@"            #'+evil:macro-on-all-lines)   ; TODO Test me
-(ex! "al[ign]"      #'+evil:align)
-(ex! "enhtml"       #'+web:encode-html-entities)
-(ex! "dehtml"       #'+web:decode-html-entities)
-(ex! "mc"           #'+evil:mc)
-(ex! "na[rrow]"     #'+evil:narrow-buffer)
-(ex! "retab"        #'+evil:retab)
-
-;; External resources
-;; TODO (ex! "db"          #'doom:db)
-;; TODO (ex! "dbu[se]"     #'doom:db-select)
-;; TODO (ex! "go[ogle]"    #'doom:google-search)
-(ex! "lo[okup]"    #'+jump:online)
-(ex! "http"        #'httpd-start)            ; start http server
-(ex! "repl"        #'+eval:repl)             ; invoke or send to repl
-;; TODO (ex! "rx"          'doom:regex)             ; open re-builder
-(ex! "sh[ell]"     #'+eshell:run)
-(ex! "t[mux]"      #'+tmux:run)              ; send to tmux
-(ex! "tcd"         #'+tmux:cd-here)          ; cd to default-directory in tmux
-
-(evil-set-command-properties #'doom/scratch-buffer :ex-bang t)
 (ex! "x" #'doom/scratch-buffer)
-
-;; GIT
-(ex! "gist"        #'+gist:send)  ; send current buffer/region to gist
-(ex! "gistl"       #'+gist:list)  ; list gists by user
-(ex! "gbrowse"     #'+vcs/git-browse)        ; show file in github/gitlab
-(ex! "gissues"     #'+vcs/git-browse-issues) ; show github issues
-(ex! "git"         #'magit-status)           ; open magit status window
-(ex! "gstage"      #'magit-stage)
-(ex! "gunstage"    #'magit-unstage)
-(ex! "gblame"      #'magit-blame)
-(ex! "grevert"     #'git-gutter:revert-hunk)
 
 ;; Dealing with buffers
 (evil-set-command-properties #'+workspace/cleanup :ex-bang t)
@@ -57,29 +14,28 @@
 (ex! "k[ill]o"     #'doom/kill-other-buffers)
 (ex! "l[ast]"      #'doom/popup-restore)
 (ex! "m[sg]"       #'view-echo-area-messages)
-(ex! "pop[up]"     #'doom/popup) ; open current buffer in popup
 
 ;; Project navigation
 (ex! "a"           #'projectile-find-other-file)
 (ex! "cd"          #'+russ:cd)
+
+;; search
 (cond ((featurep! :completion ivy)
        (ex! "ag"       #'+ivy:ag)
        (ex! "agc[wd]"  #'+ivy:ag-cwd)
        (ex! "rg"       #'+ivy:rg)
        (ex! "rgc[wd]"  #'+ivy:rg-cwd)
        (ex! "sw[iper]" #'+ivy:swiper)
-       (ex! "todo"     #'+ivy:todo))
+       (ex! "t[odo]"     #'+ivy:todo))
       ((featurep! :completion helm)
        (ex! "ag"       #'+helm:ag)
        (ex! "agc[wd]"  #'+helm:ag-cwd)
        (ex! "rg"       #'+helm:rg)
        (ex! "rgc[wd]"  #'+helm:rg-cwd)
        (ex! "sw[oop]"  #'+helm:swoop)
-       (ex! "todo"     #'+helm:todo)))
+       (ex! "t[odo]"     #'+helm:todo)))
 
 ;; Project tools
-(ex! "build"       #'+eval/build)
-(ex! "debug"       #'+debug/run)
 (ex! "er[rors]"    #'flycheck-list-errors)
 
 ;; File operations
@@ -103,4 +59,5 @@
 (ex! "tabsave"     #'+workspace:save)
 
 ;; Org-mode
-(ex! "org"         #'+org:capture)
+(ex! "capture"     #'+org:capture)
+(ex! "org"         #'+org:capture) ;; TODO go to gtd

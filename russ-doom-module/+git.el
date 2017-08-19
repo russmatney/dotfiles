@@ -1,9 +1,33 @@
 ;;; private/russ/+git.el -*- lexical-binding: t; -*-
 
+(defalias 'ex! 'evil-ex-define-cmd)
+
+;; GIT
+(ex! "gist"        #'+gist:send)  ; send current buffer/region to gist
+(ex! "gistl"       #'+gist:list)  ; list gists by user
+(ex! "gbrowse"     #'+vcs/git-browse)        ; show file in github/gitlab
+(ex! "gissues"     #'+vcs/git-browse-issues) ; show github issues
+
+;; magit
+(ex! "git"         #'magit-status)           ; open magit status window
+(ex! "gstage"      #'magit-stage)
+(ex! "gunstage"    #'magit-unstage)
+(ex! "gblame"      #'magit-blame)
+
+;; gutter
+(ex! "grevert"     #'git-gutter:revert-hunk)
+
+
 (map!
  ;; git-gutter
  :m  "]d" #'git-gutter:next-hunk
  :m  "[d" #'git-gutter:previous-hunk
+
+ ;; evil-magit
+ (:after evil-magit
+   :map (magit-status-mode-map magit-revision-mode-map)
+   :n "C-j" nil
+   :n "C-k" nil)
 
  ;; git-timemachine
  (:after git-timemachine

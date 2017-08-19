@@ -1,7 +1,6 @@
 ;;; private/russ/config.el -*- lexical-binding: t; -*-
 
 (when (featurep 'evil)
-  (load! +functions)
   (load! +bindings)
   (load! +evil)
   (load! +git)
@@ -17,10 +16,22 @@
 (defvar +russ-dir
   (file-name-directory load-file-name))
 
-(defvar +russ-snippets-dir
-  (expand-file-name "snippets/" +russ-dir))
+;; Basic Config
+(setq backup-directory-alist `(("." . "~/.emacs-tmp/")))
+(setq auto-save-file-name-transforms `((".*" "~/.emacs-tmp/" t)))
 
-;;
+;; Spaces over tabs
+(setq c-basic-indent 2)
+(setq c-default-style "linux")
+(setq tab-width 2)
+(setq-default indent-tabs-mode nil)
+
+;; Auto revert-mode. Look ma, no hands...
+(global-auto-revert-mode t)
+
+;; Turn off line wrapping
+(setq-default truncate-lines 1)
+
 (after! doom-themes
   ;; Since Fira Mono doesn't have an italicized variant, highlight it instead
   (set-face-attribute 'italic nil
@@ -28,33 +39,16 @@
                       :foreground "#ffffff"
                       :background (doom-color 'current-line)))
 
-
-(after! evil-mc
-  ;; if I'm in insert mode, chances are I want cursors to resume
-  (add-hook! 'evil-mc-before-cursors-created
-    (add-hook 'evil-insert-state-entry-hook #'evil-mc-resume-cursors nil t))
-  (add-hook! 'evil-mc-after-cursors-deleted
-    (remove-hook 'evil-insert-state-entry-hook #'evil-mc-resume-cursors t)))
-
-
-;; Don't use default snippets, use mine.
-(after! yasnippet
-  (setq yas-snippet-dirs
-        (append (list '+russ-snippets-dir)
-                (delete 'yas-installed-snippets-dir
-                        yas-snippet-dirs))))
-
-
-(after! company
-  (setq company-idle-delay 0))
-
-(add-hook! elixir-mode
-  (flycheck-mode))
-
+;; elm
 (add-hook! elm-mode
   (flycheck-mode))
 
+;; rust
 (add-hook! rust-mode
+  (flycheck-mode))
+
+;; elixir
+(add-hook! elixir-mode
   (flycheck-mode))
 
 (def-package! flycheck-mix

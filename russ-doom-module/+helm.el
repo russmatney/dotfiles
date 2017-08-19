@@ -13,6 +13,7 @@
         ;; next-line moves across sources
         helm-move-to-line-cycle-in-source nil)
 
+  ;; overwritten to make this larger
   (set! :popup "\\` ?\\*[hH]elm.*?\\*\\'" :size 28 :regexp t))
 
 
@@ -29,26 +30,24 @@
      [left]       #'backward-char
      [right]      #'forward-char
      [escape]     #'helm-keyboard-quit
-     "C-p"        #'helm-execute-persistent-action
      "C-j"        #'helm-next-line
-     "C-k"        #'helm-previous-line)
+     "C-k"        #'helm-previous-line
+     "C-n"        #'helm-next-line
+     "C-p"        #'helm-previous-line
+
+     "C-SPC"      #'helm-execute-persistent-action
+     )
 
    (:after helm-files
      (:map helm-generic-files-map
        :e "ESC"     #'helm-keyboard-quit)
      (:map helm-find-files-map
-       "C-h" #'helm-find-files-up-one-level
-       "C-l" #'helm-execute-persistent-action
-       "TAB" #'helm-execute-persistent-action))
+       "C-h"   #'helm-find-files-up-one-level
+       "C-l"   #'helm-execute-persistent-action
+       "TAB"   #'helm-execute-persistent-action
+       "C-SPC" #'helm-execute-persistent-action
+       ))
 
    (:after helm-ag
      (:map helm-ag-map
-       "<backtab>"  #'helm-ag-edit)))
-
-
- (:map help-mode-map
-   :n "[["  #'help-go-back
-   :n "]]"  #'help-go-forward
-   :n "o"   #'ace-link-help
-   :n "q"   #'quit-window
-   :n "Q"   #'+ivy-quit-and-resume))
+       "<backtab>"  #'helm-ag-edit))))
