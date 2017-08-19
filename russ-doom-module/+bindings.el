@@ -44,7 +44,7 @@
 
  ;; eval exp and buffer
  "M-;"    #'eval-last-sexp
- "M-b"    #'+eval/buffer
+ "M-b"    #'eval-buffer
 
  ;; select all
  "M-a"    #'mark-whole-buffer
@@ -69,7 +69,7 @@
  :m  "gD" #'+jump/references
  "A-d"    #'+jump/documentation
  :m  "gh" #'+jump/documentation
- )
+)
 
 (map!
  ;; counsel

@@ -19,15 +19,13 @@
 
 
 (map!
- ;; --- <leader> -------------------------------------
  (:leader
    :desc "Ex command"      :nv ";"  #'evil-ex
    :desc "M-x"             :nv ":"  #'execute-extended-command
    :desc "Helm Mini"       :nv "b"  #'helm-mini
    :desc "Neotree Toggle"  :nv "n"  #'+russ/neotree-project-root-dir-or-current-dir
 
-   :desc "Pop up scratch buffer"   :nv "x"  #'doom/scratch-buffer
-   :desc "Org Capture"             :nv "X"  #'+org/capture ; TODO doesn't work?
+   :desc "Org Capture"             :nv "x"  #'org-capture
 
    ;; Most commonly used
    :desc "Find file in project"    :n "SPC" #'projectile-find-file
