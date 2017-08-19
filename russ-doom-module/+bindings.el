@@ -28,8 +28,8 @@
  "A-0"    (λ! (+workspace/switch-to 0))
  "A-l"    #'+workspace/switch-to-last
  "A-s"    #'+workspace/switch-to
- :n  "]w" #'+workspace/switch-right
- :n  "[w" #'+workspace/switch-left
+ :n "]w"  #'+workspace/switch-right
+ :n "[w"  #'+workspace/switch-left
 
  ;; window nav
  "C-`"    #'doom/popup-toggle
