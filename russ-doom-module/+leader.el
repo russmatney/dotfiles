@@ -26,7 +26,7 @@
 
    ;; Quick find file/buffer
    :desc "Helm mini"             :n "b"   #'helm-mini
-   :desc "Find file in project"  :n "SPC" #'projectile-find-file
+   :desc "Helm mini"             :n "SPC" #'helm-mini
    :desc "Workspace buffers"     :n ","   #'persp-switch-to-buffer
    :desc "All buffers"           :n "<"   #'switch-to-buffer
    :desc "Find file"             :n "."   #'find-file
@@ -42,8 +42,8 @@
    :desc "Universal argument"    :n "u"  #'universal-argument
    :desc "window"                :n "w"  evil-window-map
 
-   :desc "smart-back" :nv "[" #'smart-backward
-   :desc "smart-back" :nv "]" #'smart-forward
+   :desc "Previous Buffer" :nv "[" #'doom/previous-buffer
+   :desc "Next Buffer" :nv "]" #'doom/next-buffer
 
    :desc "Imenu"                 :nv "i" #'imenu
    :desc "Imenu across buffers"  :nv "I" #'imenu-anywhere
@@ -51,20 +51,21 @@
 
    :desc "File file"   :n "." #'find-file
 
-   (:desc "workspace" :prefix "TAB"
-     :desc "Display tab bar"          :n "TAB" #'+workspace/display
-     :desc "New workspace"            :n "n"   #'+workspace/new
-     :desc "Load workspace from file" :n "f"   #'+workspace/load
-     :desc "Save workspace to file"   :n "s"   #'+workspace/save
-     :desc "Autosave current session" :n "S"   #'+workspace/save-session
-     :desc "Switch workspace"         :n "."   #'+workspace/switch-to
-     :desc "Kill all buffers"         :n "x"   #'doom/kill-all-buffers
-     :desc "Delete session"           :n "X"   #'+workspace/kill-session
-     :desc "Delete this workspace"    :n "d"   #'+workspace/delete
-     :desc "Load session"             :n "L"   #'+workspace/load-session
-     :desc "Next workspace"           :n "]"   #'+workspace/switch-right
-     :desc "Previous workspace"       :n "["   #'+workspace/switch-left
-     :desc "Switch to last workspace" :n "l"   #'+workspace/switch-to-last)
+   ;; :desc "Fix indent"  :nvim "TAB" #'evil-indent-line
+   ;; (:desc "workspace" :prefix "TAB"
+   ;;   :desc "Display tab bar"          :n "TAB" #'+workspace/display
+   ;;   :desc "New workspace"            :n "n"   #'+workspace/new
+   ;;   :desc "Load workspace from file" :n "f"   #'+workspace/load
+   ;;   :desc "Save workspace to file"   :n "s"   #'+workspace/save
+   ;;   :desc "Autosave current session" :n "S"   #'+workspace/save-session
+   ;;   :desc "Switch workspace"         :n "."   #'+workspace/switch-to
+   ;;   :desc "Kill all buffers"         :n "x"   #'doom/kill-all-buffers
+   ;;   :desc "Delete session"           :n "X"   #'+workspace/kill-session
+   ;;   :desc "Delete this workspace"    :n "d"   #'+workspace/delete
+   ;;   :desc "Load session"             :n "L"   #'+workspace/load-session
+   ;;   :desc "Next workspace"           :n "]"   #'+workspace/switch-right
+   ;;   :desc "Previous workspace"       :n "["   #'+workspace/switch-left
+   ;;   :desc "Switch to last workspace" :n "l"   #'+workspace/switch-to-last)
 
    (:desc "kill" :prefix "k"
      :desc "Delete this window"     :n "k" #'delete-window

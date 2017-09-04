@@ -8,6 +8,8 @@
  "A-b"     #'helm-mini
  "A-n"     #'+russ/neotree-project-root-dir-or-current-dir
  "A-y"     #'counsel-yank-pop
+ "A-<tab>" #'evil-indent-line
+ "A-t"     #'alchemist-project-toggle-file-and-tests
 
  ;; Text-scaling
  "M-+"    (λ! (text-scale-set 0))
