@@ -10,6 +10,7 @@
  "A-y"     #'counsel-yank-pop
  "A-<tab>" #'evil-indent-line
  "A-t"     #'alchemist-project-toggle-file-and-tests
+ "A-<backspace>"     #'backward-kill-word
 
  ;; Text-scaling
  "M-+"    (λ! (text-scale-set 0))
