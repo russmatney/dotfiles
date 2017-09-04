@@ -30,8 +30,8 @@
  "A-0"    (λ! (+workspace/switch-to 0))
  "A-l"    #'+workspace/switch-to-last
  "A-s"    #'+workspace/switch-to
- :n "]w"  #'+workspace/switch-right
- :n "[w"  #'+workspace/switch-left
+ "A-<left>"  #'+workspace/switch-left
+ "A-<right>" #'+workspace/switch-right
 
  ;; window nav
  "C-`"    #'doom/popup-toggle
@@ -39,6 +39,9 @@
  "C-j"    #'evil-window-down
  "C-k"    #'evil-window-up
  "C-l"    #'evil-window-right
+
+ "S-<left>"  #'evil-window-increase-width
+ "S-<right>" #'evil-window-decrease-width
 
  ;; buffers
  :n  "]b" #'doom/next-buffer

@@ -27,6 +27,7 @@
    ;; Quick find file/buffer
    :desc "Helm mini"             :n "b"   #'helm-mini
    :desc "Helm mini"             :n "SPC" #'helm-mini
+   ;; :desc "Find file in project"  :n "SPC" #'projectile-find-file
    :desc "Workspace buffers"     :n ","   #'persp-switch-to-buffer
    :desc "All buffers"           :n "<"   #'switch-to-buffer
    :desc "Find file"             :n "."   #'find-file
