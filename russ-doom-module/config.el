@@ -39,6 +39,9 @@
                       :foreground "#ffffff"
                       :background (doom-color 'current-line)))
 
+(setq +ivy-buffer-icons t)
+
+
 ;; elm
 (add-hook! elm-mode
   (flycheck-mode))
