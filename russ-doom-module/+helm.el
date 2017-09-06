@@ -16,6 +16,23 @@
   ;; overwritten to make this larger
   (set! :popup "\\` ?\\*[hH]elm.*?\\*\\'" :size 28 :regexp t))
 
+;; TODO: genericize to work for files too
+(defun helm-buffer-switch-to-new-window (candidate)
+    "Display buffers in new windows."
+    ;; TODO: select the far right, stack multiple vertically
+    (require 'winner)
+    (select-window (car (last (winner-sorted-window-list))))
+    ;; Display buffers in new windows
+    (dolist (buf (helm-marked-candidates))
+      (select-window (split-window-below))
+      (switch-to-buffer buf))
+    (balance-windows))
+
+(defun helm-buffer-switch-new-window ()
+  (interactive)
+  (with-helm-alive-p
+    (helm-quit-and-execute-action 'helm-buffer-switch-to-new-window)))
+
 
 (map!
  (:after helm
@@ -35,7 +52,10 @@
      "C-n"        #'helm-next-line
      "C-p"        #'helm-previous-line
 
-     "C-SPC"      #'helm-execute-persistent-action
+     "A-p"        #'helm-execute-persistent-action
+     "A-v"        #'helm-buffer-switch-new-window
+     "A-<return>" #'helm-buffer-switch-new-window
+     "C-SPC"      #'helm-toggle-visible-mark
      )
 
    (:after helm-files
@@ -45,7 +65,6 @@
        "C-h"   #'helm-find-files-up-one-level
        "C-l"   #'helm-execute-persistent-action
        "TAB"   #'helm-execute-persistent-action
-       "C-SPC" #'helm-execute-persistent-action
        ))
 
    (:after helm-ag

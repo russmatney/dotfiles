@@ -70,7 +70,8 @@
 
    (:desc "kill" :prefix "k"
      :desc "Delete this window"     :n "k" #'delete-window
-     :desc "Kill other buffers"     :n "b" #'doom/kill-other-buffers
+     ;; :desc "Kill-buffers"           :n "b" #'kill-
+     :desc "Kill ALL file buffers" :n "B" #'doom/kill-other-buffers
      :desc "Ace delete window"      :n "a" #'ace-delete-window
      :desc "Delete this workspace"  :n "s" #'+workspace/delete)
 
