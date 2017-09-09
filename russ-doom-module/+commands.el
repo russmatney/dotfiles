@@ -2,7 +2,7 @@
 
 (defalias 'ex! 'evil-ex-define-cmd)
 
-(ex! "x" #'doom/scratch-buffer)
+(ex! "x"           #'evil-save-modified-and-close)
 
 ;; Dealing with buffers
 (evil-set-command-properties #'+workspace/cleanup :ex-bang t)

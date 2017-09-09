@@ -4,7 +4,7 @@
 (setq org-directory (expand-file-name "~/Dropbox/todo/"))
 
 
-(defun +russ/org-hook ()
+(defun +russ/org-capture-hook ()
   (setq org-capture-templates '(("t" "Todo [inbox]" entry
                                  (file+headline "~/Dropbox/todo/inbox.org" "Tasks")
                                  "* TODO %i%?")
@@ -17,10 +17,17 @@
                            "~/Dropbox/todo/tickler.org")))
 
 (after! org-capture
-  (+russ/org-hook))
+  (+russ/org-capture-hook))
 
 (setq org-refile-targets '(("~/Dropbox/todo/gtd.org" :maxlevel . 3)
                            ("~/Dropbox/todo/someday.org" :level . 1)
                            ("~/Dropbox/todo/tickler.org" :maxlevel . 2)))
+
+(map!
+ (:after org-capture
+   (:map org-capture-mode-map
+     [remap evil-save-and-close]          #'org-capture-finalize
+     [remap evil-save-modified-and-close] #'org-capture-finalize
+     [remap evil-quit]                    #'org-capture-kill)))
 
 (setq org-archive-location (concat "~/Dropbox/todo/archive/" (format-time-string "%Y-%m") ".org::"))
