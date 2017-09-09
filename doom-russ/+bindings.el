@@ -29,10 +29,12 @@
  "A-8"    (λ! (+workspace/switch-to 8))
  "A-9"    (λ! (+workspace/switch-to 9))
  "A-0"    (λ! (+workspace/switch-to 0))
- "A-l"    #'+workspace/switch-to-last
  "A-s"    #'+workspace/switch-to
- "A-<left>"  #'+workspace/switch-left
- "A-<right>" #'+workspace/switch-right
+ "A-h"    #'+workspace/switch-left
+ "A-l"    #'+workspace/switch-right
+ "A-,"    #'+workspace/rename
+ "A-L"    #'+workspace/load
+ "A-S"    #'+workspace/save
 
  ;; window nav
  "C-`"    #'doom/popup-toggle

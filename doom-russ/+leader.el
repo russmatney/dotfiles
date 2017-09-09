@@ -119,15 +119,16 @@
        :desc "Reveal in Finder"          :n "o" #'+macos/reveal-in-finder
        :desc "Reveal project in Finder"  :n "O" #'+macos/reveal-project-in-finder))
 
-   (:desc "project" :prefix "p"
-     :desc "Browse project"          :n  "." (find-file-in! (doom-project-root))
-     :desc "Find file in project"    :n  "/" #'projectile-find-file
-     :desc "Run cmd in project root" :nv "!" #'projectile-run-shell-command-in-root
-     :desc "Switch project"          :n  "p" #'projectile-switch-project
-     :desc "Recent project files"    :n  "r" #'projectile-recentf
-     :desc "List project tasks"      :n  "t" #'+ivy/tasks
-     :desc "Pop term in project"     :n  "o" #'+term/popup-in-project
-     :desc "Invalidate cache"        :n  "x" #'projectile-invalidate-cache)
+   :desc "projectile-find-file" :n "p" #'projectile-find-file
+   ;; (:desc "project" :prefix "p"
+   ;;   :desc "Browse project"          :n  "." (find-file-in! (doom-project-root))
+   ;;   :desc "Find file in project"    :n  "/" #'projectile-find-file
+   ;;   :desc "Run cmd in project root" :nv "!" #'projectile-run-shell-command-in-root
+   ;;   :desc "Switch project"          :n  "p" #'projectile-switch-project
+   ;;   :desc "Recent project files"    :n  "r" #'projectile-recentf
+   ;;   :desc "List project tasks"      :n  "t" #'+ivy/tasks
+   ;;   :desc "Pop term in project"     :n  "o" #'+term/popup-in-project
+   ;;   :desc "Invalidate cache"        :n  "x" #'projectile-invalidate-cache)
 
    (:desc "toggle" :prefix "t"
      :desc "Flyspell"               :n "s" #'flyspell-mode

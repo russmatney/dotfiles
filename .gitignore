@@ -11,11 +11,3 @@ nvim/.init.vim*
 .DS_Store
 *~
 zsh/secrets.zsh
-
-emacs.d/auto-save-list
-emacs.d/elpa
-emacs.d/server
-emacs.d/bookmarks
-emacs.d/history
-emacs.d/projectile-*
-emacs.d/recentf
