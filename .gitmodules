@@ -11,3 +11,6 @@
 [submodule "iterm2-colors"]
 	path = iterm2-colors
 	url = https://github.com/mbadolato/iTerm2-Color-Schemes.git
+[submodule "doom-emacs"]
+	path = doom-emacs
+	url = https://github.com/hlissner/.emacs.d
