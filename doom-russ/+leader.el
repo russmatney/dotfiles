@@ -20,60 +20,44 @@
 
 (map!
  (:leader
-   :desc "Exec Command"    :nv ";"  #'evil-ex
-   :desc "Org Capture"     :nv "x"  #'org-capture
-   :desc "Neotree Toggle"  :nv "n"  #'+russ/neotree-project-root-dir-or-current-dir
+   :desc "evil-ex"            :nv ";"   #'evil-ex
+   :desc "eval-expression"    :nv "="   #'balance-windows-area
+   :desc "eval-buffer"        :nv "B"   #'eval-buffer
+   :desc "org-capture"        :nv "x"   #'org-capture
+   :desc "+doom/blink-cursor" :n  "DEL" #'+doom/blink-cursor
 
    ;; Quick find file/buffer
-   :desc "Helm mini"             :n "b"   #'helm-mini
-   :desc "Helm mini"             :n "SPC" #'helm-mini
-   ;; :desc "Find file in project"  :n "SPC" #'projectile-find-file
-   :desc "Workspace buffers"     :n ","   #'persp-switch-to-buffer
-   :desc "All buffers"           :n "<"   #'switch-to-buffer
-   :desc "Find file"             :n "."   #'find-file
-   :desc "Toggle last popup"     :n "`"   #'doom/popup-toggle
-   :desc "Eval expression"       :n "="   #'eval-expression
-   :desc "Blink cursor line"     :n "DEL" #'+doom/blink-cursor
-   :desc "Jump to bookmark"      :n "RET" #'bookmark-jump
+   :desc "Helm mini"              :n  "SPC" #'helm-mini
+   :desc "Workspace buffers"      :n  "b"   #'persp-switch-to-buffer
+   :desc "Workspace buffers"      :n  ","   #'persp-switch-to-buffer
+   :desc "All buffers"            :n  "<"   #'switch-to-buffer
+   :desc "Find file"              :n  "."   #'find-file
+   :desc "Previous Buffer"        :nv "["   #'doom/previous-buffer
+   :desc "Next Buffer"            :nv "]"   #'doom/next-buffer
+   :desc "projectile-find-file"   :n  "p"   #'projectile-find-file
+   :desc "projectile-test-toggle" :n  "t"   #'projectile-toggle-between-implementation-and-test
 
-   :desc "Open vertical split"  :n "v" #'evil-window-vsplit ;; TODO consider split+helm-mini
-   :desc "Open vertical split"  :n "s" #'evil-window-split
+   ;; Other search/nav
+   :desc "Jump to bookmark"      :n  "RET" #'bookmark-jump
+   :desc "Imenu"                 :nv "i"   #'imenu
+   :desc "Imenu across buffers"  :nv "I"   #'imenu-anywhere
+   :desc "Swiper"                :nv "/"   #'swiper
 
-   ;; C-u is used by evil
-   :desc "Universal argument"    :n "u"  #'universal-argument
-   :desc "window"                :n "w"  evil-window-map
+   ;; Windows management
+   :desc "Neotree Toggle"       :nv "n"  #'+russ/neotree-project-root-dir-or-current-dir
+   :desc "Toggle last popup"    :n  "`"   #'doom/popup-toggle
+   :desc "Open vertical split"  :n  "v"  #'evil-window-vsplit
+   :desc "Open vertical split"  :n  "s"  #'evil-window-split
 
-   :desc "Previous Buffer" :nv "[" #'doom/previous-buffer
-   :desc "Next Buffer" :nv "]" #'doom/next-buffer
-
-   :desc "Imenu"                 :nv "i" #'imenu
-   :desc "Imenu across buffers"  :nv "I" #'imenu-anywhere
-   :desc "Swiper"                :nv "/" #'swiper
-
-   :desc "File file"   :n "." #'find-file
-
-   ;; :desc "Fix indent"  :nvim "TAB" #'evil-indent-line
-   ;; (:desc "workspace" :prefix "TAB"
-   ;;   :desc "Display tab bar"          :n "TAB" #'+workspace/display
-   ;;   :desc "New workspace"            :n "n"   #'+workspace/new
-   ;;   :desc "Load workspace from file" :n "f"   #'+workspace/load
-   ;;   :desc "Save workspace to file"   :n "s"   #'+workspace/save
-   ;;   :desc "Autosave current session" :n "S"   #'+workspace/save-session
-   ;;   :desc "Switch workspace"         :n "."   #'+workspace/switch-to
-   ;;   :desc "Kill all buffers"         :n "x"   #'doom/kill-all-buffers
-   ;;   :desc "Delete session"           :n "X"   #'+workspace/kill-session
-   ;;   :desc "Delete this workspace"    :n "d"   #'+workspace/delete
-   ;;   :desc "Load session"             :n "L"   #'+workspace/load-session
-   ;;   :desc "Next workspace"           :n "]"   #'+workspace/switch-right
-   ;;   :desc "Previous workspace"       :n "["   #'+workspace/switch-left
-   ;;   :desc "Switch to last workspace" :n "l"   #'+workspace/switch-to-last)
+   ;; Editing
+   :desc "Comment Selection" :nvm "c"   #'comment-or-uncomment-region
+   :desc "Fix indent"        :nvm "TAB" #'evil-indent-line
 
    (:desc "kill" :prefix "k"
-     :desc "Delete this window"     :n "k" #'delete-window
-     ;; :desc "Kill-buffers"           :n "b" #'kill-
-     :desc "Kill ALL file buffers" :n "B" #'doom/kill-other-buffers
-     :desc "Ace delete window"      :n "a" #'ace-delete-window
-     :desc "Delete this workspace"  :n "s" #'+workspace/delete)
+     :desc "delete-window"           :n "k" #'delete-window
+     :desc "doom/kill-other-buffers" :n "B" #'doom/kill-other-buffers
+     :desc "ace-delete-window"       :n "a" #'ace-delete-window
+     :desc "+workspace/delete"       :n "s" #'+workspace/delete)
 
    (:desc "git" :prefix "g"
      :desc "Git status"        :n  "s" #'magit-status
@@ -119,42 +103,10 @@
        :desc "Reveal in Finder"          :n "o" #'+macos/reveal-in-finder
        :desc "Reveal project in Finder"  :n "O" #'+macos/reveal-project-in-finder))
 
-   :desc "projectile-find-file" :n "p" #'projectile-find-file
-   ;; (:desc "project" :prefix "p"
-   ;;   :desc "Browse project"          :n  "." (find-file-in! (doom-project-root))
-   ;;   :desc "Find file in project"    :n  "/" #'projectile-find-file
-   ;;   :desc "Run cmd in project root" :nv "!" #'projectile-run-shell-command-in-root
-   ;;   :desc "Switch project"          :n  "p" #'projectile-switch-project
-   ;;   :desc "Recent project files"    :n  "r" #'projectile-recentf
-   ;;   :desc "List project tasks"      :n  "t" #'+ivy/tasks
-   ;;   :desc "Pop term in project"     :n  "o" #'+term/popup-in-project
-   ;;   :desc "Invalidate cache"        :n  "x" #'projectile-invalidate-cache)
-
-   (:desc "toggle" :prefix "t"
-     :desc "Flyspell"               :n "s" #'flyspell-mode
-     :desc "Flycheck"               :n "f" #'flycheck-mode
-     :desc "Line numbers"           :n "l" #'doom/toggle-line-numbers
-     :desc "Big mode"               :n "b" #'doom-big-font-mode))
-
- ;; TODO might be able to delete this
- (:map evil-window-map ; prefix "C-w"
-   ;; Navigation
-   "C-h"     #'evil-window-left
-   "C-j"     #'evil-window-down
-   "C-k"     #'evil-window-up
-   "C-l"     #'evil-window-right
-   "C-w"     #'ace-window
-   ;; Swapping windows
-   "H"       #'+evil/window-move-left
-   "J"       #'+evil/window-move-down
-   "K"       #'+evil/window-move-up
-   "L"       #'+evil/window-move-right
-   "C-S-w"   #'ace-swap-window
-   ;; Window undo/redo
-   "u"       #'winner-undo
-   "C-u"     #'winner-undo
-   "C-r"     #'winner-redo
-   "o"       #'doom/window-enlargen
-   ;; Delete window
-   "c"       #'+workspace/close-window-or-workspace
-   "C-C"     #'ace-delete-window))
+   (:desc "window" :prefix "w"
+     ;; Navigation
+     :desc "evil-window-left"  :n "C-h" #'evil-window-left
+     :desc "evil-window-down"  :n "C-j" #'evil-window-down
+     :desc "evil-window-up"    :n "C-k" #'evil-window-up
+     :desc "evil-window-right" :n "C-l" #'evil-window-right
+     :desc "ace-window"        :n "C-w" #'ace-window)))
