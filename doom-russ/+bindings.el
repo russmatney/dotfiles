@@ -6,7 +6,8 @@
  :nvime "A-x" #'execute-extended-command
 
  "A-b"     #'helm-mini
- "A-n"     #'+russ/neotree-project-root-dir-or-current-dir
+ "A-n"     #'+russ/neotree-find-current-file
+ "A-N"     #'+russ/neotree-reveal-current-file
  "A-y"     #'counsel-yank-pop
  "A-<tab>" #'evil-indent-line
  "A-t"     #'alchemist-project-toggle-file-and-tests
@@ -65,6 +66,8 @@
  "M-f"    #'swiper
  ;; fullscreen
  "M-RET"   #'doom/toggle-fullscreen
+ ;; hide
+ "M-h"   #'ns-do-hide-emacs
 
  ;; quick hops
  :m "A-j" #'+russ:multi-next-line

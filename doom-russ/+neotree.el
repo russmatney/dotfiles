@@ -26,18 +26,33 @@
    :n "d"         #'neotree-delete-node
    ))
 
-(defun +russ/neotree-project-root-dir-or-current-dir ()
-  "Open NeoTree using the project root, using projectile, or the
-current buffer directory."
+(defun +russ/neotree-find-current-file ()
+  "Select current buffer in Neotree.
+
+If the current buffer is neotree, this closes neotree.
+
+Returns nil if neotree was closed, t if it was opened."
   (interactive)
-  (let ((project-dir (ignore-errors (projectile-project-root)))
-        (file-name (buffer-file-name))
-        (neo-smart-open t))
-    (if (neo-global--window-exists-p)
-        (neotree-hide)
+  (if (eq (current-buffer) (neo-global--get-buffer))
       (progn
+        (neotree-hide)
+        nil)
+    (let ((project-dir (projectile-project-root))
+            (file-name (buffer-file-name)))
+
         (neotree-show)
         (if project-dir
-            (neotree-dir project-dir))
-        (if file-name
-            (neotree-find file-name))))))
+            (if (neo-global--window-exists-p)
+                (progn
+                (neotree-dir project-dir)
+                (neotree-find file-name)))
+        (message "Could not find git project root."))
+        t)))
+
+(defun +russ/neotree-reveal-current-file ()
+  "Reveal current buffer in Neotree.
+
+If the current buffer is neotree, this closes neotree."
+  (interactive)
+  (if (eq t (+russ/neotree-find-current-file))
+    (neotree-enter)))

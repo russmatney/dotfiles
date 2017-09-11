@@ -44,10 +44,11 @@
    :desc "Swiper"                :nv "/"   #'swiper
 
    ;; Windows management
-   :desc "Neotree Toggle"       :nv "n"  #'+russ/neotree-project-root-dir-or-current-dir
-   :desc "Toggle last popup"    :n  "`"   #'doom/popup-toggle
-   :desc "Open vertical split"  :n  "v"  #'evil-window-vsplit
-   :desc "Open vertical split"  :n  "s"  #'evil-window-split
+   :desc "neotree-find-current-file"   :nv "n"  #'+russ/neotree-find-current-file
+   :desc "neotree-reveal-current-file" :nv "N"  #'+russ/neotree-reveal-current-file
+   :desc "Toggle last popup"           :n  "`"  #'doom/popup-toggle
+   :desc "Open vertical split"         :n  "v"  #'evil-window-vsplit
+   :desc "Open vertical split"         :n  "s"  #'evil-window-split
 
    ;; Editing
    :desc "Comment Selection" :nvm "c"   #'comment-or-uncomment-region
@@ -57,7 +58,8 @@
      :desc "delete-window"           :n "k" #'delete-window
      :desc "doom/kill-other-buffers" :n "B" #'doom/kill-other-buffers
      :desc "ace-delete-window"       :n "a" #'ace-delete-window
-     :desc "+workspace/delete"       :n "s" #'+workspace/delete)
+     :desc "+workspace/delete"       :n "s" #'+workspace/delete
+     :desc "hide-neotree"            :n "n" #'neotree-hide)
 
    (:desc "git" :prefix "g"
      :desc "Git status"        :n  "s" #'magit-status
