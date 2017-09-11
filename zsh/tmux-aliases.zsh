@@ -3,11 +3,19 @@
 function tt() {
   sessionName=${1#*.}
   if ! tmux has-session -t "$sessionName" 2> ~/projects/null; then
-    oldTMUX=$TMUX
-    unset TMUX
-    tmux new -d -s $sessionName
-    export TMUX=$oldTMUX
-    unset oldTMUX
+    tmux_script=~/dotfiles/zsh/flows/$1
+    if [[ -e $tmux_script ]]; then
+      zsh "$tmux_script"
+    else
+      oldTMUX=$TMUX
+      unset TMUX
+      tmux new -d -s $sessionName -n $sessionName
+      export TMUX=$oldTMUX
+      unset oldTMUX
+
+      tmux send-keys -t "${sessionName}" "j ${sessionName}; clear" "C-m"
+    fi
+    unset tmux_script
   fi
   if [[ -n $TMUX ]]; then
     tmux switch-client -t $sessionName
@@ -17,13 +25,16 @@ function tt() {
   unset sessionName
 }
 
+
+tmux_search_paths=( ~/projects ~/projects/urbint )
+
 # gather files for auto-complete
 function _tls() {
   reply=( $(tmux list-sessions 2> ~/projects/null | cut -d: -f1) )
 }
 function _tscripts() {
   reply=( $(tmux list-sessions 2> ~/projects/null | cut -d: -f1) )
-  reply+=( $(ls ~/dotfiles/flows) )
+  reply+=( $(ls ~/dotfiles/zsh/flows) )
   for dir in $tmux_search_paths; do
     reply+=( $(ls $dir) )
   done
