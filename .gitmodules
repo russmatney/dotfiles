@@ -1,16 +1,6 @@
-[submodule "antigen"]
-	path = antigen
-	url = https://github.com/zsh-users/antigen.git
-	ignore = dirty
 [submodule "tmux-powerline"]
 	path = tmux-powerline
 	url = https://github.com/erikw/tmux-powerline.git
-[submodule "fonts"]
-	path = fonts
-	url = https://github.com/powerline/fonts.git
-[submodule "iterm2-colors"]
-	path = iterm2-colors
-	url = https://github.com/mbadolato/iTerm2-Color-Schemes.git
 [submodule "doom-emacs"]
 	path = doom-emacs
 	url = https://github.com/hlissner/.emacs.d
