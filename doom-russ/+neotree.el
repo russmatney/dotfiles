@@ -33,7 +33,8 @@ If the current buffer is neotree, this closes neotree.
 
 Returns nil if neotree was closed, t if it was opened."
   (interactive)
-  (if (eq (current-buffer) (neo-global--get-buffer))
+  (if (and (neo-global--window-exists-p)
+           (eq (current-buffer) (neo-global--get-buffer)))
       (progn
         (neotree-hide)
         nil)
