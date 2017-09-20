@@ -52,7 +52,14 @@
 
 ;; elixir
 (add-hook! elixir-mode
-  (flycheck-mode))
+  (flycheck-mode)
+  (turn-off-smartparens-mode)
+  )
+
+;; emacs-lisp
+(add-hook! emacs-lisp-mode
+  (turn-off-smartparens-mode)
+  )
 
 (def-package! flycheck-mix
   :after elixir-mode
