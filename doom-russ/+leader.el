@@ -111,4 +111,13 @@
      :desc "evil-window-down"  :n "C-j" #'evil-window-down
      :desc "evil-window-up"    :n "C-k" #'evil-window-up
      :desc "evil-window-right" :n "C-l" #'evil-window-right
-     :desc "ace-window"        :n "C-w" #'ace-window)))
+     :desc "ace-window"        :n "C-w" #'ace-window)
+
+   (:desc "tmux" :prefix "m"
+     ;; howdy tmux!
+     :desc "rerun last command"  :n "." #'+russ/tmux-repeat
+     :desc "fire shell command"  :n "m" #'+russ/tmux-command
+     :desc "fire shell command"  :n "x" #'+russ/tmux-command
+     :desc "send cancel command" :n "c" #'+russ/tmux-cancel
+     :desc "send q key"          :n "q" #'+russ/tmux-send-q
+     )))
