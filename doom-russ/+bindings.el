@@ -13,6 +13,9 @@
  "A-t"     #'alchemist-project-toggle-file-and-tests
  "A-<backspace>"     #'backward-kill-word
  "A-r"     #'org-babel-execute-src-block
+ "M-,"    #'helm-descbinds
+
+ :n "-"      #'dired-jump
 
  ;; Text-scaling
  "M-+"    (λ! (text-scale-set 0))

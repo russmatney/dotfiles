@@ -11,6 +11,7 @@
   (load! +helm-mini)
   (load! +company)
   (load! +neotree)
+  (load! +helm-descbinds)
   (load! +org))
 
 (defvar +russ-dir

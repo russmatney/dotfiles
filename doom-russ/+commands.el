@@ -26,14 +26,14 @@
        (ex! "rg"       #'+ivy:rg)
        (ex! "rgc[wd]"  #'+ivy:rg-cwd)
        (ex! "sw[iper]" #'+ivy:swiper)
-       (ex! "t[odo]"     #'+ivy:todo))
+       (ex! "t[odo]"   #'+ivy:todo))
       ((featurep! :completion helm)
        (ex! "ag"       #'+helm:ag)
        (ex! "agc[wd]"  #'+helm:ag-cwd)
        (ex! "rg"       #'+helm:rg)
        (ex! "rgc[wd]"  #'+helm:rg-cwd)
        (ex! "sw[oop]"  #'+helm:swoop)
-       (ex! "t[odo]"     #'+helm:todo)))
+       (ex! "t[odo]"   #'+helm:todo)))
 
 ;; Project tools
 (ex! "er[rors]"    #'flycheck-list-errors)
