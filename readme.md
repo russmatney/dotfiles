@@ -1,23 +1,4 @@
-# Overview
-
-- Zsh
-- Tmux
-- Emacs
-- Vim
-- CLI
-  - httpie
-  - fzf
-  - autojump
-- OSX
-  - iTerm2
-  - Homebrew
-  - Alfred
-  - Dash Docs
-  - Hammerspoon
-  - BetterSnapTool
-  - Vimium (Chrome Extension)
-
-# Zsh
+# [Zsh](https://github.com/zsh-users/zsh)
 
 ```
 brew install zsh zsh-completions
@@ -25,7 +6,7 @@ brew install zsh zsh-completions
 
 See `zshrc` for full config.
 
-# Tmux
+# [Tmux](https://github.com/tmux/tmux)
 
 ```
 brew install tmux
@@ -37,21 +18,27 @@ See `tmux.conf` for full config.
 
 See `zsh/tmux.aliases.zsh`
 
-## Powerline
+## [Powerline](https://github.com/powerline/powerline)
 
-[Powerline source](https://github.com/powerline/powerline).
+A beautiful tmux status line.
 
 ```
 pip install powerline-status
 ```
 
-# Emacs
+# [Emacs](https://emacsformacosx.com/)
 
-`doom-russ` is my private module for running [Doom Emacs](https://github.com/hlissner/doom-emacs) by `hlissner`
+It's useful to have both a GUI (link above) and CLI emacs version.
+
+```
+brew install emacs
+```
+
+`doom-russ/*` is my private module for running [Doom Emacs](https://github.com/hlissner/doom-emacs) by `hlissner`
 
 See `doom-russ/+{bindings,+leader,+commands}.el` for bindings and commands.
 
-# Vim
+# Vim ([neovim](https://github.com/neovim/neovim))
 
 ```
 brew tap neovim/neovim
@@ -62,23 +49,29 @@ pip install neovim
 
 See `nvimrc` for full config.
 
-## Plugins: use vim-plug
+For plugins, use [vim-plug](https://github.com/junegunn/vim-plug) and my list at `nvim/plugins.vim`.
 
 # CLI
 
-## httpie
+## [httpie](https://github.com/jakubroztocil/httpie)
+
+A better `curl`.
 
 ```
 brew install httpie
 ```
 
-## fzf
+## [fzf](https://github.com/junegunn/fzf)
+
+Fuzzy-search for history + file finding.
 
 ```
 brew install fzf
 ```
 
-## autojump
+## [autojump/j](https://github.com/wting/autojump)
+
+`j <search>` to hop to a matching dir anywhere in your file system.
 
 ```
 brew install autojump
@@ -88,28 +81,23 @@ brew install autojump
 
 For general OSX fixes, see `osx/osx-hacks.sh`.
 
-## iTerm2
+## [iTerm2](https://iterm2.com/downloads/nightly/#/section/home)
 
-[iTerm2 Installation](https://iterm2.com/downloads/nightly/#/section/home)
+- [Set zsh as default shell](http://stackoverflow.com/questions/13476232/make-iterm2-launch-with-zsh)
+- Turn off Lion-style full screen windows
 
-Configuration:
+## [Homebrew](http://brew.sh/)
 
-  - [Set zsh as default shell](http://stackoverflow.com/questions/13476232/make-iterm2-launch-with-zsh)
-  - Turn off Lion-style full screen windows
+```
+brew install coreutils
+brew install caskroom/cask/brew-cask
+```
 
-## Homebrew
+## [Alfred](https://www.alfredapp.com/)
 
-[Homebrew](http://brew.sh/)
+A spotlight replacement with hackable OSX workflows.
 
-  - `brew install coreutils`
-  - `brew install caskroom/cask/brew-cask` - generic req for brew casks
-
-## Alfred
-
-[Alfred](https://www.alfredapp.com/)
-is a Spotlight replacement with hackable OSX workflows.
-
-### Alfred Workflows:
+Some workflows:
 
 - [dash](https://github.com/Kapeli/Dash-Alfred-Workflow) - Easily my most used,
   if not the whole reason to get Alfred (and Dash) in the first place. Faster
@@ -118,13 +106,11 @@ is a Spotlight replacement with hackable OSX workflows.
 - [github](https://github.com/gharlan/alfred-github-workflow) - `gh [search|repo|etc]`
 - [ip](http://dferg.us/ip-address-workflow/) - quick local/external ip lookup
 
-## Dash Docs
+## [Dash Docs](https://kapeli.com/dash)
 
 A great pair for Alfred, Dash is a generic offline docs tool.
 
-## Hammerspoon
-
-[Download and docs](http://www.hammerspoon.org/).
+## [Hammerspoon](http://www.hammerspoon.org/)
 
 Shortcuts for your mac. Used for fast app switching.
 
@@ -147,11 +133,11 @@ appShortcut(alt, 'L', 'Slack')
 appShortcut(alt, 'D', 'Dash')
 ```
 
-## BetterSnapTool
+## [BetterSnapTool](https://itunes.apple.com/us/app/bettersnaptool/id417375580?mt=12)
 
 Window movement and resizing via the keyboard.
 
-## Vimium (Chrome Extension)
+## [Vimium (Chrome Extension)](https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=en)
 
-Vim bindings for navigating in Chrome.
+Vim bindings for navigating Chrome.
 
