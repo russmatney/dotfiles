@@ -1,250 +1,157 @@
-# Your workflow is your language
+# Overview
 
-This readme is an attempt to document everything related to my
-workflow, in installed order, from scratch on a freshly restored mac.
+- Zsh
+- Tmux
+- Emacs
+- Vim
+- CLI
+  - httpie
+  - fzf
+  - autojump
+- OSX
+  - iTerm2
+  - Homebrew
+  - Alfred
+  - Dash Docs
+  - Hammerspoon
+  - BetterSnapTool
+  - Vimium (Chrome Extension)
 
-## Browsers
+# Zsh
 
-1. (If you prefer chrome) [Download Chrome](http://www.google.com/chrome/) from Safari, sign-in to resync
-1. Some chrome extensions
-  - [Pocket](https://getpocket.com/)
-  - [1password](https://agilebits.com/onepassword/mac)
-  - [WhatFont](http://chengyinliu.com/whatfont.html)
-  - [Vimium](https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb)
+```
+brew install zsh zsh-completions
+```
 
-## OSX Apps
+See `zshrc` for full config.
 
-1. [1password](https://agilebits.com/onepassword/mac)
-1. [Dropbox](http://www.dropbox.com/)
-1. [nvALT (notational velocity)](http://brettterpstra.com/projects/nvalt/)
-  - set up to read/write plain text files from dropbox
-1. [Limechat](http://limechat.net/mac/)
-1. [BetterSnapTool](https://itunes.apple.com/us/app/bettersnaptool/id417375580?mt=12)
-1. [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12)
-  - Install the command line tools
-1. [Evernote](https://evernote.com/download/)
-1. [Slack](https://slack.com/apps)
-1. [Colorsnapper2]()
-1. [CloudApp]()
-1. [Pomodoro Time](https://itunes.apple.com/us/app/pomodoro-time-focus-timer/id973134470?mt=12)
+# Tmux
 
-## Alfred
+```
+brew install tmux
+```
 
-1. [Alfred](https://www.alfredapp.com/)
-1. [Dash]()
-  - Dash-Alfred integration
+See `tmux.conf` for full config.
 
-#### Workflows
+## `tt` and sessions
 
-- [pkgman](https://github.com/willfarrell/alfred-pkgman-workflow) - better/faster than googling for packages
-- [dash](https://github.com/Kapeli/Dash-Alfred-Workflow) - better/faster than googling for docs
-- [spotifious](http://ben.stolovitz.com/Spotify-for-Alfred/) - better/faster search/control of spotify
-- [workflow search](https://github.com/hzlzh/Alfred-Workflows/raw/master/Downloads/Workflow-Searcher.alfredworkflow) - for when you know there's a better/faster way
-- [stackoverflow](https://github.com/xhinking/Alfred/blob/master/stackoverflow.alfredworkflow)
-- [github](https://github.com/gharlan/alfred-github-workflow) - `gh [search|repo|etc]`
-- [top (including kill)](http://zhaocai.github.io/alfred2-top-workflow/) - because the activity monitor is just too slow, especially when something needs to DIE
-- [ip](http://dferg.us/ip-address-workflow/) - quick local/external ip lookup
-- [uuid](https://github.com/eliasmaier/uuidgen.alfred)
+See `zsh/tmux.aliases.zsh`
 
-## iTerm
+## Powerline
 
-1. Install [iTerm2 (nightlies)](https://iterm2.com/downloads/nightly/#/section/home)
+[Powerline source](https://github.com/powerline/powerline).
+
+```
+pip install powerline-status
+```
+
+# Emacs
+
+`doom-russ` is my private module for running [Doom Emacs](https://github.com/hlissner/doom-emacs) by `hlissner`
+
+See `doom-russ/+{bindings,+leader,+commands}.el` for bindings and commands.
+
+# Vim
+
+```
+brew tap neovim/neovim
+brew install neovim
+# or
+pip install neovim
+```
+
+See `nvimrc` for full config.
+
+## Plugins: use vim-plug
+
+# CLI
+
+## httpie
+
+```
+brew install httpie
+```
+
+## fzf
+
+```
+brew install fzf
+```
+
+## autojump
+
+```
+brew install autojump
+```
+
+# OSX
+
+For general OSX fixes, see `osx/osx-hacks.sh`.
+
+## iTerm2
+
+[iTerm2 Installation](https://iterm2.com/downloads/nightly/#/section/home)
+
+Configuration:
+
+  - [Set zsh as default shell](http://stackoverflow.com/questions/13476232/make-iterm2-launch-with-zsh)
   - Turn off Lion-style full screen windows
 
 ## Homebrew
 
-1. [Homebrew](http://brew.sh/)
+[Homebrew](http://brew.sh/)
+
   - `brew install coreutils`
   - `brew install caskroom/cask/brew-cask` - generic req for brew casks
 
-## Node
+## Alfred
 
-- `brew install node`
-- `npm install -g n`
-- `n latest`
-- `npm i -g bower gulp babel eslint babel-eslint typescript`
+[Alfred](https://www.alfredapp.com/)
+is a Spotlight replacement with hackable OSX workflows.
 
-## Python
+### Alfred Workflows:
 
-1. `brew install python`
-  - should give you `pip` as well
+- [dash](https://github.com/Kapeli/Dash-Alfred-Workflow) - Easily my most used,
+  if not the whole reason to get Alfred (and Dash) in the first place. Faster
+  than Googling for docs for any language.
+- [top (including kill)](http://zhaocai.github.io/alfred2-top-workflow/) - because the activity monitor is just too slow, especially when something needs to DIE
+- [github](https://github.com/gharlan/alfred-github-workflow) - `gh [search|repo|etc]`
+- [ip](http://dferg.us/ip-address-workflow/) - quick local/external ip lookup
 
-## Lua
+## Dash Docs
 
-1. `brew install lua`
-
-## Dotfiles
-
-1. Init dotfiles folder (if it does not exist) with git history
-
-## Zsh with Antigen
-
-1. [Set zsh as default shell](http://stackoverflow.com/questions/13476232/make-iterm2-launch-with-zsh)
-1. install [antigen]() as a submodule
-  - i did this in this repo via `git submodule init` and `git submodule update`
-1. symlink your zshrc to ~/.zshrc
-  - `ln -s ~/dotfiles/zshrc ~/.zshrc`
-1. `source .zshrc`
-
-  - basic antigen plugin config
-  - brew, git, nvm, a theme
-
-#### Zshrc notables:
-
-- tmux aliases, zsh aliases
-- etc.
-
-## Tmux
-
-1. `brew install tmux`
-1. Start `tmux.conf` in dotfiles
-
-#### Notables:
-
-- `tt` command for session handling
-- `option + [any number]` to quick hop to that window
-
-### Tmux + Powerline
-
-1. Install Powerline (pre-req: Python)
-  - `pip install powerline-status`
-  - `pip install psutil`
-1. [Powerline fonts](https://github.com/powerline/fonts) downloaded installed to your osx
-  - [Hack](https://github.com/chrissimpkins/Hack# desktop-usage) is nice
-1. Fonts set via iTerm2 profile settings
-
-## (N)vim
-
-#### Pre-reqs
-
-Python, Node (for some plugins)
-
-#### Install
-
-1. Install Neovim
-  - `brew tap neovim/neovim`
-  - `brew install --HEAD neovim`
-  - (requires python?) (see python section?)
-  - `pip install neovim`
-1. `alias vim=nvim` >> zshrc
-1. Start `nvimrc` in dotfiles
-
-1. Install vim-plug, write vim-plugins.vim
-
-#### Nvimrc Notables:
-
-- spacebar as leader
-- double tap leader to toggle last file
-- quick splits
-- etc.
-
-#### Plugins:
-
-  plugin-config
-  :VimProcInstall
-vimproc install requires naving to plugged/vimproc clone and running `make`
-
-  install tern properly
-  cd ~/.vim/plugged/tern_for_vim; npm i;
-
-- [Airline]()
-  - Pre-reqs: Powerline
-
-#### to fix neovim ctrl + h break
-
-Only if this is still [an issue]().
-
-`infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > $TERM.ti ; tic $TERM.ti`
-
-## OSX-Hacks script
-
-Based on [this]() and/or [this](), [here]() is mine.
-
-#### Notables:
-
-- fast repeat is a game-changer
-
-```
-defaults write -g KeyRepeat -int 1
-defaults write -g InitialKeyRepeat -int 10
-```
-
-- shut down + restart required.
-
-## Other CLI tools
-
-- `brew install Ag` (or maybe [sift]() - both are super fast `grep`s
-- `brew cask install qlmarkdown` - QuickLook (space-bar preview) for markdown files
-- `brew install reattach-to-user-namespace` - for tmux sessions, i believe
-- `pip install grip` - [Grip]() - easy offline github markdown readme server
-- `brew install cloc`
-- `npm i -g clog-cli`
-- `brew install git-extras`
-
-- `brew install Caskroom/cask/xquartz`
-- `brew install homebrew/x11/xpdf`
-
-## HTTPie
-
-A colorized and easy to use cURL tool
-
-You can use brew.... (`brew install httpie`), but i've moved to using `pip` for this for easier cert usage.
-
-Also:
-
-- `pip install httpie --upgrade`
-- `pip install requests --upgrade`
-- `pip install ndg-httpsclient --upgrade`
-- `pip install pyasn1 --upgrade`
-- `pip install pyopenssl --upgrade`
-
+A great pair for Alfred, Dash is a generic offline docs tool.
 
 ## Hammerspoon
 
-#### Install
+[Download and docs](http://www.hammerspoon.org/).
 
-mjolnir config for easy app access
+Shortcuts for your mac. Used for fast app switching.
 
-#### Notables:
+```lua
+-- in ~/.hammerspoon/init.lua
 
-Automate your Mac already! This makes it easy to add shortcuts to do basically
-anything. I use it to jump between any apps with one shortcut.
+function appShortcut(modifier, character, application)
+  hs.hotkey.bind(modifier, character, function() hs.application.launchOrFocus(application) end)
+end
 
-- `option + [any letter]` to quick hop to any app by name. (Eg: 'opt+C' for Chrome, 'opt+T' for Terminal, 'opt+M' for Messages)
+local alt = {'alt'}
 
-## Caps-lock -> Esc remapping
+appShortcut(alt, 'C', 'Google Chrome')
+appShortcut(alt, 'T', 'iTerm')
+appShortcut(alt, 'P', 'Spotify')
+appShortcut(alt, 'M', 'Messages')
+appShortcut(alt, 'N', 'nvALT')
+appShortcut(alt, 'A', 'Activity Monitor')
+appShortcut(alt, 'L', 'Slack')
+appShortcut(alt, 'D', 'Dash')
+```
 
-1. [Seil](https://pqrs.org/osx/karabiner/seil.html) for caps lock -> esc remapping
-  - some implementation steps here that could get more detail
+## BetterSnapTool
 
-## Truecolor in iTerm2/Tmux/nvim:
+Window movement and resizing via the keyboard.
 
-1. Make sure you have the [nightly iTerm2](https://iterm2.com/downloads/nightly/#/section/home)
-1. `brew uninstall tmux` and the reinstall via [choppsv1/homebrew-term24](https://github.com/choppsv1/homebrew-term24)
-1. install a [true color theme](https://github.com/kristijanhusak/vim-hybrid-material), plus some vim related things (TODO:)
+## Vimium (Chrome Extension)
 
-## Docker
+Vim bindings for navigating in Chrome.
 
-Download and install the [toolbox](https://www.docker.com/toolbox).
-
-zsh aliases.
-
-
-# raw notes
-
-turn off ctrl + UP
-install tern w/ npm install in vim-plugins/[tern dir]
-install vimProc via :vimProcInstall
-
-## Quicklook
-
-[Great collection of quicklooks here](https://github.com/sindresorhus/quick-look-plugins)
-
-- `brew cask install quicklook-csv`
-
-## Rust
-
-- `brew install multirust`
-- `multirust update beta`
-- `racer`
-- `multirust run beta cargo install --git https://github.com/rust-lang-nursery/rustfmt`

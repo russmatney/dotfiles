@@ -5,15 +5,14 @@
  :nvime "M-x" #'execute-extended-command
  :nvime "A-x" #'execute-extended-command
 
- "A-b"     #'helm-mini
- "A-n"     #'+russ/neotree-find-current-file
- "A-N"     #'+russ/neotree-reveal-current-file
- "A-y"     #'counsel-yank-pop
- "A-<tab>" #'evil-indent-line
- "A-t"     #'alchemist-project-toggle-file-and-tests
+ "A-b"      #'helm-mini
+ "A-n"      #'+russ/neotree-find-current-file
+ "A-N"      #'+russ/neotree-reveal-current-file
+ "A-y"      #'counsel-yank-pop
+ "A-<tab>"  #'evil-indent-line
+ "A-t"      #'alchemist-project-toggle-file-and-tests
  "A-<backspace>"     #'backward-kill-word
- "A-r"     #'org-babel-execute-src-block
- "M-,"    #'helm-descbinds
+ "A-r"      #'org-babel-execute-src-block
 
  :n "-"      #'dired-jump
 
