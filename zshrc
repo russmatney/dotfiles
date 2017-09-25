@@ -40,6 +40,9 @@ alias 'gcan'="git commit --amend --no-edit"
 alias 'gdsta'="git diff --staged"
 alias 'gds'="git diff --staged"
 alias 'gad'="git add ."
+alias 'gs'="gsb"
+alias 'gpf'="git push -f"
+alias 'gwip'="git add . && git commit -m 'wip'"
 
 
 source ~/dotfiles/zsh/tmux-aliases.zsh
