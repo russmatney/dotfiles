@@ -49,13 +49,16 @@
 
 ;; rust
 (add-hook! rust-mode
-  (flycheck-mode))
+  (flycheck-mode)
+  (rainbow-delimiters-mode)
+  )
 
 ;; elixir
 (add-hook! elixir-mode
   (flycheck-mode)
   (turn-off-smartparens-mode)
-  )
+  (rainbow-delimiters-mode)
+  t)
 
 ;; emacs-lisp
 (add-hook! emacs-lisp-mode
