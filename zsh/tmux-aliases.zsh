@@ -58,3 +58,4 @@ compctl -K _tls tm
 compctl -K _tscripts tt
 
 alias tls="tmux list-sessions";
+alias jj="tt";
