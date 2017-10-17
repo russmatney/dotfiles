@@ -42,6 +42,7 @@
    :desc "Imenu"                 :nv "i"   #'imenu
    :desc "Imenu across buffers"  :nv "I"   #'imenu-anywhere
    :desc "Swiper"                :nv "/"   #'swiper
+   :desc "Jump to register"      :nv "j"   #'jump-to-register
 
    ;; Windows management
    :desc "neotree-find-current-file"   :nv "n"  #'+russ/neotree-find-current-file

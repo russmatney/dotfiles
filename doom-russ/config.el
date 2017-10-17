@@ -33,6 +33,9 @@
 ;; Turn off line wrapping
 (setq-default truncate-lines 1)
 
+(set-register ?d '(file . "~/dotfiles/"))
+(set-register ?u '(file . "~/projects/urbint/"))
+
 (after! doom-themes
   ;; Since Fira Mono doesn't have an italicized variant, highlight it instead
   (set-face-attribute 'italic nil
@@ -64,6 +67,7 @@
 (add-hook! emacs-lisp-mode
   (turn-off-smartparens-mode)
   )
+
 
 (def-package! flycheck-mix
   :after elixir-mode
