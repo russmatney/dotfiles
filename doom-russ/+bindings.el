@@ -14,6 +14,7 @@
  "A-<backspace>"     #'backward-kill-word
  "A-r"      #'org-babel-execute-src-block
 
+ ; TODO should be after dired
  :n "-"      #'dired-jump
 
  ;; Text-scaling
@@ -143,4 +144,10 @@
  ;; --- Built-in plugins -----------------------------
  (:after comint
    ;; TAB auto-completion in term buffers
-   :map comint-mode-map [tab] #'company-complete))
+   :map comint-mode-map [tab] #'company-complete)
+
+ ;; TODO fix dis
+ (:after dired-mode
+  (add-transient-hook! 'dired-mode-hook
+    (map! :map dired-mode-map
+          :n "-" #'dired-up-directory))))
