@@ -43,6 +43,9 @@ alias 'gad'="git add ."
 alias 'gs'="gsb"
 alias 'gpf'="git push -f"
 alias 'gwip'="git add . && git commit -m 'wip'"
+alias 'gfix'="git commit --fixup"
+alias 'gri'="git rebase -i --autosquash"
+alias 'grim'="git rebase -i --autosquash master"
 
 
 source ~/dotfiles/zsh/tmux-aliases.zsh
