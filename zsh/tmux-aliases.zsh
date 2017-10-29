@@ -59,3 +59,14 @@ compctl -K _tscripts tt
 
 alias tls="tmux list-sessions";
 alias jj="tt";
+
+# use FZF to switch b/w active tmux sessions
+function zle_tmux() {
+  [[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
+  if [ $1 ]; then
+    tmux $change -t "$1" 2>/dev/null || (tmux new-session -d -s $1 && tmux $change -t "$1"); return
+  fi
+  session=$(tmux list-sessions -F "#{session_name}" 2>/dev/null | fzf --exit-0) &&  tmux $change -t "$session" || echo "No sessions found."
+}
+zle -N zle_tmux
+bindkey '^[t' zle_tmux
