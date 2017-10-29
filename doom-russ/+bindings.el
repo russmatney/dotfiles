@@ -39,6 +39,7 @@
  "A-,"    #'+workspace/rename
  "A-L"    #'+workspace/load
  "A-S"    #'+workspace/save
+ "A-P"    #'rs/projectile-switch-project-workspace
 
  ;; window nav
  "C-`"    #'doom/popup-toggle
