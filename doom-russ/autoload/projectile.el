@@ -1,6 +1,7 @@
 ;;; private/russ/autoload/projectile.el -*- lexical-binding: t; -*-
 
 
+;;;###autoload
 (defun rs/projectile-switch-project-workspace ()
   "Use projectile prompt to find or switch projects in a workspace tab."
   (interactive)
