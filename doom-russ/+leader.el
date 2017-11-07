@@ -58,6 +58,7 @@
    (:desc "kill" :prefix "k"
      :desc "delete-window"           :n "k" #'delete-window
      :desc "doom/kill-other-buffers" :n "B" #'doom/kill-other-buffers
+     :desc "kill-buffer-from-list"   :n "b" #'kill-buffer
      :desc "ace-delete-window"       :n "a" #'ace-delete-window
      :desc "+workspace/delete"       :n "s" #'+workspace/delete
      :desc "hide-neotree"            :n "n" #'neotree-hide)
