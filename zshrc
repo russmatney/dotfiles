@@ -48,6 +48,11 @@ alias 'gri'="git rebase -i --autosquash"
 alias 'grim'="git rebase -i --autosquash master"
 
 
+# brew aliases
+alias 'bs'='brew services'
+alias 'bsl'='brew services list'
+alias 'bsr'='brew services restart'
+
 source ~/dotfiles/zsh/tmux-aliases.zsh
 source ~/dotfiles/zsh/discovery.zsh
 

@@ -1,0 +1,61 @@
+# reload config
+cmd + alt + ctrl - r : khd -e "reload"
+
+# focus window
+alt + cmd - h : chunkc tiling::window --focus west
+alt + cmd - j : chunkc tiling::window --focus south
+alt + cmd - k : chunkc tiling::window --focus north
+alt + cmd - l : chunkc tiling::window --focus east
+
+# swap window
+ctrl + alt - h : chunkc tiling::window --swap west
+ctrl + alt - j : chunkc tiling::window --swap south
+ctrl + alt - k : chunkc tiling::window --swap north
+ctrl + alt - l : chunkc tiling::window --swap east
+
+# move window
+ctrl + alt + shift - h : chunkc tiling::window --warp west
+ctrl + alt + shift - j : chunkc tiling::window --warp south
+ctrl + alt + shift - k : chunkc tiling::window --warp north
+ctrl + alt + shift - l : chunkc tiling::window --warp east
+
+# increase region size
+shift + ctrl + alt - a : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge west
+shift + ctrl + alt - s : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge south
+shift + ctrl + alt - w : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge north
+shift + ctrl + alt - d : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge east
+
+# decrease region size
+ctrl + alt - a : chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge west
+ctrl + alt - s : chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge south
+ctrl + alt - w : chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge north
+ctrl + alt - d : chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge east
+
+# rotate tree
+alt - r : chunkc tiling::desktop --rotate 90
+
+# float / unfloat window
+alt - t : chunkc tiling::window --toggle float
+
+# change layout of desktop
+ctrl + alt - a : chunkc tiling::desktop --layout bsp
+ctrl + alt - s : chunkc tiling::desktop --layout monocle
+ctrl + alt - d : chunkc tiling::desktop --layout float
+
+ctrl - s : khd -e "mode activate select"
+select - e : osascript -e "tell application \"Emacs\" to activate"; khd -e "mode activate default"
+select - t : osascript -e "tell application \"iTerm2\" to activate"; khd -e "mode activate default"
+select - l : osascript -e "tell application \"Slack\" to activate"; khd -e "mode activate default"
+select - c : osascript -e "tell application \"Google Chrome\" to activate"; khd -e "mode activate default"
+select - p : osascript -e "tell application \"Spotify\" to activate"; khd -e "mode activate default"
+select - m : osascript -e "tell application \"Messages\" to activate"; khd -e "mode activate default"
+
+ctrl - v : khd -e "mode activate escape"
+escape + ctrl - v : khd -e "mode activate default"
+khd void_unlisted_bind off
+
+khd mode select prefix on
+khd mode select timeout 0.35
+khd mode select on_enter chunkc border::color 0xfa76d3cc
+khd mode escape on_enter chunkc border::color 0xfac8cb75
+khd mode default on_enter chunkc border::color 0xfa78414d
