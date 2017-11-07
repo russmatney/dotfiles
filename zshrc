@@ -59,7 +59,7 @@ alias pg_start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/ser
 alias pg_stop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
 
 # Elixir
-alias exdollarbill='mix compile --force && mix credo --strict && mix dialyzer && mix test'
+alias exdollarbill='echo "mix compile --force" && mix compile --force && echo "mix credo --strict" && mix credo --strict && echo "mix dialyzer --halt-exit-status" && mix dialyzer --halt-exit-status && echo "mix test" && mix test'
 alias 'ism'="iex -S mix"
 alias 'tism'="MIX_ENV=test iex -S mix"
 alias 'mdg'='mix deps.get'
