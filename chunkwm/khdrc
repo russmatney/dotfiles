@@ -50,8 +50,8 @@ select - c : osascript -e "tell application \"Google Chrome\" to activate"; khd 
 select - p : osascript -e "tell application \"Spotify\" to activate"; khd -e "mode activate default"
 select - m : osascript -e "tell application \"Messages\" to activate"; khd -e "mode activate default"
 
-ctrl - v : khd -e "mode activate escape"
-escape + ctrl - v : khd -e "mode activate default"
+ctrl - q : khd -e "mode activate escape"
+escape + ctrl - q : khd -e "mode activate default"
 khd void_unlisted_bind off
 
 khd mode select prefix on
@@ -59,3 +59,19 @@ khd mode select timeout 0.35
 khd mode select on_enter chunkc border::color 0xfa76d3cc
 khd mode escape on_enter chunkc border::color 0xfac8cb75
 khd mode default on_enter chunkc border::color 0xfa78414d
+
+# send window to monitor and follow focus
+shift + alt - 1 : chunkc tiling::window --send-to-desktop 1
+shift + alt - 2 : chunkc tiling::window --send-to-desktop 2
+ctrl + cmd - z  : chunkc tiling::window --send-to-monitor prev; chunkc tiling::monitor -f prev
+ctrl + cmd - c  : chunkc tiling::window --send-to-monitor next; chunkc tiling::monitor -f next
+ctrl + cmd - 1  : chunkc tiling::window --send-to-monitor 1; chunkc tiling::monitor -f 1
+ctrl + cmd - 2  : chunkc tiling::window --send-to-monitor 2; chunkc tiling::monitor -f 2
+ctrl + cmd - 3  : chunkc tiling::window --send-to-monitor 3; chunkc tiling::monitor -f 3
+
+# focus monitor
+cmd + alt - z  : chunkc tiling::monitor -f prev
+cmd + alt - c  : chunkc tiling::monitor -f next
+cmd + alt - 1  : chunkc tiling::monitor -f 1
+cmd + alt - 2  : chunkc tiling::monitor -f 2
+cmd + alt - 3  : chunkc tiling::monitor -f 3

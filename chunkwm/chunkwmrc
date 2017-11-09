@@ -91,4 +91,4 @@ chunkc core::load tiling.so
 chunkc tiling::rule --owner \"System Preferences\" --subrole AXStandardWindow --state tile
 chunkc tiling::rule --owner Spotify --role AXWindow --subrole AXDialog --state tile
 chunkc tiling::rule --owner Finder --name Copy --state float
-chunkc tiling::rule --owner "Emacs.*" --name "DOOM Emacs*" --state tile
+chunkc tiling::rule --owner "Emacs.*" --name "DOOM Emac*" --state tile
