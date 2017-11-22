@@ -37,6 +37,8 @@
  "A-s"    #'+workspace/switch-to
  "A-h"    #'+workspace/switch-left
  "A-l"    #'+workspace/switch-right
+ "A-["    #'+workspace/switch-left
+ "A-]"    #'+workspace/switch-right
  "A-,"    #'+workspace/rename
  "A-L"    #'+workspace/load
  "A-S"    #'+workspace/save
