@@ -14,8 +14,10 @@
  "A-<backspace>"     #'backward-kill-word
  "A-r"      #'org-babel-execute-src-block
 
- ; TODO should be after dired
  :n "-"      #'dired-jump
+
+ ;; TODO dwim eval family (cider/geiser:eval-sexp,region,buffer:help/send-to-buffer/run)
+ :n "M-l"      #'cider-eval-last-sexp
 
  ;; Text-scaling
  "M-+"    (λ! (text-scale-set 0))
@@ -59,8 +61,8 @@
  :n  "[b" #'doom/previous-buffer
 
  ;; eval exp and buffer
- "M-;"    #'eval-last-sexp
- "M-b"    #'eval-buffer
+ :n "M-;"    #'eval-last-sexp
+ :n "M-b"    #'eval-buffer
 
  ;; select all
  "M-a"    #'mark-whole-buffer
@@ -148,8 +150,7 @@
    ;; TAB auto-completion in term buffers
    :map comint-mode-map [tab] #'company-complete)
 
- ;; TODO fix dis
- (:after dired-mode
-  (add-transient-hook! 'dired-mode-hook
-    (map! :map dired-mode-map
-          :n "-" #'dired-up-directory))))
+
+ (add-transient-hook! 'dired-mode-hook
+   (map! :map dired-mode-map
+         :n "-" #'dired-up-directory)))

@@ -46,6 +46,17 @@
 (setq +ivy-buffer-icons t)
 
 
+(add-to-list 'auto-mode-alist
+             '("rc\\'" . (lambda () (conf-mode)))
+             '("\\.rkt\\'" . (lambda () (geiser))))
+
+(def-package! racket-mode
+  :mode "\\.rkt\\'"
+  :config
+    (geiser-mode)
+  )
+
+
 ;; elm
 (add-hook! elm-mode
   (flycheck-mode))
@@ -63,12 +74,6 @@
   (rainbow-delimiters-mode)
   t)
 
-;; emacs-lisp
-(add-hook! emacs-lisp-mode
-  (turn-off-smartparens-mode)
-  )
-
-
 (def-package! flycheck-mix
   :after elixir-mode
   :config
@@ -78,6 +83,39 @@
   :after elixir-mode
   :config
   (add-hook 'flycheck-mode-hook #'flycheck-credo-setup))
+
+
+;; emacs-lisp
+(add-hook! emacs-lisp-mode
+  (turn-off-smartparens-mode)
+  (flycheck-mode nil))
+
+;; clojure
+(def-package! clojure-mode
+  :mode "\\.cljs?$"
+  :config
+  (company-mode)
+  (flycheck-mode)
+  (rainbow-delimiters-mode)
+  (setq cider-repl-display-help-banner nil)
+  (setq cider-prompt-for-symbol nil))
+
+(def-package! cider
+  :after clojure-mode)
+
+(def-package! flycheck-clojure
+  :after clojure-mode
+  :config
+  (add-hook 'flycheck-mode-hook #'flycheck-clojure-setup))
+
+
+(autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
+(add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
+(add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
+(add-hook 'ielm-mode-hook             #'enable-paredit-mode)
+(add-hook 'lisp-mode-hook             #'enable-paredit-mode)
+(add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
+(add-hook 'scheme-mode-hook           #'enable-paredit-mode)
 
 
 (add-hook! 'before-save-hook 'whitespace-cleanup)

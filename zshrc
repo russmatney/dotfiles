@@ -109,6 +109,9 @@ if hash go 2>/dev/null; then
   export PATH=`go env GOROOT`/bin/:`go env GOPATH`/bin/:$PATH
 fi
 
+# java 1.8 for clojure
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home
+
 #elixir mix escripts
 export PATH=$PATH:~/.mix/escripts
 

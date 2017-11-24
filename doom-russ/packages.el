@@ -4,5 +4,10 @@
 (package! flycheck-mix)
 (package! flycheck-credo)
 (package! helm-core)
-
-(package! discover-my-major :recipe (:fetcher github :repo "steckerhalter/discover-my-major"))
+(package! cider)
+(package! paredit)
+(package! clojure-mode)
+(package! flycheck-clojure)
+(package! racket-mode)
+(package! geiser)
+(package! quack)

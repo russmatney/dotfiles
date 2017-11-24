@@ -122,4 +122,12 @@
      :desc "fire shell command"  :n "x" #'+russ/tmux-command
      :desc "send cancel command" :n "c" #'+russ/tmux-cancel
      :desc "send q key"          :n "q" #'+russ/tmux-send-q
-     )))
+     )
+
+   (:desc "eval" :prefix "e"
+     :desc "current buffer"      :n "b" #'+eval/buffer
+     :desc "region"              :n "r" #'+eval/region
+     :desc "region and replace"  :n "R" #'+eval/region-and-replace
+     :desc "last sexp"           :n "l" #'cider-eval-last-sexp
+     )
+   ))
