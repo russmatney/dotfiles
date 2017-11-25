@@ -42,13 +42,13 @@ ctrl + alt - a : chunkc tiling::desktop --layout bsp
 ctrl + alt - s : chunkc tiling::desktop --layout monocle
 ctrl + alt - d : chunkc tiling::desktop --layout float
 
-ctrl - s : khd -e "mode activate select"
-select - e : osascript -e "tell application \"Emacs\" to activate"; khd -e "mode activate default"
-select - t : osascript -e "tell application \"iTerm2\" to activate"; khd -e "mode activate default"
-select - l : osascript -e "tell application \"Slack\" to activate"; khd -e "mode activate default"
-select - c : osascript -e "tell application \"Google Chrome\" to activate"; khd -e "mode activate default"
-select - p : osascript -e "tell application \"Spotify\" to activate"; khd -e "mode activate default"
-select - m : osascript -e "tell application \"Messages\" to activate"; khd -e "mode activate default"
+# quick focus app
+ctrl + alt - e : osascript -e "tell application \"Emacs\" to activate"
+ctrl + alt - t : osascript -e "tell application \"iTerm2\" to activate"
+ctrl + alt - s : osascript -e "tell application \"Slack\" to activate"
+ctrl + alt - c : osascript -e "tell application \"Google Chrome\" to activate"
+ctrl + alt - p : osascript -e "tell application \"Spotify\" to activate"
+ctrl + alt - m : osascript -e "tell application \"Messages\" to activate"
 
 ctrl - q : khd -e "mode activate escape"
 escape + ctrl - q : khd -e "mode activate default"
