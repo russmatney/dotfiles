@@ -46,7 +46,7 @@ alias 'gwip'="git add . && git commit -m 'wip'"
 alias 'gfix'="git commit --fixup"
 alias 'gri'="git rebase -i --autosquash"
 alias 'grim'="git rebase -i --autosquash master"
-
+alias 'gprune'="git remote prune origin; git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done"
 
 # brew aliases
 alias 'bs'='brew services'

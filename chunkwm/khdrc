@@ -35,7 +35,7 @@ ctrl + alt - d : chunkc tiling::window --use-temporary-ratio -0.1 --adjust-windo
 alt - r : chunkc tiling::desktop --rotate 90
 
 # float / unfloat window
-alt - t : chunkc tiling::window --toggle float
+alt - f : chunkc tiling::window --toggle float
 
 # change layout of desktop
 ctrl + alt - a : chunkc tiling::desktop --layout bsp

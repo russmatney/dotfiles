@@ -24,6 +24,15 @@
                            ("~/Dropbox/todo/tickler.org" :maxlevel . 2)))
 
 (map!
+ (:after org
+   (:map org-mode-map
+     "C-j"    #'evil-window-down
+     "C-k"    #'evil-window-up
+     "C-h"    nil ;; TODO y u no hide emacs in org mode?
+     "M-t"    #'org-set-tags
+     )))
+
+(map!
  (:after org-capture
    (:map org-capture-mode-map
      [remap evil-save-and-close]          #'org-capture-finalize
