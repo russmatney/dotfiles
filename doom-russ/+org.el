@@ -28,8 +28,8 @@
    (:map org-mode-map
      "C-j"    #'evil-window-down
      "C-k"    #'evil-window-up
-     "C-h"    nil ;; TODO y u no hide emacs in org mode?
-     "M-t"    #'org-set-tags
+     "M-h"    nil
+     "A-t"    #'org-set-tags
      )))
 
 (map!
