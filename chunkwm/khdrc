@@ -6,6 +6,10 @@ alt + cmd - h : chunkc tiling::window --focus west
 alt + cmd - j : chunkc tiling::window --focus south
 alt + cmd - k : chunkc tiling::window --focus north
 alt + cmd - l : chunkc tiling::window --focus east
+ctrl + shift - h : chunkc tiling::window --focus west
+ctrl + shift - j : chunkc tiling::window --focus south
+ctrl + shift - k : chunkc tiling::window --focus north
+ctrl + shift - l : chunkc tiling::window --focus east
 
 # swap window
 ctrl + alt - h : chunkc tiling::window --swap west

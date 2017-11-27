@@ -36,6 +36,7 @@ alias 'glp'="git log --graph --pretty=format:'%Cred%h%Creset -%Cblue %an %Creset
 alias 'gpb'="git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -d"
 alias 'gprom'="git pull --rebase origin master"
 alias 'gcv'="git commit --verbose"
+alias 'gca'="git commit --amend --verbose"
 alias 'gcan'="git commit --amend --no-edit"
 alias 'gdsta'="git diff --staged"
 alias 'gds'="git diff --staged"
