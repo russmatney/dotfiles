@@ -151,6 +151,7 @@
    :map comint-mode-map [tab] #'company-complete)
 
 
- (add-transient-hook! 'dired-mode-hook
-   (map! :map dired-mode-map
-         :n "-" #'dired-up-directory)))
+ ;; (add-transient-hook! 'dired-mode-hook
+ ;;   (map! :map dired-mode-map
+ ;;         :n "-" #'dired-up-directory))
+ )

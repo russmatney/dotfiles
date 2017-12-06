@@ -43,6 +43,7 @@ alias 'gds'="git diff --staged"
 alias 'gad'="git add ."
 alias 'gs'="gsb"
 alias 'gpf'="git push -f"
+alias 'gpff'="git push -f --no-verify"
 alias 'gwip'="git add . && git commit -m 'wip'"
 alias 'gfix'="git commit --fixup"
 alias 'gri'="git rebase -i --autosquash"
@@ -69,6 +70,11 @@ alias exdollarbill='echo "mix compile --force" && mix compile --force && echo "m
 alias 'ism'="iex -S mix"
 alias 'tism'="MIX_ENV=test iex -S mix"
 alias 'mdg'='mix deps.get'
+alias 'mcf'='mix compile --force'
+alias 'mdu'='mix docker.up'
+alias 'mec'='mix ecto.create'
+alias 'mem'='mix ecto.migrate'
+alias 'med'='mix ecto.drop'
 export ERL_AFLAGS="-kernel shell_history enabled"
 
 # npm
@@ -82,10 +88,8 @@ function dme() {
   eval "$(docker-machine env $1)"
 }
 
-function drm() {
-  docker stop "$1";
-  docker rm -v "$1";
-}
+alias drm="docker rm -v"
+alias ds="docker stop"
 
 alias dps='docker ps -a'
 alias dls='docker images'
