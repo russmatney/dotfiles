@@ -29,6 +29,8 @@
      "C-j"    #'evil-window-down
      "C-k"    #'evil-window-up
      "M-h"    nil
+     "M-RET"    #'doom/toggle-fullscreen
+     "A-RET"    #'org-insert-item
      "A-t"    #'org-set-tags
      )))
 

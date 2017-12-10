@@ -50,6 +50,41 @@ alias 'gri'="git rebase -i --autosquash"
 alias 'grim'="git rebase -i --autosquash master"
 alias 'gprune'="git remote prune origin; git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done"
 
+alias 'gadd'="gst | fzf -m --height 40% --reverse | git add"
+
+# gsha - get git commit sha
+# example usage: git rebase -i `fcs`
+gsha() {
+  local commits commit
+  commits=$(git log --color=always --pretty=oneline --abbrev-commit --reverse) &&
+  commit=$(echo "$commits" | fzf --tac +s +m -e --ansi --reverse) &&
+  echo -n $(echo "$commit" | sed "s/ .*//")
+}
+
+# fshow - git commit browser
+gcshow() {
+  git log --graph --color=always \
+      --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
+  fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
+      --bind "ctrl-m:execute:
+                (grep -o '[a-f0-9]\{7\}' | head -1 |
+                xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
+                {}
+FZF-EOF"
+}
+
+
+# fbr - checkout git branch (including remote branches), sorted by most recent commit, limit 30 last branches
+gcor() {
+  local branches branch
+  branches=$(git for-each-ref --count=50 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
+  branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
+
+
 # brew aliases
 alias 'bs'='brew services'
 alias 'bsl'='brew services list'
@@ -145,3 +180,4 @@ if [ -f '/Users/russ/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/U
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/russ/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/russ/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+alias rn='react-native'
