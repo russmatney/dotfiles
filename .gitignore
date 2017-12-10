@@ -10,3 +10,6 @@ nvim/.init.vim*
 .DS_Store
 *~
 zsh/secrets.zsh
+
+doom-emacs
+tmux-powerline
