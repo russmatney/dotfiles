@@ -197,3 +197,4 @@ if [ -f '/Users/russ/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/U
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/russ/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/russ/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 alias rn='react-native'
+alias grc='git rebase --continue'
