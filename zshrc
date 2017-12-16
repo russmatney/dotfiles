@@ -51,6 +51,9 @@ alias 'grim'="git rebase -i --autosquash master"
 alias 'gprune'="git remote prune origin; git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done"
 
 alias 'gadd'="gst | fzf -m --height 40% --reverse | git add"
+alias 'grc'="git rebase --continue"
+alias 'gcom'="gco master"
+
 
 # gsha - get git commit sha
 # example usage: git rebase -i `fcs`
@@ -110,6 +113,9 @@ alias 'mdu'='mix docker.up'
 alias 'mec'='mix ecto.create'
 alias 'mem'='mix ecto.migrate'
 alias 'med'='mix ecto.drop'
+alias 'tmec'='MIX_ENV=test mix ecto.create'
+alias 'tmem'='MIX_ENV=test mix ecto.migrate'
+alias 'tmed'='MIX_ENV=test mix ecto.drop'
 export ERL_AFLAGS="-kernel shell_history enabled"
 
 # npm
@@ -130,6 +136,9 @@ alias dps='docker ps -a'
 alias dls='docker images'
 alias dmls='docker-machine ls'
 alias dip='docker-machine ip'
+
+
+alias kc="kubectl"
 
 
 function cm() {
