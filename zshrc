@@ -28,6 +28,10 @@ alias vi='NVIM_TUI_ENABLE_TRUE_COLOR=true nvim'
 # alias ls='gls --color=always'
 alias ls='exa'
 
+# brew
+alias bi='brew install'
+alias bu='brew upgrade'
+
 COMPLETION_WAITING_DOTS=true
 DISABLE_AUTO_TITLE=true
 
@@ -53,6 +57,9 @@ alias 'gprune'="git remote prune origin; git fetch -p && for branch in `git bran
 alias 'gadd'="gst | fzf -m --height 40% --reverse | git add"
 alias 'grc'="git rebase --continue"
 alias 'gcom'="gco master"
+
+# a bandaid if ever there was one
+alias 'rmgil'="rm .git/index.lock"
 
 
 # gsha - get git commit sha
@@ -155,7 +162,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 #dat golang
 if hash go 2>/dev/null; then
   export GOPATH=~/projects/go
-  export PATH=`go env GOROOT`/bin/:`go env GOPATH`/bin/:$PATH
+  export PATH=`go env GOROOT`/bin:`go env GOPATH`/bin:$PATH
 fi
 
 # java 1.8 for clojure
