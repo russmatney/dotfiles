@@ -86,9 +86,8 @@
 
 
 ;; emacs-lisp
-(add-hook! emacs-lisp-mode
-  (turn-off-smartparens-mode)
-  (flycheck-mode nil))
+(add-hook! :append 'emacs-lisp-mode-hook 'turn-off-smartparens-mode)
+(add-hook! :append 'emacs-lisp-mode-hook (flycheck-mode 0))
 
 ;; clojure
 (def-package! clojure-mode
@@ -108,14 +107,15 @@
   :config
   (add-hook 'flycheck-mode-hook #'flycheck-clojure-setup))
 
+;; (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
+;; (add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
+;; (add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
+;; (add-hook 'ielm-mode-hook             #'enable-paredit-mode)
+;; (add-hook 'lisp-mode-hook             #'enable-paredit-mode)
+;; (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
+;; (add-hook 'scheme-mode-hook           #'enable-paredit-mode)
 
-(autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
-(add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
-(add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
-(add-hook 'ielm-mode-hook             #'enable-paredit-mode)
-(add-hook 'lisp-mode-hook             #'enable-paredit-mode)
-(add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
-(add-hook 'scheme-mode-hook           #'enable-paredit-mode)
-
+(map! :map dired-mode-map
+         :n "-" #'dired-up-directory)
 
 (add-hook! 'before-save-hook 'whitespace-cleanup)

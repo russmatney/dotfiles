@@ -149,9 +149,4 @@
  (:after comint
    ;; TAB auto-completion in term buffers
    :map comint-mode-map [tab] #'company-complete)
-
-
- ;; (add-transient-hook! 'dired-mode-hook
- ;;   (map! :map dired-mode-map
- ;;         :n "-" #'dired-up-directory))
  )

@@ -93,6 +93,7 @@
        lua             ; one-based indices? one-based indices
        markdown        ; writing docs for people to ignore
        ocaml           ; an objective camel
+       org
        perl            ; write code no one else can comprehend
        php             ; make php less awful to work with
        plantuml        ; diagrams for confusing people more
@@ -107,14 +108,14 @@
        typescript      ; javascript, but better
        web             ; the tubes
 
-       :org
-       org             ; organize your plain life in plain text
-       org-babel       ; executable code snippets in org-mode
+      ;:org
+      ;org             ; organize your plain life in plain text
+      ;org-babel       ; executable code snippets in org-mode
       ;org-attach      ; FIXME my own, simpler attachment system
-       org-capture     ; a better org-capture, in or outside of Emacs
-       org-export      ; a custom, centralized export system
-       org-notebook    ; org-mode as a notebook
-       org-present     ; using org-mode for presentations
+      ;org-capture     ; a better org-capture, in or outside of Emacs
+      ;org-export      ; a custom, centralized export system
+      ;org-notebook    ; org-mode as a notebook
+      ;org-present     ; using org-mode for presentations
       ;org-sync        ; TODO sync with mobile
       ;org-publish     ; TODO org + blogs
 
