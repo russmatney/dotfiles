@@ -46,6 +46,9 @@
  "A-S"    #'+workspace/save
  "A-P"    #'rs/projectile-switch-project-workspace
 
+ "A-\\"    #'evil-window-vsplit
+ "A--"    #'evil-window-split
+
  ;; window nav
  "C-`"    #'doom/popup-toggle
  "C-h"    #'evil-window-left
