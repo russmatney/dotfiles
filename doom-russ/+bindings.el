@@ -1,5 +1,44 @@
 ;;; private/russ/+bindings.el -*- lexical-binding: t; -*-
 
+
+ (defun rm/move-window-right ()
+   ""
+   (interactive)
+   (if (window-in-direction 'right)
+     (evil-window-right 1)
+     (shell-command-to-string "chunkc tiling::window --focus east")
+   )
+ )
+
+(shell-command-to-string "chunkc tiling::query -w name")
+
+ (defun rm/move-window-left ()
+   ""
+   (interactive)
+   (if (window-in-direction 'left)
+     (evil-window-left 1)
+     (shell-command-to-string "chunkc tiling::window --focus west")
+   )
+ )
+
+ (defun rm/move-window-above ()
+   ""
+   (interactive)
+   (if (window-in-direction 'above)
+     (evil-window-up 1)
+     (shell-command-to-string "chunkc tiling::window --focus north")
+   )
+ )
+
+ (defun rm/move-window-below ()
+   ""
+   (interactive)
+   (if (window-in-direction 'below)
+     (evil-window-down 1)
+     (shell-command-to-string "chunkc tiling::window --focus south")
+   )
+ )
+
 (map!
  ;; --- Global keybindings ---------------------------
  :nvime "M-x" #'execute-extended-command
@@ -51,10 +90,10 @@
 
  ;; window nav
  "C-`"    #'doom/popup-toggle
- "C-h"    #'evil-window-left
- "C-j"    #'evil-window-down
- "C-k"    #'evil-window-up
- "C-l"    #'evil-window-right
+ "C-h"    #'rm/move-window-left
+ "C-j"    #'rm/move-window-below
+ "C-k"    #'rm/move-window-above
+ "C-l"    #'rm/move-window-right
 
  "S-<left>"  #'evil-window-increase-width
  "S-<right>" #'evil-window-decrease-width
