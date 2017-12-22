@@ -16,7 +16,6 @@ antigen bundle rvm
 antigen bundle docker
 antigen bundle git
 antigen bundle git-extras
-antigen bundle bower
 antigen bundle sudo
 
 antigen apply
@@ -48,6 +47,7 @@ alias 'gad'="git add ."
 alias 'gs'="gsb"
 alias 'gpf'="git push -f"
 alias 'gpff'="git push -f --no-verify"
+alias 'gpuf'="git push --no-verify"
 alias 'gwip'="git add . && git commit -m 'wip'"
 alias 'gfix'="git commit --fixup"
 alias 'gri'="git rebase -i --autosquash"
@@ -60,6 +60,7 @@ alias 'gcom'="gco master"
 
 # a bandaid if ever there was one
 alias 'rmgil'="rm .git/index.lock"
+alias 'grmil'="rm .git/index.lock"
 
 
 # gsha - get git commit sha
@@ -98,7 +99,9 @@ gcor() {
 # brew aliases
 alias 'bs'='brew services'
 alias 'bsl'='brew services list'
+alias 'bl'='brew services list'
 alias 'bsr'='brew services restart'
+alias 'br'='brew services restart'
 
 source ~/dotfiles/zsh/tmux-aliases.zsh
 source ~/dotfiles/zsh/discovery.zsh
@@ -115,8 +118,11 @@ alias exdollarbill='echo "mix compile --force" && mix compile --force && echo "m
 alias 'ism'="iex -S mix"
 alias 'tism'="MIX_ENV=test iex -S mix"
 alias 'mdg'='mix deps.get'
+alias 'mdu'='mix deps.update'
+alias 'mc'='mix compile'
 alias 'mcf'='mix compile --force'
-alias 'mdu'='mix docker.up'
+alias 'mix dup'='mix docker.up'
+alias 'mixdup'='mix docker.up'
 alias 'mec'='mix ecto.create'
 alias 'mem'='mix ecto.migrate'
 alias 'med'='mix ecto.drop'
