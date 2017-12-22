@@ -11,8 +11,11 @@ ctrl + shift - j : chunkc tiling::window --focus south
 ctrl + shift - k : chunkc tiling::window --focus north
 ctrl + shift - l : chunkc tiling::window --focus east
 
-# TODO make this call work for non emacs and tmux windows
-# ctrl - h : `if ![[ $(chunkc tiling::query -w name) =~ "tmux" ]]; then $(chunkc tiling::window --focus west) fi`
+# TODO do via movement-mode or something like it
+# ctrl - h : chunkc tiling::query -w owner | grep -iqE '(tmux|emac)' && echo "no-op" || chunkc tiling::window --focus west
+# ctrl - j : chunkc tiling::query -w owner | grep -iqE '(tmux|emac)' && echo "no-op" || chunkc tiling::window --focus south
+# ctrl - k : chunkc tiling::query -w owner | grep -iqE '(tmux|emac)' && echo "no-op" || chunkc tiling::window --focus north
+# ctrl - l : chunkc tiling::query -w owner | grep -iqE '(tmux|emac)' && echo "no-op" || chunkc tiling::window --focus east
 
 # swap window
 ctrl + alt - h : chunkc tiling::window --swap west

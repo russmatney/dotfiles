@@ -11,6 +11,7 @@
  )
 
 (shell-command-to-string "chunkc tiling::query -w name")
+(shell-command-to-string "echo hi")
 
  (defun rm/move-window-left ()
    ""

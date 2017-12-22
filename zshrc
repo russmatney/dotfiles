@@ -43,7 +43,7 @@ alias 'gca'="git commit --amend --verbose"
 alias 'gcan'="git commit --amend --no-edit"
 alias 'gdsta'="git diff --staged"
 alias 'gds'="git diff --staged"
-alias 'gad'="git add ."
+# alias 'gad'="git add ."
 alias 'gs'="gsb"
 alias 'gpf'="git push -f"
 alias 'gpff'="git push -f --no-verify"
@@ -102,6 +102,9 @@ alias 'bsl'='brew services list'
 alias 'bl'='brew services list'
 alias 'bsr'='brew services restart'
 alias 'br'='brew services restart'
+
+alias 'brc'='brew services restart chunkwm'
+alias 'bsc'='brew services stop chunkwm'
 
 source ~/dotfiles/zsh/tmux-aliases.zsh
 source ~/dotfiles/zsh/discovery.zsh
