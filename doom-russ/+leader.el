@@ -118,10 +118,11 @@
    (:desc "tmux" :prefix "m"
      ;; howdy tmux!
      :desc "rerun last command"  :n "." #'+russ/tmux-repeat
-     :desc "fire shell command"  :n "m" #'+russ/tmux-command
-     :desc "fire shell command"  :n "x" #'+russ/tmux-command
+     :desc "fire shell command"  :n "m" #'+russ/shell-command
+     :desc "fire tmux command"   :n "t" #'+russ/tmux-command
      :desc "send cancel command" :n "c" #'+russ/tmux-cancel
      :desc "send q key"          :n "q" #'+russ/tmux-send-q
+     :desc "switch client"       :n "s" #'+russ/tmux-switch-client
      )
 
    (:desc "eval" :prefix "e"
