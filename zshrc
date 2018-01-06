@@ -104,7 +104,9 @@ alias 'bsr'='brew services restart'
 alias 'br'='brew services restart'
 
 alias 'brc'='brew services restart chunkwm'
+alias 'bsrc'='brew services restart chunkwm'
 alias 'bsc'='brew services stop chunkwm'
+alias 'bssc'='brew services stop chunkwm'
 
 source ~/dotfiles/zsh/tmux-aliases.zsh
 source ~/dotfiles/zsh/discovery.zsh
