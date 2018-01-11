@@ -131,4 +131,11 @@
      :desc "region and replace"  :n "R" #'+eval/region-and-replace
      :desc "last sexp"           :n "l" #'cider-eval-last-sexp
      )
-   ))
+   )
+
+ ;; Haskell Mode - recced by @rschmukler
+ (:after haskell-mode
+   (:leader
+     :desc "Jump to definition at point"     :n "l" #'intero-goto-definition
+     :desc "Describe symbol at point"        :n "d" #'intero-info))
+ )

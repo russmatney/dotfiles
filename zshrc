@@ -209,3 +209,14 @@ if [ -f '/Users/russ/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/U
 if [ -f '/Users/russ/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/russ/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 alias rn='react-native'
 alias grc='git rebase --continue'
+
+
+
+################################################################################
+# Haskell
+################################################################################
+
+alias sgi='stack ghci'
+alias gi='stack ghci'
+
+export PATH="$HOME/Library/Haskell/bin:$HOME/.cabal/bin:$PATH"

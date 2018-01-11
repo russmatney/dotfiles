@@ -11,3 +11,5 @@
 (package! racket-mode)
 (package! geiser)
 (package! quack)
+(package! intero)
+(package! ghc)

@@ -69,10 +69,21 @@
 
 ;; elixir
 (add-hook! elixir-mode
+  ;; :mode "\\.exs?$"
+  ;; :config
   (flycheck-mode)
   (turn-off-smartparens-mode)
   (rainbow-delimiters-mode)
-  t)
+  ;; (setq alchemist-goto-elixir-source-dir "/path/to/elixir/source/")
+  ;; (setq alchemist-goto-erlang-source-dir "/path/to/erlang/source/")
+
+  )
+
+;; (defun custom-erlang-mode-hook ()
+;;   (define-key erlang-mode-map (kbd "M-,") 'alchemist-goto-jump-back))
+
+;; (add-hook 'erlang-mode-hook 'custom-erlang-mode-hook)
+
 
 (def-package! flycheck-mix
   :after elixir-mode
@@ -82,6 +93,7 @@
 (def-package! flycheck-credo
   :after elixir-mode
   :config
+  (setq flycheck-elixir-credo-strict t)
   (add-hook 'flycheck-mode-hook #'flycheck-credo-setup))
 
 
@@ -106,6 +118,16 @@
   :after clojure-mode
   :config
   (add-hook 'flycheck-mode-hook #'flycheck-clojure-setup))
+
+
+
+;; Haskell
+(def-package! intero
+  :after haskell-mode
+  :config
+  (intero-global-mode 1)
+  (eldoc-mode)
+  (flycheck-add-next-checker 'intero 'haskell-hlint))
 
 ;; (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
 ;; (add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
