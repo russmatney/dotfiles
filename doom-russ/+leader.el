@@ -133,9 +133,15 @@
      )
    )
 
- ;; Haskell Mode - recced by @rschmukler
- (:after haskell-mode
-   (:leader
-     :desc "Jump to definition at point"     :n "l" #'intero-goto-definition
-     :desc "Describe symbol at point"        :n "d" #'intero-info))
+   ;; Haskell Mode - recced by @rschmukler
+   (:after haskell-mode
+     (:leader
+       :desc "Jump to definition at point"   :n "l" #'intero-goto-definition
+       :desc "Describe symbol at point"      :n "d" #'intero-info
+       :desc "Describe type at point"        :n "t" #'intero-type-at
+
+       ;; (:desc "insert" :prefix "w"
+       ;;   ;; :desc "Insert type signature"        :n "s" #'intero-
+       ;; )
+   ))
  )

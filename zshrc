@@ -216,7 +216,8 @@ alias grc='git rebase --continue'
 # Haskell
 ################################################################################
 
-alias sgi='stack ghci'
-alias gi='stack ghci'
+alias si='stack ghci'
+alias st='stack test'
+alias sb='stack build'
+alias stw="stack build --file-watch --test --test-arguments '--rerun --failure-report=TESTREPORT --rerun-all-on-success"
 
-export PATH="$HOME/Library/Haskell/bin:$HOME/.cabal/bin:$PATH"
