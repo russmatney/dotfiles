@@ -102,11 +102,13 @@
 
  ;; buffers
  :n  "]b" #'doom/next-buffer
+ :n  "M-b" #'doom/next-buffer
  :n  "[b" #'doom/previous-buffer
+ :n  "M-B" #'doom/previous-buffer
 
  ;; eval exp and buffer
  :n "M-;"    #'eval-last-sexp
- :n "M-b"    #'eval-buffer
+ :n "M-:"    #'eval-buffer
 
  ;; select all
  "M-a"    #'mark-whole-buffer
