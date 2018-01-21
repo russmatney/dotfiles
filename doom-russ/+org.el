@@ -5,6 +5,8 @@
 
 (setq org-refile-targets '(("~/Dropbox/todo/gtd.org" :maxlevel . 3)
                            ("~/Dropbox/todo/someday.org" :level . 1)
+                           ("~/Dropbox/todo/writing.org" :maxlevel . 2)
+                           ("~/Dropbox/todo/routines.org" :level . 1)
                            ("~/Dropbox/todo/tickler.org" :maxlevel . 2)))
 
 (defun +russ/org-capture-hook ()

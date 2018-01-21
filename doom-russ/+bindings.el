@@ -127,12 +127,12 @@
  :m "A-k" #'+russ:multi-previous-line
 
  ;; jump to def/ref/doc
- "A-."    #'+jump/definition
- :m  "gd" #'+jump/definition
- "A->"    #'+jump/references
- :m  "gD" #'+jump/references
- "A-d"    #'+jump/documentation
- :m  "gh" #'+jump/documentation
+ ;; "A-."    #'+jump/definition
+ ;; :m  "gd" #'+jump/definition
+ ;; "A->"    #'+jump/references
+ ;; :m  "gD" #'+jump/references
+ ;; "A-d"    #'+jump/documentation
+ ;; :m  "gh" #'+jump/documentation
 )
 
 (map!
