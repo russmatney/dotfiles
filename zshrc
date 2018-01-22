@@ -217,7 +217,12 @@ alias grc='git rebase --continue'
 ################################################################################
 
 alias si='stack ghci'
-alias st='stack test'
 alias sb='stack build'
+alias sbp='stack clean && stack build --pedantic'
+alias hl='stack exec -- hlint src test app'
+alias haskdollarbill='stack clean && stack build --pedantic && stack exec -- hlint src test app'
+alias se='stack exec --'
+alias sc='stack clean'
+alias st='stack test'
 alias stw="stack build --file-watch --test --test-arguments '--rerun --failure-report=TESTREPORT --rerun-all-on-success"
 
