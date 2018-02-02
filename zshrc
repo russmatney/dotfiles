@@ -62,6 +62,8 @@ alias 'gcom'="gco master"
 alias 'rmgil'="rm .git/index.lock"
 alias 'grmil'="rm .git/index.lock"
 
+alias 'pulls'='open "https://github.com:/$(git remote -v | /usr/local/bin/grep -oP "(?<=git@github.com:).+(?=\.git)" | head -n 1)/pulls"'
+
 
 # gsha - get git commit sha
 # example usage: git rebase -i `fcs`

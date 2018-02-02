@@ -22,6 +22,7 @@
   :config
   (intero-global-mode 1)
   (eldoc-mode)
+  (turn-off-smartparens-mode)
   (flycheck-add-next-checker 'intero 'haskell-hlint))
 
 (map!

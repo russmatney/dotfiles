@@ -37,6 +37,13 @@
 (set-register ?d '(file . "~/dotfiles/"))
 (set-register ?u '(file . "~/projects/urbint/"))
 
+(setq
+ whitespace-line-column 100
+ whitespace-style
+ '(face trailing lines-tail)
+ )
+(global-whitespace-mode t)
+
 (after! doom-themes
   ;; Since Fira Mono doesn't have an italicized variant, highlight it instead
   (set-face-attribute 'italic nil
@@ -84,6 +91,7 @@
 ;;   (define-key erlang-mode-map (kbd "M-,") 'alchemist-goto-jump-back))
 
 ;; (add-hook 'erlang-mode-hook 'custom-erlang-mode-hook)
+
 
 
 (def-package! flycheck-mix

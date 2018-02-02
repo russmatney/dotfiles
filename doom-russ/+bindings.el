@@ -77,7 +77,7 @@
  "A-8"    (λ! (+workspace/switch-to 8))
  "A-9"    (λ! (+workspace/switch-to 9))
  "A-0"    (λ! (+workspace/switch-to 0))
- "A-s"    #'+workspace/switch-to
+ ;; "A-s"    #'+workspace/switch-to
  "A-h"    #'+workspace/switch-left
  "A-l"    #'+workspace/switch-right
  "A-["    #'+workspace/switch-left
@@ -97,14 +97,18 @@
  "C-k"    #'rm/move-window-above
  "C-l"    #'rm/move-window-right
 
+
  "S-<left>"  #'evil-window-increase-width
  "S-<right>" #'evil-window-decrease-width
 
  ;; buffers
  :n  "]b" #'doom/next-buffer
- :n  "M-b" #'doom/next-buffer
+ :n  "M-B" #'doom/next-buffer
  :n  "[b" #'doom/previous-buffer
- :n  "M-B" #'doom/previous-buffer
+ :n  "M-b" #'doom/previous-buffer
+
+ :n "A-e" #'next-error
+ :n "A-E" #'previous-error
 
  ;; eval exp and buffer
  :n "M-;"    #'eval-last-sexp
@@ -135,6 +139,15 @@
  ;; :m  "gD" #'+jump/references
  ;; "A-d"    #'+jump/documentation
  ;; :m  "gh" #'+jump/documentation
+)
+
+(map!
+ "M-p"   #'projectile-find-file
+ :n "C-p"   #'projectile-find-file
+
+ :n "A-p"   #'projectile-find-file
+ :n  "A-v"  #'evil-window-vsplit
+ :n  "A-s"  #'evil-window-split
 )
 
 (map!

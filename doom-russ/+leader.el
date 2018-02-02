@@ -38,7 +38,7 @@
    :desc "projectile-test-toggle" :n  "t"   #'projectile-toggle-between-implementation-and-test
 
    ;; Other search/nav
-   :desc "Jump to bookmark"      :n  "RET" #'bookmark-jump
+   :desc "Save buffer (write file)" :n  "RET" #'save-buffer
    :desc "Imenu"                 :nv "i"   #'imenu
    :desc "Imenu across buffers"  :nv "I"   #'imenu-anywhere
    :desc "Swiper"                :nv "/"   #'swiper
