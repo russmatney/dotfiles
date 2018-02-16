@@ -226,5 +226,5 @@ alias haskdollarbill='stack clean && stack build --pedantic && stack exec -- hli
 alias se='stack exec --'
 alias sc='stack clean'
 alias st='stack test'
-alias stw="stack build --file-watch --test --test-arguments '--rerun --failure-report=TESTREPORT --rerun-all-on-success"
+alias stw="stack build --file-watch --test --test-arguments '--rerun --failure-report=TESTREPORT --rerun-all-on-success'"
 
