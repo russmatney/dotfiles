@@ -141,6 +141,11 @@
  ;; :m  "gh" #'+jump/documentation
 )
 
+;; Left as a relic.
+;; (defun cleanup-file-data ()
+;;   (interactive)
+;;   (shell "/Users/russ/cleanup.sh"))
+
 (map!
  "M-p"   #'projectile-find-file
  :n "C-p"   #'projectile-find-file
@@ -148,6 +153,9 @@
  :n "A-p"   #'projectile-find-file
  :n  "A-v"  #'evil-window-vsplit
  :n  "A-s"  #'evil-window-split
+
+
+ :v "="  #'evil-indent
 )
 
 (map!

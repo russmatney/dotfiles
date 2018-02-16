@@ -6,6 +6,7 @@
   "Use projectile prompt to find or switch projects in a workspace tab."
   (interactive)
   (require 'projectile)
+  (require 'counsel-projectile)
   (ivy-read
    (projectile-prepend-project-name "Switch to project: ") projectile-known-projects
    :preselect (and (projectile-project-p)

@@ -11,7 +11,6 @@
   (load! +helm-mini)
   (load! +company)
   (load! +neotree)
-  (load! +helm-descbinds)
   (load! +haskell)
   (load! +org))
 
@@ -141,9 +140,9 @@
 ;; (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
 ;; (add-hook 'scheme-mode-hook           #'enable-paredit-mode)
 
-(map! :map dired-mode-map
-         :n "-" #'dired-up-directory
-         :n "<return>" #'dired-find-file
-         )
+;; (map! :map dired-mode-map
+;;          :n "-" #'dired-up-directory
+;;          :n "<return>" #'dired-find-file
+;;          )
 
 (add-hook! 'before-save-hook 'whitespace-cleanup)

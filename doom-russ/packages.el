@@ -13,3 +13,4 @@
 (package! quack)
 (package! intero)
 (package! ghc)
+(package! dash)

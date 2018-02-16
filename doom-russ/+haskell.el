@@ -1,7 +1,9 @@
 ;;; +haskell.el --- description -*- lexical-binding: t; -*-
 
+(require 'dash)
+
 (defun grfn/haskell-test-file-p ()
-  (string-match-p (rx (and "Spec.hs" eol))
+  (string-match-p (rx (and ".hs" eol))
                   (buffer-file-name)))
 
 (defun grfn/intero-run-tests ()
@@ -20,10 +22,21 @@
 (def-package! intero
   :after haskell-mode
   :config
+  (setq haskell-font-lock-symbols t)
   (intero-global-mode 1)
   (eldoc-mode)
   (turn-off-smartparens-mode)
-  (flycheck-add-next-checker 'intero 'haskell-hlint))
+  (flycheck-add-next-checker 'intero 'haskell-hlint)
+
+  ;; (let (m-symbols
+  ;;       '(("`mappend`" . "⊕")
+  ;;         ("<>"        . "⊕")))
+  ;;   (dolist (item m-symbols) (add-to-list 'haskell-font-lock-symbols-alist item)))
+
+  (setq haskell-font-lock-symbols-alist (-reject
+                                         (lambda (elem)
+                                           (string-equal "()" (car elem)))
+                                         haskell-font-lock-symbols-alist)))
 
 (map!
  (:after haskell-mode

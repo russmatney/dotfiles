@@ -83,6 +83,9 @@
   (add-hook! 'evil-mc-after-cursors-deleted
     (remove-hook 'evil-insert-state-entry-hook #'evil-mc-resume-cursors t)))
 
+;; Thanks, friends.
+;; (add-hook! 'before-save-hook #'cleanup-file-data)
+(remove-hook! 'before-save-hook #'cleanup-file-data)
 
 
 ;; --- Custom key functionality ---------------------
