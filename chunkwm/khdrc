@@ -60,8 +60,8 @@ ctrl + alt - c : osascript -e "tell application \"Google Chrome\" to activate"
 ctrl + alt - p : osascript -e "tell application \"Spotify\" to activate"
 ctrl + alt - m : osascript -e "tell application \"Messages\" to activate"
 
-ctrl - q : khd -e "mode activate escape"
-escape + ctrl - q : khd -e "mode activate default"
+# ctrl - q : khd -e "mode activate escape"
+# escape + ctrl - q : khd -e "mode activate default"
 khd void_unlisted_bind off
 
 khd mode select prefix on

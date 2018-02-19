@@ -1,3 +1,9 @@
+# replace <path_to_meta_repo> with the actual path
+export META_DIR=~/urbint/meta
+
+source "${META_DIR}/urbint_101/scripts/setup"
+
+
 source /usr/local/share/antigen/antigen.zsh
 
 antigen use oh-my-zsh
@@ -203,12 +209,6 @@ fi
     export PAGER="less"
 
 fpath=(~/.zsh $fpath)
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/russ/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/russ/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/russ/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/russ/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 alias rn='react-native'
 alias grc='git rebase --continue'
 
@@ -228,3 +228,11 @@ alias sc='stack clean'
 alias st='stack test'
 alias stw="stack build --file-watch --test --test-arguments '--rerun --failure-report=TESTREPORT --rerun-all-on-success'"
 
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then source "$HOME/google-cloud-sdk/path.zsh.inc"; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then source "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
+
+export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
