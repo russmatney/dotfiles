@@ -1,8 +1,0 @@
-#!/bin/zsh
-
-SESSION_NAME=dotfiles
-
-TMUX= tmux new-session -d -s $SESSION_NAME -n dotfiles -c ~/dotfiles
-tmux new-window -t$SESSION_NAME:2 -n doom-emacs -c ~/dotfiles/doom-emacs
-
-tmux select-window -t$SESSION_NAME:1
