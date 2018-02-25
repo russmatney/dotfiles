@@ -1,6 +1,9 @@
 # reload config
 cmd + alt + ctrl - r : khd -e "reload"
 
+# toggle desktop offset
+cmd + alt + ctrl - a : chunkc tiling::desktop --toggle offset
+
 # focus window
 alt + cmd - h : chunkc tiling::window --focus west
 alt + cmd - j : chunkc tiling::window --focus south
@@ -48,9 +51,9 @@ alt - r : chunkc tiling::desktop --rotate 90
 alt - f : chunkc tiling::window --toggle float
 
 # change layout of desktop
-ctrl + alt - a : chunkc tiling::desktop --layout bsp
-ctrl + alt - s : chunkc tiling::desktop --layout monocle
-ctrl + alt - d : chunkc tiling::desktop --layout float
+ctrl + alt - b : chunkc tiling::desktop --layout bsp
+ctrl + alt - m : chunkc tiling::desktop --layout monocle
+ctrl + alt - f : chunkc tiling::desktop --layout float
 
 # quick focus app
 ctrl + alt - e : osascript -e "tell application \"Emacs\" to activate"
