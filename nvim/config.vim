@@ -14,8 +14,8 @@ set wildignore=*.class,*.o,*~,*.pyc,.git,node_modules,lib-cov,public,bower_compo
 set wildignore+=node_modules,.tmp,.dist,.git,platforms,bower_components,jspm,dist,rethinkdb_data,vendor
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|\.git/\|platforms\|bower_components\|jspm\|dist\|rethinkdb_data\|vendor\|doc'
 
-set grepprg=Ag\ --nogroup\ --nocolor
-let g:ctrlp_user_command = 'Ag %s -i --nocolor --nogroup --ignore ''.git'' --hidden -g ""'
+set grepprg=ag\ --nogroup\ --nocolor
+let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --ignore ''.git'' --hidden -g ""'
 let g:ctrlp_use_caching = 0 " Ag is so fast that caching isn’t necessary
 let g:ctrlp_max_files = 10000
 let g:ctrlp_working_path_mode = 'ra'   " Always use the current working directory rather than the location of the current file

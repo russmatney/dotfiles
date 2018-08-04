@@ -135,6 +135,7 @@ endfunction
 
 nmap <C-s> :w<CR>
 nmap <leader>w :w<CR>
+nmap <leader><CR> :w<CR>
 
 nmap <leader>bd :call DeleteEmptyBuffers()<CR>
 nmap <leader>1 :1b<CR>
@@ -157,13 +158,15 @@ command -nargs=1 DE :e `dirname %`/<args>
 " Dash
 nnoremap <leader>d :Dash<CR>
 
+
+nmap <leader>p <C-p>
+
+
 source ~/dotfiles/nvim/plugins.vim
 source ~/dotfiles/nvim/filetype-settings.vim
 source ~/dotfiles/nvim/config.vim
 
 
-
-nnoremap <leader>p :FilesMru --tiebreak=end<cr>
 
 
 "transparent bg
