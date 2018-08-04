@@ -3,13 +3,9 @@ nvim/plugins/
 nvim/.net*
 before_upgrade.txt
 nvim/shada/
-nvim/init.vim
 nvim/autoload/*
 nvim/ftplugin/*
 nvim/.init.vim*
 .DS_Store
 *~
 zsh/secrets.zsh
-
-doom-emacs
-tmux-powerline
