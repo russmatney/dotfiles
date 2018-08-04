@@ -1,0 +1,19 @@
+# zsh plugins for use with antibody
+
+zsh-users/zsh-completions
+caarlos0/zsh-mkc
+djui/alias-tips
+Tarrasch/zsh-autoenv
+Tarrasch/zsh-colors
+
+robbyrussell/oh-my-zsh folder:plugins/git
+robbyrussell/oh-my-zsh folder:plugins/git-extras
+robbyrussell/oh-my-zsh folder:plugins/docker
+
+# https://gist.github.com/rschmukler/7d9317cde82c58be965d rs2.zsh-theme
+
+mafredri/zsh-async
+sindresorhus/pure
+zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-history-substring-search
+
