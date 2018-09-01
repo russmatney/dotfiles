@@ -47,10 +47,12 @@ bindsym $mod+Tab exec ~/.nix-profile/bin/rofi -show window
 bindsym $mod+d exec --no-startup-id ~/.nix-profile/bin/i3-dmenu-desktop --dmenu='~/.nix-profile/bin/rofi -i -dmenu'
 
 # change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+bindsym $mod+h exec --no-startup-id smart-move-focus left
+# bindsym $mod+h exec i3-msg focus left
+bindsym $mod+l exec --no-startup-id smart-move-focus right
+# bindsym $mod+l exec i3-msg focus right
+bindsym $mod+j exec ~/.local/bin/smart-move-focus down
+bindsym $mod+k exec ~/.local/bin/smart-move-focus up
 
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down

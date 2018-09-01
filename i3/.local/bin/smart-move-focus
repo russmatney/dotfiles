@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# taken from: https://gist.github.com/mijoharas/b9d09daed9654ca8d0d081015209ecd0
+# requires: jq
+
+function get-focused-window()
+{
+    i3-msg -t get_tree | jq -r ".. | select(.focused? == true).window_properties.class"
+}
+
+function i3-move()
+{
+    i3-msg focus "$1"
+}
+
+function emacs-move()
+{
+    emacsclient -e "(evil-window-$1 1)"
+}
+
+function perform-move()
+{
+    focussed_workspace=$(get-focused-window)
+    if [ "$focussed_workspace" = "Emacs" ]; then
+        emacs-move "$1"
+        result=$?
+        if [ $result -ne 0 ]; then
+            i3-move "$1"
+        fi
+    else
+        i3-move "$1"
+    fi
+}
+
+case "$1" in
+    left) ;&
+    right) ;&
+    up) ;&
+    down)
+        perform-move "$1";;
+    *) echo "command not found";;
+esac
+
