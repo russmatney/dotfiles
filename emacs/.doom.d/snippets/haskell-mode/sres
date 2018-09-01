@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: sres
+# key: sres
+# --
+(SResponse status _ body) <-

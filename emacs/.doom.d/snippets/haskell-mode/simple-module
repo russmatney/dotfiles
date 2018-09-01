@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: simple-module
+# key: mod
+# --
+module Module
+  (
+  ) where

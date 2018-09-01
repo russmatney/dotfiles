@@ -1,0 +1,46 @@
+* =~/.doom.d/*=
+
+A private emacs module built on top of [[https://github.com/hlissner/doom-emacs][Doom Emacs]].
+
+** Doom Module style
+There is more on this in the doom wiki, but as an overview, Doom modules consist
+of 4 parts:
+
+- ~init.el~:
+  - runs early in the doom startup pipeline
+  - whitelists other doom modules that you want to use
+- ~packages.el~:
+  - used to add elisp packages. Note that doom provides many packages already.
+- ~config.el~:
+  - set your own keybindings
+  - configure your own package settings
+  - edit doom configurations to match your preferences
+- ~autoloads/*.el~:
+  - a place for writing your own functions
+
+Beyond that, there is a convention for loading siblings:
+
+#+BEGIN_SRC elisp
+;; in config.el
+(load! +bindings) ;; this will load ./bindings.el
+#+END_SRC
+
+** Workflows
+Be aware that working with this is working with Doom - these workflows may grow
+outdated.
+
+*** Adding a package
+- Add the package to ~./packages.el~
+- Run ~make~ from the doom root directory (=~/.emacs.d=)
+
+*** Updating packages
+Good luck!
+
+- Run ~make update~ from the doom root directory (=~/.emacs.d=)
+
+* Emacs 26
+Assuming you're on a mac, install emacs like so:
+
+#+BEGIN_SRC
+brew install emacs --devel --with-modules --with-cocoa --with-gnutls --with-librsvg --with-mailutils --with-imagemagick@6
+#+END_SRC

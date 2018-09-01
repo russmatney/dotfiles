@@ -1,0 +1,35 @@
+# -*- mode: snippet -*-
+# name: graphql-crud
+# key: graphql-crud
+# --
+query ListRelationship($id: String!) {
+  entityRelationships(id: $id) {
+    id edgeID
+  }
+}
+
+query FetchRelationship($id: String!) {
+  entityRelationship(id: $id) {
+    id edgeID
+  }
+}
+
+mutation CreateRelationship($datasetID: String!, $edgeID: String!) {
+  createEntityRelationship(datasetID: $datasetID, edgeID: $edgeID) {
+    id
+    edgeID
+  }
+}
+
+query DeleteRelationship($id: String!) {
+  deleteEntityRelationship(id: $id) {
+    id
+  }
+}
+
+mutation UpdateRelationship($id: String!, $edgeID: String!) {
+  updateEntityRelationship(id: $id, edgeID: $edgeID) {
+    id
+    edgeID
+  }
+}

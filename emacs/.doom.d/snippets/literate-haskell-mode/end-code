@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: end-code
+# key: ec
+# --
+\end{code}
