@@ -1,0 +1,60 @@
+# zsh plugins for use with antibody
+
+zsh-users/zsh-completions
+caarlos0/zsh-mkc
+djui/alias-tips
+Tarrasch/zsh-autoenv
+Tarrasch/zsh-colors
+
+robbyrussell/oh-my-zsh
+robbyrussell/oh-my-zsh folder:plugins/aws
+robbyrussell/oh-my-zsh folder:plugins/brew
+robbyrussell/oh-my-zsh folder:plugins/cabal
+robbyrussell/oh-my-zsh folder:plugins/command-not-found
+robbyrussell/oh-my-zsh folder:plugins/common-aliases
+robbyrussell/oh-my-zsh folder:plugins/compleat
+robbyrussell/oh-my-zsh folder:plugins/dircycle
+robbyrussell/oh-my-zsh folder:plugins/dirhistory
+robbyrussell/oh-my-zsh folder:plugins/docker
+robbyrussell/oh-my-zsh folder:plugins/fasd
+robbyrussell/oh-my-zsh folder:plugins/gas
+robbyrussell/oh-my-zsh folder:plugins/geeknote
+robbyrussell/oh-my-zsh folder:plugins/gpg-agent
+robbyrussell/oh-my-zsh folder:plugins/git
+robbyrussell/oh-my-zsh folder:plugins/gitfast
+robbyrussell/oh-my-zsh folder:plugins/git-extras
+robbyrussell/oh-my-zsh folder:plugins/git-flow
+robbyrussell/oh-my-zsh folder:plugins/git-flow-avh
+robbyrussell/oh-my-zsh folder:plugins/git-hubflow
+robbyrussell/oh-my-zsh folder:plugins/github
+robbyrussell/oh-my-zsh folder:plugins/httpie
+robbyrussell/oh-my-zsh folder:plugins/history
+robbyrussell/oh-my-zsh folder:plugins/jsontools
+robbyrussell/oh-my-zsh folder:plugins/last-working-dir
+robbyrussell/oh-my-zsh folder:plugins/node
+robbyrussell/oh-my-zsh folder:plugins/npm
+# robbyrussell/oh-my-zsh folder:plugins/osx
+robbyrussell/oh-my-zsh folder:plugins/per-directory-history
+robbyrussell/oh-my-zsh folder:plugins/pip
+robbyrussell/oh-my-zsh folder:plugins/python
+robbyrussell/oh-my-zsh folder:plugins/pylint
+robbyrussell/oh-my-zsh folder:plugins/pyenv
+robbyrussell/oh-my-zsh folder:plugins/rand-quote
+robbyrussell/oh-my-zsh folder:plugins/repo
+robbyrussell/oh-my-zsh folder:plugins/ssh-agent
+robbyrussell/oh-my-zsh folder:plugins/sudo
+robbyrussell/oh-my-zsh folder:plugins/taskwarrior
+robbyrussell/oh-my-zsh folder:plugins/tig
+robbyrussell/oh-my-zsh folder:plugins/tmux
+robbyrussell/oh-my-zsh folder:plugins/urltools
+robbyrussell/oh-my-zsh folder:plugins/vi-mode
+robbyrussell/oh-my-zsh folder:plugins/web-search
+robbyrussell/oh-my-zsh folder:plugins/yarn
+
+# https://gist.github.com/rschmukler/7d9317cde82c58be965d rs2.zsh-theme
+
+mafredri/zsh-async
+sindresorhus/pure
+zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-history-substring-search
+
