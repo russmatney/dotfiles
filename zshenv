@@ -1,3 +1,3 @@
 
-# moved here to allow for non-interactive modes to use it
-export PATH="$HOME/.local/bin/:$HOME/n/bin:$PATH"
+# moved here to allow non-interactive modes to use it
+export PATH="$HOME/.nix-profile/bin:$HOME/.local/bin/:$HOME/n/bin:$PATH"
