@@ -5,22 +5,16 @@
 # Antibody setup
 ################################################################################
 
+# From oh-my-zsh
+export ZSH="$(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh"
+DISABLE_AUTO_UPDATE="true"
+
 source <(antibody init)
 antibody bundle < ~/.zsh_plugins.txt
 
 # source ~/.zsh_plugins.sh
 alias 'ra'='antibody bundle < ~/dotfiles/zsh/.zsh_plugins.txt > ~/dotfiles/zsh/.zsh_plugins.sh'
 
-
-################################################################################
-# From oh-my-zsh
-################################################################################
-
-# export ZSH="/home/russ/.oh-my-zsh"
-export ZSH="$(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh"
-
-# ZSH_THEME="robbyrussell"
-DISABLE_AUTO_UPDATE="true"
 
 
 ################################################################################
@@ -63,6 +57,7 @@ alias vim=nvim
 alias vi=nvim
 
 alias ls=exa
+alias l='ls -lFha'
 
 alias e='emacs -nw'
 

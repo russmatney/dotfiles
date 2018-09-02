@@ -34,7 +34,7 @@ robbyrussell/oh-my-zsh folder:plugins/last-working-dir
 robbyrussell/oh-my-zsh folder:plugins/node
 robbyrussell/oh-my-zsh folder:plugins/npm
 # robbyrussell/oh-my-zsh folder:plugins/osx
-robbyrussell/oh-my-zsh folder:plugins/per-directory-history
+# robbyrussell/oh-my-zsh folder:plugins/per-directory-history
 robbyrussell/oh-my-zsh folder:plugins/pip
 robbyrussell/oh-my-zsh folder:plugins/python
 robbyrussell/oh-my-zsh folder:plugins/pylint
@@ -57,4 +57,3 @@ mafredri/zsh-async
 sindresorhus/pure
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-history-substring-search
-
