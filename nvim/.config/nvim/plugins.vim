@@ -4,7 +4,7 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 
-call plug#begin('~/dotfiles/nvim/plugins')
+call plug#begin('~/.config/nvim/plugins')
 
 " Syntax Plugins
 Plug 'pangloss/vim-javascript'
@@ -88,7 +88,7 @@ Plug 'marijnh/tern_for_vim'
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'rhysd/vim-go-impl', { 'for': 'go' }
 Plug 'majutsushi/tagbar', { 'for': 'go' }
-Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/dotfiles/nvim/plugins/gocode/nvim/symlink.sh' }
+Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugins/gocode/nvim/symlink.sh' }
 function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction

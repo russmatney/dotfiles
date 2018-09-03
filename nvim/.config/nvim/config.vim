@@ -211,12 +211,15 @@ let g:limelight_conceal_ctermfg = 240
 let g:goyo_width = 200
 
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" Nerdtree
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"Nerdtree
 nnoremap <leader>n :NERDTreeFind<CR>
 let NERDTreeHijackNetrw = 0
 autocmd vimenter * if !argc() | NERDTree | wincmd l | endif
 let NERDTreeIgnore=['^components/', '^node_modules/', '^bower_components/', '^dist/']
+let NERDTreeShowHidden=1
 "nnoremap <leader>x :NERDTreeMapOpenSplit<CR>
 "nnoremap <leader>v :NERDTreeMapOpenVSplit<CR>
 
