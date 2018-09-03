@@ -16,8 +16,9 @@ function i3-move()
 function emacs-move()
 {
     command="(evil-window-$1 1)"
-    echo "attempting Emacs focus via $command" >> ~/tmp/errors
-    emacsclient -e "$command" >> ~/tmp/errors 2>&1
+    # echo "attempting Emacs focus via $command" >> ~/tmp/errors
+    # emacsclient -e "$command" >> ~/tmp/errors 2>&1
+    emacsclient -e "$command"
 }
 
 function terminal-move()
@@ -27,32 +28,39 @@ function terminal-move()
      "up")
        coord='top'
        dirLetter='D'
+       vimLetter='k'
        op='<='
      ;;
      "down")
        coord='bottom'
        dirLetter='D'
+       vimLetter='j'
        op='>='
      ;;
      "left")
        coord='left'
        dirLetter='L'
+       vimLetter='h'
        op='<='
      ;;
      "right")
        coord='right'
        dirLetter='R'
+       vimLetter='l'
        op='>='
      ;;
   esac
 
-  cmd="#{pane_id}:#{pane_$coord}:#{?pane_active,_active_,_no_}"
+  cmd="#{pane_id}:#{pane_tty}:#{pane_$coord}:#{?pane_active,_active_,_no_}"
   panes=$(tmux list-panes -F "$cmd")
 
   active_pane=$(echo "$panes" | grep _active_)
   active_pane_id=$(echo "$active_pane" | cut -d: -f1)
-  active_coord=$(echo "$active_pane" | cut -d: -f2)
-  coords=$(echo "$panes" | cut -d: -f2)
+  active_pane_tty=$(echo "$active_pane" | cut -d: -f2)
+  active_coord=$(echo "$active_pane" | cut -d: -f3)
+  coords=$(echo "$panes" | cut -d: -f3)
+
+  echo "active_pane_tty: $active_pane_tty" >> ~/tmp/errors
 
   if [ "$op" == ">=" ]; then
     test_coord=$(echo "$coords" | sort -nr | head -n1)
@@ -62,17 +70,23 @@ function terminal-move()
     at_edge=$(( active_coord <= test_coord ? 1 : 0 ))
   fi;
 
-  echo "$at_edge" >> ~/tmp/errors
+  procs=$(ps -o state= -o comm= -t $active_pane_tty)
+  echo "procs: $procs" >> ~/tmp/errors
+  is_vim=`echo "$procs" | grep -cE 'S n?vim'`
 
-  if [ $at_edge == 0 ]; then
-      # TODO if in vim, send keys? detect edge?
-    command="tmux select-pane -$dirLetter"
-    echo "attempting tmux focus via $command" >> ~/tmp/errors
-    eval "$command"
+  echo "is_vim: $is_vim" >> ~/tmp/errors
+  echo "at_edge: $at_edge" >> ~/tmp/errors
+
+  if [ $is_vim -ge 1 ]; then
+      echo "passing keys to vim"
+      tmux send-keys "M-$vimLetter"
+  elif [ $at_edge == 0 ]; then
+      echo "not at an edge, moving tmux focus"
+      tmux select-pane -$dirLetter
   else
+      echo "falling back to i3 move"
       i3-move "$1"
   fi;
-
 }
 
 function perform-move()

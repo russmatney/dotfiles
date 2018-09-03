@@ -152,23 +152,21 @@ nmap <leader>0 :10b<CR>
 exec 'set viminfo=%,' . &viminfo
 
 " New file in same dir - ripped from rschmukler
-command -nargs=1 DE :e `dirname %`/<args>
-
+" command -nargs=1 DE :e `dirname %`/<args>
 
 " Dash
 nnoremap <leader>d :Dash<CR>
 
-
 nmap <leader>p <C-p>
-
 
 source ~/.config/nvim/plugins.vim
 source ~/.config/nvim/filetype-settings.vim
 source ~/.config/nvim/config.vim
 
-
-
-
 "transparent bg
 nmap <leader>o :hi Normal guibg=NONE ctermbg=NONE<CR>
+
+" Quickly edit/reload this configuration file
+nnoremap gev :e ~/.config/nvim/init.vim<CR>
+nnoremap gsv :so ~/.config/nvim/init.vim<CR>
 
