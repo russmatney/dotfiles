@@ -12,4 +12,5 @@ zsh/secrets.zsh
 zsh/.zsh_plugins.sh
 
 
+tmux-client-*.log
 emacs/.doom.d/+private.el

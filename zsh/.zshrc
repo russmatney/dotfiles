@@ -13,8 +13,10 @@ source <(antibody init)
 antibody bundle < ~/.zsh_plugins.txt
 
 # source ~/.zsh_plugins.sh
-alias 'ra'='antibody bundle < ~/dotfiles/zsh/.zsh_plugins.txt > ~/dotfiles/zsh/.zsh_plugins.sh'
-
+alias 'ra'='antibody bundle \
+            < ~/dotfiles/zsh/.zsh_plugins.txt \
+            > ~/dotfiles/zsh/.zsh_plugins.sh && \
+            antibody update'
 
 
 ################################################################################

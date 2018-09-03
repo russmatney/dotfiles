@@ -65,6 +65,7 @@ function terminal-move()
   echo "$at_edge" >> ~/tmp/errors
 
   if [ $at_edge == 0 ]; then
+      # TODO if in vim, send keys? detect edge?
     command="tmux select-pane -$dirLetter"
     echo "attempting tmux focus via $command" >> ~/tmp/errors
     eval "$command"
