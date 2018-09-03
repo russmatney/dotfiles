@@ -306,10 +306,9 @@ let $FZF_DEFAULT_COMMAND = 'Ag -g ""'
 
 " let g:tmux_navigator_no_mappings = 1
 
-nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
-" nnoremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<cr>
+nnoremap <silent> <M-h> :I3NavigateLeft<cr>
+nnoremap <silent> <M-j> :I3NavigateDown<cr>
+nnoremap <silent> <M-k> :I3NavigateUp<cr>
+nnoremap <silent> <M-l> :I3NavigateRight<cr>
 
 

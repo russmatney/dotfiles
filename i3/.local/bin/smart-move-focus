@@ -15,13 +15,10 @@ function i3-move()
 
 function emacs-move()
 {
-    command="(evil-window-$1 1)"
-    # echo "attempting Emacs focus via $command" >> ~/tmp/errors
-    # emacsclient -e "$command" >> ~/tmp/errors 2>&1
-    emacsclient -e "$command"
+    emacsclient -e "(evil-window-$1 1)"
 }
 
-function terminal-move()
+function tmux-or-vim-move()
 {
 
   case "$1" in
@@ -60,8 +57,6 @@ function terminal-move()
   active_coord=$(echo "$active_pane" | cut -d: -f3)
   coords=$(echo "$panes" | cut -d: -f3)
 
-  echo "active_pane_tty: $active_pane_tty" >> ~/tmp/errors
-
   if [ "$op" == ">=" ]; then
     test_coord=$(echo "$coords" | sort -nr | head -n1)
     at_edge=$(( active_coord >= test_coord ? 1 : 0 ))
@@ -71,20 +66,21 @@ function terminal-move()
   fi;
 
   procs=$(ps -o state= -o comm= -t $active_pane_tty)
-  echo "procs: $procs" >> ~/tmp/errors
-  is_vim=`echo "$procs" | grep -cE 'S n?vim'`
-
-  echo "is_vim: $is_vim" >> ~/tmp/errors
-  echo "at_edge: $at_edge" >> ~/tmp/errors
+  is_vim=$(echo "$procs" | grep -cE 'S n?vim')
 
   if [ $is_vim -ge 1 ]; then
-      echo "passing keys to vim"
+    if [ $at_edge == 0 ]; then
+      echo "passing keys to vim, falling back to tmux pane switch" >> ~/tmp/errors
+      tmux send-keys "C-$vimLetter"
+    else
+      echo "passing keys to vim, falling back to i3 switch" >> ~/tmp/errors
       tmux send-keys "M-$vimLetter"
+    fi;
   elif [ $at_edge == 0 ]; then
-      echo "not at an edge, moving tmux focus"
+      echo "not at an edge, moving tmux focus" >> ~/tmp/errors
       tmux select-pane -$dirLetter
   else
-      echo "falling back to i3 move"
+      echo "falling back to i3 move" >> ~/tmp/errors
       i3-move "$1"
   fi;
 }
@@ -101,7 +97,7 @@ function perform-move()
         fi
     elif [ "$focused_window" = "Xfce4-terminal" ]; then
         echo "Firing Terminal movement" >> ~/tmp/errors
-        terminal-move "$1"
+        tmux-or-vim-move "$1"
         result=$?
         if [ $result -ne 0 ]; then
             i3-move "$1"

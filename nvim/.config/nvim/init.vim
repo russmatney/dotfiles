@@ -162,6 +162,7 @@ nmap <leader>p <C-p>
 source ~/.config/nvim/plugins.vim
 source ~/.config/nvim/filetype-settings.vim
 source ~/.config/nvim/config.vim
+source ~/.config/nvim/tmux_navigator.vim
 
 "transparent bg
 nmap <leader>o :hi Normal guibg=NONE ctermbg=NONE<CR>
