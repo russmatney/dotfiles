@@ -15,14 +15,78 @@ function i3-move()
 
 function emacs-move()
 {
-    emacsclient -e "(evil-window-$1 1)"
+    command="(evil-window-$1 1)"
+    echo "attempting Emacs focus via $command" >> ~/tmp/errors
+    emacsclient -e "$command" >> ~/tmp/errors 2>&1
+}
+
+function terminal-move()
+{
+
+  case "$1" in
+     "up")
+       coord='top'
+       dirLetter='D'
+       op='<='
+     ;;
+     "down")
+       coord='bottom'
+       dirLetter='D'
+       op='>='
+     ;;
+     "left")
+       coord='left'
+       dirLetter='L'
+       op='<='
+     ;;
+     "right")
+       coord='right'
+       dirLetter='R'
+       op='>='
+     ;;
+  esac
+
+  cmd="#{pane_id}:#{pane_$coord}:#{?pane_active,_active_,_no_}"
+  panes=$(tmux list-panes -F "$cmd")
+
+  active_pane=$(echo "$panes" | grep _active_)
+  active_pane_id=$(echo "$active_pane" | cut -d: -f1)
+  active_coord=$(echo "$active_pane" | cut -d: -f2)
+  coords=$(echo "$panes" | cut -d: -f2)
+
+  if [ "$op" == ">=" ]; then
+    test_coord=$(echo "$coords" | sort -nr | head -n1)
+    at_edge=$(( active_coord >= test_coord ? 1 : 0 ))
+  else
+    test_coord=$(echo "$coords" | sort -n | head -n1)
+    at_edge=$(( active_coord <= test_coord ? 1 : 0 ))
+  fi;
+
+  echo "$at_edge" >> ~/tmp/errors
+
+  if [ $at_edge == 0 ]; then
+    command="tmux select-pane -$dirLetter"
+    echo "attempting tmux focus via $command" >> ~/tmp/errors
+    eval "$command"
+  else
+      i3-move "$1"
+  fi;
+
 }
 
 function perform-move()
 {
-    focussed_workspace=$(get-focused-window)
-    if [ "$focussed_workspace" = "Emacs" ]; then
+    focused_window=$(get-focused-window)
+    echo "$focused_window is focused" >> ~/tmp/errors
+    if [ "$focused_window" = "Emacs" ]; then
         emacs-move "$1"
+        result=$?
+        if [ $result -ne 0 ]; then
+            i3-move "$1"
+        fi
+    elif [ "$focused_window" = "Xfce4-terminal" ]; then
+        echo "Firing Terminal movement" >> ~/tmp/errors
+        terminal-move "$1"
         result=$?
         if [ $result -ne 0 ]; then
             i3-move "$1"
@@ -31,6 +95,8 @@ function perform-move()
         i3-move "$1"
     fi
 }
+
+echo "movement detected: -------" >> ~/tmp/errors
 
 case "$1" in
     left) ;&

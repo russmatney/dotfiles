@@ -38,8 +38,8 @@ floating_modifier $mod
 # Kill focused window
 bindsym $mod+q kill
 
-bindsym $mod+Shift+Return exec ~/.nix-profile/bin/emacs
-bindsym $mod+Return exec ~/.nix-profile/bin/xfce4-terminal
+bindsym $mod+Shift+Return exec emacsclient -c
+bindsym $mod+Return exec xfce4-terminal
 
 # rofi
 bindsym $mod+space exec ~/.nix-profile/bin/rofi -show run
@@ -48,11 +48,9 @@ bindsym $mod+d exec --no-startup-id ~/.nix-profile/bin/i3-dmenu-desktop --dmenu=
 
 # change focus
 bindsym $mod+h exec --no-startup-id smart-move-focus left
-# bindsym $mod+h exec i3-msg focus left
 bindsym $mod+l exec --no-startup-id smart-move-focus right
-# bindsym $mod+l exec i3-msg focus right
-bindsym $mod+j exec ~/.local/bin/smart-move-focus down
-bindsym $mod+k exec ~/.local/bin/smart-move-focus up
+bindsym $mod+j exec --no-startup-id smart-move-focus down
+bindsym $mod+k exec --no-startup-id smart-move-focus up
 
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
