@@ -1,4 +1,4 @@
-# Stow-based Dotfiles
+* Stow-based Dotfiles
 
 These files are structured by feature, and use GNU Stow for installation.
 
@@ -21,3 +21,30 @@ This is convenient for me, as I can `stow i3` on machines that need it.
 
 Note that dependencies are not covered by `stow` - it is a simple
 symlinking tool. See each module's readme for required software.
+
+** Enable Hidden Files where relevant
+
+The `stow` style leads to many "hidden" files being used, which revealed
+that many tools ignore hidden files by default.
+
+*** Zsh fix
+
+#+BEGIN_SRC sh
+# ~/.zshrc
+setopt globdots
+#+END_SRC
+
+*** Rip-grep (emacs) fix
+Create `~/.ignore` file with `.git` (so that --hidden does not include .git).
+[[https://github.com/BurntSushi/ripgrep/issues/340][See this issue]].
+
+#+BEGIN_SRC sh
+$ echo ".git" >> ~/.ignore
+#+END_SRC
+
+Update `rg` command in emacs to use `--hidden` flag:
+
+#+BEGIN_SRC emacs-lisp
+(setq counsel-rg-base-command
+    "rg -zS --hidden --no-heading --line-number --color never %s .")
+#+END_SRC

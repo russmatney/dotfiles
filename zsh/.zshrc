@@ -21,6 +21,11 @@ alias 'ra'='antibody bundle \
             > ~/.zsh_plugins.sh && \
             antibody update'
 
+# enable completion features
+autoload -U compinit && compinit
+
+# allow .hidden file tab completion
+setopt globdots
 
 ################################################################################
 # Start up

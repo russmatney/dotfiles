@@ -53,6 +53,11 @@
 ;; PATH
 (add-to-list 'exec-path "/home/russ/.nix-profile/bin")
 
+;; Add '--hidden' to rg command to include hidden files in search
+;; Note that `echo ".git/" >> ~/.ignore` will exclude .git from these searches
+(setq counsel-rg-base-command
+    "rg -zS --hidden --no-heading --line-number --color never %s .")
+
 ;; load bindings
 (load! "+bindings")
 
