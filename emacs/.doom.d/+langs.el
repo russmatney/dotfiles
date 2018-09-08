@@ -55,35 +55,35 @@
                                            (string-equal "()" (car elem)))
                                          haskell-font-lock-symbols-alist)))
 
-(def-package! dante
+;; (def-package! dante
+;;   :config
+;;   (setq dante-repl-command-line '("stack" "repl" "grid:lib" "grid:grid-test"))
+;; )
+
+(def-package! lsp-mode
+  :after (:any haskell-mode)
   :config
-  (setq dante-repl-command-line '("stack" "repl" "grid:lib" "grid:grid-test"))
-)
+  (lsp-mode))
 
-;; (def-package! lsp-mode
-;;   :after (:any haskell-mode)
-;;   :config
-;;   (lsp-mode))
+(def-package! lsp-ui
+  :after lsp-mode
+  :config
+  (setq lsp-ui-flycheck-enable t)
+  (setq imenu-auto-rescan t)
+  :hook
+  (lsp-mode . lsp-ui-mode)
+  (lsp-ui-mode . flycheck-mode))
 
-;; (def-package! lsp-ui
-;;   :after lsp-mode
-;;   :config
-;;   (setq lsp-ui-flycheck-enable t)
-;;   (setq imenu-auto-rescan t)
-;;   :hook
-;;   (lsp-mode . lsp-ui-mode)
-;;   (lsp-ui-mode . flycheck-mode))
+(def-package! company-lsp
+  :after (lsp-mode lsp-ui)
+  :config
+  (setq company-backends '(company-lsp))
+  (setq company-lsp-async t))
 
-;; (def-package! company-lsp
-;;   :after (lsp-mode lsp-ui)
-;;   :config
-;;   (setq company-backends '(company-lsp))
-;;   (setq company-lsp-async t))
-
-;; (def-package! lsp-haskell
-;;   :after (lsp-mode lsp-ui haskell-mode)
-;;   :hook
-;;   (haskell-mode . lsp-haskell-enable))
+(def-package! lsp-haskell
+  :after (lsp-mode lsp-ui haskell-mode)
+  :hook
+  (haskell-mode . lsp-haskell-enable))
 
 ;; (def-package! intero
 ;;   :after haskell-mode
