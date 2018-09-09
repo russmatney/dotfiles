@@ -44,7 +44,7 @@ bindsym $mod+Return exec xfce4-terminal
 # rofi
 bindsym $mod+space exec ~/.nix-profile/bin/rofi -show run
 bindsym $mod+Tab exec ~/.nix-profile/bin/rofi -show window
-bindsym $mod+d exec --no-startup-id ~/.nix-profile/bin/i3-dmenu-desktop --dmenu='~/.nix-profile/bin/rofi -i -dmenu'
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='~/.nix-profile/bin/rofi -i -dmenu'
 
 # smart pane split
 bindsym $mod+backslash exec --no-startup-id smart-split vertical
@@ -165,6 +165,9 @@ bindsym $mod+r mode "resize"
 
 # Starting things with i3
 # exec --no-startup-id xcompmgr -C &    # Bare compositor to allow transparency
+# run compton with a fade effect
+exec_always ~/.nix-profile/bin/compton -f
+
 for_window [class="yakuake"] floating enable;
 
 ## Plasma Integration
@@ -183,8 +186,15 @@ for_window [class="Kmix"] floating enable; border none
 for_window [class="Klipper"] floating enable; border none
 for_window [class="Plasmoidviewer"] floating enable; border none
 
+# border colors
+client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
+for_window [class="Emacs"] border pixel 3
+for_window [title="Terminal"] border pixel 3
+for_window [title="Mozilla Firefox"] border pixel 3
+
 exec_always ~/.nix-profile/bin/feh --bg-scale ~/Desktop/wallpapers/firewatch_green_3440x1440.jpg
 
-# run compton with a fade effect
-exec_always ~/.nix-profile/bin/compton -f
 
+bar {
+  status_command i3status
+}

@@ -85,6 +85,18 @@ function tmux-or-vim-move()
   fi;
 }
 
+function browser-move-tab ()
+{
+    # TODO how to know if tab is first or last?
+    # TODO handle chrome
+    if [ "$1" == "left" ]; then
+        xdotool key --window $(xdotool search --name "Mozilla Firefox" | head -1) control+Tab
+    elif [ "$1" == "right" ]; then
+        xdotool key --window $(xdotool search --name "Mozilla Firefox" | head -1) control+Shift+Tab
+    fi;
+}
+
+
 function perform-move()
 {
     focused_window=$(get-focused-window)
