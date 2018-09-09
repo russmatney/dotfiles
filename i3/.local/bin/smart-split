@@ -1,0 +1,41 @@
+#!/bin/bash
+
+function get-focused-window()
+{
+    i3-msg -t get_tree | jq -r ".. | select(.focused? == true).window_properties.class"
+}
+
+function emacs-split()
+{
+    if [ "$1" == "vertical" ]; then
+        emacsclient -e "(evil-window-vsplit)"
+    else
+        emacsclient -e "(evil-window-split)"
+    fi;
+}
+
+function tmux-split()
+{
+    if [ "$1" == "vertical" ]; then
+        tmux split-window -v -c '#{pane_current_path}'
+    else
+        tmux split-window -h -c '#{pane_current_path}'
+    fi;
+}
+
+function perform-split()
+{
+    focused_window=$(get-focused-window)
+    if [ "$focused_window" = "Emacs" ]; then
+        emacs-split "$1"
+    elif [ "$focused_window" = "Xfce4-terminal" ]; then
+        term-split "$1"
+    fi
+}
+
+case "$1" in
+    vertical) ;&
+    horizontal)
+        perform-split "$1";;
+    *) echo "command not found";;
+esac

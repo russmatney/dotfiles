@@ -46,6 +46,10 @@ bindsym $mod+space exec ~/.nix-profile/bin/rofi -show run
 bindsym $mod+Tab exec ~/.nix-profile/bin/rofi -show window
 bindsym $mod+d exec --no-startup-id ~/.nix-profile/bin/i3-dmenu-desktop --dmenu='~/.nix-profile/bin/rofi -i -dmenu'
 
+# smart pane split
+bindsym $mod+backslash exec --no-startup-id smart-split vertical
+bindsym $mod+minus exec --no-startup-id smart-split horizontal
+
 # change focus
 bindsym $mod+h exec --no-startup-id smart-move-focus left
 bindsym $mod+l exec --no-startup-id smart-move-focus right
