@@ -50,6 +50,10 @@ bindsym $mod+d exec --no-startup-id ~/.nix-profile/bin/i3-dmenu-desktop --dmenu=
 bindsym $mod+backslash exec --no-startup-id smart-split vertical
 bindsym $mod+minus exec --no-startup-id smart-split horizontal
 
+# walk workspace (emacs) or session (tmux)
+bindsym $mod+n exec --no-startup-id smart-walk-workspace next
+bindsym $mod+p exec --no-startup-id smart-walk-workspace previous
+
 # change focus
 bindsym $mod+h exec --no-startup-id smart-move-focus left
 bindsym $mod+l exec --no-startup-id smart-move-focus right

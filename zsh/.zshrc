@@ -27,12 +27,22 @@ autoload -U compinit && compinit
 # allow .hidden file tab completion
 setopt globdots
 
+
+
+# required to find some shared libs
+export LD_LIBRARY_PATH=/usr/local/lib
+
 ################################################################################
-# Start up
+# Theme/Style
 ################################################################################
 
 # Restore pywal colors
-~/.nix-profile/bin/wal -R
+~/.nix-profile/bin/wal -Rq
+
+# Powerline
+powerline-daemon -q
+# . /usr/lib/python3.7/site-packages/powerline/bindings/zsh/powerline.zsh
+
 
 ################################################################################
 # Gcloud
