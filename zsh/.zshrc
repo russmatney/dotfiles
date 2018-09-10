@@ -28,7 +28,6 @@ autoload -U compinit && compinit
 setopt globdots
 
 
-
 # required to find some shared libs
 export LD_LIBRARY_PATH=/usr/local/lib
 
@@ -39,10 +38,10 @@ export LD_LIBRARY_PATH=/usr/local/lib
 # Restore pywal colors
 ~/.nix-profile/bin/wal -Rq
 
+
 # Powerline
 powerline-daemon -q
 # . /usr/lib/python3.7/site-packages/powerline/bindings/zsh/powerline.zsh
-
 
 ################################################################################
 # Gcloud
@@ -142,8 +141,12 @@ alias gri='git rebase -i --autosquash'
 alias grim='git rebase -i --autosquash master'
 alias gbm='git branch --merged'
 alias gwip="git commit -m 'wip'"
-alias pulls='open "https://github.com:/$(git remote -v | /usr/local/bin/grep -oP "'"(?<=git@github.com:).+(?=\.git)"'" | head -n 1)/pulls"'
+alias pulls='open "https://github.com:/$(git remote -v | command ggrep -oP "'"(?<=git@github.com:).+(?=\.git)"'" | head -n 1)/pulls"'
 alias git=hub
+alias gpr='git pull-request'
+
+alias gwip="git commit -m 'wip'"
+
 
 ################################################################################
 # Kubernetes
@@ -155,3 +158,19 @@ alias kdeploys='kubectl get deployments'
 alias kdns='kubectl get ing'
 alias kedit='kubectl edit deployments ' # the trailing space is intentional
 alias kswitch='gcloud container clusters get-credentials ' # the trailing space is intentional
+
+
+################################################################################
+# Haskell
+################################################################################
+
+function stack-watch-test-path() {
+  pattern="${1:-}"
+  ghcid -c "stack ghci grid:lib grid:grid-test --ghci-options=-fobject-code" \
+      --height=$(tput lines) --width=$(tput cols) \
+      --warnings --test "${pattern}" \
+      | source-highlight -s haskell -f esc
+}
+
+alias swtp='stack-watch-test-path'
+
