@@ -36,11 +36,11 @@ export LD_LIBRARY_PATH=/usr/local/lib
 ################################################################################
 
 # Restore pywal colors
-~/.nix-profile/bin/wal -Rq
+# ~/.nix-profile/bin/wal -Rq
 
 
 # Powerline
-powerline-daemon -q
+# powerline-daemon -q
 # . /usr/lib/python3.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
 ################################################################################
