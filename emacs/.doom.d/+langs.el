@@ -82,6 +82,8 @@
 
 (def-package! lsp-haskell
   :after (lsp-mode lsp-ui haskell-mode)
+  :config
+  (setq lsp-haskell-process-path-hie "hie-wrapper")
   :hook
   (haskell-mode . lsp-haskell-enable))
 
@@ -265,3 +267,18 @@
 ;; (add-hook 'rust-mode-hook #'lsp-rust-enable)
 ;; (add-hook 'rust-mode-hook #'flycheck-mode)
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Python
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(map!
+ (:after python-mode
+  (:map python-mode-map
+     :n "g d"   '+lookup/definition
+     :n "g r"   '+lookup/references
+     ;; (:leader
+     ;;   (:desc "Format" :prefix "f"
+     ;;     :desc "format file (brittany)" :n "b" 'urbint/format-haskell-source
+     ;; ))
+)))

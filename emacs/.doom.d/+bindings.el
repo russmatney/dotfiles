@@ -95,6 +95,7 @@
       :desc "Open ~/.doom.d/+bindings.el" :n "b" (lambda! (find-file "~/.doom.d/+bindings.el"))
       :desc "Open ~/.doom.d/+langs.el"    :n "l" (lambda! (find-file "~/.doom.d/+langs.el"))
       :desc "Open ~/.emacs.d/readme.md"   :n "d" (lambda! (find-file "~/.emacs.d/README.md"))
+      :desc "Open ~/.zshrc"   :n "z" (lambda! (find-file "~/.zshrc"))
       :desc "Open ~/todo/gtd.org"         :n "t" (lambda! (find-file "~/todo/gtd.org"))
       :desc "Open ~/todo/urbint.org"      :n "u" (lambda! (find-file "~/todo/urbint.org"))
       :desc "Open ~/projects/urbint/"     :n "p" (lambda! (find-file "~/projects/urbint/"))

@@ -37,6 +37,7 @@ export LD_LIBRARY_PATH=/usr/local/lib
 
 # Restore pywal colors
 # ~/.nix-profile/bin/wal -Rq
+alias wa='wal -Req'
 
 
 # Powerline
@@ -111,6 +112,20 @@ alias e='emacs -nw'
 alias ':q'='exit'
 
 
+# restart emacs daemon
+# TODO
+# ps aux | grep emacs
+# kill <emacs daemon pid>
+
+################################################################################
+# Python
+################################################################################
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+eval "$(pyenv init -)"
+
 ################################################################################
 # Docker
 ################################################################################
@@ -123,6 +138,8 @@ alias drmi='docker rmi'
 alias drit='docker run -it'
 alias drd='docker run -d'
 alias di='docker images'
+alias dc='docker-compose'
+alias dcr='docker-compose restart'
 
 
 ################################################################################
