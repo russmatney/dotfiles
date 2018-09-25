@@ -272,6 +272,8 @@
 ;; Python
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(add-hook 'python-mode-hook 'py-yapf-enable-on-save)
+
 (map!
  (:after python-mode
   (:map python-mode-map

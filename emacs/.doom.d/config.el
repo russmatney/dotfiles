@@ -52,6 +52,7 @@
 
 ;; PATH
 (add-to-list 'exec-path "/home/russ/.nix-profile/bin")
+(add-to-list 'exec-path "/home/russ/.pyenv/shims")
 
 ;; Add '--hidden' to rg command to include hidden files in search
 ;; Note that `echo ".git/" >> ~/.ignore` will exclude .git from these searches

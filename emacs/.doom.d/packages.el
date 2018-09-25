@@ -54,3 +54,6 @@
 
 ;; fountain
 (package! fountain-mode :recipe (:fetcher github :repo "rnkn/fountain-mode"))
+
+;; python
+(package! py-yapf)
