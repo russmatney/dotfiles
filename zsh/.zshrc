@@ -137,6 +137,8 @@ alias drd='docker run -d'
 alias di='docker images'
 alias dc='docker-compose'
 alias dcr='docker-compose restart'
+alias dcl='docker-compose logs'
+alias dclf='docker-compose logs -f'
 
 
 ################################################################################
