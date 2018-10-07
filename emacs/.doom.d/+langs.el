@@ -275,12 +275,21 @@
 (add-hook 'python-mode-hook 'py-yapf-enable-on-save)
 
 (map!
- (:after python-mode
-  (:map python-mode-map
+ ;; (:after python-mode
+ ;;  (:map python-mode-map
      :n "g d"   '+lookup/definition
-     :n "g r"   '+lookup/references
+     :n "g r"   '+lookup/references)
      ;; (:leader
      ;;   (:desc "Format" :prefix "f"
      ;;     :desc "format file (brittany)" :n "b" 'urbint/format-haskell-source
      ;; ))
-)))
+;; )))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Elixir
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Create a buffer-local hook to run elixir-format on save, only when we enable elixir-mode.
+(add-hook 'elixir-mode-hook
+          (lambda () (add-hook 'before-save-hook 'elixir-format nil t)))

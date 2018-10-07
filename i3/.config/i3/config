@@ -35,11 +35,15 @@ font pango:Helvetica Neue, FontAwesome 11
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+focus_follows_mouse no
+
 # Kill focused window
 bindsym $mod+q kill
 
 bindsym $mod+Shift+Return exec emacsclient -c
 bindsym $mod+Return exec xfce4-terminal
+
+bindsym $mod+Shift+q exec --no-startup-id systemctl suspend
 
 # rofi
 bindsym $mod+space exec ~/.nix-profile/bin/rofi -show run
