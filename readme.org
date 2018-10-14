@@ -1,26 +1,22 @@
 * Stow-based Dotfiles
 
-These files are structured by feature, and use GNU Stow for installation.
+These files are structured to take advantage of `GNU Stow` for installation and
+symlink handling. `stow foo` will create symlinks for everything in the `./foo`
+directory exactly one relative directory above the current working directory
+(`cwd`).
 
-`stow foo` will create symlinks for everything in the `foo` dir
-one directory above the folder you called it in.
-This works well for dotfile management - you can create
-feature-based directories in `~/dotfiles`, and then `stow feat`
-to take care of dropping it into `~/.blah` for you.
-
-For example, to install my `zsh` setup, you can:
-
-```
-hub clone russmatney/dotfiles ~/russ_dotfiles
-cd russ_dotfiles
-stow zsh
-# note that you need to delete (backup) your .zsh* files beforehand
-```
+This works well for dotfile management - you can create feature-based
+directories in `~/dotfiles` for things like `zsh`, `vim`, and `emacs`,
+then call `stow zsh` within `~/dotfiles` to take care of linking it to home
+(`~/`). Treat your `~/dotfiles/zsh` directory as if it is literally the home
+directory, i.e. you should have a `~/dotfiles/zsh/.zshrc`. Then, from your
+dotfiles repo, call `stow zsh`, and that's it! Everything will have been
+symlinked properly.
 
 This is convenient for me, as I can `stow i3` on machines that need it.
 
 Note that dependencies are not covered by `stow` - it is a simple
-symlinking tool. See each module's readme for required software.
+symlinking tool, so dependency management will require more digging.
 
 ** Enable Hidden Files where relevant
 

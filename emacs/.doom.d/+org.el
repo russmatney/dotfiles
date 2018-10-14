@@ -83,12 +83,10 @@
   (setq org-capture-templates '(("t" "Todo [inbox]" entry
                                  (file+headline "~/Dropbox/todo/inbox.org" "Tasks")
                                  "* TODO %i%?")
-                                ("c" "Card [inbox]" entry
-                                 (file+headline "~/Dropbox/todo/inbox.org" "Tasks")
-                                 "* CARD %i%?")
                                 ("T" "Tickler" entry
                                  (file+headline "~/Dropbox/todo/tickler.org" "Tickler")
-                                 "* %i%? \n %U"))
+                                 "* %i%? \n %U")
+                                )
 
         org-agenda-files '("~/Dropbox/todo/inbox.org"
                            "~/Dropbox/todo/gtd.org"
