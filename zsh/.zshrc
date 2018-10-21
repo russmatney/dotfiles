@@ -149,6 +149,7 @@ alias gday='git log --name-only --since=yesterday.midnight --until=today.midnigh
 alias glp="git log --graph --pretty=format:'%Cred%h%Creset -%Cblue %an %Creset - %C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 alias gprom="git pull --rebase origin master"
 alias gcan='git commit --amend --no-edit'
+alias gcam='gc --amend'
 alias gpf='git push --force'
 alias gpff='git push --force --no-verify' # aka git push f***ing force
 alias gds='git diff --staged'

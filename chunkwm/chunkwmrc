@@ -93,4 +93,5 @@ chunkc tiling::rule --owner Spotify --state float
 chunkc tiling::rule --owner Finder --state float
 chunkc tiling::rule --owner Messages --state float
 chunkc tiling::rule --owner Slack --state float
+chunkc tiling::rule --owner Dash --state float
 chunkc tiling::rule --owner Emacs --subrole AXStandardWindow --state tile
