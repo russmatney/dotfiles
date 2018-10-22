@@ -50,6 +50,8 @@
 ;; zen-mode for focused writing
 (def-package! zen-mode)
 
+(set-face-attribute 'default nil :height 100)
+
 ;; PATH
 (add-to-list 'exec-path "/home/russ/.nix-profile/bin")
 (add-to-list 'exec-path "/home/russ/.pyenv/shims")

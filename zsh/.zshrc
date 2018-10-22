@@ -161,8 +161,15 @@ alias gwip="git commit -m 'wip'"
 alias pulls='open "https://github.com:/$(git remote -v | command ggrep -oP "'"(?<=git@github.com:).+(?=\.git)"'" | head -n 1)/pulls"'
 alias git=hub
 alias gpr='git pull-request'
+alias gpo='git push -u origin'
+alias gpob='git push -u origin "$(git symbolic-ref --short HEAD)"'
+alias gcom='gco master'
+
+alias cwb='git symbolic-ref --short HEAD'
 
 alias gwip="git commit -m 'wip'"
+
+alias delete-merged-branches="git checkout master && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 
 
 ################################################################################
@@ -191,3 +198,5 @@ function stack-watch-test-path() {
 
 alias swtp='stack-watch-test-path'
 
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
