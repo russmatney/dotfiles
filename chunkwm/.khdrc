@@ -11,10 +11,10 @@ alt - k : chunk-move-focus up
 alt - l : chunk-move-focus right
 
 # move window
-alt + shift - h : chunkc tiling::window --warp west
-alt + shift - j : chunkc tiling::window --warp south
-alt + shift - k : chunkc tiling::window --warp north
-alt + shift - l : chunkc tiling::window --warp east
+alt + shift - h : chunkc tiling::window --swap west
+alt + shift - j : chunkc tiling::window --swap south
+alt + shift - k : chunkc tiling::window --swap north
+alt + shift - l : chunkc tiling::window --swap east
 
 # increase region size
 shift + ctrl + alt - a : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge west

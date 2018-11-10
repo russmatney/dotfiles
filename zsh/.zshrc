@@ -12,10 +12,10 @@ export EDITOR=nvim
 export ZSH="$(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh"
 DISABLE_AUTO_UPDATE="true"
 
-source <(antibody init)
-antibody bundle < ~/.zsh_plugins.txt
+# source <(antibody init)
+# antibody bundle < ~/.zsh_plugins.txt
 
-# source ~/.zsh_plugins.sh
+source ~/.zsh_plugins.sh
 alias 'ra'='antibody bundle \
             < ~/.zsh_plugins.txt \
             > ~/.zsh_plugins.sh && \
