@@ -201,16 +201,16 @@
 (map!
  ;; movement
  "A-w"    #'ace-window
- "A-h"    #'rm/move-window-left
- "A-l"    #'rm/move-window-right
- "A-j"    #'rm/move-window-down
- "A-k"    #'rm/move-window-up
+ "A-h"    #'evil-window-left
+ "A-l"    #'evil-window-right
+ "A-j"    #'evil-window-down
+ "A-k"    #'evil-window-up
 
  "M-w"    #'ace-window
- "M-h"    #'rm/move-window-left
- "M-l"    #'rm/move-window-right
- "M-j"    #'rm/move-window-down
- "M-k"    #'rm/move-window-up
+ "M-h"    #'evil-window-left
+ "M-l"    #'evil-window-right
+ "M-j"    #'evil-window-down
+ "M-k"    #'evil-window-up
 
  ;; size Adjustments
  "S-<left>"  #'evil-window-increase-width

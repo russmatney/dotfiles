@@ -1,5 +1,5 @@
 # reload config
-cmd + alt + ctrl - r : khd -e "reload"
+cmd + shift - r : khd -e "reload"
 
 # toggle desktop offset
 cmd + alt + ctrl - a : chunkc tiling::desktop --toggle offset

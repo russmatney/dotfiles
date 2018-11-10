@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+echo "starting .zshrc load"
 
 export EDITOR=nvim
 # export EDITOR=emacsclient
@@ -7,6 +8,7 @@ export EDITOR=nvim
 ################################################################################
 # Antibody setup
 ################################################################################
+echo "Setting up Antibody"
 
 # From oh-my-zsh
 export ZSH="$(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh"
@@ -47,6 +49,7 @@ alias wa='wal -Req'
 ################################################################################
 # Gcloud
 ################################################################################
+echo "Setting up Gcloud"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/russ/google-cloud-sdk/path.zsh.inc' ]; then
@@ -62,6 +65,7 @@ fi
 ################################################################################
 # Fzf
 ################################################################################
+echo "sourcing fzf"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -69,6 +73,7 @@ fi
 ################################################################################
 # Nix
 ################################################################################
+echo "sourcing nix"
 
 if [ -e /home/russ/.nix-profile/etc/profile.d/nix.sh ]; then
     . /home/russ/.nix-profile/etc/profile.d/nix.sh;
@@ -85,6 +90,7 @@ setopt PROMPT_SUBST
 ################################################################################
 # Tmux
 ################################################################################
+echo "sourcing tmux"
 
 source ~/dotfiles/zsh/tmux.sh
 
@@ -92,6 +98,7 @@ source ~/dotfiles/zsh/tmux.sh
 ################################################################################
 # Autojump
 ################################################################################
+echo "sourcing autojump"
 
 [[ ~/.nix-profile/etc/profile.d/autojump.sh ]] && \
   source ~/.nix-profile/etc/profile.d/autojump.sh
@@ -200,3 +207,5 @@ alias swtp='stack-watch-test-path'
 
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+echo "end of .zshrc"
