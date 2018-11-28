@@ -41,18 +41,16 @@ focus_follows_mouse no
 bindsym $mod+q kill
 
 bindsym $mod+Shift+Return exec emacsclient -c
-bindsym $mod+Return exec xfce4-terminal
+bindsym $mod+Return exec alacritty
 
 bindsym $mod+Shift+q exec --no-startup-id systemctl suspend
 
 # rofi
 bindsym $mod+space exec ~/.nix-profile/bin/rofi -show run
-bindsym $mod+Tab exec ~/.nix-profile/bin/rofi -show window
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='~/.nix-profile/bin/rofi -i -dmenu'
 
-# TODO exiting this should be easier - movement commands would be nice
-bindsym $mod+Shift+u move scratchpad
-bindsym $mod+u scratchpad show
+# switch focus between monitors
+bindsym $mod+Tab focus output left
 
 # smart pane split
 bindsym $mod+backslash exec --no-startup-id smart-split vertical
@@ -98,7 +96,7 @@ bindsym $mod+Shift+s exec --no-startup-id screenshot
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+semicolon layout stacking
 bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+# bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+f floating toggle
@@ -155,7 +153,7 @@ bindsym $mod+Alt+l focus output right
 bindsym $mod+Alt+Right focus output right
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+# bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
@@ -178,6 +176,11 @@ mode "resize" {
         bindsym Down resize shrink height 10 px or 5 ppt
         bindsym Right resize grow width 10 px or 5 ppt
 
+        # bindsym Left resize shrink width 50 px or 5 ppt
+        # bindsym Up resize grow height 50 px or 5 ppt
+        # bindsym Down resize shrink height 50 px or 5 ppt
+        # bindsym Right resize grow width 50 px or 5 ppt
+
         # back to normal: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"
@@ -198,6 +201,20 @@ for_window [class="yakuake"] floating enable;
 exec --no-startup-id wmctrl -c Plasma
 for_window [title="Desktop — Plasma"] kill; floating enable; border none
 
+# TODO exiting this should be easier - movement commands, or a mode?
+bindsym $mod+Shift+u move scratchpad
+bindsym $mod+u scratchpad show
+
+# TODO only send one of each window type (not all)
+# bindsym $mod+Shift+e [class="Emacs"] move scratchpad
+# bindsym $mod+e [class="Emacs"] scratchpad show
+# bindsym $mod+Shift+t [title="Terminal"] move scratchpad
+# bindsym $mod+t [title="Terminal"] scratchpad show
+
+
+bindsym $mod+Shift+i exec /usr/bin/i3-input
+
+
 ## Avoid tiling popups, dropdown windows from plasma
 # for the first time, manually resize them, i3 will remember the setting for floating windows
 for_window [class="plasmashell"] floating enable;
@@ -216,8 +233,17 @@ for_window [class="Emacs"] border pixel 3
 for_window [title="Terminal"] border pixel 3
 for_window [title="Mozilla Firefox"] border pixel 3
 
+# Compositor (Animations, Shadows, Transparency)
+# xcompmgr -C
+exec_always ~/.nix-profile/bin/compton -cCFb --backend glx --vsync opengl
+
 exec_always ~/.nix-profile/bin/feh --bg-scale ~/Desktop/wallpapers/firewatch_green_3440x1440.jpg
 
+# start dropbox
+exec --no-startup-id ~/.dropbox-dist/dropboxd &
+
+
+exec_always --no-startup-id xset r rate 200 50
 
 bar {
   status_command i3status
