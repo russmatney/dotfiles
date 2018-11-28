@@ -272,18 +272,23 @@
 ;; Python
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(add-hook 'python-mode-hook 'py-yapf-enable-on-save)
+(add-hook 'pipenv-mode-hook 'py-yapf-enable-on-save)
+
+(add-hook
+ 'before-save-hook
+ (lambda ()
+   (message "hi homie")
+   (when (eq major-mode 'pipenv-mode)
+     (py-yapf-buffer))))
+
 
 (map!
  ;; (:after python-mode
  ;;  (:map python-mode-map
      :n "g d"   '+lookup/definition
-     :n "g r"   '+lookup/references)
-     ;; (:leader
-     ;;   (:desc "Format" :prefix "f"
-     ;;     :desc "format file (brittany)" :n "b" 'urbint/format-haskell-source
-     ;; ))
-;; )))
+     :n "g r"   '+lookup/references
+     :n "g f"   'py-yapf-buffer)
+;; ))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
