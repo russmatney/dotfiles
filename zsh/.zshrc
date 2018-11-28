@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-echo "starting .zshrc load"
+# echo "starting .zshrc load"
 
 export EDITOR=nvim
 # export EDITOR=emacsclient
@@ -8,16 +8,16 @@ export EDITOR=nvim
 ################################################################################
 # Antibody setup
 ################################################################################
-echo "Setting up Antibody"
+# echo "Setting up Antibody"
 
 # From oh-my-zsh
 export ZSH="$(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh"
 DISABLE_AUTO_UPDATE="true"
 
-# source <(antibody init)
-# antibody bundle < ~/.zsh_plugins.txt
+source <(antibody init)
+antibody bundle < ~/.zsh_plugins.txt
+# source ~/.zsh_plugins.sh
 
-source ~/.zsh_plugins.sh
 alias 'ra'='antibody bundle \
             < ~/.zsh_plugins.txt \
             > ~/.zsh_plugins.sh && \
@@ -49,7 +49,7 @@ alias wa='wal -Req'
 ################################################################################
 # Gcloud
 ################################################################################
-echo "Setting up Gcloud"
+# echo "Setting up Gcloud"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/russ/google-cloud-sdk/path.zsh.inc' ]; then
@@ -65,7 +65,7 @@ fi
 ################################################################################
 # Fzf
 ################################################################################
-echo "sourcing fzf"
+# echo "sourcing fzf"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -73,7 +73,7 @@ echo "sourcing fzf"
 ################################################################################
 # Nix
 ################################################################################
-echo "sourcing nix"
+# echo "sourcing nix"
 
 if [ -e /home/russ/.nix-profile/etc/profile.d/nix.sh ]; then
     . /home/russ/.nix-profile/etc/profile.d/nix.sh;
@@ -90,7 +90,7 @@ setopt PROMPT_SUBST
 ################################################################################
 # Tmux
 ################################################################################
-echo "sourcing tmux"
+# echo "sourcing tmux"
 
 source ~/dotfiles/zsh/tmux.sh
 
@@ -98,7 +98,7 @@ source ~/dotfiles/zsh/tmux.sh
 ################################################################################
 # Autojump
 ################################################################################
-echo "sourcing autojump"
+# echo "sourcing autojump"
 
 [[ ~/.nix-profile/etc/profile.d/autojump.sh ]] && \
   source ~/.nix-profile/etc/profile.d/autojump.sh
@@ -146,6 +146,7 @@ alias dc='docker-compose'
 alias dcr='docker-compose restart'
 alias dcl='docker-compose logs'
 alias dclf='docker-compose logs -f'
+alias dcps='dc ps'
 
 
 ################################################################################
@@ -171,6 +172,12 @@ alias gpr='git pull-request'
 alias gpo='git push -u origin'
 alias gpob='git push -u origin "$(git symbolic-ref --short HEAD)"'
 alias gcom='gco master'
+
+# list recent branches
+# thanks: https://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
+function br() {
+  git for-each-ref --count=5 --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+}
 
 alias cwb='git symbolic-ref --short HEAD'
 
@@ -208,4 +215,4 @@ alias swtp='stack-watch-test-path'
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-echo "end of .zshrc"
+# echo "end of .zshrc"
