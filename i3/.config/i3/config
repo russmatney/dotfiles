@@ -248,3 +248,9 @@ exec_always --no-startup-id xset r rate 200 50
 bar {
   status_command i3status
 }
+
+bindsym XF86AudioPlay exec "playerctl play-pause"
+bindsym XF86AudioNext exec "playerctl next"
+bindsym XF86AudioPrev exec "playerctl previous"
+bindsym XF86AudioRaiseVolume exec "playerctl volume 0.1+"
+bindsym XF86AudioLowerVolume exec "playerctl volume 0.1-"

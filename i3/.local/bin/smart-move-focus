@@ -107,7 +107,7 @@ function perform-move()
         if [ $result -ne 0 ]; then
             i3-move "$1"
         fi
-    elif [ "$focused_window" = "Xfce4-terminal" ]; then
+    elif [ "$focused_window" = "Alacritty" ]; then
         echo "Firing Terminal movement" >> ~/tmp/errors
         tmux-or-vim-move "$1"
         result=$?
