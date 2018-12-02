@@ -46,8 +46,8 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q exec --no-startup-id systemctl suspend
 
 # rofi
-bindsym $mod+space exec ~/.nix-profile/bin/rofi -show run
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='~/.nix-profile/bin/rofi -i -dmenu'
+bindsym $mod+space exec rofi -show run
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -i -dmenu'
 
 # switch focus between monitors
 bindsym $mod+Tab focus output left
@@ -191,8 +191,8 @@ bindsym $mod+r mode "resize"
 # Starting things with i3
 # exec --no-startup-id xcompmgr -C &    # Bare compositor to allow transparency
 # run compton with a fade effect
-# exec_always ~/.nix-profile/bin/compton -f -i 0.95 --inactive-dim 0.05 -D 5 --active-opacity 0.9
-exec_always ~/.nix-profile/bin/compton -f --inactive-dim 0.1 -D 5 --active-opacity 0.9 -i 0.95
+# exec_always compton -f -i 0.95 --inactive-dim 0.05 -D 5 --active-opacity 0.9
+exec_always compton -f --inactive-dim 0.1 -D 5 --active-opacity 0.9 -i 0.95
 
 for_window [class="yakuake"] floating enable;
 
@@ -238,9 +238,9 @@ for_window [title="Mozilla Firefox"] border pixel 3
 
 # Compositor (Animations, Shadows, Transparency)
 # xcompmgr -C
-exec_always ~/.nix-profile/bin/compton -cCFb --backend glx --vsync opengl
+exec_always compton -cCFb --backend glx --vsync opengl
 
-exec_always ~/.nix-profile/bin/feh --bg-scale ~/Desktop/wallpapers/firewatch_green_3440x1440.jpg
+exec_always feh --bg-scale ~/Desktop/wallpapers/firewatch_green_3440x1440.jpg
 
 # start dropbox
 exec --no-startup-id ~/.dropbox-dist/dropboxd &
@@ -250,9 +250,9 @@ exec_always --no-startup-id xset r rate 200 50
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-bar {
-  status_command i3status
-}
+# bar {
+#   status_command i3status
+# }
 
 bindsym XF86AudioPlay exec "playerctl play-pause"
 bindsym XF86AudioNext exec "playerctl next"
