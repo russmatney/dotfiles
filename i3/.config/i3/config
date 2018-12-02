@@ -211,6 +211,9 @@ bindsym $mod+u scratchpad show
 # bindsym $mod+Shift+t [title="Terminal"] move scratchpad
 # bindsym $mod+t [title="Terminal"] scratchpad show
 
+# TODO: permanent htop scratchpad
+# TODO: permanent todo scratchpad
+
 
 bindsym $mod+Shift+i exec /usr/bin/i3-input
 
@@ -245,6 +248,8 @@ exec --no-startup-id ~/.dropbox-dist/dropboxd &
 
 exec_always --no-startup-id xset r rate 200 50
 
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
 bar {
   status_command i3status
 }
@@ -252,5 +257,7 @@ bar {
 bindsym XF86AudioPlay exec "playerctl play-pause"
 bindsym XF86AudioNext exec "playerctl next"
 bindsym XF86AudioPrev exec "playerctl previous"
-bindsym XF86AudioRaiseVolume exec "playerctl volume 0.1+"
-bindsym XF86AudioLowerVolume exec "playerctl volume 0.1-"
+# `pactl list sinks short`
+bindsym XF86AudioMute exec "pactl set-sink-mute 0 toggle"
+bindsym XF86AudioRaiseVolume exec "pactl set-sink-volume 0 +5%"
+bindsym XF86AudioLowerVolume exec "pactl set-sink-volume 0 -5%"

@@ -272,7 +272,7 @@
 ;; Python
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(add-hook 'pipenv-mode-hook 'py-yapf-enable-on-save)
+(add-hook 'pipenv-mode 'py-yapf-enable-on-save)
 
 (add-hook
  'before-save-hook
