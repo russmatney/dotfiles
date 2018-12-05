@@ -23,8 +23,10 @@ alias 'ra'='antibody bundle \
             > ~/.zsh_plugins.sh && \
             antibody update'
 
+
 # enable completion features
-autoload -U compinit && compinit
+fpath=(~/.zsh/completion $fpath)
+autoload -Uz compinit && compinit -i
 
 # allow .hidden file tab completion
 setopt globdots
@@ -98,10 +100,9 @@ source ~/dotfiles/zsh/tmux.sh
 ################################################################################
 # Autojump
 ################################################################################
-# echo "sourcing autojump"
 
-[[ ~/.nix-profile/etc/profile.d/autojump.sh ]] && \
-  source ~/.nix-profile/etc/profile.d/autojump.sh
+# [[ autojump.sh ]] && \
+#   source autojump
 
 
 ################################################################################
