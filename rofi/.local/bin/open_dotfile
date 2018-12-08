@@ -10,10 +10,6 @@ function gen_entries()
     find ~/Dropbox/todo | cat
 }
 
-# Call menu
-SEL=$( gen_entries | rofi -dmenu -p "Dotfiles" -a 0 -no-custom  | awk '{print $1}' )
-
-# echo "Got selection $SEL" >> ~/.tmp/open_dotfile_errors
-# echo "$SEL" >> ~/.tmp/open_dotfile_errors
+SEL=$( gen_entries | rofi -dmenu -p "Open" -a 0 -no-custom)
 
 emacsclient --alternate-editor='' --no-wait --create-frame --frame-parameters='(quote (name . "my-floating-title"))' --display $DISPLAY "$SEL"

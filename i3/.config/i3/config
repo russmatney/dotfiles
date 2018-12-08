@@ -40,16 +40,14 @@ focus_follows_mouse no
 # Kill focused window
 bindsym $mod+q kill
 
-# bindsym $mod+Shift+Return exec emacsclient -T my-floating-title -c
 bindsym $mod+Shift+Return exec emacsclient --alternate-editor='' --no-wait --create-frame --frame-parameters='(quote (name . "my-floating-title"))' --display $DISPLAY
 bindsym $mod+Return exec alacritty -t my-floating-title
 
-bindsym $mod+Shift+q exec --no-startup-id systemctl suspend
+bindsym $mod+Shift+q exec --no-startup-id i3lock -c 000000
 
 # rofi
 bindsym $mod+space exec  rofi -show run
 bindsym $mod+d     exec  open_dotfile
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -i -dmenu'
 
 # switch focus between monitors
 bindsym $mod+Tab focus output left
@@ -192,7 +190,8 @@ mode "resize" {
 bindsym $mod+s mode "resize"
 # bindsym $mod+r exec "ranger_here"
 bindsym $mod+r exec "alacritty -t 'my-floating-title' --command 'ranger'"
-bindsym $mod+t exec "alacritty -t 'my-floating-title' --command 'htop'"
+
+bindsym $mod+x exec "xrandr --output DP-1 --mode 3840x2160 --pos 1920x0 --output eDP-1 --pos 0x1080 --mode 1920x1080"
 
 for_window [title="my-floating-title"] floating enable, resize set width 50 ppt height 50 ppt, move position center
 # bindsym $mod+Shift+q exec "i3lock -c 090909"
@@ -211,12 +210,6 @@ exec_always compton -f --inactive-dim 0.1 -D 5 --active-opacity 0.9 -i 0.95
 # TODO exiting this should be easier - movement commands, or a mode?
 bindsym $mod+Shift+u move scratchpad
 bindsym $mod+u scratchpad show
-
-# TODO only send one of each window type (not all)
-# bindsym $mod+Shift+e [class="Emacs"] move scratchpad
-# bindsym $mod+e [class="Emacs"] scratchpad show
-# bindsym $mod+Shift+t [title="Terminal"] move scratchpad
-# bindsym $mod+t [title="Terminal"] scratchpad show
 
 bindsym $mod+Shift+i exec /usr/bin/i3-input
 
@@ -255,14 +248,21 @@ exec_always --no-startup-id xset r rate 170 50
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-# bar {
-#   status_command i3status
-# }
-
 bindsym XF86AudioPlay exec "playerctl play-pause"
 bindsym XF86AudioNext exec "playerctl next"
 bindsym XF86AudioPrev exec "playerctl previous"
-# `pactl list sinks short`
 bindsym XF86AudioMute exec "pactl set-sink-mute 0 toggle"
 bindsym XF86AudioRaiseVolume exec "pactl set-sink-volume 0 +5%"
 bindsym XF86AudioLowerVolume exec "pactl set-sink-volume 0 -5%"
+
+# bindsym $mod+m [con_mark="music"] scratchpad show
+# for_window [class="Spotify"] mark "music", move scratchpad
+# exec spotify
+
+# bindsym $mod+y [con_mark="slack"] scratchpad show
+# for_window [class="Slack"] mark "slack", move scratchpad
+# exec slack
+
+# bindsym $mod+t [con_mark="htop-float"] scratchpad show
+# for_window [class="Alacritty" title='htop-float'] mark "htop-float", move scratchpad
+# exec "alacritty -t 'htop-float' --command 'htop'"
