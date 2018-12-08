@@ -100,6 +100,7 @@
       :desc "Open ~/todo/gtd.org"         :n "t" (lambda! (find-file "~/todo/gtd.org"))
       :desc "Open ~/todo/urbint.org"      :n "u" (lambda! (find-file "~/todo/urbint.org"))
       :desc "Open ~/projects/urbint/"     :n "p" (lambda! (find-file "~/projects/urbint/"))
+      :desc "Open ~/.config/alacritty/alacritty.yml" :n "a" (lambda! (find-file "~/.config/alacritty/alacritty.yml"))
       :desc "Create new snippet"          :n "s" #'yas-new-snippet
       :desc "Edit snippet"          :n "e" #'yas-visit-snippet-file
 )))
