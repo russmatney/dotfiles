@@ -102,6 +102,7 @@ bindsym $mod+w layout tabbed
 
 # toggle tiling / floating
 bindsym $mod+f floating toggle
+bindsym $mod+Shift+f focus mode_toggle
 
 # change focus between tiling / floating windows
 # bindsym $mod+space focus mode_toggle
@@ -149,10 +150,10 @@ workspace 9 output DP-1
 workspace 0 output DP-1
 
 # Move focus between screens
-bindsym $mod+Alt+h focus output left
-bindsym $mod+Alt+Left focus output left
-bindsym $mod+Alt+l focus output right
-bindsym $mod+Alt+Right focus output right
+# bindsym $mod+Alt+h focus output left
+# bindsym $mod+Alt+Left focus output left
+# bindsym $mod+Alt+l focus output right
+# bindsym $mod+Alt+Right focus output right
 
 # reload the configuration file
 # bindsym $mod+Shift+c reload
@@ -193,7 +194,7 @@ bindsym $mod+s mode "resize"
 bindsym $mod+r exec "alacritty -t 'my-floating-title' --command 'ranger'"
 bindsym $mod+t exec "alacritty -t 'my-floating-title' --command 'htop'"
 
-for_window [title="my-floating-title"] floating enable; resize set width 50 ppt height 50 ppt; move position center
+for_window [title="my-floating-title"] floating enable, resize set width 50 ppt height 50 ppt, move position center
 # bindsym $mod+Shift+q exec "i3lock -c 090909"
 
 # Starting things with i3
@@ -202,12 +203,10 @@ for_window [title="my-floating-title"] floating enable; resize set width 50 ppt 
 # exec_always compton -f -i 0.95 --inactive-dim 0.05 -D 5 --active-opacity 0.9
 exec_always compton -f --inactive-dim 0.1 -D 5 --active-opacity 0.9 -i 0.95
 
-for_window [class="yakuake"] floating enable;
-
 ## Plasma Integration
 # Try to kill the wallpaper set by Plasma (it takes up the entire workspace and hides everythiing)
-exec --no-startup-id wmctrl -c Plasma
-for_window [title="Desktop — Plasma"] kill; floating enable; border none
+# exec --no-startup-id wmctrl -c Plasma
+# for_window [title="Desktop — Plasma"] kill; floating enable; border none
 
 # TODO exiting this should be easier - movement commands, or a mode?
 bindsym $mod+Shift+u move scratchpad
@@ -221,7 +220,7 @@ bindsym $mod+u scratchpad show
 
 bindsym $mod+Shift+i exec /usr/bin/i3-input
 
-bindsym $mod+c resize set width 50 ppt height 50 ppt; move position center
+bindsym $mod+c resize set width 50 ppt height 50 ppt, move position center
 
 
 ## Avoid tiling popups, dropdown windows from plasma
