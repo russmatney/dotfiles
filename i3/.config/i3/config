@@ -40,14 +40,16 @@ focus_follows_mouse no
 # Kill focused window
 bindsym $mod+q kill
 
-bindsym $mod+Shift+Return exec emacsclient -c
-bindsym $mod+Return exec alacritty
+# bindsym $mod+Shift+Return exec emacsclient -T my-floating-title -c
+bindsym $mod+Shift+Return exec emacsclient --alternate-editor='' --no-wait --create-frame --frame-parameters='(quote (name . "my-floating-title"))' --display $DISPLAY
+bindsym $mod+Return exec alacritty -t my-floating-title
 
 bindsym $mod+Shift+q exec --no-startup-id systemctl suspend
 
 # rofi
-bindsym $mod+space exec rofi -show run
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -i -dmenu'
+bindsym $mod+space exec  rofi -show run
+bindsym $mod+d     exec  open_dotfile
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -i -dmenu'
 
 # switch focus between monitors
 bindsym $mod+Tab focus output left
@@ -186,7 +188,13 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-bindsym $mod+r mode "resize"
+bindsym $mod+s mode "resize"
+# bindsym $mod+r exec "ranger_here"
+bindsym $mod+r exec "alacritty -t 'my-floating-title' --command 'ranger'"
+bindsym $mod+t exec "alacritty -t 'my-floating-title' --command 'htop'"
+
+for_window [title="my-floating-title"] floating enable; resize set width 50 ppt height 50 ppt; move position center
+# bindsym $mod+Shift+q exec "i3lock -c 090909"
 
 # Starting things with i3
 # exec --no-startup-id xcompmgr -C &    # Bare compositor to allow transparency
@@ -211,11 +219,9 @@ bindsym $mod+u scratchpad show
 # bindsym $mod+Shift+t [title="Terminal"] move scratchpad
 # bindsym $mod+t [title="Terminal"] scratchpad show
 
-# TODO: permanent htop scratchpad
-# TODO: permanent todo scratchpad
-
-
 bindsym $mod+Shift+i exec /usr/bin/i3-input
+
+bindsym $mod+c resize set width 50 ppt height 50 ppt; move position center
 
 
 ## Avoid tiling popups, dropdown windows from plasma
@@ -246,7 +252,7 @@ exec_always feh --bg-scale ~/Desktop/wallpapers/firewatch_green_3440x1440.jpg
 exec --no-startup-id ~/.dropbox-dist/dropboxd &
 
 
-exec_always --no-startup-id xset r rate 200 50
+exec_always --no-startup-id xset r rate 170 50
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 

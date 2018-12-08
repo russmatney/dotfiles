@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+echo "---------------------" >> ~/.tmp/open_dotfile_errors
+
+##
+#  Generate entries, where first is key.
+##
+function gen_entries()
+{
+    # for a in $(seq 0 $(( ${#TILES[@]} -1 )))
+    # do
+    #     echo $a ${TILES[a]}
+    # done
+    #
+    echo "Collecting favorites" >> ~/.tmp/open_dotfile_errors
+    echo "i3-config" "~/.config/i3/config"
+    echo "zshrc" "~/.zshrc"
+}
+
+# Call menu
+SEL=$( gen_entries | rofi -dmenu -p "Monitor Setup:" -a 0 -no-custom  | awk '{print $2}' )
+
+echo "Got selection $SEL" >> ~/.tmp/open_dotfile_errors
+echo "$SEL" >> ~/.tmp/open_dotfile_errors
+
+emacsclient -c -e "(make-frame (name . \"PERMAFRAME\"))              \
+                  " &
+                   # $SEL          \
+
+
+echo "Finished"

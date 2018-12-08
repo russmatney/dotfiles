@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+
+alacritty -t 'my-floating-title' --command 'ranger' &
