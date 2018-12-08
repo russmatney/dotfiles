@@ -6,10 +6,10 @@
 function gen_entries()
 {
     echo "Collecting favorites" >> ~/.tmp/open_dotfile_errors
-    find ~/dotfiles | cat
-    find ~/Dropbox/todo | cat
+    find ~/dotfiles -type f -not -path '*/\.git/*' -not -path '*/nvim/plugins/*' | cat
+    find ~/Dropbox/todo -type f -not -path '*/\.git/*' | cat
 }
 
-SEL=$( gen_entries | rofi -dmenu -p "Open" -a 0 -no-custom)
+SEL=$( gen_entries | rofi -dmenu -p "Open" -a 0 -no-custom -levenshtein-sort)
 
 emacsclient --alternate-editor='' --no-wait --create-frame --frame-parameters='(quote (name . "my-floating-title"))' --display $DISPLAY "$SEL"
