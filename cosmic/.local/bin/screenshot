@@ -4,5 +4,4 @@
 filename="screenshot_$(date +%Y-%m-%d_%H:%M:%S%z)".jpg
 destination_dir=~/Dropbox/Screenshots/.
 
-# import -window root $destination_dir/$filename
-screencapture $destination_dir/$filename
+import -window root $destination_dir/$filename

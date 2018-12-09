@@ -146,10 +146,11 @@ mode "resize" {
 ###
 
 # emacs
-bindsym $mod+Shift+Return exec --no-startup-id emacsclient --alternate-editor='' --no-wait --create-frame --frame-parameters='(quote (name . "my-floating-title"))' --display $DISPLAY
+# bindsym $mod+Shift+Return exec --no-startup-id emacsclient --alternate-editor='' --no-wait --create-frame --frame-parameters='(quote (name . "my-floating-title"))' --display $DISPLAY
+bindsym $mod+Shift+Return exec --no-startup-id emacsclient --alternate-editor='' --no-wait --create-frame --display $DISPLAY
 
 # terminal
-bindsym $mod+Return exec --no-startup-id "alacritty -t 'my-floating-title' --working-directory=/home/russ/dotfiles"
+bindsym $mod+Return exec --no-startup-id "alacritty --working-directory=/home/russ/dotfiles --command 'tmux'"
 bindsym $mod+r exec --no-startup-id "alacritty -t 'my-floating-title' --command 'ranger'"
 bindsym $mod+t exec --no-startup-id "alacritty -t 'my-floating-title' --command 'htop'"
 

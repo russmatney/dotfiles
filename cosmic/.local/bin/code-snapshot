@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# intended to collect metrics since the last snapshot
+
+# - open emacs buffers
+
+
+function emacs-list-buffers()
+{
+    # emacs --batch --eval "(progn (require 'server) (princ (format \"%s\\n\" (server-eval-at \"server\" '(mapconcat (lambda (f) (frame-parameter f 'name)) (frame-list) \"\\n\")))))"
+    emacs --batch --eval "(progn (require 'server) (princ (format \"%s\\n\" (server-eval-at \"server\" '(list-buffers)))))"
+}
+
+emacs-list-buffers
