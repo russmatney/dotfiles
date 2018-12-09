@@ -1,14 +1,18 @@
 #!/usr/bin/env bash
-# echo "starting .zshrc load"
 
-export EDITOR=nvim
-# export EDITOR=emacsclient
+################################################################################
+# Environmental Vars
+################################################################################
 
+export EDITOR='emacsclient -nw'
+export VISUAL='emacsclient -nw'
+export PAGER='less -r'
+
+export RANGER_LOAD_DEFAULT_RC=FALSE
 
 ################################################################################
 # Antibody setup
 ################################################################################
-# echo "Setting up Antibody"
 
 # From oh-my-zsh
 export ZSH="$(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh"
@@ -120,10 +124,6 @@ alias e='emacs -nw'
 alias ':q'='exit'
 
 
-# restart emacs daemon
-# TODO
-# ps aux | grep emacs
-# kill <emacs daemon pid>
 
 ################################################################################
 # Python
