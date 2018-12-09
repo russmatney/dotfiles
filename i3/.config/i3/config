@@ -135,8 +135,10 @@ bindsym $mod+Shift+D exec --no-startup-id common-web
 # screenshot
 bindsym $mod+Shift+s exec --no-startup-id screenshot
 
-# xrandr fix
-bindsym $mod+x exec --no-startup-id "xrandr --output DP-1 --mode 3840x2160 --pos 1920x0 --output eDP-1 --pos 0x1080 --mode 1920x1080"
+# xrandr two monitors
+bindsym $mod+Shift+x exec --no-startup-id "xrandr --output DP-1 --mode 3840x2160 --pos 1920x0 --output eDP-1 --pos 0x1080 --mode 1920x1080"
+# xrandr laptop
+bindsym $mod+x exec --no-startup-id "xrandr --output eDP-1 --pos 0x0 --mode 1920x1080"
 
 # border colors
 client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577

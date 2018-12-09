@@ -12,6 +12,8 @@ export PAGER='less -r'
 
 export RANGER_LOAD_DEFAULT_RC=FALSE
 
+export FONTCONFIG_PATH='/etc/fonts'
+
 ################################################################################
 # Antibody setup
 ################################################################################

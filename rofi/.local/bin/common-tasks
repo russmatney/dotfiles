@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+##
+#  Generate entries, where first is key.
+##
+function gen_entries()
+{
+    echo "Collecting common tasks" >> ~/.tmp/common_web_errors
+    # TODO impl
+    echo "Run in term" "aurman -S"
+}
+
+SEL=$( gen_entries | rofi -dmenu -p "Open" -a 0 -levenshtein-sort | awk '{print $2}')
+
+alacritty --command "$SEL"
