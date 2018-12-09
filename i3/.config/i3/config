@@ -43,9 +43,9 @@ bindsym $mod+q kill
 # switch focus between monitors
 bindsym $mod+Tab focus output left
 
-###
+################################################################################
 # universal script commands
-###
+################################################################################
 
 # smart pane split
 bindsym $mod+backslash exec --no-startup-id smart-split vertical
@@ -61,19 +61,25 @@ bindsym $mod+l exec --no-startup-id smart-move-focus right
 bindsym $mod+j exec --no-startup-id smart-move-focus down
 bindsym $mod+k exec --no-startup-id smart-move-focus up
 
-###
-# movement, layout
-###
+################################################################################
+# Layout/Window Position
+################################################################################
 
 # layout rule
 # for_window [title="my-floating-title"] floating enable, resize set width 50 ppt height 50 ppt, move position center
 for_window [title="my-floating-title"] floating enable, resize set width 90 ppt height 90 ppt, move position center
 
-# recenter commands
+# window position commands
 bindsym $mod+c resize set width 50 ppt height 50 ppt, move position center
 bindsym $mod+Shift+c resize set width 90 ppt height 90 ppt, move position center
 
-# move focused window
+# absolute positioning
+bindsym $mod+shift+Right floating enable, resize set width 50 ppt height 100 ppt, move position 960 0
+bindsym $mod+shift+Left floating enable, resize set width 50 ppt height 100 ppt, move position 0 0
+
+bindsym $mod+shift+Down resize set width 60 ppt height 100 ppt, move position 0 0
+
+# relative position
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
@@ -89,6 +95,92 @@ bindsym $mod+w layout tabbed
 # toggle tiling / floating
 bindsym $mod+f floating toggle
 bindsym $mod+Shift+f focus mode_toggle
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# resize window (you can also use the mouse for that)
+bindsym $mod+s mode "resize"
+mode "resize" {
+        bindsym Shift+h resize shrink width 10 px or 5 ppt
+        bindsym Shift+k resize grow height 10 px or 5 ppt
+        bindsym Shift+j resize shrink height 10 px or 5 ppt
+        bindsym Shift+l resize grow width 10 px or 5 ppt
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+################################################################################
+# Applications
+################################################################################
+
+# emacs
+# bindsym $mod+Shift+Return exec --no-startup-id emacsclient --alternate-editor='' --no-wait --create-frame --frame-parameters='(quote (name . "my-floating-title"))' --display $DISPLAY
+bindsym $mod+Shift+Return exec --no-startup-id emacsclient --alternate-editor='' --no-wait --create-frame --display $DISPLAY
+
+# terminal
+bindsym $mod+Return exec --no-startup-id "alacritty --working-directory=/home/russ/dotfiles --command 'tmux'"
+bindsym $mod+r exec --no-startup-id "alacritty -t 'my-floating-title' --command 'ranger'"
+bindsym $mod+t exec --no-startup-id "alacritty -t 'my-floating-title' --command 'htop'"
+
+# lock
+bindsym $mod+Shift+q exec --no-startup-id i3lock -c 000000
+
+# rofi
+bindsym $mod+space   exec --no-startup-id rofi -show run
+bindsym $mod+d       exec --no-startup-id open_dotfile
+bindsym $mod+Shift+D exec --no-startup-id common-web
+
+# screenshot
+bindsym $mod+Shift+s exec --no-startup-id screenshot
+
+# xrandr fix
+bindsym $mod+x exec --no-startup-id "xrandr --output DP-1 --mode 3840x2160 --pos 1920x0 --output eDP-1 --pos 0x1080 --mode 1920x1080"
+
+# border colors
+client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
+for_window [class="Emacs"] border pixel 2
+for_window [title="Terminal"] border pixel 2
+
+# Compositor (Animations, Shadows, Transparency)
+exec_always --no-startup-id compton -f --inactive-dim 0.1 -D 5 --active-opacity 0.9 -i 0.95
+exec_always --no-startup-id compton -cCFb --backend glx --vsync opengl
+
+exec_always --no-startup-id feh --bg-scale ~/Desktop/wallpapers/firewatch_green_3440x1440.jpg
+
+# start dropbox
+exec_always --no-startup-id ~/.dropbox-dist/dropboxd &
+
+exec_always --no-startup-id xset r rate 170 50
+
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+bindsym XF86AudioPlay exec --no-startup-id "playerctl play-pause"
+bindsym XF86AudioNext exec --no-startup-id "playerctl next"
+bindsym XF86AudioPrev exec --no-startup-id "playerctl previous"
+bindsym XF86AudioMute exec --no-startup-id "pactl set-sink-mute 0 toggle"
+bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-volume 0 +5%"
+bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-volume 0 -5%"
+
+# Scratchpad
+bindsym $mod+Shift+u move scratchpad
+bindsym $mod+u scratchpad show
+
+# bindsym $mod+y [con_mark="slack"] scratchpad show
+# for_window [class="Slack"] mark "slack", move scratchpad
+# exec slack
+
+# bindsym $mod+t [con_mark="htop-float"] scratchpad show
+# for_window [class="Alacritty" title='htop-float'] mark "htop-float", move scratchpad
+# exec "alacritty -t 'htop-float' --command 'htop'"
+
+################################################################################
+# Multi-Monitor and Workspaces
+################################################################################
+
+for_window [class="Slack"] move to workspace 1
+for_window [class="Spotify"] move to workspace 3
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -125,85 +217,3 @@ workspace 7 output DP-1
 workspace 8 output DP-1
 workspace 9 output DP-1
 workspace 0 output DP-1
-
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-
-# resize window (you can also use the mouse for that)
-bindsym $mod+s mode "resize"
-mode "resize" {
-        bindsym Shift+h resize shrink width 10 px or 5 ppt
-        bindsym Shift+k resize grow height 10 px or 5 ppt
-        bindsym Shift+j resize shrink height 10 px or 5 ppt
-        bindsym Shift+l resize grow width 10 px or 5 ppt
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-
-###
-# Applications
-###
-
-# emacs
-# bindsym $mod+Shift+Return exec --no-startup-id emacsclient --alternate-editor='' --no-wait --create-frame --frame-parameters='(quote (name . "my-floating-title"))' --display $DISPLAY
-bindsym $mod+Shift+Return exec --no-startup-id emacsclient --alternate-editor='' --no-wait --create-frame --display $DISPLAY
-
-# terminal
-bindsym $mod+Return exec --no-startup-id "alacritty --working-directory=/home/russ/dotfiles --command 'tmux'"
-bindsym $mod+r exec --no-startup-id "alacritty -t 'my-floating-title' --command 'ranger'"
-bindsym $mod+t exec --no-startup-id "alacritty -t 'my-floating-title' --command 'htop'"
-
-# Lock
-bindsym $mod+Shift+q exec --no-startup-id i3lock -c 000000
-
-# rofi
-bindsym $mod+space exec --no-startup-id rofi -show run
-bindsym $mod+d     exec --no-startup-id open_dotfile
-
-# screenshot
-bindsym $mod+Shift+s exec --no-startup-id screenshot
-
-# xrandr fix
-bindsym $mod+x exec --no-startup-id "xrandr --output DP-1 --mode 3840x2160 --pos 1920x0 --output eDP-1 --pos 0x1080 --mode 1920x1080"
-
-# border colors
-client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
-for_window [class="Emacs"] border pixel 2
-for_window [title="Terminal"] border pixel 2
-
-# Compositor (Animations, Shadows, Transparency)
-exec_always --no-startup-id compton -f --inactive-dim 0.1 -D 5 --active-opacity 0.9 -i 0.95
-# exec_always compton -cCFb --backend glx --vsync opengl
-
-exec_always --no-startup-id feh --bg-scale ~/Desktop/wallpapers/firewatch_green_3440x1440.jpg
-
-# start dropbox
-exec_always --no-startup-id ~/.dropbox-dist/dropboxd &
-
-exec_always --no-startup-id xset r rate 170 50
-
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-
-bindsym XF86AudioPlay exec --no-startup-id "playerctl play-pause"
-bindsym XF86AudioNext exec --no-startup-id "playerctl next"
-bindsym XF86AudioPrev exec --no-startup-id "playerctl previous"
-bindsym XF86AudioMute exec --no-startup-id "pactl set-sink-mute 0 toggle"
-bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-volume 0 +5%"
-bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-volume 0 -5%"
-
-# Scratchpad
-bindsym $mod+Shift+u move scratchpad
-bindsym $mod+u scratchpad show
-
-# bindsym $mod+m [con_mark="music"] scratchpad show
-# for_window [class="Spotify"] mark "music", move scratchpad
-# exec spotify
-
-# bindsym $mod+y [con_mark="slack"] scratchpad show
-# for_window [class="Slack"] mark "slack", move scratchpad
-# exec slack
-
-# bindsym $mod+t [con_mark="htop-float"] scratchpad show
-# for_window [class="Alacritty" title='htop-float'] mark "htop-float", move scratchpad
-# exec "alacritty -t 'htop-float' --command 'htop'"

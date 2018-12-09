@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+##
+#  Generate entries, where first is key.
+##
+function gen_entries()
+{
+    echo "Collecting common sites" >> ~/.tmp/common_web_errors
+    echo "i3-docs https://i3wm.org/docs/userguide.html"
+}
+
+SEL=$( gen_entries | rofi -dmenu -p "Open" -a 0 -no-custom -levenshtein-sort | awk '{print $2}')
+
+google-chrome-stable "$SEL"

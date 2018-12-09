@@ -96,26 +96,39 @@ function browser-move-tab ()
     fi;
 }
 
+function am-i-floating()
+{
+    i3-msg -t get_tree | jq -r ".. | select(.focused? == true).floating"
+}
+
 
 function perform-move()
 {
-    focused_window=$(get-focused-window)
-    echo "$focused_window is focused" >> ~/tmp/errors
-    if [ "$focused_window" = "Emacs" ]; then
-        emacs-move "$1"
-        result=$?
-        if [ $result -ne 0 ]; then
-            i3-move "$1"
-        fi
-    elif [ "$focused_window" = "Alacritty" ]; then
-        echo "Firing Terminal movement" >> ~/tmp/errors
-        tmux-or-vim-move "$1"
-        result=$?
-        if [ $result -ne 0 ]; then
-            i3-move "$1"
-        fi
+    res=$(am-i-floating)
+    if [ "$res" = 'user_on' ]; then
+        echo "we got a floater!" >> ~/tmp/errors
+        # TODO close scratchpad window!
+        i3-msg focus mode_toggle
     else
-        i3-move "$1"
+        echo "Not floating" >> ~/tmp/errors
+        focused_window=$(get-focused-window)
+        echo "$focused_window is focused" >> ~/tmp/errors
+        if [ "$focused_window" = "Emacs" ]; then
+            emacs-move "$1"
+            result=$?
+            if [ $result -ne 0 ]; then
+                i3-move "$1"
+            fi
+        elif [ "$focused_window" = "Alacritty" ]; then
+            echo "Firing Terminal movement" >> ~/tmp/errors
+            tmux-or-vim-move "$1"
+            result=$?
+            if [ $result -ne 0 ]; then
+                i3-move "$1"
+            fi
+        else
+            i3-move "$1"
+        fi
     fi
 }
 

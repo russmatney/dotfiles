@@ -64,6 +64,9 @@
 ;; load bindings
 (load! "+bindings")
 
+;; load commands
+(load! "+commands")
+
 ;; load programming language configs
 (load! "+langs")
 
