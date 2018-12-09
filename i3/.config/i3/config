@@ -41,7 +41,7 @@ focus_follows_mouse no
 bindsym $mod+q kill
 
 bindsym $mod+Shift+Return exec emacsclient --alternate-editor='' --no-wait --create-frame --frame-parameters='(quote (name . "my-floating-title"))' --display $DISPLAY
-bindsym $mod+Return exec alacritty -t my-floating-title
+bindsym $mod+Return exec "alacritty -t 'my-floating-title'"
 
 bindsym $mod+Shift+q exec --no-startup-id i3lock -c 000000
 
@@ -215,6 +215,7 @@ bindsym $mod+u scratchpad show
 bindsym $mod+Shift+i exec /usr/bin/i3-input
 
 bindsym $mod+c resize set width 50 ppt height 50 ppt, move position center
+bindsym $mod+Shift+c resize set width 90 ppt height 90 ppt, move position center
 
 
 ## Avoid tiling popups, dropdown windows from plasma
