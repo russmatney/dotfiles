@@ -4,8 +4,10 @@
 # Environmental Vars
 ################################################################################
 
-export EDITOR='emacsclient -nw'
-export VISUAL='emacsclient -nw'
+# export EDITOR='emacsclient -nw'
+# export VISUAL='emacsclient -nw'
+export EDITOR='nvim'
+export VISUAL='nvim'
 export PAGER='less -r'
 
 export RANGER_LOAD_DEFAULT_RC=FALSE
