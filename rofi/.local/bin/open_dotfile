@@ -12,4 +12,4 @@ function gen_entries()
 
 SEL=$( gen_entries | rofi -dmenu -p "Open" -a 0 -no-custom -levenshtein-sort)
 
-emacsclient --alternate-editor='' --no-wait --create-frame --frame-parameters='(quote (name . "my-floating-title"))' --display $DISPLAY "$SEL"
+emacsclient --alternate-editor='' --no-wait --create-frame --display $DISPLAY "$SEL"

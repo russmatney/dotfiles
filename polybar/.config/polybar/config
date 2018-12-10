@@ -53,14 +53,19 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = "Overpass Mono:pixelsize=10;2.25"
-; font-0 = fixed:pixelsize=10;1
-font-1 = "Unifont:fontformat=truetype:size=8:antialias=false;0"
-font-2 = "siji:pixelsize=10;1"
+font-0 = "DroidSansMono Nerd Font Mono:style=Book:pixelsize=9;2"
+font-1 = "Material Icons:style=Regular:pixelsize=9;2"
+font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=8;2"
+font-3 = "DejaVu Sans;3"
+
+; font-0 = "Overpass Mono:pixelsize=10;2.25"
+; font-1 = "Hack:pixelsize=9;2"
+; font-1 = "Unifont:fontformat=truetype:size=8:antialias=false;0"
+; font-2 = "Siji:pixelsize=10;1"
 
 modules-left = i3 xwindow
-modules-center = hostname spotify
-modules-right = pulseaudio memory cpu wlan battery temperature date
+modules-center = hostname
+modules-right = spotify pulseaudio memory cpu wlan battery temperature date powermenu
 
 wm-restack = i3
 
@@ -200,7 +205,7 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = "CPU: "
+format-prefix = ""
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #f90000
 label = %percentage:2%%
@@ -208,7 +213,7 @@ label = %percentage:2%%
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = "MEM: "
+format-prefix = ""
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #4bffdc
 label = %percentage_used%%
@@ -219,6 +224,7 @@ interface = wlp59s0
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
+; format-connected = <label-connected>
 format-connected-underline = #9f78e1
 label-connected = %essid%
 
@@ -228,11 +234,12 @@ format-disconnected =
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
 ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/eth]
@@ -255,14 +262,14 @@ format-disconnected =
 type = internal/date
 interval = 5
 
-date = " %Y-%m-%d"
+date = "%Y-%m-%d"
 date-alt =
 
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
+; format-prefix = 
+; format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #0a6cf5
 
 label = %date% %time%
@@ -334,7 +341,8 @@ format-charging-underline = #ffb52a
 format-discharging = <animation-discharging> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
-format-full-prefix = " "
+; format-full-prefix = " "
+format-full-prefix = " "
 format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = ${self.format-charging-underline}
 
@@ -343,15 +351,32 @@ ramp-capacity-1 = 
 ramp-capacity-2 = 
 ramp-capacity-foreground = ${colors.foreground-alt}
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-5 = 
+animation-charging-6 = 
+animation-charging-7 = 
+animation-charging-8 = 
+animation-charging-9 = 
+animation-charging-10 = 
 animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-framerate = 750
 
-animation-discharging-0 = 
-animation-discharging-1 = 
-animation-discharging-2 = 
+
+animation-discharging-10 = 
+animation-discharging-9 = 
+animation-discharging-8 = 
+animation-discharging-7 = 
+animation-discharging-6 = 
+animation-discharging-5 = 
+animation-discharging-4 = 
+animation-discharging-3 = 
+animation-discharging-2 = 
+animation-discharging-1 = 
+animation-discharging-0 = 
 animation-discharging-foreground = ${colors.foreground-alt}
 animation-discharging-framerate = 750
 
@@ -360,19 +385,15 @@ type = internal/temperature
 thermal-zone = 0
 warn-temperature = 60
 
-format = <ramp> <label>
+; format = <ramp> <label>
+format = <label>
 format-underline = #f50a4d
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
 
-label = %temperature-c%
-label-warn = %temperature-c%
+label = %temperature-f%
+label-warn = %temperature-f%
 label-warn-foreground = ${colors.secondary}
-
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = ${colors.foreground-alt}
 
 [module/powermenu]
 type = custom/menu
@@ -381,9 +402,9 @@ expand-right = true
 
 format-spacing = 1
 
-label-open = 
+label-open = 襤
 label-open-foreground = ${colors.secondary}
-label-close =  cancel
+label-close = cancel
 label-close-foreground = ${colors.secondary}
 label-separator = |
 label-separator-foreground = ${colors.foreground-alt}
@@ -411,7 +432,7 @@ exec = echo "$(uname -n)"
 
 [module/spotify]
 type = custom/script
-format-prefix = " "
+format-prefix = " "
 format = <label>
 exec = python ~/.config/polybar/scripts/spotify_status.py
 format-underline = #E62063
