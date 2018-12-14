@@ -8,7 +8,7 @@
 # export VISUAL='emacsclient -nw'
 export EDITOR='nvim'
 export VISUAL='nvim'
-export PAGER='less -r'
+export PAGER='less'
 
 export RANGER_LOAD_DEFAULT_RC=FALSE
 
@@ -151,6 +151,7 @@ alias dc='docker-compose'
 alias dcr='docker-compose restart'
 alias dcl='docker-compose logs'
 alias dclf='docker-compose logs -f'
+alias dcrf='docker-compose restart "$1" && dclf $1'
 alias dcps='dc ps'
 
 
@@ -196,11 +197,12 @@ alias delete-merged-branches="git checkout master && git branch --merged | grep 
 ################################################################################
 
 alias kc='kubectl'
+alias kg='kubectl get'
 alias kpods='kubectl get pods'
 alias kdeploys='kubectl get deployments'
 alias kdns='kubectl get ing'
 alias kedit='kubectl edit deployments ' # the trailing space is intentional
-alias kswitch='gcloud container clusters get-credentials ' # the trailing space is intentional
+# alias kswitch='gcloud container clusters get-credentials ' # the trailing space is intentional
 
 
 ################################################################################
