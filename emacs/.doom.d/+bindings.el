@@ -91,7 +91,8 @@
 (map!
   (:leader
     (:desc "Editor" :prefix "e"
-      :desc "Open ~/.doom.d/config.el"    :n "v" (lambda! (find-file "~/.doom.d/config.el"))
+      :desc "Open ~/.zshrc"    :n "v" (lambda! (find-file "~/.zshrc"))
+      :desc "Open ~/.doom.d/config.el"    :n "e" (lambda! (find-file "~/.doom.d/config.el"))
       :desc "Open ~/.doom.d/+bindings.el" :n "b" (lambda! (find-file "~/.doom.d/+bindings.el"))
       :desc "Open ~/.doom.d/+langs.el"    :n "l" (lambda! (find-file "~/.doom.d/+langs.el"))
       :desc "Open ~/.emacs.d/readme.md"   :n "d" (lambda! (find-file "~/.emacs.d/README.md"))
@@ -102,7 +103,7 @@
       :desc "Open ~/todo/urbint.org"      :n "u" (lambda! (find-file "~/todo/urbint.org"))
       :desc "Open ~/.config/alacritty/alacritty.yml" :n "a" (lambda! (find-file "~/.config/alacritty/alacritty.yml"))
       :desc "Create new snippet"          :n "s" #'yas-new-snippet
-      :desc "Edit snippet"          :n "e" #'yas-visit-snippet-file
+      ;; :desc "Edit snippet"          :n "v" #'yas-visit-snippet-file
 )))
 
 
@@ -324,19 +325,26 @@
 ;; Dired
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(def-package! dired
-  :init
-  (when (string= system-type "darwin")
-    (setq dired-use-ls-dired nil))
-  :config
-  (map!
-    :n "-" #'dired-jump
-    :map dired-mode-map
-         :n "-"        #'dired-up-directory
-         :n "<return>" #'dired-find-file
-         :n "/"        #'dired
-         :n "q"        #'quit-window
-         ))
+;; (def-package! dired
+;;   :init
+;;   (when (string= system-type "darwin")
+;;     (setq dired-use-ls-dired nil))
+;;   :config
+;;   (map!
+;;     :n "-" #'dired-jump
+;;     :map dired-mode-map
+;;          :n "-"        #'dired-up-directory
+;;          :n "<return>" #'dired-find-file
+;;          :n "/"        #'dired
+;;          :n "q"        #'quit-window
+;;          ))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Ranger
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(map! :n "-" #'ranger)
+(setq ranger-show-literal nil)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

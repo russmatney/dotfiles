@@ -30,7 +30,7 @@
        :completion
        (company          ; the ultimate code completion backend
         +auto            ; as-you-type code completion
-        +childframe)     ; a nicer company UI (Emacs 26+ only)
+        )     ; a nicer company UI (Emacs 26+ only)
       ;helm              ; the *other* search engine for love and life
       ;ido               ; the other *other* search engine...
        (ivy              ; a search engine for love and life
@@ -42,7 +42,7 @@
        doom-modeline     ; a snazzy Atom-inspired mode-line
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
        evil-goggles      ; display visual hints when editing in evil
-       ;fci
+       fci
        hl-todo           ; highlight TODO/FIXME/NOTE tags
        nav-flash         ; blink the current line after jumping
        ;; neotree           ; a project drawer, like NERDTree for vim
@@ -50,42 +50,51 @@
        (popup            ; tame sudden yet inevitable temporary windows
         +all             ; catch all popups that start with an asterix
         +defaults)       ; default popup rules
+       ;; pretty-code
       ;tabbar            ; FIXME an (incomplete) tab bar for Emacs
       ;unicode           ; extended unicode support for various languages
        vc-gutter
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        window-select     ; visually switch windows
 
-       :emacs
-       dired             ; making dired pretty [functional]
-       ediff
-       electric          ; smarter, keyword-based electric-indent
-      ;eshell            ; a consistent, cross-platform shell (WIP)
-       imenu             ; an imenu sidebar and searchable code index
-       vc                ; remember, remember that commit in November
-      ;term              ; terminals in Emacs
-
        :editor
        (format +onsave)  ; automated prettiness
+       ;;lispy             ; vim for lisp, for people who dont like vim
        multiple-cursors  ; editing in many places at once
        ;; parinfer          ; turn lisp into python, sort of
        rotate-text       ; cycle region at point between text candidates
 
+       :emacs
+       (dired             ; making dired pretty [functional]
+        +ranger
+        +icons
+        )
+       ediff
+       electric          ; smarter, keyword-based electric-indent
+      ;eshell            ; a consistent, cross-platform shell (WIP)
+       hideshow          ; basic code-folding support
+       imenu             ; an imenu sidebar and searchable code index
+      ;term              ; terminals in Emacs
+       vc                ; remember, remember that commit in November
+
+
        :tools
+       ;;ansible
+       docker
        editorconfig      ; let someone else argue about tabs vs spaces
        ein               ; tame Jupyter notebooks with emacs
        gist              ; interacting with github gists
-      ;macos             ; MacOS-specific commands
+       ;;macos             ; MacOS-specific commands
        make              ; run make tasks from Emacs
-       magit             ;
-      ;password-store    ; password manager for nerds
-      ;pdf               ; pdf enhancements
-      ;prodigy           ; Managing external services
-      ;rgb               ; creating color strings
-       ;;terraform         ; infrastructure as code
+       magit             ; a git porcelain for Emacs
+       ;;password-store    ; password manager for nerds
+       pdf               ; pdf enhancements
+       ;;prodigy           ; FIXME managing external services & code builders
+       rgb               ; creating color strings
+       terraform         ; infrastructure as code
        tmux              ; an API for interacting with tmux
-       upload            ; map local to remote projects via ssh/ftp
-      ;wakatime
+       ;;upload            ; map local to remote projects via ssh/ftp
+       wakatime
 
        :lang
       ;assembly          ; assembly for fun or debugging
@@ -96,12 +105,12 @@
       ;crystal           ; ruby at the speed of c
       ;csharp            ; unity, .NET, and mono shenanigans
        data              ; config/data formats
-      ;erlang            ; an elegant language for a more civilized age
+      erlang            ; an elegant language for a more civilized age
        elixir            ; erlang done right
        elm               ; care for a cup of TEA?
        emacs-lisp        ; drown in parentheses
       ;ess               ; emacs speaks statistics
-      ;go                ; the hipster dialect
+      go                ; the hipster dialect
        ;; (haskell +dante) ; a language that's lazier than I am
        haskell ; a language that's lazier than I am
       hy                ; readability of scheme w/ speed of python
@@ -110,7 +119,7 @@
        javascript        ; all(hope(abandon(ye(who(enter(here))))))
       ;julia             ; a better, faster MATLAB
       ;latex             ; writing papers in Emacs has never been so fun
-      ;ledger            ; an accounting system in Emacs
+      ledger            ; an accounting system in Emacs
       ;lua               ; one-based indices? one-based indices
        markdown          ; writing docs for people to ignore
       ;nim               ; python + lisp at the speed of c
@@ -129,14 +138,41 @@
       ;purescript        ; javascript, but functional
        python            ; beautiful is better than ugly
       ;qt
-       ;;racket            ; a DSL for DSLs
+       racket            ; a DSL for DSLs
        rest              ; Emacs as a REST client
       ;ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
       ;scala             ; java, but good
        (sh +fish)        ; she sells (ba|z|fi)sh shells on the C xor
       ;solidity
-      ;swift             ; who asked for emoji variables?
+      swift             ; who asked for emoji variables?
        web               ; the tubes
        ;;vala              ; GObjective-C
+
+       ;; Applications are complex and opinionated modules that transform Emacs
+       ;; toward a specific purpose. They may have additional dependencies and
+       ;; should be loaded late.
+       :app
+       ;;(email +gmail)    ; emacs as an email client
+       ;;irc               ; how neckbeards socialize
+       ;;(rss +org)        ; emacs as an RSS reader
+       ;;twitter           ; twitter client https://twitter.com/vnought
+       ;;(write            ; emacs as a word processor (latex + org + markdown)
+       ;; +wordnut         ; wordnet (wn) search
+       ;; +langtool)       ; a proofreader (grammar/style check) for Emacs
+
+       :collab
+       ;;floobits          ; peer programming for a price
+       ;;impatient-mode    ; show off code over HTTP
+
+       :config
+       ;; For literate config users. This will tangle+compile a config.org
+       ;; literate config in your `doom-private-dir' whenever it changes.
+       ;;literate
+
+       ;; The default module sets reasonable defaults for Emacs. It also
+       ;; provides a Spacemacs-inspired keybinding scheme, a custom yasnippet
+       ;; library, and additional ex commands for evil-mode. Use it as a
+       ;; reference for your own modules.
+       ;; (default +bindings +evil-commands))
        )

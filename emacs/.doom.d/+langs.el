@@ -61,31 +61,39 @@
 ;; )
 
 (def-package! lsp-mode
-  :after (:any haskell-mode)
+  :hook (python-mode . lsp)
   :config
-  (lsp-mode))
+  (require 'lsp-clients))
+(def-package! lsp-ui)
+(def-package! company-lsp)
 
-(def-package! lsp-ui
-  :after lsp-mode
-  :config
-  (setq lsp-ui-flycheck-enable t)
-  (setq imenu-auto-rescan t)
-  :hook
-  (lsp-mode . lsp-ui-mode)
-  (lsp-ui-mode . flycheck-mode))
+;; (def-package! lsp-mode
+;;   :after (:any haskell-mode)
+;;   :config
+;;   (lsp-mode))
 
-(def-package! company-lsp
-  :after (lsp-mode lsp-ui)
-  :config
-  (setq company-backends '(company-lsp))
-  (setq company-lsp-async t))
+;; (def-package! lsp-ui
+;;   :after lsp-mode
+;;   :config
+;;   (setq lsp-ui-flycheck-enable t)
+;;   (setq imenu-auto-rescan t)
+;;   :hook
+;;   (lsp-mode . lsp-ui-mode)
+;;   (lsp-ui-mode . flycheck-mode))
 
-(def-package! lsp-haskell
-  :after (lsp-mode lsp-ui haskell-mode)
-  :config
-  (setq lsp-haskell-process-path-hie "hie-wrapper")
-  :hook
-  (haskell-mode . lsp-haskell-enable))
+;; (def-package! company-lsp
+;;   :after (lsp-mode lsp-ui)
+;;   :config
+;;   (setq company-backends '(company-lsp))
+;;   (setq company-lsp-async t))
+
+;; (def-package! lsp-haskell
+;;   :after (lsp-mode lsp-ui haskell-mode)
+;;   :config
+;;   (setq lsp-haskell-process-path-hie "hie-wrapper")
+;;   :hook
+;;   (haskell-mode . lsp-haskell-enable))
+
 
 ;; (def-package! intero
 ;;   :after haskell-mode
