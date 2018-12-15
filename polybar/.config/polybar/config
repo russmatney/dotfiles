@@ -54,9 +54,10 @@ module-margin-left = 1
 module-margin-right = 2
 
 font-0 = "DroidSansMono Nerd Font Mono:style=Book:pixelsize=9;2"
-font-1 = "Material Icons:style=Regular:pixelsize=9;2"
-font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=8;2"
-font-3 = "DejaVu Sans;3"
+font-1 = "Weather Icons:size=12;1"
+font-2 = "Material Icons:style=Regular:pixelsize=9;2"
+font-3 = "Font Awesome 5 Free:style=Regular:pixelsize=8;2"
+font-4 = "DejaVu Sans;3"
 
 ; font-0 = "Overpass Mono:pixelsize=10;2.25"
 ; font-1 = "Hack:pixelsize=9;2"
@@ -65,7 +66,7 @@ font-3 = "DejaVu Sans;3"
 
 modules-left = i3 xwindow
 modules-center = hostname
-modules-right = spotify pulseaudio memory cpu wlan battery temperature date powermenu
+modules-right = info-hackspeed openweathermap-fullfeatured isactive-bluetooth spotify pulseaudio memory cpu wlan battery temperature date powermenu
 
 wm-restack = i3
 
@@ -189,12 +190,12 @@ label = BL
 bar-width = 10
 bar-indicator = |
 bar-indicator-foreground = #fff
-bar-indicator-font = 2
+bar-indicator-font = 3
 bar-fill = ─
-bar-fill-font = 2
+bar-fill-font = 3
 bar-fill-foreground = #9f78e1
 bar-empty = ─
-bar-empty-font = 2
+bar-empty-font = 3
 bar-empty-foreground = ${colors.foreground-alt}
 
 [module/backlight-acpi]
@@ -294,11 +295,11 @@ bar-volume-foreground-5 = #f5a70a
 bar-volume-foreground-6 = #ff5555
 bar-volume-gradient = false
 bar-volume-indicator = |
-bar-volume-indicator-font = 2
+bar-volume-indicator-font = 3
 bar-volume-fill = ─
-bar-volume-fill-font = 2
+bar-volume-fill-font = 3
 bar-volume-empty = ─
-bar-volume-empty-font = 2
+bar-volume-empty-font = 3
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/alsa]
@@ -322,11 +323,11 @@ bar-volume-foreground-5 = #f5a70a
 bar-volume-foreground-6 = #ff5555
 bar-volume-gradient = false
 bar-volume-indicator = |
-bar-volume-indicator-font = 2
+bar-volume-indicator-font = 3
 bar-volume-fill = ─
-bar-volume-fill-font = 2
+bar-volume-fill-font = 3
 bar-volume-empty = ─
-bar-volume-empty-font = 2
+bar-volume-empty-font = 3
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/battery]
@@ -436,3 +437,19 @@ format-prefix = " "
 format = <label>
 exec = python ~/.config/polybar/scripts/spotify_status.py
 format-underline = #E62063
+
+[module/isactive-bluetooth]
+type = custom/script
+exec = ~/.config/polybar/scripts/isactive-bluetooth.sh
+interval = 10
+
+[module/openweathermap-fullfeatured]
+type = custom/script
+exec = ~/.config/polybar/scripts/openweather-fullfeatured.sh
+interval = 1200
+label-font = 2
+
+[module/info-hackspeed]
+type = custom/script
+exec = ~/.config/polybar/scripts/info-hackspeed.sh
+tail = true
