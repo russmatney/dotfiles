@@ -325,25 +325,25 @@
 ;; Dired
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; (def-package! dired
-;;   :init
-;;   (when (string= system-type "darwin")
-;;     (setq dired-use-ls-dired nil))
-;;   :config
-;;   (map!
-;;     :n "-" #'dired-jump
-;;     :map dired-mode-map
-;;          :n "-"        #'dired-up-directory
-;;          :n "<return>" #'dired-find-file
-;;          :n "/"        #'dired
-;;          :n "q"        #'quit-window
-;;          ))
+(def-package! dired
+  :init
+  (when (string= system-type "darwin")
+    (setq dired-use-ls-dired nil))
+  :config
+  (map!
+    :n "-" #'dired-jump
+    :map dired-mode-map
+         :n "-"        #'dired-up-directory
+         :n "<return>" #'dired-find-file
+         :n "/"        #'dired
+         :n "q"        #'quit-window
+         ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Ranger
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(map! :n "-" #'ranger)
+;; (map! :n "-" #'ranger)
 (setq ranger-show-literal nil)
 
 

@@ -71,12 +71,12 @@ to-tmux-copy-mode() {
 autoload to-tmux-copy-mode
 zle -N to-tmux-copy-mode
 
-history-search() {
+ctrl-r() {
   tmux send-keys "i"
   tmux send-keys "C-r"
 }
-autoload history-search
-zle -N history-search
+autoload ctrl-r
+zle -N ctrl-r
 
 to-insert-mode() {
   tmux send-keys "i"
@@ -84,10 +84,42 @@ to-insert-mode() {
 autoload to-insert-mode
 zle -N to-insert-mode
 
-bindkey -M vicmd 'k' to-tmux-copy-mode
-bindkey -M vicmd 'q' to-insert-mode
-bindkey -M vicmd '\e' to-insert-mode
-bindkey -M vicmd '^r' history-search
+page-up() {
+  tmux copy-mode
+  tmux send-keys "C-u"
+}
+autoload page-up
+zle -N page-up
+
+search-page() {
+  tmux copy-mode
+  tmux send-keys "/"
+}
+autoload search-page
+zle -N search-page
+
+search-page-up() {
+  tmux copy-mode
+  tmux send-keys "?"
+}
+autoload search-page-up
+zle -N search-page-up
+
+paste() {
+  tmux send-keys "i"
+  tmux send-keys "C-v"
+}
+autoload paste
+zle -N paste
+
+bindkey -M vicmd 'k' to-tmux-copy-mode \
+                 'q' to-insert-mode \
+                 '\e' to-insert-mode \
+                 '^r' ctrl-r \
+                 '/' search-page \
+                 '?' search-page-up \
+                 'p' paste
+
 
 ################################################################################
 # Gcloud
@@ -184,6 +216,18 @@ alias dclf='docker-compose logs -f'
 alias dcrf='docker-compose restart "$1" && dclf $1'
 alias dcps='dc ps'
 
+################################################################################
+# Kubernetes
+################################################################################
+
+alias kc='kubectl'
+alias kg='kubectl get'
+alias kp='kswitch'
+alias kpods='kubectl get pods'
+alias kdeploys='kubectl get deployments'
+alias kdns='kubectl get ing'
+alias kedit='kubectl edit deployments ' # the trailing space is intentional
+
 
 ################################################################################
 # Git
@@ -220,19 +264,6 @@ alias cwb='git symbolic-ref --short HEAD'
 alias gwip="git commit -m 'wip'"
 
 alias delete-merged-branches="git checkout master && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
-
-
-################################################################################
-# Kubernetes
-################################################################################
-
-alias kc='kubectl'
-alias kg='kubectl get'
-alias kpods='kubectl get pods'
-alias kdeploys='kubectl get deployments'
-alias kdns='kubectl get ing'
-alias kedit='kubectl edit deployments ' # the trailing space is intentional
-# alias kswitch='gcloud container clusters get-credentials ' # the trailing space is intentional
 
 
 ################################################################################
