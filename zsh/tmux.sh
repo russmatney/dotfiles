@@ -18,6 +18,8 @@ fi
 alias t='tt'
 alias 't-'='tmux switch-client -l'
 alias tls='tmux list-sessions'
+alias tka='tmux kill-session -a'
+alias tkt='tmux kill-session -a -t'
 
 
 
@@ -52,7 +54,7 @@ tt() {
 tk() {
   # `tk`: "tmux kill". Kills a tmux session by name.
   #
-  # If no arguments are provided, kills the current session after jumping to the previous session.
+  # If no arguments are provided, kills the current session (after jumping to the previous session).
   #
   session_name="${1}"
   if [ ! -z "${session_name}" ]; then

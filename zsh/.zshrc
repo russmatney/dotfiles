@@ -14,6 +14,8 @@ export RANGER_LOAD_DEFAULT_RC=FALSE
 
 export FONTCONFIG_PATH='/etc/fonts'
 
+alias 'zz'='source ~/.zshrc'
+
 ################################################################################
 # Antibody setup
 ################################################################################
@@ -57,9 +59,39 @@ alias wa='wal -Req'
 # . /usr/lib/python3.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
 ################################################################################
+# vim-mode
+################################################################################
+
+export KEYTIMEOUT=1
+
+to-tmux-copy-mode() {
+  tmux copy-mode
+  tmux send-keys "k"
+}
+autoload to-tmux-copy-mode
+zle -N to-tmux-copy-mode
+
+history-search() {
+  tmux send-keys "i"
+  tmux send-keys "C-r"
+}
+autoload history-search
+zle -N history-search
+
+to-insert-mode() {
+  tmux send-keys "i"
+}
+autoload to-insert-mode
+zle -N to-insert-mode
+
+bindkey -M vicmd 'k' to-tmux-copy-mode
+bindkey -M vicmd 'q' to-insert-mode
+bindkey -M vicmd '\e' to-insert-mode
+bindkey -M vicmd '^r' history-search
+
+################################################################################
 # Gcloud
 ################################################################################
-# echo "Setting up Gcloud"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/russ/google-cloud-sdk/path.zsh.inc' ]; then
@@ -75,7 +107,6 @@ fi
 ################################################################################
 # Fzf
 ################################################################################
-# echo "sourcing fzf"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -100,7 +131,6 @@ setopt PROMPT_SUBST
 ################################################################################
 # Tmux
 ################################################################################
-# echo "sourcing tmux"
 
 source ~/dotfiles/zsh/tmux.sh
 
