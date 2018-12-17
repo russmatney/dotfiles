@@ -65,7 +65,7 @@ font-4 = "DejaVu Sans;3"
 ; font-2 = "Siji:pixelsize=10;1"
 
 modules-left = i3 xwindow
-modules-center = hostname
+modules-center = hostname backlight
 modules-right = info-hackspeed openweathermap-fullfeatured isactive-bluetooth spotify pulseaudio memory cpu wlan battery temperature date powermenu
 
 wm-restack = i3
@@ -453,3 +453,11 @@ label-font = 2
 type = custom/script
 exec = ~/.config/polybar/scripts/info-hackspeed.sh
 tail = true
+
+
+[module/backlight]
+type = internal/backlight
+
+; Use the following command to list available cards:
+; $ ls -1 /sys/class/backlight/
+card = intel_backlight

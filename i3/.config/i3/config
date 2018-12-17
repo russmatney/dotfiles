@@ -120,9 +120,9 @@ mode "resize" {
 bindsym $mod+Shift+Return exec --no-startup-id emacsclient --alternate-editor='' --no-wait --create-frame --display $DISPLAY
 
 # terminal
-bindsym $mod+Return exec --no-startup-id "alacritty --working-directory=/home/russ/dotfiles --command 'tmux'"
-bindsym $mod+r exec --no-startup-id "alacritty -t 'my-floating-title' --command 'ranger'"
-bindsym $mod+t exec --no-startup-id "alacritty -t 'my-floating-title' --command 'htop'"
+bindsym $mod+Return exec --no-startup-id "alacritty --working-directory=/home/russ/dotfiles -e 'tmux'"
+bindsym $mod+r exec --no-startup-id "alacritty -t 'my-floating-title' -e 'ranger'"
+bindsym $mod+t exec --no-startup-id "alacritty -t 'my-floating-title' -e 'htop'"
 
 # lock
 bindsym $mod+Shift+q exec --no-startup-id i3lock -c 000000
@@ -176,7 +176,7 @@ bindsym $mod+u scratchpad show
 
 # bindsym $mod+t [con_mark="htop-float"] scratchpad show
 # for_window [class="Alacritty" title='htop-float'] mark "htop-float", move scratchpad
-# exec "alacritty -t 'htop-float' --command 'htop'"
+# exec "alacritty -t 'htop-float' -e 'htop'"
 
 ################################################################################
 # Multi-Monitor and Workspaces

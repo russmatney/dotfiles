@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# SEL=$( rofi -dmenu -p "Alacritty: " -a 0 )
+
+# echo "$SEL"
+
+# exec alacritty --command "$SEL" &
+
+alacritty -e "ls" &
+
+
+sleep 10

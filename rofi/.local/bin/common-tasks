@@ -12,4 +12,4 @@ function gen_entries()
 
 SEL=$( gen_entries | rofi -dmenu -p "Open" -a 0 -levenshtein-sort | awk '{print $2}')
 
-alacritty --command "$SEL"
+alacritty -e "$SEL"
