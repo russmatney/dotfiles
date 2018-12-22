@@ -65,9 +65,11 @@ bindsym $mod+k exec --no-startup-id smart-move-focus up
 # Layout/Window Position
 ################################################################################
 
-# layout rule
-# for_window [title="my-floating-title"] floating enable, resize set width 50 ppt height 50 ppt, move position center
-for_window [title="my-floating-title"] floating enable, resize set width 90 ppt height 90 ppt, move position center
+# layout rules
+for_window [title="my-floating-title"] floating enable, resize set width 50 ppt height 50 ppt, move position center
+
+for_window [title="floating-alacritty"] floating enable, move scratchpad, scratchpad show, resize set width 80 ppt height 80 ppt, move position center
+for_window [title="floating-emacs"] floating enable, move scratchpad, scratchpad show, resize set width 80 ppt height 80 ppt, move position center
 
 # window position commands
 bindsym $mod+c resize set width 50 ppt height 50 ppt, move position center
@@ -121,16 +123,14 @@ bindsym $mod+Shift+Return exec --no-startup-id emacsclient --alternate-editor=''
 
 # terminal
 bindsym $mod+Return exec --no-startup-id "alacritty --working-directory=/home/russ/dotfiles -e 'tmux'"
-bindsym $mod+r exec --no-startup-id "alacritty -t 'my-floating-title' -e 'ranger'"
-bindsym $mod+t exec --no-startup-id "alacritty -t 'my-floating-title' -e 'htop'"
 
 # lock
 bindsym $mod+Shift+q exec --no-startup-id i3lock -c 000000
 
 # rofi
-bindsym $mod+space   exec --no-startup-id rofi -show run
-bindsym $mod+d       exec --no-startup-id open_dotfile
-bindsym $mod+Shift+D exec --no-startup-id common-web
+bindsym $mod+space  exec --no-startup-id rofi -show run
+bindsym $mod+d      exec --no-startup-id open_dotfile
+bindsym $mod+r      exec --no-startup-id terminal
 
 # screenshot
 bindsym $mod+Shift+s exec --no-startup-id screenshot

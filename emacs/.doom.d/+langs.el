@@ -60,12 +60,12 @@
 ;;   (setq dante-repl-command-line '("stack" "repl" "grid:lib" "grid:grid-test"))
 ;; )
 
-(def-package! lsp-mode
-  :hook (python-mode . lsp)
-  :config
-  (require 'lsp-clients))
-(def-package! lsp-ui)
-(def-package! company-lsp)
+;; (def-package! lsp-mode
+;;   :hook (python-mode . lsp)
+;;   :config
+;;   (require 'lsp-clients))
+;; (def-package! lsp-ui)
+;; (def-package! company-lsp)
 
 ;; (def-package! lsp-mode
 ;;   :after (:any haskell-mode)

@@ -1,12 +1,99 @@
 #!/usr/bin/env bash
 
-# SEL=$( rofi -dmenu -p "Alacritty: " -a 0 )
+########
+# Get a command from rofi
+########
 
-# echo "$SEL"
+function gen_entries()
+{
+    echo "ranger"
+    echo "htop"
+    echo "kpods -w"
+    echo "cd ~/urbint/grid && gst"
+    echo "cd ~/dotfiles && gst"
+    echo "tt screenshots"
+    tac ~/.zsh_history | awk -F ';' '{print $2}'
+}
 
-# exec alacritty --command "$SEL" &
-
-alacritty -e "ls" &
+INIT_COMMAND=$(gen_entries | uniq | rofi -dmenu -p "Run" -a 0)
 
 
-sleep 10
+########
+# Exit if no command passed
+########
+
+if [[ "$INIT_COMMAND" == '' ]];
+then
+    exit 0
+fi
+
+
+########
+# Setup variables for tmux and i3
+########
+
+FLOATING_WINDOW_NAME="floating-alacritty"
+
+# label is only the first term of the command to avoid strange session names
+COMMAND_LABEL=$(echo "$INIT_COMMAND" | awk -F ' ' '{ print $1 }')
+
+TMUX_SESSION_NAME="$COMMAND_LABEL"
+TMUX_WINDOW_NAME="$COMMAND_LABEL"
+
+
+########
+# Ensure the tmux session exists
+########
+
+function ensure_tmux_session()
+{
+    # TODO refactor into quieter upsert (throws dup warning for now)
+    tmux new -d -s "$TMUX_SESSION_NAME" -n "$TMUX_WINDOW_NAME"
+}
+
+ensure_tmux_session
+
+
+########
+# Send the command to the tmux session
+########
+
+function tmux-send-command()
+{
+    PANE_TTY=$(tmux ls -F '#{session_name},#{pane_tty}' | grep $INIT_COMMAND | awk -F',' '{print $2}')
+    RUNNING=$(tmux run-shell "ps -o state= -o comm= -t $PANE_TTY" | grep $INIT_COMMAND)
+
+    if [[ -n "$RUNNING" ]];
+    then
+        echo "command already running, doing nothing"
+        # TODO kill and re-run?
+    else
+        tmux send-keys -t "$TMUX_SESSION_NAME" "$INIT_COMMAND" "C-m"
+    fi
+}
+
+tmux-send-command
+
+
+########
+# Find or create the alacritty window, attach it to the tmux session, position it accordingly
+########
+
+SIZE="80"
+
+function ensure_alacritty()
+{
+    EXISTS=$(i3-msg -t get_tree | jq -r ".." | grep "floating-alacritty")
+    if [[ -n "$EXISTS" ]]; then
+        # focus before firing tmux command
+        i3-msg "[title="$FLOATING_WINDOW_NAME"] move scratchpad, scratchpad show, resize set width $SIZE ppt height $SIZE ppt, move position center"
+        tmux switch-client -t "$TMUX_SESSION_NAME"
+    else
+        # create window before resizing
+        alacritty -t "$FLOATING_WINDOW_NAME" -d 0 0 -e tmux attach -t "$TMUX_SESSION_NAME"
+        i3-msg "[title="$FLOATING_WINDOW_NAME"] move scratchpad, scratchpad show, resize set width $SIZE ppt height $SIZE ppt, move position center"
+    fi
+}
+
+
+ensure_alacritty

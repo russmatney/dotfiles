@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-##
-#  Generate entries, where first is key.
-##
+########
+# Get a file to open from rofi
+########
+
 function gen_entries()
 {
     echo "Collecting favorites" >> ~/.tmp/open_dotfile_errors
@@ -10,6 +11,41 @@ function gen_entries()
     find ~/Dropbox/todo -type f -not -path '*/\.git/*' | cat
 }
 
-SEL=$( gen_entries | rofi -dmenu -p "Open" -a 0 -no-custom -levenshtein-sort)
+FILE=$( gen_entries | rofi -dmenu -p "Open" -a 0 -levenshtein-sorti)
 
-emacsclient --alternate-editor='' --no-wait --create-frame --display $DISPLAY "$SEL"
+
+########
+# Exit if no command passed
+########
+
+if [[ "$FILE" == '' ]];
+then
+    exit 0
+fi
+
+
+########
+# Open in emacs client.
+# If the frame exists, focus and position it, then open the file.
+# Otherwise, create the frame with the file, and then position it.
+########
+
+FLOATING_WINDOW_NAME="floating-emacs"
+SIZE="80"
+
+EXISTS=$(i3-msg -t get_tree | jq -r ".." | grep "floating-emacs")
+if [[ -n "$EXISTS" ]]; then
+    # toggle the window into view
+    i3-msg "[title="$FLOATING_WINDOW_NAME"] move scratchpad, scratchpad show, resize set width $SIZE ppt height $SIZE ppt, move position center"
+    emacsclient --alternate-editor='' --no-wait \
+        --frame-parameters="(quote (name . \"$FLOATING_WINDOW_NAME\"))" \
+        --display $DISPLAY \
+        "$FILE"
+else
+    emacsclient --alternate-editor='' --no-wait \
+        --create-frame \
+        --frame-parameters="(quote (name . \"$FLOATING_WINDOW_NAME\"))" \
+        --display $DISPLAY \
+        "$FILE"
+    i3-msg "[title="$FLOATING_WINDOW_NAME"] move scratchpad, scratchpad show, resize set width $SIZE ppt height $SIZE ppt, move position center"
+fi
