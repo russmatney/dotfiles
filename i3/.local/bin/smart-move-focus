@@ -119,22 +119,22 @@ function perform-move()
             else
                 i3-move "$1"
             fi
-        elif [ "$focused_window" = "Alacritty" ]; then
-            echo "Firing Terminal movement" >> ~/tmp/errors
-            tmux-or-vim-move "$1"
-            result=$?
-            if [ $result -ne 0 ]; then
-                res=$(am-i-floating)
-                if [ "$res" = 'user_on' ]; then
-                    # TODO close scratchpad window?
-                    i3-msg focus mode_toggle
-                else
-                    i3-move "$1"
-                fi
+        fi
+    elif [ "$focused_window" = "Alacritty" ]; then
+        echo "Firing Terminal movement" >> ~/tmp/errors
+        tmux-or-vim-move "$1"
+        result=$?
+        if [ $result -ne 0 ]; then
+            res=$(am-i-floating)
+            if [ "$res" = 'user_on' ]; then
+                # TODO close scratchpad window?
+                i3-msg focus mode_toggle
             else
                 i3-move "$1"
             fi
         fi
+    else
+        i3-move "$1"
     fi
 }
 
