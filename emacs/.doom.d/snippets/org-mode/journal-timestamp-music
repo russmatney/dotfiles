@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: journal-timestamp-music
+# key: jL
+# --
+`(format-time-string "%Y-%m-%d %H:%M")`
+
+L: `(shell-command-to-string "python ~/.config/polybar/scripts/spotify_status.py")`
