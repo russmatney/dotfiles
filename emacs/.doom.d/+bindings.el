@@ -99,7 +99,7 @@
       :desc "Open ~/.zshrc"               :n "z" (lambda! (find-file "~/.zshrc"))
       :desc "Open ~/.config/i3/config"    :n "i" (lambda! (find-file "~/.config/i3/config"))
       :desc "Open ~/.config/polybar/config"     :n "p" (lambda! (find-file "~/.config/polybar/config"))
-      :desc "Open ~/todo/gtd.org"         :n "t" (lambda! (find-file "~/todo/gtd.org"))
+      :desc "Open ~/todo/todo.org"         :n "t" (lambda! (find-file "~/todo/todo.org"))
       :desc "Open ~/todo/urbint.org"      :n "u" (lambda! (find-file "~/todo/urbint.org"))
       :desc "Open ~/.config/alacritty/alacritty.yml" :n "a" (lambda! (find-file "~/.config/alacritty/alacritty.yml"))
       :desc "Create new snippet"          :n "s" #'yas-new-snippet
