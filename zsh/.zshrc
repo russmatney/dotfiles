@@ -185,6 +185,8 @@ alias vi=nvim
 alias ls=exa
 alias l='ls -lFha'
 
+alias cat=bat
+
 alias e='emacs -nw'
 
 alias ':q'='exit'
