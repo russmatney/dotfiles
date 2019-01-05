@@ -42,8 +42,8 @@
   (interactive)
   (evil-ex "rg "))
 
-(map! (:leader
-  :desc "Search via `rg`" :nv "a" #'rm/search))
+(map! :leader
+      "a" #'rm/search)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -264,25 +264,21 @@
 
 (map!
  ;; Workspaces
- "A-c"    #'+workspace/new
- "A-,"    #'+workspace/rename
- "A-P"    #'rs/projectile-switch-project-workspace
  "M-c"    #'+workspace/new
  "M-,"    #'+workspace/rename
  "M-P"    #'rs/projectile-switch-project-workspace
 
  ;; switch to
- :n  "A-s"  #'+workspace/switch-to
- :n  "M-s"  #'+workspace/switch-to
+ :n "M-s"  #'+workspace/switch-to
  :n "[w"    #'+workspace/switch-left
  :n "]w"    #'+workspace/switch-right
  :n "[s"    #'+workspace/switch-left
  :n "]s"    #'+workspace/switch-right
 
- "A-p"    #'+workspace/switch-right
- "A-n"    #'+workspace/switch-left
  "M-p"    #'+workspace/switch-right
  "M-n"    #'+workspace/switch-left
+
+  ;; TODO add "M-1" to go to workspace "1", etc.
 )
 
 
@@ -309,11 +305,17 @@
    :n "C-j" nil
    :n "C-k" nil)
 
+ ;; magit
+ :n  "gm" #'magit
+ :n  "gl" #'magit-log-head
+
  ;; git-timemachine
  (:after git-timemachine
    (:map git-timemachine-mode-map
      :nv "p" #'git-timemachine-show-previous-revision
+     :nv "C-k" #'git-timemachine-show-previous-revision
      :nv "n" #'git-timemachine-show-next-revision
+     :nv "C-j" #'git-timemachine-show-previous-revision
      :nv "g" #'git-timemachine-show-nth-revision
      :nv "q" #'git-timemachine-quit
      :nv "w" #'git-timemachine-kill-abbreviated-revision
