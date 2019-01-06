@@ -105,12 +105,12 @@ search-page-up() {
 autoload search-page-up
 zle -N search-page-up
 
-paste() {
-  tmux send-keys "i"
-  tmux send-keys "C-v"
+my-paste() {
+  xclip -o
 }
-autoload paste
-zle -N paste
+
+autoload my-paste
+zle -N my-paste
 
 bindkey -M vicmd 'k' to-tmux-copy-mode \
                  'q' to-insert-mode \
@@ -118,7 +118,7 @@ bindkey -M vicmd 'k' to-tmux-copy-mode \
                  '^r' ctrl-r \
                  '/' search-page \
                  '?' search-page-up \
-                 'p' paste
+                 'p' my-paste
 
 
 ################################################################################

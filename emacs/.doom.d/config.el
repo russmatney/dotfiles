@@ -72,3 +72,15 @@
 
 ;; load prose tools (includes markdown)
 (load! "+org")
+
+;; TODO get working with toc.org
+(setq org-publish-project-alist
+      '(("todo"
+         :base-directory "~/Dropbox/todo/"
+         :base-extension "org"
+         :publishing-directory "~/todo-html/"
+         :recursive t
+         :publishing-function org-html-publish-to-html
+         :headline-levels 2
+         :auto-preamble t)))
+(org-publish-current-project)
