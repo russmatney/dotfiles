@@ -23,11 +23,7 @@
 
 (setq org-archive-location (concat "~/Dropbox/todo/archive/" (format-time-string "%Y-%m") ".org::"))
 
-(setq org-refile-targets '(("~/Dropbox/todo/gtd.org" :maxlevel . 3)
-                           ("~/Dropbox/todo/someday.org" :level . 1)
-                           ("~/Dropbox/todo/writing.org" :maxlevel . 2)
-                           ("~/Dropbox/todo/routines.org" :level . 1)
-                           ("~/Dropbox/todo/tickler.org" :maxlevel . 2)))
+(setq org-refile-targets '(("~/Dropbox/todo/todo.org" :maxlevel . 3)))
 
 (advice-add 'org-archive-subtree
   :after
@@ -82,15 +78,12 @@
 (defun +russ/org-capture-hook ()
   (setq org-capture-templates '(("t" "Todo [inbox]" entry
                                  (file+headline "~/Dropbox/todo/inbox.org" "Tasks")
-                                 "* TODO %i%?")
-                                ("T" "Tickler" entry
-                                 (file+headline "~/Dropbox/todo/tickler.org" "Tickler")
-                                 "* %i%? \n %U")
+                                 "* [ ] %i%?")
                                 )
 
         org-agenda-files '("~/Dropbox/todo/inbox.org"
-                           "~/Dropbox/todo/gtd.org"
-                           "~/Dropbox/todo/tickler.org")))
+                           "~/Dropbox/todo/todo.org"
+                           "~/Dropbox/todo/urbint.org")))
 
 (after! org-capture
   (+russ/org-capture-hook))

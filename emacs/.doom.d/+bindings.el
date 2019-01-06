@@ -336,9 +336,9 @@
     :n "-" #'dired-jump
     :map dired-mode-map
          :n "-"        #'dired-up-directory
-         :n "<return>" #'dired-find-file
+         :n "<return>" #'dired-find-alternate-file
          :n "/"        #'dired
-         :n "q"        #'quit-window
+         :n "q"        (lambda! (quit-window t))
          ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
