@@ -308,6 +308,7 @@
  ;; magit
  :n  "gm" #'magit
  :n  "gl" #'magit-log-head
+ :n  "gt" #'git-timemachine
 
  ;; git-timemachine
  (:after git-timemachine
@@ -317,6 +318,7 @@
      :nv "n" #'git-timemachine-show-next-revision
      :nv "C-j" #'git-timemachine-show-previous-revision
      :nv "g" #'git-timemachine-show-nth-revision
+     :nv "c" #'git-timemachine-show-commit
      :nv "q" #'git-timemachine-quit
      :nv "w" #'git-timemachine-kill-abbreviated-revision
      :nv "W" #'git-timemachine-kill-revision
