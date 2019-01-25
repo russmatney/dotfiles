@@ -134,6 +134,7 @@ bindsym $mod+r      exec --no-startup-id terminal
 
 # screenshot
 bindsym $mod+Shift+s exec --no-startup-id screenshot
+bindsym $mod+Shift+a exec --no-startup-id screenshot-region
 
 # xrandr two monitors
 bindsym $mod+Shift+x exec --no-startup-id "xrandr --output DP-1 --mode 3840x2160 --pos 1920x0 --output eDP-1 --pos 0x1080 --mode 1920x1080"

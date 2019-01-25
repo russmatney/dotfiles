@@ -4,5 +4,4 @@
 filename="screenshot_$(date +%Y-%m-%d_%H:%M:%S%z)".jpg
 destination_dir=~/Screenshots
 
-exec import -display :0 -window root $destination_dir/$filename
-
+maim -s $destination_dir/$filename
