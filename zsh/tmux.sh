@@ -17,6 +17,7 @@ fi
 
 alias t='tt'
 alias 't-'='tmux switch-client -l'
+alias 'tt -'='tmux switch-client -l'
 alias tls='tmux list-sessions'
 alias tka='tmux kill-session -a'
 alias tkt='tmux kill-session -a -t'
