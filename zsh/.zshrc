@@ -231,6 +231,7 @@ alias kpods='kubectl get pods'
 alias kdeploys='kubectl get deployments'
 alias kdns='kubectl get ing'
 alias kedit='kubectl edit deployments ' # the trailing space is intentional
+alias kt='kubetail'
 
 
 ################################################################################
