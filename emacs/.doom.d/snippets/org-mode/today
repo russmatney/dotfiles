@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: new-today-bullet
+# key: today
+# --
+* `(format-time-string "%Y-%m-%d")`
+** [ ]
+** journal

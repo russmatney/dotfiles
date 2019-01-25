@@ -20,6 +20,7 @@
 ;; lisp
 (package! paredit)
 (package! dash)
+(package! paxedit)
 
 ;; org
 (package! org-clubhouse

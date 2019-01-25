@@ -83,4 +83,4 @@
          :publishing-function org-html-publish-to-html
          :headline-levels 2
          :auto-preamble t)))
-(org-publish-current-project)
+; (org-publish-current-project)

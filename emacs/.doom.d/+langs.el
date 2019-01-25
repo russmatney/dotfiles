@@ -311,10 +311,115 @@
 ;; Clojure
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
+(map!
+ (:after cider-mode
+   (:leader
+     :desc "Lookup documentation at point" :n  "d"  #'cider-doc
+     :desc "Jump to definition at point"   :n  "l"  #'cider-find-var)
+   (:map cider-mode-map
+     (:leader
+       (:desc "Cider" :prefix "c"
+         :n  "'"  #'cider-jack-in
+         :n  "\"" #'cider-jack-in-clojurescript
+         :n  "b"  #'cider-eval-buffer
+         :n  "B"  #'cider-switch-to-repl-buffer
+         :n  "n"  #'cider-repl-set-ns
+         :n  "j"  #'cider-find-var
+         (:desc "docs" :prefix "d"
+           :desc "Browse Namespace"  :n  "n" #'cider-browse-ns
+           :desc "Browse Spec"       :n  "s" #'cider-browse-spec)
+         :n  "h"  #'cider-doc
+         :n  "c"  #'cider-repl-clear-buffer
+         :n  "i"  #'cider-inspect-last-result
+         :n  "p"  #'cider-eval-sexp-at-point
+         :n  "f"  #'cider-eval-defun-at-point
+         :n  "t"  #'cider-test-run-ns-tests
+         :n  "T"  #'cider-test-run-test)))
+   (:after cider-browse-ns-mode
+     (:map cider-browse-ns-mode-map
+       :n "RET"       #'cider-browse-ns-operate-at-point))))
+
 (def-package! clojure-mode
   :mode "\\.clj$"
   :mode "\\.edn$"
   :mode "\\(?:build\\|profile\\)\\.boot$"
   :mode ("\\.cljs$" . clojurescript-mode)
   :mode ("\\.cljc$" . clojurec-mode)
+
+  :config
+  (setq cljr-magic-require-namespaces
+        '(("io" . "clojure.java.io")
+          ("sh" . "clojure.java.shell")
+          ("set" . "clojure.set")
+          ("str" . "cuerdas.core")
+          ("path" . "pathetic.core")
+          ("walk" . "clojure.walk")
+          ("zip" . "clojure.zip")
+          ("async" . "clojure.core.async")
+          ("component" . "com.stuartsierra.component")
+          ("sql" . "honeysql.core")
+          ("csv" . "clojure.data.csv")
+          ("json" . "cheshire.core")
+          ("s" . "clojure.spec.alpha")))
   )
+
+(def-package! paxedit
+  :config
+  (map!
+   (:map paxedit-mode-map
+     :n ">>" #'evil-shift-right
+     :n ">e" #'paxedit-transpose-forward
+     :n ">)" #'sp-forward-slurp-sexp
+     :n ">(" #'sp-backward-barf-sexp
+     :n ">I" #'grfn/insert-at-sexp-end
+     :n ">a" #'grfn/insert-at-form-end
+     :n "<<" #'evil-shift-left
+     :n "<e" #'paxedit-transpose-backward
+     :n "<)" #'sp-forward-barf-sexp
+     :n "<(" #'sp-backward-slurp-sexp
+     :n "<I" #'grfn/insert-at-sexp-start
+     :n "<a" #'grfn/insert-at-form-start))
+  :hook
+  (clojure-mode . smartparens-mode)
+  (clojure-mode . paxedit-mode)
+  (emacs-lisp-mode . paxedit-mode))
+
+(defmacro define-move-and-insert
+    (name &rest body)
+  `(defun ,name (count &optional vcount skip-empty-lines)
+     ;; Following interactive form taken from the source for `evil-insert'
+     (interactive
+      (list (prefix-numeric-value current-prefix-arg)
+            (and (evil-visual-state-p)
+                 (memq (evil-visual-type) '(line block))
+                 (save-excursion
+                   (let ((m (mark)))
+                     ;; go to upper-left corner temporarily so
+                     ;; `count-lines' yields accurate results
+                     (evil-visual-rotate 'upper-left)
+                     (prog1 (count-lines evil-visual-beginning evil-visual-end)
+                       (set-mark m)))))
+            (evil-visual-state-p)))
+     (atomic-change-group
+       ,@body
+       (evil-insert count vcount skip-empty-lines))))
+
+(define-move-and-insert grfn/insert-at-sexp-end
+  (when (not (equal (get-char) "("))
+    (backward-up-list))
+  (forward-sexp)
+  (backward-char))
+
+(define-move-and-insert grfn/insert-at-sexp-start
+  (backward-up-list)
+  (forward-char))
+
+(define-move-and-insert grfn/insert-at-form-start
+  (backward-sexp)
+  (backward-char)
+  (insert " "))
+
+(define-move-and-insert grfn/insert-at-form-end
+  (forward-sexp)
+  (insert " "))
