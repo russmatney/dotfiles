@@ -108,9 +108,14 @@ zle -N search-page-up
 my-paste() {
   xclip -o
 }
-
 autoload my-paste
 zle -N my-paste
+
+choose-session() {
+  tmux choose-session
+}
+autoload choose-session
+zle -N choose-session
 
 bindkey -M vicmd 'k' to-tmux-copy-mode \
                  'q' to-insert-mode \
@@ -118,7 +123,8 @@ bindkey -M vicmd 'k' to-tmux-copy-mode \
                  '^r' ctrl-r \
                  '/' search-page \
                  '?' search-page-up \
-                 'p' my-paste
+                 'p' my-paste \
+                 '-' choose-session
 
 
 ################################################################################
