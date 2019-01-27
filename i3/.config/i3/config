@@ -56,10 +56,10 @@ bindsym $mod+n exec --no-startup-id smart-walk-workspace next
 bindsym $mod+p exec --no-startup-id smart-walk-workspace previous
 
 # change focus
-bindsym $mod+h exec --no-startup-id smart-move-focus left
-bindsym $mod+l exec --no-startup-id smart-move-focus right
-bindsym $mod+j exec --no-startup-id smart-move-focus down
-bindsym $mod+k exec --no-startup-id smart-move-focus up
+bindsym $mod+h exec --no-startup-id focus mf left
+bindsym $mod+l exec --no-startup-id focus mf right
+bindsym $mod+j exec --no-startup-id focus mf down
+bindsym $mod+k exec --no-startup-id focus mf up
 
 ################################################################################
 # Layout/Window Position
