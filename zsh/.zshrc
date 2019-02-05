@@ -263,6 +263,7 @@ alias gpr='git pull-request'
 alias gpo='git push -u origin'
 alias gpob='git push -u origin "$(git symbolic-ref --short HEAD)"'
 alias gcom='gco master'
+alias gclone='hub clone'
 
 # list recent branches
 # thanks: https://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit

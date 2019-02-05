@@ -16,6 +16,7 @@ robbyrussell/oh-my-zsh path:plugins/compleat
 robbyrussell/oh-my-zsh path:plugins/dircycle
 # robbyrussell/oh-my-zsh path:plugins/dirhistory
 robbyrussell/oh-my-zsh path:plugins/docker
+robbyrussell/oh-my-zsh path:plugins/docker-compose
 robbyrussell/oh-my-zsh path:plugins/fasd
 robbyrussell/oh-my-zsh path:plugins/gas
 robbyrussell/oh-my-zsh path:plugins/geeknote
@@ -30,6 +31,7 @@ robbyrussell/oh-my-zsh path:plugins/github
 robbyrussell/oh-my-zsh path:plugins/httpie
 robbyrussell/oh-my-zsh path:plugins/history
 robbyrussell/oh-my-zsh path:plugins/jsontools
+robbyrussell/oh-my-zsh path:plugins/kubectl
 robbyrussell/oh-my-zsh path:plugins/last-working-dir
 robbyrussell/oh-my-zsh path:plugins/node
 robbyrussell/oh-my-zsh path:plugins/npm
