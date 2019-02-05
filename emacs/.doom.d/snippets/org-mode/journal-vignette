@@ -1,0 +1,7 @@
+# key: j
+# name: journal-timestamp
+
+# --
+--
+
+`(format-time-string "%Y-%m-%d %H:%M")`
