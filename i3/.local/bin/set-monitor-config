@@ -1,0 +1,43 @@
+#!/bin/bash
+
+choice=${1}
+
+supported="laptop work home"
+
+if [ -z $choice ]; then
+  select opt in $supported; do
+    choice=$opt
+    break
+  done
+elif [[ " ${supported[*]} " != *" $choice "* ]]; then
+  echo "$choice not fully supported. Supported: $supported"
+  supported="$supported $choice"
+  select opt in $supported; do
+    choice=$opt
+    break
+  done
+fi
+
+echo "Switching to configuration: $choice"
+
+if [ $choice == "laptop" ]; then
+    xrandr \
+        --output eDP-1 --pos 0x0 --mode 1920x1080 \
+        --output DP-1 --off \
+        --output DP-3 --off
+    i3-msg mode "default"
+elif [ $choice == "work" ]; then
+    xrandr \
+        --output eDP-1 --pos 0x1080 --mode 1920x1080 \
+        --output DP-1 --mode 3840x2160 --pos 1920x0 \
+        --output DP-3 --off
+    i3-msg mode "default"
+elif [ $choice == "home" ]; then
+    xrandr \
+        --output eDP-1 --pos 2560x540 --mode 1920x1080 \
+        --output DP-1 --off \
+        --output DP-3 --mode 2560x1440 --pos 0x0
+    i3-msg mode "default"
+else
+    echo "Unhandled configuration name: $choice"
+fi
