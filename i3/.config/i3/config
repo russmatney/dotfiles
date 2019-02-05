@@ -56,10 +56,16 @@ bindsym $mod+n exec --no-startup-id smart-walk-workspace next
 bindsym $mod+p exec --no-startup-id smart-walk-workspace previous
 
 # change focus
-bindsym $mod+h exec --no-startup-id focus mf left
-bindsym $mod+l exec --no-startup-id focus mf right
-bindsym $mod+j exec --no-startup-id focus mf down
-bindsym $mod+k exec --no-startup-id focus mf up
+bindsym $mod+h exec --no-startup-id focus mf left >> ~/tmp/errors
+bindsym $mod+l exec --no-startup-id focus mf right >> ~/tmp/errors
+bindsym $mod+j exec --no-startup-id focus mf down >> ~/tmp/errors
+bindsym $mod+k exec --no-startup-id focus mf up >> ~/tmp/errors
+
+# relative position
+bindsym $mod+Shift+h focus left
+bindsym $mod+Shift+j focus down
+bindsym $mod+Shift+k focus up
+bindsym $mod+Shift+l focus right
 
 ################################################################################
 # Layout/Window Position
@@ -81,18 +87,12 @@ bindsym $mod+shift+Left floating enable, resize set width 50 ppt height 100 ppt,
 
 bindsym $mod+shift+Down resize set width 60 ppt height 100 ppt, move position 0 0
 
-# relative position
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
-
 # enter fullscreen mode for the focused container
 bindsym $mod+Shift+space fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+semicolon layout stacking
-bindsym $mod+w layout tabbed
+bindsym $mod+semicolon layout toggle splith splitv
+bindsym $mod+Shift+semicolon layout toggle tabbed stacking
 
 # toggle tiling / floating
 bindsym $mod+f floating toggle
@@ -102,15 +102,22 @@ bindsym $mod+Shift+f focus mode_toggle
 bindsym $mod+Shift+r restart
 
 # resize window (you can also use the mouse for that)
-bindsym $mod+s mode "resize"
-mode "resize" {
-        bindsym Shift+h resize shrink width 10 px or 5 ppt
-        bindsym Shift+k resize grow height 10 px or 5 ppt
-        bindsym Shift+j resize shrink height 10 px or 5 ppt
-        bindsym Shift+l resize grow width 10 px or 5 ppt
+bindsym $mod+w mode "window"
+mode "window" {
+        bindsym h resize shrink width 10 px or 5 ppt
+        bindsym k resize grow height 10 px or 5 ppt
+        bindsym j resize shrink height 10 px or 5 ppt
+        bindsym l resize grow width 10 px or 5 ppt
+
+        # swap in direction
+        bindsym Shift+h move left
+        bindsym Shift+l move right
+        bindsym Shift+j move down
+        bindsym Shift+k move up
 
         bindsym Return mode "default"
         bindsym Escape mode "default"
+        bindsym q mode "default"
 }
 
 ################################################################################
@@ -136,10 +143,21 @@ bindsym $mod+r      exec --no-startup-id terminal
 bindsym $mod+Shift+s exec --no-startup-id screenshot
 bindsym $mod+Shift+a exec --no-startup-id screenshot-region
 
-# xrandr two monitors
-bindsym $mod+Shift+x exec --no-startup-id "xrandr --output DP-1 --mode 3840x2160 --pos 1920x0 --output eDP-1 --pos 0x1080 --mode 1920x1080"
-# xrandr laptop
-bindsym $mod+x exec --no-startup-id "xrandr --output DP-1 --off --output eDP-1 --pos 0x0 --mode 1920x1080"
+bindsym $mod+m mode "monitor"
+mode "monitor" {
+     # laptop
+     bindsym l exec --no-startup-id set-monitor-config laptop
+
+     # work monitor
+     bindsym w exec --no-startup-id set-monitor-config work
+
+     # home monitor
+     bindsym h exec --no-startup-id set-monitor-config home
+
+     bindsym Return mode "default"
+     bindsym Escape mode "default"
+     bindsym q mode "default"
+}
 
 # border colors
 client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
