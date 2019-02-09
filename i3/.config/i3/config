@@ -47,25 +47,28 @@ bindsym $mod+Tab focus output left
 # universal script commands
 ################################################################################
 
-# smart pane split
-bindsym $mod+backslash exec --no-startup-id smart-split vertical
-bindsym $mod+minus exec --no-startup-id smart-split horizontal
-
 # walk workspace (emacs) or session (tmux)
 bindsym $mod+n exec --no-startup-id smart-walk-workspace next
 bindsym $mod+p exec --no-startup-id smart-walk-workspace previous
 
 # change focus
-bindsym $mod+h exec --no-startup-id focus mf left >> ~/tmp/errors
-bindsym $mod+l exec --no-startup-id focus mf right >> ~/tmp/errors
-bindsym $mod+j exec --no-startup-id focus mf down >> ~/tmp/errors
-bindsym $mod+k exec --no-startup-id focus mf up >> ~/tmp/errors
+bindsym $mod+h exec --no-startup-id ~/.local/bin/focus mf left >> ~/tmp/errors
+bindsym $mod+l exec --no-startup-id ~/.local/bin/focus mf right >> ~/tmp/errors
+bindsym $mod+j exec --no-startup-id ~/.local/bin/focus mf down >> ~/tmp/errors
+bindsym $mod+k exec --no-startup-id ~/.local/bin/focus mf up >> ~/tmp/errors
 
 # relative position
 bindsym $mod+Shift+h focus left
 bindsym $mod+Shift+j focus down
 bindsym $mod+Shift+k focus up
 bindsym $mod+Shift+l focus right
+
+# univ-focus-emux commands
+bindsym $mod+backslash exec --no-startup-id ~/.local/bin/focus new-split >> ~/tmp/errors
+bindsym $mod+minus exec --no-startup-id ~/.local/bin/focus new-split -h true >> ~/tmp/errors
+
+# d for ctrl+d
+bindsym $mod+d exec --no-startup-id ~/.local/bin/focus close >> ~/tmp/errors
 
 ################################################################################
 # Layout/Window Position
@@ -131,17 +134,20 @@ bindsym $mod+Shift+Return exec --no-startup-id emacsclient --alternate-editor=''
 # terminal
 bindsym $mod+Return exec --no-startup-id "alacritty --working-directory=/home/russ/dotfiles -e 'tmux'"
 
+# browser
+bindsym $mod+b exec --no-startup-id brave
+
 # lock
 bindsym $mod+Shift+q exec --no-startup-id i3lock -c 000000
 
 # rofi
 bindsym $mod+space  exec --no-startup-id rofi -show run
-bindsym $mod+d      exec --no-startup-id open_dotfile
-bindsym $mod+r      exec --no-startup-id terminal
+# bindsym $mod+d      exec --no-startup-id open_dotfile
+bindsym $mod+r      exec --no-startup-id ~/.local/bin/terminal
 
 # screenshot
-bindsym $mod+Shift+s exec --no-startup-id screenshot
-bindsym $mod+Shift+a exec --no-startup-id screenshot-region
+bindsym $mod+Shift+s exec --no-startup-id ~/.local/bin/screenshot
+bindsym $mod+Shift+a exec --no-startup-id ~/.local/bin/screenshot-region
 
 bindsym $mod+m mode "monitor"
 mode "monitor" {
@@ -153,6 +159,9 @@ mode "monitor" {
 
      # home monitor
      bindsym h exec --no-startup-id set-monitor-config home
+
+     # home monitor
+     bindsym a exec --no-startup-id set-monitor-config algo
 
      bindsym Return mode "default"
      bindsym Escape mode "default"
