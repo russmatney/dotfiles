@@ -6,7 +6,7 @@
 ;; Status     : Usable
 ;;
 
-(package! evil-matchit :recipe (:fetcher github :repo "redguardtoo/evil-matchit" :commit "7d65b4167b1f0086c2b42b3aec805e47a0d355c4"))
+                                        ;(package! evil-matchit :recipe (:fetcher github :repo "redguardtoo/evil-matchit" :commit "7d65b4167b1f0086c2b42b3aec805e47a0d355c4"))
 
 ;; elixir
 (package! flycheck-mix)
@@ -25,14 +25,14 @@
 ;; org
 (package! org-clubhouse
   :recipe (:fetcher github
-           :repo "urbint/org-clubhouse"
-           :files ("*")))
+                    :repo "urbint/org-clubhouse"
+                    :files ("*")))
 
 ;; writing
 (package! zen-mode
   :recipe (:fetcher github
-           :repo "aki237/zen-mode"
-           :files ("*")))
+                    :repo "aki237/zen-mode"
+                    :files ("*")))
 
 ;; javascript
 (package! flow-minor-mode)

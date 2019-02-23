@@ -324,6 +324,9 @@
                  (format "%d chars" (length value)))))
     nil nil nil)))
 
+;; (map!
+;;    :n "g f"   #'+format|buffer)
+
 (map!
  (:after cider-mode
    (:leader

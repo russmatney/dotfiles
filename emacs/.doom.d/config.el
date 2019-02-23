@@ -61,6 +61,8 @@
 (setq counsel-rg-base-command
     "rg -zS --hidden --no-heading --line-number --color never %s .")
 
+(setq +format-on-save-enabled-modes t)
+
 ;; load bindings
 (load! "+bindings")
 

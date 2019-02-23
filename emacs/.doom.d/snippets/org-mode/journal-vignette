@@ -5,3 +5,4 @@
 --
 
 `(format-time-string "%Y-%m-%d %H:%M")`
+`(shell-command-to-string "hostname")`

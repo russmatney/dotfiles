@@ -89,22 +89,22 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (map!
-  (:leader
-    (:desc "Editor" :prefix "e"
-      :desc "Open ~/.zshrc"    :n "v" (lambda! (find-file "~/.zshrc"))
-      :desc "Open ~/.doom.d/config.el"    :n "c" (lambda! (find-file "~/.doom.d/config.el"))
-      :desc "Open ~/.doom.d/+bindings.el" :n "b" (lambda! (find-file "~/.doom.d/+bindings.el"))
-      :desc "Open ~/.doom.d/+langs.el"    :n "l" (lambda! (find-file "~/.doom.d/+langs.el"))
-      :desc "Open ~/.emacs.d/readme.md"   :n "d" (lambda! (find-file "~/.emacs.d/README.md"))
-      :desc "Open ~/.zshrc"               :n "z" (lambda! (find-file "~/.zshrc"))
-      :desc "Open ~/.config/i3/config"    :n "i" (lambda! (find-file "~/.config/i3/config"))
-      :desc "Open ~/.config/polybar/config"     :n "p" (lambda! (find-file "~/.config/polybar/config"))
-      :desc "Open ~/todo/todo.org"         :n "t" (lambda! (find-file "~/todo/todo.org"))
-      :desc "Open ~/todo/urbint.org"      :n "u" (lambda! (find-file "~/todo/urbint.org"))
-      :desc "Open ~/.config/alacritty/alacritty.yml" :n "a" (lambda! (find-file "~/.config/alacritty/alacritty.yml"))
-      :desc "Create new snippet"          :n "s" #'yas-new-snippet
-      :desc "Edit snippet"          :n "e" #'yas-visit-snippet-file
-)))
+ (:leader
+   (:desc "Editor" :prefix "e"
+     :desc "Open ~/.zshrc"    :n "v" (lambda! (find-file "~/.zshrc"))
+     :desc "Open ~/.doom.d/config.el"    :n "c" (lambda! (find-file "~/.doom.d/config.el"))
+     :desc "Open ~/.doom.d/+bindings.el" :n "b" (lambda! (find-file "~/.doom.d/+bindings.el"))
+     :desc "Open ~/.doom.d/+langs.el"    :n "l" (lambda! (find-file "~/.doom.d/+langs.el"))
+     :desc "Open ~/.emacs.d/readme.md"   :n "d" (lambda! (find-file "~/.emacs.d/README.md"))
+     :desc "Open ~/.zshrc"               :n "z" (lambda! (find-file "~/.zshrc"))
+     :desc "Open ~/.config/i3/config"    :n "i" (lambda! (find-file "~/.config/i3/config"))
+     :desc "Open ~/.config/polybar/config"     :n "p" (lambda! (find-file "~/.config/polybar/config"))
+     :desc "Open ~/todo/todo.org"         :n "t" (lambda! (find-file "~/todo/todo.org"))
+     :desc "Open ~/todo/urbint.org"      :n "u" (lambda! (find-file "~/todo/urbint.org"))
+     :desc "Open ~/.config/alacritty/alacritty.yml" :n "a" (lambda! (find-file "~/.config/alacritty/alacritty.yml"))
+     :desc "Create new snippet"          :n "s" #'yas-new-snippet
+     :desc "Edit snippet"          :n "e" #'yas-visit-snippet-file
+     )))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -161,13 +161,13 @@
  (:leader :desc "org-capture"     :nv "x"   #'org-capture)
  (:leader :desc "helm-mini"     :nv "m"   #'helm-mini)
 
- ;"M-RET" #'toggle-frame-fullscreen
+                                        ;"M-RET" #'toggle-frame-fullscreen
 
  "M-v" #'evil-paste-after
  "M-c" #'evil-copy
 
- ;"M-h" #'ns-do-hide-emacs
-)
+                                        ;"M-h" #'ns-do-hide-emacs
+ )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Kill the things
@@ -175,7 +175,7 @@
 
 (map!
  (:leader
-    (:desc "kill" :prefix "k"
+   (:desc "kill" :prefix "k"
      :desc "delete-window"           :n "k" #'delete-window
      :desc "doom/kill-other-buffers" :n "B" #'doom/kill-other-buffers
      :desc "kill-buffer-from-list"   :n "b" #'kill-buffer
@@ -196,7 +196,7 @@
  (:leader
    :desc "Open vertical split"         :n  "\\" #'evil-window-vsplit
    :desc "Open vertical split"         :n  "-"  #'evil-window-split)
-)
+ )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Navigating Windows
@@ -223,7 +223,7 @@
  ;; quicker j/k hops
  :m "C-j" #'+default:multi-next-line
  :m "C-k" #'+default:multi-previous-line
-)
+ )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Navigating Files/Buffers
@@ -240,7 +240,7 @@
    :desc "projectile-find-file"   :n  "p"   #'projectile-find-file
    :desc "(invalidate cache, then) projectile-find-file"   :n  "P"   (λ! (projectile-find-file t))
    :desc "Find file"              :n  "."   #'find-file
-))
+   ))
 
 (map!
  ;; recentf
@@ -255,7 +255,7 @@
 
  ;; test toggle
  (:leader :desc "projectile-test-toggle" :n  "t" #'projectile-toggle-between-implementation-and-test)
-)
+ )
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -278,8 +278,8 @@
  "M-p"    #'+workspace/switch-right
  "M-n"    #'+workspace/switch-left
 
-  ;; TODO add "M-1" to go to workspace "1", etc.
-)
+ ;; TODO add "M-1" to go to workspace "1", etc.
+ )
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -287,12 +287,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (map!
-  (:leader (:desc "git" :prefix "g"
-     :desc "Git status"        :n  "s" #'magit-status
-     :desc "Git blame"         :n  "b" #'magit-blame
-     :desc "Git time machine"  :n  "t" #'git-timemachine-toggle
-     :desc "Git revert hunk"   :n  "r" #'git-gutter:revert-hunk
-     :desc "Git revert hunk"   :n  "a" #'git-gutter:stage-hunk)))
+ (:leader (:desc "git" :prefix "g"
+            :desc "Git status"        :n  "s" #'magit-status
+            :desc "Git blame"         :n  "b" #'magit-blame
+            :desc "Git time machine"  :n  "t" #'git-timemachine-toggle
+            :desc "Git revert hunk"   :n  "r" #'git-gutter:revert-hunk
+            :desc "Git revert hunk"   :n  "a" #'git-gutter:stage-hunk)))
 
 (map!
  ;; git-gutter
@@ -335,13 +335,13 @@
     (setq dired-use-ls-dired nil))
   :config
   (map!
-    :n "-" #'dired-jump
-    :map dired-mode-map
-         :n "-"        #'dired-up-directory
-         :n "<return>" #'dired-find-alternate-file
-         :n "/"        #'dired
-         :n "q"        (lambda! (quit-window t))
-         ))
+   :n "-" #'dired-jump
+   :map dired-mode-map
+   :n "-"        #'dired-up-directory
+   :n "<return>" #'dired-find-alternate-file
+   :n "/"        #'dired
+   :n "q"        (lambda! (quit-window t))
+   ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Ranger
@@ -391,7 +391,7 @@
    "C-f" #'forward-word
 
    "C-v" (+ivy-do-action! #'counsel-projectile-find-file-action-other-window)
-))
+   ))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

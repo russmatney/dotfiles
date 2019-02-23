@@ -1,0 +1,4 @@
+# key: scr
+# name: screenshot
+# --
+`(shell-command-to-string "ls ~/Screenshots | sort -V | tail -n 1")`

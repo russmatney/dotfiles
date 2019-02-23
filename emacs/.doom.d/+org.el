@@ -45,10 +45,14 @@
 (map!
  (:after org
    (:map org-mode-map
-     "M-j"    #'evil-window-down
-     "M-k"    #'evil-window-up
-     "M-h"    #'evil-window-left
-     "M-l"    #'evil-window-right
+     "M-j"    nil
+     "M-k"    nil
+     "M-h"    nil
+     "M-l"    nil
+     "A-j"    nil
+     "A-k"    nil
+     "A-h"    nil
+     "A-l"    nil
      "M-v"    #'evil-paste-after
      "M-RET"  #'org-insert-item
      "M-t"    #'org-set-tags
