@@ -118,6 +118,12 @@ mode "window" {
         bindsym Shift+j move down
         bindsym Shift+k move up
 
+        # maintain focus controls
+        bindsym $mod+h focus left
+        bindsym $mod+l focus right
+        bindsym $mod+j focus down
+        bindsym $mod+k focus up
+
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym q mode "default"
