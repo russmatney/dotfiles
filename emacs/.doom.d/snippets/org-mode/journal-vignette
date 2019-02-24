@@ -6,3 +6,5 @@
 
 `(format-time-string "%Y-%m-%d %H:%M")`
 `(shell-command-to-string "hostname")`
+`(shell-command-to-string "whereami")`
+`(shell-command-to-string "whereami -f human")`
