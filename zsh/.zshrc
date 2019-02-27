@@ -234,8 +234,8 @@ alias glp="git log --graph --pretty=format:'%Cred%h%Creset -%Cblue %an %Creset -
 alias gprom="git pull --rebase origin master"
 alias gcan='git commit --amend --no-edit'
 alias gcam='gc --amend'
-alias gpf='git push --force'
-alias gpff='git push --force --no-verify' # aka git push f***ing force
+alias gpf='git push --force-with-lease'
+alias gpff='git push --force-with-lease --no-verify' # aka git push f***ing force
 alias gds='git diff --staged'
 alias gfx='git commit --fixup'
 alias gri='git rebase -i --autosquash'
