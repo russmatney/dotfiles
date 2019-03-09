@@ -59,7 +59,7 @@
 ;; Add '--hidden' to rg command to include hidden files in search
 ;; Note that `echo ".git/" >> ~/.ignore` will exclude .git from these searches
 (setq counsel-rg-base-command
-    "rg -zS --hidden --no-heading --line-number --color never %s .")
+      "rg -zS --hidden --no-heading --line-number --color never %s .")
 
 (setq +format-on-save-enabled-modes t)
 
@@ -85,4 +85,29 @@
          :publishing-function org-html-publish-to-html
          :headline-levels 2
          :auto-preamble t)))
-; (org-publish-current-project)
+                                        ; (org-publish-current-project)
+
+(setq github-roots '("~/russmatney/*"
+                     "~/urbint/*"
+                     "~/rschmukler/*"
+                     "~/bolasblack/*"
+                     "~/clojure/*"
+                     "~/duct-framework/*"
+                     "~/hlissner/*"
+                     "~/jacekschae/*"
+                     "~/l3nz/*"
+                     "~/lambduh/*"
+                     "~/nubank/*"
+                     "~/rafaelrinaldi/*"
+                     "~/smblott-github/*"
+                     "~/walkable-server/*"))
+
+(defun flatten (list-of-lists)
+  (apply #'append list-of-lists))
+
+(defun set-projectile-known-projects ()
+  (let ((all-proj-paths (flatten (mapcar 'file-expand-wildcards github-roots))))
+    (let ((expanded-proj-paths (mapcar 'expand-file-name all-proj-paths)))
+      (mapcar 'projectile-add-known-project expanded-proj-paths))))
+
+                                        ;(set-projectile-known-projects)
