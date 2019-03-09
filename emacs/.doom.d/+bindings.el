@@ -91,19 +91,20 @@
 (map!
  (:leader
    (:desc "Editor" :prefix "e"
-     :desc "Open ~/.zshrc"    :n "v" (lambda! (find-file "~/.zshrc"))
-     :desc "Open ~/.doom.d/config.el"    :n "c" (lambda! (find-file "~/.doom.d/config.el"))
-     :desc "Open ~/.doom.d/+bindings.el" :n "b" (lambda! (find-file "~/.doom.d/+bindings.el"))
-     :desc "Open ~/.doom.d/+langs.el"    :n "l" (lambda! (find-file "~/.doom.d/+langs.el"))
-     :desc "Open ~/.emacs.d/readme.md"   :n "d" (lambda! (find-file "~/.emacs.d/README.md"))
-     :desc "Open ~/.zshrc"               :n "z" (lambda! (find-file "~/.zshrc"))
-     :desc "Open ~/.config/i3/config"    :n "i" (lambda! (find-file "~/.config/i3/config"))
-     :desc "Open ~/.config/polybar/config"     :n "p" (lambda! (find-file "~/.config/polybar/config"))
-     :desc "Open ~/todo/todo.org"         :n "t" (lambda! (find-file "~/todo/todo.org"))
-     :desc "Open ~/todo/urbint.org"      :n "u" (lambda! (find-file "~/todo/urbint.org"))
+     :desc "Open ~/.zshrc"                 :n "v" (lambda! (find-file "~/.zshrc"))
+     :desc "Open ~/.doom.d/config.el"      :n "c" (lambda! (find-file "~/.doom.d/config.el"))
+     :desc "Open ~/.doom.d/+bindings.el"   :n "b" (lambda! (find-file "~/.doom.d/+bindings.el"))
+     :desc "Open ~/.doom.d/+langs.el"      :n "l" (lambda! (find-file "~/.doom.d/+langs.el"))
+     :desc "Open ~/.emacs.d/readme.md"     :n "d" (lambda! (find-file "~/.emacs.d/README.md"))
+     :desc "Open ~/.zshrc"                 :n "z" (lambda! (find-file "~/.zshrc"))
+     :desc "Open ~/.config/i3/config"      :n "i" (lambda! (find-file "~/.config/i3/config"))
+     :desc "Open ~/.config/polybar/config" :n "p" (lambda! (find-file "~/.config/polybar/config"))
+     :desc "Open ~/.tmux.conf"             :n "T" (lambda! (find-file "~/.tmux.conf"))
+     :desc "Open ~/todo/todo.org"          :n "t" (lambda! (find-file "~/todo/todo.org"))
+     :desc "Open ~/todo/urbint.org"        :n "u" (lambda! (find-file "~/todo/urbint.org"))
      :desc "Open ~/.config/alacritty/alacritty.yml" :n "a" (lambda! (find-file "~/.config/alacritty/alacritty.yml"))
-     :desc "Create new snippet"          :n "s" #'yas-new-snippet
-     :desc "Edit snippet"          :n "e" #'yas-visit-snippet-file
+     :desc "Create new snippet"            :n "s" #'yas-new-snippet
+     :desc "Edit snippet"                  :n "e" #'yas-visit-snippet-file
      )))
 
 
@@ -290,6 +291,7 @@
  (:leader (:desc "git" :prefix "g"
             :desc "Git status"        :n  "s" #'magit-status
             :desc "Git blame"         :n  "b" #'magit-blame
+            :desc "Git status"        :n  "l" #'magit-log
             :desc "Git time machine"  :n  "t" #'git-timemachine-toggle
             :desc "Git revert hunk"   :n  "r" #'git-gutter:revert-hunk
             :desc "Git revert hunk"   :n  "a" #'git-gutter:stage-hunk)))
