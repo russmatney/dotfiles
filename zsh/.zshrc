@@ -216,9 +216,14 @@ alias dcps='dc ps'
 ################################################################################
 
 alias kc='kubectl'
+alias kca='kubectl --all-namespaces'
+alias kcd='kubectl --namespace=default'
 alias kg='kubectl get'
 alias kp='kswitch'
 alias kpods='kubectl get pods'
+alias kpodsa='kubectl get pods --all-namespaces'
+alias kings='kubectl get ing'
+alias kingsa='kubectl get pods --all-namespaces'
 alias kdeploys='kubectl get deployments'
 alias kdns='kubectl get ing'
 alias kedit='kubectl edit deployments ' # the trailing space is intentional
