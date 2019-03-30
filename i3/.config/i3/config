@@ -67,7 +67,7 @@ bindsym $mod+Shift+l focus right
 bindsym $mod+backslash exec --no-startup-id ~/.local/bin/focus new-split >> ~/tmp/errors
 bindsym $mod+minus exec --no-startup-id ~/.local/bin/focus new-split -h true >> ~/tmp/errors
 
-# d for ctrl+d
+# d for quit
 bindsym $mod+d exec --no-startup-id ~/.local/bin/focus close >> ~/tmp/errors
 
 ################################################################################
@@ -104,6 +104,13 @@ bindsym $mod+Shift+f focus mode_toggle
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
+# swap in direction
+# bindsym $mod+Alt+h move left
+# bindsym $mod+Alt+l move right
+# bindsym $mod+Alt+j move down
+# bindsym $mod+Alt+k move up
+
+
 # resize window (you can also use the mouse for that)
 bindsym $mod+w mode "window"
 mode "window" {
@@ -139,9 +146,11 @@ bindsym $mod+Shift+Return exec --no-startup-id emacsclient --alternate-editor=''
 
 # terminal
 bindsym $mod+Return exec --no-startup-id "alacritty --working-directory=/home/russ/dotfiles -e 'tmux'"
+# bindsym $mod+Return exec --no-startup-id "alacritty"
 
 # browser
-bindsym $mod+b exec --no-startup-id brave
+# bindsym $mod+b exec --no-startup-id brave
+bindsym $mod+b exec --no-startup-id google-chrome-stable
 
 # lock
 bindsym $mod+Shift+q exec --no-startup-id i3lock -c 000000
@@ -160,11 +169,14 @@ mode "monitor" {
      # laptop
      bindsym l exec --no-startup-id set-monitor-config laptop
 
-     # work monitor
+     # work laptop + monitor
      bindsym w exec --no-startup-id set-monitor-config work
 
-     # home monitor
+     # home laptop + monitor
      bindsym h exec --no-startup-id set-monitor-config home
+
+     # home laptop w/ monitor only
+     bindsym $mod+h exec --no-startup-id set-monitor-config home-monitor-only
 
      # home monitor
      bindsym a exec --no-startup-id set-monitor-config algo
@@ -184,7 +196,8 @@ exec_always --no-startup-id compton -f --inactive-dim 0.1 -D 5 --active-opacity 
 exec_always --no-startup-id compton -cCFb --backend glx --vsync opengl
 
 # exec_always --no-startup-id feh --bg-scale ~/Desktop/wallpapers/firewatch_green_3440x1440.jpg
-exec_always --no-startup-id feh --bg-scale ~/Desktop/wallpapers/firewatch_classic_3440x1440.jpg
+exec_always --no-startup-id feh --bg-scale ~/Dropbox/wallpapers/futuristic-city-sci-fi-skyscrapers-night-dark-city-flying-vehicles-fantasy-4150.jpg
+# exec_always --no-startup-id feh --bg-scale ~/Desktop/wallpapers/firewatch_classic_3440x1440.jpg
 
 # start dropbox
 exec_always --no-startup-id ~/.dropbox-dist/dropboxd &
@@ -221,7 +234,7 @@ bindsym $mod+u scratchpad show
 ################################################################################
 
 for_window [class="Slack"] move to workspace 1
-for_window [class="Spotify"] move to workspace 3
+for_window [class="Spotify"] move to workspace 2
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -252,6 +265,18 @@ workspace 2 output eDP-1
 workspace 3 output eDP-1
 workspace 4 output eDP-1
 workspace 5 output eDP-1
+
+# TODO: better than this!
+# workspace 1 output DP-3
+# workspace 2 output DP-3
+# workspace 3 output DP-3
+# workspace 4 output DP-3
+# workspace 5 output DP-3
+# workspace 6 output DP-3
+# workspace 7 output DP-3
+# workspace 8 output DP-3
+# workspace 9 output DP-3
+# workspace 0 output DP-3
 
 workspace 6 output DP-1
 workspace 7 output DP-1

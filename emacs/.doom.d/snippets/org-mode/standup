@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: standup
+# key: stdup
+# --
+- current tickets:
+  - $1
+- injections/bugs since yesterday?
+  - $2
+- upcoming tickets blocked by anything?
+  - $3

@@ -26,9 +26,9 @@
 
        :completion
        (company          ; the ultimate code completion backend
-        +auto            ; as-you-type code completion
-        )     ; a nicer company UI (Emacs 26+ only)
-                                        ;helm              ; the *other* search engine for love and life
+        +auto)            ; as-you-type code completion
+                                        ; a nicer company UI (Emacs 26+ only)
+       helm              ; the *other* search engine for love and life
                                         ;ido               ; the other *other* search engine...
        (ivy              ; a search engine for love and life
         +childframe)     ; uses childframes for popups (Emacs 26+ only)
@@ -50,7 +50,7 @@
         +defaults)       ; default popup rules
        pretty-code
        tabbar            ; FIXME an (incomplete) tab bar for Emacs
-       ;unicode           ; extended unicode support for various languages
+                                        ;unicode           ; extended unicode support for various languages
        vc-gutter
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        window-select     ; visually switch windows
@@ -66,8 +66,8 @@
        :emacs
        (dired             ; making dired pretty [functional]
         +ranger
-        +icons
-        )
+        +icons)
+
        electric          ; smarter, keyword-based electric-indent
        eshell            ; a consistent, cross-platform shell (WIP)
        imenu             ; an imenu sidebar and searchable code index
@@ -161,18 +161,17 @@
         +wordnut         ; wordnet (wn) search
         +langtool)       ; a proofreader (grammar/style check) for Emacs
 
-       :collab
-       ;;floobits          ; peer programming for a price
-       ;;impatient-mode    ; show off code over HTTP
+       :collab)
+;;floobits          ; peer programming for a price
+;;impatient-mode    ; show off code over HTTP
 
                                         ; :config
-       ;; For literate config users. This will tangle+compile a config.org
-       ;; literate config in your `doom-private-dir' whenever it changes.
-       ;;literate
+;; For literate config users. This will tangle+compile a config.org
+;; literate config in your `doom-private-dir' whenever it changes.
+;;literate
 
-       ;; The default module sets reasonable defaults for Emacs. It also
-       ;; provides a Spacemacs-inspired keybinding scheme, a custom yasnippet
-       ;; library, and additional ex commands for evil-mode. Use it as a
-       ;; reference for your own modules.
-       ;; (default +bindings +evil-commands))
-       )
+;; The default module sets reasonable defaults for Emacs. It also
+;; provides a Spacemacs-inspired keybinding scheme, a custom yasnippet
+;; library, and additional ex commands for evil-mode. Use it as a
+;; reference for your own modules.
+;; (default +bindings +evil-commands))

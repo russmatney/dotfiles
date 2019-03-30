@@ -80,12 +80,19 @@
  :textobj "B" #'evil-textobj-anyblock-inner-block #'evil-textobj-anyblock-a-block
  :textobj "i" #'evil-indent-plus-i-indent         #'evil-indent-plus-a-indent
  :textobj "I" #'evil-indent-plus-i-indent-up      #'evil-indent-plus-a-indent-up
- :textobj "J" #'evil-indent-plus-i-indent-up-down #'evil-indent-plus-a-indent-up-down
- )
+ :textobj "J" #'evil-indent-plus-i-indent-up-down #'evil-indent-plus-a-indent-up-down)
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Editor helpers
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;TODO give these section headers magic `otto` powers
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; 1. Find File
+;;    These help move around the machine.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (map!
@@ -94,8 +101,10 @@
      :desc "Open ~/.zshrc"                 :n "v" (lambda! (find-file "~/.zshrc"))
      :desc "Open ~/.doom.d/config.el"      :n "c" (lambda! (find-file "~/.doom.d/config.el"))
      :desc "Open ~/.doom.d/+bindings.el"   :n "b" (lambda! (find-file "~/.doom.d/+bindings.el"))
+     :desc "FIND FILE" :n "f" (lambda! (find-file "~/.doom.d/+bindings.el"))
      :desc "Open ~/.doom.d/+langs.el"      :n "l" (lambda! (find-file "~/.doom.d/+langs.el"))
      :desc "Open ~/.emacs.d/readme.md"     :n "d" (lambda! (find-file "~/.emacs.d/README.md"))
+     :desc "Open ~/urbint/grid"          :n "g" (lambda! (find-file "~/urbint/grid/README.md"))
      :desc "Open ~/.zshrc"                 :n "z" (lambda! (find-file "~/.zshrc"))
      :desc "Open ~/.config/i3/config"      :n "i" (lambda! (find-file "~/.config/i3/config"))
      :desc "Open ~/.config/polybar/config" :n "p" (lambda! (find-file "~/.config/polybar/config"))
@@ -104,8 +113,7 @@
      :desc "Open ~/todo/urbint.org"        :n "u" (lambda! (find-file "~/todo/urbint.org"))
      :desc "Open ~/.config/alacritty/alacritty.yml" :n "a" (lambda! (find-file "~/.config/alacritty/alacritty.yml"))
      :desc "Create new snippet"            :n "s" #'yas-new-snippet
-     :desc "Edit snippet"                  :n "e" #'yas-visit-snippet-file
-     )))
+     :desc "Edit snippet"                  :n "e" #'yas-visit-snippet-file)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -165,10 +173,10 @@
                                         ;"M-RET" #'toggle-frame-fullscreen
 
  "M-v" #'evil-paste-after
- "M-c" #'evil-copy
+ "M-c" #'evil-copy)
 
                                         ;"M-h" #'ns-do-hide-emacs
- )
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Kill the things
@@ -196,8 +204,8 @@
    :desc "Open vertical split"         :n  "s"  #'evil-window-split)
  (:leader
    :desc "Open vertical split"         :n  "\\" #'evil-window-vsplit
-   :desc "Open vertical split"         :n  "-"  #'evil-window-split)
- )
+   :desc "Open vertical split"         :n  "-"  #'evil-window-split))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Navigating Windows
@@ -223,8 +231,8 @@
 
  ;; quicker j/k hops
  :m "C-j" #'+default:multi-next-line
- :m "C-k" #'+default:multi-previous-line
- )
+ :m "C-k" #'+default:multi-previous-line)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Navigating Files/Buffers
@@ -240,8 +248,8 @@
  (:leader
    :desc "projectile-find-file"   :n  "p"   #'projectile-find-file
    :desc "(invalidate cache, then) projectile-find-file"   :n  "P"   (λ! (projectile-find-file t))
-   :desc "Find file"              :n  "."   #'find-file
-   ))
+   :desc "Find file"              :n  "."   #'find-file))
+
 
 (map!
  ;; recentf
@@ -255,8 +263,8 @@
  :n "M-b"   #'persp-switch-to-buffer
 
  ;; test toggle
- (:leader :desc "projectile-test-toggle" :n  "t" #'projectile-toggle-between-implementation-and-test)
- )
+ (:leader :desc "projectile-test-toggle" :n  "t" #'projectile-toggle-between-implementation-and-test))
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -277,10 +285,10 @@
  :n "]s"    #'+workspace/switch-right
 
  "M-p"    #'+workspace/switch-right
- "M-n"    #'+workspace/switch-left
+ "M-n"    #'+workspace/switch-left)
 
- ;; TODO add "M-1" to go to workspace "1", etc.
- )
+;; TODO add "M-1" to go to workspace "1", etc.
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -342,8 +350,8 @@
    :n "-"        #'dired-up-directory
    :n "<return>" #'dired-find-alternate-file
    :n "/"        #'dired
-   :n "q"        (lambda! (quit-window t))
-   ))
+   :n "q"        (lambda! (quit-window t))))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Ranger
@@ -371,8 +379,8 @@
  (:after counsel
    (:map counsel-ag-map
      [backtab]  #'+ivy/wgrep-occur  ; search/replace on results
-     "C-SPC"    #'counsel-git-grep-recenter   ; preview
-     )))
+     "C-SPC"    #'counsel-git-grep-recenter)))   ; preview
+
 
 (map!
  (:after ivy
@@ -392,8 +400,8 @@
    "C-b" #'backward-word
    "C-f" #'forward-word
 
-   "C-v" (+ivy-do-action! #'counsel-projectile-find-file-action-other-window)
-   ))
+   "C-v" (+ivy-do-action! #'counsel-projectile-find-file-action-other-window)))
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -407,6 +415,13 @@
    :desc "Swiper"                :nv "f"   #'swiper
    :desc "swiper"                :nv "/"   #'swiper))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Popup menus
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(map!
+ (:leader
+   :desc "RAISE" :nv "r"   #'+popup/raise))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Help Mode

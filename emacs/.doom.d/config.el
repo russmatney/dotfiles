@@ -111,3 +111,52 @@
       (mapcar 'projectile-add-known-project expanded-proj-paths))))
 
                                         ;(set-projectile-known-projects)
+(comment
+ (defun list-project-paths-in-dir (dir-path)
+   (let ((proj-names (list-directory dir-path)))
+     (print proj-names)
+     (let ((expanded-proj-names (mapcar
+                                 (lambda (proj)
+                                   (expand-file-name
+                                    (concat dir-path proj)))
+                                 proj-names)))
+       expanded-proj-names)))
+
+ (expand-file-name (concat "~/russmatney" "/" "cosmos"))
+
+ (print (list-project-paths-in-dir "~/russmatney"))
+
+ (list-directory "~/russmatney")
+
+ (projectile-add-known-project))
+
+(defun grfn/insert-new-src-block ()
+  (interactive)
+  (let* ((current-src-block (org-element-at-point))
+         (src-block-head (save-excursion
+                           (goto-char (org-element-property
+                                       :begin current-src-block))
+                           (thing-at-point 'line t)))
+         (point-to-insert
+          (if-let (results-loc (org-babel-where-is-src-block-result))
+              (save-excursion
+                (goto-char results-loc)
+                (org-element-property
+                 :end
+                 (org-element-at-point)))
+            (org-element-property :end (org-element-at-point)))))
+    (goto-char point-to-insert)
+    (insert "\n")
+    (insert src-block-head)
+    (let ((contents (point-marker)))
+      (insert "\n#+END_SRC\n")
+      (goto-char contents))))
+
+(defun grfn/+org-insert-item (orig direction)
+  (interactive)
+  (if (and (org-in-src-block-p)
+           (equal direction 'below))
+      (grfn/insert-new-src-block)
+    (funcall orig direction)))
+
+(advice-add #'+org/insert-item :around #'grfn/+org-insert-item)

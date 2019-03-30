@@ -2,7 +2,7 @@
 
 choice=${1}
 
-supported="laptop work home algo"
+supported="laptop work home algo home-monitor-only"
 
 if [ -z $choice ]; then
   select opt in $supported; do
@@ -36,6 +36,11 @@ elif [ $choice == "home" ]; then
     xrandr \
         --output eDP-1 --pos 2560x540 --mode 1920x1080 \
         --output DP-1 --off \
+        --output DP-3 --mode 2560x1440 --pos 0x0
+    i3-msg mode "default"
+elif [ $choice == "home-monitor-only" ]; then
+    xrandr \
+        --output eDP-1 --off \
         --output DP-3 --mode 2560x1440 --pos 0x0
     i3-msg mode "default"
 elif [ $choice == "algo" ]; then
