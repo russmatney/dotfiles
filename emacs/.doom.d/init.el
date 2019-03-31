@@ -11,6 +11,7 @@
 ;; which removes the default configuration and uses my own.
 ;;
 
+
 (defvar +org-dir (expand-file-name "~/todo/"))
 
 (doom! :feature

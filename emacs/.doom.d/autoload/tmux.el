@@ -26,10 +26,10 @@
   "Switch to active tmux session"
   (interactive
    (list (completing-read "Switch TMUX Client: "
-         (mapcar (lambda (sess)
-                   (plist-get sess :name))
-                 (+tmux-list-sessions))
-         )))
+                          (mapcar (lambda (sess)
+                                    (plist-get sess :name))
+                                  (+tmux-list-sessions))
+                          )))
   (+tmux (concat "switch-client -t " client)))
 
 ;;;###autoload

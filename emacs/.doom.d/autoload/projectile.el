@@ -11,7 +11,7 @@
    (projectile-prepend-project-name "Switch to project: ") projectile-known-projects
    :preselect (and (projectile-project-p)
                    (abbreviate-file-name (projectile-project-root)))
-   :require-match f
+   :require-match nil
    :action
    (lambda (project-path)
      (let ((project-name

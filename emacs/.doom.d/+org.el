@@ -14,7 +14,7 @@
      "<M-left>"    nil
      "<M-right>"   nil
      "M-<tab>"     #'markdown-cycle
-)))
+     )))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -26,14 +26,14 @@
 (setq org-refile-targets '(("~/Dropbox/todo/todo.org" :maxlevel . 3)))
 
 (advice-add 'org-archive-subtree
-  :after
-    (lambda (&rest _)
-     (org-save-all-org-buffers)))
+            :after
+            (lambda (&rest _)
+              (org-save-all-org-buffers)))
 
 (advice-add 'org-refile
-  :after
-    (lambda (&rest _)
-     (org-save-all-org-buffers)))
+            :after
+            (lambda (&rest _)
+              (org-save-all-org-buffers)))
 
 
 
@@ -61,10 +61,10 @@
 
 (map!
  (:after markdown
-  (:map markdown-mode-map
-    "M-n" nil
-    "M-p" nil
-    )))
+   (:map markdown-mode-map
+     "M-n" nil
+     "M-p" nil
+     )))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -103,4 +103,3 @@
  (:leader
    (:desc "notes" :prefix "n"
      :desc "add story to clubhouse" :n "c" #'org-clubhouse-create-story)))
-

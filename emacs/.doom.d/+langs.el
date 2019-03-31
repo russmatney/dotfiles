@@ -40,9 +40,9 @@
     (intero-repl-load)
     (let ((last-buffer (current-buffer)))
       (intero-with-repl-buffer nil
-        (comint-simple-send
-         (get-buffer-process (current-buffer))
-         "main"))
+                               (comint-simple-send
+                                (get-buffer-process (current-buffer))
+                                "main"))
       (switch-to-buffer-other-window last-buffer)
       )))
 
@@ -104,7 +104,7 @@
 
 (map!
  (:after haskell-mode
-  (:map haskell-mode-map
+   (:map haskell-mode-map
      :n "g SPC" 'haskell-process-load-file
      :n "g RET" 'grfn/intero-run-tests
      ;; :n "g r"   'lsp-ui-peek-find-references
@@ -121,7 +121,7 @@
        (:desc "Format" :prefix "f"
          :desc "format imports" :n "i" 'urbint/format-haskell-imports
          :desc "format file (brittany)" :n "b" 'urbint/format-haskell-source
-     )))))
+         )))))
 
 (defun urbint/format-haskell-imports ()
   (interactive)
@@ -198,7 +198,7 @@
 
 (map!
  (:after flow-minor-mode
-  (:map flow-minor-mode-map
+   (:map flow-minor-mode-map
      :n "g d"   'flow-minor-jump-to-definition)))
 
 ;; (set-lookup-handlers! 'js2-mode :definition #'flow-minor-jump-to-definition)
@@ -223,7 +223,7 @@
     (interactive)
     (let* ((root (locate-dominating-file buffer-file-name "node_modules/flow-bin"))
            (executable (car (file-expand-wildcards
-                               (concat root "node_modules/flow-bin/*osx*/flow")))))
+                             (concat root "node_modules/flow-bin/*osx*/flow")))))
       (setq-local company-flow-executable executable)
       (setq-local flow-minor-default-binary executable)
       (setq-local flycheck-javascript-flow-executable executable)))
@@ -243,14 +243,14 @@
 
 (def-package! rjsx-mode
   :bind (:map rjsx-mode-map
-              ("<" . nil)
-              ("C-d" . nil)
-              (">" . nil))
+          ("<" . nil)
+          ("C-d" . nil)
+          (">" . nil))
   :config
   (setq js2-mode-show-parse-errors nil)
   (setq js2-mode-show-strict-warnings nil)
   (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
-)
+  )
 
 ;; (load! "+emacs-flow-jsx")
 ;; (def-package! flow-jsx-mode)
@@ -293,9 +293,9 @@
 (map!
  ;; (:after python-mode
  ;;  (:map python-mode-map
-     :n "g d"   '+lookup/definition
-     :n "g r"   '+lookup/references
-     :n "g f"   'py-yapf-buffer)
+ :n "g d"   '+lookup/definition
+ :n "g r"   '+lookup/references
+ :n "g f"   'py-yapf-buffer)
 ;; ))
 
 
@@ -380,7 +380,7 @@
           ("s" . "clojure.spec.alpha")))
 
   (setq cider-cljs-lein-repl
-	"(do (require 'figwheel-sidecar.repl-api)
+	    "(do (require 'figwheel-sidecar.repl-api)
          (figwheel-sidecar.repl-api/start-figwheel!)
          (figwheel-sidecar.repl-api/cljs-repl))")
   )
