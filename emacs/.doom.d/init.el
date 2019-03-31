@@ -29,7 +29,7 @@
        (company          ; the ultimate code completion backend
         +auto)            ; as-you-type code completion
                                         ; a nicer company UI (Emacs 26+ only)
-       helm              ; the *other* search engine for love and life
+                                        ;helm              ; the *other* search engine for love and life
                                         ;ido               ; the other *other* search engine...
        (ivy              ; a search engine for love and life
         +childframe)     ; uses childframes for popups (Emacs 26+ only)
@@ -38,20 +38,21 @@
        deft
        doom              ; what makes DOOM look the way it does
        doom-dashboard    ; a nifty splash screen for Emacs
-       modeline     ; a snazzy Atom-inspired mode-line
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
        evil-goggles      ; display visual hints when editing in evil
        fci
        hl-todo           ; highlight TODO/FIXME/NOTE tags
+                                        ;indent-guides
+       modeline     ; a snazzy Atom-inspired mode-line
        nav-flash         ; blink the current line after jumping
        ;; neotree           ; a project drawer, like NERDTree for vim
        treemacs          ; a project drawer, like neotree but cooler
        (popup            ; tame sudden yet inevitable temporary windows
         +all             ; catch all popups that start with an asterix
         +defaults)       ; default popup rules
-       pretty-code
+                                        ;pretty-code
        tabbar            ; FIXME an (incomplete) tab bar for Emacs
-                                        ;unicode           ; extended unicode support for various languages
+       unicode           ; extended unicode support for various languages
        vc-gutter
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        window-select     ; visually switch windows
@@ -66,13 +67,13 @@
 
        :emacs
        (dired             ; making dired pretty [functional]
-        +ranger
+                                        ;+ranger
         +icons)
 
        electric          ; smarter, keyword-based electric-indent
        eshell            ; a consistent, cross-platform shell (WIP)
        imenu             ; an imenu sidebar and searchable code index
-                                        ;term              ; terminals in Emacs
+       term              ; terminals in Emacs
        vc                ; remember, remember that commit in November
 
        :tools
