@@ -75,16 +75,16 @@ cursor-scroll = ns-resize
 
 [bar/bar1]
 inherit = bar/base
-monitor = ${env:MONITOR:eDP-1}
-; monitor = ${env:MONITOR:DP-3}
+monitor = ${env:MONITOR:eDP1}
+; monitor = ${env:MONITOR:DP3}
 tray-position = left
 tray-padding = 2
 
 [bar/bar2]
 inherit = bar/base
 ; TODO: detect this!
-; monitor = ${env:MONITOR:DP-3}
-monitor = ${env:MONITOR:DP-1}
+; monitor = ${env:MONITOR:DP3}
+monitor = ${env:MONITOR:DP1}
 
 
 [module/xwindow]

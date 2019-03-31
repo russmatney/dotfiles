@@ -149,8 +149,7 @@ bindsym $mod+Return exec --no-startup-id "alacritty --working-directory=/home/ru
 # bindsym $mod+Return exec --no-startup-id "alacritty"
 
 # browser
-# bindsym $mod+b exec --no-startup-id brave
-bindsym $mod+b exec --no-startup-id google-chrome-stable
+bindsym $mod+b exec --no-startup-id brave
 
 # lock
 bindsym $mod+Shift+q exec --no-startup-id i3lock -c 000000
@@ -167,19 +166,19 @@ bindsym $mod+Shift+a exec --no-startup-id ~/.local/bin/screenshot-region
 bindsym $mod+m mode "monitor"
 mode "monitor" {
      # laptop
-     bindsym l exec --no-startup-id set-monitor-config laptop
+     bindsym l exec --no-startup-id ~/.local/bin/set-monitor-config laptop
 
      # work laptop + monitor
-     bindsym w exec --no-startup-id set-monitor-config work
+     bindsym w exec --no-startup-id ~/.local/bin/set-monitor-config work
 
      # home laptop + monitor
-     bindsym h exec --no-startup-id set-monitor-config home
+     bindsym h exec --no-startup-id ~/.local/bin/set-monitor-config home
 
      # home laptop w/ monitor only
-     bindsym $mod+h exec --no-startup-id set-monitor-config home-monitor-only
+     bindsym $mod+h exec --no-startup-id ~/.local/bin/set-monitor-config home-monitor-only
 
      # home monitor
-     bindsym a exec --no-startup-id set-monitor-config algo
+     bindsym a exec --no-startup-id ~/.local/bin/set-monitor-config algo
 
      bindsym Return mode "default"
      bindsym Escape mode "default"
@@ -195,9 +194,7 @@ for_window [title="Terminal"] border pixel 2
 exec_always --no-startup-id compton -f --inactive-dim 0.1 -D 5 --active-opacity 0.9 -i 0.95
 exec_always --no-startup-id compton -cCFb --backend glx --vsync opengl
 
-# exec_always --no-startup-id feh --bg-scale ~/Desktop/wallpapers/firewatch_green_3440x1440.jpg
 exec_always --no-startup-id feh --bg-scale ~/Dropbox/wallpapers/futuristic-city-sci-fi-skyscrapers-night-dark-city-flying-vehicles-fantasy-4150.jpg
-# exec_always --no-startup-id feh --bg-scale ~/Desktop/wallpapers/firewatch_classic_3440x1440.jpg
 
 # start dropbox
 exec_always --no-startup-id ~/.dropbox-dist/dropboxd &
@@ -260,26 +257,26 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
-workspace 1 output eDP-1
-workspace 2 output eDP-1
-workspace 3 output eDP-1
-workspace 4 output eDP-1
-workspace 5 output eDP-1
+workspace 1 output eDP1
+workspace 2 output eDP1
+workspace 3 output eDP1
+workspace 4 output eDP1
+workspace 5 output eDP1
 
 # TODO: better than this!
-# workspace 1 output DP-3
-# workspace 2 output DP-3
-# workspace 3 output DP-3
-# workspace 4 output DP-3
-# workspace 5 output DP-3
-# workspace 6 output DP-3
-# workspace 7 output DP-3
-# workspace 8 output DP-3
-# workspace 9 output DP-3
-# workspace 0 output DP-3
+# workspace 1 output DP3
+# workspace 2 output DP3
+# workspace 3 output DP3
+# workspace 4 output DP3
+# workspace 5 output DP3
+# workspace 6 output DP3
+# workspace 7 output DP3
+# workspace 8 output DP3
+# workspace 9 output DP3
+# workspace 0 output DP3
 
-workspace 6 output DP-1
-workspace 7 output DP-1
-workspace 8 output DP-1
-workspace 9 output DP-1
-workspace 0 output DP-1
+workspace 6 output DP1
+workspace 7 output DP1
+workspace 8 output DP1
+workspace 9 output DP1
+workspace 0 output DP1
