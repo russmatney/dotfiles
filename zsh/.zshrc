@@ -134,13 +134,13 @@ bindkey -M vicmd 'k' to-tmux-copy-mode \
 ################################################################################
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/russ/google-cloud-sdk/path.zsh.inc' ]; then
-    source '/Users/russ/google-cloud-sdk/path.zsh.inc';
+if [ -f '/home/russ/google-cloud-sdk/path.zsh.inc' ]; then
+    source '/home/russ/google-cloud-sdk/path.zsh.inc';
 fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/russ/google-cloud-sdk/completion.zsh.inc' ]; then
-    source '/Users/russ/google-cloud-sdk/completion.zsh.inc';
+if [ -f '/home/russ/google-cloud-sdk/completion.zsh.inc' ]; then
+    source '/home/russ/google-cloud-sdk/completion.zsh.inc';
 fi
 
 
@@ -219,7 +219,6 @@ alias kc='kubectl'
 alias kca='kubectl --all-namespaces'
 alias kcd='kubectl --namespace=default'
 alias kg='kubectl get'
-alias kp='kswitch'
 alias kpods='kubectl get pods'
 alias kpodsa='kubectl get pods --all-namespaces'
 alias kings='kubectl get ing'
@@ -228,7 +227,6 @@ alias kdeploys='kubectl get deployments'
 alias kdns='kubectl get ing'
 alias kedit='kubectl edit deployments ' # the trailing space is intentional
 alias kt='kubetail'
-
 
 ################################################################################
 # Git
