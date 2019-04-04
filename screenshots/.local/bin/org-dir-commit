@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd ~/Dropbox/todo
+
+git add .
+git commit -m 'cron: org commit'
