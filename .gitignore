@@ -18,3 +18,4 @@ emacs/.doom.d/+private.el
 urbint
 scratch*
 focus/.local/bin/focus
+X/.Xauthority

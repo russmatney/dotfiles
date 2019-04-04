@@ -42,6 +42,9 @@
 ;; turn on whitespace mode
 (global-whitespace-mode t)
 
+;; but not in org
+(setq whitespace-global-modes '(not org-mode))
+
 ;; turn on whitespace cleanup
 (add-hook! 'before-save-hook 'whitespace-cleanup)
 
@@ -86,49 +89,6 @@
          :headline-levels 2
          :auto-preamble t)))
                                         ; (org-publish-current-project)
-
-(setq github-roots '("~/russmatney/*"
-                     "~/urbint/*"
-                     "~/rschmukler/*"
-                     "~/bolasblack/*"
-                     "~/clojure/*"
-                     "~/duct-framework/*"
-                     "~/hlissner/*"
-                     "~/jacekschae/*"
-                     "~/l3nz/*"
-                     "~/lambduh/*"
-                     "~/nubank/*"
-                     "~/rafaelrinaldi/*"
-                     "~/smblott-github/*"
-                     "~/walkable-server/*"))
-
-(defun flatten (list-of-lists)
-  (apply #'append list-of-lists))
-
-(defun set-projectile-known-projects ()
-  (let ((all-proj-paths (flatten (mapcar 'file-expand-wildcards github-roots))))
-    (let ((expanded-proj-paths (mapcar 'expand-file-name all-proj-paths)))
-      (mapcar 'projectile-add-known-project expanded-proj-paths))))
-
-                                        ;(set-projectile-known-projects)
-(comment
- (defun list-project-paths-in-dir (dir-path)
-   (let ((proj-names (list-directory dir-path)))
-     (print proj-names)
-     (let ((expanded-proj-names (mapcar
-                                 (lambda (proj)
-                                   (expand-file-name
-                                    (concat dir-path proj)))
-                                 proj-names)))
-       expanded-proj-names)))
-
- (expand-file-name (concat "~/russmatney" "/" "cosmos"))
-
- (print (list-project-paths-in-dir "~/russmatney"))
-
- (list-directory "~/russmatney")
-
- (projectile-add-known-project))
 
 (defun grfn/insert-new-src-block ()
   (interactive)
