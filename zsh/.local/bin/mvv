@@ -1,0 +1,8 @@
+#!/bin/bash
+# mv.sh
+dir="$2"
+tmp="$2"; tmp="${tmp: -1}"
+[ "$tmp" != "/" ] && dir="$(dirname "$2")"
+[ -a "$dir" ] ||
+mkdir -p "$dir" &&
+mv "$@"
