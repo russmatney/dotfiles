@@ -3,4 +3,4 @@
 cd ~/Dropbox/todo
 
 git add .
-git commit -m 'cron: org commit'
+git commit -m 'cron: org commit' -m "Hostname: `hostname`"
