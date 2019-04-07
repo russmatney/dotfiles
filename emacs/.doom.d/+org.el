@@ -13,9 +13,7 @@
      "A-<tab>"     #'markdown-cycle
      "<M-left>"    nil
      "<M-right>"   nil
-     "M-<tab>"     #'markdown-cycle
-     )))
-
+     "M-<tab>"     #'markdown-cycle)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org Settings
@@ -56,16 +54,21 @@
      "M-v"    #'evil-paste-after
      "M-RET"  #'org-insert-item
      "M-t"    #'org-set-tags
-     "TAB"    #'+org/toggle-fold
-     )))
+     "TAB"    #'+org/toggle-fold)))
+
+(map!
+ (:after org
+   (:map evil-org-mode-map
+     "M-h"    nil
+     "M-l"    nil
+     "A-h"    nil
+     "A-l"    nil)))
 
 (map!
  (:after markdown
    (:map markdown-mode-map
      "M-n" nil
-     "M-p" nil
-     )))
-
+     "M-p" nil)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org Capture
@@ -82,8 +85,8 @@
 (defun +russ/org-capture-hook ()
   (setq org-capture-templates '(("t" "Todo [inbox]" entry
                                  (file+headline "~/Dropbox/todo/inbox.org" "Tasks")
-                                 "* [ ] %i%?")
-                                )
+                                 "* [ ] %i%?"))
+
 
         org-agenda-files '("~/Dropbox/todo/inbox.org"
                            "~/Dropbox/todo/todo.org"

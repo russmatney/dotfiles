@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: listening
+# key: l
+# --
+L: `(shell-command-to-string "python ~/.config/polybar/scripts/spotify_status.py")`
