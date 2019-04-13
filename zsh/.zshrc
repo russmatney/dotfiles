@@ -271,6 +271,8 @@ alias delete-merged-branches="git checkout master && git branch --merged | grep 
 ################################################################################
 
 alias sc='systemctl'
+alias scr='systemctl restart'
+alias scs='systemctl status'
 alias jc='journalctl'
 
 ################################################################################
