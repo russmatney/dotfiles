@@ -43,6 +43,9 @@ bindsym $mod+q kill
 # switch focus between monitors
 bindsym $mod+Tab focus output left
 
+# switch focus between monitors
+bindsym $mod+e exec --no-startup-id thunar
+
 ################################################################################
 # universal script commands
 ################################################################################
@@ -190,9 +193,14 @@ client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
 for_window [class="Emacs"] border pixel 2
 for_window [title="Terminal"] border pixel 2
 
+# bspwm, kind of
+for_window [class=".*"] split toggle
+
+# TODO exec always only when necessary/cleanup before hand?
+
 # Compositor (Animations, Shadows, Transparency)
-exec_always --no-startup-id compton -f --inactive-dim 0.1 -D 5 --active-opacity 0.9 -i 0.95
-exec_always --no-startup-id compton -cCFb --backend glx --vsync opengl
+exec_always --no-startup-id compton --inactive-dim 0.1 --active-opacity 0.9 -i 0.95
+# exec_always --no-startup-id compton -cCfb --backend glx --vsync opengl
 
 exec_always --no-startup-id feh --bg-scale ~/Dropbox/wallpapers/futuristic-city-sci-fi-skyscrapers-night-dark-city-flying-vehicles-fantasy-4150.jpg
 
