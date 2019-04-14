@@ -53,7 +53,7 @@
      "A-l"    nil
      "M-v"    #'evil-paste-after
      "M-RET"  #'org-insert-item
-     "M-t"    #'org-set-tags
+     "M-t"    #'org-set-tags-command
      "TAB"    #'+org/toggle-fold)))
 
 (map!

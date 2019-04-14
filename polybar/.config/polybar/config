@@ -65,7 +65,7 @@ font-4 = "DejaVu Sans;3"
 ; font-2 = "Siji:pixelsize=10;1"
 
 modules-left = i3 xwindow
-modules-center = hostname backlight
+modules-center = hostname backlight current-task
 modules-right = info-hackspeed openweathermap-fullfeatured isactive-bluetooth spotify pulseaudio memory cpu wlan battery temperature date powermenu
 
 wm-restack = i3
@@ -433,6 +433,13 @@ type = custom/script
 interval = 256
 format-padding = 0
 exec = echo "$(uname -n)"
+
+[module/current-task]
+type = custom/script
+format-prefix = " "
+format = <label>
+exec = /home/russ/.local/bin/cosmos tasks --tag current
+format-underline = #E62063
 
 [module/spotify]
 type = custom/script
