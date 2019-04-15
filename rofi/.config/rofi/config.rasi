@@ -22,6 +22,11 @@ configuration {
     display-window:                 "";
     display-combi:                  "Go to";
     show-icons: true;
+
+    kb-remove-to-eol: "";
+    kb-accept-entry: "Return,KP_Enter";
+    kb-row-down: "Down,Control+n,Control+j";
+    kb-row-up:   "Control+k,Up,Control+p,ISO_Left_Tab";
 }
 
 

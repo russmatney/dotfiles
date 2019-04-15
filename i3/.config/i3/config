@@ -73,6 +73,9 @@ bindsym $mod+minus exec --no-startup-id ~/.local/bin/focus new-split -h true >> 
 # d for quit
 bindsym $mod+d exec --no-startup-id ~/.local/bin/focus close >> ~/tmp/errors
 
+# dwim
+bindsym $mod+shift+d exec --no-startup-id ~/.local/bin/cosmos dwim
+
 ################################################################################
 # Layout/Window Position
 ################################################################################
@@ -152,7 +155,7 @@ bindsym $mod+Return exec --no-startup-id "alacritty --working-directory=/home/ru
 # bindsym $mod+Return exec --no-startup-id "alacritty"
 
 # browser
-bindsym $mod+b exec --no-startup-id brave
+bindsym $mod+b exec --no-startup-id ~/.local/bin/cosmos open-bookmark
 
 # lock
 bindsym $mod+Shift+q exec --no-startup-id i3lock -c 000000
