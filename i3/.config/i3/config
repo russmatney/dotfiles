@@ -55,10 +55,10 @@ bindsym $mod+n exec --no-startup-id smart-walk-workspace next
 bindsym $mod+p exec --no-startup-id smart-walk-workspace previous
 
 # change focus
-bindsym $mod+h exec --no-startup-id ~/.local/bin/focus mf left >> ~/tmp/errors
-bindsym $mod+l exec --no-startup-id ~/.local/bin/focus mf right >> ~/tmp/errors
-bindsym $mod+j exec --no-startup-id ~/.local/bin/focus mf down >> ~/tmp/errors
-bindsym $mod+k exec --no-startup-id ~/.local/bin/focus mf up >> ~/tmp/errors
+bindsym $mod+h exec --no-startup-id ~/.local/bin/cosmos mf left --no-return
+bindsym $mod+l exec --no-startup-id ~/.local/bin/cosmos mf right --no-return
+bindsym $mod+j exec --no-startup-id ~/.local/bin/cosmos mf down --no-return
+bindsym $mod+k exec --no-startup-id ~/.local/bin/cosmos mf up --no-return
 
 # relative position
 bindsym $mod+Shift+h focus left
@@ -67,14 +67,14 @@ bindsym $mod+Shift+k focus up
 bindsym $mod+Shift+l focus right
 
 # univ-focus-emux commands
-bindsym $mod+backslash exec --no-startup-id ~/.local/bin/focus new-split >> ~/tmp/errors
-bindsym $mod+minus exec --no-startup-id ~/.local/bin/focus new-split -h true >> ~/tmp/errors
+bindsym $mod+backslash exec --no-startup-id ~/.local/bin/cosmos new-split --no-return
+bindsym $mod+minus exec --no-startup-id ~/.local/bin/cosmos new-split -h true --no-return
 
 # d for quit
-bindsym $mod+d exec --no-startup-id ~/.local/bin/focus close >> ~/tmp/errors
+bindsym $mod+d exec --no-startup-id ~/.local/bin/cosmos close-thing --no-return
 
 # dwim
-bindsym $mod+shift+d exec --no-startup-id ~/.local/bin/cosmos dwim
+bindsym $mod+shift+d exec --no-startup-id ~/.local/bin/cosmos dwim --no-return
 
 ################################################################################
 # Layout/Window Position
@@ -156,6 +156,7 @@ bindsym $mod+Return exec --no-startup-id "alacritty --working-directory=/home/ru
 
 # browser
 bindsym $mod+b exec --no-startup-id ~/.local/bin/cosmos open-bookmark
+bindsym $mod+shift+b exec --no-startup-id google-chrome-stable
 
 # lock
 bindsym $mod+Shift+q exec --no-startup-id i3lock -c 000000
