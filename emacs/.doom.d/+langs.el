@@ -43,8 +43,8 @@
                                (comint-simple-send
                                 (get-buffer-process (current-buffer))
                                 "main"))
-      (switch-to-buffer-other-window last-buffer)
-      )))
+      (switch-to-buffer-other-window last-buffer))))
+
 
 (after! haskell-mode
   (flycheck-mode)
@@ -120,8 +120,8 @@
      (:leader
        (:desc "Format" :prefix "f"
          :desc "format imports" :n "i" 'urbint/format-haskell-imports
-         :desc "format file (brittany)" :n "b" 'urbint/format-haskell-source
-         )))))
+         :desc "format file (brittany)" :n "b" 'urbint/format-haskell-source)))))
+
 
 (defun urbint/format-haskell-imports ()
   (interactive)
@@ -249,8 +249,8 @@
   :config
   (setq js2-mode-show-parse-errors nil)
   (setq js2-mode-show-strict-warnings nil)
-  (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
-  )
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode)))
+
 
 ;; (load! "+emacs-flow-jsx")
 ;; (def-package! flow-jsx-mode)
@@ -343,8 +343,8 @@
          :n  "n"  #'cider-repl-set-ns
          :n  "j"  #'cider-find-var
          (:desc "docs" :prefix "d"
-           :desc "Browse Namespace"  :n  "n" #'cider-browse-ns
-           :desc "Browse Spec"       :n  "s" #'cider-browse-spec)
+           :desc "Browse Namespace" :n  "n" #'cider-browse-ns
+           :desc "Browse Spec"      :n  "s" #'cider-browse-spec)
          :n  "h"  #'cider-doc
          :n  "c"  #'cider-repl-clear-buffer
          :n  "i"  #'cider-inspect-last-result
@@ -363,6 +363,10 @@
   :mode ("\\.cljs$" . clojurescript-mode)
   :mode ("\\.cljc$" . clojurec-mode)
 
+  :hook
+  (clojure-mode . aggressive-indent-mode)
+  (lisp-mode . aggressive-indent-mode)
+
   :config
   (setq cljr-magic-require-namespaces
         '(("io" . "clojure.java.io")
@@ -379,32 +383,52 @@
           ("json" . "cheshire.core")
           ("s" . "clojure.spec.alpha")))
 
-  (setq cider-cljs-lein-repl
-	    "(do (require 'figwheel-sidecar.repl-api)
-         (figwheel-sidecar.repl-api/start-figwheel!)
-         (figwheel-sidecar.repl-api/cljs-repl))")
-  )
+  (setq clojure-align-forms-automatically t)
 
-(def-package! paxedit
-  :config
-  (map!
-   (:map paxedit-mode-map
-     :n ">>" #'evil-shift-right
-     :n ">e" #'paxedit-transpose-forward
-     :n ">)" #'sp-forward-slurp-sexp
-     :n ">(" #'sp-backward-barf-sexp
-     :n ">I" #'grfn/insert-at-sexp-end
-     :n ">a" #'grfn/insert-at-form-end
-     :n "<<" #'evil-shift-left
-     :n "<e" #'paxedit-transpose-backward
-     :n "<)" #'sp-forward-barf-sexp
-     :n "<(" #'sp-backward-slurp-sexp
-     :n "<I" #'grfn/insert-at-sexp-start
-     :n "<a" #'grfn/insert-at-form-start))
+  (setq cider-cljs-lein-repl
+        "(do (require 'figwheel-sidecar.repl-api)
+         (figwheel-sidecar.repl-api/start-figwheel!)
+         (figwheel-sidecar.repl-api/cljs-repl))"))
+
+(def-package! lispyville
   :hook
-  (clojure-mode . smartparens-mode)
-  (clojure-mode . paxedit-mode)
-  (emacs-lisp-mode . paxedit-mode))
+  (emacs-lisp-mode . lispyville-mode)
+  (clojure-mode . lispyville-mode)
+  (lisp-mode . lispyville-mode)
+  :config
+  (lispyville-set-key-theme
+   '(operators
+     c-w
+     prettify
+     text-objects
+     atom-motions ;
+     additional-motions
+     commentary
+     slurp/barf-lispy
+     wrap
+     additional
+     additional-insert)))
+
+;; (def-package! paxedit
+;;   :config
+;;   (map!
+;;    (:map paxedit-mode-map
+;;      :n ">>" #'evil-shift-right
+;;      :n ">e" #'paxedit-transpose-forward
+;;      :n ">)" #'sp-forward-slurp-sexp
+;;      :n ">(" #'sp-backward-barf-sexp
+;;      :n ">I" #'grfn/insert-at-sexp-end
+;;      :n ">a" #'grfn/insert-at-form-end
+;;      :n "<<" #'evil-shift-left
+;;      :n "<e" #'paxedit-transpose-backward
+;;      :n "<)" #'sp-forward-barf-sexp
+;;      :n "<(" #'sp-backward-slurp-sexp
+;;      :n "<I" #'grfn/insert-at-sexp-start
+;;      :n "<a" #'grfn/insert-at-form-start))
+;;   :hook
+;;   (clojure-mode . smartparens-mode)
+;;   (clojure-mode . paxedit-mode)
+;;   (emacs-lisp-mode . paxedit-mode))
 
 (defmacro define-move-and-insert
     (name &rest body)

@@ -58,3 +58,7 @@
 
 ;; python
 (package! py-yapf)
+
+;; clojure
+(package! aggressive-indent)
+(package! lispyville)
