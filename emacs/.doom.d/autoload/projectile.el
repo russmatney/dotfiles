@@ -11,6 +11,7 @@
                      "~/l3nz/*"
                      "~/lambduh/*"
                      "~/nubank/*"
+                     "~/oakes/*"
                      "~/rafaelrinaldi/*"
                      "~/smblott-github/*"
                      "~/walkable-server/*"))
