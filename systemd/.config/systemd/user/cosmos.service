@@ -1,0 +1,11 @@
+[Unit]
+Description=cosmos server
+
+[Service]
+Type=simple
+WorkingDirectory=/home/russ
+ExecStart=/home/russ/russmatney/cosmos/start.sh
+Restart=on-failure
+
+[Install]
+WantedBy=graphical.target

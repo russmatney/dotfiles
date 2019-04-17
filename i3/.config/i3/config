@@ -153,7 +153,8 @@ mode "window" {
 bindsym $mod+Shift+Return exec --no-startup-id emacsclient --alternate-editor='' --no-wait --create-frame --display $DISPLAY
 
 # terminal
-bindsym $mod+Return exec --no-startup-id "alacritty --working-directory=/home/russ/dotfiles -e 'tmux'"
+# bindsym $mod+Return exec --no-startup-id "alacritty --working-directory=/home/russ/dotfiles -e 'tmux'"
+bindsym $mod+Return exec --no-startup-id ~/.local/bin/cosmos open tmux
 
 # browser
 bindsym $mod+b exec --no-startup-id ~/.local/bin/cosmos open-bookmark
