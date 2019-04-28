@@ -21,7 +21,13 @@
 
 (setq org-archive-location (concat "~/Dropbox/todo/archive/" (format-time-string "%Y-%m") ".org::"))
 
-(setq org-refile-targets '(("~/Dropbox/todo/todo.org" :maxlevel . 3)))
+;; allow refiling into a file without choosing a headline
+(setq org-refile-use-outline-path 'file)
+(setq org-refile-allow-creating-parent-nodes t)
+(setq org-refile-targets
+      '(("~/Dropbox/todo/todo.org" :maxlevel . 2)
+        ("~/Dropbox/todo/specs.org" :maxlevel . 2)))
+
 
 (advice-add 'org-archive-subtree
             :after
