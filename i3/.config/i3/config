@@ -202,7 +202,7 @@ for_window [title="Terminal"] border pixel 2
 # TODO exec always only when necessary/cleanup before hand?
 
 # Compositor (Animations, Shadows, Transparency)
-exec_always --no-startup-id compton --inactive-dim 0.1 --active-opacity 0.9 -i 0.95
+# exec_always --no-startup-id compton --inactive-dim 0.1 --active-opacity 0.9 -i 0.95
 # exec_always --no-startup-id compton -cCfb --backend glx --vsync opengl
 
 exec_always --no-startup-id feh --bg-scale ~/Dropbox/wallpapers/cityscape-cartoon.jpg
@@ -241,19 +241,19 @@ bindsym $mod+u scratchpad show
 # Multi-Monitor and Workspaces
 ################################################################################
 
-for_window [class="Slack"] move to workspace number 1
-for_window [class="Spotify"] move to workspace number 2
-
 set $wn1 "1: slack"
 set $wn2 "2: spotify"
 set $wn3 "3: web"
 set $wn4 "4: web-debug"
 set $wn5 "5: cypress"
 set $wn6 "6: dev"
-set $wn7 "7: kubernetes"
+set $wn7 "7: orghub"
 set $wn8 "8: cosmos"
-set $wn9 "9: wildcard"
+set $wn9 "9: todo"
 set $wn0 "10: dotfiles"
+
+for_window [class="Slack"] move to workspace $wn1
+for_window [class="Spotify"] move to workspace $wn2
 
 # switch to workspace
 bindsym $mod+1 workspace number $wn1
@@ -279,16 +279,16 @@ bindsym $mod+Shift+8 move container to workspace number $wn8
 bindsym $mod+Shift+9 move container to workspace number $wn9
 bindsym $mod+Shift+0 move container to workspace number $wn0
 
-workspace 1 output HDMI-0 DP3 eDP1
-workspace 2 output HDMI-0 DP3 eDP1
-workspace 3 output HDMI-0 DP3 eDP1
-workspace 4 output HDMI-0 DP3 eDP1
-workspace 5 output HDMI-0 DP3 eDP1
-workspace 6 output HDMI-0 DP3 DP1 eDP1
-workspace 7 output HDMI-0 DP3 DP1 eDP1
-workspace 8 output HDMI-0 DP3 DP1 eDP1
-workspace 9 output HDMI-0 DP3 DP1 eDP1
-workspace 0 output HDMI-0 DP3 DP1 eDP1
+workspace $wn1 output HDMI-0 DP3 eDP1
+workspace $wn2 output HDMI-0 DP3 eDP1
+workspace $wn3 output HDMI-0 DP3 eDP1
+workspace $wn4 output HDMI-0 DP3 eDP1
+workspace $wn5 output HDMI-0 DP3 eDP1
+workspace $wn6 output HDMI-0 DP3 DP1 eDP1
+workspace $wn7 output HDMI-0 DP3 DP1 eDP1
+workspace $wn8 output HDMI-0 DP3 DP1 eDP1
+workspace $wn9 output HDMI-0 DP3 DP1 eDP1
+workspace $wn0 output HDMI-0 DP3 DP1 eDP1
 
 bindsym $mod+n exec i3-input -F 'rename workspace to "%s"' -P 'New name for this workspace: '
 

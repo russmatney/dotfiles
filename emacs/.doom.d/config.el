@@ -12,7 +12,7 @@
 ;;
 
 ;;; Private keys'n'such
-;;(load! "+private")
+(load! "+private")
 
 ;; (defvar +russ-dir (file-name-directory load-file-name))
 

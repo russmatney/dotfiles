@@ -1,5 +1,5 @@
 #!/usr/bin/zsh
 
-echo "switching to client: " $1
-sleep 1
+# echo "switching to client: " $1
+# sleep 1
 exec tmux attach -t $1
