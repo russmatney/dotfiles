@@ -265,6 +265,7 @@ alias gwip="git commit -m 'wip'"
 
 alias delete-merged-branches="git checkout master && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 
+alias hst="cosmos hub-status"
 
 ################################################################################
 # Systemctl
