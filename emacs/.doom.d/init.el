@@ -14,18 +14,7 @@
 
 (defvar +org-dir (expand-file-name "~/todo/"))
 
-(doom! :feature
-       debugger          ; FIXME stepping through code, to help you add bugs
-       eval              ; run code, run (also, repls)
-       (evil +everywhere); come to the dark side, we have cookies
-       file-templates    ; auto-snippets for empty files
-       (lookup           ; helps you navigate your code and documentation
-        +devdocs         ; ...on devdocs.io online
-        +docsets)        ; ...or in Dash docsets locally
-       snippets          ; my elves. They type so I don't have to
-       workspaces        ; tab emulation, persistence & separate workspaces
-
-       :completion
+(doom! :completion
        (company          ; the ultimate code completion backend
         +auto)            ; as-you-type code completion
                                         ; a nicer company UI (Emacs 26+ only)
@@ -39,31 +28,35 @@
        doom              ; what makes DOOM look the way it does
        doom-dashboard    ; a nifty splash screen for Emacs
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
-       evil-goggles      ; display visual hints when editing in evil
-       fci
+       fill-column
        hl-todo           ; highlight TODO/FIXME/NOTE tags
-                                        ;indent-guides
+       ;indent-guides
        modeline     ; a snazzy Atom-inspired mode-line
        nav-flash         ; blink the current line after jumping
        ;; neotree           ; a project drawer, like NERDTree for vim
-       treemacs          ; a project drawer, like neotree but cooler
+       ophints
        (popup            ; tame sudden yet inevitable temporary windows
         +all             ; catch all popups that start with an asterix
         +defaults)       ; default popup rules
-                                        ;pretty-code
-       tabbar            ; FIXME an (incomplete) tab bar for Emacs
+       ;pretty-code
+       ;tabbar            ; FIXME an (incomplete) tab bar for Emacs
+       treemacs          ; a project drawer, like neotree but cooler
        unicode           ; extended unicode support for various languages
        vc-gutter
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        window-select     ; visually switch windows
+       workspaces        ; tab emulation, persistence & separate workspaces
 
        :editor
+       (evil +everywhere); come to the dark side, we have cookies
+       file-templates    ; auto-snippets for empty files
        fold
        (format +onsave)  ; automated prettiness
        ;;lispy             ; vim for lisp, for people who dont like vim
        multiple-cursors  ; editing in many places at once
        parinfer          ; turn lisp into python, sort of
        rotate-text       ; cycle region at point between text candidates
+       snippets          ; my elves. They type so I don't have to
 
        :emacs
        (dired             ; making dired pretty [functional]
@@ -78,12 +71,18 @@
 
        :tools
        ;;ansible
+       debugger          ; FIXME stepping through code, to help you add bugs
+       ;;direnv
        docker
        editorconfig      ; let someone else argue about tabs vs spaces
        ein               ; tame Jupyter notebooks with emacs
+       eval              ; run code, run (also, repls)
        flycheck
        flyspell
        gist              ; interacting with github gists
+       (lookup           ; helps you navigate your code and documentation
+        +devdocs         ; ...on devdocs.io online
+        +docsets)        ; ...or in Dash docsets locally
        lsp
        ;;macos             ; MacOS-specific commands
        magit             ; a git porcelain for Emacs
@@ -99,13 +98,14 @@
        vterm             ; another terminals in Emacs
 
        :lang
-                                        ;assembly          ; assembly for fun or debugging
-                                        ;cc                ; C/C++/Obj-C madness
+       ;;agda              ; types of types of types of types...
+       ;assembly          ; assembly for fun or debugging
+       ;cc                ; C/C++/Obj-C madness
        clojure           ; java with a lisp
        common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
-                                        ;crystal           ; ruby at the speed of c
-                                        ;csharp            ; unity, .NET, and mono shenanigans
+       ;crystal           ; ruby at the speed of c
+       ;csharp            ; unity, .NET, and mono shenanigans
        data              ; config/data formats
        erlang            ; an elegant language for a more civilized age
        elixir            ; erlang done right
@@ -120,48 +120,53 @@
        (java +meghanada) ; the poster child for carpal tunnel syndrome
        javascript        ; all(hope(abandon(ye(who(enter(here))))))
        julia             ; a better, faster MATLAB
-                                        ;latex             ; writing papers in Emacs has never been so fun
+       ;kotlin
+       ;latex             ; writing papers in Emacs has never been so fun
        ledger            ; an accounting system in Emacs
        lua               ; one-based indices? one-based indices
        markdown          ; writing docs for people to ignore
-                                        ;nim               ; python + lisp at the speed of c
+       ;nim               ; python + lisp at the speed of c
        nix               ; I hereby declare "nix geht mehr!"
        ocaml             ; an objective camel
        (org              ; organize your plain life in plain text
         +attach          ; custom attachment system
         +babel           ; running code in org
         +capture         ; org-capture in and outside of Emacs
+        +habit
         +export          ; Exporting org to whatever you want
-        +present)         ; Emacs for presentations
-                                        ; +publish)        ; Emacs+Org as a static site generator
-                                        ;perl              ; write code no one else can comprehend
-       php               ; perl's insecure younger brother
-                                        ;plantuml          ; diagrams for confusing people more
-                                        ;purescript        ; javascript, but functional
+        +present
+        +protocol)         ; Emacs for presentations
+       ; +publish)        ; Emacs+Org as a static site generator
+       ;perl              ; write code no one else can comprehend
+       ;php               ; perl's insecure younger brother
+       plantuml          ; diagrams for confusing people more
+       ;purescript        ; javascript, but functional
        python            ; beautiful is better than ugly
-                                        ;qt
+       ;qt
        racket            ; a DSL for DSLs
        rest              ; Emacs as a REST client
-                                        ;ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
+       ;ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
-       scala             ; java, but good
-       (sh +fish)        ; she sells (ba|z|fi)sh shells on the C xor
-                                        ;solidity
+       ;scala             ; java, but good
+       sh        ; she sells (ba|z|fi)sh shells on the C xor
+       ;solidity
        swift             ; who asked for emoji variables?
+       ;terra
        web               ; the tubes
        ;;vala              ; GObjective-C
 
+       :email
        ;; Applications are complex and opinionated modules that transform Emacs
        ;; toward a specific purpose. They may have additional dependencies and
        ;; should be loaded late.
        :app
-       (email +gmail)    ; emacs as an email client
-       irc               ; how neckbeards socialize
-       (rss +org)        ; emacs as an RSS reader
+       ;(email +gmail)    ; emacs as an email client
+       ;irc               ; how neckbeards socialize
+       ;(rss +org)        ; emacs as an RSS reader
        ;;twitter           ; twitter client https://twitter.com/vnought
-       (write            ; emacs as a word processor (latex + org + markdown)
-        +wordnut         ; wordnet (wn) search
-        +langtool)       ; a proofreader (grammar/style check) for Emacs
+       ;(write            ; emacs as a word processor (latex + org + markdown)
+       ; +wordnut         ; wordnet (wn) search
+       ; +langtool)       ; a proofreader (grammar/style check) for Emacs
 
        :collab)
 ;;floobits          ; peer programming for a price
