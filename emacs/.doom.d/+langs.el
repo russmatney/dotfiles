@@ -363,9 +363,9 @@
   :mode ("\\.cljs$" . clojurescript-mode)
   :mode ("\\.cljc$" . clojurec-mode)
 
-  :hook
-  (clojure-mode . aggressive-indent-mode)
-  (lisp-mode . aggressive-indent-mode)
+  ;; :hook
+  ;; (clojure-mode . aggressive-indent-mode)
+  ;; (lisp-mode . aggressive-indent-mode)
 
   :config
   (setq cljr-magic-require-namespaces
@@ -390,24 +390,24 @@
          (figwheel-sidecar.repl-api/start-figwheel!)
          (figwheel-sidecar.repl-api/cljs-repl))"))
 
-(def-package! lispyville
-  :hook
-  (emacs-lisp-mode . lispyville-mode)
-  (clojure-mode . lispyville-mode)
-  (lisp-mode . lispyville-mode)
-  :config
-  (lispyville-set-key-theme
-   '(operators
-     c-w
-     prettify
-     text-objects
-     atom-motions ;
-     additional-motions
-     commentary
-     slurp/barf-lispy
-     wrap
-     additional
-     additional-insert)))
+;; (def-package! lispyville
+;;   :hook
+;;   (emacs-lisp-mode . lispyville-mode)
+;;   (clojure-mode . lispyville-mode)
+;;   (lisp-mode . lispyville-mode)
+;;   :config
+;;   (lispyville-set-key-theme
+;;    '(operators
+;;      ;;c-w
+;;      prettify
+;;      ;;text-objects
+;;      ;;atom-motions ;
+;;      ;;additional-motions
+;;      ;;commentary
+;;      slurp/barf-lispy
+;;      wrap)))
+;;additional
+;;additional-insert)))
 
 ;; (def-package! paxedit
 ;;   :config
@@ -429,6 +429,12 @@
 ;;   (clojure-mode . smartparens-mode)
 ;;   (clojure-mode . paxedit-mode)
 ;;   (emacs-lisp-mode . paxedit-mode))
+
+(def-package! parinfer
+  :hook
+  (emacs-lisp-mode . parinfer-mode)
+  (clojure-mode . parinfer-mode)
+  (lisp-mode . parinfer-mode))
 
 (defmacro define-move-and-insert
     (name &rest body)
