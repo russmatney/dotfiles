@@ -100,7 +100,7 @@
    (:desc "Editor" :prefix "e"
      :desc "Open ~/.zshrc"                 :n "v" (lambda! (find-file "~/.zshrc"))
      :desc "Open ~/.doom.d/config.el"      :n "c" (lambda! (find-file "~/.doom.d/config.el"))
-     :desc "Open ~/.doom.d/+bindings.el"   :n "b" (lambda! (find-file "~/.doom.d/+bindings.el"))
+     :desc "Open ~/todo/bookmarks.org"   :n "b" (lambda! (find-file "~/todo/bookmarks.org"))
      :desc "FIND FILE" :n "f" (lambda! (find-file "~/.doom.d/+bindings.el"))
      :desc "Open ~/.doom.d/+langs.el"      :n "l" (lambda! (find-file "~/.doom.d/+langs.el"))
      :desc "Open ~/.emacs.d/readme.md"     :n "d" (lambda! (find-file "~/.emacs.d/README.md"))
