@@ -67,7 +67,7 @@ font-4 = "DejaVu Sans;3"
 
 modules-left = i3 xwindow
 ; modules-center = xwindow hostname backlight current-task reminder
-modules-center = hostname current-task reminder
+modules-center = hostname current-task reminder dwim
 ; modules-right = info-hackspeed openweathermap-fullfeatured isactive-bluetooth spotify pulseaudio memory cpu wlan battery temperature date powermenu
 modules-right = spotify pulseaudio memory cpu wlan battery date
 
@@ -450,6 +450,13 @@ type = custom/script
 format-prefix = "r: "
 format = <label>
 exec = /home/russ/.local/bin/cosmos tasks --tag reminder
+; format-underline = #E62063
+
+[module/dwim]
+type = custom/script
+format-prefix = "dwim: "
+format = <label>
+exec = /home/russ/.local/bin/cosmos history -f history.org | tail -n 1
 ; format-underline = #E62063
 
 [module/spotify]
