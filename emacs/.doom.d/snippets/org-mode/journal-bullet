@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: journal-bullet
+# key: j-
+# --
+** `(format-time-string "%H:%M")`
+--

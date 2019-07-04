@@ -5,4 +5,4 @@
 --
 
 `(format-time-string "%Y-%m-%d %H:%M")`
-`(shell-command-to-string "hostname")``(shell-command-to-string "whereami")``(shell-command-to-string "whereami -f human")`L: `(shell-command-to-string "python ~/.config/polybar/scripts/spotify_status.py")`
+`(shell-command-to-string "hostname")``(shell-command-to-string "whereami")``(shell-command-to-string "whereami -f human")`L: `(shell-command-to-string "python ~/.config/polybar/scripts/spotify_status.py")`M:

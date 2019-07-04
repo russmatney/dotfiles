@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: pythonpathenv
+# key: env
+# --
+(getenv "PYTHONPATH")
+(setenv "PYTHONPATH" "/home/russ/urbint/grid/")
