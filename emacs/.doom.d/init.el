@@ -54,6 +54,7 @@
        (format +onsave)  ; automated prettiness
        ;;lispy             ; vim for lisp, for people who dont like vim
        multiple-cursors  ; editing in many places at once
+       ;;objed             ; text object editing for the innocent
        parinfer          ; turn lisp into python, sort of
        rotate-text       ; cycle region at point between text candidates
        snippets          ; my elves. They type so I don't have to
@@ -64,10 +65,15 @@
         +icons)
 
        electric          ; smarter, keyword-based electric-indent
-       eshell            ; a consistent, cross-platform shell (WIP)
-       imenu             ; an imenu sidebar and searchable code index
-       term              ; terminals in Emacs
        vc                ; remember, remember that commit in November
+
+       ;;imenu             ; an imenu sidebar and searchable code index
+       ;;password-store    ; password manager for nerds
+
+       :term
+       eshell            ; a consistent, cross-platform shell (WIP)
+       term              ; terminals in Emacs
+       vterm             ; another terminals in Emacs
 
        :tools
        ;;ansible
@@ -87,7 +93,6 @@
        ;;macos             ; MacOS-specific commands
        magit             ; a git porcelain for Emacs
        make              ; run make tasks from Emacs
-       ;;password-store    ; password manager for nerds
        pdf               ; pdf enhancements
        ;;prodigy           ; FIXME managing external services & code builders
        rgb               ; creating color strings
@@ -95,7 +100,6 @@
        tmux              ; an API for interacting with tmux
        ;;upload            ; map local to remote projects via ssh/ftp
        wakatime
-       vterm             ; another terminals in Emacs
 
        :lang
        ;;agda              ; types of types of types of types...
@@ -112,6 +116,7 @@
        elm               ; care for a cup of TEA?
        emacs-lisp        ; drown in parentheses
        ess               ; emacs speaks statistics
+       ;;fsharp           ; ML stands for Microsoft's Language
        go                ; the hipster dialect
        ;; (haskell +dante) ; a language that's lazier than I am
        haskell ; a language that's lazier than I am
@@ -129,14 +134,10 @@
        nix               ; I hereby declare "nix geht mehr!"
        ocaml             ; an objective camel
        (org              ; organize your plain life in plain text
-        +attach          ; custom attachment system
-        +babel           ; running code in org
-        +capture         ; org-capture in and outside of Emacs
-        +habit
-        +export          ; Exporting org to whatever you want
-        +present
-        +protocol)         ; Emacs for presentations
-       ; +publish)        ; Emacs+Org as a static site generator
+        +dragndrop       ; file drag & drop support
+        +ipython         ; ipython support for babel
+        +pandoc          ; pandoc integration into org's exporter
+        +present)        ; using Emacs for presentations
        ;perl              ; write code no one else can comprehend
        ;php               ; perl's insecure younger brother
        plantuml          ; diagrams for confusing people more
@@ -155,30 +156,36 @@
        web               ; the tubes
        ;;vala              ; GObjective-C
 
-       :email
-       ;; Applications are complex and opinionated modules that transform Emacs
-       ;; toward a specific purpose. They may have additional dependencies and
-       ;; should be loaded late.
-       :app
-       ;(email +gmail)    ; emacs as an email client
-       ;irc               ; how neckbeards socialize
-       ;(rss +org)        ; emacs as an RSS reader
-       ;;twitter           ; twitter client https://twitter.com/vnought
-       ;(write            ; emacs as a word processor (latex + org + markdown)
-       ; +wordnut         ; wordnet (wn) search
-       ; +langtool)       ; a proofreader (grammar/style check) for Emacs
+;       :email
+;       ;;(mu4e +gmail)       ; WIP
+;       ;;notmuch             ; WIP
+;       ;;(wanderlust +gmail) ; WIP
 
-       :collab)
-;;floobits          ; peer programming for a price
-;;impatient-mode    ; show off code over HTTP
+;       ;; Applications are complex and opinionated modules that transform Emacs
+;       ;; toward a specific purpose. They may have additional dependencies and
+;       ;; should be loaded late.
 
-                                        ; :config
-;; For literate config users. This will tangle+compile a config.org
-;; literate config in your `doom-private-dir' whenever it changes.
-;;literate
+;       :app
+;       ;;calendar
+;       ;;irc              ; how neckbeards socialize
+;       ;;(rss +org)        ; emacs as an RSS reader
+;       ;;twitter           ; twitter client https://twitter.com/vnought
+;       ;;(write            ; emacs as a word processor (latex + org + markdown)
+;       ;; +wordnut         ; wordnet (wn) search
+;       ;; +langtool)       ; a proofreader (grammar/style check) for Emacs
+
+;       :collab
+;       ;;floobits          ; peer programming for a price
+;       ;;impatient-mode    ; show off code over HTTP
+
+;       :config
+       ;; For literate config users. This will tangle+compile a config.org
+       ;; literate config in your `doom-private-dir' whenever it changes.
+       ;;literate
 
 ;; The default module sets reasonable defaults for Emacs. It also
 ;; provides a Spacemacs-inspired keybinding scheme, a custom yasnippet
 ;; library, and additional ex commands for evil-mode. Use it as a
 ;; reference for your own modules.
 ;; (default +bindings +evil-commands))
+)
