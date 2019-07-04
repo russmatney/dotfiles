@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: next-weekend
+# key: nw
+# --
+
+* `(format-time-string "%Y-%m-%d")` + #(date/round % Saturday)
+** [ ]

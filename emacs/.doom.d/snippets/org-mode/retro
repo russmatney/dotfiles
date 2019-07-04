@@ -1,0 +1,38 @@
+# -*- mode: snippet -*-
+# name: retro
+# key: retro
+# --
+
+** [ ] retro-X
+- [ ] create 2019-review-X bullet in journal/2019.org
+  #+BEGIN_SRC org
+* 2019-retro-X (`(format-time-string "%Y-%m-%d")`)
+** retro
+  #+END_SRC
+- [ ] collect todos to today, from each day
+- [ ] archive completed items
+- [ ] copy journals into journal/2019.org
+- [ ] collect todos from all inboxes
+  - [ ] todo.org
+  - [ ] inbox.org
+  - [ ] clubhouse notifs
+  - [ ] urbint stoverflow
+  - [ ] work email
+  - [ ] personal email
+  - [ ] speech-to-text inboxes (audio)
+  - [ ] photos
+  - [ ] work journal
+  - [ ] personal journal
+  - [ ] per-day todo.org journals
+- [ ] categorize items
+  broad categories to make the list approachable
+- [ ] process collected items
+  consider:
+  - new wiki pages
+  - org files
+  - new blog posts
+  - new character traits/moments/thoughts
+  - new game features
+  - new specs
+  - new goals/metrics (okrs)
+  - new mores and lesses
