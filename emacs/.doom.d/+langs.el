@@ -16,6 +16,23 @@
 ;; LSP is promising but not as fully featured or bug-free.
 ;;
 
+;; LSP
+
+(def-package! lsp-mode
+  :hook
+  (haskell-mode . lsp)
+  (python-mode . lsp)
+  (rust-mode . lsp)
+  :commands
+  lsp)
+
+(def-package! lsp-ui
+  :commands
+  lsp-ui-mode)
+
+(def-package! company-lsp
+  :commands company-lsp)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Emacs Lisp
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -54,53 +71,6 @@
                                          (lambda (elem)
                                            (string-equal "()" (car elem)))
                                          haskell-font-lock-symbols-alist)))
-
-;; (def-package! dante
-;;   :config
-;;   (setq dante-repl-command-line '("stack" "repl" "grid:lib" "grid:grid-test"))
-;; )
-
-;; (def-package! lsp-mode
-;;   :hook (python-mode . lsp)
-;;   :config
-;;   (require 'lsp-clients))
-;; (def-package! lsp-ui)
-;; (def-package! company-lsp)
-
-;; (def-package! lsp-mode
-;;   :after (:any haskell-mode)
-;;   :config
-;;   (lsp-mode))
-
-;; (def-package! lsp-ui
-;;   :after lsp-mode
-;;   :config
-;;   (setq lsp-ui-flycheck-enable t)
-;;   (setq imenu-auto-rescan t)
-;;   :hook
-;;   (lsp-mode . lsp-ui-mode)
-;;   (lsp-ui-mode . flycheck-mode))
-
-;; (def-package! company-lsp
-;;   :after (lsp-mode lsp-ui)
-;;   :config
-;;   (setq company-backends '(company-lsp))
-;;   (setq company-lsp-async t))
-
-;; (def-package! lsp-haskell
-;;   :after (lsp-mode lsp-ui haskell-mode)
-;;   :config
-;;   (setq lsp-haskell-process-path-hie "hie-wrapper")
-;;   :hook
-;;   (haskell-mode . lsp-haskell-enable))
-
-
-;; (def-package! intero
-;;   :after haskell-mode
-;;   :config
-;;   (intero-global-mode 1)
-;;   (flycheck-add-next-checker 'intero 'haskell-hlint)
-;; )
 
 (map!
  (:after haskell-mode
@@ -212,11 +182,6 @@
 
 (def-package! add-node-modules-path)
 
-;; (def-package! lsp-javascript-flow
-;;   :after (lsp-mode lsp-ui rjsx-mode)
-;;   :hook
-;;   (rjsx-mode . lsp-javascript-flow-enable))
-
 (def-package! company-flow
   :config
   (defun flow/set-flow-executable ()
@@ -261,19 +226,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (def-package! graphql-mode)
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Rust
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; (with-eval-after-load 'lsp-mode
-;;   ;; (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
-;;   (setq lsp-rust-rls-command '("rustup" "run" "stable" "rls"))
-;;   (require 'lsp-rust))
-
-;; (add-hook 'rust-mode-hook #'lsp-rust-enable)
-;; (add-hook 'rust-mode-hook #'flycheck-mode)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -13,7 +13,7 @@
 ;; haskell
 (package! intero)
 (package! ghc)
-(package! lsp-haskell)
+                                        ;(package! lsp-haskell)
 
 ;; lisp
 (package! paredit)
@@ -40,7 +40,7 @@
 (package! rjsx-mode)
 (package! add-node-modules-path)
 (package! graphql-mode)
-(package! lsp-javascript-flow :recipe (:fetcher github :repo "emacs-lsp/lsp-javascript"))
+                                        ;(package! lsp-javascript-flow :recipe (:fetcher github :repo "emacs-lsp/lsp-javascript"))
 
 ;; lsp
 (package! lsp-mode)
@@ -48,7 +48,7 @@
 (package! company-lsp)
 
 ;; rust
-(package! lsp-rust)
+                                        ;(package! lsp-rust)
 
 ;; helm
 (package! helm)
