@@ -243,13 +243,13 @@ bindsym $mod+u scratchpad show
 
 set $wn1 "1: slack"
 set $wn2 "2: spotify"
-set $wn3 "3: web"
-set $wn4 "4: web-debug"
-set $wn5 "5: cypress"
+set $wn3 "3: browse"
+set $wn4 "4: meta"
+set $wn5 "5: app"
 set $wn6 "6: dev"
 set $wn7 "7: orghub"
 set $wn8 "8: cosmos"
-set $wn9 "9: todo"
+set $wn9 "9: vpn"
 set $wn0 "10: dotfiles"
 
 for_window [class="Slack"] move to workspace $wn1
@@ -290,6 +290,7 @@ workspace $wn8 output HDMI-0 DP3 DP1 eDP1
 workspace $wn9 output HDMI-0 DP3 DP1 eDP1
 workspace $wn0 output HDMI-0 DP3 DP1 eDP1
 
-bindsym $mod+n exec i3-input -F 'rename workspace to "%s"' -P 'New name for this workspace: '
+# bindsym $mod+n exec i3-input -F 'rename workspace to "%s"' -P 'New name for this workspace (n:<name>): '
+bindsym $mod+comma exec i3-input -F 'rename workspace to "%s"' -P 'New name for this workspace (n:<name>): '
 
 workspace_auto_back_and_forth yes
