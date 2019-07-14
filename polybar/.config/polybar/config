@@ -85,9 +85,8 @@ tray-padding = 2
 
 [bar/bar2]
 inherit = bar/base
-; TODO: detect this!
-; monitor = ${env:MONITOR:DP3}
 monitor = ${env:MONITOR:DP1}
+fallback-monitor = ${env:MONITOR:DP3}
 
 
 [module/xwindow]
