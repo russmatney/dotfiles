@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: weekly-todo-list
+# key: weektodo
+# --
+** [ ] clean out fridge
+** [ ] clean out cabinet
+** [ ] take out trash
+** [ ] take out recycling
+** [ ] schedule running
+** [ ] schedule retros
