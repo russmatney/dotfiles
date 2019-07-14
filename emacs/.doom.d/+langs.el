@@ -26,6 +26,10 @@
   :commands
   lsp)
 
+(after! rust-mode
+  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+  (setq rust-format-on-save t))
+
 (def-package! lsp-ui
   :commands
   lsp-ui-mode)
