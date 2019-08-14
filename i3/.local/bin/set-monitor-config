@@ -38,6 +38,12 @@ elif [ $choice == "work" ]; then
         --output DP1 --mode 3840x2160 --pos 1920x0 \
         --output DP3 --off
     i3-msg mode "default"
+elif [ $choice == "work-monitor-only" ]; then
+    xrandr \
+        --output eDP1 --off \
+        --output DP1 --mode 3840x2160 --pos 1920x0 \
+        --output DP3 --off
+    i3-msg mode "default"
 elif [ $choice == "home" ]; then
     xrandr \
         --output eDP1 --pos 2560x540 --mode 1920x1080 \

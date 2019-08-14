@@ -180,6 +180,9 @@ mode "monitor" {
      # work laptop + monitor
      bindsym w exec --no-startup-id ~/.local/bin/set-monitor-config work
 
+     # work monitor only
+     bindsym $mod+w exec --no-startup-id ~/.local/bin/set-monitor-config work-monitor-only
+
      # home laptop + monitor
      bindsym h exec --no-startup-id ~/.local/bin/set-monitor-config home
 
