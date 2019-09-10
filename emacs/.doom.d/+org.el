@@ -60,15 +60,15 @@
      "M-v"    #'evil-paste-after
      "M-RET"  #'org-insert-item
      "M-t"    #'org-set-tags-command
-     "TAB"    #'+org/toggle-fold)))
+     "TAB"    #'+org/toggle-fold)
 
-(map!
- (:after org
    (:map evil-org-mode-map
      "M-h"    nil
      "M-l"    nil
      "A-h"    nil
-     "A-l"    nil)))
+     "A-l"    nil)
+   (:map evil-normal-state-map
+     "z w"    #'widen)))
 
 (map!
  (:after markdown

@@ -21,7 +21,7 @@
 (def-package! lsp-mode
   :hook
   (haskell-mode . lsp)
-  (python-mode . lsp)
+  ;;(python-mode . lsp)
   (rust-mode . lsp)
   :commands
   lsp)
@@ -236,14 +236,13 @@
 ;; Python
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(add-hook 'pipenv-mode 'py-yapf-enable-on-save)
+;; (add-hook 'pipenv-mode 'py-yapf-enable-on-save)
 
-(add-hook
- 'before-save-hook
- (lambda ()
-   (message "hi homie")
-   (when (eq major-mode 'pipenv-mode)
-     (py-yapf-buffer))))
+;; (add-hook
+;;  'before-save-hook
+;;  (lambda ()
+;;    (when (eq major-mode 'pipenv-mode)
+;;      (py-yapf-buffer))))
 
 
 (map!

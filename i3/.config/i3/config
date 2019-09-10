@@ -160,6 +160,12 @@ bindsym $mod+Return exec --no-startup-id ~/.local/bin/cosmos open tmux
 bindsym $mod+b exec --no-startup-id ~/.local/bin/cosmos open-bookmark
 bindsym $mod+shift+b exec --no-startup-id google-chrome-stable
 
+# open candidate in workable
+bindsym $mod+shift+w exec --no-startup-id ~/.local/bin/cosmos open-workable
+
+# smart paste
+#bindsym $mod+shift+v exec --no-startup-id ~/.local/bin/cosmos smart-paste
+
 # lock
 bindsym $mod+Shift+q exec --no-startup-id i3lock -c 000000
 
@@ -246,7 +252,7 @@ bindsym $mod+u scratchpad show
 
 set $wn1 "1: slack"
 set $wn2 "2: spotify"
-set $wn3 "3: browse"
+set $wn3 "3: calendar"
 set $wn4 "4: meta"
 set $wn5 "5: app"
 set $wn6 "6: dev"
