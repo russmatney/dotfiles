@@ -175,8 +175,9 @@ bindsym $mod+space  exec --no-startup-id rofi -show run
 bindsym $mod+r      exec --no-startup-id ~/.local/bin/terminal
 
 # screenshot
-bindsym $mod+Shift+s exec --no-startup-id ~/.local/bin/screenshot
+# bindsym $mod+Shift+s exec --no-startup-id ~/.local/bin/screenshot
 bindsym $mod+Shift+a exec --no-startup-id ~/.local/bin/screenshot-region
+bindsym $mod+Shift+s exec --no-startup-id i3-scrot
 
 bindsym $mod+m mode "monitor"
 mode "monitor" {
@@ -215,6 +216,7 @@ for_window [title="Terminal"] border pixel 2
 # exec_always --no-startup-id compton -cCfb --backend glx --vsync opengl
 
 exec_always --no-startup-id feh --bg-scale ~/Dropbox/wallpapers/cityscape-cartoon.jpg
+# exec_always --no-startup-id feh --bg-scale ~/Dropbox/wallpapers/firewatch-blue-orange.jpg
 
 # start dropbox
 exec_always --no-startup-id dropbox &
@@ -261,8 +263,8 @@ set $wn8 "8: cosmos"
 set $wn9 "9: vpn"
 set $wn0 "10: dotfiles"
 
-for_window [class="Slack"] move to workspace $wn1
-for_window [class="Spotify"] move to workspace $wn2
+for_window [class="Slack"] move to workspace number $wn1
+for_window [class="Spotify"] move to workspace number $wn2
 
 # switch to workspace
 bindsym $mod+1 workspace number $wn1
