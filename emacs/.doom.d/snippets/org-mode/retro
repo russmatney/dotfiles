@@ -3,7 +3,7 @@
 # key: retro
 # --
 
-** [ ] retro-X
+** [ ] retro-X-init
 - [ ] create 2019-review-X bullet in journal/2019.org
   #+BEGIN_SRC org
 * 2019-retro-X (`(format-time-string "%Y-%m-%d")`)
@@ -12,20 +12,23 @@
 - [ ] collect todos to today, from each day
 - [ ] archive completed items
 - [ ] copy journals into journal/2019.org
-- [ ] collect todos from all inboxes
-  - [ ] todo.org
-  - [ ] inbox.org
-  - [ ] clubhouse notifs
-  - [ ] urbint stoverflow
-  - [ ] work email
-  - [ ] personal email
-  - [ ] speech-to-text inboxes (audio)
-  - [ ] photos
-  - [ ] work journal
-  - [ ] personal journal
-  - [ ] per-day todo.org journals
+** [ ] retro-X-review-all - collect todos from all inboxes
+- [ ] todo.org
+- [ ] inbox.org
+- [ ] clubhouse notifs
+- [ ] urbint stoverflow
+- [ ] work email
+- [ ] personal email
+- [ ] speech-to-text inboxes (audio)
+- [ ] photos
+- [ ] call notes
+- [ ] work journal
+- [ ] personal journal
+- [ ] per-day todo.org journals
+** [ ] retro-X-categorize
 - [ ] categorize items
   broad categories to make the list approachable
+** [ ] retro-X-execute
 - [ ] process collected items
   consider:
   - new wiki pages
