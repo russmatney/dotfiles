@@ -5,6 +5,7 @@ caarlos0/zsh-mkc
 djui/alias-tips
 Tarrasch/zsh-autoenv
 Tarrasch/zsh-colors
+chisui/zsh-nix-shell
 
 robbyrussell/oh-my-zsh
 robbyrussell/oh-my-zsh path:plugins/aws
@@ -40,7 +41,7 @@ robbyrussell/oh-my-zsh path:plugins/npm
 robbyrussell/oh-my-zsh path:plugins/pip
 robbyrussell/oh-my-zsh path:plugins/python
 robbyrussell/oh-my-zsh path:plugins/pylint
-robbyrussell/oh-my-zsh path:plugins/pyenv
+# robbyrussell/oh-my-zsh path:plugins/pyenv
 robbyrussell/oh-my-zsh path:plugins/rand-quote
 robbyrussell/oh-my-zsh path:plugins/repo
 robbyrussell/oh-my-zsh path:plugins/ssh-agent
