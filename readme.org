@@ -5,6 +5,13 @@ symlink handling. `stow foo` will create symlinks for everything in the `./foo`
 directory exactly one relative directory above the current working directory
 (`cwd`).
 
+To install:
+
+#+BEGIN_SRC sh
+# ~/.zshrc
+yay -S stow
+#+END_SRC
+
 This works well for dotfile management - you can create feature-based
 directories in `~/dotfiles` for things like `zsh`, `vim`, and `emacs`,
 then call `stow zsh` within `~/dotfiles` to take care of linking it to home
