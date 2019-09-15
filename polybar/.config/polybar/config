@@ -67,7 +67,7 @@ font-4 = "DejaVu Sans;3"
 
 modules-left = i3 xwindow
 ; modules-center = xwindow hostname backlight current-task reminder
-modules-center = hostname current-task reminder dwim
+modules-center = hostname layout current-task reminder dwim
 ; modules-right = info-hackspeed openweathermap-fullfeatured isactive-bluetooth spotify pulseaudio memory cpu wlan battery temperature date powermenu
 modules-right = spotify pulseaudio memory cpu wlan battery date
 
@@ -490,3 +490,11 @@ type = internal/backlight
 ; Use the following command to list available cards:
 ; $ ls -1 /sys/class/backlight/
 card = intel_backlight
+
+
+[module/layout]
+type = custom/script
+format-prefix = "layout: "
+format = <label>
+exec = i3-msg -t get_tree | jq .layout
+format-underline = #E62063
