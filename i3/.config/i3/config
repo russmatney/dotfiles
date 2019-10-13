@@ -240,6 +240,12 @@ bindsym XF86MonBrightnessDown exec --no-startup-id "light -U 5"
 bindsym $mod+Shift+u move scratchpad
 bindsym $mod+u scratchpad show
 
+# exec sc --user import-environment && sc --user daemon-reload && sc --user restart cosmos
+exec bluetoothctl -- power on
+
+# exec_always --no-startup-id xautolock -time 10 -locker "i3lock -c 000000"
+
+
 # bindsym $mod+y [con_mark="slack"] scratchpad show
 # for_window [class="Slack"] mark "slack", move scratchpad
 # exec slack
@@ -254,11 +260,11 @@ bindsym $mod+u scratchpad show
 
 set $wn1 "1: slack"
 set $wn2 "2: spotify"
-set $wn3 "3: calendar"
-set $wn4 "4: meta"
-set $wn5 "5: app"
-set $wn6 "6: dev"
-set $wn7 "7: orghub"
+set $wn3 "3: email"
+set $wn4 "4: web"
+set $wn5 "5: web-two"
+set $wn6 "6: grid"
+set $wn7 "7: PRs"
 set $wn8 "8: cosmos"
 set $wn9 "9: vpn"
 set $wn0 "10: dotfiles"
@@ -290,11 +296,11 @@ bindsym $mod+Shift+8 move container to workspace number $wn8
 bindsym $mod+Shift+9 move container to workspace number $wn9
 bindsym $mod+Shift+0 move container to workspace number $wn0
 
-workspace $wn1 output HDMI-0 DP3 eDP1
-workspace $wn2 output HDMI-0 DP3 eDP1
-workspace $wn3 output HDMI-0 DP3 eDP1
-workspace $wn4 output HDMI-0 DP3 eDP1
-workspace $wn5 output HDMI-0 DP3 eDP1
+workspace $wn1 output HDMI-0 eDP1 DP3
+workspace $wn2 output HDMI-0 eDP1 DP3
+workspace $wn3 output HDMI-0 eDP1 DP3
+workspace $wn4 output HDMI-0 eDP1 DP3
+workspace $wn5 output HDMI-0 eDP1 DP3
 workspace $wn6 output HDMI-0 DP3 DP1 eDP1
 workspace $wn7 output HDMI-0 DP3 DP1 eDP1
 workspace $wn8 output HDMI-0 DP3 DP1 eDP1
