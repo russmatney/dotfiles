@@ -22,15 +22,15 @@
 
 ;; org
 (package! org-clubhouse
-  :recipe (:fetcher github
-                    :repo "urbint/org-clubhouse"
-                    :files ("*")))
+  :recipe (:host github
+                 :repo "urbint/org-clubhouse"
+                 :files ("*")))
 
 ;; writing
 (package! zen-mode
-  :recipe (:fetcher github
-                    :repo "aki237/zen-mode"
-                    :files ("*")))
+  :recipe (:host github
+                 :repo "aki237/zen-mode"
+                 :files ("*")))
 
 ;; javascript
 (package! flow-minor-mode)
@@ -40,21 +40,22 @@
 (package! rjsx-mode)
 (package! add-node-modules-path)
 (package! graphql-mode)
-                                        ;(package! lsp-javascript-flow :recipe (:fetcher github :repo "emacs-lsp/lsp-javascript"))
+
+;;(package! lsp-javascript-flow :recipe (:host github :repo "emacs-lsp/lsp-javascript"))
 
 ;; lsp
 (package! lsp-mode)
-(package! lsp-ui :recipe (:fetcher github :repo "emacs-lsp/lsp-ui"))
+(package! lsp-ui :recipe (:host github :repo "emacs-lsp/lsp-ui"))
 (package! company-lsp)
 
 ;; rust
-                                        ;(package! lsp-rust)
+;;(package! lsp-rust)
 
 ;; helm
 (package! helm)
 
 ;; fountain
-(package! fountain-mode :recipe (:fetcher github :repo "rnkn/fountain-mode"))
+(package! fountain-mode :recipe (:host github :repo "rnkn/fountain-mode"))
 
 ;; python
 (package! py-yapf)

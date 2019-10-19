@@ -14,7 +14,11 @@
 
 (defvar +org-dir (expand-file-name "~/todo/"))
 
-(doom! :completion
+(doom! :input
+       ;;chinese
+       ;;japanese
+
+       :completion
        (company          ; the ultimate code completion backend
         +auto)            ; as-you-type code completion
        ;; a nicer company UI (Emacs 26+ only)
@@ -30,6 +34,7 @@
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
        fill-column
        hl-todo           ; highlight TODO/FIXME/NOTE tags
+       ;;hydra
        ;;indent-guides
        modeline     ; a snazzy Atom-inspired mode-line
        nav-flash         ; blink the current line after jumping
@@ -39,7 +44,7 @@
         +all             ; catch all popups that start with an asterix
         +defaults)       ; default popup rules
        ;;pretty-code
-       ;;tabbar            ; FIXME an (incomplete) tab bar for Emacs
+       tabs
        treemacs          ; a project drawer, like neotree but cooler
        unicode           ; extended unicode support for various languages
        vc-gutter
@@ -50,6 +55,7 @@
        :editor
        (evil +everywhere); come to the dark side, we have cookies
        file-templates    ; auto-snippets for empty files
+       ;;god
        fold
        (format +onsave)  ; automated prettiness
        ;;lispy             ; vim for lisp, for people who dont like vim
@@ -58,6 +64,7 @@
        parinfer          ; turn lisp into python, sort of
        rotate-text       ; cycle region at point between text candidates
        snippets          ; my elves. They type so I don't have to
+       ;;word-wrap
 
        :emacs
        (dired             ; making dired pretty [functional]
@@ -67,11 +74,9 @@
        electric          ; smarter, keyword-based electric-indent
        vc                ; remember, remember that commit in November
 
-       ;;imenu             ; an imenu sidebar and searchable code index
-       ;;password-store    ; password manager for nerds
-
        :term
        eshell            ; a consistent, cross-platform shell (WIP)
+                                        ;shell
        term              ; terminals in Emacs
        vterm             ; another terminals in Emacs
 
@@ -93,6 +98,7 @@
        ;;macos             ; MacOS-specific commands
        magit             ; a git porcelain for Emacs
        make              ; run make tasks from Emacs
+                                        ;pass
        pdf               ; pdf enhancements
        ;;prodigy           ; FIXME managing external services & code builders
        rgb               ; creating color strings
@@ -116,6 +122,7 @@
        elm               ; care for a cup of TEA?
        emacs-lisp        ; drown in parentheses
        ess               ; emacs speaks statistics
+       ;;faust
        ;;fsharp           ; ML stands for Microsoft's Language
        go                ; the hipster dialect
        ;; (haskell +dante) ; a language that's lazier than I am
@@ -127,6 +134,7 @@
        julia             ; a better, faster MATLAB
        ;;kotlin
        ;;latex             ; writing papers in Emacs has never been so fun
+       ;;lean
        ledger            ; an accounting system in Emacs
        lua               ; one-based indices? one-based indices
        markdown          ; writing docs for people to ignore
@@ -135,26 +143,28 @@
        ocaml             ; an objective camel
        (org              ; organize your plain life in plain text
         +dragndrop       ; file drag & drop support
+        +hugo
         +ipython         ; ipython support for babel
         +pandoc          ; pandoc integration into org's exporter
+        +pomodoro
         +present)        ; using Emacs for presentations
        ;;perl              ; write code no one else can comprehend
        ;;php               ; perl's insecure younger brother
        plantuml          ; diagrams for confusing people more
-                                        ;purescript        ; javascript, but functional
+       ;;purescript        ; javascript, but functional
        (python +lsp)            ; beautiful is better than ugly
-                                        ;qt
+       ;;qt
        racket            ; a DSL for DSLs
        rest              ; Emacs as a REST client
        ;;ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
+       ;;scheme
        sh        ; she sells (ba|z|fi)sh shells on the C xor
        ;;solidity
        swift             ; who asked for emoji variables?
        ;;terra
        web)               ; the tubes
-;;vala              ; GObjective-C
 
 ;;       :email
 ;;       ;;(mu4e +gmail)       ; WIP
@@ -174,9 +184,6 @@
 ;;       ;; +wordnut         ; wordnet (wn) search
 ;;       ;; +langtool)       ; a proofreader (grammar/style check) for Emacs
 
-;;       :collab
-;;       ;;floobits          ; peer programming for a price
-;;       ;;impatient-mode    ; show off code over HTTP
 
 ;;       :config
 ;; For literate config users. This will tangle+compile a config.org
@@ -188,4 +195,48 @@
 ;; library, and additional ex commands for evil-mode. Use it as a
 ;; reference for your own modules.
 ;; (default +bindings +evil-commands))
-)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#f0f0f0" "#e45649" "#50a14f" "#986801" "#4078f2" "#a626a4" "#0184bc" "#383a42"])
+ '(custom-safe-themes
+   '("10461a3c8ca61c52dfbbdedd974319b7f7fd720b091996481c8fb1dded6c6116" "49ec957b508c7d64708b40b0273697a84d3fee4f15dd9fc4a9588016adee3dad" default))
+ '(fci-rule-color "#383a42")
+ '(flycheck-javascript-flow-args nil)
+ '(jdee-db-active-breakpoint-face-colors (cons "#f0f0f0" "#4078f2"))
+ '(jdee-db-requested-breakpoint-face-colors (cons "#f0f0f0" "#50a14f"))
+ '(jdee-db-spec-breakpoint-face-colors (cons "#f0f0f0" "#9ca0a4"))
+ '(objed-cursor-color "#e45649")
+ '(vc-annotate-background "#fafafa")
+ '(vc-annotate-color-map
+   (list
+    (cons 20 "#50a14f")
+    (cons 40 "#688e35")
+    (cons 60 "#807b1b")
+    (cons 80 "#986801")
+    (cons 100 "#ae7118")
+    (cons 120 "#c37b30")
+    (cons 140 "#da8548")
+    (cons 160 "#c86566")
+    (cons 180 "#b74585")
+    (cons 200 "#a626a4")
+    (cons 220 "#ba3685")
+    (cons 240 "#cf4667")
+    (cons 260 "#e45649")
+    (cons 280 "#d2685f")
+    (cons 300 "#c07b76")
+    (cons 320 "#ae8d8d")
+    (cons 340 "#383a42")
+    (cons 360 "#383a42")))
+ '(vc-annotate-very-old-color nil)
+ '(wakatime-api-key "dadfb163-294d-4248-83db-358ac307867e")
+ '(wakatime-cli-path "/home/russ/.pyenv/versions/3.6.6/bin/wakatime")
+ '(wakatime-python-bin nil))
+(custom-set-faces)
+;; custom-set-faces was added by Custom.
+;; If you edit it by hand, you could mess it up, so be careful.
+;; Your init file should contain only one such instance.
+;; If there is more than one, they won't work right.
