@@ -243,16 +243,21 @@ bindsym XF86MonBrightnessUp exec --no-startup-id "light -A 5"
 bindsym XF86MonBrightnessDown exec --no-startup-id "light -U 5"
 
 # Scratchpad
-bindsym $mod+Shift+u move scratchpad
-bindsym $mod+u scratchpad show
+bindsym $mod+Shift+u mark "todo", move scratchpad
+bindsym $mod+u [con_mark="todo"] scratchpad show
+
+# mod1 == alt
+bindsym $mod+mod1+Shift+u mark "other", move scratchpad
+bindsym $mod+mod1+u [con_mark="other"] scratchpad show
+
+# mod1 == alt
+bindsym $mod+mod1+Shift+t mark "term", move scratchpad
+bindsym $mod+mod1+t [con_mark="term"] scratchpad show
 
 # exec sc --user import-environment && sc --user daemon-reload && sc --user restart cosmos
 exec bluetoothctl -- power on
 
 # exec_always --no-startup-id xautolock -time 10 -locker "i3lock -c 000000 -m"
-
-bindsym $mod+Alt+Shift+u mark "alpha", move scratchpad
-bindsym $mod+Alt+u [con_mark="alpha"] scratchpad show
 
 # bindsym $mod+y [con_mark="slack"] scratchpad show
 # for_window [class="Slack"] mark "slack", move scratchpad
