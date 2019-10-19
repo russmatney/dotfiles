@@ -62,7 +62,7 @@
 ;; Add '--hidden' to rg command to include hidden files in search
 ;; Note that `echo ".git/" >> ~/.ignore` will exclude .git from these searches
 (setq counsel-rg-base-command
-      "rg -zS --hidden --no-heading --line-number --color never %s .")
+      "rg -zS -T jupyter -T svg -T lock -T license --no-heading --line-number --color never %s .")
 
 (setq +format-on-save-enabled-modes t)
 
