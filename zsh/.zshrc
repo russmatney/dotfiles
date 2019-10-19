@@ -209,8 +209,14 @@ alias dcr='docker-compose restart'
 alias dcud='docker-compose up -d'
 alias dcub='docker-compose up -d --build'
 alias dcl='docker-compose logs'
-alias dclf='docker-compose logs -f'
-alias dcrf='docker-compose restart "$1" && dclf $1'
+unalias dclf
+function dclf() {
+  docker-compose logs -f "$@" | cut -f2- -d'|'
+}
+function dcrf() {
+  docker-compose restart "$@"
+  docker-compose logs -f "$@" | cut -f2- -d'|'
+}
 alias dcps='dc ps'
 
 ################################################################################

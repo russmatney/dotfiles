@@ -19,3 +19,4 @@ urbint
 scratch*
 focus/.local/bin/focus
 X/.Xauthority
+*.elc
