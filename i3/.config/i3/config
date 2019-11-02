@@ -282,8 +282,8 @@ set $wn8 "8: cosmos"
 set $wn9 "9: vpn"
 set $wn0 "10: dotfiles"
 
-for_window [class="Slack"] move to workspace number $wn1
-for_window [class="Spotify"] move to workspace number $wn2
+for_window [class="Slack"] move --no-auto-back-and-forth to workspace number $wn1
+for_window [class="Spotify"] move --no-auto-back-and-forth to workspace number $wn2 --no-auto-back-and-forth
 
 # switch to workspace
 bindsym $mod+1 workspace number $wn1
