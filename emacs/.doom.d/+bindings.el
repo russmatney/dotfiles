@@ -23,6 +23,7 @@
  :nmvo doom-leader-key nil
  :nmvo doom-localleader-key nil)
 
+
 ;; helper for defining evil commands
 (defalias 'ex! 'evil-ex-define-cmd)
 
@@ -339,7 +340,7 @@
 ;; Dired
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(def-package! dired
+(use-package! dired
   :init
   (when (string= system-type "darwin")
     (setq dired-use-ls-dired nil))
@@ -383,24 +384,21 @@
 
 
 (map!
- (:after ivy
-   :map ivy-minibuffer-map
-   [escape] #'keyboard-escape-quit
-   "A-v" #'yank
-   "A-z" #'undo
-   "M-v" #'yank
-   "M-z" #'undo
-   "C-r" #'evil-paste-from-register
-   "C-k" #'ivy-previous-line
-   "C-j" #'ivy-next-line
-   "C-l" #'ivy-alt-done
-   "C-h" #'ivy-backward-kill-word
-   "C-w" #'ivy-backward-kill-word
-   "C-u" #'ivy-kill-line
-   "C-b" #'backward-word
-   "C-f" #'forward-word
-
-   "C-v" (+ivy-do-action! #'counsel-projectile-find-file-action-other-window)))
+ :map ivy-minibuffer-map
+ [escape] #'keyboard-escape-quit
+ "A-v" #'yank
+ "A-z" #'undo
+ "M-v" #'yank
+ "M-z" #'undo
+ "C-r" #'evil-paste-from-register
+ "C-k" #'ivy-previous-line
+ "C-j" #'ivy-next-line
+ "C-l" #'ivy-alt-done
+ "C-h" #'ivy-backward-kill-word
+ "C-w" #'ivy-backward-kill-word
+ "C-u" #'ivy-kill-line
+ "C-b" #'backward-word
+ "C-f" #'forward-word)
 
 
 

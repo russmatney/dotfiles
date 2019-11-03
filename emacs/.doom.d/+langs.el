@@ -18,7 +18,7 @@
 
 ;; LSP
 
-(def-package! lsp-mode
+(use-package! lsp-mode
   :hook
   (haskell-mode . lsp)
   ;;(python-mode . lsp)
@@ -30,11 +30,11 @@
   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
   (setq rust-format-on-save t))
 
-(def-package! lsp-ui
+(use-package! lsp-ui
   :commands
   lsp-ui-mode)
 
-(def-package! company-lsp
+(use-package! company-lsp
   :commands company-lsp)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -140,12 +140,12 @@
   (turn-off-smartparens-mode)
   (rainbow-delimiters-mode))
 
-(def-package! flycheck-mix
+(use-package! flycheck-mix
   :after elixir-mode
   :config
   (add-hook 'flycheck-mode-hook #'flycheck-mix-setup))
 
-(def-package! flycheck-credo
+(use-package! flycheck-credo
   :after elixir-mode
   :config
   (setq flycheck-elixir-credo-strict t)
@@ -166,7 +166,7 @@
   (flycheck-mode)
   (rainbow-delimiters-mode))
 
-(def-package! flow-minor-mode
+(use-package! flow-minor-mode
   :config
   (add-hook 'js2-mode-hook #'flow-minor-mode))
 
@@ -177,16 +177,16 @@
 
 ;; (set-lookup-handlers! 'js2-mode :definition #'flow-minor-jump-to-definition)
 
-(def-package! prettier-js
+(use-package! prettier-js
   :config
   (add-hook 'js2-mode-hook #'prettier-js-mode)
   (add-hook 'json-mode-hook #'prettier-js-mode)
   (add-hook 'rjsx-mode-hook 'prettier-js-mode)
   (add-hook 'css-mode-hook #'prettier-js-mode))
 
-(def-package! add-node-modules-path)
+(use-package! add-node-modules-path)
 
-(def-package! company-flow
+(use-package! company-flow
   :config
   (defun flow/set-flow-executable ()
     (interactive)
@@ -202,7 +202,7 @@
   (with-eval-after-load 'company
     (add-to-list 'company-backends 'company-flow)))
 
-(def-package! flycheck-flow
+(use-package! flycheck-flow
   :after (flycheck)
   :config
   (flycheck-add-mode 'javascript-flow 'rjsx-mode)
@@ -210,7 +210,7 @@
   (flycheck-add-mode 'javascript-eslint 'flow-minor-mode)
   (flycheck-add-next-checker 'javascript-flow 'javascript-eslint))
 
-(def-package! rjsx-mode
+(use-package! rjsx-mode
   :bind (:map rjsx-mode-map
           ("<" . nil)
           ("C-d" . nil)
@@ -222,14 +222,14 @@
 
 
 ;; (load! "+emacs-flow-jsx")
-;; (def-package! flow-jsx-mode)
+;; (use-package! flow-jsx-mode)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; GraphQL mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(def-package! graphql-mode)
+(use-package! graphql-mode)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -311,7 +311,7 @@
      (:map cider-browse-ns-mode-map
        :n "RET"       #'cider-browse-ns-operate-at-point))))
 
-(def-package! clojure-mode
+(use-package! clojure-mode
   :mode "\\.clj$"
   :mode "\\.edn$"
   :mode "\\(?:build\\|profile\\)\\.boot$"
@@ -345,7 +345,7 @@
          (figwheel-sidecar.repl-api/start-figwheel!)
          (figwheel-sidecar.repl-api/cljs-repl))"))
 
-;; (def-package! lispyville
+;; (use-package! lispyville
 ;;   :hook
 ;;   (emacs-lisp-mode . lispyville-mode)
 ;;   (clojure-mode . lispyville-mode)
@@ -364,7 +364,7 @@
 ;;additional
 ;;additional-insert)))
 
-;; (def-package! paxedit
+;; (use-package! paxedit
 ;;   :config
 ;;   (map!
 ;;    (:map paxedit-mode-map
@@ -385,7 +385,7 @@
 ;;   (clojure-mode . paxedit-mode)
 ;;   (emacs-lisp-mode . paxedit-mode))
 
-(def-package! parinfer
+(use-package! parinfer
   :hook
   (emacs-lisp-mode . parinfer-mode)
   (clojure-mode . parinfer-mode)

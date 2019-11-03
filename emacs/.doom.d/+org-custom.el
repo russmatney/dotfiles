@@ -106,8 +106,6 @@
 ;; Org Clubhouse
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(def-package! org-clubhouse)
-
 (map!
  (:leader
    (:desc "notes" :prefix "n"

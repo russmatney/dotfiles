@@ -25,12 +25,12 @@
      (mapcar 'directory-file-name
              (append all-proj-paths projectile-known-projects)))))
 
-(comment
- (get-projects)
+;; (comment
+;;  (get-projects)
 
- (directory-file-name "mydir/")
+;;  (directory-file-name "mydir/")
 
- (-distinct (append local-projects projectile-known-projects)))
+;;  (-distinct (append local-projects projectile-known-projects)))
 
 ;;;###autoload
 (defun rs/projectile-switch-project-workspace ()

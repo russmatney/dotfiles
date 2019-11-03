@@ -144,9 +144,9 @@
        (org              ; organize your plain life in plain text
         +dragndrop       ; file drag & drop support
         +hugo
-        +ipython         ; ipython support for babel
+        ;+ipython         ; ipython support for babel
         +pandoc          ; pandoc integration into org's exporter
-        +pomodoro
+        ;+pomodoro
         +present)        ; using Emacs for presentations
        ;;perl              ; write code no one else can comprehend
        ;;php               ; perl's insecure younger brother
@@ -201,7 +201,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector
-   ["#f0f0f0" "#e45649" "#50a14f" "#986801" "#4078f2" "#a626a4" "#0184bc" "#383a42"])
+   ["#21242b" "#e45649" "#50a14f" "#986801" "#4078f2" "#a626a4" "#0184bc" "#383a42"])
  '(custom-safe-themes
    '("10461a3c8ca61c52dfbbdedd974319b7f7fd720b091996481c8fb1dded6c6116" "49ec957b508c7d64708b40b0273697a84d3fee4f15dd9fc4a9588016adee3dad" default))
  '(fci-rule-color "#383a42")
@@ -210,6 +210,7 @@
  '(jdee-db-requested-breakpoint-face-colors (cons "#f0f0f0" "#50a14f"))
  '(jdee-db-spec-breakpoint-face-colors (cons "#f0f0f0" "#9ca0a4"))
  '(objed-cursor-color "#e45649")
+ '(safe-local-variable-values '((eval progn (pp-buffer) (indent-buffer))))
  '(vc-annotate-background "#fafafa")
  '(vc-annotate-color-map
    (list
@@ -235,7 +236,12 @@
  '(wakatime-api-key "dadfb163-294d-4248-83db-358ac307867e")
  '(wakatime-cli-path "/home/russ/.pyenv/versions/3.6.6/bin/wakatime")
  '(wakatime-python-bin nil))
-(custom-set-faces)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
 ;; custom-set-faces was added by Custom.
 ;; If you edit it by hand, you could mess it up, so be careful.
 ;; Your init file should contain only one such instance.

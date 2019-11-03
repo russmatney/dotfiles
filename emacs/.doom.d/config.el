@@ -51,7 +51,7 @@
 (setq +ivy-buffer-icons t)
 
 ;; zen-mode for focused writing
-(def-package! zen-mode)
+(use-package! zen-mode)
 
 (set-face-attribute 'default nil :height 100)
 
@@ -76,19 +76,19 @@
 (load! "+langs")
 
 ;; load prose tools (includes markdown)
-(load! "+org")
+(load! "+org-custom")
 
 ;; TODO get working with toc.org
-(setq org-publish-project-alist
-      '(("todo"
-         :base-directory "~/Dropbox/todo/"
-         :base-extension "org"
-         :publishing-directory "~/todo-html/"
-         :recursive t
-         :publishing-function org-html-publish-to-html
-         :headline-levels 2
-         :auto-preamble t)))
-                                        ; (org-publish-current-project)
+; (setq org-publish-project-alist
+;       '(("todo"
+;          :base-directory "~/Dropbox/todo/"
+;          :base-extension "org"
+;          :publishing-directory "~/todo-html/"
+;          :recursive t
+;          :publishing-function org-html-publish-to-html
+;          :headline-levels 2
+;          :auto-preamble t)))
+;                                         ; (org-publish-current-project)
 
 (defun grfn/insert-new-src-block ()
   (interactive)
