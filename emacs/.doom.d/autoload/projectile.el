@@ -13,6 +13,7 @@
                      "~/nubank/*"
                      "~/oakes/*"
                      "~/rafaelrinaldi/*"
+                     "~/Dropbox/Writing/*"
                      "~/smblott-github/*"
                      "~/walkable-server/*"))
 
