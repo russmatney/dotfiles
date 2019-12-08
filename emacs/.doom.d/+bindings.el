@@ -157,8 +157,8 @@
 
  ;; Text-scaling
  "M-+"    (λ! (text-scale-set 0))
- "M-="    #'text-scale-increase
- "M--"    #'text-scale-decrease
+ "M-="    #'doom/increase-font-size
+ "M--"    #'doom/decrease-font-size
 
  ;; eval exp and buffer
  :nvime "A-;" #'eval-last-sexp
