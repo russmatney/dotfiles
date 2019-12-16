@@ -332,7 +332,7 @@ workspace_auto_back_and_forth yes
 # workspace $wn8 output HDMI-0 DP3 DP1 eDP1
 # workspace $wn9 output HDMI-0 DP3 DP1 eDP1
 # workspace $wn0 output HDMI-0 DP3 DP1 eDP1
-set $wn1 "1: slack"
+set $wn1 "1: slack/spotify"
 bindsym $mod+1 workspace number $wn1
 bindsym $mod+Shift+1 move container to workspace number $wn1
 workspace $wn1 output HDMI-0 eDP1

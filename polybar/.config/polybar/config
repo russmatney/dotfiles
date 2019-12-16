@@ -69,7 +69,7 @@ modules-left = i3 xwindow
 ; modules-center = xwindow hostname backlight current-task reminder
 modules-center = hostname layout current-task reminder dwim
 ; modules-right = info-hackspeed openweathermap-fullfeatured isactive-bluetooth spotify pulseaudio memory cpu wlan battery temperature date powermenu
-modules-right = spotify pulseaudio memory cpu wlan battery date
+modules-right = pomo spotify pulseaudio memory cpu wlan battery date
 
 wm-restack = i3
 
@@ -78,8 +78,9 @@ cursor-scroll = ns-resize
 
 [bar/bar1]
 inherit = bar/base
-monitor = ${env:MONITOR:eDP1}
-; fallback-monitor = ${env:MONITOR:DP3}
+; monitor = ${env:MONITOR:eDP1}
+monitor = ${env:MONITOR:HDMI-0}
+fallback-monitor = ${env:MONITOR:DP3}
 tray-position = left
 tray-padding = 2
 
@@ -498,3 +499,8 @@ format-prefix = "layout: "
 format = <label>
 exec = i3-msg -t get_tree | jq .layout
 format-underline = #E62063
+
+[module/pomo]
+type = custom/script
+interval = 1
+exec = pomo status

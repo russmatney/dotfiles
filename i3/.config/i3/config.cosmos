@@ -1,4 +1,4 @@
-set $wn1 "1: slack"
+set $wn1 "1: slack/spotify"
 bindsym $mod+1 workspace number $wn1
 bindsym $mod+Shift+1 move container to workspace number $wn1
 workspace $wn1 output HDMI-0 eDP1
