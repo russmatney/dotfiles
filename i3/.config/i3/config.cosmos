@@ -1,0 +1,49 @@
+set $wn1 "1: slack"
+bindsym $mod+1 workspace number $wn1
+bindsym $mod+Shift+1 move container to workspace number $wn1
+workspace $wn1 output HDMI-0 eDP1
+
+set $wn2 "2: browse"
+bindsym $mod+2 workspace number $wn2
+bindsym $mod+Shift+2 move container to workspace number $wn2
+workspace $wn2 output HDMI-0 eDP1
+
+set $wn3 "3: misc"
+bindsym $mod+3 workspace number $wn3
+bindsym $mod+Shift+3 move container to workspace number $wn3
+workspace $wn3 output HDMI-0 eDP1
+
+set $wn4 "4: dev"
+bindsym $mod+4 workspace number $wn4
+bindsym $mod+Shift+4 move container to workspace number $wn4
+workspace $wn4 output HDMI-0 eDP1
+
+set $wn5 "5: current"
+bindsym $mod+5 workspace number $wn5
+bindsym $mod+Shift+5 move container to workspace number $wn5
+workspace $wn5 output HDMI-0 eDP1
+
+set $wn6 "6: journal"
+bindsym $mod+6 workspace number $wn6
+bindsym $mod+Shift+6 move container to workspace number $wn6
+workspace $wn6 output HDMI-0 eDP1
+
+set $wn7 "7: orghub"
+bindsym $mod+7 workspace number $wn7
+bindsym $mod+Shift+7 move container to workspace number $wn7
+workspace $wn7 output HDMI-0 eDP1
+
+set $wn8 "8: cosmos"
+bindsym $mod+8 workspace number $wn8
+bindsym $mod+Shift+8 move container to workspace number $wn8
+workspace $wn8 output HDMI-0 eDP1
+
+set $wn9 "9: write"
+bindsym $mod+9 workspace number $wn9
+bindsym $mod+Shift+9 move container to workspace number $wn9
+workspace $wn9 output HDMI-0 eDP1
+
+set $wn0 "0: dotfiles"
+bindsym $mod+0 workspace number $wn0
+bindsym $mod+Shift+0 move container to workspace number $wn0
+workspace $wn0 output HDMI-0 eDP1
