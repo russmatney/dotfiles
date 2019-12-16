@@ -86,7 +86,7 @@
        ;;direnv
        docker
        editorconfig      ; let someone else argue about tabs vs spaces
-       ein               ; tame Jupyter notebooks with emacs
+       ;;ein               ; tame Jupyter notebooks with emacs
        eval              ; run code, run (also, repls)
        flycheck
        flyspell
@@ -234,7 +234,7 @@
     (cons 360 "#383a42")))
  '(vc-annotate-very-old-color nil)
  '(wakatime-api-key "dadfb163-294d-4248-83db-358ac307867e")
- '(wakatime-cli-path "/home/russ/.pyenv/versions/3.6.6/bin/wakatime")
+ '(wakatime-cli-path "wakatime")
  '(wakatime-python-bin nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

@@ -26,7 +26,9 @@
 (setq org-refile-allow-creating-parent-nodes t)
 (setq org-refile-targets
       '(("~/Dropbox/todo/todo.org" :maxlevel . 2)
-        ("~/Dropbox/todo/specs.org" :maxlevel . 2)))
+        ("~/Dropbox/todo/specs.org" :maxlevel . 2))
+
+      org-agenda-files (file-expand-wildcards "~/Dropbox/todo/*.org"))
 
 
 (advice-add 'org-archive-subtree
@@ -88,18 +90,10 @@
      [remap evil-save-modified-and-close] #'org-capture-finalize
      [remap evil-quit]                    #'org-capture-kill)))
 
-(defun +russ/org-capture-hook ()
+(after! org-capture
   (setq org-capture-templates '(("t" "Todo [inbox]" entry
                                  (file+headline "~/Dropbox/todo/inbox.org" "Tasks")
-                                 "* [ ] %i%?"))
-
-
-        org-agenda-files '("~/Dropbox/todo/inbox.org"
-                           "~/Dropbox/todo/todo.org"
-                           "~/Dropbox/todo/urbint.org")))
-
-(after! org-capture
-  (+russ/org-capture-hook))
+                                 "* [ ] %i%?"))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

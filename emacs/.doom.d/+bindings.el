@@ -101,13 +101,13 @@
    (:desc "Editor" :prefix "e"
      :desc "Open ~/.zshrc"                 :n "v" (lambda! (find-file "~/.zshrc"))
      :desc "Open ~/.doom.d/config.el"      :n "c" (lambda! (find-file "~/.doom.d/config.el"))
-     :desc "Open ~/todo/bookmarks.org"   :n "b" (lambda! (find-file "~/todo/bookmarks.org"))
-     :desc "FIND FILE" :n "f" (lambda! (find-file "~/.doom.d/+bindings.el"))
+     :desc "Open ~/todo/bookmarks.org"     :n "b" (lambda! (find-file "~/todo/bookmarks.org"))
+     :desc "FIND FILE"                     :n "f" (lambda! (find-file "~/.doom.d/+bindings.el"))
      :desc "Open ~/.doom.d/+langs.el"      :n "l" (lambda! (find-file "~/.doom.d/+langs.el"))
      :desc "Open ~/.emacs.d/readme.md"     :n "d" (lambda! (find-file "~/.emacs.d/README.md"))
-     :desc "Open ~/urbint/grid"          :n "g" (lambda! (find-file "~/urbint/grid/README.md"))
+     :desc "Open ~/urbint/grid"            :n "g" (lambda! (find-file "~/urbint/grid/README.md"))
      :desc "Open ~/.zshrc"                 :n "z" (lambda! (find-file "~/.zshrc"))
-     :desc "Open ~/.config/i3/config"      :n "i" (lambda! (find-file "~/.config/i3/config"))
+     :desc "Open ~/.config/i3/config"      :n "i" (lambda! (find-file "~/.config/i3/config.base"))
      :desc "Open ~/.config/polybar/config" :n "p" (lambda! (find-file "~/.config/polybar/config"))
      :desc "Open ~/.tmux.conf"             :n "T" (lambda! (find-file "~/.tmux.conf"))
      :desc "Open ~/todo/todo.org"          :n "t" (lambda! (find-file "~/todo/todo.org"))
@@ -167,16 +167,18 @@
  :nvime "M-;" #'eval-last-sexp
  :nvime "M-:" #'eval-expression
 
- ;; org capture
+ ;; org
  (:leader :desc "org-capture"     :nv "x"   #'org-capture)
+ (:leader :desc "org-agenda"     :nv "A"   #'org-agenda)
+
  (:leader :desc "helm-mini"     :nv "m"   #'helm-mini)
 
-                                        ;"M-RET" #'toggle-frame-fullscreen
+ ;;"M-RET" #'toggle-frame-fullscreen
 
  "M-v" #'evil-paste-after
  "M-c" #'evil-copy)
 
-                                        ;"M-h" #'ns-do-hide-emacs
+;;"M-h" #'ns-do-hide-emacs
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
