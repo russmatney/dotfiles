@@ -31,17 +31,9 @@
 ;; Search
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(cond ((featurep! :completion ivy)
-       (ex! "ag"       #'+ivy:ag)
-       (ex! "agc[wd]"  #'+ivy:ag-cwd)
-       (ex! "rg"       #'+ivy:rg)
-       (ex! "rgc[wd]"  #'+ivy:rg-cwd)
-       (ex! "sw[iper]" #'+ivy:swiper)
-       (ex! "t[odo]"   #'+ivy:todo)))
-
 (defun rm/search ()
   (interactive)
-  (evil-ex "rg "))
+  (evil-ex "pg "))
 
 (map! :leader
       "a" #'rm/search)
@@ -88,29 +80,20 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Editor helpers
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;TODO give these section headers magic `otto` powers
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; 1. Find File
-;;    These help move around the machine.
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (map!
  (:leader
    (:desc "Editor" :prefix "e"
      :desc "Open ~/.zshrc"                 :n "v" (lambda! (find-file "~/.zshrc"))
-     :desc "Open ~/.doom.d/config.el"      :n "c" (lambda! (find-file "~/.doom.d/config.el"))
+     :desc "Open file in ~/.doom.d/"       :n "c" #'doom/open-private-config
      :desc "Open ~/todo/bookmarks.org"     :n "b" (lambda! (find-file "~/todo/bookmarks.org"))
-     :desc "FIND FILE"                     :n "f" (lambda! (find-file "~/.doom.d/+bindings.el"))
-     :desc "Open ~/.doom.d/+langs.el"      :n "l" (lambda! (find-file "~/.doom.d/+langs.el"))
-     :desc "Open ~/.emacs.d/readme.md"     :n "d" (lambda! (find-file "~/.emacs.d/README.md"))
+     :desc "Open file in ~/.emacs.d/"      :n "d" #'russ/open-doom-file
      :desc "Open ~/urbint/grid"            :n "g" (lambda! (find-file "~/urbint/grid/README.md"))
-     :desc "Open ~/.zshrc"                 :n "z" (lambda! (find-file "~/.zshrc"))
+     :desc "Open file in ~/dotfiles/"      :n "z" #'russ/open-dotfile
      :desc "Open ~/.config/i3/config"      :n "i" (lambda! (find-file "~/.config/i3/config.base"))
      :desc "Open ~/.config/polybar/config" :n "p" (lambda! (find-file "~/.config/polybar/config"))
      :desc "Open ~/.tmux.conf"             :n "T" (lambda! (find-file "~/.tmux.conf"))
-     :desc "Open ~/todo/todo.org"          :n "t" (lambda! (find-file "~/todo/todo.org"))
+     :desc "Open file in ~/Dropbox/todo/"  :n "t" #'russ/open-org-file
      :desc "Open ~/todo/urbint.org"        :n "u" (lambda! (find-file "~/todo/urbint.org"))
      :desc "Open ~/.config/alacritty/alacritty.yml" :n "a" (lambda! (find-file "~/.config/alacritty/alacritty.yml"))
      :desc "Create new snippet"            :n "s" #'yas-new-snippet

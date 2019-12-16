@@ -25,6 +25,9 @@
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
        (ivy              ; a search engine for love and life
+        +fuzzy
+        +prescient
+        +icons
         +childframe)     ; uses childframes for popups (Emacs 26+ only)
 
        :ui
@@ -144,9 +147,9 @@
        (org              ; organize your plain life in plain text
         +dragndrop       ; file drag & drop support
         +hugo
-        ;+ipython         ; ipython support for babel
+                                        ;+ipython         ; ipython support for babel
         +pandoc          ; pandoc integration into org's exporter
-        ;+pomodoro
+                                        ;+pomodoro
         +present)        ; using Emacs for presentations
        ;;perl              ; write code no one else can comprehend
        ;;php               ; perl's insecure younger brother
