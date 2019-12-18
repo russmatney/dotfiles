@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: short-time
+# key: st
+# --
+** `(format-time-string "%H:%M")`
+$0
