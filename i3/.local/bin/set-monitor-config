@@ -22,37 +22,37 @@ echo "Switching to configuration: $choice"
 
 if [ $choice == "laptop" ]; then
     xrandr \
-        --output eDP1 --pos 0x0 --mode 1920x1080 \
+        --output eDP-1 --pos 0x0 --mode 1920x1080 \
         --output DP1 --off \
         --output DP3 --off
     i3-msg mode "default"
 elif [ $choice == "laptop-hr" ]; then
     xrandr \
-        --output eDP1 --pos 0x0 --mode 2560x1440 \
+        --output eDP-1 --pos 0x0 --mode 2560x1440 \
         --output DP1 --off \
         --output DP3 --off
     i3-msg mode "default"
 elif [ $choice == "work" ]; then
     xrandr \
-        --output eDP1 --pos 0x1080 --mode 1920x1080 \
+        --output eDP-1 --pos 0x1080 --mode 1920x1080 \
         --output DP1 --mode 3840x2160 --pos 1920x0 \
         --output DP3 --off
     i3-msg mode "default"
 elif [ $choice == "work-monitor-only" ]; then
     xrandr \
-        --output eDP1 --off \
+        --output eDP-1 --off \
         --output DP1 --mode 3840x2160 --pos 1920x0 \
         --output DP3 --off
     i3-msg mode "default"
 elif [ $choice == "home" ]; then
     xrandr \
-        --output eDP1 --pos 2560x540 --mode 1920x1080 \
+        --output eDP-1 --pos 2560x540 --mode 1920x1080 \
         --output DP1 --off \
         --output DP3 --mode 2560x1440 --pos 0x0
     i3-msg mode "default"
 elif [ $choice == "home-monitor-only" ]; then
     xrandr \
-        --output eDP1 --off \
+        --output eDP-1 --off \
         --output DP3 --mode 2560x1440 --pos 0x0
     i3-msg mode "default"
 elif [ $choice == "algo" ]; then
