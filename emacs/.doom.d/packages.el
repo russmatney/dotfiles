@@ -7,12 +7,12 @@
 ;;
 
 ;; elixir
-(package! flycheck-mix)
-(package! flycheck-credo)
+;; (package! flycheck-mix)
+;; (package! flycheck-credo)
 
 ;; haskell
-(package! intero)
-(package! ghc)
+;; (package! intero)
+;; (package! ghc)
                                         ;(package! lsp-haskell)
 
 ;; lisp
