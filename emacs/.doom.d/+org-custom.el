@@ -48,29 +48,26 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; org
-(map!
- (:after org
-   (:map org-mode-map
-     "M-j"    nil
-     "M-k"    nil
-     "M-h"    nil
-     "M-l"    nil
-     "A-j"    nil
-     "A-k"    nil
-     "A-h"    nil
-     "A-l"    nil
-     "M-v"    #'evil-paste-after
-     "M-RET"  #'org-insert-item
-     "M-t"    #'org-set-tags-command
-     "TAB"    #'+org/toggle-fold)
+(map! :after org
+      :map org-mode-map
+      :nm "M-j"    nil
+      :nm "M-k"    nil
+      :nm "M-h"    nil
+      :nm "M-l"    nil
+      "M-v"    #'evil-paste-after
+      "M-RET"  #'org-insert-item
+      "M-t"    #'org-set-tags-command
+      "TAB"    #'+org/toggle-fold)
 
-   (:map evil-org-mode-map
-     "M-h"    nil
-     "M-l"    nil
-     "A-h"    nil
-     "A-l"    nil)
-   (:map evil-normal-state-map
-     "z w"    #'widen)))
+(map! :after evil-org
+      :map evil-org-mode-map
+      :nm "M-j"    nil
+      :nm "M-k"    nil
+      :nm "M-h"    nil
+      :nm "M-l"    nil
+
+      :map evil-normal-state-map
+      "z w"    #'widen)
 
 (map!
  (:after markdown
