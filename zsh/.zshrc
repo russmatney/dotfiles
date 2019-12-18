@@ -150,7 +150,9 @@ fi
 # Fzf
 ################################################################################
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f /usr/bin/fzf ] &&
+    source /usr/share/fzf/completion.zsh &&
+    source /usr/share/fzf/key-bindings.zsh
 
 
 ################################################################################
@@ -323,3 +325,6 @@ source ~/.zsh/grfn.zsh-theme
 ################################################################################
 
 export PATH="$HOME/.emacs.d/bin:$PATH"
+
+# Added by n-install (see http://git.io/n-install-repo).
+export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
