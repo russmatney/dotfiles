@@ -468,6 +468,8 @@ format = <label>
 exec = python ~/.config/polybar/scripts/spotify_status.py
 format-underline = #E62063
 
+click-right = pavucontrol &
+
 [module/isactive-bluetooth]
 type = custom/script
 exec = ~/.config/polybar/scripts/isactive-bluetooth.sh
