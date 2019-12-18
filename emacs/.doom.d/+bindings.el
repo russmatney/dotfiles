@@ -369,6 +369,7 @@
 
 
 (map!
+ :after ivy
  :map ivy-minibuffer-map
  [escape] #'keyboard-escape-quit
  "A-v" #'yank
@@ -383,7 +384,13 @@
  "C-w" #'ivy-backward-kill-word
  "C-u" #'ivy-kill-line
  "C-b" #'backward-word
- "C-f" #'forward-word)
+ "C-f" #'forward-word
+
+ :map ivy-switch-buffer-map
+ "C-k" #'ivy-previous-line
+ "C-j" #'ivy-next-line
+ "C-l" #'ivy-alt-done
+ "C-h" #'ivy-backward-kill-word)
 
 
 
