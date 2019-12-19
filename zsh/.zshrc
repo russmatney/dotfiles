@@ -151,8 +151,10 @@ fi
 ################################################################################
 
 [ -f /usr/bin/fzf ] &&
-    source /usr/share/fzf/completion.zsh &&
+    source /usr/share/fzf/completion.zsh
+[ -f /usr/bin/fzf ] &&
     source /usr/share/fzf/key-bindings.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
 ################################################################################
