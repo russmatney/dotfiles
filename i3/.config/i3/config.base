@@ -110,16 +110,8 @@ bindsym $mod+f floating toggle
 bindsym $mod+Shift+f focus mode_toggle
 
 # reload i3 inplace (preserves your layout/session, can be used to upgrade i3)
-#bindsym $mod+Shift+r reload
 bindsym $mod+Shift+r exec --no-startup-id ~/russmatney/cosmos/scripts/i3-start.sh
 # bindsym $mod+Shift+r restart
-
-# swap in direction
-# bindsym $mod+Alt+h move left
-# bindsym $mod+Alt+l move right
-# bindsym $mod+Alt+j move down
-# bindsym $mod+Alt+k move up
-
 
 # resize window (you can also use the mouse for that)
 bindsym $mod+w mode "window"
@@ -155,8 +147,8 @@ mode "window" {
 bindsym $mod+Shift+Return exec --no-startup-id emacsclient --alternate-editor='' --no-wait --create-frame --display $DISPLAY
 
 # terminal
-# bindsym $mod+Return exec --no-startup-id "alacritty --working-directory=/home/russ/dotfiles -e 'tmux'"
-bindsym $mod+Return exec --no-startup-id ~/.local/bin/cosmos open tmux
+bindsym $mod+Return exec --no-startup-id "alacritty --working-directory=/home/russ/dotfiles -e 'tmux'"
+# bindsym $mod+Return exec --no-startup-id ~/.local/bin/cosmos open tmux
 
 # browser
 bindsym $mod+b exec --no-startup-id ~/.local/bin/cosmos open-bookmark
@@ -191,8 +183,10 @@ bindsym $mod+Shift+s exec --no-startup-id i3-scrot
 
 bindsym $mod+m mode "monitor"
 mode "monitor" {
+# TODO detect monitor and set res on i3 restart
      # laptop
      bindsym l exec --no-startup-id ~/.local/bin/set-monitor-config laptop
+     bindsym $mod+l exec --no-startup-id ~/.local/bin/set-monitor-config laptop-hr
 
      # work laptop + monitor
      bindsym w exec --no-startup-id ~/.local/bin/set-monitor-config work
@@ -282,53 +276,3 @@ for_window [class="Spotify"] move --no-auto-back-and-forth to workspace number $
 bindsym $mod+comma exec i3-input -F 'rename workspace to "%s"' -P 'New name for this workspace (n:<name>): '
 
 workspace_auto_back_and_forth yes
-
-################################################################################
-# Multi-Monitor and Workspaces
-################################################################################
-
-# set $wn1 "1: slack"
-# set $wn2 "2: spotify"
-# set $wn3 "3: email"
-# set $wn4 "4: web"
-# set $wn5 "5: misc"
-# set $wn6 "6: grid"
-# set $wn7 "7: PRs"
-# set $wn8 "8: cosmos"
-# set $wn9 "9: vpn"
-# set $wn0 "10: dotfiles"
-
-# # switch to workspace
-# bindsym $mod+1 workspace number $wn1
-# bindsym $mod+2 workspace number $wn2
-# bindsym $mod+3 workspace number $wn3
-# bindsym $mod+4 workspace number $wn4
-# bindsym $mod+5 workspace number $wn5
-# bindsym $mod+6 workspace number $wn6
-# bindsym $mod+7 workspace number $wn7
-# bindsym $mod+8 workspace number $wn8
-# bindsym $mod+9 workspace number $wn9
-# bindsym $mod+0 workspace number $wn0
-
-# # move focused container to workspace
-# bindsym $mod+Shift+1 move container to workspace number $wn1
-# bindsym $mod+Shift+2 move container to workspace number $wn2
-# bindsym $mod+Shift+3 move container to workspace number $wn3
-# bindsym $mod+Shift+4 move container to workspace number $wn4
-# bindsym $mod+Shift+5 move container to workspace number $wn5
-# bindsym $mod+Shift+6 move container to workspace number $wn6
-# bindsym $mod+Shift+7 move container to workspace number $wn7
-# bindsym $mod+Shift+8 move container to workspace number $wn8
-# bindsym $mod+Shift+9 move container to workspace number $wn9
-# bindsym $mod+Shift+0 move container to workspace number $wn0
-
-# workspace $wn1 output HDMI-0 eDP1 DP3
-# workspace $wn2 output HDMI-0 eDP1 DP3
-# workspace $wn3 output HDMI-0 eDP1 DP3
-# workspace $wn4 output HDMI-0 eDP1 DP3
-# workspace $wn5 output HDMI-0 eDP1 DP3
-# workspace $wn6 output HDMI-0 DP3 DP1 eDP1
-# workspace $wn7 output HDMI-0 DP3 DP1 eDP1
-# workspace $wn8 output HDMI-0 DP3 DP1 eDP1
-# workspace $wn9 output HDMI-0 DP3 DP1 eDP1
-# workspace $wn0 output HDMI-0 DP3 DP1 eDP1

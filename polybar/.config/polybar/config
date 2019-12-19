@@ -67,9 +67,11 @@ font-4 = "DejaVu Sans;3"
 
 modules-left = i3 xwindow
 ; modules-center = xwindow hostname backlight current-task reminder
-modules-center = hostname layout current-task reminder dwim
+; modules-center = hostname layout current-task reminder dwim
+modules-center = hostname
 ; modules-right = info-hackspeed openweathermap-fullfeatured isactive-bluetooth spotify pulseaudio memory cpu wlan battery temperature date powermenu
-modules-right = pomo spotify pulseaudio memory cpu wlan battery date
+; modules-right = pomo spotify pulseaudio memory cpu wlan battery date
+modules-right = spotify pulseaudio memory cpu wlan battery date
 
 wm-restack = i3
 
@@ -78,9 +80,8 @@ cursor-scroll = ns-resize
 
 [bar/bar1]
 inherit = bar/base
-; monitor = ${env:MONITOR:eDP1}
-monitor = ${env:MONITOR:HDMI-0}
-fallback-monitor = ${env:MONITOR:DP3}
+;monitor = ${env:MONITOR:HDMI-0}
+monitor = ${env:MONITOR:eDP-1}
 tray-position = left
 tray-padding = 2
 
@@ -293,6 +294,9 @@ label-volume-foreground = ${root.foreground}
 
 label-muted = 🔇 muted
 label-muted-foreground = #666
+
+;; TODO overwrite w/ this click event?
+;; click-right = pavucontrol &
 
 bar-volume-width = 4
 bar-volume-foreground-0 = #55aa55
