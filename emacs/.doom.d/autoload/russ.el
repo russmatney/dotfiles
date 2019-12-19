@@ -5,18 +5,18 @@
   "Browse your org-dir."
   (interactive)
   (let ((org-dir "~/Dropbox/todo/"))
-    (doom-project-browse org-dir)))
+    (doom-project-find-file org-dir)))
 
 ;;;###autoload
 (defun russ/open-doom-file ()
   "Open a file in doom itself."
   (interactive)
   (let ((dir "~/.emacs.d/"))
-    (doom-project-browse dir)))
+    (doom-project-find-file dir)))
 
 ;;;###autoload
 (defun russ/open-dotfile ()
   "Open a file from my dotfiles itself."
   (interactive)
   (let ((dir "~/dotfiles/"))
-    (doom-project-browse dir)))
+    (doom-project-find-file dir)))
