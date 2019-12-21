@@ -1,6 +1,13 @@
 ;;; ~/dotfiles/emacs/.doom.d/autoload/russ.el -*- lexical-binding: t; -*-
 
 ;;;###autoload
+(defun russ/open-emacs-config-file ()
+  "Browse your org-dir."
+  (interactive)
+  (let ((org-dir "~/.doom.d"))
+    (doom-project-find-file org-dir)))
+
+;;;###autoload
 (defun russ/open-org-file ()
   "Browse your org-dir."
   (interactive)

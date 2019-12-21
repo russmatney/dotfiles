@@ -85,7 +85,7 @@
  (:leader
    (:desc "Editor" :prefix "e"
      :desc "Open ~/.zshrc"                 :n "v" (lambda! (find-file "~/.zshrc"))
-     :desc "Open file in ~/.doom.d/"       :n "c" #'doom/open-private-config
+     :desc "Open file in ~/.doom.d/"       :n "c" #'russ/open-emacs-config-file
      :desc "Open ~/todo/bookmarks.org"     :n "b" (lambda! (find-file "~/todo/bookmarks.org"))
      :desc "Open file in ~/.emacs.d/"      :n "d" #'russ/open-doom-file
      :desc "Open ~/urbint/grid"            :n "g" (lambda! (find-file "~/urbint/grid/README.md"))
@@ -262,6 +262,7 @@
  "M-c"    #'+workspace/new
  "M-,"    #'+workspace/rename
  "M-P"    #'rs/projectile-switch-project-workspace
+ "M-O"    #'russ/projectile-open-file-from-project
 
  ;; switch to
  :n "M-s"  #'+workspace/switch-to

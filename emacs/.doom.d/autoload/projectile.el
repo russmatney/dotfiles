@@ -49,9 +49,24 @@
      (lambda (project-path)
        (let ((project-name
               (file-name-nondirectory
-               (directory-file-name project-path))
-              ))
+               (directory-file-name project-path))))
          (if (+workspace-exists-p project-name)
              (+workspace-switch project-name)
+           ;; TODO if find-file fails, should NOT switch workspaces (or just switch back)
            (progn (+workspace-switch project-name t)
                   (counsel-projectile-switch-project-action project-path))))))))
+
+(defun russ/projectile-open-file-from-project ()
+  "Use projectile prompt to find a file in another project."
+  (interactive)
+  (require 'projectile)
+  (require 'counsel-projectile)
+  (let ((all-projects (get-projects)))
+    (ivy-read
+     (projectile-prepend-project-name "Open file from project: ") all-projects
+     :preselect (and (projectile-project-p)
+                     (abbreviate-file-name (projectile-project-root)))
+     :require-match nil
+     :action
+     (lambda (project-path)
+       (doom-project-find-file project-path)))))

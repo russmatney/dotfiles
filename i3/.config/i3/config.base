@@ -219,6 +219,7 @@ for_window [title="Terminal"] border pixel 2
 # Compositor (Animations, Shadows, Transparency)
 # exec_always --no-startup-id compton --inactive-dim 0.1 --active-opacity 0.9 -i 0.95
 # exec_always --no-startup-id compton -cCfb --backend glx --vsync opengl
+exec_always --no-startup-id picom
 
 exec_always --no-startup-id feh --bg-scale ~/Dropbox/wallpapers/cityscape-cartoon.jpg
 # exec_always --no-startup-id feh --bg-scale ~/Dropbox/wallpapers/firewatch-blue-orange.jpg
