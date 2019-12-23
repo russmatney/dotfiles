@@ -93,7 +93,7 @@ bindsym $mod+Shift+c resize set width 90 ppt height 90 ppt, move position center
 bindsym $mod+shift+Right floating enable, resize set width 50 ppt height 100 ppt, move position 960 0
 bindsym $mod+shift+Left floating enable, resize set width 50 ppt height 100 ppt, move position 0 0
 
-bindsym $mod+shift+Down resize set width 60 ppt height 100 ppt, move position 0 0
+bindsym $mod+shift+Down resize set width 60 ppt height 100 ppt, move position 0 px 0 px
 
 # enter fullscreen mode for the focused container
 bindsym $mod+Shift+space fullscreen toggle
@@ -107,7 +107,12 @@ bindsym $mod+Shift+semicolon layout toggle tabbed stacking
 
 # toggle tiling / floating
 bindsym $mod+f floating toggle
-bindsym $mod+Shift+f focus mode_toggle
+
+# TODO cycle floating windows in workspace
+#bindsym $mod+Shift+f focus mode_toggle
+
+# TODO switch focus between tiling windows/floating windows
+#bindsym $mod+z focus mode_toggle
 
 # reload i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r exec --no-startup-id ~/russmatney/cosmos/scripts/i3-start.sh
@@ -152,7 +157,8 @@ bindsym $mod+Return exec --no-startup-id "alacritty --working-directory=/home/ru
 
 # browser
 bindsym $mod+b exec --no-startup-id ~/.local/bin/cosmos open-bookmark
-bindsym $mod+shift+b exec --no-startup-id google-chrome-stable
+# bindsym $mod+shift+b exec --no-startup-id google-chrome-stable
+bindsym $mod+shift+b exec --no-startup-id firefox
 
 # open candidate in workable
 bindsym $mod+shift+w exec --no-startup-id ~/.local/bin/cosmos open-workable
