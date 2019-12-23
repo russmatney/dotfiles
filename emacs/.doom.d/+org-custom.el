@@ -7,13 +7,13 @@
 (map!
  (:after markdown-mode
    (:map markdown-mode-map
-     "<backspace>" nil
-     "<A-left>"    nil
-     "<A-right>"   nil
-     "A-<tab>"     #'markdown-cycle
-     "<M-left>"    nil
-     "<M-right>"   nil
-     "M-<tab>"     #'markdown-cycle)))
+     "M-p"    nil
+     "M-n"    nil))
+
+ (:after markdown-mode
+   (:map evil-markdown-mode-map
+     "M-p"    nil
+     "M-n"    nil)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org Settings

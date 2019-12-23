@@ -246,7 +246,9 @@
 
  ;; find in open buffers
  (:leader :desc "Workspace buffers"      :n  "b"   #'switch-to-buffer)
+ (:leader :desc "iBuffer"                :n  "B"   #'ibuffer)
  :n "M-b"   #'persp-switch-to-buffer
+ :n "M-B"   #'ibuffer
 
  ;; test toggle
  (:leader :desc "projectile-test-toggle" :n  "t" #'projectile-toggle-between-implementation-and-test))

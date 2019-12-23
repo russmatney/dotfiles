@@ -1,8 +1,5 @@
 # key: j
-# name: journal-timestamp
+# name: journal-timestamp                   
 # --
---
-
-`(format-time-string "%Y-%m-%d %H:%M")`
-`(shell-command-to-string "hostname")``(shell-command-to-string "whereami")``(shell-command-to-string "whereami -f human")`
-M:
+* `(format-time-string "%Y-%m-%d %H:%M")`
+Host: `(shell-command-to-string "hostname")`M:
