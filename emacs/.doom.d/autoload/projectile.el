@@ -52,7 +52,6 @@
                (directory-file-name project-path))))
          (if (+workspace-exists-p project-name)
              (+workspace-switch project-name)
-           ;; TODO if find-file fails, should NOT switch workspaces (or just switch back)
            (progn (+workspace-switch project-name t)
                   (counsel-projectile-switch-project-action project-path))))))))
 

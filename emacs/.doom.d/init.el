@@ -14,6 +14,10 @@
 
 (defvar +org-dir (expand-file-name "~/todo/"))
 
+(defvar +workspaces-main "todo")
+
+(defvar +workspaces-switch-project-function #'russ/doom-project-find-file)
+
 (doom! :input
        ;;chinese
        ;;japanese
@@ -199,14 +203,20 @@
  '(ansi-color-names-vector
    ["#21242b" "#e45649" "#50a14f" "#986801" "#4078f2" "#a626a4" "#0184bc" "#383a42"])
  '(custom-safe-themes
-   '("10461a3c8ca61c52dfbbdedd974319b7f7fd720b091996481c8fb1dded6c6116" "49ec957b508c7d64708b40b0273697a84d3fee4f15dd9fc4a9588016adee3dad" default))
+   (quote
+    ("10461a3c8ca61c52dfbbdedd974319b7f7fd720b091996481c8fb1dded6c6116" "49ec957b508c7d64708b40b0273697a84d3fee4f15dd9fc4a9588016adee3dad" default)))
  '(fci-rule-color "#383a42")
  '(flycheck-javascript-flow-args nil)
  '(jdee-db-active-breakpoint-face-colors (cons "#f0f0f0" "#4078f2"))
  '(jdee-db-requested-breakpoint-face-colors (cons "#f0f0f0" "#50a14f"))
  '(jdee-db-spec-breakpoint-face-colors (cons "#f0f0f0" "#9ca0a4"))
  '(objed-cursor-color "#e45649")
- '(safe-local-variable-values '((eval progn (pp-buffer) (indent-buffer))))
+ '(safe-local-variable-values
+   (quote
+    ((checkdoc-package-keywords-flag)
+     (eval progn
+           (pp-buffer)
+           (indent-buffer)))))
  '(vc-annotate-background "#fafafa")
  '(vc-annotate-color-map
    (list
