@@ -63,3 +63,6 @@
 ;; clojure
 (package! aggressive-indent)
 (package! lispyville)
+
+;; wakatime
+(package! wakatime-mode)

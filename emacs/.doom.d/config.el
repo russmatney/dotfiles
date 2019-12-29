@@ -14,8 +14,6 @@
 ;;; Private keys'n'such
 (load! "+private")
 
-;; (defvar +russ-dir (file-name-directory load-file-name))
-
 ;; Basic Config
 (setq backup-directory-alist `(("." . "~/.emacs-tmp/")))
 (setq auto-save-file-name-transforms `((".*" "~/.emacs-tmp/" t)))
@@ -78,17 +76,7 @@
 ;; load prose tools (includes markdown)
 (load! "+org-custom")
 
-;; TODO get working with toc.org
-; (setq org-publish-project-alist
-;       '(("todo"
-;          :base-directory "~/Dropbox/todo/"
-;          :base-extension "org"
-;          :publishing-directory "~/todo-html/"
-;          :recursive t
-;          :publishing-function org-html-publish-to-html
-;          :headline-levels 2
-;          :auto-preamble t)))
-;                                         ; (org-publish-current-project)
+(load! "+wakatime")
 
 (defun grfn/insert-new-src-block ()
   (interactive)
@@ -189,5 +177,3 @@ SCHEDULED: <%s>"
     (save-mark-and-excursion
       (insert text))
     (org-align-tags 't)))
-
-;; (+workspace-switch "dotfiles")
