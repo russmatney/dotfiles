@@ -60,11 +60,6 @@ font-2 = "Material Icons:style=Regular:pixelsize=9;2"
 font-3 = "Font Awesome 5 Free:style=Regular:pixelsize=8;2"
 font-4 = "DejaVu Sans;3"
 
-; font-0 = "Overpass Mono:pixelsize=10;2.25"
-; font-1 = "Hack:pixelsize=9;2"
-; font-1 = "Unifont:fontformat=truetype:size=8:antialias=false;0"
-; font-2 = "Siji:pixelsize=10;1"
-
 modules-left = i3 xwindow
 ; modules-center = xwindow hostname backlight current-task reminder
 ; modules-center = hostname layout current-task reminder dwim
@@ -80,8 +75,7 @@ cursor-scroll = ns-resize
 
 [bar/bar1]
 inherit = bar/base
-;monitor = ${env:MONITOR:HDMI-0}
-monitor = ${env:MONITOR:eDP-1}
+monitor = ${env:MONITOR:HDMI-0}
 tray-position = left
 tray-padding = 2
 
