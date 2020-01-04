@@ -20,3 +20,5 @@ scratch*
 focus/.local/bin/focus
 X/.Xauthority
 *.elc
+
+i3/.config/i3/config
