@@ -1,5 +1,5 @@
 # key: j
-# name: journal-timestamp                   
+# name: journal-timestamp
 # --
 * `(format-time-string "%Y-%m-%d %H:%M")`
-Host: `(shell-command-to-string "hostname")`M:
+Host: `(shell-command-to-string "hostname")`L: `(shell-command-to-string "python ~/.config/polybar/scripts/spotify_status.py")`M:

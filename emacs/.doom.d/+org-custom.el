@@ -50,6 +50,10 @@
 ;; org
 (map! :after org
       :map org-mode-map
+      "M-j"    nil
+      "M-k"    nil
+      "M-h"    nil
+      "M-l"    nil
       :nm "M-j"    nil
       :nm "M-k"    nil
       :nm "M-h"    nil

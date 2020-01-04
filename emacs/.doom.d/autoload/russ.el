@@ -27,6 +27,7 @@ non-nil, use completion based on context."
   "Jump to a file in DIR (searched recursively).
 
 If DIR is not a project, it will be indexed (but not cached)."
+  (interactive)
   (print "hello from my function!")
   (unless (file-directory-p dir)
     (error "Directory %S does not exist" dir))
@@ -61,22 +62,22 @@ If DIR is not a project, it will be indexed (but not cached)."
 (defun russ/open-emacs-config-file ()
   "Browse your emacs config."
   (interactive)
-  (russ/doom-project-find-file "~/.doom.d"))
+  (doom-project-find-file "~/.doom.d"))
 
 ;;;###autoload
 (defun russ/open-org-file ()
   "Browse your org-dir."
   (interactive)
-  (russ/doom-project-find-file "~/Dropbox/todo/"))
+  (doom-project-find-file "~/Dropbox/todo/"))
 
 ;;;###autoload
 (defun russ/open-doom-file ()
   "Open a file in doom itself."
   (interactive)
-  (russ/doom-project-find-file "~/.emacs.d/"))
+  (doom-project-find-file "~/.emacs.d/"))
 
 ;;;###autoload
 (defun russ/open-dotfile ()
   "Open a file from my dotfiles itself."
   (interactive)
-  (russ/doom-project-find-file "~/dotfiles/"))
+  (doom-project-find-file "~/dotfiles/"))
