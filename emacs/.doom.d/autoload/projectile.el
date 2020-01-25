@@ -5,6 +5,7 @@
                      "~/rschmukler/*"
                      "~/bolasblack/*"
                      "~/clojure/*"
+                     "~/teknql/*"
                      "~/duct-framework/*"
                      "~/hlissner/*"
                      "~/jacekschae/*"
@@ -15,7 +16,8 @@
                      "~/rafaelrinaldi/*"
                      "~/Dropbox/Writing/*"
                      "~/smblott-github/*"
-                     "~/walkable-server/*"))
+                     "~/walkable-server/*"
+                     "~/weavejester/*"))
 
 (defun flatten (list-of-lists)
   (apply #'append list-of-lists))
