@@ -22,3 +22,4 @@ X/.Xauthority
 *.elc
 
 i3/.config/i3/config
+i3/.config/i3/config.cosmos
