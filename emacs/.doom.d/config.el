@@ -77,6 +77,9 @@
 (load! "+org-custom")
 
 (load! "+wakatime")
+(+wakatime-autostart-h)
+
+(load! "+exwm")
 
 (defun grfn/insert-new-src-block ()
   (interactive)

@@ -1,0 +1,7 @@
+
+xset r rate 170 50
+
+# detect based on hostname?
+# /home/russ/.local/bin/set-monitor-config laptop-hr
+
+dropbox &

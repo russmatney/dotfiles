@@ -31,8 +31,8 @@
        (ivy              ; a search engine for love and life
         ;;+fuzzy
         +prescient
-        +icons
-        +childframe)     ; uses childframes for popups (Emacs 26+ only)
+        +icons)
+       ;;+childframe)     ; uses childframes for popups (Emacs 26+ only)
 
        :ui
        ;;deft
@@ -120,7 +120,7 @@
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
        ;;crystal           ; ruby at the speed of c
-       ;;csharp            ; unity, .NET, and mono shenanigans
+       csharp            ; unity, .NET, and mono shenanigans
        data              ; config/data formats
        ;; erlang            ; an elegant language for a more civilized age
        ;;elixir            ; erlang done right
@@ -204,7 +204,7 @@
    ["#21242b" "#e45649" "#50a14f" "#986801" "#4078f2" "#a626a4" "#0184bc" "#383a42"])
  '(custom-safe-themes
    (quote
-    ("10461a3c8ca61c52dfbbdedd974319b7f7fd720b091996481c8fb1dded6c6116" "49ec957b508c7d64708b40b0273697a84d3fee4f15dd9fc4a9588016adee3dad" default)))
+    ("0809c08440b51a39c77ec5529f89af83ab256a9d48107b088d40098ce322c7d8" "6e2d579b02aadc933f434003f49d269d004f5c7094eb53658afbacc817761d83" "10461a3c8ca61c52dfbbdedd974319b7f7fd720b091996481c8fb1dded6c6116" "49ec957b508c7d64708b40b0273697a84d3fee4f15dd9fc4a9588016adee3dad" default)))
  '(fci-rule-color "#383a42")
  '(flycheck-javascript-flow-args nil)
  '(jdee-db-active-breakpoint-face-colors (cons "#f0f0f0" "#4078f2"))

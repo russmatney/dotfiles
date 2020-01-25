@@ -291,7 +291,7 @@
      (:leader
        (:desc "Cider" :prefix "c"
          :n  "'"  #'cider-jack-in
-         :n  "\"" #'cider-jack-in-clojurescript
+         :n  "\"" #'cider-jack-in-cljs
          :n  "b"  #'cider-eval-buffer
          :n  "B"  #'cider-switch-to-repl-buffer
          :n  "y"  #'cider-copy-last-result

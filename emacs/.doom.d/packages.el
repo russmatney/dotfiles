@@ -66,3 +66,6 @@
 
 ;; wakatime
 (package! wakatime-mode)
+
+;; exwm
+(package! exwm)
