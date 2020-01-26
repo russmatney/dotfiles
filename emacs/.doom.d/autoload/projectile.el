@@ -1,39 +1,28 @@
 ;;; private/russ/autoload/projectile.el -*- lexical-binding: t; -*-
 
-(setq github-roots '("~/russmatney/*"
-                     "~/urbint/*"
-                     "~/rschmukler/*"
-                     "~/bolasblack/*"
-                     "~/clojure/*"
-                     "~/teknql/*"
-                     "~/duct-framework/*"
-                     "~/hlissner/*"
-                     "~/jacekschae/*"
-                     "~/l3nz/*"
-                     "~/lambduh/*"
-                     "~/nubank/*"
-                     "~/oakes/*"
-                     "~/rafaelrinaldi/*"
-                     "~/Dropbox/Writing/*"
-                     "~/smblott-github/*"
-                     "~/walkable-server/*"
-                     "~/weavejester/*"))
+(defun get-roots ()
+  (require 'org)
+  (let ((contents
+         (with-temp-buffer
+           (insert-file-contents "~/Dropbox/todo/repos.org")
+           (delay-mode-hooks (org-mode))
+           (org-element-parse-buffer 'headline t))))
+    contents))
+
+(defun github-roots ()
+  (org-element-map (get-roots) 'headline
+    (lambda (hl)
+      (org-element-property :title hl))))
 
 (defun flatten (list-of-lists)
   (apply #'append list-of-lists))
 
 (defun get-projects ()
-  (let ((all-proj-paths (flatten (mapcar 'file-expand-wildcards github-roots))))
+  (let ((all-proj-paths (flatten (mapcar 'file-expand-wildcards (github-roots)))))
     (-distinct
      (mapcar 'directory-file-name
              (append all-proj-paths projectile-known-projects)))))
 
-;; (comment
-;;  (get-projects)
-
-;;  (directory-file-name "mydir/")
-
-;;  (-distinct (append local-projects projectile-known-projects)))
 
 ;;;###autoload
 (defun rs/projectile-switch-project-workspace ()
