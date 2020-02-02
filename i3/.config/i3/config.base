@@ -98,6 +98,7 @@ bindsym $mod+shift+Down resize set width 60 ppt height 100 ppt, move position 0 
 # enter fullscreen mode for the focused container
 bindsym $mod+Shift+space fullscreen toggle
 
+default_orientation vertical
 # bsp, sort of
 for_window [class=".*"] split toggle
 
