@@ -279,9 +279,6 @@
                  (format "%d chars" (length value)))))
     nil nil nil)))
 
-;; (map!
-;;    :n "g f"   #'+format|buffer)
-
 (map!
  (:after cider-mode
    (:leader
@@ -314,8 +311,7 @@
      (:map cider-browse-ns-mode-map
        :n "RET"       #'cider-browse-ns-operate-at-point))))
 
-(use-package! flycheck-clj-kondo
-  :ensure t)
+(use-package! flycheck-clj-kondo)
 
 (use-package! clojure-mode
   :mode "\\.clj$"
@@ -374,6 +370,10 @@
   (emacs-lisp-mode . lispyville-mode)
   (clojure-mode . lispyville-mode)
   (lisp-mode . lispyville-mode)
+
+  :bind (:map lispyville-mode-map
+          ("M-L" . lispyville-beginning-of-next-defun))
+
   :config
   (lispyville-set-key-theme
    '(operators
@@ -382,6 +382,7 @@
      text-objects
      atom-motions
      additional-motions
+     additional
      additional-insert
      additional-wrap
      commentary
@@ -389,37 +390,10 @@
      wrap)))
 
 
-;;introduce-let <> space m i
-;; move-to-let <> space m l
-;; inspect <> space m l
-;; additional
-;; additional-insert
-
 ;; to remove from hooks without restarting emacs
 ;; (remove-hook 'clojure-mode-hook 'parinfer-mode)
 ;; (remove-hook 'lisp-mode-hook 'parinfer-mode)
 ;; (remove-hook 'emacs-lisp-mode-hook 'parinfer-mode)
-
-;; (use-package! paxedit
-;;   :config
-;;   (map!
-;;    (:map paxedit-mode-map
-;;      :n ">>" #'evil-shift-right
-;;      :n ">e" #'paxedit-transpose-forward
-;;      :n ">)" #'sp-forward-slurp-sexp
-;;      :n ">(" #'sp-backward-barf-sexp
-;;      :n ">I" #'grfn/insert-at-sexp-end
-;;      :n ">a" #'grfn/insert-at-form-end
-;;      :n "<<" #'evil-shift-left
-;;      :n "<e" #'paxedit-transpose-backward
-;;      :n "<)" #'sp-forward-barf-sexp
-;;      :n "<(" #'sp-backward-slurp-sexp
-;;      :n "<I" #'grfn/insert-at-sexp-start
-;;      :n "<a" #'grfn/insert-at-form-start))
-;;   :hook
-;;   (clojure-mode . smartparens-mode)
-;;   (clojure-mode . paxedit-mode)
-;;   (emacs-lisp-mode . paxedit-mode))
 
 ;; (use-package! parinfer
 ;;   :hook
