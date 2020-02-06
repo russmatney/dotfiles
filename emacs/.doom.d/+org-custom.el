@@ -61,7 +61,13 @@
       "M-v"    #'evil-paste-after
       "M-RET"  #'org-insert-item
       "M-t"    #'org-set-tags-command
-      "TAB"    #'+org/toggle-fold)
+      "TAB"    #'+org/toggle-fold
+
+      :map evil-org-agenda-mode-map
+      :nm "M-j"    nil
+      :nm "M-k"    nil
+      :nm "M-h"    nil
+      :nm "M-l"    nil)
 
 (map! :after evil-org
       :map evil-org-mode-map
@@ -71,7 +77,12 @@
       :nm "M-l"    nil
 
       :map evil-normal-state-map
-      "z w"    #'widen)
+      "z w"    #'widen
+
+      :map evil-org-agenda-mode-map
+      :nm "M-j"    nil
+      :nm "M-k"    nil)
+
 
 (map!
  (:after markdown
