@@ -389,11 +389,8 @@
      slurp/barf-lispy
      wrap)))
 
-
-;; to remove from hooks without restarting emacs
-;; (remove-hook 'clojure-mode-hook 'parinfer-mode)
-;; (remove-hook 'lisp-mode-hook 'parinfer-mode)
-;; (remove-hook 'emacs-lisp-mode-hook 'parinfer-mode)
+(use-package! ivy-cider
+  :after cider-mode)
 
 ;; (use-package! parinfer
 ;;   :hook
