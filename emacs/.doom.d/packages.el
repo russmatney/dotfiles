@@ -63,6 +63,7 @@
 ;; clojure
 (package! aggressive-indent)
 (package! lispyville)
+(package! flycheck-clj-kondo)
 
 ;; wakatime
 (package! wakatime-mode)

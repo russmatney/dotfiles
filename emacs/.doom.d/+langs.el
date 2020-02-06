@@ -306,10 +306,16 @@
          :n  "p"  #'cider-eval-sexp-at-point
          :n  "f"  #'cider-eval-defun-at-point
          :n  "t"  #'cider-test-run-ns-tests
-         :n  "T"  #'cider-test-run-test)))
+         :n  "T"  #'cider-test-run-test
+
+         :n  "l"  #'clojure-introduce-let
+         :n  "m"  #'clojure-move-to-let)))
    (:after cider-browse-ns-mode
      (:map cider-browse-ns-mode-map
        :n "RET"       #'cider-browse-ns-operate-at-point))))
+
+(use-package! flycheck-clj-kondo
+  :ensure t)
 
 (use-package! clojure-mode
   :mode "\\.clj$"
@@ -318,11 +324,19 @@
   :mode ("\\.cljs$" . clojurescript-mode)
   :mode ("\\.cljc$" . clojurec-mode)
 
-  ;; :hook
-  ;; (clojure-mode . aggressive-indent-mode)
-  ;; (lisp-mode . aggressive-indent-mode)
-
   :config
+  (require 'flycheck-clj-kondo)
+
+  ;; from https://github.com/borkdude/flycheck-clj-kondo#multiple-linters
+  (dolist (checker '(clj-kondo-clj clj-kondo-cljs clj-kondo-cljc clj-kondo-edn))
+    (setq flycheck-checkers (cons checker (delq checker flycheck-checkers))))
+
+  (dolist (checkers '((clj-kondo-clj . clojure-joker)
+                      (clj-kondo-cljs . clojurescript-joker)
+                      (clj-kondo-cljc . clojure-joker)
+                      (clj-kondo-edn . edn-joker)))
+    (flycheck-add-next-checker (car checkers) (cons 'error (cdr checkers))))
+
   (setq cljr-magic-require-namespaces
         '(("io" . "clojure.java.io")
           ("sh" . "clojure.java.shell")
@@ -345,24 +359,46 @@
          (figwheel-sidecar.repl-api/start-figwheel!)
          (figwheel-sidecar.repl-api/cljs-repl))"))
 
-;; (use-package! lispyville
-;;   :hook
-;;   (emacs-lisp-mode . lispyville-mode)
-;;   (clojure-mode . lispyville-mode)
-;;   (lisp-mode . lispyville-mode)
-;;   :config
-;;   (lispyville-set-key-theme
-;;    '(operators
-;;      ;;c-w
-;;      prettify
-;;      ;;text-objects
-;;      ;;atom-motions ;
-;;      ;;additional-motions
-;;      ;;commentary
-;;      slurp/barf-lispy
-;;      wrap)))
-;;additional
-;;additional-insert)))
+(use-package! aggressive-indent
+  :hook
+  (clojure-mode . aggressive-indent-mode)
+  (lisp-mode . aggressive-indent-mode)
+
+  :config
+  (setq clojure-indent-style 'align-arguments)
+  (setq clojure-align-forms-automatically t))
+
+;; https://github.com/noctuid/lispyville
+(use-package! lispyville
+  :hook
+  (emacs-lisp-mode . lispyville-mode)
+  (clojure-mode . lispyville-mode)
+  (lisp-mode . lispyville-mode)
+  :config
+  (lispyville-set-key-theme
+   '(operators
+     c-w
+     prettify
+     text-objects
+     atom-motions
+     additional-motions
+     additional-insert
+     additional-wrap
+     commentary
+     slurp/barf-lispy
+     wrap)))
+
+
+;;introduce-let <> space m i
+;; move-to-let <> space m l
+;; inspect <> space m l
+;; additional
+;; additional-insert
+
+;; to remove from hooks without restarting emacs
+;; (remove-hook 'clojure-mode-hook 'parinfer-mode)
+;; (remove-hook 'lisp-mode-hook 'parinfer-mode)
+;; (remove-hook 'emacs-lisp-mode-hook 'parinfer-mode)
 
 ;; (use-package! paxedit
 ;;   :config
@@ -385,11 +421,11 @@
 ;;   (clojure-mode . paxedit-mode)
 ;;   (emacs-lisp-mode . paxedit-mode))
 
-(use-package! parinfer
-  :hook
-  (emacs-lisp-mode . parinfer-mode)
-  (clojure-mode . parinfer-mode)
-  (lisp-mode . parinfer-mode))
+;; (use-package! parinfer
+;;   :hook
+;;   (emacs-lisp-mode . parinfer-mode)
+;;   (clojure-mode . parinfer-mode)
+;;   (lisp-mode . parinfer-mode))
 
 (defmacro define-move-and-insert
     (name &rest body)
