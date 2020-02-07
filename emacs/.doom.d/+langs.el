@@ -286,6 +286,8 @@
      :desc "Jump to definition at point"   :n  "l"  #'cider-find-var)
    (:map cider-mode-map
      (:leader
+       :n "DEL" #'ivy-cider-browse-ns
+       :n "\\" #'ivy-cider-apropos
        (:desc "Cider" :prefix "c"
          :n  "'"  #'cider-jack-in
          :n  "\"" #'cider-jack-in-cljs
@@ -346,14 +348,16 @@
           ("sql" . "honeysql.core")
           ("csv" . "clojure.data.csv")
           ("json" . "cheshire.core")
-          ("s" . "clojure.spec.alpha")))
+          ("s" . "clojure.spec.alpha")
+          ("rf" . "re-frame.core")
+          ("r" . "reagent.core"))
 
-  (setq clojure-align-forms-automatically t)
+        (setq clojure-align-forms-automatically t)
 
-  (setq cider-cljs-lein-repl
-        "(do (require 'figwheel-sidecar.repl-api)
+        (setq cider-cljs-lein-repl
+              "(do (require 'figwheel-sidecar.repl-api)
          (figwheel-sidecar.repl-api/start-figwheel!)
-         (figwheel-sidecar.repl-api/cljs-repl))"))
+         (figwheel-sidecar.repl-api/cljs-repl))")))
 
 (use-package! aggressive-indent
   :hook
@@ -387,16 +391,17 @@
      additional-wrap
      commentary
      slurp/barf-lispy
-     wrap)))
+     wrap))
+  (setq
+   lispy-safe-actions-ignore-strings t
+   lispy-safe-actions-ignore-comments t))
 
 (use-package! ivy-cider
   :after cider-mode)
 
-;; (use-package! parinfer
-;;   :hook
-;;   (emacs-lisp-mode . parinfer-mode)
-;;   (clojure-mode . parinfer-mode)
-;;   (lisp-mode . parinfer-mode))
+;;(remove-hook 'clojure-mode-hook 'parinfer-mode)
+;; (remove-hook 'emacs-lisp-mode-hook 'parinfer-mode)
+
 
 (defmacro define-move-and-insert
     (name &rest body)

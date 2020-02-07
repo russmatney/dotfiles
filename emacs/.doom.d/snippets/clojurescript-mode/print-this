@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: print-this
+# uuid: pri
+# key: pri
+# condition: t
+# --
+  (print \"$0\")
+  (print $0)
