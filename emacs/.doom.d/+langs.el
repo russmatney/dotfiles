@@ -352,12 +352,12 @@
           ("rf" . "re-frame.core")
           ("r" . "reagent.core"))
 
-        (setq clojure-align-forms-automatically t)
+        clojure-align-forms-automatically t
 
-        (setq cider-cljs-lein-repl
-              "(do (require 'figwheel-sidecar.repl-api)
+        cider-cljs-lein-repl
+        "(do (require 'figwheel-sidecar.repl-api)
          (figwheel-sidecar.repl-api/start-figwheel!)
-         (figwheel-sidecar.repl-api/cljs-repl))")))
+         (figwheel-sidecar.repl-api/cljs-repl))"))
 
 (use-package! aggressive-indent
   :hook
@@ -394,13 +394,14 @@
      wrap))
   (setq
    lispy-safe-actions-ignore-strings t
-   lispy-safe-actions-ignore-comments t))
+   lispy-safe-actions-ignore-comments t)
+
+  ;; TODO should fix this some other way
+  (remove-hook 'clojure-mode-hook 'parinfer-mode)
+  (remove-hook 'emacs-lisp-mode-hook 'parinfer-mode))
 
 (use-package! ivy-cider
   :after cider-mode)
-
-;;(remove-hook 'clojure-mode-hook 'parinfer-mode)
-;; (remove-hook 'emacs-lisp-mode-hook 'parinfer-mode)
 
 
 (defmacro define-move-and-insert
