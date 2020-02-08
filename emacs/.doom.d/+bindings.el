@@ -207,6 +207,11 @@
  "A-j"    #'evil-window-down
  "A-k"    #'evil-window-up
 
+ "s-h"    #'evil-window-left
+ "s-l"    #'evil-window-right
+ "s-j"    #'evil-window-down
+ "s-k"    #'evil-window-up
+
  "M-w"    #'ace-window
  "M-h"    #'evil-window-left
  "M-l"    #'evil-window-right

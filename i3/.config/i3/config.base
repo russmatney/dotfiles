@@ -54,10 +54,10 @@ bindsym $mod+e exec --no-startup-id thunar
 # bindsym $mod+p exec --no-startup-id smart-walk-workspace previous
 
 # change focus
-bindsym $mod+h exec --no-startup-id ~/.local/bin/cosmos mf left --no-return
-bindsym $mod+l exec --no-startup-id ~/.local/bin/cosmos mf right --no-return
-bindsym $mod+j exec --no-startup-id ~/.local/bin/cosmos mf down --no-return
-bindsym $mod+k exec --no-startup-id ~/.local/bin/cosmos mf up --no-return
+# bindsym $mod+h exec --no-startup-id ~/.local/bin/cosmos mf left --no-return
+# bindsym $mod+l exec --no-startup-id ~/.local/bin/cosmos mf right --no-return
+# bindsym $mod+j exec --no-startup-id ~/.local/bin/cosmos mf down --no-return
+# bindsym $mod+k exec --no-startup-id ~/.local/bin/cosmos mf up --no-return
 
 # relative position
 bindsym $mod+Shift+h focus left
@@ -226,7 +226,7 @@ for_window [title="Terminal"] border pixel 2
 # Compositor (Animations, Shadows, Transparency)
 # exec_always --no-startup-id compton --inactive-dim 0.1 --active-opacity 0.9 -i 0.95
 # exec_always --no-startup-id compton -cCfb --backend glx --vsync opengl
-exec_always --no-startup-id picom
+# exec_always --no-startup-id picom
 
 exec_always --no-startup-id feh --bg-scale ~/Dropbox/wallpapers/cityscape-cartoon.jpg
 # exec_always --no-startup-id feh --bg-scale ~/Dropbox/wallpapers/firewatch-blue-orange.jpg
