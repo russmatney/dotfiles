@@ -61,7 +61,7 @@
  :n  "gx"  #'evil-exchange
 
  ;; evil-matchit
- :nv [tab] #'+evil/matchit-or-toggle-fold
+ :nv [tab] #'evil-toggle-fold
 
  ;; evil-surround
  :v  "S"  #'evil-surround-region
@@ -409,6 +409,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (map!
+ :desc "swiper"                :nv "/"   #'swiper
  (:leader
    :desc "Imenu"                 :nv "i"   #'imenu
    :desc "Imenu across buffers"  :nv "I"   #'imenu-anywhere

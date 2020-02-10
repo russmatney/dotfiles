@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: new-widget
+# key: vget
+# condition: t
+# --
+[widget
+ {:style    {:flex "1"}
+  :label    "Label"
+  :subhead  [:h2 "Subhead"]
+  :on-click @(rf/dispatch [::events/example-event])}
+ [:div "children"]]

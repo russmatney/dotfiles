@@ -326,14 +326,14 @@
   (require 'flycheck-clj-kondo)
 
   ;; from https://github.com/borkdude/flycheck-clj-kondo#multiple-linters
-  (dolist (checker '(clj-kondo-clj clj-kondo-cljs clj-kondo-cljc clj-kondo-edn))
-    (setq flycheck-checkers (cons checker (delq checker flycheck-checkers))))
+  ;;(dolist (checker '(clj-kondo-clj clj-kondo-cljs clj-kondo-cljc clj-kondo-edn))
+  ;;(setq flycheck-checkers (cons checker (delq checker flycheck-checkers))))
 
-  (dolist (checkers '((clj-kondo-clj . clojure-joker)
-                      (clj-kondo-cljs . clojurescript-joker)
-                      (clj-kondo-cljc . clojure-joker)
-                      (clj-kondo-edn . edn-joker)))
-    (flycheck-add-next-checker (car checkers) (cons 'error (cdr checkers))))
+  ;;(dolist (checkers '((clj-kondo-clj . clojure-joker)
+  ;;(clj-kondo-cljs . clojurescript-joker)
+  ;;(clj-kondo-cljc . clojure-joker)
+  ;;(clj-kondo-edn . edn-joker)))
+  ;;(flycheck-add-next-checker (car checkers) (cons 'error (cdr checkers))))
 
   (setq cljr-magic-require-namespaces
         '(("io" . "clojure.java.io")
