@@ -325,16 +325,6 @@
   :config
   (require 'flycheck-clj-kondo)
 
-  ;; from https://github.com/borkdude/flycheck-clj-kondo#multiple-linters
-  ;;(dolist (checker '(clj-kondo-clj clj-kondo-cljs clj-kondo-cljc clj-kondo-edn))
-  ;;(setq flycheck-checkers (cons checker (delq checker flycheck-checkers))))
-
-  ;;(dolist (checkers '((clj-kondo-clj . clojure-joker)
-  ;;(clj-kondo-cljs . clojurescript-joker)
-  ;;(clj-kondo-cljc . clojure-joker)
-  ;;(clj-kondo-edn . edn-joker)))
-  ;;(flycheck-add-next-checker (car checkers) (cons 'error (cdr checkers))))
-
   (setq cljr-magic-require-namespaces
         '(("io" . "clojure.java.io")
           ("sh" . "clojure.java.shell")
@@ -354,10 +344,8 @@
 
         clojure-align-forms-automatically t
 
-        cider-cljs-lein-repl
-        "(do (require 'figwheel-sidecar.repl-api)
-         (figwheel-sidecar.repl-api/start-figwheel!)
-         (figwheel-sidecar.repl-api/cljs-repl))"))
+        cider-default-cljs-repl 'shadow
+        ))
 
 (use-package! aggressive-indent
   :hook
