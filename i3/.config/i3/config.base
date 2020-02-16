@@ -257,8 +257,8 @@ bindsym $mod+mod1+Shift+u mark "other", move scratchpad
 bindsym $mod+mod1+u [con_mark="other"] scratchpad show
 
 # mod1 == alt
-bindsym $mod+mod1+Shift+t mark "term", move scratchpad
-bindsym $mod+mod1+t [con_mark="term"] scratchpad show
+bindsym $mod+Shift+t mark "browse", move scratchpad
+bindsym $mod+t [con_mark="browse"] scratchpad show
 
 # exec sc --user import-environment && sc --user daemon-reload && sc --user restart cosmos
 exec bluetoothctl -- power on
