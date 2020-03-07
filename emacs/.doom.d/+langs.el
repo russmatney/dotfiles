@@ -279,6 +279,34 @@
                  (format "%d chars" (length value)))))
     nil nil nil)))
 
+;; Fix docstring highlighting for `defsys`
+(put 'defsys 'clojure-doc-string-elt 2)
+
+;; The below functions allow you to control systemic from Emacs.
+;; Personally, I have found binding them to keys to be very convenient.
+(defun systemic/restart ()
+  "Restarts all systemic systems"
+  (interactive)
+  (cider-interactive-eval "(systemic.core/restart!)"))
+
+(defun systemic/start ()
+  "Starts all systemic systems"
+  (interactive)
+  (cider-interactive-eval "(systemic.core/start!)"))
+
+(defun systemic/stop ()
+  "Stops all systemic systems"
+  (interactive)
+  (cider-interactive-eval "(systemic.core/stop!)"))
+
+(defun wing-sync-libs ()
+  (interactive)
+  (cider-interactive-eval "(wing.repl/sync-libs)"))
+
+(defun cider-load-this-file ()
+  (interactive)
+  (cider-load-file (buffer-file-name)))
+
 (map!
  (:after cider-mode
    (:leader
@@ -291,7 +319,10 @@
        (:desc "Cider" :prefix "c"
          :n  "'"  #'cider-jack-in
          :n  "\"" #'cider-jack-in-cljs
+
+         :n  "l"  #'cider-load-this-file
          :n  "b"  #'cider-eval-buffer
+
          :n  "B"  #'cider-switch-to-repl-buffer
          :n  "y"  #'cider-copy-last-result
          :n  "n"  #'cider-repl-set-ns
@@ -307,13 +338,16 @@
          :n  "t"  #'cider-test-run-ns-tests
          :n  "T"  #'cider-test-run-test
 
-         :n  "l"  #'clojure-introduce-let
+         :n  "r"  #'systemic/restart
+         :n  "s"  #'wing-sync-libs
+
          :n  "m"  #'clojure-move-to-let)))
    (:after cider-browse-ns-mode
      (:map cider-browse-ns-mode-map
        :n "RET"       #'cider-browse-ns-operate-at-point))))
 
 (use-package! flycheck-clj-kondo)
+
 
 (use-package! clojure-mode
   :mode "\\.clj$"
@@ -324,6 +358,15 @@
 
   :config
   (require 'flycheck-clj-kondo)
+
+  (add-hook
+   'cider-mode-hook
+   '(lambda ()
+      (add-hook
+       'after-save-hook
+       '(lambda ()
+          (if (and (boundp 'cider-mode) cider-mode)
+              (cider-load-this-file))))))
 
   (setq cljr-magic-require-namespaces
         '(("io" . "clojure.java.io")
@@ -343,6 +386,9 @@
           ("r" . "reagent.core"))
 
         clojure-align-forms-automatically t
+
+        cider-save-file-on-load t
+        cider-auto-select-error-buffer t
 
         cider-default-cljs-repl 'shadow
         ))
