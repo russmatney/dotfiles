@@ -339,7 +339,7 @@
          :n  "T"  #'cider-test-run-test
 
          :n  "r"  #'systemic/restart
-         :n  "s"  #'wing-sync-libs
+         :n  "s"  #'systemic/start
 
          :n  "m"  #'clojure-move-to-let)))
    (:after cider-browse-ns-mode
@@ -348,6 +348,24 @@
 
 (use-package! flycheck-clj-kondo)
 
+(defun clj-file-p ()
+  (string-match-p (rx (and ".clj" eol))
+                  (buffer-file-name)))
+
+(defun cider-eval-if-cider-buffer ()
+  (interactive)
+  (if (and
+       (boundp 'cider-mode)
+       cider-mode
+       cider-eval-on-save
+       (clj-file-p))
+      (cider-load-this-file)))
+
+(setq cider-eval-on-save t)
+
+(defun toggle-cider-eval-on-save ()
+  (interactive)
+  (setq cider-eval-on-save (not cider-eval-on-save)))
 
 (use-package! clojure-mode
   :mode "\\.clj$"
@@ -364,9 +382,7 @@
    '(lambda ()
       (add-hook
        'after-save-hook
-       '(lambda ()
-          (if (and (boundp 'cider-mode) cider-mode)
-              (cider-load-this-file))))))
+       #'cider-eval-if-cider-buffer)))
 
   (setq cljr-magic-require-namespaces
         '(("io" . "clojure.java.io")
