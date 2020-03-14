@@ -35,6 +35,8 @@ alias 'ra'='antibody bundle \
             > ~/.zsh_plugins.sh && \
             antibody update'
 
+# completion for npx
+# compctl -m npx
 
 # enable completion features
 fpath=(~/.zsh/completion $fpath)

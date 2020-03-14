@@ -16,6 +16,10 @@
 ;; LSP is promising but not as fully featured or bug-free.
 ;;
 
+(defmacro comment (&rest _)
+  "Comment out one or more s-expressions."
+  nil)
+
 ;; LSP
 
 (use-package! lsp-mode
@@ -349,8 +353,22 @@
 (use-package! flycheck-clj-kondo)
 
 (defun clj-file-p ()
-  (string-match-p (rx (and ".clj" eol))
+  (string-match-p (rx (or
+                       (and ".clj" eol)
+                       (and ".cljc" eol)))
                   (buffer-file-name)))
+
+(comment
+ (string-match-p
+  (rx
+   (or
+    (and ".cljc" eol)
+    (and ".clj" eol)))
+  "my.cljc"))
+
+(defun russ/debug ()
+  (interactive)
+  (print (clj-file-p)))
 
 (defun cider-eval-if-cider-buffer ()
   (interactive)
@@ -399,7 +417,9 @@
           ("json" . "cheshire.core")
           ("s" . "clojure.spec.alpha")
           ("rf" . "re-frame.core")
-          ("r" . "reagent.core"))
+          ("r" . "reagent.core")
+          ("t" . "tick.alpha.api")
+          )
 
         clojure-align-forms-automatically t
 

@@ -249,8 +249,8 @@ bindsym XF86MonBrightnessDown exec --no-startup-id "light -U 5"
 
 # Scratchpad
 bindsym $mod+Shift+u mark "todo", move scratchpad
-bindsym $mod+u scratchpad show
-# bindsym $mod+u [con_mark="todo"] scratchpad show
+# bindsym $mod+u scratchpad show
+bindsym $mod+u [con_mark="todo"] scratchpad show
 
 # mod1 == alt
 bindsym $mod+mod1+Shift+u mark "other", move scratchpad
