@@ -15,6 +15,10 @@
 ;; Those functions could be built-in, from packages, or from autoloads.
 ;;
 
+(defmacro comment (&rest _)
+  "Comment out one or more s-expressions."
+  nil)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Evil setup
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -475,6 +479,12 @@
      "C-j"        #'company-select-next
      "C-k"        #'company-select-previous
      "C-l"        #'company-complete-selection
+     [down]       #'company-select-next
+     [up]         #'company-select-previous
+     [left]       #'company-complete-selection
+     "<down>"       #'company-select-next
+     "<up>"         #'company-select-previous
+     "<left>"       #'company-complete-selection
      "C-SPC"      #'company-complete-common
      [tab]        #'company-complete-common-or-cycle
      [backtab]    #'company-select-previous
@@ -484,9 +494,14 @@
      "C-h"        #'company-show-doc-buffer
      "C-s"        #'company-filter-candidates)))
 
+(comment
+ #'company-complete-selection
+ )
+
+
 ;; TODO perhaps not a binding...
 (after! company
-  (setq company-idle-delay 0.4))
+  (setq company-idle-delay 0.2))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
