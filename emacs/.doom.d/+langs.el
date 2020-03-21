@@ -383,7 +383,12 @@
 
 (defun toggle-cider-eval-on-save ()
   (interactive)
-  (setq cider-eval-on-save (not cider-eval-on-save)))
+  (let ((new-val (not cider-eval-on-save)))
+    (print! "setting eval-on-save: %s" new-val)
+    (setq cider-eval-on-save new-val)))
+
+(comment
+ (toggle-cider-eval-on-save))
 
 (use-package! clojure-mode
   :mode "\\.clj$"
