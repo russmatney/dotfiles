@@ -81,7 +81,7 @@ tray-padding = 2
 
 [bar/bar2]
 inherit = bar/base
-monitor = ${env:MONITOR:DP1}
+monitor = ${env:MONITOR2:DP1}
 ; fallback-monitor = ${env:MONITOR:DP3}
 tray-position = left
 tray-padding = 2
