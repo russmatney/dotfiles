@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: cljsrc
+# uuid: cljsrc
+# key: clj
+# condition: t
+# --
+
+#+BEGIN_SRC clojure
+
+#+END_SRC
