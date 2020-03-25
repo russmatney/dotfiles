@@ -381,14 +381,14 @@
 
 (setq cider-eval-on-save t)
 
-(defun toggle-cider-eval-on-save ()
+(defun cider-toggle-eval-on-save ()
   (interactive)
   (let ((new-val (not cider-eval-on-save)))
     (print! "setting eval-on-save: %s" new-val)
     (setq cider-eval-on-save new-val)))
 
 (comment
- (toggle-cider-eval-on-save))
+ (cider-toggle-eval-on-save))
 
 (use-package! clojure-mode
   :mode "\\.clj$"
@@ -432,6 +432,7 @@
         cider-auto-select-error-buffer t
 
         cider-default-cljs-repl 'shadow
+        cider-offer-to-open-cljs-app-in-browser nil
         ))
 
 (use-package! aggressive-indent
