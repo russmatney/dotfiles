@@ -433,6 +433,7 @@
 
         cider-default-cljs-repl 'shadow
         cider-offer-to-open-cljs-app-in-browser nil
+        cider-auto-jump-to-error nil
         ))
 
 (use-package! aggressive-indent
