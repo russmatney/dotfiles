@@ -311,6 +311,40 @@
   (interactive)
   (cider-load-file (buffer-file-name)))
 
+
+;; Fix company in cider
+;; https://github.com/hlissner/doom-emacs/issues/2610
+(after! cider
+  (add-hook 'company-completion-started-hook 'ans/set-company-maps)
+  (add-hook 'company-completion-finished-hook 'ans/unset-company-maps)
+  (add-hook 'company-completion-cancelled-hook 'ans/unset-company-maps)
+
+  (defun ans/unset-company-maps (&rest unused)
+    "Set default mappings (outside of company).
+Arguments (UNUSED) are ignored."
+    (general-def
+      :states 'insert
+      :keymaps 'override
+      "<C-l>" nil
+      "<C-j>" nil
+      "<C-k>" nil
+      "<down>" nil
+      "<right>" nil
+      "<up>" nil))
+
+  (defun ans/set-company-maps (&rest unused)
+    "Set maps for when you're inside company completion.
+Arguments (UNUSED) are ignored."
+    (general-def
+      :states 'insert
+      :keymaps 'override
+      "<C-l>" 'company-complete-selection
+      "<right>" 'company-complete-selection
+      "<C-k>" 'company-select-previous
+      "<up>" 'company-select-previous
+      "<C-j>" 'company-select-next
+      "<down>" 'company-select-next)))
+
 (map!
  (:after cider-mode
    (:leader
