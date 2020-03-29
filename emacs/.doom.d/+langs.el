@@ -313,37 +313,37 @@
 
 
 ;; Fix company in cider
+;; https://github.com/company-mode/company-quickhelp/issues/17
 ;; https://github.com/hlissner/doom-emacs/issues/2610
+
+(let* ((bindings '("C-j" company-select-next
+                   "C-k" company-select-previous
+                   "C-l" company-complete-selection
+                   "<down>" company-select-next
+                   "<up>" company-select-previous
+                   "<right>" company-complete-selection
+                   ))
+       (unset-bindings (mapcar (lambda (value)
+                                 (if (stringp value)
+                                     value
+                                   nil))
+                               bindings)))
+  (defun custom/unset-company-bindings (&rest _args)
+    (apply 'general-define-key
+           :keymaps 'override
+           :states  'insert
+           unset-bindings))
+
+  (defun custom/set-company-bindings (&rest _args)
+    (apply 'general-define-key
+           :keymaps 'override
+           :states  'insert
+           bindings)))
+
 (after! cider
-  (add-hook 'company-completion-started-hook 'ans/set-company-maps)
-  (add-hook 'company-completion-finished-hook 'ans/unset-company-maps)
-  (add-hook 'company-completion-cancelled-hook 'ans/unset-company-maps)
-
-  (defun ans/unset-company-maps (&rest unused)
-    "Set default mappings (outside of company).
-Arguments (UNUSED) are ignored."
-    (general-def
-      :states 'insert
-      :keymaps 'override
-      "<C-l>" nil
-      "<C-j>" nil
-      "<C-k>" nil
-      "<down>" nil
-      "<right>" nil
-      "<up>" nil))
-
-  (defun ans/set-company-maps (&rest unused)
-    "Set maps for when you're inside company completion.
-Arguments (UNUSED) are ignored."
-    (general-def
-      :states 'insert
-      :keymaps 'override
-      "<C-l>" 'company-complete-selection
-      "<right>" 'company-complete-selection
-      "<C-k>" 'company-select-previous
-      "<up>" 'company-select-previous
-      "<C-j>" 'company-select-next
-      "<down>" 'company-select-next)))
+  (add-hook 'company-completion-started-hook 'custom/set-company-bindings)
+  (add-hook 'company-completion-finished-hook 'custom/unset-company-bindings)
+  (add-hook 'company-completion-cancelled-hook 'custom/unset-company-bindings))
 
 (map!
  (:after cider-mode
