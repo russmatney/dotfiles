@@ -64,8 +64,9 @@
  ;; evil-exchange
  :n  "gx"  #'evil-exchange
 
- ;; evil-matchit
  :nv [tab] #'evil-toggle-fold
+ :i "TAB" #'+company/complete
+ :i "C-SPC"  #'+company/complete
 
  ;; evil-surround
  :v  "S"  #'evil-surround-region
@@ -92,7 +93,7 @@
    (:desc "Editor" :prefix "e"
      :desc "Open ~/.zshrc"                 :n "v" (lambda! (find-file "~/.zshrc"))
      :desc "Open file in ~/.doom.d/"       :n "c" #'russ/open-emacs-config-file
-     :desc "Open ~/todo/bookmarks.org"     :n "b" (lambda! (find-file "~/todo/bookmarks.org"))
+     :desc "Open ~/.doom.d/+bindings.el"   :n "b" (lambda! (find-file "~/.doom.d/+bindings.el"))
      :desc "Open file in ~/.emacs.d/"      :n "d" #'russ/open-doom-file
      :desc "Open ~/urbint/grid"            :n "g" (lambda! (find-file "~/urbint/grid/README.md"))
      :desc "Open file in ~/dotfiles/"      :n "z" #'russ/open-dotfile
@@ -474,24 +475,22 @@
      "C-w"        nil
 
      ;; Navigate candidates
-     "C-n"        #'company-select-next
-     "C-p"        #'company-select-previous
+     "C-n"        #'company-other-backend
+     "C-p"        #'company-other-backend
      "C-j"        #'company-select-next
      "C-k"        #'company-select-previous
      "C-l"        #'company-complete-selection
-     [down]       #'company-select-next
-     [up]         #'company-select-previous
-     [left]       #'company-complete-selection
      "<down>"       #'company-select-next
      "<up>"         #'company-select-previous
-     "<left>"       #'company-complete-selection
+     "<right>"       #'company-complete-selection
      "C-SPC"      #'company-complete-common
-     [tab]        #'company-complete-common-or-cycle
+     "TAB"     #'company-complete-common-or-cycle
      [backtab]    #'company-select-previous
      [escape]     (λ! (company-abort) (evil-normal-state 1))
 
      ;; filter or show docs for candidate
      "C-h"        #'company-show-doc-buffer
+     "<right>"        #'company-show-doc-buffer
      "C-s"        #'company-filter-candidates)))
 
 (comment
@@ -518,7 +517,6 @@
 ;; Vim S key fix
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(map! :i "C-SPC"  #'+company/complete)
 (map! :n "s"  #'evil-substitute)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

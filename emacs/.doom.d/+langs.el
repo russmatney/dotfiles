@@ -16,6 +16,9 @@
 ;; LSP is promising but not as fully featured or bug-free.
 ;;
 
+(require 'cl-lib)
+(require 'dash)
+
 (defmacro comment (&rest _)
   "Comment out one or more s-expressions."
   nil)
@@ -53,7 +56,6 @@
 ;; Haskell
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(require 'dash)
 
 (defun grfn/haskell-test-file-p ()
   (string-match-p (rx (and ".hs" eol))
@@ -316,13 +318,19 @@
 ;; https://github.com/company-mode/company-quickhelp/issues/17
 ;; https://github.com/hlissner/doom-emacs/issues/2610
 
-(let* ((bindings '("C-j" company-select-next
-                   "C-k" company-select-previous
-                   "C-l" company-complete-selection
-                   "<down>" company-select-next
-                   "<up>" company-select-previous
-                   "<right>" company-complete-selection
-                   ))
+(let* ((bindings
+        '("C-s" company-filter-candidates
+          "C-h" company-show-doc-buffer
+          "C-j" company-select-next
+          "C-k" company-select-previous
+          "C-l" company-complete-selection
+          "<down>" company-select-next
+          "<up>" company-select-previous
+          "<right>" company-complete-selection
+          "C-p" company-other-backend
+          "C-n" company-other-backend
+          "TAB" company-complete-common-or-cycle
+          ))
        (unset-bindings (mapcar (lambda (value)
                                  (if (stringp value)
                                      value
@@ -424,6 +432,7 @@
 (comment
  (cider-toggle-eval-on-save))
 
+
 (use-package! clojure-mode
   :mode "\\.clj$"
   :mode "\\.edn$"
@@ -433,6 +442,9 @@
 
   :config
   (require 'flycheck-clj-kondo)
+
+  ;; (set-company-backend! 'clojurescript-mode 'rm/company-simple-backend)
+  ;; (set-company-backend! 'clojurescript-mode nil)
 
   (add-hook
    'cider-mode-hook
