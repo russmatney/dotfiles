@@ -1,5 +1,9 @@
 ;;; private/russ/autoload/projectile.el -*- lexical-binding: t; -*-
 
+(defmacro comment (&rest _)
+  "Comment out one or more s-expressions."
+  nil)
+
 (defun get-roots ()
   (require 'org)
   (let ((contents
@@ -9,16 +13,22 @@
            (org-element-parse-buffer 'headline t))))
     contents))
 
-(defun github-roots ()
-  (org-element-map (get-roots) 'headline
-    (lambda (hl)
-      (org-element-property :title hl))))
+(defun repo-ids ()
+  (cl-map 'list
+          (lambda (repo-id)
+            (s-prepend "~/" repo-id))
+          (org-element-map (get-roots) 'headline
+            (lambda (hl)
+              (org-element-property :title hl)))))
+
+(comment
+ (s-prepend "~/" "hello/world"))
 
 (defun flatten (list-of-lists)
   (apply #'append list-of-lists))
 
 (defun get-projects ()
-  (let ((all-proj-paths (flatten (mapcar 'file-expand-wildcards (github-roots)))))
+  (let ((all-proj-paths (flatten (mapcar 'file-expand-wildcards (repo-ids)))))
     (-distinct
      (mapcar 'directory-file-name
              (append all-proj-paths projectile-known-projects)))))
