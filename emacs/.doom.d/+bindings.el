@@ -42,7 +42,6 @@
 (map! :leader
       "a" #'rm/search)
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Evil Bindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -228,8 +227,8 @@
  "S-<right>" #'evil-window-decrease-width
 
  ;; quicker j/k hops
- :m "C-j" #'+default:multi-next-line
- :m "C-k" #'+default:multi-previous-line)
+ :nm "C-j" #'+default:multi-next-line
+ :nm "C-k" #'+default:multi-previous-line)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -493,14 +492,14 @@
      "<right>"        #'company-show-doc-buffer
      "C-s"        #'company-filter-candidates)))
 
+;; TODO perhaps not a binding...
+(after! company
+  ;; intending to start it with TAB
+  (setq company-minimum-prefix-length 4))
+
 (comment
  #'company-complete-selection
  )
-
-
-;; TODO perhaps not a binding...
-(after! company
-  (setq company-idle-delay 0.2))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

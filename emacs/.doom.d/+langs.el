@@ -327,6 +327,7 @@
           "<down>" company-select-next
           "<up>" company-select-previous
           "<right>" company-complete-selection
+          "RET" company-complete-selection
           "C-p" company-other-backend
           "C-n" company-other-backend
           "TAB" company-complete-common-or-cycle
@@ -453,6 +454,12 @@
        'after-save-hook
        #'cider-eval-if-cider-buffer)))
 
+  (set-popup-rules!
+    '(
+      ("^\\*cider-test-report*" :side 'right :height 0.5 :width 100 :slot 1 :quit nil :modeline t)
+      ("^\\*cider-repl*" :side 'right :height 0.5 :width 100 :slot 2 :quit nil :modeline t)
+      ))
+
   (setq cljr-magic-require-namespaces
         '(("io" . "clojure.java.io")
           ("sh" . "clojure.java.shell")
@@ -480,6 +487,9 @@
         cider-default-cljs-repl 'shadow
         cider-offer-to-open-cljs-app-in-browser nil
         cider-auto-jump-to-error nil
+        cider-auto-select-error-buffer nil
+        cider-auto-select-test-report-buffer nil
+        cider-test-show-report-on-success t
         ))
 
 (use-package! aggressive-indent
