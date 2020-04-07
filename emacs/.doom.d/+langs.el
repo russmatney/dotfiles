@@ -337,6 +337,7 @@
                                      value
                                    nil))
                                bindings)))
+
   (defun custom/unset-company-bindings (&rest _args)
     (apply 'general-define-key
            :keymaps 'override
@@ -431,7 +432,14 @@
     (setq cider-eval-on-save new-val)))
 
 (comment
- (cider-toggle-eval-on-save))
+ (cider-toggle-eval-on-save)
+
+ (string-match-p "h" "hi")
+ (string-match-p
+  "\\*blah-repl.*shadow"
+
+  "*blah-repl xxxx (cljs:shadow)")
+ )
 
 
 (use-package! clojure-mode
@@ -455,10 +463,17 @@
        #'cider-eval-if-cider-buffer)))
 
   (set-popup-rules!
-    '(
-      ("^\\*cider-test-report*" :side 'right :height 0.5 :width 100 :slot 1 :quit nil :modeline t)
-      ("^\\*cider-repl*" :side 'right :height 0.5 :width 100 :slot 2 :quit nil :modeline t)
-      ))
+    '(("^\\*cider-repl.*"
+       :side left :height 0.5 :width 80 :slot 0
+       :quit nil :modeline t :select nil)
+      ("^\\*cider-test-report*"
+       :side left :height 0.5 :width 80 :slot 1
+       :quit nil :modeline t :select nil)))
+
+  ;; (set-popup-rule! "^\\*cider-repl .*(clj)"
+  ;;   :side 'left :height 0.5 :width 100 :slot 2 :quit nil :modeline t)
+  ;; (set-popup-rule! "^\\*cider-repl .*(cljs:shadow)"
+  ;;   :side 'left :height 0.5 :width 100 :slot 3 :quit nil :modeline t)
 
   (setq cljr-magic-require-namespaces
         '(("io" . "clojure.java.io")
@@ -490,7 +505,18 @@
         cider-auto-select-error-buffer nil
         cider-auto-select-test-report-buffer nil
         cider-test-show-report-on-success t
+        cider-session-name-template "%j:%S"
         ))
+
+;; fix company box in cider
+(after! company-box-mode
+  (add-function
+   :after
+   (symbol-function 'company-box-doc--show)
+   (lambda (_ frame)
+     (let* ((doc-frame (frame-parameter frame 'company-box-doc-frame)))
+       (when (frame-visible-p doc-frame)
+         (make-frame-visible (company-box--get-frame)))))))
 
 (use-package! aggressive-indent
   :hook
