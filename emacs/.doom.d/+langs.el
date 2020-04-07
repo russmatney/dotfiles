@@ -527,6 +527,14 @@
   (setq clojure-indent-style 'align-arguments)
   (setq clojure-align-forms-automatically t))
 
+(evil-define-command rm/lispyville-insert-at-end-of-list (count)
+  "same as `lispyville-insert-at-end-of-list', but adds a newline."
+  (interactive "<c>")
+  (when (lispyville--out-forward (or count 1))
+    (backward-char)
+    (newline-and-indent)
+    (evil-change-state lispyville-preferred-state)))
+
 (use-package! lispy
   :hook
   (emacs-lisp-mode . lispy-mode)
@@ -539,8 +547,7 @@
   (lispy-mode . lispyville-mode)
 
   :bind (:map lispyville-mode-map
-          ("M-L" . lispyville-beginning-of-next-defun)
-          ("o" . lispy-out-forward-newline))
+          ("M-L" . lispyville-beginning-of-next-defun))
 
   :config
   (lispyville-set-key-theme
@@ -557,6 +564,12 @@
      commentary
      slurp/barf-cp
      wrap))
+
+  (evil-define-key 'normal lispyville-mode-map
+    "o" 'rm/lispyville-insert-at-end-of-list)
+  (evil-define-key 'visual lispyville-mode-map
+    "(" 'lispy-parens)
+
   (setq
    lispy-safe-actions-ignore-strings t
    lispy-safe-actions-ignore-comments t)
