@@ -527,29 +527,35 @@
   (setq clojure-indent-style 'align-arguments)
   (setq clojure-align-forms-automatically t))
 
+(use-package! lispy
+  :hook
+  (emacs-lisp-mode . lispy-mode)
+  (clojure-mode . lispy-mode)
+  (lisp-mode . lispy-mode))
+
 ;; https://github.com/noctuid/lispyville
 (use-package! lispyville
   :hook
-  (emacs-lisp-mode . lispyville-mode)
-  (clojure-mode . lispyville-mode)
-  (lisp-mode . lispyville-mode)
+  (lispy-mode . lispyville-mode)
 
   :bind (:map lispyville-mode-map
-          ("M-L" . lispyville-beginning-of-next-defun))
+          ("M-L" . lispyville-beginning-of-next-defun)
+          ("o" . lispy-out-forward-newline))
 
   :config
   (lispyville-set-key-theme
    '(operators
      c-w
+     c-w
      prettify
      text-objects
-     atom-motions
+     (atom-motions t)
      additional-motions
      additional
      additional-insert
      additional-wrap
      commentary
-     slurp/barf-lispy
+     slurp/barf-cp
      wrap))
   (setq
    lispy-safe-actions-ignore-strings t

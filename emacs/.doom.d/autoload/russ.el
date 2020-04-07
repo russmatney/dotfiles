@@ -28,7 +28,6 @@ non-nil, use completion based on context."
 
 If DIR is not a project, it will be indexed (but not cached)."
   (interactive)
-  (print "hello from my function!")
   (unless (file-directory-p dir)
     (error "Directory %S does not exist" dir))
   (unless (file-readable-p dir)
@@ -57,6 +56,12 @@ If DIR is not a project, it will be indexed (but not cached)."
           ((fboundp 'helm-find-files)
            (call-interactively #'helm-find-files))
           ((call-interactively #'find-file)))))
+
+;;;###autoload
+(defun russ/open-yodo-file ()
+  "Browse yodo project"
+  (interactive)
+  (doom-project-find-file "~/russmatney/yodo"))
 
 ;;;###autoload
 (defun russ/open-emacs-config-file ()

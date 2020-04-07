@@ -62,7 +62,9 @@
 
 ;; clojure
 (package! aggressive-indent)
+(package! lispy)
 (package! lispyville)
+
 (package! flycheck-clj-kondo)
 (package! ivy-cider :recipe (:host github :repo "rschmukler/ivy-cider"))
 

@@ -39,8 +39,7 @@
   (interactive)
   (evil-ex "pg "))
 
-(map! :leader
-      "a" #'rm/search)
+(map! :leader "a" #'rm/search)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Evil Bindings
@@ -80,8 +79,7 @@
  :textobj "J" #'evil-indent-plus-i-indent-up-down #'evil-indent-plus-a-indent-up-down)
 
 
-(map!
- :n  "gQ" #'org-fill-paragraph)
+(map! :n "gQ" #'org-fill-paragraph)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Editor helpers
@@ -89,9 +87,10 @@
 
 (map!
  (:leader
-   (:desc "Editor" :prefix "e"
+   (:desc "Edit" :prefix "e"
      :desc "Open ~/.zshrc"                 :n "v" (lambda! (find-file "~/.zshrc"))
      :desc "Open file in ~/.doom.d/"       :n "c" #'russ/open-emacs-config-file
+     :desc "Open file in yodo"             :n "y" #'russ/open-yodo-file
      :desc "Open ~/.doom.d/+bindings.el"   :n "b" (lambda! (find-file "~/.doom.d/+bindings.el"))
      :desc "Open file in ~/.emacs.d/"      :n "d" #'russ/open-doom-file
      :desc "Open ~/urbint/grid"            :n "g" (lambda! (find-file "~/urbint/grid/README.md"))
