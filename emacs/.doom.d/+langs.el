@@ -530,6 +530,7 @@
 (evil-define-command rm/lispyville-insert-at-end-of-list (count)
   "same as `lispyville-insert-at-end-of-list', but adds a newline."
   (interactive "<c>")
+  ;; TODO if already at the end of the list, add a newline above
   (when (lispyville--out-forward (or count 1))
     (backward-char)
     (newline-and-indent)
@@ -539,7 +540,11 @@
   :hook
   (emacs-lisp-mode . lispy-mode)
   (clojure-mode . lispy-mode)
-  (lisp-mode . lispy-mode))
+  (lisp-mode . lispy-mode)
+
+  :bind (:map lispy-mode-map
+          ("M-L" . lispyville-beginning-of-next-defun)
+          ("M-n" . nil)))
 
 ;; https://github.com/noctuid/lispyville
 (use-package! lispyville
@@ -547,13 +552,14 @@
   (lispy-mode . lispyville-mode)
 
   :bind (:map lispyville-mode-map
-          ("M-L" . lispyville-beginning-of-next-defun))
+          ("M-L" . lispyville-beginning-of-next-defun)
+          ("M-n" . nil))
 
   :config
   (lispyville-set-key-theme
    '(operators
      c-w
-     c-w
+     c-u
      prettify
      text-objects
      (atom-motions t)
@@ -562,8 +568,7 @@
      additional-insert
      additional-wrap
      commentary
-     slurp/barf-cp
-     wrap))
+     slurp/barf-cp))
 
   (evil-define-key 'normal lispyville-mode-map
     "o" 'rm/lispyville-insert-at-end-of-list)
