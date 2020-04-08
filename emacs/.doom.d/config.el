@@ -67,11 +67,10 @@
 ;; load bindings
 (load! "+bindings")
 
-;; load commands
-(load! "+commands")
-
 ;; load programming language configs
 (load! "+langs")
+(load! "+lisp-editing")
+(load! "+clojure")
 (load! "+css-classes-backend")
 
 ;; load prose tools (includes markdown)

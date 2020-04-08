@@ -56,6 +56,7 @@
            (progn (+workspace-switch project-name t)
                   (counsel-projectile-switch-project-action project-path))))))))
 
+;;;###autoload
 (defun russ/projectile-open-file-from-project ()
   "Use projectile prompt to find a file in another project."
   (interactive)
