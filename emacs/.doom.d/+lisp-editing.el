@@ -22,23 +22,30 @@
     (newline-and-indent)
     (evil-change-state lispyville-preferred-state)))
 
+(map!
+ :after lispy
+ :map lispy-mode-map
+ :n "M-L" #'lispyville-beginning-of-next-defun)
+
 (use-package! lispy
   :hook
   (emacs-lisp-mode . lispy-mode)
   (clojure-mode . lispy-mode)
   (lisp-mode . lispy-mode)
 
-  :bind (:map lispy-mode-map
-          ("M-L" . lispyville-beginning-of-next-defun)
+  :bind (:map lispyville-mode-map
           ("M-n" . nil)))
 
-;; https://github.com/noctuid/lispyville
+(map!
+ :after lispyville
+ :map lispyville-mode-map
+ :n "M-L" #'lispyville-beginning-of-next-defun
+ :v "(" #'lispy-parens)
+
 (use-package! lispyville
-  :hook
-  (lispy-mode . lispyville-mode)
+  :hook (lispy-mode . lispyville-mode)
 
   :bind (:map lispyville-mode-map
-          ("M-L" . lispyville-beginning-of-next-defun)
           ("M-n" . nil))
 
   :config
@@ -57,9 +64,7 @@
      slurp/barf-cp))
 
   (evil-define-key 'normal lispyville-mode-map
-    "M-o" 'rm/lispyville-insert-at-end-of-list)
-  (evil-define-key 'visual lispyville-mode-map
-    "(" 'lispy-parens)
+    (kbd "M-o") 'rm/lispyville-insert-at-end-of-list)
 
   (setq
    lispy-safe-actions-ignore-strings t
