@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: defn
+# uuid: defn-create
+# key: defn
+# condition: t
+# --
+(defn $1
+  \"$2\"
+  []
+  $3
+  )
