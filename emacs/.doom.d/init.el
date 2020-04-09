@@ -66,7 +66,7 @@
        fold
        (format +onsave)  ; automated prettiness
        ;;god
-       ;;lispy             ; vim for lisp, for people who dont like vim
+       lispy             ; vim for lisp, for people who dont like vim
        ;;multiple-cursors  ; editing in many places at once
        ;;objed             ; text object editing for the innocent
        ;; parinfer          ; turn lisp into python, sort of

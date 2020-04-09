@@ -181,6 +181,17 @@
   "*blah-repl xxxx (cljs:shadow)")
  )
 
+(set-popup-rules!
+  '(
+    ("^\\*cider-error.*"
+     :side left :height 0.5 :width 80 :slot 2
+     :quit nil :modeline t :select nil)
+    ("^\\*cider-repl.*"
+     :side left :height 0.5 :width 80 :slot 1
+     :quit nil :modeline t :select nil)
+    ("^\\*cider-test-report*"
+     :side left :height 0.5 :width 80 :slot 3
+     :quit nil :modeline t :select nil)))
 
 (use-package! clojure-mode
   :mode "\\.clj$"
@@ -192,9 +203,6 @@
   :config
   (require 'flycheck-clj-kondo)
 
-  ;; (set-company-backend! 'clojurescript-mode 'rm/company-simple-backend)
-  ;; (set-company-backend! 'clojurescript-mode nil)
-
   (add-hook
    'cider-mode-hook
    '(lambda ()
@@ -202,18 +210,8 @@
        'after-save-hook
        #'cider-eval-if-cider-buffer)))
 
-  (set-popup-rules!
-    '(("^\\*cider-repl.*"
-       :side left :height 0.5 :width 80 :slot 0
-       :quit nil :modeline t :select nil)
-      ("^\\*cider-test-report*"
-       :side left :height 0.5 :width 80 :slot 1
-       :quit nil :modeline t :select nil)))
-
-  ;; (set-popup-rule! "^\\*cider-repl .*(clj)"
-  ;;   :side 'left :height 0.5 :width 100 :slot 2 :quit nil :modeline t)
-  ;; (set-popup-rule! "^\\*cider-repl .*(cljs:shadow)"
-  ;;   :side 'left :height 0.5 :width 100 :slot 3 :quit nil :modeline t)
+  (set-company-backend! 'clojurescript-mode
+    '(company-capf company-yasnippet company-flow css-classes-backend))
 
   (setq cljr-magic-require-namespaces
         '(("io" . "clojure.java.io")
@@ -249,7 +247,7 @@
         ))
 
 ;; fix company box in cider
-(after! company-box-mode
+(after! company-box
   (add-function
    :after
    (symbol-function 'company-box-doc--show)
