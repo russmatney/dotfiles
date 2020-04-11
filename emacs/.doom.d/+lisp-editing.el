@@ -22,15 +22,15 @@
     (newline-and-indent)
     (evil-change-state lispyville-preferred-state)))
 
-(use-package! lispy
-  :hook
-  (emacs-lisp-mode . lispy-mode)
-  (clojure-mode . lispy-mode)
-  (lisp-mode . lispy-mode)
+;; (use-package! lispy
+;;   :hook
+;;   (emacs-lisp-mode . lispy-mode)
+;;   (clojure-mode . lispy-mode)
+;;   (lisp-mode . lispy-mode)
 
-  :bind (:map lispy-mode-map
-          ("M-n" . nil)
-          ))
+;;   :bind (:map lispy-mode-map
+;;           ("M-n" . nil)
+;;           ))
 
 (map!
  :after lispyville
@@ -39,7 +39,11 @@
  :v "(" #'lispy-parens)
 
 (use-package! lispyville
-  :hook (lispy-mode . lispyville-mode)
+  :hook
+  ;; (lispy-mode . lispyville-mode)
+  (emacs-lisp-mode . lispyville-mode)
+  (clojure-mode . lispyville-mode)
+  (lisp-mode . lispyville-mode)
 
   :config
   (lispyville-set-key-theme
