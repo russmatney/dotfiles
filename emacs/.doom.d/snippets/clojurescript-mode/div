@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: div
+# uuid: div-with-class
+# key: div
+# condition: t
+# --
+[:div
+  {:class ["p-6"]}
+  [:h2
+    {:class ["text-xl"]}
+    "$1"]]

@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: div-for
+# uuid: for-with-keyed-div
+# key: div-for
+# condition: t
+# --
+(for [x $1]
+  ^{:key (str x)}
+  [:div x])

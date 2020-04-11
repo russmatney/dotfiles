@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: keys
+# uuid: keys-map
+# key: keys
+# condition: t
+# --
+{:keys [$1] :as $2 }

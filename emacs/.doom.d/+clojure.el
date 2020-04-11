@@ -25,6 +25,10 @@
                  (format "%d chars" (length value)))))
     nil nil nil)))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; systemic
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Fix docstring highlighting for `defsys`
 (put 'defsys 'clojure-doc-string-elt 2)
 
@@ -49,12 +53,9 @@
   (interactive)
   (cider-interactive-eval "(wing.repl/sync-libs)"))
 
-(defun cider-load-this-file ()
-  (interactive)
-  (cider-load-file (buffer-file-name)))
-
-
-;; Fix company in cider
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; cider company bindings fix
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; https://github.com/company-mode/company-quickhelp/issues/17
 ;; https://github.com/hlissner/doom-emacs/issues/2610
 
@@ -95,6 +96,20 @@
   (add-hook 'company-completion-finished-hook 'custom/unset-company-bindings)
   (add-hook 'company-completion-cancelled-hook 'custom/unset-company-bindings))
 
+;; fix company box in cider
+(after! company-box
+  (add-function
+   :after
+   (symbol-function 'company-box-doc--show)
+   (lambda (_ frame)
+     (let* ((doc-frame (frame-parameter frame 'company-box-doc-frame)))
+       (when (frame-visible-p doc-frame)
+         (make-frame-visible (company-box--get-frame)))))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; cider mappings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (map!
  (:after cider-mode
    (:leader
@@ -134,25 +149,19 @@
      (:map cider-browse-ns-mode-map
        :n "RET"       #'cider-browse-ns-operate-at-point))))
 
-(use-package! flycheck-clj-kondo)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; cider reload this file, on-save
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun cider-load-this-file ()
+  (interactive)
+  (cider-load-file (buffer-file-name)))
 
 (defun clj-file-p ()
   (string-match-p (rx (or
                        (and ".clj" eol)
                        (and ".cljc" eol)))
                   (buffer-file-name)))
-
-(comment
- (string-match-p
-  (rx
-   (or
-    (and ".cljc" eol)
-    (and ".clj" eol)))
-  "my.cljc"))
-
-(defun russ/debug ()
-  (interactive)
-  (print (clj-file-p)))
 
 (defun cider-eval-if-cider-buffer ()
   (interactive)
@@ -171,15 +180,9 @@
     (print! "setting eval-on-save: %s" new-val)
     (setq cider-eval-on-save new-val)))
 
-(comment
- (cider-toggle-eval-on-save)
-
- (string-match-p "h" "hi")
- (string-match-p
-  "\\*blah-repl.*shadow"
-
-  "*blah-repl xxxx (cljs:shadow)")
- )
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; popup rules (not fully working)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (set-popup-rules!
   '(
@@ -192,6 +195,16 @@
     ("^\\*cider-test-report*"
      :side left :height 0.5 :width 80 :slot 3
      :quit nil :modeline t :select nil)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; flycheck
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package! flycheck-clj-kondo)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; clojure and cider mode configs
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package! clojure-mode
   :mode "\\.clj$"
@@ -210,7 +223,8 @@
        'after-save-hook
        #'cider-eval-if-cider-buffer)))
 
-  (set-company-backend! 'clojurescript-mode
+  (set-company-backend!
+    'clojurescript-mode
     '(company-capf company-yasnippet company-flow css-classes-backend))
 
   (setq cljr-magic-require-namespaces
@@ -229,8 +243,7 @@
           ("s" . "clojure.spec.alpha")
           ("rf" . "re-frame.core")
           ("r" . "reagent.core")
-          ("t" . "tick.alpha.api")
-          )
+          ("t" . "tick.alpha.api"))
 
         clojure-align-forms-automatically t
 
@@ -245,16 +258,6 @@
         cider-test-show-report-on-success t
         cider-session-name-template "%j:%S"
         ))
-
-;; fix company box in cider
-(after! company-box
-  (add-function
-   :after
-   (symbol-function 'company-box-doc--show)
-   (lambda (_ frame)
-     (let* ((doc-frame (frame-parameter frame 'company-box-doc-frame)))
-       (when (frame-visible-p doc-frame)
-         (make-frame-visible (company-box--get-frame)))))))
 
 (use-package! ivy-cider
   :after cider-mode)
