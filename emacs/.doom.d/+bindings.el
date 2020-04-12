@@ -1,20 +1,5 @@
 ;;;  -*- lexical-binding: t; -*-
 
-;; Author     : russmatney
-;; CreatedAt  : 15 April 2018
-;; ModifiedAt : 15 April 2018
-;; Status     : Usable
-;;
-;; 'Bindings' is intended to include:
-;;   - emacs key bindings (including evil modes)
-;;   - vim-style leader-key bindings
-;;   - vim 'commands' (i.e. `:wq`)
-;;
-;; The goal is one file for mapping input to functions fired.
-;;
-;; Those functions could be built-in, from packages, or from autoloads.
-;;
-
 (defmacro comment (&rest _)
   "Comment out one or more s-expressions."
   nil)
@@ -26,7 +11,6 @@
 (map!
  :nmvo doom-leader-key nil
  :nmvo doom-localleader-key nil)
-
 
 ;; helper for defining evil commands
 (defalias 'ex! 'evil-ex-define-cmd)
@@ -185,10 +169,10 @@
 
 (map!
  (:leader
-   :desc "Open vertical split"         :n  "v"  #'evil-window-vsplit
-   :desc "Open vertical split"         :n  "s"  #'evil-window-split)
- :desc "Open vertical split"         :n  "\\" #'evil-window-vsplit
- :desc "Open vertical split"         :n  "-"  #'evil-window-split)
+   :desc "Open vertical split" :n "v" #'evil-window-vsplit
+   :desc "Open vertical split" :n "s" #'evil-window-split
+   :desc "Open vertical split" :n "\\" #'evil-window-vsplit
+   :desc "Open vertical split" :n "-" #'evil-window-split))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -207,8 +191,8 @@
  ;; size Adjustments
  "S-<left>"  #'evil-window-increase-width
  "S-<right>" #'evil-window-decrease-width
- "S-<up>"  #'evil-window-increase-height
- "S-<down>" #'evil-window-decrease-height)
+ "S-<up>"    #'evil-window-increase-height
+ "S-<down>"  #'evil-window-decrease-height)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Navigating Files/Buffers
@@ -222,7 +206,7 @@
  ;; find file in project
  (:leader
    :desc "projectile-find-file"   :n  "p"   #'projectile-find-file
-   :desc "invalidate cache, projectile-find-file" :n  "P" (λ! (projectile-find-file t))
+   :desc "projectile-find-file (burst cache)" :n  "P" (λ! (projectile-find-file t))
    :desc "Find file"              :n  "."   #'find-file)
 
  ;; recentf
@@ -421,9 +405,9 @@
      "C-s"        #'company-filter-candidates)))
 
 ;; TODO perhaps not a binding...
-(after! company
-  ;; intending to start it with TAB
-  (setq company-minimum-prefix-length 4))
+;; (after! company
+;;   ;; intending to start it with TAB
+;;   (setq company-minimum-prefix-length 5))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Term buffers
@@ -433,10 +417,3 @@
  (:after comint
    ;; TAB auto-completion in term buffers
    :map comint-mode-map [tab] #'company-complete))
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Vim S key fix
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(map! :n "s"  #'evil-substitute)

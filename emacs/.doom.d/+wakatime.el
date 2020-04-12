@@ -62,3 +62,6 @@ open a file."
             (format "WAKATIME_HOME=%s " (shell-quote-argument +wakatime-home)))
           ret
           (if +wakatime-hide-filenames " --hide-filenames")))
+
+
+(+wakatime-autostart-h)
