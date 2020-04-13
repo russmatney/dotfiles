@@ -70,15 +70,3 @@
 (load! "+org-custom")
 (load! "+wakatime")
 (load! "+exwm")
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; themes
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; (setq doom-theme 'doom-one)
-;; (setq doom-theme 'doom-one-light)
-;; (setq doom-theme 'doom-molokai)
-;; (setq doom-theme 'doom-tomorrow-night)
-;; (setq doom-theme 'doom-tomorrow-day)
-(setq doom-theme 'doom-dracula)
-(doom/reload-theme)

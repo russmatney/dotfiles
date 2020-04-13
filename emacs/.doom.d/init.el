@@ -1,16 +1,15 @@
 ;;; init.el -*- lexical-binding: t; -*-
-;;
-;; Author     : russmatney
-;; CreatedAt  : 15 April 2018
-;; ModifiedAt : 15 April 2018
-;; Status     : Usable
-;;
-;; Largely copied from `~/.emacs.d/init.example.el`
-;;
-;; Notable change is the `(:config private)` at the end,
-;; which removes the default configuration and uses my own.
-;;
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; themes
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; (setq doom-theme 'doom-one)
+;; (setq doom-theme 'doom-one-light)
+;; (setq doom-theme 'doom-molokai)
+;; (setq doom-theme 'doom-tomorrow-night)
+;; (setq doom-theme 'doom-tomorrow-day)
+(setq doom-theme 'doom-dracula)
 
 (defvar +org-dir (expand-file-name "~/todo/"))
 
