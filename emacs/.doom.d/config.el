@@ -7,30 +7,30 @@
 (setq backup-directory-alist `(("." . "~/.emacs-tmp/")))
 (setq auto-save-file-name-transforms `((".*" "~/.emacs-tmp/" t)))
 
+;; PATH
+(add-to-list 'exec-path "/home/russ/.nix-profile/bin")
+(add-to-list 'exec-path "/home/russ/.pyenv/shims")
+
+;; Auto revert-mode
+(global-auto-revert-mode t)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; general format/whitespace
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq +format-on-save-enabled-modes t)
+
 ;; Spaces over tabs
 (setq c-basic-indent 2)
 (setq c-default-style "linux")
 (setq tab-width 2)
 (setq-default indent-tabs-mode nil)
 
-;; Auto revert-mode
-(global-auto-revert-mode t)
-
-;; Turn off line wrapping
-(setq-default truncate-lines 1)
-
 
 (set-face-attribute 'default nil :height 100)
 
-;; PATH
-(add-to-list 'exec-path "/home/russ/.nix-profile/bin")
-(add-to-list 'exec-path "/home/russ/.pyenv/shims")
-
-(setq +format-on-save-enabled-modes t)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; whitespace
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Turn off line wrapping
+(setq-default truncate-lines 1)
 
 ;; 80 chars
 (setq whitespace-line-column 80
@@ -70,3 +70,15 @@
 (load! "+org-custom")
 (load! "+wakatime")
 (load! "+exwm")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; themes
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; (setq doom-theme 'doom-one)
+;; (setq doom-theme 'doom-one-light)
+;; (setq doom-theme 'doom-molokai)
+;; (setq doom-theme 'doom-tomorrow-night)
+;; (setq doom-theme 'doom-tomorrow-day)
+(setq doom-theme 'doom-dracula)
+(doom/reload-theme)
