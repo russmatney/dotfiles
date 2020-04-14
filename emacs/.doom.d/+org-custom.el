@@ -4,16 +4,14 @@
 ;; Markdown
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(map!
- (:after markdown-mode
-   (:map markdown-mode-map
-     "M-p"    nil
-     "M-n"    nil))
+(map! :after markdown-mode
+      :map markdown-mode-map
+      "M-p"    nil
+      "M-n"    nil
 
- (:after markdown-mode
-   (:map evil-markdown-mode-map
-     "M-p"    nil
-     "M-n"    nil)))
+      :map evil-markdown-mode-map
+      "M-p"    nil
+      "M-n"    nil)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org Settings
@@ -84,23 +82,21 @@
       :nm "M-k"    nil)
 
 
-(map!
- (:after markdown
-   (:map markdown-mode-map
-     "M-n" nil
-     "M-p" nil)))
+(map! :after markdown
+      :map markdown-mode-map
+      "M-n" nil
+      "M-p" nil)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org Capture
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; org capture
-(map!
- (:after org-capture
-   (:map org-capture-mode-map
-     [remap evil-save-and-close]          #'org-capture-finalize
-     [remap evil-save-modified-and-close] #'org-capture-finalize
-     [remap evil-quit]                    #'org-capture-kill)))
+(map! :after org-capture
+      :map org-capture-mode-map
+      [remap evil-save-and-close]          #'org-capture-finalize
+      [remap evil-save-modified-and-close] #'org-capture-finalize
+      [remap evil-quit]                    #'org-capture-kill)
 
 (after! org-capture
   (setq org-capture-templates '(("t" "Todo [inbox]" entry
@@ -113,6 +109,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (map!
- (:leader
-   (:desc "notes" :prefix "n"
-     :desc "add story to clubhouse" :n "c" #'org-clubhouse-create-story)))
+ :leader
+   :desc "notes" :prefix "n"
+   :desc "add story to clubhouse" :n "c" #'org-clubhouse-create-story)

@@ -69,4 +69,4 @@
 (load! "+clojure")
 (load! "+org-custom")
 (load! "+wakatime")
-(load! "+exwm")
+;; (load! "+exwm")

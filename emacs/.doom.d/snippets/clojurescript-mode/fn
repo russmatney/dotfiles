@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: fn
+# uuid: anon-fn
+# key: fn
+# condition: t
+# --
+(fn [$1] $2)
