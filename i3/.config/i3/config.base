@@ -90,8 +90,8 @@ bindsym $mod+c resize set width 50 ppt height 50 ppt, move position center
 bindsym $mod+Shift+c resize set width 90 ppt height 90 ppt, move position center
 
 # absolute positioning
-bindsym $mod+shift+Right floating enable, resize set width 50 ppt height 100 ppt, move position 960 0
-bindsym $mod+shift+Left floating enable, resize set width 50 ppt height 100 ppt, move position 0 0
+bindsym $mod+shift+Right floating enable, resize set width 45 ppt height 90 ppt, move position 1008 48
+bindsym $mod+shift+Left floating enable, resize set width 45 ppt height 90 ppt, move position 48 48
 
 bindsym $mod+shift+Down resize set width 60 ppt height 100 ppt, move position 0 px 0 px
 
