@@ -58,6 +58,17 @@
 (setq counsel-rg-base-command
       "rg -zS -T jupyter -T svg -T lock -T license --no-heading --line-number --color never %s .")
 
+;; modeline
+
+(use-package! doom-modeline
+  :config
+  (doom-modeline-def-modeline 'main
+    '(bar workspace-name window-number modals matches checker buffer-info
+          remote-host buffer-position word-count parrot selection-info)
+    '(objed-state misc-info persp-name battery grip irc
+              mu4e gnus github debug lsp minor-modes input-method
+              indent-info buffer-encoding major-mode process vcs)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; other config files
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
