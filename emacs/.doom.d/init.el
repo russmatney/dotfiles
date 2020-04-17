@@ -58,6 +58,7 @@
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        window-select     ; visually switch windows
        workspaces        ; tab emulation, persistence & separate workspaces
+       ;; zen
 
        :editor
        (evil +everywhere); come to the dark side, we have cookies
@@ -80,6 +81,7 @@
         +icons)
        ;;electric        ; smarter, keyword-based electric-indent
        ibuffer
+       (undo +tree)      ; persistent, smarter undo for your inevitable mistakes
        vc                ; remember, remember that commit in November
 
        :term

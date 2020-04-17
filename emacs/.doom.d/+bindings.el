@@ -186,8 +186,6 @@
  "s-j"    #'evil-window-down
  "s-k"    #'evil-window-up
 
- "M-w"    #'ace-window
-
  ;; size Adjustments
  "S-<left>"  #'evil-window-increase-width
  "S-<right>" #'evil-window-decrease-width
@@ -236,6 +234,7 @@
 
  ;; switch to
  (:leader "w" #'+workspace/switch-to)
+ "M-w" #'+workspace/switch-to
  :n "[w"    #'+workspace/switch-left
  :n "]w"    #'+workspace/switch-right
  "M-p"    #'+workspace/switch-right
