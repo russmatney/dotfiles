@@ -69,6 +69,13 @@
               mu4e gnus github debug lsp minor-modes input-method
               indent-info buffer-encoding major-mode process vcs)))
 
+;; company
+(use-package! company
+  :config
+  (setq
+   company-idle-delay 0.5
+   company-minimum-prefix-length 5))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; other config files
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
