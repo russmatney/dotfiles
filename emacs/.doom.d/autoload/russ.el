@@ -76,6 +76,12 @@ If DIR is not a project, it will be indexed (but not cached)."
   (doom-project-find-file "~/Dropbox/todo/"))
 
 ;;;###autoload
+(defun russ/open-writing-file ()
+  "Browse your org-dir."
+  (interactive)
+  (doom-project-find-file "~/Dropbox/Writing/"))
+
+;;;###autoload
 (defun russ/open-doom-file ()
   "Open a file in doom itself."
   (interactive)

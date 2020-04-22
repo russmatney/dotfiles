@@ -74,6 +74,7 @@
 
      :desc "Open file in ~/.emacs.d/"      :n "d" #'russ/open-doom-file
      :desc "Open file in ~/Dropbox/todo/"  :n "t" #'russ/open-org-file
+     :desc "Open file in ~/Dropbox/Writing/" :n "w" #'russ/open-writing-file
      :desc "Open file in ~/dotfiles/"      :n "z" #'russ/open-dotfile
      :desc "Open file in ~/.doom.d/"       :n "c" #'russ/open-emacs-config-file
      :desc "Open file in yodo"             :n "y" #'russ/open-yodo-file
