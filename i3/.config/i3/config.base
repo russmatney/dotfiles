@@ -165,10 +165,10 @@ bindsym $mod+shift+b exec --no-startup-id firefox
 bindsym $mod+shift+w exec --no-startup-id ~/.local/bin/cosmos open-workable
 
 # open stack overflow question
-bindsym $mod+s exec --no-startup-id ~/.local/bin/cosmos soq
+# bindsym $mod+s exec --no-startup-id ~/.local/bin/cosmos soq
 
 # open stack overflow entrypoint url
-bindsym $mod+a exec --no-startup-id ~/.local/bin/cosmos soeu
+# bindsym $mod+a exec --no-startup-id ~/.local/bin/cosmos soeu
 
 # smart paste
 #bindsym $mod+shift+v exec --no-startup-id ~/.local/bin/cosmos smart-paste
@@ -247,14 +247,15 @@ bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-volume @DEFAUL
 bindsym XF86MonBrightnessUp exec --no-startup-id "light -A 5"
 bindsym XF86MonBrightnessDown exec --no-startup-id "light -U 5"
 
+bindsym $mod+a scratchpad show
+
 # Scratchpad
 bindsym $mod+Shift+u mark "todo", move scratchpad
-# bindsym $mod+u scratchpad show
 bindsym $mod+u [con_mark="todo"] scratchpad show
 
-# mod1 == alt
-bindsym $mod+mod1+Shift+u mark "other", move scratchpad
-bindsym $mod+mod1+u [con_mark="other"] scratchpad show
+# Scratchpad
+bindsym $mod+Shift+y mark "yodo", move scratchpad
+bindsym $mod+y [con_mark="yodo"] scratchpad show
 
 # mod1 == alt
 bindsym $mod+Shift+t mark "browse", move scratchpad

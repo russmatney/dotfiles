@@ -4,6 +4,6 @@
 # key: div-for
 # condition: t
 # --
-(for [x $1]
-  ^{:key (str x)}
-  [:div x])
+(for [item $1]
+  ^{:key (:id item)}
+  [$2 item])

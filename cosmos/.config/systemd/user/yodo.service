@@ -3,7 +3,7 @@ Description=yodo server
 
 [Service]
 Type=simple
-WorkingDirectory=/home/russ
+WorkingDirectory=/home/russ/russmatney/yodo
 ExecStart=/home/russ/russmatney/yodo/start.sh
 Restart=on-failure
 

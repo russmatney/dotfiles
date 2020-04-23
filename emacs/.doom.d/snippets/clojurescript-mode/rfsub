@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: rfsub
+# uuid: rfsub
+# key: rfsub
+# condition: t
+# --
+@(rf/subscribe [::subs/$1])
