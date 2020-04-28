@@ -174,8 +174,7 @@
 (set-popup-rules!
   '(
     ("^\\*cider-error*"
-     :side left :height 0.5 :width 80 :slot 2
-     :quit nil :modeline t :select nil)
+     :side bottom :ignore t :quit nil :modeline t :select nil)
     ("^\\*cider-repl"
      :side left :height 0.5 :width 80 :slot 1
      :quit nil :modeline t :select nil)

@@ -154,7 +154,7 @@ bindsym $mod+Shift+Return exec --no-startup-id emacsclient --alternate-editor=''
 
 # terminal
 # bindsym $mod+Return exec --no-startup-id "alacritty --working-directory=/home/russ/dotfiles -e 'tmux'"
-bindsym $mod+Return exec --no-startup-id ~/.local/bin/cosmos open tmux
+bindsym $mod+Return exec --no-startup-id ralphie open-term
 
 # browser
 bindsym $mod+b exec --no-startup-id ~/.local/bin/cosmos open-bookmark
@@ -164,24 +164,12 @@ bindsym $mod+shift+b exec --no-startup-id firefox
 # open candidate in workable
 bindsym $mod+shift+w exec --no-startup-id ~/.local/bin/cosmos open-workable
 
-# open stack overflow question
-# bindsym $mod+s exec --no-startup-id ~/.local/bin/cosmos soq
-
-# open stack overflow entrypoint url
-# bindsym $mod+a exec --no-startup-id ~/.local/bin/cosmos soeu
-
-# smart paste
-#bindsym $mod+shift+v exec --no-startup-id ~/.local/bin/cosmos smart-paste
-
 # lock
 bindsym $mod+Shift+q exec --no-startup-id i3lock -c 000000 --pass-media-keys
 
 # rofi
 bindsym $mod+space  exec --no-startup-id rofi -show run
-# bindsym $mod+d      exec --no-startup-id open_dotfile
-bindsym $mod+r      exec --no-startup-id ~/.local/bin/terminal
-
-bindsym $mod+mod1+r      exec --no-startup-id ~/.local/bin/cosmos-dev run-command
+bindsym $mod+r      exec --no-startup-id ralphie rofi
 
 # screenshot
 # bindsym $mod+Shift+s exec --no-startup-id ~/.local/bin/screenshot

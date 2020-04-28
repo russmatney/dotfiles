@@ -4,10 +4,11 @@
 # key: defcom
 # condition: t
 # --
-(defn $1-cmd [_config _parsed])
+(defn $1-cmd [_config _parsed]
+  $3)
 
 (def command
   {:name          "$1"
-   :short         "-"
+   :short         "-$2"
    :one-line-desc "$1"
    :handler       $1-cmd})
