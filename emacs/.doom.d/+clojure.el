@@ -36,6 +36,10 @@
   (interactive)
   (cider-interactive-eval "(wing.repl/sync-libs)"))
 
+(defun cider-user-go ()
+  (interactive)
+  (cider-interactive-eval "(user/go)"))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; cider company bindings fix
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -125,6 +129,7 @@
 
          :n  "r"  #'systemic/restart
          :n  "s"  #'systemic/start
+         :n  "g"  #'cider-user-go
 
          :n  "m"  #'clojure-move-to-let)))
    (:after cider-browse-ns-mode
@@ -168,10 +173,10 @@
 
 (set-popup-rules!
   '(
-    ("^\\*cider-error.*"
+    ("^\\*cider-error*"
      :side left :height 0.5 :width 80 :slot 2
      :quit nil :modeline t :select nil)
-    ("^\\*cider-repl.*"
+    ("^\\*cider-repl"
      :side left :height 0.5 :width 80 :slot 1
      :quit nil :modeline t :select nil)
     ("^\\*cider-test-report*"
