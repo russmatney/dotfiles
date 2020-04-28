@@ -1,5 +1,13 @@
 ;;; ~/dotfiles/emacs/.doom.d/autoload/russ.el -*- lexical-binding: t; -*-
 
+(require 'cl-lib)
+(require 'dash)
+
+
+(defmacro comment (&rest _)
+  "Comment out one or more s-expressions."
+  nil)
+
 ;; require-match set to nil
 ;;;###autoload
 (defun russ/counsel-projectile-find-file (&optional arg dwim)
@@ -99,3 +107,18 @@ If DIR is not a project, it will be indexed (but not cached)."
   "Sets the transparency of the frame window. 0=transparent/100=opaque"
   (interactive "nTransparency Value 0 - 100 opaque:")
   (set-frame-parameter (selected-frame) 'alpha value))
+
+;;;###autoload
+;; Support opening emacs in a workspace
+(defun russ/open-workspace (name)
+  (print "opening workspace")
+  (print name)
+  (if (+workspace-exists-p name)
+      (progn
+        (+workspace-switch name))
+    (progn
+      (+workspace-new name)
+      (+workspace-switch name))))
+
+(comment
+ (russ/open-workspace "cli-bindings"))

@@ -49,16 +49,6 @@ bindsym $mod+e exec --no-startup-id thunar
 # universal script commands
 ################################################################################
 
-# # walk workspace (emacs) or session (tmux)
-# bindsym $mod+n exec --no-startup-id smart-walk-workspace next
-# bindsym $mod+p exec --no-startup-id smart-walk-workspace previous
-
-# change focus
-# bindsym $mod+h exec --no-startup-id ~/.local/bin/cosmos mf left --no-return
-# bindsym $mod+l exec --no-startup-id ~/.local/bin/cosmos mf right --no-return
-# bindsym $mod+j exec --no-startup-id ~/.local/bin/cosmos mf down --no-return
-# bindsym $mod+k exec --no-startup-id ~/.local/bin/cosmos mf up --no-return
-
 # relative position
 bindsym $mod+Shift+h focus left
 bindsym $mod+Shift+j focus down
@@ -71,9 +61,6 @@ bindsym $mod+minus exec --no-startup-id ~/.local/bin/cosmos new-split -h true --
 
 # d for quit
 bindsym $mod+d exec --no-startup-id ~/.local/bin/cosmos close-thing --no-return
-
-# dwim
-bindsym $mod+shift+d exec --no-startup-id ~/.local/bin/cosmos dwim --no-return
 
 ################################################################################
 # Layout/Window Position
@@ -150,7 +137,8 @@ mode "window" {
 
 # emacs
 # bindsym $mod+Shift+Return exec --no-startup-id emacsclient --alternate-editor='' --no-wait --create-frame --frame-parameters='(quote (name . "my-floating-title"))' --display $DISPLAY
-bindsym $mod+Shift+Return exec --no-startup-id emacsclient --alternate-editor='' --no-wait --create-frame --display $DISPLAY
+# bindsym $mod+Shift+Return exec --no-startup-id emacsclient --alternate-editor='' --no-wait --create-frame --display $DISPLAY
+bindsym $mod+Shift+Return exec --no-startup-id ralphie open-emacs
 
 # terminal
 # bindsym $mod+Return exec --no-startup-id "alacritty --working-directory=/home/russ/dotfiles -e 'tmux'"
@@ -160,9 +148,6 @@ bindsym $mod+Return exec --no-startup-id ralphie open-term
 bindsym $mod+b exec --no-startup-id ~/.local/bin/cosmos open-bookmark
 # bindsym $mod+shift+b exec --no-startup-id google-chrome-stable
 bindsym $mod+shift+b exec --no-startup-id firefox
-
-# open candidate in workable
-bindsym $mod+shift+w exec --no-startup-id ~/.local/bin/cosmos open-workable
 
 # lock
 bindsym $mod+Shift+q exec --no-startup-id i3lock -c 000000 --pass-media-keys
