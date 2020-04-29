@@ -43,8 +43,6 @@ bindsym $mod+q kill
 # switch focus between monitors
 bindsym $mod+Tab focus output left
 
-bindsym $mod+e exec --no-startup-id thunar
-
 ################################################################################
 # universal script commands
 ################################################################################
@@ -54,10 +52,6 @@ bindsym $mod+Shift+h focus left
 bindsym $mod+Shift+j focus down
 bindsym $mod+Shift+k focus up
 bindsym $mod+Shift+l focus right
-
-# univ-focus-emux commands
-bindsym $mod+backslash exec --no-startup-id ~/.local/bin/cosmos new-split --no-return
-bindsym $mod+minus exec --no-startup-id ~/.local/bin/cosmos new-split -h true --no-return
 
 # d for quit
 bindsym $mod+d exec --no-startup-id ~/.local/bin/cosmos close-thing --no-return
@@ -146,8 +140,13 @@ bindsym $mod+Return exec --no-startup-id ralphie open-term
 
 # browser
 bindsym $mod+b exec --no-startup-id ~/.local/bin/cosmos open-bookmark
+
 # bindsym $mod+shift+b exec --no-startup-id google-chrome-stable
-bindsym $mod+shift+b exec --no-startup-id firefox
+bindsym $mod+shift+b exec --no-startup-id google-chrome-stable
+# bindsym $mod+shift+b exec --no-startup-id firefox
+
+# finder
+bindsym $mod+e exec --no-startup-id thunar
 
 # lock
 bindsym $mod+Shift+q exec --no-startup-id i3lock -c 000000 --pass-media-keys
@@ -194,8 +193,6 @@ default_floating_border pixel 2
 for_window [class="Emacs"] border pixel 2
 for_window [title="Terminal"] border pixel 2
 
-# TODO exec always only when necessary/cleanup before hand?
-
 # Compositor (Animations, Shadows, Transparency)
 # exec_always --no-startup-id compton --inactive-dim 0.1 --active-opacity 0.9 -i 0.95
 # exec_always --no-startup-id compton -cCfb --backend glx --vsync opengl
@@ -205,8 +202,9 @@ exec_always --no-startup-id feh --bg-scale ~/Dropbox/wallpapers/cityscape-cartoo
 # exec_always --no-startup-id feh --bg-scale ~/Dropbox/wallpapers/firewatch-blue-orange.jpg
 
 # start dropbox
-# exec_always --no-startup-id dropbox &
+exec_always --no-startup-id dropbox &
 
+# start polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 bindsym XF86AudioPlay exec --no-startup-id "playerctl play-pause"
@@ -238,14 +236,6 @@ bindsym $mod+t [con_mark="browse"] scratchpad show
 exec bluetoothctl -- power on
 
 exec_always --no-startup-id xautolock -time 5 -locker "i3lock -c 000000 --pass-media-keys"
-
-# bindsym $mod+y [con_mark="slack"] scratchpad show
-# for_window [class="Slack"] mark "slack", move scratchpad
-# exec slack
-
-# bindsym $mod+t [con_mark="htop-float"] scratchpad show
-# for_window [class="Alacritty" title='htop-float'] mark "htop-float", move scratchpad
-# exec "alacritty -t 'htop-float' -e 'htop'"
 
 # bindsym $mod+n exec i3-input -F 'rename workspace to "%s"' -P 'New name for this workspace (n:<name>): '
 bindsym $mod+comma exec i3-input -F 'rename workspace to "%s"' -P 'New name for this workspace (n:<name>): '

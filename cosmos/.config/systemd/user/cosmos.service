@@ -3,7 +3,7 @@ Description=cosmos server
 
 [Service]
 Type=simple
-WorkingDirectory=/home/russ
+WorkingDirectory=/home/russ/russmatney/cosmos
 ExecStart=/home/russ/russmatney/cosmos/start.sh
 Restart=on-failure
 
