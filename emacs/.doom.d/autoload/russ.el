@@ -103,10 +103,13 @@ If DIR is not a project, it will be indexed (but not cached)."
 
 ;;;###autoload
 ;; Set transparency of emacs
-(defun transparency (value)
+(defun russ/transparency (value)
   "Sets the transparency of the frame window. 0=transparent/100=opaque"
   (interactive "nTransparency Value 0 - 100 opaque:")
   (set-frame-parameter (selected-frame) 'alpha value))
+
+;; transparency
+(russ/transparency 91)
 
 ;;;###autoload
 ;; Support opening emacs in a workspace
@@ -122,3 +125,24 @@ If DIR is not a project, it will be indexed (but not cached)."
 
 (comment
  (russ/open-workspace "cli-bindings"))
+
+;;;###autoload
+;; Set ids on multiple org commands
+(defun russ/org-set-headline-ids (start end)
+  "Executes 'org-id-get-create' for org headlines in the region."
+  (interactive (list
+                (if (region-active-p) (region-beginning) (point-min))
+                (if (region-active-p) (region-end) (point-max))))
+  (save-excursion
+    (goto-char start)
+    (when (org-at-heading-p)
+      (org-id-get-create))
+    (while (re-search-forward org-heading-regexp end t)
+      (when (org-at-heading-p)
+        (org-id-get-create)))))
+
+(comment
+ org-loop-over-headlines-in-active-region
+ org-id-add-location
+ (org-id-locations-load)
+ org-id-locations-file)

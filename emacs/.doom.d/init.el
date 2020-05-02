@@ -9,9 +9,10 @@
 ;; (setq doom-theme 'doom-molokai)
 ;; (setq doom-theme 'doom-tomorrow-night)
 ;; (setq doom-theme 'doom-tomorrow-day)
-(setq doom-theme 'doom-dracula)
+;; (setq doom-theme 'doom-dracula)
+(setq doom-theme 'doom-solarized-light)
 
-(defvar +org-dir (expand-file-name "~/todo/"))
+(setq org-directory (expand-file-name "~/todo/"))
 
 (defvar +workspaces-main "todo")
 

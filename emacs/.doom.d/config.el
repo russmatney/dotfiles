@@ -14,6 +14,9 @@
 ;; Auto revert-mode
 (global-auto-revert-mode t)
 
+;; transparency
+;; (+russ/transparency 85)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; general format/whitespace
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

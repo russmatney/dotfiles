@@ -103,10 +103,10 @@ bindsym $mod+Shift+r exec --no-startup-id ~/russmatney/cosmos/scripts/i3-start.s
 # resize window (you can also use the mouse for that)
 bindsym $mod+w mode "window"
 mode "window" {
-        bindsym h resize shrink width 10 px or 5 ppt
-        bindsym k resize grow height 10 px or 5 ppt
-        bindsym j resize shrink height 10 px or 5 ppt
-        bindsym l resize grow width 10 px or 5 ppt
+        bindsym h resize shrink width 30 px or 5 ppt
+        bindsym k resize grow height 30 px or 5 ppt
+        bindsym j resize shrink height 30 px or 5 ppt
+        bindsym l resize grow width 30 px or 5 ppt
 
         # swap in direction
         bindsym Shift+h move left
@@ -196,10 +196,11 @@ for_window [title="Terminal"] border pixel 2
 # Compositor (Animations, Shadows, Transparency)
 # exec_always --no-startup-id compton --inactive-dim 0.1 --active-opacity 0.9 -i 0.95
 # exec_always --no-startup-id compton -cCfb --backend glx --vsync opengl
-# exec_always --no-startup-id picom
+exec_always --no-startup-id picom
 
-exec_always --no-startup-id feh --bg-scale ~/Dropbox/wallpapers/cityscape-cartoon.jpg
+# exec_always --no-startup-id feh --bg-scale ~/Dropbox/wallpapers/cityscape-cartoon.jpg
 # exec_always --no-startup-id feh --bg-scale ~/Dropbox/wallpapers/firewatch-blue-orange.jpg
+exec_always --no-startup-id variety
 
 # start dropbox
 exec_always --no-startup-id dropbox &

@@ -7,7 +7,7 @@
 (defn $1-handler [_config _parsed]
   $4)
 
-(def $1
+(def $1-cmd
   {:name          "$1"
    :one-line-desc "$1"
    :description ["$3"]

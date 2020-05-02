@@ -2,6 +2,7 @@
 # name: journal-timestamp-music
 # key: jl
 # --
+
 --
 
 `(format-time-string "%Y-%m-%d %H:%M")`
