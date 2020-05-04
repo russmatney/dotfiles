@@ -1,11 +1,11 @@
 # -*- mode: snippet -*-
 # name: sub
-# uuid: reg-sub
+# uuid: sub
 # key: sub
 # condition: t
 # --
 (rf/reg-sub
   ::$1
-  :<- [$2]
+  :<- [::subs/$2]
   (fn [items [_ $3]]
     $4))

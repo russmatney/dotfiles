@@ -1,0 +1,52 @@
+# -*- mode: snippet -*-
+# name: yodo-org-db
+# uuid: yodo-org-db
+# key: yodo-org-db
+# condition: t
+# --
+
+(ns yodo.$1s.core
+  (:require [systemic.core :as sys :refer [defsys]]
+            [yodo.watch :as watch]
+            [yodo.org.core :as yorg]
+            [yodo.config :as yconf]))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; 'constant' systems
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defsys *filepath*
+  (str (:org-dir yconf/*config*) "/$1s.org"))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; model
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn ->$1 [item]
+  (merge
+    item
+    {:type :$1}))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; builder
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn build-db []
+  (->> (yorg/path->items *filepath*)
+       (map ->$1)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; *db* system
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defsys *db*
+  :closure
+  (watch/db-watcher
+    {:build-db build-db
+     :paths    [*filepath*]}))
+
+(defn rebuild! []
+  (reset! *db* (build-db)))
+
+(comment
+  (sys/start! `*db*))

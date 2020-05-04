@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: stage
+# uuid: stage
+# key: stage
+# condition: t
+# --
+(defn stage []
+  (let [item @(rf/subscribe [::$2])]
+    [comp.stage/stage
+      {:title "$1"}
+      $3]))

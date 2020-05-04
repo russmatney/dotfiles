@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: event
+# uuid: event
+# key: event
+# condition: t
+# --
+(rf/reg-event-fx
+  ::$1
+  [rf/trim-v]
+  (fn [{:keys [db]} [$2]]
+    {:db db
+     :dispatch [$3]}))

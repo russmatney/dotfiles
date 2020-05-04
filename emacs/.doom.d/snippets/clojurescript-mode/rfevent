@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: rfevent
+# uuid: rfevent
+# key: rfevent
+# condition: t
+# --
+(rf/dispatch [::events/$1 $2])
