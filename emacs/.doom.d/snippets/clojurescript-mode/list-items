@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: list-items
+# uuid: list-items
+# key: list-items
+# condition: t
+# --
+[lists/item-list
+ {:small?  true
+  :list-id :$1
+ @(rf/subscribe [::subs/linked-items item])]

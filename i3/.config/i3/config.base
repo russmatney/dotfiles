@@ -53,9 +53,6 @@ bindsym $mod+Shift+j focus down
 bindsym $mod+Shift+k focus up
 bindsym $mod+Shift+l focus right
 
-# d for quit
-bindsym $mod+d exec --no-startup-id ~/.local/bin/cosmos close-thing --no-return
-
 ################################################################################
 # Layout/Window Position
 ################################################################################
@@ -196,7 +193,7 @@ for_window [title="Terminal"] border pixel 2
 # Compositor (Animations, Shadows, Transparency)
 # exec_always --no-startup-id compton --inactive-dim 0.1 --active-opacity 0.9 -i 0.95
 # exec_always --no-startup-id compton -cCfb --backend glx --vsync opengl
-exec_always --no-startup-id picom
+# exec_always --no-startup-id picom
 
 # exec_always --no-startup-id feh --bg-scale ~/Dropbox/wallpapers/cityscape-cartoon.jpg
 # exec_always --no-startup-id feh --bg-scale ~/Dropbox/wallpapers/firewatch-blue-orange.jpg
@@ -228,6 +225,10 @@ bindsym $mod+u [con_mark="todo"] scratchpad show
 # Scratchpad
 bindsym $mod+Shift+y mark "yodo", move scratchpad
 bindsym $mod+y [con_mark="yodo"] scratchpad show
+
+# Scratchpad
+bindsym $mod+Shift+d mark "dev-app", move scratchpad
+bindsym $mod+d [con_mark="dev-app"] scratchpad show
 
 # mod1 == alt
 bindsym $mod+Shift+t mark "browse", move scratchpad
