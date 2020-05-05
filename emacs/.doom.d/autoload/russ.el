@@ -2,6 +2,7 @@
 
 (require 'cl-lib)
 (require 'dash)
+(require 's)
 
 
 (defmacro comment (&rest _)
@@ -110,6 +111,15 @@ If DIR is not a project, it will be indexed (but not cached)."
 
 ;; transparency
 ;; (russ/transparency 85)
+
+;;;###autoload
+(defun russ/delete-numbered-workspace-names ()
+  "Deletes #.* workspaces (usually created by mistake)"
+  (interactive)
+  (let ((to-delete (-filter
+                    (-partial 's-starts-with? "#")
+                    (+workspace-list-names))))
+    (-each to-delete '+workspace-delete)))
 
 ;;;###autoload
 ;; Support opening emacs in a workspace
