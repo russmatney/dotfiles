@@ -230,7 +230,7 @@
  ;; Workspaces
  "M-c"    #'+workspace/new
  "M-,"    #'+workspace/rename
- "M-P"    #'rs/projectile-switch-project-workspace
+ "M-P"    #'russ/projectile-open-file-from-project
  (:leader "o" #'russ/projectile-open-file-from-project)
 
  ;; switch to

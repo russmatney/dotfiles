@@ -109,7 +109,7 @@ If DIR is not a project, it will be indexed (but not cached)."
   (set-frame-parameter (selected-frame) 'alpha value))
 
 ;; transparency
-(russ/transparency 91)
+;; (russ/transparency 85)
 
 ;;;###autoload
 ;; Support opening emacs in a workspace
@@ -121,7 +121,8 @@ If DIR is not a project, it will be indexed (but not cached)."
         (+workspace-switch name))
     (progn
       (+workspace-new name)
-      (+workspace-switch name))))
+      (+workspace-switch name)))
+  (russ/projectile-open-file-from-project))
 
 (comment
  (russ/open-workspace "cli-bindings"))
