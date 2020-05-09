@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: ppr
+# uuid: ppr
+# key: ppr
+# condition: t
+# --
+(cljs.pprint/pprint $1)

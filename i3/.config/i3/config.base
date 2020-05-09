@@ -235,7 +235,7 @@ bindsym $mod+Shift+t mark "browse", move scratchpad
 bindsym $mod+t [con_mark="browse"] scratchpad show
 
 # exec sc --user import-environment && sc --user daemon-reload && sc --user restart cosmos
-exec bluetoothctl -- power on
+exec --no-startup-id bluetoothctl -- power on
 
 exec_always --no-startup-id xautolock -time 5 -locker "i3lock -c 000000 --pass-media-keys"
 
