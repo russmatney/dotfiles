@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: cls
+# uuid: cls
+# key: cls
+# condition: t
+# --
+{:class [
+]}

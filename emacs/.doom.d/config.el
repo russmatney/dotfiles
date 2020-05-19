@@ -54,8 +54,6 @@
 
 (setq +ivy-buffer-icons t)
 
-(use-package! zen-mode)
-
 ;; Add '--hidden' to rg command to include hidden files in search
 ;; Note that `echo ".git/" >> ~/.ignore` will exclude .git from these searches
 (setq counsel-rg-base-command

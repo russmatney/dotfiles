@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: new-vignette
+# uuid: new-vignette
+# key: --
+# condition: t
+# --
+--
+`(format-time-string "%Y-%m-%d %H:%M")`

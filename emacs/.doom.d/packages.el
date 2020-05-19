@@ -3,18 +3,6 @@
 ;; lisp
 (package! dash)
 
-;; org
-(package! org-clubhouse
-  :recipe (:host github
-                 :repo "urbint/org-clubhouse"
-                 :files ("*")))
-
-;; writing
-(package! zen-mode
-  :recipe (:host github
-                 :repo "aki237/zen-mode"
-                 :files ("*")))
-
 ;; javascript
 (package! prettier-js)
 (package! rjsx-mode)

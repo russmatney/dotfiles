@@ -10,7 +10,8 @@
 ;; (setq doom-theme 'doom-tomorrow-night)
 ;; (setq doom-theme 'doom-tomorrow-day)
 ;; (setq doom-theme 'doom-dracula)
-(setq doom-theme 'doom-solarized-light)
+;; (setq doom-theme 'doom-solarized-light)
+(setq doom-theme 'doom-moonlight)
 
 (setq org-directory (expand-file-name "~/todo/"))
 
@@ -59,7 +60,7 @@
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        window-select     ; visually switch windows
        workspaces        ; tab emulation, persistence & separate workspaces
-       ;; zen
+       zen
 
        :editor
        (evil +everywhere); come to the dark side, we have cookies

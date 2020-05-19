@@ -6,5 +6,5 @@
 # --
 [lists/item-list
  {:small?  true
-  :list-id :$1
+  :list-id :$1}
  @(rf/subscribe [::subs/linked-items item])]

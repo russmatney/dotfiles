@@ -132,7 +132,8 @@ If DIR is not a project, it will be indexed (but not cached)."
     (progn
       (+workspace-new name)
       (+workspace-switch name)))
-  (russ/projectile-open-file-from-project))
+  ;; (russ/projectile-open-file-from-project)
+  )
 
 (comment
  (russ/open-workspace "cli-bindings"))
