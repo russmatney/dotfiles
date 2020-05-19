@@ -2,7 +2,7 @@
 for_window [class="^.*"] border pixel 0
 
 # Gaps
-gaps inner 30
+gaps inner 10
 gaps outer 0
 smart_gaps on
 
@@ -100,26 +100,36 @@ bindsym $mod+Shift+r exec --no-startup-id ~/russmatney/cosmos/scripts/i3-start.s
 # resize window (you can also use the mouse for that)
 bindsym $mod+w mode "window"
 mode "window" {
-        bindsym h resize shrink width 30 px or 5 ppt
-        bindsym k resize grow height 30 px or 5 ppt
-        bindsym j resize shrink height 30 px or 5 ppt
-        bindsym l resize grow width 30 px or 5 ppt
+  bindsym h resize shrink width 30 px or 5 ppt
+  bindsym k resize grow height 30 px or 5 ppt
+  bindsym j resize shrink height 30 px or 5 ppt
+  bindsym l resize grow width 30 px or 5 ppt
 
-        # swap in direction
-        bindsym Shift+h move left
-        bindsym Shift+l move right
-        bindsym Shift+j move down
-        bindsym Shift+k move up
+  # swap in direction
+  bindsym Shift+h move left
+  bindsym Shift+l move right
+  bindsym Shift+j move down
+  bindsym Shift+k move up
 
-        # maintain focus controls
-        bindsym $mod+h focus left
-        bindsym $mod+l focus right
-        bindsym $mod+j focus down
-        bindsym $mod+k focus up
+  # maintain focus controls
+  bindsym $mod+h focus left
+  bindsym $mod+l focus right
+  bindsym $mod+j focus down
+  bindsym $mod+k focus up
 
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym q mode "default"
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+  bindsym q mode "default"
+
+  # window position commands
+  bindsym c floating enable, resize set width 50 ppt height 50 ppt, move position center; mode "default"
+  bindsym Shift+c floating enable, resize set width 90 ppt height 90 ppt, move position center; mode "default"
+  bindsym w floating enable, resize set width 40 ppt height 80 ppt, move position center; mode "default"
+
+  # absolute positioning
+  bindsym Right floating enable, resize set width 45 ppt height 90 ppt, move position 1008 48; mode "default"
+  bindsym Left floating enable, resize set width 45 ppt height 90 ppt, move position 48 48; mode "default"
+  bindsym Down floating enable, resize set width 60 ppt height 100 ppt, move position 0 px 0 px; mode "default"
 }
 
 ################################################################################
@@ -193,7 +203,7 @@ for_window [title="Terminal"] border pixel 2
 # Compositor (Animations, Shadows, Transparency)
 # exec_always --no-startup-id compton --inactive-dim 0.1 --active-opacity 0.9 -i 0.95
 # exec_always --no-startup-id compton -cCfb --backend glx --vsync opengl
-# exec_always --no-startup-id picom
+exec_always --no-startup-id picom
 
 # exec_always --no-startup-id feh --bg-scale ~/Dropbox/wallpapers/cityscape-cartoon.jpg
 # exec_always --no-startup-id feh --bg-scale ~/Dropbox/wallpapers/firewatch-blue-orange.jpg
@@ -205,7 +215,7 @@ exec_always --no-startup-id dropbox &
 # start polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-bindsym XF86AudioPlay exec --no-startup-id "playerctl play-pause"
+bindsym XF86AudioPlay exec --no-startup-id "spotifycli --playpause"
 bindsym XF86AudioNext exec --no-startup-id "playerctl next"
 bindsym XF86AudioPrev exec --no-startup-id "playerctl previous"
 bindsym XF86AudioMute exec --no-startup-id "pactl set-sink-mute @DEFAULT_SINK@ toggle"
@@ -215,8 +225,6 @@ bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-volume @DEFAUL
 # screen brightness
 bindsym XF86MonBrightnessUp exec --no-startup-id "light -A 5"
 bindsym XF86MonBrightnessDown exec --no-startup-id "light -U 5"
-
-bindsym $mod+a scratchpad show
 
 # Scratchpad
 bindsym $mod+Shift+u mark "todo", move scratchpad
@@ -233,6 +241,14 @@ bindsym $mod+d [con_mark="dev-app"] scratchpad show
 # mod1 == alt
 bindsym $mod+Shift+t mark "browse", move scratchpad
 bindsym $mod+t [con_mark="browse"] scratchpad show
+
+# workspace scratchpads
+bindsym $mod+Shift+g exec --no-startup-id ralphie scratchpad-push
+bindsym $mod+g exec --no-startup-id ralphie scratchpad-pop
+
+# cycle all scratchpads
+bindsym $mod+a scratchpad show
+
 
 # exec sc --user import-environment && sc --user daemon-reload && sc --user restart cosmos
 exec --no-startup-id bluetoothctl -- power on
