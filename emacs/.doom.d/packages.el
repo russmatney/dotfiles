@@ -30,6 +30,9 @@
 (package! flycheck-clj-kondo)
 (package! ivy-cider :recipe (:host github :repo "rschmukler/ivy-cider"))
 
+(package! company-css-classes :recipe
+  (:host github :repo "russmatney/company-css-classes" :files ("*")))
+
 ;; wakatime
 (package! wakatime-mode)
 

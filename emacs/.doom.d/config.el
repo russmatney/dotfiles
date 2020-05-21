@@ -82,7 +82,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (load! "+bindings")
-(load! "+css-classes-backend")
 (load! "+langs")
 (load! "+lisp-editing")
 (load! "+clojure")

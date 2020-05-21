@@ -189,6 +189,12 @@
 (use-package! flycheck-clj-kondo)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; company-css-classes-backend
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package! company-css-classes)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; clojure and cider mode configs
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -211,7 +217,7 @@
 
   (set-company-backend!
     'clojurescript-mode
-    '(company-capf company-yasnippet company-flow css-classes-backend))
+    '(company-capf company-yasnippet company-flow company-css-classes-backend))
 
   (setq cljr-magic-require-namespaces
         '(("io" . "clojure.java.io")
