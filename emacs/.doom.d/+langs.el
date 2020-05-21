@@ -102,15 +102,18 @@
 
 (use-package! csharp-mode
   :config
-  (electric-pair-local-mode 1)
+  ;; (electric-pair-local-mode 1)
 
   (add-hook! 'omnisharp-mode-hook
     (add-hook 'before-save-hook #'omnisharp-code-format-entire-file))
 
+  (add-hook! 'omnisharp-mode-hook
+    (whitespace-mode -1))
+
   (setq indent-tabs-mode nil)
-  (setq c-syntactic-indentation t)
-  (add-hook 'omnisharp-mode-hook
-            '(lambda () (c-set-style "ellemtel")))
+  (setq c-syntactic-indentation nil)
+  ;; (add-hook 'omnisharp-mode-hook
+  ;;           '(lambda () (c-set-style "ellemtel")))
   (setq c-basic-offset 4)
   (setq truncate-lines t)
   (setq tab-width 4)
