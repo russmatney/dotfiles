@@ -88,3 +88,22 @@
 (load! "+org-custom")
 (load! "+wakatime")
 ;; (load! "+exwm")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; misc fixes
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; https://github.com/Malabarba/aggressive-indent-mode/issues/138
+;; https://github.com/Malabarba/aggressive-indent-mode/issues/137
+;; https://discordapp.com/channels/406534637242810369/406624667496087572/714350381324304446
+
+(defadvice! kill-aggressive-indent-timers (l r &rest _)
+  :override #'aggressive-indent--keep-track-of-changes
+  (when aggressive-indent-mode
+    (push (list l r) aggressive-indent--changed-list)
+    (when (timerp aggressive-indent--idle-timer)
+      (cancel-timer aggressive-indent--idle-timer))
+    (setq aggressive-indent--idle-timer
+          (run-with-idle-timer
+           aggressive-indent-sit-for-time
+           nil #'aggressive-indent--indent-if-changed (current-buffer)))))
