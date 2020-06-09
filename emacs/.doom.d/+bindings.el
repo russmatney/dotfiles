@@ -1,4 +1,4 @@
-;;;  -*- lexical-binding: t; -*-
+;;  -*- lexical-binding: t; -*-
 
 (defmacro comment (&rest _)
   "Comment out one or more s-expressions."
@@ -79,13 +79,13 @@
      :desc "Open file in ~/.doom.d/"       :n "c" #'russ/open-emacs-config-file
      :desc "Open file in yodo"             :n "y" #'russ/open-yodo-file
 
-     :desc "Open ~/.zshrc"                 :n "v" (lambda! (find-file "~/.zshrc"))
-     :desc "Open ~/.doom.d/+bindings.el"   :n "b" (lambda! (find-file "~/.doom.d/+bindings.el"))
-     :desc "Open ~/.config/i3/config"      :n "i" (lambda! (find-file "~/.config/i3/config.base"))
-     :desc "Open ~/.config/polybar/config" :n "p" (lambda! (find-file "~/.config/polybar/config"))
-     :desc "Open ~/.tmux.conf"             :n "T" (lambda! (find-file "~/.tmux.conf"))
-     :desc "Open ~/todo/journal.org"        :n "j" (lambda! (find-file "~/todo/journal.org"))
-     :desc "Open alacritty config"         :n "a" (lambda! (find-file "~/.config/alacritty/alacritty.yml")))))
+     :desc "Open ~/.zshrc"                 :n "v" (cmd! (find-file "~/.zshrc"))
+     :desc "Open ~/.doom.d/+bindings.el"   :n "b" (cmd! (find-file "~/.doom.d/+bindings.el"))
+     :desc "Open ~/.config/i3/config"      :n "i" (cmd! (find-file "~/.config/i3/config.base"))
+     :desc "Open ~/.config/polybar/config" :n "p" (cmd! (find-file "~/.config/polybar/config"))
+     :desc "Open ~/.tmux.conf"             :n "T" (cmd! (find-file "~/.tmux.conf"))
+     :desc "Open ~/todo/journal.org"        :n "j" (cmd! (find-file "~/todo/journal.org"))
+     :desc "Open alacritty config"         :n "a" (cmd! (find-file "~/.config/alacritty/alacritty.yml")))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -299,7 +299,7 @@
    :n "-"        #'dired-up-directory
    :n "<return>" #'dired-find-alternate-file
    :n "/"        #'dired
-   :n "q"        (lambda! (quit-window t))))
+   :n "q"        (cmd! (quit-window t))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Flycheck
