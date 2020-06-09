@@ -14,6 +14,7 @@
 (setq doom-theme 'doom-moonlight)
 
 (setq org-directory (expand-file-name "~/todo/"))
+(setq org-roam-directory (expand-file-name "~/Dropbox/roam/"))
 
 (defvar +workspaces-main "todo")
 
@@ -160,7 +161,9 @@
         ;;+ipython         ; ipython support for babel
         +pandoc          ; pandoc integration into org's exporter
         ;;+pomodoro
-        +present)        ; using Emacs for presentations
+        +present ; using Emacs for presentations
+        +roam
+        )
        ;;perl              ; write code no one else can comprehend
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
