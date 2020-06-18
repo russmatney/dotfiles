@@ -17,6 +17,10 @@
 ;; transparency
 ;; (+russ/transparency 85)
 
+;; autofill mode for text-mode
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; general format/whitespace
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -85,7 +89,7 @@
 (load! "+langs")
 (load! "+lisp-editing")
 (load! "+clojure")
-(load! "+org-custom")
+(load! "+org")
 (load! "+wakatime")
 ;; (load! "+exwm")
 
