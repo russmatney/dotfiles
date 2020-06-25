@@ -130,6 +130,8 @@
  '(safe-local-variable-values
    (quote
     ((cider-known-endpoints
+      ("bb" "localhost" "1667"))
+     (cider-known-endpoints
       ("yodo-clj-server" "localhost" "7888")
       ("yodo-cljs-shadow" "localhost" "4201"))
      (cider-known-endpoints

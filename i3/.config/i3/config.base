@@ -242,9 +242,13 @@ bindsym $mod+d [con_mark="dev-app"] scratchpad show
 bindsym $mod+Shift+t mark "browse", move scratchpad
 bindsym $mod+t [con_mark="browse"] scratchpad show
 
-# workspace scratchpads
-bindsym $mod+Shift+g exec --no-startup-id ralphie scratchpad-push
-bindsym $mod+g exec --no-startup-id ralphie scratchpad-pop
+# # workspace scratchpads
+# bindsym $mod+Shift+g exec --no-startup-id ralphie scratchpad-push
+# bindsym $mod+g exec --no-startup-id ralphie scratchpad-pop
+
+# mind-Garden scratchpad
+bindsym $mod+Shift+g mark "garden", move scratchpad
+bindsym $mod+g [con_mark="garden"] scratchpad show
 
 # cycle all scratchpads
 bindsym $mod+a scratchpad show
