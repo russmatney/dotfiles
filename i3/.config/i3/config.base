@@ -161,6 +161,7 @@ bindsym $mod+Shift+q exec --no-startup-id i3lock -c 000000 --pass-media-keys
 # rofi
 bindsym $mod+space  exec --no-startup-id rofi -show run
 bindsym $mod+r      exec --no-startup-id ralphie rofi
+bindsym $mod+x      exec --no-startup-id ralphie rofi
 
 # screenshot
 # bindsym $mod+Shift+s exec --no-startup-id ~/.local/bin/screenshot
