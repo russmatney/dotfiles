@@ -94,8 +94,9 @@ bindsym $mod+f floating toggle
 #bindsym $mod+z focus mode_toggle
 
 # reload i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r exec --no-startup-id ~/russmatney/cosmos/scripts/i3-start.sh
+# bindsym $mod+Shift+r exec --no-startup-id ~/russmatney/cosmos/scripts/i3-start.sh
 # bindsym $mod+Shift+r restart
+bindsym $mod+Shift+r exec --no-startup-id ralphie restart-i3
 
 # resize window (you can also use the mouse for that)
 bindsym $mod+w mode "window"
