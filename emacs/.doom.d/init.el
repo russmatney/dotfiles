@@ -15,6 +15,7 @@
 
 (setq org-directory (expand-file-name "~/todo/"))
 (setq org-roam-directory (expand-file-name "~/Dropbox/roam/"))
+(setq org-roam-tag-sources '(prop all-directories))
 
 (defvar +workspaces-main "todo")
 

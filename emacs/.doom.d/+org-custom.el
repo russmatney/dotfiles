@@ -117,8 +117,7 @@
            "%?"
            :file-name "%<%Y%m%d%H%M%S>-${slug}"
            :head
-           "#+ID: %(shell-command-to-string \"uuidgen\")#+TITLE: ${title}
-#+hugo_base_dir: ~/russmatney/hugo-roam\n"
+           "#+ID: %(shell-command-to-string \"uuidgen\")#+TITLE: ${title}"
            :unnarrowed t))))
 
 
@@ -130,28 +129,3 @@
  :leader
    :desc "notes" :prefix "n"
    :desc "add story to clubhouse" :n "c" #'org-clubhouse-create-story)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Org Roam export
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; from https://github.com/org-roam/org-roam/issues/484
-(after! (org org-roam)
-    (defun my/org-roam--backlinks-list (file)
-      (if (org-roam--org-roam-file-p file)
-          (--reduce-from
-           (concat acc (format "- [[file:%s][%s]]\n"
-                               (file-relative-name (car it) org-roam-directory)
-                               (org-roam--get-title-or-slug (car it))))
-           "" (org-roam-db-query [:select [from]
-                                  :from links
-                                  :where (= to $s1)
-                                  :and from :not :like $s2] file "%private%"))
-        ""))
-    (defun my/org-export-preprocessor (_backend)
-      (let ((links (my/org-roam--backlinks-list (buffer-file-name))))
-        (unless (string= links "")
-          (save-excursion
-            (goto-char (point-max))
-            (insert (concat "\n* Backlinks\n" links))))))
-    (add-hook 'org-export-before-processing-hook 'my/org-export-preprocessor))

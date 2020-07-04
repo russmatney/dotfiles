@@ -179,7 +179,7 @@
      :side left :height 0.5 :width 80 :slot 1
      :quit nil :modeline t :select nil)
     ("^\\*cider-test-report*"
-     :side left :height 0.5 :width 80 :slot 3
+     :side left :height 0.5 :width 35 :slot 1
      :quit nil :modeline t :select nil)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
