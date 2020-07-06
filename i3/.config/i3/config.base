@@ -161,7 +161,6 @@ bindsym $mod+Shift+q exec --no-startup-id i3lock -c 000000 --pass-media-keys
 
 # rofi
 bindsym $mod+space  exec --no-startup-id rofi -show run
-bindsym $mod+r      exec --no-startup-id ralphie rofi
 bindsym $mod+x      exec --no-startup-id ralphie rofi
 
 # screenshot
@@ -251,6 +250,7 @@ bindsym $mod+t [con_mark="browse"] scratchpad show
 # mind-Garden scratchpad
 bindsym $mod+Shift+g mark "garden", move scratchpad
 bindsym $mod+g [con_mark="garden"] scratchpad show
+bindsym $mod+r [con_mark="garden"] scratchpad show
 
 # cycle all scratchpads
 bindsym $mod+a scratchpad show
