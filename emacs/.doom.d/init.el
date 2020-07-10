@@ -11,7 +11,8 @@
 ;; (setq doom-theme 'doom-tomorrow-day)
 ;; (setq doom-theme 'doom-dracula)
 ;; (setq doom-theme 'doom-solarized-light)
-(setq doom-theme 'doom-moonlight)
+;; (setq doom-theme 'doom-moonlight)
+(setq doom-theme 'doom-monokai-spectrum)
 
 (setq org-directory (expand-file-name "~/todo/"))
 (setq org-roam-directory (expand-file-name "~/Dropbox/roam/"))
