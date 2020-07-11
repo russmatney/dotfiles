@@ -340,7 +340,7 @@
  "C-h" #'ivy-backward-kill-word)
 
 (map!
- :desc "swiper"                :nv "/"   #'swiper
+ :desc "swiper"                :nv "/"   #'evil-ex-search-forward
  (:leader
    :desc "Imenu"                 :nv "i"   #'imenu
    :desc "Imenu across buffers"  :nv "I"   #'imenu-anywhere
