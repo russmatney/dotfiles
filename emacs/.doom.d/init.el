@@ -15,7 +15,7 @@
 (setq doom-theme 'doom-monokai-spectrum)
 
 (setq org-directory (expand-file-name "~/todo/"))
-(setq org-roam-directory (expand-file-name "~/Dropbox/roam/"))
+(setq org-roam-directory (expand-file-name "~/Dropbox/notes/"))
 (setq org-roam-tag-sources '(prop all-directories))
 
 (defvar +workspaces-main "todo")
