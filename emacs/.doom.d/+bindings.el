@@ -8,9 +8,9 @@
 ;; Evil setup
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(map!
- :nmvo doom-leader-key nil
- :nmvo doom-localleader-key nil)
+;; (map!
+;;  :nmvo doom-leader-key nil
+;;  :nmvo doom-localleader-key nil)
 
 ;; helper for defining evil commands
 (defalias 'ex! 'evil-ex-define-cmd)
@@ -138,8 +138,6 @@
  ;; org
  (:leader :desc "org-capture"     :nv "x"   #'org-capture)
  (:leader :desc "org-agenda"     :nv "A"   #'org-agenda)
-
- (:leader :desc "helm-mini"     :nv "m"   #'helm-mini)
 
  :n "g d"   '+lookup/definition
  :n "g r"   '+lookup/references
