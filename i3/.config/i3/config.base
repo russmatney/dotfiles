@@ -248,9 +248,9 @@ bindsym $mod+t [con_mark="browse"] scratchpad show
 # bindsym $mod+g exec --no-startup-id ralphie scratchpad-pop
 
 # mind-Garden scratchpad
-bindsym $mod+Shift+g mark "garden", move scratchpad
-bindsym $mod+g [con_mark="garden"] scratchpad show
-bindsym $mod+r [con_mark="garden"] scratchpad show
+bindsym $mod+Shift+g mark "notes", move scratchpad
+bindsym $mod+g [con_mark="notes"] scratchpad show
+bindsym $mod+r [con_mark="notes"] scratchpad show
 
 # cycle all scratchpads
 bindsym $mod+a scratchpad show
