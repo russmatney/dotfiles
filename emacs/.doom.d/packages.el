@@ -38,3 +38,7 @@
 
 ;; exwm
 (package! exwm)
+
+
+;; org-roam
+(package! org-roam-server)
