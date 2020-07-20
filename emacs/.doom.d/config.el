@@ -149,7 +149,14 @@
  '(package-selected-packages (quote (org-roam-server)))
  '(safe-local-variable-values
    (quote
-    ((checkdoc-package-keywords-flag)
+    ((cider-known-endpoints
+      ("yodo-cljs-shadow" "localhost" "4201"))
+     (cider-known-endpoints
+      ("yodo-clj-server" "localhost" "7888")
+      ("yodo-cljs-shadow" "localhost" "4201"))
+     (cider-known-endpoints
+      ("bb" "localhost" "1667"))
+     (checkdoc-package-keywords-flag)
      (eval progn
            (pp-buffer)
            (indent-buffer)))))
@@ -183,4 +190,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:background "#191919")))))
