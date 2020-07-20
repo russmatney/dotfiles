@@ -109,16 +109,27 @@
   (setq org-capture-templates
         '(("t" "Todo [inbox]" entry
            (file+headline "~/Dropbox/todo/inbox.org" "Tasks")
-           "* [ ] %i%?")))
+           "* [ ] %i%?"))))
 
-;; https://github.com/org-roam/org-roam/issues/217
-(setq org-roam-capture-templates
+(after! org-roam
+  ;; https://github.com/org-roam/org-roam/issues/217
+  (setq org-roam-capture-templates
         '(("d" "default" plain (function org-roam--capture-get-point)
            "%?"
            :file-name "%<%Y%m%d%H%M%S>-${slug}"
            :head
            "#+ID: %(shell-command-to-string \"uuidgen\")#+TITLE: ${title}"
+           :unnarrowed t))
+
+        org-roam-capture-ref-templates
+        '(("r" "ref" plain (function org-roam-capture--get-point)
+           "%?"
+           :file-name "websites/%<%Y%m%d%H%M%S>-${slug}"
+           :head "#+TITLE: ${title}
+#+ROAM_KEY: ${ref}
+- source :: ${ref}"
            :unnarrowed t))))
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
