@@ -81,6 +81,12 @@
    company-idle-delay 0.5
    company-minimum-prefix-length 5))
 
+(use-package deft
+      :after org
+      :custom
+      (deft-recursive t)
+      (deft-directory org-roam-directory))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; other config files
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

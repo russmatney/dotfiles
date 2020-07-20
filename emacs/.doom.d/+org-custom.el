@@ -118,7 +118,8 @@
            "%?"
            :file-name "%<%Y%m%d%H%M%S>-${slug}"
            :head
-           "#+ID: %(shell-command-to-string \"uuidgen\")#+TITLE: ${title}"
+           "#+TITLE: ${title}
+#+ID: %(shell-command-to-string \"uuidgen\")"
            :unnarrowed t))
 
         org-roam-capture-ref-templates

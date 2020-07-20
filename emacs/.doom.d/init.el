@@ -40,7 +40,7 @@
        ;;+childframe)     ; uses childframes for popups (Emacs 26+ only)
 
        :ui
-       ;;deft
+       deft
        doom              ; what makes DOOM look the way it does
        doom-dashboard    ; a nifty splash screen for Emacs
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
