@@ -168,21 +168,6 @@
     (setq cider-eval-on-save new-val)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; popup rules (not fully working)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(set-popup-rules!
-  '(
-    ("^\\*cider-error*"
-     :side bottom :ignore t :quit nil :modeline t :select nil)
-    ("^\\*cider-repl"
-     :side left :height 0.5 :width 80 :slot 1
-     :quit nil :modeline t :select nil)
-    ("^\\*cider-test-report*"
-     :side left :height 0.5 :width 35 :slot 1
-     :quit nil :modeline t :select nil)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; flycheck
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -248,7 +233,7 @@
         cider-auto-select-error-buffer nil
         cider-auto-select-test-report-buffer nil
         cider-test-show-report-on-success t
-        cider-session-name-template "%j:%S"
+        ;; cider-session-name-template "%j:%S"
         ))
 
 (use-package! ivy-cider
