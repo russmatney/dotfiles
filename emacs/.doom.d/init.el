@@ -18,6 +18,8 @@
 (setq org-roam-directory (expand-file-name "~/Dropbox/notes/"))
 (setq org-roam-tag-sources '(prop all-directories))
 
+(setq custom-file (concat doom-private-dir "+custom.el"))
+
 (defvar +workspaces-main "todo")
 
 (defvar +workspaces-switch-project-function #'russ/doom-project-find-file)

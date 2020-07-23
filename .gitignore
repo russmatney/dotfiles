@@ -15,6 +15,7 @@ zsh/.zsh_plugins.sh
 
 tmux-client-*.log
 emacs/.doom.d/+private.el
+emacs/.doom.d/+custom.el
 urbint
 scratch*
 focus/.local/bin/focus
