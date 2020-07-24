@@ -100,6 +100,10 @@
         org-roam-server-network-label-truncate-length 60
         org-roam-server-network-label-wrap-length 20))
 
+
+(use-package! fennel-mode)
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; other config files
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -112,6 +116,9 @@
 (load! "+wakatime")
 (load! "+custom")
 ;; (load! "+exwm")
+
+
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; misc fixes

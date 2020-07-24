@@ -19,6 +19,9 @@
 ;; fountain
 (package! fountain-mode :recipe (:host github :repo "rnkn/fountain-mode"))
 
+;; fennel
+(package! fennel-mode :recipe (:host gitlab :repo "technomancy/fennel-mode"))
+
 ;; python
 (package! py-yapf)
 
