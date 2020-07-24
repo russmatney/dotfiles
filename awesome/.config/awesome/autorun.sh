@@ -39,4 +39,4 @@ run dropbox
 run variety
 run picom
 
-xset r rate 170 50
+xset r rate 150 60

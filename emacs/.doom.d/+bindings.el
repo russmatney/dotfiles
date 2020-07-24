@@ -85,7 +85,7 @@
      :desc "Open ~/.config/polybar/config" :n "p" (cmd! (find-file "~/.config/polybar/config"))
      :desc "Open ~/.tmux.conf"             :n "T" (cmd! (find-file "~/.tmux.conf"))
      :desc "Open ~/todo/journal.org"        :n "j" (cmd! (find-file "~/todo/journal.org"))
-     :desc "Open alacritty config"         :n "a" (cmd! (find-file "~/.config/alacritty/alacritty.yml")))))
+     :desc "Open awesome config"         :n "a" (cmd! (find-file "~/.config/awesome/rc.lua")))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

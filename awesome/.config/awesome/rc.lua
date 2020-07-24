@@ -270,18 +270,19 @@ globalkeys = gears.table.join(
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
               {description = "go back", group = "tag"}),
 
-    awful.key({ modkey,           }, "j",
-        function ()
-            awful.client.focus.byidx( 1)
-        end,
-        {description = "focus next by index", group = "client"}
-    ),
-    awful.key({ modkey,           }, "k",
-        function ()
-            awful.client.focus.byidx(-1)
-        end,
-        {description = "focus previous by index", group = "client"}
-    ),
+    -- awful.key({ modkey,           }, "j",
+    --     function ()
+    --         awful.client.focus.byidx( 1)
+    --     end,
+    --     {description = "focus next by index", group = "client"}
+    -- ),
+    -- awful.key({ modkey,           }, "k",
+    --     function ()
+    --         awful.client.focus.byidx(-1)
+    --     end,
+    --     {description = "focus previous by index", group = "client"}
+    -- ),
+
     awful.key({ modkey,           }, "w", function () mymainmenu:show() end,
               {description = "show main menu", group = "awesome"}),
 
@@ -308,12 +309,20 @@ globalkeys = gears.table.join(
         {description = "go back", group = "client"}),
 
 
-    -- Terminal (return,z)
-    awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
+    -- Terminal
+    awful.key({ modkey,           }, "Return",
+        function ()
+            -- TODO get open-term working without i3/current workspace
+            -- awful.spawn("ralphie open-term")
+            awful.spawn(terminal)
+        end,
               {description = "open a terminal", group = "launcher"}),
 
     -- Emacs
-    awful.key({ modkey, "Shift"     }, "Return", function () awful.spawn("emacsclient --alternate-editor='' --no-wait --create-frame --display $DISPLAY")          end,
+    awful.key({ modkey, "Shift"     }, "Return",
+        function ()
+            awful.spawn("ralphie open-emacs")
+        end,
               {description = "launch Emacs", group = "launcher"}),
 
     -- Browser
@@ -338,20 +347,21 @@ globalkeys = gears.table.join(
     --           {description = "quit awesome", group = "awesome"}),
 
     -- Move split left/down
-    awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)                 end,
+    awful.key({ modkey, "Shift" }, "l",     function () awful.tag.incmwfact( 0.05)                 end,
               {description = "increase master width factor", group = "layout"}),
     -- Move split right/up
-    awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)                 end,
+    awful.key({ modkey, "Shift" }, "h",     function () awful.tag.incmwfact(-0.05)                 end,
               {description = "decrease master width factor", group = "layout"}),
 
-    awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1, nil, true)        end,
-              {description = "increase the number of master clients", group = "layout"}),
-    awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1, nil, true)        end,
-              {description = "decrease the number of master clients", group = "layout"}),
-    awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1, nil, true)           end,
-              {description = "increase the number of columns", group = "layout"}),
-    awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1, nil, true)           end,
-              {description = "decrease the number of columns", group = "layout"}),
+    -- awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1, nil, true)        end,
+    --           {description = "increase the number of master clients", group = "layout"}),
+    -- awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1, nil, true)        end,
+    --           {description = "decrease the number of master clients", group = "layout"}),
+
+    -- awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1, nil, true)           end,
+    --           {description = "increase the number of columns", group = "layout"}),
+    -- awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1, nil, true)           end,
+    --           {description = "decrease the number of columns", group = "layout"}),
 
 
     -- Layouts (Cycle)
