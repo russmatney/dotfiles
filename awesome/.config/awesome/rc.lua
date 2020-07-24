@@ -1,3 +1,13 @@
+
+-- this finds generated fennel.lua at /usr/lib/lua/version/fennel.lua
+local fennel = require("fennel")
+-- tells the path to support requiring `.fnl` files
+fennel.path = fennel.path .. ";.config/awesome/?.fnl"
+table.insert(package.loaders or package.searchers, fennel.searcher)
+require("fennelview")
+
+local cfg = require("cfg")
+
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
@@ -639,7 +649,7 @@ client.connect_signal("request::titlebars", function(c)
         { -- Right
             awful.titlebar.widget.floatingbutton (c),
             awful.titlebar.widget.stickybutton   (c),
-           -- awful.titlebar.widget.ontopbutton    (c),
+            awful.titlebar.widget.ontopbutton    (c),
             awful.titlebar.widget.maximizedbutton(c),
             awful.titlebar.widget.closebutton    (c),
             layout = wibox.layout.fixed.horizontal()
@@ -707,4 +717,3 @@ end
 --end)
 
 awful.spawn.with_shell("~/.config/awesome/autorun.sh")
-
