@@ -2,7 +2,7 @@
 
 ## run (only once) processes which spawn with the same name
 function run {
-   if (command -v $1 && ! pgrep $1); then
+   if (command -v "$1" && ! pgrep "$1"); then
      $@&
    fi
 }
@@ -28,7 +28,6 @@ fi
 run xfsettingsd
 run nm-applet
 run light-locker
-run compton --shadow-exclude '!focused'
 run xcape -e 'Super_L=Super_L|Control_L|Escape'
 run thunar --daemon
 run pa-applet
@@ -37,5 +36,7 @@ run pamac-tray
 run blueman-applet
 run msm_notifier
 run dropbox
+run variety
+run picom
 
 xset r rate 170 50

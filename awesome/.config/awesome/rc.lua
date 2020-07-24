@@ -48,7 +48,7 @@ beautiful.font              = "Noto Sans Regular 10"
 beautiful.notification_font = "Noto Sans Bold 14"
 
 -- This is used later as the default terminal and editor to run.
-browser = "exo-open --launch WebBrowser" or "firefox"
+browser = "exo-open --launch WebBrowser" or "google-chrome"
 filemanager = "exo-open --launch FileManager" or "thunar"
 gui_editor = "mousepad"
 terminal = os.getenv("TERMINAL") or "lxterminal"
@@ -262,8 +262,7 @@ root.buttons(gears.table.join(
 globalkeys = gears.table.join(
     awful.key({ modkey,           }, "/",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
-    -- awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
-    --           {description="show help", group="awesome"}),
+
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
               {description = "view previous", group = "tag"}),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext,
@@ -295,8 +294,10 @@ globalkeys = gears.table.join(
               {description = "focus the next screen", group = "screen"}),
     awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end,
               {description = "focus the previous screen", group = "screen"}),
+
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
+
     awful.key({ modkey,           }, "Tab",
         function ()
             awful.client.focus.history.previous()
@@ -307,11 +308,8 @@ globalkeys = gears.table.join(
         {description = "go back", group = "client"}),
 
 
-
     -- Terminal (return,z)
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
-              {description = "open a terminal", group = "launcher"}),
-    awful.key({ modkey,           }, "z", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
 
     -- Emacs
@@ -319,7 +317,7 @@ globalkeys = gears.table.join(
               {description = "launch Emacs", group = "launcher"}),
 
     -- Browser
-    awful.key({ modkey     }, "b", function () awful.spawn(browser)          end,
+    awful.key({ modkey, "Shift"     }, "b", function () awful.spawn(browser)          end,
               {description = "launch Browser", group = "launcher"}),
 
     -- Rofi
@@ -336,13 +334,12 @@ globalkeys = gears.table.join(
               {description = "reload awesome", group = "awesome"}),
 
     -- Quit Awesome
-    awful.key({ modkey, "Shift"   }, "q", awesome.quit,
-              {description = "quit awesome", group = "awesome"}),
+    -- awful.key({ modkey, "Shift"   }, "q", awesome.quit,
+    --           {description = "quit awesome", group = "awesome"}),
 
     -- Move split left/down
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)                 end,
               {description = "increase master width factor", group = "layout"}),
-
     -- Move split right/up
     awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)                 end,
               {description = "decrease master width factor", group = "layout"}),
@@ -362,15 +359,15 @@ globalkeys = gears.table.join(
               {description = "select previous", group = "layout"}),
 
     -- Screenshot
-    awful.key({ modkey,  }, "s", function () awful.spawn("/usr/bin/i3-scrot -d")   end,
+    awful.key({ modkey, "Shift"  }, "s", function () awful.spawn("/usr/bin/i3-scrot")   end,
               {description = "capture a screenshot", group = "screenshot"}),
 
     -- Screenshot-window
-    awful.key({"Control"          }, "Print", function () awful.spawn("/usr/bin/i3-scrot -w")   end,
-              {description = "capture a screenshot of active window", group = "screenshot"}),
+    -- awful.key({"Control"          }, "Print", function () awful.spawn("/usr/bin/i3-scrot -w")   end,
+    --           {description = "capture a screenshot of active window", group = "screenshot"}),
 
     -- Screenshot selected area
-    awful.key({"Shift"            }, "Print", function () awful.spawn("/usr/bin/i3-scrot -s")   end,
+    awful.key({modkey, "Shift"            }, "a", function () awful.spawn("~/.local/bin/screenshot-region")   end,
               {description = "capture a screenshot of selection", group = "screenshot"}),
 
     -- Restore minimized
@@ -386,31 +383,32 @@ globalkeys = gears.table.join(
               {description = "restore minimized", group = "client"}),
 
     -- Prompt
-    awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
-              {description = "run prompt", group = "launcher"}),
+    -- awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
+    --           {description = "run prompt", group = "launcher"}),
 
-    awful.key({ modkey }, "ö",
-              function ()
-                  awful.prompt.run {
-                    prompt       = "Run Lua code: ",
-                    textbox      = awful.screen.focused().mypromptbox.widget,
-                    exe_callback = awful.util.eval,
-                    history_path = awful.util.get_cache_dir() .. "/history_eval"
-                  }
-              end,
-              {description = "lua execute prompt", group = "awesome"}),
+    -- awful.key({ modkey }, "ö",
+    --           function ()
+    --               awful.prompt.run {
+    --                 prompt       = "Run Lua code: ",
+    --                 textbox      = awful.screen.focused().mypromptbox.widget,
+    --                 exe_callback = awful.util.eval,
+    --                 history_path = awful.util.get_cache_dir() .. "/history_eval"
+    --               }
+    --           end,
+    --           {description = "lua execute prompt", group = "awesome"}),
+
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"})
 )
 
 clientkeys = gears.table.join(
-    awful.key({ modkey,           }, "f",
-        function (c)
-            c.fullscreen = not c.fullscreen
-            c:raise()
-        end,
-        {description = "toggle fullscreen", group = "client"}),
+    -- awful.key({ modkey,           }, "f",
+    --     function (c)
+    --         c.fullscreen = not c.fullscreen
+    --         c:raise()
+    --     end,
+    --     {description = "toggle fullscreen", group = "client"}),
 
 
     -- Close client
@@ -419,7 +417,7 @@ clientkeys = gears.table.join(
 
 
     -- Toggle Floating
-    awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
+    awful.key({ modkey,  }, "f",  awful.client.floating.toggle                     ,
               {description = "toggle floating", group = "client"}),
 
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end,
@@ -572,7 +570,7 @@ awful.rules.rules = {
     { rule_any = {type = { "normal", "dialog" } },
       properties = { titlebars_enabled = true }
     },
-	
+
     -- Set Firefox to always map on the tag named "2" on screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { screen = 1, tag = "2" } },
