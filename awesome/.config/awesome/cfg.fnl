@@ -1,6 +1,7 @@
 (local fun (require "fun"))
 (local gears (require "gears"))
 (local awful (require "awful"))
+(local ralphie (require "ralphie"))
 (require "awful.autofocus")
 (local naughty (require "naughty"))
 (require-macros "macros")
@@ -51,7 +52,8 @@
         ;; (key [:mod :shift] "?" hotkeys_popup.widget.show_help)
 
         ;; ralphie rofi
-        (key [:mod]        "x" (fn [] (awful.spawn "ralphie rofi")))
+        (key [:mod] "x" (fn []
+                          (ralphie.cmd "rofi")))
 
         ;; walk tags
         (key [:mod] "Left" awful.tag.viewprev)
@@ -93,11 +95,8 @@
         (key [:mod :shift] "a" (fn [] (awful.spawn "/home/russ/.local/bin/screenshot-region")))
 
         ;; minimized
-        (key [:mod :shift] "n" (fn []
-                                 (let [c (awful.client.restore)]
-                                   (when c
-                                     (tset client :focus c)
-                                     (c:raise)))))
+        (key [:mod :shift] "n" (fn [] (let [c (awful.client.restore)]
+                                        (when c (tset client :focus c) (c:raise)))))
         ))
 
 (var tag-keys [])
