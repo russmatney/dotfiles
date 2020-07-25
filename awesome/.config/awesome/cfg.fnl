@@ -112,8 +112,12 @@
         (key [:mod] (.. "#" (+ 9 it))
              (fn []
                (let [screen (awful.screen.focused)
-                     scr-tag (. screen.tags it)]
-                 (when scr-tag (scr-tag:view_only)))))
+                     keyed-tag (. screen.tags it)
+                     current-tag screen.selected_tag]
+                 (when keyed-tag
+                   (if (= keyed-tag.name current-tag.name)
+                       (awful.tag.history.restore screen 1)
+                       (keyed-tag:view_only))))))
 
         ;; add tag to current perspective
         (key [:mod :ctrl] (.. "#" (+ 9 it))
