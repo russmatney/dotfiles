@@ -59,32 +59,26 @@
 (fn create-or-toggle-scratchpad
   [tag-and-client-name]
   (fn []
-    (print "called create or toggle scratchpad")
     (let [s (awful.screen.focused)
           journal-tag (awful.tag.find_by_name s tag-and-client-name)
           journal-tag-clients (when journal-tag (journal-tag:clients))
-          any-tag-clients? (when journal-tag (> (length journal-tag-clients) 0))]
+          any-tag-clients? (when journal-tag (> (length journal-tag-clients) 0))
+          journal-client (when any-tag-clients? (. journal-tag-clients 1))]
       (if
-       ;; if tag and a client, toggle tag
-       (and journal-tag any-tag-clients?)
+       ;; if tag and a client, toggle tag, focus client
+       (and journal-tag journal-client)
        (do
-         (print "found journal tag and clients in that tag - toggling tag")
-         (awful.tag.viewtoggle journal-tag))
+         (awful.tag.viewtoggle journal-tag)
+         (when (and journal-client (not journal-client.active))
+           (tset client :focus journal-client)))
 
        ;; if tag but no client, create client
-       (and journal-tag (not any-tag-clients?))
-       (do
-         (print "found journal tag and NO clients - creating client")
-         (print journal-tag-clients)
-         (print (length journal-tag-clients))
-         (each [k v (ipairs journal-tag-clients)]
-           (print k v))
-         (create-emacs-client tag-and-client-name))
+       (and journal-tag (not journal-client))
+       (create-emacs-client tag-and-client-name)
 
        ;; no tag? create it
        (not journal-tag)
        (do
-         (print "no journal tag, creating tag and client")
          (awful.tag.add tag-and-client-name
                         {:screen s
                          :layout awful.layout.suit.floating})

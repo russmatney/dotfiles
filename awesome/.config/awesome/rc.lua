@@ -392,8 +392,9 @@ awful.rules.rules = {
                      above = true,
                      placement = awful.placement.centered,
                      floating = true,
-                     width = awful.screen.focused().geometry.width / 2,
-                     height = awful.screen.focused().geometry.height / 2
+                     focus = true,
+                     width = awful.screen.focused().geometry.width * 0.7,
+                     height = awful.screen.focused().geometry.height * 0.7
       },
     },
 
