@@ -49,10 +49,15 @@
 ;; Create or toggle
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(local journal-file "~/todo/journal.org")
+
+;; TODO refactor into tags/workspaces/clients datastructure (frame-name, filename, tag name)
 (fn create-emacs-client
-  [frame-name]
+  [frame-name filename]
   (awful.spawn.with_shell
-   (.. "emacsclient --alternate-editor='' --no-wait --create-frame -F '(quote (name . \""
+   (.. "emacsclient --alternate-editor='' --no-wait --create-frame "
+       filename
+       " -F '(quote (name . \""
        frame-name
        "\"))' --display $DISPLAY")))
 
@@ -74,7 +79,7 @@
 
        ;; if tag but no client, create client
        (and journal-tag (not journal-client))
-       (create-emacs-client tag-and-client-name)
+       (create-emacs-client tag-and-client-name journal-file)
 
        ;; no tag? create it
        (not journal-tag)
@@ -83,7 +88,7 @@
                         {:screen s
                          :layout awful.layout.suit.floating})
          ;; TODO should only create here if no journal client exists
-         (create-emacs-client tag-and-client-name))
+         (create-emacs-client tag-and-client-name journal-file))
        ))))
 
 
