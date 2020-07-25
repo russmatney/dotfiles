@@ -44,6 +44,47 @@
   (fn []
     (awful.spawn cmd)))
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Create or toggle
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(fn create-emacs-client
+  [frame-name]
+  (awful.spawn
+   (.. "emacsclient --alternate-editor='' --no-wait --create-frame -F '(quote (name . \""
+       frame-name
+       "\"))' --display $DISPLAY")))
+
+(fn create-or-toggle-scratchpad
+  [tag-and-client-name]
+  (fn []
+    (print "called create or toggle scratchpad")
+    (let [s (awful.screen.focused)
+          journal-tag (awful.tag.find_by_name s tag-and-client-name)
+          journal-tag-clients (journal-tag:clients)
+          any-clients? (> (length journal-tag-clients) 0)]
+      (print journal-tag)
+      (if
+       ;; if tag and a client, toggle tag
+       (and journal-tag any-clients?)
+       (awful.tag.viewtoggle journal-tag)
+
+       ;; if tag but no client, create client
+       (and journal-tag (not any-clients?))
+       (create-emacs-client tag-and-client-name)
+
+       ;; no tag? create it
+       (not journal-tag)
+       (do
+         (awful.tag.add tag-and-client-name
+                        {:screen s
+                         :layout awful.layout.suit.floating})
+         ;; TODO should only create here if no journal client exists
+         (create-emacs-client tag-and-client-name))
+       ))))
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Global keybindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -68,7 +109,7 @@
         (key [:mod] "Escape" awful.tag.history.restore)
 
         ;; urgent tag
-        (key [:mod] "u" awful.client.urgent.jumpto)
+        (key [:mod] "u" (create-or-toggle-scratchpad "journal"))
 
         ;; cycle clients
         (key [:mod] "Tab" (fn []
