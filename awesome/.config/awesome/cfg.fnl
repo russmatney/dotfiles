@@ -94,6 +94,8 @@
         (key [:mod :shift] "s" (fn [] (awful.spawn "/usr/bin/i3-scrot")))
         (key [:mod :shift] "a" (fn [] (awful.spawn "/home/russ/.local/bin/screenshot-region")))
 
+        (key [] "XF86AudioPlay" (fn [] (awful.spawn "spotifycli --playpause")))
+
         ;; minimized
         (key [:mod :shift] "n" (fn [] (let [c (awful.client.restore)]
                                         (when c (tset client :focus c) (c:raise)))))
