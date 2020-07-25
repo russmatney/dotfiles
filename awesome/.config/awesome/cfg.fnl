@@ -39,6 +39,11 @@
   [mods btn-code fun]
   (awful.button (map-mods mods) btn-code fun))
 
+(fn spawn-fn
+  [cmd]
+  (fn []
+    (awful.spawn cmd)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Global keybindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -72,29 +77,29 @@
                               (client.focus:raise))))
 
         ;; terminal
-        (key [:mod] "Return" (fn [] (awful.spawn terminal)))
+        (key [:mod] "Return" (spawn-fn terminal))
 
         ;; emacs
-        (key [:mod :shift] "Return" (fn [] (awful.spawn "ralphie open-emacs")))
+        (key [:mod :shift] "Return" (spawn-fn "ralphie open-emacs"))
 
         ;; browser
-        (key [:mod :shift] "b" (fn [] (awful.spawn "exo-open --launch WebBrowser")))
+        (key [:mod :shift] "b" (spawn-fn "exo-open --launch WebBrowser"))
 
         ;; launcher (rofi)
-        (key [:mod] "space" (fn [] (awful.spawn "/usr/bin/rofi -show drun -modi drun")))
+        (key [:mod] "space" (spawn-fn "/usr/bin/rofi -show drun -modi drun"))
 
         ;; finder (thunar)
-        (key [:mod] "e" (fn [] (awful.spawn "/usr/bin/thunar")))
+        (key [:mod] "e" (spawn-fn "/usr/bin/thunar"))
 
         ;; widen/shink window
         (key [:mod :shift] "l" (fn [] (awful.tag.incmwfact 0.05)))
         (key [:mod :shift] "h" (fn [] (awful.tag.incmwfact -0.05)))
 
         ;; screenshots
-        (key [:mod :shift] "s" (fn [] (awful.spawn "/usr/bin/i3-scrot")))
-        (key [:mod :shift] "a" (fn [] (awful.spawn "/home/russ/.local/bin/screenshot-region")))
+        (key [:mod :shift] "s" (spawn-fn "/usr/bin/i3-scrot"))
+        (key [:mod :shift] "a" (spawn-fn "/home/russ/.local/bin/screenshot-region"))
 
-        (key [] "XF86AudioPlay" (fn [] (awful.spawn "spotifycli --playpause")))
+        (key [] "XF86AudioPlay" (spawn-fn "spotifycli --playpause"))
 
         ;; minimized
         (key [:mod :shift] "n" (fn [] (let [c (awful.client.restore)]
