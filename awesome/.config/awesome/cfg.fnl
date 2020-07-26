@@ -105,6 +105,8 @@
        ;; if tag and a client, toggle tag, focus client
        (and x-tag x-client)
        (do
+         ;;  TODO if showing, set client ontop
+         ;;  TODO if hiding, unset client ontop
          (awful.tag.viewtoggle x-tag)
          (when (not x-client.active)
            (tset client :focus x-client)))
@@ -354,15 +356,12 @@
         :properties {:titlebars_enabled true}}
 
        {:rule {:role "browser"}
-        :properties {:screen 1
-                     :above true
-                     :placement awful.placement.centered
-                     :floating true
-                     :focus true}
+        :properties {:screen 1}
         :callback
         (fn [c]
           (if (not assigned-browser)
               (let [tag (awful.tag.find_by_name (awful.screen.focused) "web")]
+                (tset c :above true)
                 (tset c :floating true)
                 (when tag
                   (awful.client.movetotag tag c))
