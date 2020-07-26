@@ -1,9 +1,13 @@
 
--- this finds generated fennel.lua at /usr/lib/lua/version/fennel.lua
+-- this finds generated fennel.lua at /usr/lib/lua/<version>/fennel.lua
 local fennel = require("fennel")
 -- tells the path to support requiring `.fnl` files
 fennel.path = fennel.path .. ";.config/awesome/?.fnl"
+-- requires luarocks installed and available to root
+-- (may need reboot after installing)
 table.insert(package.loaders or package.searchers, fennel.searcher)
+
+-- provides helpers for working with lua tables
 require("fennelview")
 
 local cfg = require("cfg")
@@ -58,7 +62,7 @@ beautiful.font              = "Noto Sans Regular 10"
 beautiful.notification_font = "Noto Sans Bold 14"
 
 -- This is used later as the default terminal and editor to run.
-browser = "exo-open --launch WebBrowser" or "google-chrome"
+browser = "exo-open --launch WebBrowser"
 filemanager = "exo-open --launch FileManager" or "thunar"
 gui_editor = "mousepad"
 terminal = os.getenv("TERMINAL") or "lxterminal"
