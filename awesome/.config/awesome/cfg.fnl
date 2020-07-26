@@ -65,9 +65,7 @@
 
 (local web-workspace
        {:tag-name "web"
-        :browser-url "chrome://newtab"
-        ;; "http://localhost:4222/devcards.html"
-        })
+        :browser-url "chrome://newtab"})
 
 ;; TODO refactor into tags/workspaces/clients datastructure (frame-name, filename, tag name)
 (lambda create-client
@@ -77,10 +75,7 @@
     (if
      browser-url
      (awful.spawn
-      (.. "google-chrome-stable --new-window " browser-url)
-      ;; {:tag (. workspace :tag-name)
-      ;;  :floating true}
-      )
+      (.. "google-chrome-stable --new-window " browser-url))
 
      emacs-file
      (awful.spawn.with_shell

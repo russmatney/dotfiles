@@ -22,7 +22,6 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
-local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 -- Freedesktop menu
 local freedesktop = require("freedesktop")
@@ -61,12 +60,6 @@ beautiful.bg_focus          = "#222B2E"
 beautiful.font              = "Noto Sans Regular 10"
 beautiful.notification_font = "Noto Sans Bold 14"
 
--- This is used later as the default terminal and editor to run.
-browser = "exo-open --launch WebBrowser"
-filemanager = "exo-open --launch FileManager" or "thunar"
-gui_editor = "mousepad"
-terminal = os.getenv("TERMINAL") or "lxterminal"
-
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
@@ -94,67 +87,13 @@ awful.layout.layouts = {
 }
 -- }}}
 
--- {{{ Helper functions
-local function client_menu_toggle_fn()
-    local instance = nil
-    return function ()
-        if instance and instance.wibox.visible then
-            instance:hide()
-            instance = nil
-        else
-            instance = awful.menu.clients({ theme = { width = 250 } })
-        end
-    end
-end
--- }}}
-
-
--- {{{ Menu
--- Create a launcher widget and a main menu
-myawesomemenu = {
-    { "hotkeys", function() return false, hotkeys_popup.show_help end, menubar.utils.lookup_icon("preferences-desktop-keyboard-shortcuts") },
-    { "manual", terminal .. " -e man awesome", menubar.utils.lookup_icon("system-help") },
-    { "edit config", gui_editor .. " " .. awesome.conffile,  menubar.utils.lookup_icon("accessories-text-editor") },
-    { "restart", awesome.restart, menubar.utils.lookup_icon("system-restart") }
-}
-myexitmenu = {
-    { "log out", function() awesome.quit() end, menubar.utils.lookup_icon("system-log-out") },
-    { "suspend", "systemctl suspend", menubar.utils.lookup_icon("system-suspend") },
-    { "hibernate", "systemctl hibernate", menubar.utils.lookup_icon("system-suspend-hibernate") },
-    { "reboot", "systemctl reboot", menubar.utils.lookup_icon("system-reboot") },
-    { "shutdown", "poweroff", menubar.utils.lookup_icon("system-shutdown") }
-}
-mymainmenu = freedesktop.menu.build({
-    icon_size = 32,
-    before = {
-        { "Terminal", terminal, menubar.utils.lookup_icon("utilities-terminal") },
-        { "Browser", browser, menubar.utils.lookup_icon("internet-web-browser") },
-        { "Files", filemanager, menubar.utils.lookup_icon("system-file-manager") },
-        -- other triads can be put here
-    },
-    after = {
-        { "Awesome", myawesomemenu, "/usr/share/awesome/icons/awesome32.png" },
-        { "Exit", myexitmenu, menubar.utils.lookup_icon("system-shutdown") },
-        -- other triads can be put here
-    }
-})
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-                                     menu = mymainmenu })
--- Menubar configuration
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
--- }}}
-
 -- {{{ Wibar
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock("%H:%M ")
--- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
 
-darkblue    = beautiful.bg_focus
 blue        = "#9EBABA"
 red         = "#EB8F8F"
 separator = wibox.widget.textbox(' <span color="' .. blue .. '">| </span>')
-spacer = wibox.widget.textbox(' <span color="' .. blue .. '"> </span>')
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -191,7 +130,7 @@ local tasklist_buttons = gears.table.join(
                                                   c:raise()
                                               end
                                           end),
-                     awful.button({ }, 3, client_menu_toggle_fn()),
+                     -- awful.button({ }, 3, client_menu_toggle_fn()),
                      awful.button({ }, 4, function ()
                                               awful.client.focus.byidx(1)
                                           end),
@@ -238,14 +177,13 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s })
+    s.mywibox = awful.wibar({ position = "bottom", screen = s })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            mylauncher,
             s.mytaglist,
             s.mypromptbox,
             separator,
@@ -254,7 +192,6 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
-            mykeyboardlayout,
             separator,
             mytextclock,
             s.mylayoutbox,
