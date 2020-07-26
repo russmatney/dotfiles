@@ -397,6 +397,17 @@ awful.rules.rules = {
                      height = awful.screen.focused().geometry.height * 0.7
       },
     },
+    { rule = { name = "notes" },
+      properties = { screen = 1,
+                     tag = "notes",
+                     above = true,
+                     placement = awful.placement.centered,
+                     floating = true,
+                     focus = true,
+                     width = awful.screen.focused().geometry.width * 0.7,
+                     height = awful.screen.focused().geometry.height * 0.7
+      },
+    },
 
 
 }

@@ -50,6 +50,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (local journal-file "~/todo/journal.org")
+(local notes-file "~/Dropbox/notes/readme.org")
 
 ;; TODO refactor into tags/workspaces/clients datastructure (frame-name, filename, tag name)
 (fn create-emacs-client
@@ -62,33 +63,33 @@
        "\"))' --display $DISPLAY")))
 
 (fn create-or-toggle-scratchpad
-  [tag-and-client-name]
+  [tag-and-client-name x-file]
   (fn []
     (let [s (awful.screen.focused)
-          journal-tag (awful.tag.find_by_name s tag-and-client-name)
-          journal-tag-clients (when journal-tag (journal-tag:clients))
-          any-tag-clients? (when journal-tag (> (length journal-tag-clients) 0))
-          journal-client (when any-tag-clients? (. journal-tag-clients 1))]
+          x-tag (awful.tag.find_by_name s tag-and-client-name)
+          x-tag-clients (when x-tag (x-tag:clients))
+          any-tag-clients? (when x-tag (> (length x-tag-clients) 0))
+          x-client (when any-tag-clients? (. x-tag-clients 1))]
       (if
        ;; if tag and a client, toggle tag, focus client
-       (and journal-tag journal-client)
+       (and x-tag x-client)
        (do
-         (awful.tag.viewtoggle journal-tag)
-         (when (and journal-client (not journal-client.active))
-           (tset client :focus journal-client)))
+         (awful.tag.viewtoggle x-tag)
+         (when (and x-client (not x-client.active))
+           (tset client :focus x-client)))
 
        ;; if tag but no client, create client
-       (and journal-tag (not journal-client))
-       (create-emacs-client tag-and-client-name journal-file)
+       (and x-tag (not x-client))
+       (create-emacs-client tag-and-client-name x-file)
 
        ;; no tag? create it
-       (not journal-tag)
+       (not x-tag)
        (do
          (awful.tag.add tag-and-client-name
                         {:screen s
                          :layout awful.layout.suit.floating})
-         ;; TODO should only create here if no journal client exists
-         (create-emacs-client tag-and-client-name journal-file))
+         ;; TODO should only create here if no x client exists
+         (create-emacs-client tag-and-client-name x-file))
        ))))
 
 
@@ -116,7 +117,9 @@
         (key [:mod] "Escape" awful.tag.history.restore)
 
         ;; urgent tag
-        (key [:mod] "u" (create-or-toggle-scratchpad "journal"))
+        (key [:mod] "u" (create-or-toggle-scratchpad "journal" journal-file))
+        ;; urgent tag
+        (key [:mod] "r" (create-or-toggle-scratchpad "notes" notes-file))
 
         ;; cycle clients
         (key [:mod] "Tab" (fn []
