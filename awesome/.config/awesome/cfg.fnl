@@ -229,6 +229,19 @@
         ;; toggle keep-on-top
         (key [:mod] "t" (fn [c] (tset c :ontop (not c.ontop))))
 
+        ;; center on screen
+        (key [:mod] "c" (fn [c]
+                          ((+ awful.placement.scale
+                              awful.placement.centered)
+                           c
+                           {:to_percent 0.6})))
+        ;; center on screen
+        (key [:mod :shift] "c" (fn [c]
+                                 ((+ awful.placement.scale
+                                     awful.placement.centered)
+                                  c
+                                  {:to_percent 0.9})))
+
         ;; swap with master
         (key [:mod :ctrl] "Return" (fn [c] (c:swap (awful.client.getmaster))))
 
