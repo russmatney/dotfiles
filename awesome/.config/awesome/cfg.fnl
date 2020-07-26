@@ -7,6 +7,7 @@
 (require-macros "macros")
 
 (local hotkeys_popup (require "awful.hotkeys_popup"))
+(local beautiful (require "beautiful"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Tools
@@ -145,17 +146,28 @@
         ;; widen/shink window
         (key [:mod :shift] "l" (fn [] (awful.tag.incmwfact 0.05)))
         (key [:mod :shift] "h" (fn [] (awful.tag.incmwfact -0.05)))
+        (key [:mod :shift] "j" (fn [] (awful.client.incwfact 0.05)))
+        (key [:mod :shift] "k" (fn [] (awful.client.incwfact -0.05)))
+
+        ;; restore minimized
+        (key [:mod :shift] "n" (fn [] (let [c (awful.client.restore)]
+                                        (when c
+                                          (tset client :focus c)
+                                          (c:raise)))))
 
         ;; screenshots
         (key [:mod :shift] "s" (spawn-fn "/usr/bin/i3-scrot"))
         (key [:mod :shift] "a" (spawn-fn "/home/russ/.local/bin/screenshot-region"))
 
+        ;; media controls
         (key [] "XF86AudioPlay" (spawn-fn "spotifycli --playpause"))
-
-        ;; minimized
-        (key [:mod :shift] "n" (fn [] (let [c (awful.client.restore)]
-                                        (when c (tset client :focus c) (c:raise)))))
+        (key [] "XF86AudioNext" (spawn-fn "playerctl next"))
+        (key [] "XF86AudioPrev" (spawn-fn "playerctl previous"))
         ))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; numbered Tag global keybindings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (var tag-keys [])
 
@@ -200,3 +212,106 @@
 
 
 (root.keys (gears.table.join global-keys tag-keys))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Client Keybindings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(local clientkeys
+       (gears.table.join
+        ;; kill current client
+        (key [:mod] "q" (fn [c] (c:kill)))
+
+        ;; toggle floating
+        (key [:mod] "f" awful.client.floating.toggle)
+
+        ;; toggle keep-on-top
+        (key [:mod] "t" (fn [c] (tset c :ontop (not c.ontop))))
+
+        ;; swap with master
+        (key [:mod :ctrl] "Return" (fn [c] (c:swap (awful.client.getmaster))))
+
+        ;; minimize
+        (key [:mod] "n" (fn [c] (tset c :minimized true)))
+
+        ;; toggle full-screen
+        (key [:mod] "m" (fn [c]
+                          (tset c :maximized (not c.maximized))
+                          (c:raise)))
+        ))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Rules
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(local modkey "Mod4")
+
+(local clientbuttons
+       (gears.table.join
+        (btn [] 1 (fn [c]
+                    (tset client :focus c)
+                    (c:raise)))
+        (btn [:mod] 1 awful.mouse.client.move)
+        (btn [:mod] 3 awful.mouse.client.resize)))
+
+;; Rules to apply to new clients (through the "manage" signal).
+(tset awful.rules
+      :rules
+      [{:rule {}
+        :properties {:border_width beautiful.border_width
+                     :border_color beautiful.border_normal
+                     :focus awful.client.focus.filter
+                     :raise true
+                     :keys clientkeys
+                     :buttons clientbuttons
+                     :size_hints_honor false ;; Remove gaps between terminals
+                     :screen awful.screen.preferred
+                     :callback awful.client.setslave
+                     :placement (+ awful.placement.no_overlap
+                                   awful.placement.no_offscreen)}}
+
+       ;; Floating clients.
+       {:rule_any
+        {:instance ["DTA" ;; Firefox addon DownThemAll.
+                    "copyq"] ;; Includes session name in class.
+         :class ["Arandr"
+                 "Gpick"
+                 "Kruler"
+                 "MessageWin" ;; kalarm.
+                 "Sxiv"
+                 "Wpa_gui"
+                 "pinentry"
+                 "veromix"
+                 "xtightvncviewer"]
+         :name ["Event Tester"] ;; xev.
+         :role ["AlarmWindow" ;; Thunderbird's calendar.
+                "pop-up"]} ;; e.g. Google Chrome's (detached) Developer Tools.
+        :properties
+        {:floating true}}
+
+       ;; Add titlebars to normal clients and dialogs
+       {:rule_any {:type ["normal"
+                          "dialog"]}
+        :properties {:titlebars_enabled true}}
+
+       {:rule {:name "journal"}
+        :properties {:screen 1
+                     :tag "journal"
+                     :above true
+                     :placement awful.placement.centered
+                     :floating true
+                     :focus true
+                     :width (* (. (. (awful.screen.focused) :geometry) :width) 0.7)
+                     :height (* (. (. (awful.screen.focused) :geometry) :height) 0.7)}}
+       {:rule {:name "notes"}
+        :properties {:screen 1
+                     :tag "notes"
+                     :above true
+                     :placement awful.placement.centered
+                     :floating true
+                     :focus true
+                     :width (* (. (. (awful.screen.focused) :geometry) :width) 0.7)
+                     :height (* (. (. (awful.screen.focused) :geometry) :height) 0.7)
+                     }}])
