@@ -4,7 +4,6 @@
 (local ralphie (require "ralphie"))
 (require "awful.autofocus")
 (local naughty (require "naughty"))
-(require-macros "macros")
 
 (local hotkeys_popup (require "awful.hotkeys_popup"))
 (local beautiful (require "beautiful"))
@@ -50,47 +49,77 @@
 ;; Create or toggle
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(local journal-file "~/todo/journal.org")
-(local notes-file "~/Dropbox/notes/readme.org")
+(local journal-workspace
+       {:tag-name "journal"
+        :emacs-file "~/todo/journal.org"})
+
+(local notes-workspace
+       {:tag-name "notes"
+        :emacs-file "~/Dropbox/notes/readme.org"})
+
+(local yodo-workspace
+       {:tag-name "yodo"
+        :browser-url "http://localhost:4200"
+        ;; "http://localhost:4222/devcards.html"
+        })
+
+(local web-workspace
+       {:tag-name "web"
+        :browser-url "chrome://newtab"
+        ;; "http://localhost:4222/devcards.html"
+        })
 
 ;; TODO refactor into tags/workspaces/clients datastructure (frame-name, filename, tag name)
-(fn create-emacs-client
-  [frame-name filename]
-  (awful.spawn.with_shell
-   (.. "emacsclient --alternate-editor='' --no-wait --create-frame "
-       filename
-       " -F '(quote (name . \""
-       frame-name
-       "\"))' --display $DISPLAY")))
+(lambda create-client
+  [workspace]
+  (let [emacs-file (. workspace :emacs-file)
+        browser-url (. workspace :browser-url)]
+    (if
+     browser-url
+     (awful.spawn
+      (.. "google-chrome-stable --new-window " browser-url)
+      ;; {:tag (. workspace :tag-name)
+      ;;  :floating true}
+      )
+
+     emacs-file
+     (awful.spawn.with_shell
+      (.. "emacsclient --alternate-editor='' --no-wait --create-frame "
+          emacs-file
+          " -F '(quote (name . \""
+          (. workspace :tag-name)
+          "\"))' --display $DISPLAY")))))
 
 (fn create-or-toggle-scratchpad
-  [tag-and-client-name x-file]
+  [workspace]
   (fn []
-    (let [s (awful.screen.focused)
-          x-tag (awful.tag.find_by_name s tag-and-client-name)
-          x-tag-clients (when x-tag (x-tag:clients))
-          any-tag-clients? (when x-tag (> (length x-tag-clients) 0))
-          x-client (when any-tag-clients? (. x-tag-clients 1))]
+    (let [tag-name (. workspace :tag-name)
+
+          s (awful.screen.focused)
+          x-tag (awful.tag.find_by_name s tag-name)
+          x-client (when x-tag
+                     (when (> (length (x-tag:clients)) 0)
+                       (-> (x-tag:clients)
+                           (. 1))))]
       (if
        ;; if tag and a client, toggle tag, focus client
        (and x-tag x-client)
        (do
          (awful.tag.viewtoggle x-tag)
-         (when (and x-client (not x-client.active))
+         (when (not x-client.active)
            (tset client :focus x-client)))
 
        ;; if tag but no client, create client
        (and x-tag (not x-client))
-       (create-emacs-client tag-and-client-name x-file)
+       (create-client workspace)
 
        ;; no tag? create it
        (not x-tag)
        (do
-         (awful.tag.add tag-and-client-name
-                        {:screen s
-                         :layout awful.layout.suit.floating})
-         ;; TODO should only create here if no x client exists
-         (create-emacs-client tag-and-client-name x-file))
+         (awful.tag.add tag-name {:screen s})
+         ;; TODO should only create here if no x-client exists
+         ;; across whole system, not just in this tag
+         (create-client workspace))
        ))))
 
 
@@ -117,10 +146,14 @@
         ;; previous tag
         (key [:mod] "Escape" awful.tag.history.restore)
 
-        ;; urgent tag
-        (key [:mod] "u" (create-or-toggle-scratchpad "journal" journal-file))
-        ;; urgent tag
-        (key [:mod] "r" (create-or-toggle-scratchpad "notes" notes-file))
+        ;; journal scratchpad
+        (key [:mod] "u" (create-or-toggle-scratchpad journal-workspace))
+        ;; roam scratchpad
+        (key [:mod] "r" (create-or-toggle-scratchpad notes-workspace))
+        ;; yodo scratchpad
+        (key [:mod] "y" (create-or-toggle-scratchpad yodo-workspace))
+        ;; web scratchpad
+        (key [:mod] "t" (create-or-toggle-scratchpad web-workspace))
 
         ;; cycle clients
         (key [:mod] "Tab" (fn []
@@ -135,7 +168,7 @@
         (key [:mod :shift] "Return" (spawn-fn "ralphie open-emacs"))
 
         ;; browser
-        (key [:mod :shift] "b" (spawn-fn "exo-open --launch WebBrowser"))
+        (key [:mod :shift] "b" (spawn-fn "google-chrome-stable"))
 
         ;; launcher (rofi)
         (key [:mod] "space" (spawn-fn "/usr/bin/rofi -show drun -modi drun"))
@@ -227,7 +260,7 @@
         (key [:mod] "f" awful.client.floating.toggle)
 
         ;; toggle keep-on-top
-        (key [:mod] "t" (fn [c] (tset c :ontop (not c.ontop))))
+        ;; (key [:mod] "t" (fn [c] (tset c :ontop (not c.ontop))))
 
         ;; center on screen
         (key [:mod] "c" (fn [c]
@@ -278,6 +311,8 @@
         (btn [:mod] 1 awful.mouse.client.move)
         (btn [:mod] 3 awful.mouse.client.resize)))
 
+(var assigned-browser false)
+
 ;; Rules to apply to new clients (through the "manage" signal).
 (tset awful.rules
       :rules
@@ -318,15 +353,27 @@
                           "dialog"]}
         :properties {:titlebars_enabled true}}
 
+       {:rule {:role "browser"}
+        :properties {:screen 1
+                     :above true
+                     :placement awful.placement.centered
+                     :floating true
+                     :focus true}
+        :callback
+        (fn [c]
+          (if (not assigned-browser)
+              (let [tag (awful.tag.find_by_name (awful.screen.focused) "web")]
+                (tset c :floating true)
+                (when tag
+                  (awful.client.movetotag tag c))
+                (set assigned-browser true))))}
        {:rule {:name "journal"}
         :properties {:screen 1
                      :tag "journal"
                      :above true
                      :placement awful.placement.centered
                      :floating true
-                     :focus true
-                     :width (* (. (. (awful.screen.focused) :geometry) :width) 0.7)
-                     :height (* (. (. (awful.screen.focused) :geometry) :height) 0.7)}}
+                     :focus true}}
        {:rule {:name "notes"}
         :properties {:screen 1
                      :tag "notes"
@@ -334,6 +381,4 @@
                      :placement awful.placement.centered
                      :floating true
                      :focus true
-                     :width (* (. (. (awful.screen.focused) :geometry) :width) 0.7)
-                     :height (* (. (. (awful.screen.focused) :geometry) :height) 0.7)
                      }}])
