@@ -241,6 +241,15 @@
                           (c:raise)))
         ))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Mouse bindings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(root.buttons (gears.table.join
+               ;; (btn [] 1 mymainmenu:hide)
+               ;; (btn [] 3 mymainmenu:toggle)
+               (btn [] 4 awful.tag.viewnext)
+               (btn [] 5 awful.tag.viewprev)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Rules
