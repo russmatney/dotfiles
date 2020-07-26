@@ -1,0 +1,4 @@
+; persist repl history
+(match package.loaded.readline
+  rl   (rl.set_options {:histfile  "~/.fennel_history" ; default:"" (don't save)
+                        :keeplines 1000}))             ; default:1000
