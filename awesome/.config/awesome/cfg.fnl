@@ -1,8 +1,9 @@
 (local fun (require "fun"))
 (local gears (require "gears"))
 (local awful (require "awful"))
-(local ralphie (require "ralphie"))
 (require "awful.autofocus")
+
+(local ralphie (require "ralphie"))
 (local naughty (require "naughty"))
 (local wibox (require "wibox"))
 
@@ -22,45 +23,44 @@
        ;; (.. awful.util.get_cache_dir  "~/.tmp-state")
        )
 
-(fn save_state []
-  (local screen mouse.screen)
-  (local tags (awful.tag.gettags screen))
+;; (fn save_state []
+;;   (local tags (awful.tag.gettags mouse.screen))
 
-  (local params {})
+;;   (local params {})
 
-  (each [i t ipairs (tags)]
-    (table.insert params [i
-                          (table.indexofmytags.layout t.layout)
-                          (awful.tag.getncolt)
-                          (awful.tag.getmwfactt)
-                          (awful.tag.getnmastert)]))
+;;   (each [i t (ipairs tags)]
+;;     (table.insert params [i
+;;                           (table.indexofmytags.layout t.layout)
+;;                           (awful.tag.getncolt)
+;;                           (awful.tag.getmwfactt)
+;;                           (awful.tag.getnmastert)]))
 
-  (table.save params my_state_file))
+;;   (table.save params my_state_file))
 
-(fn smart_restart []
-  (save_state)
-  (awesome.restart))
+;; (fn smart_restart []
+;;   (save_state)
+;;   (awesome.restart))
 
-(fn restore_state []
-  (when false
-    ;; when (~= (posix.stat my_state_file) nil)
-    (local params (table.load my_state_file))
-    (os.remove my_state_file)
+;; (fn restore_state []
+;;   (when false
+;;     ;; when (~= (posix.stat my_state_file) nil)
+;;     (local params (table.load my_state_file))
+;;     (os.remove my_state_file)
 
-    (local s (awful.screen.focused))
-    (each [j p (ipairs params)]
-      (local i (. p 1)) ;; index of layout in mytags.layout table
-      (local layout (. p 2))
-      (local ncol (. p 3))
-      (local mwfact (. p 4))
-      (local nmaster (.  p 5))
+;;     (local s (awful.screen.focused))
+;;     (each [j p (ipairs params)]
+;;       (local i (. p 1)) ;; index of layout in mytags.layout table
+;;       (local l (. p 2))
+;;       (local ncol (. p 3))
+;;       (local mwfact (. p 4))
+;;       (local nmaster (.  p 5))
 
-      (local t (. s.tags i))
-      ;; (t.layout (. mytags.layout layout))
+;;       (local t (. s.tags i))
+;;       ;; (t.layout (. mytags.layout l))
 
-      (awful.tag.setncol ncol t)
-      (awful.tag.setmwfact mwfact t)
-      (awful.tag.setnmaster nmaster t))))
+;;       (awful.tag.setncol ncol t)
+;;       (awful.tag.setmwfact mwfact t)
+;;       (awful.tag.setnmaster nmaster t))))
 
 ;; (awesome.connect_signal "startup" restore_state)
 
@@ -186,6 +186,7 @@
 ;; WIBAR
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
 ;; Create a textclock widget
 (local mytextclock (wibox.widget.textclock "%H:%M "))
 
@@ -236,73 +237,93 @@
         (btn [] 4 (fn [] (awful.client.focus.byidx 1)))
         (btn [] 5 (fn [] (awful.client.focus.byidx -1)))))
 
-;; local function set_wallpaper(s)
-;; ;; Wallpaper
-;; if beautiful.wallpaper then
-;; local wallpaper = beautiful.wallpaper
-;; ;; If wallpaper is a function, call it with the screen
-;; if type(wallpaper) == "function" then
-;; wallpaper = wallpaper(s)
-;; end
-;; gears.wallpaper.maximized(wallpaper, s, true)
-;; end
-;; end
+(local set_wallpaper
+       (fn [s]
+         ;; Wallpaper
+         (if beautiful.wallpaper
+             (do
+               (local wallpaper beautiful.wallpaper)
+               ;; If wallpaper is a function, call it with the screen
+
+               (gears.wallpaper.maximized
+                (if (= (type wallpaper) "function")
+                    (wallpaper s)
+                    wallpaper)
+                s true)))))
+
 ;; Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
-;; screen.connect_signal("property::geometry", set_wallpaper)
-;; (awful.screen.connect_for_each_screen
-;;  (fn [s]
-;;    ;; Each screen has its own tag table.
-;;    (awful.tag
-;;     ["slack" "spotify" "web" "notes" "awesome" "yodo" "journal"]
-;;     s awful.layout.layouts[1])
+(screen.connect_signal "property::geometry" set_wallpaper)
 
-;;    ;; Create a promptbox for each screen
-;;    (tset s :mypromptbox
-;;          (awful.widget.prompt))
-;;    ;; Create an imagebox widget which will contains an icon indicating which layout we're using.
-;;    ;; We need one layoutbox per screen.
-;;    (tset s :mylayoutbox
-;;          (awful.widget.layoutbox s))
+(awful.screen.connect_for_each_screen
+ (fn [s]
+   ;; Each screen has its own tag table.
+   (awful.tag
+    ["slack" "spotify" "web" "notes" "awesome" "yodo" "journal"]
+    s
+    awful.layout.suit.tile)
+   ;; [
+   ;;  awful.layout.suit.tile
+   ;;  awful.layout.suit.floating
+   ;;  ;;awful.layout.suit.tile.left
+   ;;  awful.layout.suit.tile.bottom
+   ;;  ;; awful.layout.suit.tile.top
+   ;;  awful.layout.suit.fair
+   ;;  awful.layout.suit.fair.horizontal
+   ;;  ;; awful.layout.suit.spiral
+   ;;  ;; awful.layout.suit.spiral.dwindle
+   ;;  awful.layout.suit.max
+   ;;  ;; awful.layout.suit.max.fullscreen
+   ;;  awful.layout.suit.magnifier
+   ;;  ;; awful.layout.suit.corner.nw
+   ;;  ;; awful.layout.suit.corner.ne
+   ;;  ;; awful.layout.suit.corner.sw
+   ;;  ;; awful.layout.suit.corner.se
+   ;;  ]
 
-;;    (s.mylayoutbox:buttons
-;;     (gears.table.join
-;;      awful.button({ } 1 function () awful.layout.inc( 1) end)
-;;      awful.button({ } 3 function () awful.layout.inc(-1) end)
-;;      awful.button({ } 4 function () awful.layout.inc( 1) end)
-;;      awful.button({ } 5 function () awful.layout.inc(-1) end)))
+   ;; Create a promptbox for each screen
+   (set s.mypromptbox (awful.widget.prompt))
+   ;; Create an imagebox widget which will contains an icon indicating which layout we're using.
+   ;; We need one layoutbox per screen.
+   (set s.mylayoutbox (awful.widget.layoutbox s))
 
-;;    ;; Create a taglist widget
-;;    (tset s :mytaglist
-;;          (awful.widget.taglist
-;;           s awful.widget.taglist.filter.all taglist_buttons))
+   (s.mylayoutbox:buttons
+    (gears.table.join
+     (btn [] 1 (fn [] (awful.layout.inc 1)))
+     (btn [] 3 (fn [] (awful.layout.inc -1)))
+     (btn [] 4 (fn [] (awful.layout.inc 1)))
+     (btn [] 5 (fn [] (awful.layout.inc -1)))))
 
-;;    ;; Create a tasklist widget
-;;    (tset s :mytasklist
-;;          (awful.widget.tasklist
-;;           s awful.widget.tasklist.filter.currenttags tasklist_buttons))
+   ;; Create a taglist widget
+   (set s.mytaglist
+        (awful.widget.taglist
+         s awful.widget.taglist.filter.all taglist_buttons))
 
-;;    ;; Create the wibox
-;;    (tset s :mywibox
-;;          (awful.wibar {:position "top" :screen s}))
+   ;; Create a tasklist widget
+   (set s.mytasklist
+        (awful.widget.tasklist
+         s awful.widget.tasklist.filter.currenttags tasklist_buttons))
 
-;;    ;; Add widgets to the wibox
-;;    (s.mywibox:setup
-;;     [:layout wibox.layout.align.horizontal
-;;      [:layout wibox.layout.fixed.horizontal ;; Left widgets
-;;       s.mytaglist
-;;       s.mypromptbox
-;;       separator]
+   ;; Create the wibox
+   (set s.mywibox
+        (awful.wibar {:position "top" :screen s}))
 
-;;      ;; Middle widget
-;;      s.mytasklist
+   ;; Add widgets to the wibox
+   (s.mywibox:setup
+    {:layout wibox.layout.align.horizontal
+     1  {:layout wibox.layout.fixed.horizontal ;; Left widgets
+         1 s.mytaglist
+         2 s.mypromptbox
+         3 separator}
 
-;;      ;; Right widgets
-;;      [:layout wibox.layout.fixed.horizontal
-;;       (wibox.widget.systray)
-;;       separator
-;;       mytextclock
-;;       s.mylayoutbox]])))
-;; }}}
+     ;; Middle widget
+     2 s.mytasklist
+
+     ;; Right widgets
+     3 {:layout wibox.layout.fixed.horizontal
+        1 (wibox.widget.systray)
+        2 separator
+        3 mytextclock
+        4 s.mylayoutbox}})))
 
 
 
@@ -390,19 +411,19 @@
         ;; show tag (workspace)
         (key [:mod] (.. "#" (+ 9 it))
              (fn []
-               (let [screen (awful.screen.focused)
+               (let [scr (awful.screen.focused)
                      keyed-tag (. screen.tags it)
                      current-tag screen.selected_tag]
                  (when keyed-tag
                    (if (and current-tag (= keyed-tag.name current-tag.name))
-                       (awful.tag.history.restore screen 1)
+                       (awful.tag.history.restore scr 1)
                        (keyed-tag:view_only))))))
 
         ;; add tag to current perspective
         (key [:mod :ctrl] (.. "#" (+ 9 it))
              (fn []
-               (let [screen (awful.screen.focused)
-                     scr-tag (. screen.tags it)]
+               (let [scr (awful.screen.focused)
+                     scr-tag (. scr.tags it)]
                  (when scr-tag (awful.tag.viewtoggle scr-tag)))))
 
         ;; move current focus to tag (workspace)
@@ -478,8 +499,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Rules
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(local modkey "Mod4")
 
 (local clientbuttons
        (gears.table.join
