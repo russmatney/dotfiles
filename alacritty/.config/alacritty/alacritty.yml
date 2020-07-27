@@ -82,7 +82,8 @@ font:
     #style: Italic
 
   # Point size
-  size: 9.0
+  # TODO may need this to be machine/resolution specific
+  size: 14.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
