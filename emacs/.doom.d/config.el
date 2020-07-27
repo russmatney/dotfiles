@@ -24,10 +24,10 @@
 ;; Fonts
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(setq doom-font (font-spec :family "RobotoMono Nerd Font" :size 16)
+(setq doom-font (font-spec :family "RobotoMono Nerd Font" :size 20)
       doom-variable-pitch-font (font-spec :family "Hack Nerd Font Mono")
       doom-unicode-font (font-spec :family "DejaVuSansMono Nerd Font Mono")
-      doom-big-font (font-spec :family "SpaceMono Nerd Font" :size 22))
+      doom-big-font (font-spec :family "SpaceMono Nerd Font" :size 24))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; general format/whitespace
@@ -109,8 +109,19 @@
         org-roam-server-network-label-wrap-length 20))
 
 
-(use-package! fennel-mode)
+(use-package! monroe
+  :config
+  (setq monroe-nrepl-server-cmd "jeejah"
+        monroe-nrepl-server-cmd-args "--fennel --port 7777 --debug"
+        monroe-nrepl-server-project-file ".gitignore"))
 
+(defun fennel-enable-monroe ()
+  (monroe-interaction-mode t))
+
+(use-package! fennel-mode
+  ;; :config
+  ;; (add-hook 'fennel-mode-hook #'fennel-enable-monroe)
+  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; other config files

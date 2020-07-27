@@ -142,11 +142,11 @@
 
 ;; NOTE order here determines order in bar
 (local tag-names
-       [(. slack-tag :tag-name)
+       [(. awesome-tag :tag-name)
+        (. slack-tag :tag-name)
         (. spotify-tag :tag-name)
         (. web-tag :tag-name)
         (. notes-tag :tag-name)
-        (. awesome-tag :tag-name)
         (. yodo-tag :tag-name)
         (. journal-tag :tag-name)
         (. dotfiles-tag :tag-name)])
@@ -192,11 +192,10 @@
        ;; if tag and a client, toggle tag, focus client
        (and x-tag x-client)
        (do
-         ;;  TODO if showing, set client ontop
-         ;;  TODO if hiding, unset client ontop
          (awful.tag.viewtoggle x-tag)
-         (when (not x-client.active)
-           (tset client :focus x-client)))
+         (tset x-client :ontop (not (. x-client :ontop)))
+         (if (not x-client.active)
+             (tset client :focus x-client)))
 
        ;; if tag but no client, create client
        (and x-tag (not x-client))
@@ -579,8 +578,6 @@
         :properties {:screen 1}
         :callback
         (fn [c]
-          (print "assigned-browser")
-          (print assigned-browser)
           (if (not assigned-browser)
               (let [tag (awful.tag.find_by_name
                          (awful.screen.focused)
