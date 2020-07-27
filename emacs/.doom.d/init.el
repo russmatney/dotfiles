@@ -184,6 +184,7 @@
        ;;swift             ; who asked for emoji variables?
        ;;terra
        ;;web               ; the tubes
+       yaml
 
        :email
        ;;(mu4e +gmail)
