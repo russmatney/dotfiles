@@ -357,8 +357,7 @@
         ;; (key [:mod :shift] "?" hotkeys_popup.widget.show_help)
 
         ;; ralphie rofi
-        (key [:mod] "x" (fn []
-                          (ralphie.cmd "rofi")))
+        (key [:mod] "x" (spawn-fn "ralphie rofi"))
 
         ;; walk tags
         (key [:mod] "Left" awful.tag.viewprev)
