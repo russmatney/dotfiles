@@ -20,6 +20,14 @@
 ;; autofill mode for text-mode
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Fonts
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq doom-font (font-spec :family "RobotoMono Nerd Font" :size 16)
+      doom-variable-pitch-font (font-spec :family "Hack Nerd Font Mono")
+      doom-unicode-font (font-spec :family "DejaVuSansMono Nerd Font Mono")
+      doom-big-font (font-spec :family "SpaceMono Nerd Font" :size 22))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; general format/whitespace
