@@ -104,26 +104,26 @@
 ;; Workspace data
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(local journal-workspace
+(local journal-tag
        {:tag-name "journal"
         :emacs-file "~/todo/journal.org"})
 
-(local notes-workspace
+(local notes-tag
        {:tag-name "notes"
         :emacs-file "~/Dropbox/notes/readme.org"})
 
-(local yodo-workspace
+(local yodo-tag
        {:tag-name "yodo"
         :browser-url "http://localhost:4200"
         ;; "http://localhost:4222/devcards.html"
         })
 
-(local web-workspace
+(local web-tag
        {:tag-name "web"
         :browser-url "chrome://newtab"})
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Create or toggle
+;; Create Client
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; TODO refactor into tags/workspaces/clients datastructure (frame-name, filename, tag name)
@@ -144,7 +144,11 @@
           (. workspace :tag-name)
           "\"))' --display $DISPLAY")))))
 
-(fn create-or-toggle-scratchpad
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Toggle Scratchpad
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(fn toggle-scratchpad
   [workspace]
   (fn []
     (let [tag-name (. workspace :tag-name)
@@ -191,49 +195,46 @@
                   (.. "     <span color=\"" blue "\">| </span>    ")))
 
 ;; Create a wibox for each screen and add it
-;; (local taglist_buttons
-;;        (gears.table.join
-;;         awful.button({ }, 1, function(t) t:view_only() end),
-;;         awful.button({ modkey }, 1, function(t)
-;;                      if client.focus then
-;;                      client.focus:move_to_tag(t)
-;;                      end
-;;                      end),
-;;         awful.button({ }, 3, awful.tag.viewtoggle),
-;;         awful.button({ modkey }, 3, function(t)
-;;                      if client.focus then
-;;                      client.focus:toggle_tag(t)
-;;                      end
-;;                      end),
-;;         awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
-;;         awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
-;;         ))
+(local taglist_buttons
+       (gears.table.join
+        (btn [] 1 (fn [t] (t:view_only)))
+        (btn [:mod] 1
+             (fn [t]
+               (if client.focus
+                   (client.focus:move_to_tag t))))
+        (btn [] 3 awful.tag.viewtoggle)
+        (btn [:mod] 3
+             (fn [t]
+               (if client.focus
+                   (client.focus:toggle_tag t))))
+        (btn [] 4 (fn [t] (awful.tag.viewnext t.screen)))
+        (btn [] 5 (fn [t] (awful.tag.viewprev t.screen)))))
 
-;; (local tasklist_buttons
-;;        (gears.table.join
-;;         awful.button({ }, 1, function (c)
-;;                      if c == client.focus then
-;;                      c.minimized = true
-;;                      else
-;;                      ;; Without this, the following
-;;                      ;; :isvisible() makes no sense
-;;                      c.minimized = false
-;;                      if not c:isvisible() and c.first_tag then
-;;                      c.first_tag:view_only()
-;;                      end
-;;                      ;; This will also un-minimize
-;;                      ;; the client, if needed
-;;                      client.focus = c
-;;                      c:raise()
-;;                      end
-;;                      end),
-;;         ;; awful.button({ }, 3, client_menu_toggle_fn()),
-;;         awful.button({ }, 4, function ()
-;;                      awful.client.focus.byidx(1)
-;;                      end),
-;;         awful.button({ }, 5, function ()
-;;                      awful.client.focus.byidx(-1)
-;;                      end)))
+(local tasklist_buttons
+       (gears.table.join
+        (btn []  1
+             (fn [c]
+               (if
+                (= c client.focus)
+                (tset c :minimized true))
+
+               (do
+                 ;; Without this, the following
+                 ;; :isvisible() makes no sense
+                 (tset c :minimized false)
+
+                 (when (and (not (c:isvisible)) c.first_tag)
+                   (c.first_tag:view_only))
+
+                 ;; This will also un-minimize
+                 ;; the client, if needed
+                 (tset client :focus c)
+                 (c:raise))))
+
+        ;; TODO fill in global right click? maybe hit ralphie?
+        ;; awful.button({ }, 3, client_menu_toggle_fn()),
+        (btn [] 4 (fn [] (awful.client.focus.byidx 1)))
+        (btn [] 5 (fn [] (awful.client.focus.byidx -1)))))
 
 ;; local function set_wallpaper(s)
 ;; ;; Wallpaper
@@ -326,14 +327,11 @@
         ;; previous tag
         (key [:mod] "Escape" awful.tag.history.restore)
 
-        ;; journal scratchpad
-        (key [:mod] "u" (create-or-toggle-scratchpad journal-workspace))
-        ;; roam scratchpad
-        (key [:mod] "r" (create-or-toggle-scratchpad notes-workspace))
-        ;; yodo scratchpad
-        (key [:mod] "y" (create-or-toggle-scratchpad yodo-workspace))
-        ;; web scratchpad
-        (key [:mod] "t" (create-or-toggle-scratchpad web-workspace))
+        ;; scratchpads
+        (key [:mod] "u" (toggle-scratchpad journal-tag))
+        (key [:mod] "y" (toggle-scratchpad yodo-tag))
+        (key [:mod] "r" (toggle-scratchpad notes-tag))
+        (key [:mod] "t" (toggle-scratchpad web-tag))
 
         ;; cycle clients
         (key [:mod] "Tab" (fn []
