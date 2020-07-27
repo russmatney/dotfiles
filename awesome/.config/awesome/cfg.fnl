@@ -193,7 +193,7 @@
 (local blue "#9EBABA")
 (local red "#EB8F8F")
 (local separator (wibox.widget.textbox
-                  (.. "     <span color=\"" blue "\">| </span>    ")))
+                  (.. "         <span color=\"" blue "\">| </span>         ")))
 
 ;; Create a wibox for each screen and add it
 (local taglist_buttons
@@ -325,8 +325,6 @@
         3 mytextclock
         4 s.mylayoutbox}})))
 
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Global keybindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -412,8 +410,8 @@
         (key [:mod] (.. "#" (+ 9 it))
              (fn []
                (let [scr (awful.screen.focused)
-                     keyed-tag (. screen.tags it)
-                     current-tag screen.selected_tag]
+                     keyed-tag (. scr.tags it)
+                     current-tag scr.selected_tag]
                  (when keyed-tag
                    (if (and current-tag (= keyed-tag.name current-tag.name))
                        (awful.tag.history.restore scr 1)
