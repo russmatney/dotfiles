@@ -5,8 +5,63 @@
 (require "awful.autofocus")
 (local naughty (require "naughty"))
 
+;; (require "./table-serialization")
+;; (require "./table-indexof")
+
+
 (local hotkeys_popup (require "awful.hotkeys_popup"))
 (local beautiful (require "beautiful"))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Smart Restart
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(local my_state_file
+       nil
+       ;; (.. awful.util.get_cache_dir  "~/.tmp-state")
+       )
+
+(fn save_state []
+  (local screen mouse.screen)
+  (local tags (awful.tag.gettags screen))
+
+  (local params {})
+
+  (each [i t ipairs (tags)]
+    (table.insert params [i
+                          (table.indexofmytags.layout t.layout)
+                          (awful.tag.getncolt)
+                          (awful.tag.getmwfactt)
+                          (awful.tag.getnmastert)]))
+
+  (table.save params my_state_file))
+
+(fn smart_restart []
+  (save_state)
+  (awesome.restart))
+
+(fn restore_state []
+  (when false
+    ;; when (~= (posix.stat my_state_file) nil)
+    (local params (table.load my_state_file))
+    (os.remove my_state_file)
+
+    (local s (awful.screen.focused))
+    (each [j p (ipairs params)]
+      (local i (. p 1)) ;; index of layout in mytags.layout table
+      (local layout (. p 2))
+      (local ncol (. p 3))
+      (local mwfact (. p 4))
+      (local nmaster (.  p 5))
+
+      (local t (. s.tags i))
+      ;; (t.layout (. mytags.layout layout))
+
+      (awful.tag.setncol ncol t)
+      (awful.tag.setmwfact mwfact t)
+      (awful.tag.setnmaster nmaster t))))
+
+;; (awesome.connect_signal "startup" restore_state)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Tools
