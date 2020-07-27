@@ -126,6 +126,10 @@
        {:tag-name "notes"
         :emacs-file "~/Dropbox/notes/readme.org"})
 
+(local dotfiles-tag
+       {:tag-name "dotfiles"
+        :emacs-file "~/dotfiles/readme.org"})
+
 (local yodo-tag
        {:tag-name "yodo"
         :browser-url "http://localhost:4200"
@@ -144,7 +148,8 @@
         (. notes-tag :tag-name)
         (. awesome-tag :tag-name)
         (. yodo-tag :tag-name)
-        (. journal-tag :tag-name)])
+        (. journal-tag :tag-name)
+        (. dotfiles-tag :tag-name)])
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Create Client
@@ -371,6 +376,7 @@
         (key [:mod] "y" (toggle-scratchpad yodo-tag))
         (key [:mod] "r" (toggle-scratchpad notes-tag))
         (key [:mod] "t" (toggle-scratchpad web-tag))
+        (key [:mod] "0" (toggle-scratchpad dotfiles-tag))
 
         ;; cycle clients
         (key [:mod] "Tab" (fn []
@@ -568,6 +574,7 @@
                           "dialog"]}
         :properties {:titlebars_enabled true}}
 
+
        {:rule {:role "browser"}
         :properties {:screen 1}
         :callback
@@ -583,6 +590,26 @@
                 (when tag
                   (awful.client.movetotag tag c))
                 (set assigned-browser true))))}
+
+       ;; convert to function with slack-tag arg
+       {:rule_any {:class ["Slack" "slack" "discord"]
+                   :name ["slack" "Slack"]}
+        :properties {:tag (. slack-tag :tag-name)
+                     :floating false}}
+
+       {:rule_any {:class ["spotify" "pavucontrol"]
+                   :name ["spotify" "Spotify" "pavucontrol" "Pavucontrol"]}
+        :properties {:tag (. spotify-tag :tag-name)
+                     :floating false}}
+
+       {:rule {:name (. dotfiles-tag :tag-name)}
+        :properties {:screen 1
+                     :tag (. dotfiles-tag :tag-name)
+                     :above true
+                     :placement awful.placement.centered
+                     :floating true
+                     :focus true}}
+
        {:rule {:name (. journal-tag :tag-name)}
         :properties {:screen 1
                      :tag (. journal-tag :tag-name)
@@ -590,6 +617,7 @@
                      :placement awful.placement.centered
                      :floating true
                      :focus true}}
+
        {:rule {:name (. notes-tag :tag-name)}
         :properties {:screen 1
                      :tag (. notes-tag :tag-name)
