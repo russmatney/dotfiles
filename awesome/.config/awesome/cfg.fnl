@@ -104,6 +104,20 @@
 ;; Workspace data
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(local slack-tag
+       {:tag-name "slack"
+        :apps ["slack"
+               "discord"]})
+
+(local spotify-tag
+       {:tag-name "spotify"
+        :apps ["spotify"
+               "pavucontrol"]})
+
+(local awesome-tag
+       {:tag-name "awesome"
+        :emacs-file "~/.config/awesome/cfg.fnl"})
+
 (local journal-tag
        {:tag-name "journal"
         :emacs-file "~/todo/journal.org"})
@@ -121,6 +135,16 @@
 (local web-tag
        {:tag-name "web"
         :browser-url "chrome://newtab"})
+
+;; NOTE order here determines order in bar
+(local tag-names
+       [(. slack-tag :tag-name)
+        (. spotify-tag :tag-name)
+        (. web-tag :tag-name)
+        (. notes-tag :tag-name)
+        (. awesome-tag :tag-name)
+        (. yodo-tag :tag-name)
+        (. journal-tag :tag-name)])
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Create Client
@@ -257,10 +281,7 @@
 (awful.screen.connect_for_each_screen
  (fn [s]
    ;; Each screen has its own tag table.
-   (awful.tag
-    ["slack" "spotify" "web" "notes" "awesome" "yodo" "journal"]
-    s
-    awful.layout.suit.tile)
+   (awful.tag tag-names s awful.layout.suit.tile)
    ;; [
    ;;  awful.layout.suit.tile
    ;;  awful.layout.suit.floating
@@ -464,7 +485,7 @@
                           ((+ awful.placement.scale
                               awful.placement.centered)
                            c
-                           {:to_percent 0.6})))
+                           {:to_percent 0.75})))
         ;; center on screen
         (key [:mod :shift] "c" (fn [c]
                                  ((+ awful.placement.scale
@@ -552,23 +573,27 @@
         :properties {:screen 1}
         :callback
         (fn [c]
+          (print "assigned-browser")
+          (print assigned-browser)
           (if (not assigned-browser)
-              (let [tag (awful.tag.find_by_name (awful.screen.focused) "web")]
+              (let [tag (awful.tag.find_by_name
+                         (awful.screen.focused)
+                         (. web-tag :tag-name))]
                 (tset c :above true)
                 (tset c :floating true)
                 (when tag
                   (awful.client.movetotag tag c))
                 (set assigned-browser true))))}
-       {:rule {:name "journal"}
+       {:rule {:name (. journal-tag :tag-name)}
         :properties {:screen 1
-                     :tag "journal"
+                     :tag (. journal-tag :tag-name)
                      :above true
                      :placement awful.placement.centered
                      :floating true
                      :focus true}}
-       {:rule {:name "notes"}
+       {:rule {:name (. notes-tag :tag-name)}
         :properties {:screen 1
-                     :tag "notes"
+                     :tag (. notes-tag :tag-name)
                      :above true
                      :placement awful.placement.centered
                      :floating true
