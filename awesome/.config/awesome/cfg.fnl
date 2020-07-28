@@ -39,7 +39,7 @@
 
 ;; (fn smart_restart []
 ;;   (save_state)
-;;   (awesome.restart))
+;;   (_G.awesome.restart))
 
 ;; (fn restore_state []
 ;;   (when false
@@ -151,6 +151,9 @@
         (. journal-tag :tag-name)
         (. dotfiles-tag :tag-name)])
 
+;; eh?
+(awful.tag tag-names (awful.screen.focused) awful.layout.suit.tile)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Create Client
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -195,7 +198,8 @@
          (awful.tag.viewtoggle x-tag)
          (tset x-client :ontop (not (. x-client :ontop)))
          (if (not x-client.active)
-             (tset client :focus x-client)))
+             ;; _G indicates a 'true' global, that fennel did not reject
+             (tset _G.client :focus x-client)))
 
        ;; if tag but no client, create client
        (and x-tag (not x-client))
@@ -229,13 +233,13 @@
         (btn [] 1 (fn [t] (t:view_only)))
         (btn [:mod] 1
              (fn [t]
-               (if client.focus
-                   (client.focus:move_to_tag t))))
+               (if _G.client.focus
+                   (_G.client.focus:move_to_tag t))))
         (btn [] 3 awful.tag.viewtoggle)
         (btn [:mod] 3
              (fn [t]
-               (if client.focus
-                   (client.focus:toggle_tag t))))
+               (if _G.client.focus
+                   (_G.client.focus:toggle_tag t))))
         (btn [] 4 (fn [t] (awful.tag.viewnext t.screen)))
         (btn [] 5 (fn [t] (awful.tag.viewprev t.screen)))))
 
@@ -244,7 +248,7 @@
         (btn []  1
              (fn [c]
                (if
-                (= c client.focus)
+                (= c _G.client.focus)
                 (tset c :minimized true))
 
                (do
@@ -257,7 +261,7 @@
 
                  ;; This will also un-minimize
                  ;; the client, if needed
-                 (tset client :focus c)
+                 (tset _G.client :focus c)
                  (c:raise))))
 
         ;; TODO fill in global right click? maybe hit ralphie?
@@ -265,46 +269,8 @@
         (btn [] 4 (fn [] (awful.client.focus.byidx 1)))
         (btn [] 5 (fn [] (awful.client.focus.byidx -1)))))
 
-(local set_wallpaper
-       (fn [s]
-         ;; Wallpaper
-         (if beautiful.wallpaper
-             (do
-               (local wallpaper beautiful.wallpaper)
-               ;; If wallpaper is a function, call it with the screen
-
-               (gears.wallpaper.maximized
-                (if (= (type wallpaper) "function")
-                    (wallpaper s)
-                    wallpaper)
-                s true)))))
-
-;; Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
-(screen.connect_signal "property::geometry" set_wallpaper)
-
 (awful.screen.connect_for_each_screen
  (fn [s]
-   ;; Each screen has its own tag table.
-   (awful.tag tag-names s awful.layout.suit.tile)
-   ;; [
-   ;;  awful.layout.suit.tile
-   ;;  awful.layout.suit.floating
-   ;;  ;;awful.layout.suit.tile.left
-   ;;  awful.layout.suit.tile.bottom
-   ;;  ;; awful.layout.suit.tile.top
-   ;;  awful.layout.suit.fair
-   ;;  awful.layout.suit.fair.horizontal
-   ;;  ;; awful.layout.suit.spiral
-   ;;  ;; awful.layout.suit.spiral.dwindle
-   ;;  awful.layout.suit.max
-   ;;  ;; awful.layout.suit.max.fullscreen
-   ;;  awful.layout.suit.magnifier
-   ;;  ;; awful.layout.suit.corner.nw
-   ;;  ;; awful.layout.suit.corner.ne
-   ;;  ;; awful.layout.suit.corner.sw
-   ;;  ;; awful.layout.suit.corner.se
-   ;;  ]
-
    ;; Create a promptbox for each screen
    (set s.mypromptbox (awful.widget.prompt))
    ;; Create an imagebox widget which will contains an icon indicating which layout we're using.
@@ -357,7 +323,7 @@
 (local global-keys
        (gears.table.join
         ;; helpers
-        (key [:mod :shift] "r" awesome.restart)
+        (key [:mod :shift] "r" _G.awesome.restart)
         ;; (key [:mod :shift] "?" hotkeys_popup.widget.show_help)
 
         ;; ralphie rofi
@@ -378,10 +344,16 @@
         (key [:mod] "0" (toggle-scratchpad dotfiles-tag))
 
         ;; cycle clients
-        (key [:mod] "Tab" (fn []
-                            (awful.client.focus.history.previous)
-                            (when client.focus
-                              (client.focus:raise))))
+        (key [:mod] "Tab"
+             (fn []
+               (awful.client.focus.byidx 1)
+               (when _G.client.focus
+                 (_G.client.focus:raise))))
+        (key [:mod :shift] "Tab"
+             (fn []
+               (awful.client.focus.byidx -1)
+               (when _G.client.focus
+                 (_G.client.focus:raise))))
 
         ;; terminal
         (key [:mod] "Return" (spawn-fn "ralphie open-term"))
@@ -407,7 +379,7 @@
         ;; restore minimized
         (key [:mod :shift] "n" (fn [] (let [c (awful.client.restore)]
                                         (when c
-                                          (tset client :focus c)
+                                          (tset _G.client :focus c)
                                           (c:raise)))))
 
         ;; screenshots
@@ -452,21 +424,21 @@
         ;; move current focus to tag (workspace)
         (key [:mod :shift] (.. "#" (+ 9 it))
              (fn []
-               (when client.focus
-                 (let [scr-tag (. client.focus.screen.tags it)]
+               (when _G.client.focus
+                 (let [scr-tag (. _G.client.focus.screen.tags it)]
                    (when scr-tag
-                     (client.focus:move_to_tag scr-tag))))))
+                     (_G.client.focus:move_to_tag scr-tag))))))
 
         ;; add/remove focused client on tag
         (key [:mod :shift :ctrl] (.. "#" (+ 9 it))
              (fn []
-               (when client.focus
-                 (let [scr-tag (. client.focus.screen.tags it)]
+               (when _G.client.focus
+                 (let [scr-tag (. _G.client.focus.screen.tags it)]
                    (when scr-tag
-                     (client.focus:toggle_tag scr-tag)))))))))
+                     (_G.client.focus:toggle_tag scr-tag)))))))))
 
 
-(root.keys (gears.table.join global-keys tag-keys))
+(_G.root.keys (gears.table.join global-keys tag-keys))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -513,11 +485,11 @@
 ;; Mouse bindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(root.buttons (gears.table.join
-               ;; (btn [] 1 mymainmenu:hide)
-               ;; (btn [] 3 mymainmenu:toggle)
-               (btn [] 4 awful.tag.viewnext)
-               (btn [] 5 awful.tag.viewprev)))
+(_G.root.buttons (gears.table.join
+                  ;; (btn [] 1 mymainmenu:hide)
+                  ;; (btn [] 3 mymainmenu:toggle)
+                  (btn [] 4 awful.tag.viewnext)
+                  (btn [] 5 awful.tag.viewprev)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Rules
@@ -526,7 +498,7 @@
 (local clientbuttons
        (gears.table.join
         (btn [] 1 (fn [c]
-                    (tset client :focus c)
+                    (tset _G.client :focus c)
                     (c:raise)))
         (btn [:mod] 1 awful.mouse.client.move)
         (btn [:mod] 3 awful.mouse.client.resize)))
