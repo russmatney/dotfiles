@@ -25,7 +25,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq doom-font (font-spec :family "RobotoMono Nerd Font" :size 20)
-      doom-variable-pitch-font (font-spec :family "Hack Nerd Font Mono")
+      doom-variable-pitch-font (font-spec :family "Hack Nerd Font")
       doom-unicode-font (font-spec :family "DejaVuSansMono Nerd Font Mono")
       doom-big-font (font-spec :family "SpaceMono Nerd Font" :size 24))
 

@@ -22,7 +22,8 @@
 ;; fennel
 (package! fennel-mode :recipe (:host gitlab :repo "technomancy/fennel-mode"))
 (package! friar :recipe (:host github
-                         :repo "shtwzrd/friar"
+                         :repo "russmatney/friar"
+                         :branch "develop"
                          :files (:defaults "*.lua" "*.fnl")))
 
 ;; python

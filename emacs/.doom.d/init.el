@@ -55,7 +55,7 @@
        ;; neotree           ; a project drawer, like NERDTree for vim
        ophints
        (popup            ; tame sudden yet inevitable temporary windows
-        +all             ; catch all popups that start with an asterix
+        ;; +all             ; catch all popups that start with an asterix
         +defaults)       ; default popup rules
        ;;pretty-code
        ;;tabs
