@@ -21,7 +21,9 @@
 
 ;; fennel
 (package! fennel-mode :recipe (:host gitlab :repo "technomancy/fennel-mode"))
-(package! monroe :recipe (:host github :repo "sanel/monroe"))
+(package! friar :recipe (:host github
+                         :repo "shtwzrd/friar"
+                         :files (:defaults "*.lua" "*.fnl")))
 
 ;; python
 (package! py-yapf)
@@ -37,6 +39,7 @@
 (package! company-css-classes :recipe
   (:host github :repo "russmatney/company-css-classes" :files ("*")))
 
+(package! monroe :recipe (:host github :repo "sanel/monroe"))
 
 ;; wakatime
 (package! wakatime-mode)

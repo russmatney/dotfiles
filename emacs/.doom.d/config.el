@@ -119,9 +119,11 @@
   (monroe-interaction-mode t))
 
 (use-package! fennel-mode
-  ;; :config
+  :config
   ;; (add-hook 'fennel-mode-hook #'fennel-enable-monroe)
-  )
+  (setq fennel-mode-switch-to-repl-after-reload nil))
+
+(use-package! friar)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; other config files
