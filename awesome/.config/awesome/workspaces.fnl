@@ -5,7 +5,7 @@
 ;; Workspaces
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(local slack
+(local chat
        {:name "Chat"
         :apps [{:name "Slack"
                 :exec "slack"}
@@ -20,12 +20,12 @@
 
 (fn create-emacs-client [emacs-app]
   (let [file-name emacs-app.file
-        frame-name emacs-app.title])
-  (.. "emacsclient --alternate-editor='' --no-wait --create-frame "
-      file-name
-      " -F '(quote (name . \""
-      frame-name
-      "\"))' --display $DISPLAY"))
+        frame-name emacs-app.title]
+    (.. "emacsclient --alternate-editor='' --no-wait --create-frame "
+        file-name
+        " -F '(quote (name . \""
+        frame-name
+        "\"))' --display $DISPLAY")))
 
 (local notes
        {:name "Notes"
@@ -53,13 +53,20 @@
         spotify
         notes
         journal
-        yodo
-
-        ])
+        yodo])
 
 (fn create-app [tag-client]
-  (println tag-client))
+  (print tag-client))
 (fn create-apps [tag-client]
   )
 (fn create-apps [tag-clients]
   )
+
+(fn app-names [tag-client]
+  (. tag-client :apps)
+  )
+
+(app-names yodo)
+
+
+_G.myglobal
