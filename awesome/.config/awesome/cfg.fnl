@@ -1,3 +1,5 @@
+;; (pcall "require" "luarocks.loader")
+
 (local fun (require "fun"))
 (local gears (require "gears"))
 (local awful (require "awful"))
@@ -10,7 +12,6 @@
 ;; (require "./table-serialization")
 ;; (require "./table-indexof")
 
-
 (local hotkeys_popup (require "awful.hotkeys_popup"))
 (local beautiful (require "beautiful"))
 
@@ -22,6 +23,10 @@
        nil
        ;; (.. awful.util.get_cache_dir  "~/.tmp-state")
        )
+
+(comment
+ (print "hi")
+ awesome)
 
 ;; (fn save_state []
 ;;   (local tags (awful.tag.gettags mouse.screen))
