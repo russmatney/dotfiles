@@ -141,6 +141,10 @@
         ;; "http://localhost:4222/devcards.html"
         })
 
+(comment
+ yodo-tag
+ awesome)
+
 (local web-tag
        {:tag-name "web"
         :browser-url "chrome://newtab"})
@@ -153,7 +157,7 @@
         (. web-tag :tag-name)
         (. notes-tag :tag-name)
         (. yodo-tag :tag-name)
-        (. journal-tag :tag-name)
+        ;; (. journal-tag :tag-name)
         (. dotfiles-tag :tag-name)])
 
 ;; eh?
@@ -213,7 +217,8 @@
        ;; no tag? create it
        (not x-tag)
        (do
-         (awful.tag.add tag-name {:screen s})
+         (awful.tag.add tag-name {:screen s
+                                  :gap 10})
          ;; TODO should only create here if no x-client exists
          ;; across whole system, not just in this tag
          (create-client workspace))
@@ -273,6 +278,23 @@
         ;; awful.button({ }, 3, client_menu_toggle_fn()),
         (btn [] 4 (fn [] (awful.client.focus.byidx 1)))
         (btn [] 5 (fn [] (awful.client.focus.byidx -1)))))
+
+;;
+
+;; (local fs_timer (timer {:timeout 600}))
+
+;; (fs_timer:add_singal
+;;  "timeout"
+;;  (fn []
+;;    (awful.util.spawn_with_shell
+;;     "dbus-send --session --dest=org.naquadah.awesome.awful "
+;;     "/ru/console/df ru.console.df.fsValue string:"
+;;     "$(df -h --output='pcent' /home | sed '1d;s/ //g' )  end "
+;;     )))
+
+;; fs_timer:start()
+
+;;
 
 (awful.screen.connect_for_each_screen
  (fn [s]
