@@ -1,66 +1,121 @@
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Workspaces
+;; tags
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(local chat
-       {:name "Chat"
-        :apps [{:name "Slack"
-                :exec "slack"}
-               "discord"]
-        :layout :fair})
+(local lume (require :lume))
 
-(local spotify
-       {:name "music"
-        :apps [{:name "Spotify"}
-               {:name "Pavucontrol"}]
-        :layout :unfair})
+(local mytags {})
 
-(fn create-emacs-client [emacs-app]
-  (let [file-name emacs-app.file
-        frame-name emacs-app.title]
-    (.. "emacsclient --alternate-editor='' --no-wait --create-frame "
-        file-name
-        " -F '(quote (name . \""
-        frame-name
-        "\"))' --display $DISPLAY")))
+(set mytags.slack-tag
+     {:sort-key 2
+      :tag-name "slack"
+      :apps [{:exec "slack"
+              :classes ["Slack" "slack"]
+              :names ["Slack" "slack"]}
+             {:exec "discord"
+              :classes ["Discord" "discord"]
+              :names ["Discord" "discord"]}]})
 
-(local notes
-       {:name "Notes"
-        :apps [{:name "Emacs"
-                :exec create-emacs-client
-                :title "journal"
-                :file "~/Dropbox/notes/index.org"}]})
+(set mytags.spotify-tag
+     {:sort-key 3
+      :tag-name "spotify"
+      :apps [{:exec "spotify"
+              :classes ["Spotify" "spotify"]
+              :names ["Spotify" "spotify"]}
+             {:exec "pavucontrol"
+              :classes ["Pavucontrol" "pavucontrol"]
+              :names ["Pavucontrol" "pavucontrol"]}]})
 
-(local journal
-       {:name "Journal"
-        :apps [{:name "Emacs"
-                :title "journal"
-                :file "~/todo.journal.org"
-                :exec create-emacs-client}]})
+(set mytags.awesome-tag
+     {:sort-key 1
+      :tag-name "awesome"
+      :emacs-file "~/.config/awesome/cfg.fnl"})
 
-(local yodo
-       {:name "yodo-dev"
-        :apps [{:name "Emacs"
-                :title "yodo"
-                :file "~/russmatney/yodo/deps.edn"
-                :exec create-emacs-client}]})
+(set mytags.journal-tag
+     {:sort-key 9
+      :tag-name "journal"
+      :scratchpad-key "u"
+      :emacs-file "~/todo/journal.org"})
 
-(local workspace-tags
-       [chat
-        spotify
-        notes
-        journal
-        yodo])
+(set mytags.notes-tag
+     {:sort-key 4
+      :tag-name "notes"
+      :scratchpad-key "r"
+      :emacs-file "~/Dropbox/notes/readme.org"})
 
-(fn create-app [tag-client]
-  (print tag-client))
-(fn create-apps [tag-client]
-  )
-(fn create-apps [tag-clients]
-  )
+(set mytags.dotfiles-tag
+     {:sort-key 0
+      :tag-name "dotfiles"
+      :scratchpad-key "0"
+      :emacs-file "~/dotfiles/readme.org"})
 
-(fn app-names [tag-client]
-  (. tag-client :apps)
-  )
+(set mytags.yodo-tag
+     {:sort-key 6
+      :tag-name "yodo"
+      :browser-url "http://localhost:4200"
+      ;; "http://localhost:4222/devcards.html"
+      })
+
+(set mytags.web-tag
+     {:sort-key 5
+      :tag-name "web"
+      :browser-url "chrome://newtab"})
+
+;; NOTE order here determines order in bar
+(local tag-list
+       [mytags.awesome-tag
+        mytags.slack-tag
+        mytags.spotify-tag
+        mytags.web-tag
+        mytags.notes-tag
+        mytags.yodo-tag
+        mytags.journal-tag
+        mytags.dotfiles-tag])
+
+(local tag-names
+       (lume.map tag-list
+                 (fn [t]
+                   (. t :tag-name))))
+
+(local rules-scratchpad-emacs
+       ;; for now, dodging awesome.placement.centered dep
+       (-> tag-list
+           (lume.filter
+            (fn [t] (if (. t :scratchpad-key) true false)))
+           (lume.map
+            (fn [t]
+              ;; tag named used to create emacs frame
+              {:rule {:name t.tag-name}
+               :properties
+               {;; put it on the tag name
+                :tag t.tag-name
+                :screen 1
+                :ontop true
+                :floating true
+                :focus true}}))))
+
+(local rules-apps-on-tag
+       (-> tag-list
+           (lume.filter
+            (fn [t] (if (. t :apps) true false)))
+           (lume.map
+            (fn [t]
+              (let [names (-> t.apps
+                              (lume.map
+                               (fn [a] (. a :names)))
+                              (lume.concat))
+                    classes (-> t.apps
+                                (lume.map
+                                 (fn [a] (. a :classes)))
+                                (lume.concat))]
+                {:rule_any {:class classes
+                            :name names}
+                 :properties {:tag t.tag-name
+                              :floating false}})))))
+
+(lume.merge
+ mytags
+ {: tag-names
+  : tag-list
+  : rules-scratchpad-emacs
+  : rules-apps-on-tag})

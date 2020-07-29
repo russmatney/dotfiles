@@ -1,4 +1,4 @@
-;; (pcall "require" "luarocks.loader")
+(pcall "require" "luarocks.loader")
 
 (local fun (require "fun"))
 (local gears (require "gears"))
@@ -18,6 +18,7 @@
 (local view (require :fennelview))
 (global pp (fn [x] (print (view x))))
 
+(local w (require :workspaces))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Theming
@@ -36,15 +37,15 @@
 
 ;; Check if awesome encountered an error during startup and fell back to
 ;; another config (This code will only ever execute for the fallback config)
-(if awesome.startup_errors
+(if _G.awesome.startup_errors
     (naughty.notify {:preset  naughty.config.presets.critical
                      :title  "Oops, there were errors during startup!"
-                     :text  awesome.startup_errors }))
+                     :text  _G.awesome.startup_errors }))
 
 ;; Handle runtime errors after startup
 (let []
   (var in_error false)
-  (awesome.connect_signal
+  (_G.awesome.connect_signal
    "debug::error"
    (fn [err]
      ;; Make sure we don't go into an endless error loop
@@ -89,65 +90,16 @@
 (fn spawn-fn
   [cmd]
   (fn []
-    (awful.spawn cmd)))
+    (awful.spawn_with_shell cmd)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Workspace data
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(local slack-tag
-       {:tag-name "slack"
-        :apps ["slack"
-               "discord"]})
+(fn add-all-tags []
+  (awful.tag w.tag-names (awful.screen.focused) awful.layout.suit.tile))
 
-(local spotify-tag
-       {:tag-name "spotify"
-        :apps ["spotify"
-               "pavucontrol"]})
-
-(local awesome-tag
-       {:tag-name "awesome"
-        :emacs-file "~/.config/awesome/cfg.fnl"})
-
-(local journal-tag
-       {:tag-name "journal"
-        :emacs-file "~/todo/journal.org"})
-
-(local notes-tag
-       {:tag-name "notes"
-        :emacs-file "~/Dropbox/notes/readme.org"})
-
-(local dotfiles-tag
-       {:tag-name "dotfiles"
-        :emacs-file "~/dotfiles/readme.org"})
-
-(local yodo-tag
-       {:tag-name "yodo"
-        :browser-url "http://localhost:4200"
-        ;; "http://localhost:4222/devcards.html"
-        })
-
-(comment
- yodo-tag
- awesome)
-
-(local web-tag
-       {:tag-name "web"
-        :browser-url "chrome://newtab"})
-
-;; NOTE order here determines order in bar
-(local tag-names
-       [(. awesome-tag :tag-name)
-        (. slack-tag :tag-name)
-        (. spotify-tag :tag-name)
-        (. web-tag :tag-name)
-        (. notes-tag :tag-name)
-        (. yodo-tag :tag-name)
-        ;; (. journal-tag :tag-name)
-        (. dotfiles-tag :tag-name)])
-
-;; eh?
-(awful.tag tag-names (awful.screen.focused) awful.layout.suit.tile)
+(add-all-tags)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Create Client
@@ -265,23 +217,6 @@
         (btn [] 4 (fn [] (awful.client.focus.byidx 1)))
         (btn [] 5 (fn [] (awful.client.focus.byidx -1)))))
 
-;;
-
-;; (local fs_timer (timer {:timeout 600}))
-
-;; (fs_timer:add_singal
-;;  "timeout"
-;;  (fn []
-;;    (awful.util.spawn_with_shell
-;;     "dbus-send --session --dest=org.naquadah.awesome.awful "
-;;     "/ru/console/df ru.console.df.fsValue string:"
-;;     "$(df -h --output='pcent' /home | sed '1d;s/ //g' )  end "
-;;     )))
-
-;; fs_timer:start()
-
-;;
-
 (awful.screen.connect_for_each_screen
  (fn [s]
    ;; Create a promptbox for each screen
@@ -351,11 +286,11 @@
         (key [:mod] "Escape" awful.tag.history.restore)
 
         ;; scratchpads
-        (key [:mod] "u" (toggle-scratchpad journal-tag))
-        (key [:mod] "y" (toggle-scratchpad yodo-tag))
-        (key [:mod] "r" (toggle-scratchpad notes-tag))
-        (key [:mod] "t" (toggle-scratchpad web-tag))
-        (key [:mod] "0" (toggle-scratchpad dotfiles-tag))
+        (key [:mod] "u" (toggle-scratchpad w.journal-tag))
+        (key [:mod] "y" (toggle-scratchpad w.yodo-tag))
+        (key [:mod] "r" (toggle-scratchpad w.notes-tag))
+        (key [:mod] "t" (toggle-scratchpad w.web-tag))
+        (key [:mod] "0" (toggle-scratchpad w.dotfiles-tag))
 
         ;; cycle clients
         (key [:mod] "Tab"
@@ -522,7 +457,8 @@
 ;; Rules to apply to new clients (through the "manage" signal).
 (tset awful.rules
       :rules
-      [{:rule {}
+      (gears.table.join
+       {:rule {}
         :properties {:border_width beautiful.border_width
                      :border_color beautiful.border_normal
                      :focus awful.client.focus.filter
@@ -537,29 +473,19 @@
 
        ;; Floating clients.
        {:rule_any
-        {:instance ["DTA" ;; Firefox addon DownThemAll.
-                    "copyq"] ;; Includes session name in class.
-         :class ["Arandr"
-                 "Gpick"
-                 "Kruler"
-                 "MessageWin" ;; kalarm.
-                 "Sxiv"
-                 "Wpa_gui"
-                 "pinentry"
-                 "veromix"
-                 "xtightvncviewer"]
-         :name ["Event Tester"] ;; xev.
-         :role ["AlarmWindow" ;; Thunderbird's calendar.
-                "pop-up"]} ;; e.g. Google Chrome's (detached) Developer Tools.
-        :properties
-        {:floating true}}
+        {:instance ["DTA" "copyq"]
+         :class ["Arandr" "MessageWin" "Sxiv" "Wpa_gui"
+                 "pinentry" "veromix" "xtightvncviewer"]
+         :role ["pop-up"]} ;; e.g. Google Chrome's (detached) Developer Tools.
+        :properties {:floating true}}
 
        ;; Add titlebars to normal clients and dialogs
-       {:rule_any {:type ["normal"
-                          "dialog"]}
+       {:rule_any {:type ["normal" "dialog"]}
         :properties {:titlebars_enabled true}}
 
 
+       ;; attempt to wrangle browser windows
+       ;; currently too broad, catching slack, discord, spotify
        {:rule {:role "browser"}
         :properties {:screen 1}
         :callback
@@ -567,7 +493,7 @@
           (if (not assigned-browser)
               (let [tag (awful.tag.find_by_name
                          (awful.screen.focused)
-                         (. web-tag :tag-name))]
+                         w.web-tag.tag-name)]
                 (tset c :above true)
                 (tset c :floating true)
                 (when tag
@@ -577,38 +503,16 @@
        ;; convert to function with slack-tag arg
        {:rule_any {:class ["Slack" "slack" "discord"]
                    :name ["slack" "Slack"]}
-        :properties {:tag (. slack-tag :tag-name)
+        :properties {:tag w.slack-tag.tag-name
                      :floating false}}
 
        {:rule_any {:class ["spotify" "pavucontrol"]
                    :name ["spotify" "Spotify" "pavucontrol" "Pavucontrol"]}
-        :properties {:tag (. spotify-tag :tag-name)
+        :properties {:tag w.spotify-tag.tag-name
                      :floating false}}
 
-       {:rule {:name (. dotfiles-tag :tag-name)}
-        :properties {:screen 1
-                     :tag (. dotfiles-tag :tag-name)
-                     :above true
-                     :placement awful.placement.centered
-                     :floating true
-                     :focus true}}
-
-       {:rule {:name (. journal-tag :tag-name)}
-        :properties {:screen 1
-                     :tag (. journal-tag :tag-name)
-                     :above true
-                     :placement awful.placement.centered
-                     :floating true
-                     :focus true}}
-
-       {:rule {:name (. notes-tag :tag-name)}
-        :properties {:screen 1
-                     :tag (. notes-tag :tag-name)
-                     :above true
-                     :placement awful.placement.centered
-                     :floating true
-                     :focus true
-                     }}])
+       w.rules-scratchpad-emacs
+       ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Signals
@@ -617,20 +521,20 @@
 ;; Signals
 
 ;; Signal function to execute when a new client appears.
-(client.connect_signal
+(_G.client.connect_signal
  "manage"
  (fn [c]
    ;; Set the windows at the slave,
    ;; i.e. put it at the end of others instead of setting it master.
    ;; if not awesome.startup then awful.client.setslave(c) end
-   (if (and awesome.startup
+   (if (and _G.awesome.startup
             (not c.size_hints.user_position)
             (not c.size_hints.program_position))
        ;; Prevent clients from being unreachable after screen count changes.
        (awful.placement.no_offscreen c))))
 
 ;; Add a titlebar if titlebars_enabled is set to true in the rules.
-(client.connect_signal
+(_G.client.connect_signal
  "request::titlebars"
  (fn [c]
    (let [buttons
@@ -667,18 +571,18 @@
           }
        :layout wibox.layout.align.horizontal}))))
 
-(client.connect_signal
+(_G.client.connect_signal
  "focus"
  (fn [c] (set c.border_color beautiful.border_focus)))
 
-(client.connect_signal
+(_G.client.connect_signal
  "unfocus"
  (fn [c] (set c.border_color beautiful.border_normal)))
 
 ;; Disable borders on lone windows
 ;; Handle border sizes of clients.
-(for [s 1 (screen.count)]
-  (let [sc (. screen s)]
+(for [s 1 (_G.screen.count)]
+  (let [sc (. _G.screen s)]
     (sc:connect_signal
      "arrange"
      (fn []
