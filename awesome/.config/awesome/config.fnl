@@ -6,7 +6,6 @@
 (require "awful.autofocus")
 (require "awful.hotkeys_popup.keys.vim")
 
-(local ralphie (require "ralphie"))
 (local naughty (require "naughty"))
 (local wibox (require "wibox"))
 
