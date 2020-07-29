@@ -38,5 +38,6 @@ run msm_notifier
 run dropbox
 run variety
 run picom
+run rlwrap bb --nrepl-server 7777
 
 xset r rate 150 60
