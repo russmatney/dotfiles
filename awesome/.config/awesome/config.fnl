@@ -4,70 +4,56 @@
 (local gears (require "gears"))
 (local awful (require "awful"))
 (require "awful.autofocus")
+(require "awful.hotkeys_popup.keys.vim")
 
 (local ralphie (require "ralphie"))
 (local naughty (require "naughty"))
 (local wibox (require "wibox"))
 
-;; (require "./table-serialization")
-;; (require "./table-indexof")
-
 (local hotkeys_popup (require "awful.hotkeys_popup"))
 (local beautiful (require "beautiful"))
 
+(require "./remote")
+
+(local view (require :fennelview))
+(global pp (fn [x] (print (view x))))
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Smart Restart
+;; Theming
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(local my_state_file
-       nil
-       ;; (.. awful.util.get_cache_dir  "~/.tmp-state")
-       )
+(beautiful.init "/usr/share/awesome/themes/cesious/theme.lua")
+(set beautiful.icon_theme "Papirus-Dark")
+(set beautiful.bg_normal "#141A1B")
+(set beautiful.bg_focus "#222B2E")
+(set beautiful.font "Noto Sans Regular 10")
+(set beautiful.notification_font "Noto Sans Bold 14")
 
-(comment
- (print "hi")
- awesome)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Error Handling
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; (fn save_state []
-;;   (local tags (awful.tag.gettags mouse.screen))
+;; Check if awesome encountered an error during startup and fell back to
+;; another config (This code will only ever execute for the fallback config)
+(if awesome.startup_errors
+    (naughty.notify {:preset  naughty.config.presets.critical
+                     :title  "Oops, there were errors during startup!"
+                     :text  awesome.startup_errors }))
 
-;;   (local params {})
-
-;;   (each [i t (ipairs tags)]
-;;     (table.insert params [i
-;;                           (table.indexofmytags.layout t.layout)
-;;                           (awful.tag.getncolt)
-;;                           (awful.tag.getmwfactt)
-;;                           (awful.tag.getnmastert)]))
-
-;;   (table.save params my_state_file))
-
-;; (fn smart_restart []
-;;   (save_state)
-;;   (_G.awesome.restart))
-
-;; (fn restore_state []
-;;   (when false
-;;     ;; when (~= (posix.stat my_state_file) nil)
-;;     (local params (table.load my_state_file))
-;;     (os.remove my_state_file)
-
-;;     (local s (awful.screen.focused))
-;;     (each [j p (ipairs params)]
-;;       (local i (. p 1)) ;; index of layout in mytags.layout table
-;;       (local l (. p 2))
-;;       (local ncol (. p 3))
-;;       (local mwfact (. p 4))
-;;       (local nmaster (.  p 5))
-
-;;       (local t (. s.tags i))
-;;       ;; (t.layout (. mytags.layout l))
-
-;;       (awful.tag.setncol ncol t)
-;;       (awful.tag.setmwfact mwfact t)
-;;       (awful.tag.setnmaster nmaster t))))
-
-;; (awesome.connect_signal "startup" restore_state)
+;; Handle runtime errors after startup
+(let []
+  (var in_error false)
+  (awesome.connect_signal
+   "debug::error"
+   (fn [err]
+     ;; Make sure we don't go into an endless error loop
+     (if (not in_error)
+         (set in_error true)
+         (naughty.notify {:preset naughty.config.presets.critical
+                          :title "Oops, an error happened!"
+                          :text (tostring err) })
+         (set in_error false)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Tools
@@ -350,6 +336,7 @@
 (local global-keys
        (gears.table.join
         ;; helpers
+        ;; TODO syntax check/verify on config files before restarting
         (key [:mod :shift] "r" _G.awesome.restart)
         ;; (key [:mod :shift] "?" hotkeys_popup.widget.show_help)
 
@@ -622,3 +609,104 @@
                      :floating true
                      :focus true
                      }}])
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Signals
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Signals
+
+;; Signal function to execute when a new client appears.
+(client.connect_signal
+ "manage"
+ (fn [c]
+   ;; Set the windows at the slave,
+   ;; i.e. put it at the end of others instead of setting it master.
+   ;; if not awesome.startup then awful.client.setslave(c) end
+   (if (and awesome.startup
+            (not c.size_hints.user_position)
+            (not c.size_hints.program_position))
+       ;; Prevent clients from being unreachable after screen count changes.
+       (awful.placement.no_offscreen c))))
+
+;; Add a titlebar if titlebars_enabled is set to true in the rules.
+(client.connect_signal
+ "request::titlebars"
+ (fn [c]
+   (let [buttons
+         (gears.table.join
+          (btn [] 1 (fn []
+                      (set client.focus c)
+                      (c:raise)
+                      (awful.mouse.client.move c)))
+          (btn [] 3 (fn []
+                      (set client.focus c)
+                      (c:raise)
+                      (awful.mouse.client.resize c))))
+
+         titlebar (awful.titlebar c)]
+
+     (titlebar:setup
+      {1 { ;; Left
+          1 (awful.titlebar.widget.iconwidget c)
+          :buttons buttons
+          :layout  wibox.layout.fixed.horizontal}
+       2 {  ;; Middle
+          1 { ;; Title
+             :align  "center"
+             :widget (awful.titlebar.widget.titlewidget c)}
+          :buttons buttons
+          :layout  wibox.layout.flex.horizontal}
+       3 { ;; Right
+          1 (awful.titlebar.widget.floatingbutton c)
+          2 (awful.titlebar.widget.stickybutton   c)
+          3 (awful.titlebar.widget.ontopbutton    c)
+          4 (awful.titlebar.widget.maximizedbutton c)
+          5 (awful.titlebar.widget.closebutton    c)
+          :layout (wibox.layout.fixed.horizontal)
+          }
+       :layout wibox.layout.align.horizontal}))))
+
+(client.connect_signal
+ "focus"
+ (fn [c] (set c.border_color beautiful.border_focus)))
+
+(client.connect_signal
+ "unfocus"
+ (fn [c] (set c.border_color beautiful.border_normal)))
+
+;; Disable borders on lone windows
+;; Handle border sizes of clients.
+(for [s 1 (screen.count)]
+  (let [sc (. screen s)]
+    (sc:connect_signal
+     "arrange"
+     (fn []
+       (local clients (awful.client.visible s))
+       (local layout (awful.layout.getname (awful.layout.get s)))
+
+       (each [_ c (pairs clients)]
+         ;; No borders with only one humanly visible client
+         (if c.maximized
+             ;; NOTE: also handled in focus, but that does not cover maximizing from a
+             ;; tiled state (when the client had focus).
+             (set c.border_width 0)
+
+             (or c.floating (= layout "floating"))
+             (set c.border_width beautiful.border_width)
+
+             (or (=  layout "max")  (= layout "fullscreen"))
+             (set c.border_width 0)
+
+             (do
+               (local tiled (awful.client.tiled c.screen))
+               (if (= #tiled 1) ;; and c = tiled[1] then
+                   (tset (. tiled 1) :border_width 0)
+                   ;; if layout ~= "max" and layout ~= "fullscreen" then
+                   ;; XXX: SLOW!
+                   ;; awful.client.moveresize(0, 0, 2, 0, tiled[1])
+                   ;; end
+                   (tset c :border_width beautiful.border_width)))))))))
+
+;; spawn autorun
+(awful.spawn.with_shell "~/.config/awesome/autorun.sh")

@@ -21,13 +21,16 @@ local type = type
 local client_env_mt = {}
 local client_env = setmetatable({}, client_env_mt)
 
--- lazily set up awful (otherwise we get into infinite recursion madness)
+print "starting up sandbox due to require!"
+
+-- lazily set up awful (otherwise we get circular deps)
 function client_env_mt:__index(key)
     client_env.awful = require 'awful'
 
     local naughty = require 'naughty'
 
     function client_env.print(...)
+        print "overwritten print?"
         local parts = { ... }
 
         for i = 1, #parts do
@@ -76,5 +79,3 @@ if dbus then
         end
     end)
 end
-
--- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80

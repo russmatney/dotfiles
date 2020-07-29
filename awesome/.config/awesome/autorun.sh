@@ -38,6 +38,7 @@ run msm_notifier
 run dropbox
 run variety
 run picom
-run rlwrap bb --nrepl-server 7777
+# TODO only run if port available
+# run rlwrap bb --nrepl-server 1667
 
 xset r rate 150 60
