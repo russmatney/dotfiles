@@ -17,7 +17,6 @@ tmux-client-*.log
 emacs/.doom.d/+private.el
 emacs/.doom.d/+custom.el
 urbint
-scratch*
 focus/.local/bin/focus
 X/.Xauthority
 *.elc

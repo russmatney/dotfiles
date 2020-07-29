@@ -102,16 +102,28 @@
             (fn [t]
               (let [names (-> t.apps
                               (lume.map
-                               (fn [a] (. a :names)))
-                              (lume.concat))
+                               (fn [a]
+                                 (. a :names)))
+                              (lume.reduce lume.concat))
                     classes (-> t.apps
                                 (lume.map
                                  (fn [a] (. a :classes)))
-                                (lume.concat))]
+                                (lume.reduce lume.concat))]
                 {:rule_any {:class classes
                             :name names}
                  :properties {:tag t.tag-name
                               :floating false}})))))
+
+
+(comment
+ (-> [{:apps [{:names ["one" "two"]}
+              {:names ["three" "four"]}]}]
+     ())
+
+ (lume.reduce [["one" "two"]
+               ["three" "four"]]
+              lume.concat)
+ )
 
 (lume.merge
  mytags

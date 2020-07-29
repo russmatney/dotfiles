@@ -18,8 +18,8 @@
 
 (require "./remote")
 
-
 (local w (require :workspaces))
+(local scratchpad (require :scratchpad))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Theming
@@ -61,14 +61,6 @@
 ;; Tools
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(fn notify
-  [text]
-  (naughty.notify {:text text}))
-
-(fn debug
-  [x]
-  (notify (gears.debug.dump_return x)))
-
 (local modifiers {:mod "Mod4"
                   :shift "Shift"
                   :ctrl "Control"})
@@ -93,75 +85,13 @@
   (fn []
     (awful.spawn cmd)))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Workspace data
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (fn add-all-tags []
-  (awful.tag w.tag-names (awful.screen.focused) awful.layout.suit.tile))
+  (awful.tag w.tag-names
+             (awful.screen.focused)
+             awful.layout.suit.tile))
 
+;; TODO create an init?
 (add-all-tags)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Create Client
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; TODO refactor into tags/workspaces/clients datastructure (frame-name, filename, tag name)
-(lambda create-client
-  [workspace]
-  (let [emacs-file (. workspace :emacs-file)
-        browser-url (. workspace :browser-url)]
-    (if
-     browser-url
-     (awful.spawn
-      (.. "google-chrome-stable --new-window " browser-url))
-
-     emacs-file
-     (awful.spawn.with_shell
-      (.. "emacsclient --alternate-editor='' --no-wait --create-frame "
-          emacs-file
-          " -F '(quote (name . \""
-          (. workspace :tag-name)
-          "\"))' --display $DISPLAY")))))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Toggle Scratchpad
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(fn toggle-scratchpad
-  [workspace]
-  (fn []
-    (let [tag-name (. workspace :tag-name)
-
-          s (awful.screen.focused)
-          x-tag (awful.tag.find_by_name s tag-name)
-          x-client (when x-tag
-                     (when (> (length (x-tag:clients)) 0)
-                       (-> (x-tag:clients)
-                           (. 1))))]
-      (if
-       ;; if tag and a client, toggle tag, focus client
-       (and x-tag x-client)
-       (do
-         (awful.tag.viewtoggle x-tag)
-         (tset x-client :ontop (not (. x-client :ontop)))
-         (if (not x-client.active)
-             ;; _G indicates a 'true' global, that fennel did not reject
-             (tset _G.client :focus x-client)))
-
-       ;; if tag but no client, create client
-       (and x-tag (not x-client))
-       (create-client workspace)
-
-       ;; no tag? create it
-       (not x-tag)
-       (do
-         (awful.tag.add tag-name {:screen s
-                                  :gap 10})
-         ;; TODO should only create here if no x-client exists
-         ;; across whole system, not just in this tag
-         (create-client workspace))
-       ))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; WIBAR
@@ -172,7 +102,6 @@
 (local mytextclock (wibox.widget.textclock "%H:%M "))
 
 (local blue "#9EBABA")
-(local red "#EB8F8F")
 (local separator (wibox.widget.textbox
                   (.. "         <span color=\"" blue "\">| </span>         ")))
 
@@ -287,11 +216,11 @@
         (key [:mod] "Escape" awful.tag.history.restore)
 
         ;; scratchpads
-        (key [:mod] "u" (toggle-scratchpad w.journal-tag))
-        (key [:mod] "y" (toggle-scratchpad w.yodo-tag))
-        (key [:mod] "r" (toggle-scratchpad w.notes-tag))
-        (key [:mod] "t" (toggle-scratchpad w.web-tag))
-        (key [:mod] "0" (toggle-scratchpad w.dotfiles-tag))
+        (key [:mod] "u" (scratchpad.toggle w.journal-tag))
+        (key [:mod] "y" (scratchpad.toggle w.yodo-tag))
+        (key [:mod] "r" (scratchpad.toggle w.notes-tag))
+        (key [:mod] "t" (scratchpad.toggle w.web-tag))
+        (key [:mod] "0" (scratchpad.toggle w.dotfiles-tag))
 
         ;; cycle clients
         (key [:mod] "Tab"
@@ -460,17 +389,18 @@
       :rules
       (gears.table.join
        {:rule {}
-        :properties {:border_width beautiful.border_width
-                     :border_color beautiful.border_normal
-                     :focus awful.client.focus.filter
-                     :raise true
-                     :keys clientkeys
-                     :buttons clientbuttons
-                     :size_hints_honor false ;; Remove gaps between terminals
-                     :screen awful.screen.preferred
-                     :callback awful.client.setslave
-                     :placement (+ awful.placement.no_overlap
-                                   awful.placement.no_offscreen)}}
+        :properties
+        {:border_width beautiful.border_width
+         :border_color beautiful.border_normal
+         :focus awful.client.focus.filter
+         :raise true
+         :keys clientkeys
+         :buttons clientbuttons
+         :size_hints_honor false ;; Remove gaps between terminals
+         :screen awful.screen.preferred
+         :callback awful.client.setslave
+         :placement (+ awful.placement.no_overlap
+                       awful.placement.no_offscreen)}}
 
        ;; Floating clients.
        {:rule_any
@@ -483,7 +413,6 @@
        ;; Add titlebars to normal clients and dialogs
        {:rule_any {:type ["normal" "dialog"]}
         :properties {:titlebars_enabled true}}
-
 
        ;; attempt to wrangle browser windows
        ;; currently too broad, catching slack, discord, spotify
@@ -501,19 +430,8 @@
                   (awful.client.movetotag tag c))
                 (set assigned-browser true))))}
 
-       ;; convert to function with slack-tag arg
-       {:rule_any {:class ["Slack" "slack" "discord"]
-                   :name ["slack" "Slack"]}
-        :properties {:tag w.slack-tag.tag-name
-                     :floating false}}
-
-       {:rule_any {:class ["spotify" "pavucontrol"]
-                   :name ["spotify" "Spotify" "pavucontrol" "Pavucontrol"]}
-        :properties {:tag w.spotify-tag.tag-name
-                     :floating false}}
-
        w.rules-scratchpad-emacs
-       ))
+       w.rules-apps-on-tag))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Signals
