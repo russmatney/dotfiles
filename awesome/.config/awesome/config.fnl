@@ -4,12 +4,10 @@
 (local gears (require "gears"))
 (local awful (require "awful"))
 (require "awful.autofocus")
-(require "awful.hotkeys_popup.keys.vim")
-
 (local naughty (require "naughty"))
 (local wibox (require "wibox"))
-
 (local hotkeys_popup (require "awful.hotkeys_popup"))
+(require "awful.hotkeys_popup.keys.vim")
 (local beautiful (require "beautiful"))
 
 (local view (require :fennelview))
@@ -24,7 +22,14 @@
 ;; Theming
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(beautiful.init "/usr/share/awesome/themes/cesious/theme.lua")
+
+;; (beautiful.init "/usr/share/awesome/themes/default/theme.lua")
+;; (beautiful.init "/usr/share/awesome/themes/cesious/theme.lua")
+(beautiful.init "/usr/share/awesome/themes/gtk/theme.lua")
+;; (beautiful.init "/usr/share/awesome/themes/sky/theme.lua")
+;; (beautiful.init "/usr/share/awesome/themes/xresources/theme.lua")
+;; (beautiful.init "/usr/share/awesome/themes/zenburn/theme.lua")
+;; (beautiful.init "./theme.lua")
 (set beautiful.icon_theme "Papirus-Dark")
 (set beautiful.bg_normal "#141A1B")
 (set beautiful.bg_focus "#222B2E")
