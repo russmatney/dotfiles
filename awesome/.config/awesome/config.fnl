@@ -13,10 +13,11 @@
 (local hotkeys_popup (require "awful.hotkeys_popup"))
 (local beautiful (require "beautiful"))
 
-(require "./remote")
-
 (local view (require :fennelview))
 (global pp (fn [x] (print (view x))))
+
+(require "./remote")
+
 
 (local w (require :workspaces))
 
@@ -90,7 +91,7 @@
 (fn spawn-fn
   [cmd]
   (fn []
-    (awful.spawn_with_shell cmd)))
+    (awful.spawn cmd)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Workspace data
