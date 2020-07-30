@@ -79,10 +79,19 @@
                  (_G.client.focus:raise))))
 
         ;; terminal
-        (key [:mod] "Return" (spawn-fn "ralphie open-term"))
+        (key [:mod] "Return"
+             (fn []
+               (let [current-tag (. (awful.screen.focused) :selected_tag)
+                     name current-tag.name
+                     str (.. "ralphie open-term " name)]
+                 (awful.spawn str))))
 
         ;; emacs
-        (key [:mod :shift] "Return" (spawn-fn "ralphie open-emacs"))
+        (key [:mod :shift] "Return"
+             (fn []
+               (let [current-tag (. (awful.screen.focused) :selected_tag)
+                     name current-tag.name]
+                 (awful.spawn (.. "ralphie open-emacs " name)))))
 
         ;; browser
         (key [:mod :shift] "b" (spawn-fn "google-chrome-stable"))
