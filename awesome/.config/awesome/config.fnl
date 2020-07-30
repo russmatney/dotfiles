@@ -97,7 +97,9 @@
 
 (local blue "#9EBABA")
 (local separator (wibox.widget.textbox
-                  (.. "         <span color=\"" blue "\">| </span>         ")))
+                  (.. "         <span color=\""
+                      blue
+                      "\">| </span>         ")))
 
 ;; Create a wibox for each screen and add it
 (local taglist_buttons

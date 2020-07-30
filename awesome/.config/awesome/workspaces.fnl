@@ -91,6 +91,7 @@
                 :tag t.tag-name
                 :screen 1
                 :ontop true
+                :above true
                 :floating true
                 :focus true}}))))
 

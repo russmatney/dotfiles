@@ -21,8 +21,6 @@ local type = type
 local client_env_mt = {}
 local client_env = setmetatable({}, client_env_mt)
 
-print "starting up sandbox due to require!"
-
 -- lazily set up awful (otherwise we get circular deps)
 function client_env_mt:__index(key)
     client_env.awful = require 'awful'
