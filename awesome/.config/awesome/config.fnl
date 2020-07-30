@@ -195,12 +195,10 @@
 
 (var assigned-browser false)
 
-(pp bindings.clientkeys)
 ;; Rules to apply to new clients (through the "manage" signal).
-(tset awful.rules
-      :rules
-      (gears.table.join
-       {:rule {}
+(set awful.rules.rules
+     (gears.table.join
+      [{:rule {}
         :properties
         {:border_width beautiful.border_width
          :border_color beautiful.border_normal
@@ -240,10 +238,10 @@
                 (tset c :floating true)
                 (when tag
                   (awful.client.movetotag tag c))
-                (set assigned-browser true))))}
+                (set assigned-browser true))))}]
 
-       w.rules-scratchpad-emacs
-       w.rules-apps-on-tag))
+      w.rules-scratchpad-emacs
+      w.rules-apps-on-tag))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Signals
@@ -344,4 +342,5 @@
                    (tset c :border_width beautiful.border_width)))))))))
 
 ;; spawn autorun
+;; TODO only run at login, not every restart
 (awful.spawn.with_shell "~/.config/awesome/autorun.sh")

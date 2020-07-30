@@ -113,6 +113,9 @@
         (key [] "XF86AudioPlay" (spawn-fn "spotifycli --playpause"))
         (key [] "XF86AudioNext" (spawn-fn "playerctl next"))
         (key [] "XF86AudioPrev" (spawn-fn "playerctl previous"))
+        (key [] "XF86AudioMute" (spawn-fn "pactl set-sink-mute @DEFAULT_SINK@ toggle"))
+        (key [] "XF86AudioRaiseVolume" (spawn-fn "pactl set-sink-volume @DEFAULT_SINK@ +5%"))
+        (key [] "XF86AudioLowerVolume" (spawn-fn "pactl set-sink-volume @DEFAULT_SINK@ -5%"))
         ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -162,7 +165,6 @@
 
 
 (_G.root.keys (gears.table.join global-keys tag-keys))
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Client Keybindings
