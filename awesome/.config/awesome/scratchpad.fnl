@@ -40,11 +40,22 @@
       (if
        ;; if tag and a client, toggle tag, focus client
        (and x-tag x-client)
-       (do
-         (awful.tag.viewtoggle x-tag)
-         (tset x-client :ontop (not (. x-client :ontop)))
-         (if (not x-client.active)
-             ;; _G indicates a 'true' global, that fennel did not reject
+       (if x-tag.selected
+           ;; deselect
+           (do
+             (awful.tag.viewtoggle x-tag)
+             (tset x-client :ontop false))
+           ;; select
+           (do
+             (awful.tag.viewtoggle x-tag)
+
+             ;; set all ontops to false
+             ;; may want a tighter filter here at some point
+             (each [c (awful.client.iterate (fn [c] c.ontop))]
+               (set c.ontop false))
+
+             (tset x-client :ontop true)
+             ;; focus the client
              (tset _G.client :focus x-client)))
 
        ;; if tag but no client, create client
