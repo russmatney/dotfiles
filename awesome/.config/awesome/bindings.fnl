@@ -2,6 +2,8 @@
 (local gears (require "gears"))
 (local awful (require "awful"))
 
+(local dashboard (require :dashboard))
+
 (local scratchpad (require :scratchpad))
 (local w (require :workspaces))
 
@@ -65,6 +67,9 @@
         (key [:mod] "r" (scratchpad.toggle w.notes-tag))
         (key [:mod] "t" (scratchpad.toggle w.web-tag))
         (key [:mod] "0" (scratchpad.toggle w.dotfiles-tag))
+
+        (key [:mod] "d" (fn []
+                          (dashboard.dashboard_show)))
 
         ;; cycle clients
         (key [:mod] "Tab"
