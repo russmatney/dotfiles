@@ -10,7 +10,9 @@
 (local beautiful (require "beautiful"))
 
 (local view (require :fennelview))
+(local inspect (require :inspect))
 (global pp (fn [x] (print (view x))))
+(global ppi (fn [x] (print (inspect x))))
 
 (require "./remote")
 
@@ -221,7 +223,10 @@
         :callback
         (fn [c]
           (print "\n\nnew client!")
-          (print (.. c.class " " c.name))
+          (pp c)
+          (ppi c)
+          (print c.class)
+          (print c.name)
           )}
 
        ;; Floating clients.
@@ -242,27 +247,25 @@
         :properties {:screen 1}
         :callback
         (fn [c]
-          (print "\n\ncallback after role = browser")
-          (print (..  c.class " " c.name))
-          (var f nil)
-          (set f
-               (fn [c]
-                 (print "\nsignal on name change!")
-                 (print (..  c.class " " c.name))
-                 (c:disconnect_signal "property::name" f)
-                 (awful.rules.apply c)))
-          (c:connect_signal "property::name" f))}
-
-       ;; (fn [c]
-       ;;   (if (not assigned-browser)
-       ;;       (let [tag (awful.tag.find_by_name
-       ;;                  (awful.screen.focused)
-       ;;                  w.web-tag.tag-name)]
-       ;;         (tset c :above true)
-       ;;         (tset c :floating true)
-       ;;         (when tag
-       ;;           (awful.client.movetotag tag c))
-       ;;         (set assigned-browser true))))}
+          (if
+           (and
+            (not (= c.class "Slack"))
+            (not c.name_change_handled))
+           (do
+             (print "\n\ncallback after role = browser")
+             (print c.class)
+             (print c.name)
+             (var f nil)
+             (set f
+                  (fn [c]
+                    (print "\nsignal on name change!")
+                    (print c.class)
+                    (print c.name)
+                    (tset c :name_change_handled true)
+                    (c:disconnect_signal "property::name" f)
+                    (awful.rules.apply c)
+                    ))
+             (c:connect_signal "property::name" f))))}
        ]
 
       w.rules-scratchpad-emacs
