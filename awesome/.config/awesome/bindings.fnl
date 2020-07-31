@@ -7,6 +7,8 @@
 (local scratchpad (require :scratchpad))
 (local w (require :workspaces))
 
+(local tablex (require :pl.tablex))
+
 (local exp {})
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -72,9 +74,6 @@
         (key [:mod] "d" (fn []
                           (dashboard.dashboard_show)))
 
-        (key [:mod] "p" (fn []
-                          (dashboard.dashboard_show)))
-
         ;; cycle clients
         (key [:mod] "Tab"
              (fn []
@@ -86,6 +85,33 @@
                (awful.client.focus.byidx -1)
                (when _G.client.focus
                  (_G.client.focus:raise))))
+
+        ;; cycle workspaces
+        (key [:mod] "n"
+             (fn []
+               (let [scr (awful.screen.focused)
+                     current-tag scr.selected_tag
+                     idx current-tag.index
+                     tag-count (tablex.size scr.tags)
+                     next-idx (- idx 1)
+                     next-idx (if (< next-idx 1)
+                                  tag-count
+                                  next-idx)
+                     next-tag (. scr.tags next-idx)]
+                 (next-tag:view_only))))
+        (key [:mod] "p"
+             (fn []
+               (let [scr (awful.screen.focused)
+                     current-tag scr.selected_tag
+                     idx current-tag.index
+                     tag-count (tablex.size scr.tags)
+                     next-idx (+ idx 1)
+                     next-idx (if (> next-idx tag-count)
+                                  1
+                                  next-idx)
+                     next-tag (. scr.tags next-idx)]
+                 (next-tag:view_only))))
+
 
         ;; terminal
         (key [:mod] "Return"
