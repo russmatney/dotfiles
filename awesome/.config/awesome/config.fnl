@@ -217,6 +217,13 @@
          :placement (+ awful.placement.no_overlap
                        awful.placement.no_offscreen)}}
 
+       {:rule {}
+        :callback
+        (fn [c]
+          (print "\n\nnew client!")
+          (print (.. c.class " " c.name))
+          )}
+
        ;; Floating clients.
        {:rule_any
         {:instance ["DTA" "copyq"]
@@ -231,19 +238,31 @@
 
        ;; attempt to wrangle browser windows
        ;; currently too broad, catching slack, discord, spotify
-       ;; {:rule {:role "browser"}
-       ;;  :properties {:screen 1}
-       ;;  :callback
-       ;;  (fn [c]
-       ;;    (if (not assigned-browser)
-       ;;        (let [tag (awful.tag.find_by_name
-       ;;                   (awful.screen.focused)
-       ;;                   w.web-tag.tag-name)]
-       ;;          (tset c :above true)
-       ;;          (tset c :floating true)
-       ;;          (when tag
-       ;;            (awful.client.movetotag tag c))
-       ;;          (set assigned-browser true))))}
+       {:rule {:role "browser"}
+        :properties {:screen 1}
+        :callback
+        (fn [c]
+          (print "\n\ncallback after role = browser")
+          (print (..  c.class " " c.name))
+          (var f nil)
+          (set f
+               (fn [c]
+                 (print "\nsignal on name change!")
+                 (print (..  c.class " " c.name))
+                 (c:disconnect_signal "property::name" f)
+                 (awful.rules.apply c)))
+          (c:connect_signal "property::name" f))}
+
+       ;; (fn [c]
+       ;;   (if (not assigned-browser)
+       ;;       (let [tag (awful.tag.find_by_name
+       ;;                  (awful.screen.focused)
+       ;;                  w.web-tag.tag-name)]
+       ;;         (tset c :above true)
+       ;;         (tset c :floating true)
+       ;;         (when tag
+       ;;           (awful.client.movetotag tag c))
+       ;;         (set assigned-browser true))))}
        ]
 
       w.rules-scratchpad-emacs
