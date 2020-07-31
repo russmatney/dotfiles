@@ -264,7 +264,9 @@
                     (tset c :name_change_handled true)
                     (c:disconnect_signal "property::name" f)
                     (awful.rules.apply c)
+                    (set c.minimized false)
                     ))
+             (set c.minimized true)
              (c:connect_signal "property::name" f))))}
        ]
 
@@ -288,7 +290,16 @@
             (not c.size_hints.user_position)
             (not c.size_hints.program_position))
        ;; Prevent clients from being unreachable after screen count changes.
-       (awful.placement.no_offscreen c))))
+       (awful.placement.no_offscreen c))
+
+   (if (not c.class)
+       (do
+         (set c.minimized true)
+         (c:connect_signal
+          "property::class"
+          (fn [c]
+            (set c.minimized false)
+            (awful.rules.apply c)))))))
 
 ;; Add a titlebar if titlebars_enabled is set to true in the rules.
 (_G.client.connect_signal
