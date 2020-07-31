@@ -219,15 +219,15 @@
          :placement (+ awful.placement.no_overlap
                        awful.placement.no_offscreen)}}
 
-       {:rule {}
-        :callback
-        (fn [c]
-          (print "\n\nnew client!")
-          (pp c)
-          (ppi c)
-          (print c.class)
-          (print c.name)
-          )}
+       ;; {:rule {}
+       ;;  :callback
+       ;;  (fn [c]
+       ;;    (print "\n\nnew client!")
+       ;;    (pp c)
+       ;;    (ppi c)
+       ;;    (print c.class)
+       ;;    (print c.name)
+       ;;    )}
 
        ;; Floating clients.
        {:rule_any
@@ -252,15 +252,9 @@
             (not (= c.class "Slack"))
             (not c.name_change_handled))
            (do
-             (print "\n\ncallback after role = browser")
-             (print c.class)
-             (print c.name)
              (var f nil)
              (set f
                   (fn [c]
-                    (print "\nsignal on name change!")
-                    (print c.class)
-                    (print c.name)
                     (tset c :name_change_handled true)
                     (c:disconnect_signal "property::name" f)
                     (awful.rules.apply c)
