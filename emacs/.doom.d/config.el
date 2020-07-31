@@ -119,6 +119,7 @@
   (monroe-interaction-mode t))
 
 (use-package! fennel-mode
+  :hook (fennel-mode . rainbow-delimiters-mode)
   :config
   ;; (add-hook 'fennel-mode-hook #'fennel-enable-monroe)
   (setq fennel-mode-switch-to-repl-after-reload nil))
