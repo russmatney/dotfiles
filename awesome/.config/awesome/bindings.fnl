@@ -62,6 +62,7 @@
         (key [:mod] "Escape" awful.tag.history.restore)
 
         ;; scratchpads
+        (key [:mod] "a" (scratchpad.toggle w.awesome-tag))
         (key [:mod] "u" (scratchpad.toggle w.journal-tag))
         (key [:mod] "y" (scratchpad.toggle w.yodo-tag))
         (key [:mod] "r" (scratchpad.toggle w.notes-tag))

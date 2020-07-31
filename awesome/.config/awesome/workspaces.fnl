@@ -29,6 +29,7 @@
 (set mytags.awesome-tag
      {:sort-key 1
       :tag-name "awesome"
+      :scratchpad-key "a"
       :emacs-file "~/.config/awesome/cfg.fnl"})
 
 (set mytags.journal-tag

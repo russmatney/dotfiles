@@ -17,8 +17,6 @@
 (local w (require :workspaces))
 (local bindings (require :bindings))
 
-(pp bindings)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Theming
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -228,19 +226,20 @@
 
        ;; attempt to wrangle browser windows
        ;; currently too broad, catching slack, discord, spotify
-       {:rule {:role "browser"}
-        :properties {:screen 1}
-        :callback
-        (fn [c]
-          (if (not assigned-browser)
-              (let [tag (awful.tag.find_by_name
-                         (awful.screen.focused)
-                         w.web-tag.tag-name)]
-                (tset c :above true)
-                (tset c :floating true)
-                (when tag
-                  (awful.client.movetotag tag c))
-                (set assigned-browser true))))}]
+       ;; {:rule {:role "browser"}
+       ;;  :properties {:screen 1}
+       ;;  :callback
+       ;;  (fn [c]
+       ;;    (if (not assigned-browser)
+       ;;        (let [tag (awful.tag.find_by_name
+       ;;                   (awful.screen.focused)
+       ;;                   w.web-tag.tag-name)]
+       ;;          (tset c :above true)
+       ;;          (tset c :floating true)
+       ;;          (when tag
+       ;;            (awful.client.movetotag tag c))
+       ;;          (set assigned-browser true))))}
+       ]
 
       w.rules-scratchpad-emacs
       w.rules-apps-on-tag))
