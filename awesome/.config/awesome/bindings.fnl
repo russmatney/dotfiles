@@ -72,6 +72,9 @@
         (key [:mod] "d" (fn []
                           (dashboard.dashboard_show)))
 
+        (key [:mod] "p" (fn []
+                          (dashboard.dashboard_show)))
+
         ;; cycle clients
         (key [:mod] "Tab"
              (fn []
@@ -107,18 +110,6 @@
 
         ;; finder (thunar)
         (key [:mod] "e" (spawn-fn "/usr/bin/thunar"))
-
-        ;; widen/shink window
-        (key [:mod :shift] "l" (fn [] (awful.tag.incmwfact 0.05)))
-        (key [:mod :shift] "h" (fn [] (awful.tag.incmwfact -0.05)))
-        (key [:mod :shift] "j" (fn [] (awful.client.incwfact 0.05)))
-        (key [:mod :shift] "k" (fn [] (awful.client.incwfact -0.05)))
-
-        ;; restore minimized
-        (key [:mod :shift] "n" (fn [] (let [c (awful.client.restore)]
-                                        (when c
-                                          (tset _G.client :focus c)
-                                          (c:raise)))))
 
         ;; screenshots
         (key [:mod :shift] "s" (spawn-fn "/usr/bin/i3-scrot"))
@@ -194,32 +185,64 @@
       ;; toggle floating
       (key [:mod] "f" awful.client.floating.toggle)
 
-      ;; toggle keep-on-top
-      ;; (key [:mod] "t" (fn [c] (tset c :ontop (not c.ontop))))
+      ;; center on screen
+      (key [:mod] "c"
+           (fn [c]
+             (-> c
+                 (tset :floating true)
+                 ((+ awful.placement.scale
+                     awful.placement.centered)
+                  {:to_percent 0.75}))))
 
-      ;; center on screen
-      (key [:mod] "c" (fn [c]
-                        ((+ awful.placement.scale
-                            awful.placement.centered)
-                         c
-                         {:to_percent 0.75})))
-      ;; center on screen
-      (key [:mod :shift] "c" (fn [c]
-                               ((+ awful.placement.scale
-                                   awful.placement.centered)
-                                c
-                                {:to_percent 0.9})))
+      ;; widen/shink windows
+      (key [:mod :shift] "l"
+           (fn [c]
+             (if c.floating
+                 (awful.placement.scale
+                  c {:direction "right"
+                     :by_percent 1.1})
+                 (awful.tag.incmwfact 0.05))))
+      (key [:mod :shift] "h"
+           (fn [c]
+             (if c.floating
+                 (awful.placement.scale
+                  c {:direction "right"
+                     :by_percent 0.9})
+                 (awful.tag.incmwfact -0.05))))
+      (key [:mod :shift] "j"
+           (fn [c]
+             (if c.floating
+                 (awful.placement.scale
+                  c {:direction "down"
+                     :by_percent 1.1})
+                 (awful.client.incwfact 0.05))))
+      (key [:mod :shift] "k"
+           (fn [c]
+             (if c.floating
+                 (awful.placement.scale
+                  c {:direction "down"
+                     :by_percent 0.9})
+                 (awful.client.incwfact -0.05))))
+
+
+      ;; large centered
+      (key [:mod :shift] "c"
+           (fn [c]
+             (-> c
+                 (tset :floating true)
+                 ((+ awful.placement.scale
+                     awful.placement.centered)
+                  {:to_percent 0.9}))))
+
+      ;; center without resizing
+      (key [:mod :ctrl] "c"
+           (fn [c]
+             (-> c
+                 (tset :floating true)
+                 awful.placement.centered)))
 
       ;; swap with master
-      (key [:mod :ctrl] "Return" (fn [c] (c:swap (awful.client.getmaster))))
-
-      ;; minimize
-      (key [:mod] "n" (fn [c] (tset c :minimized true)))
-
-      ;; toggle full-screen
-      (key [:mod] "m" (fn [c]
-                        (tset c :maximized (not c.maximized))
-                        (c:raise)))))
+      (key [:mod :ctrl] "Return" (fn [c] (c:swap (awful.client.getmaster))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Mouse bindings
