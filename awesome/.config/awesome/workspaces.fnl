@@ -30,7 +30,7 @@
      {:sort-key 1
       :tag-name "awesome"
       :scratchpad-key "a"
-      :emacs-file "~/.config/awesome/cfg.fnl"})
+      :emacs-file "~/.config/awesome/config.fnl"})
 
 (set mytags.journal-tag
      {:sort-key 9

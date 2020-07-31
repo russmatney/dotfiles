@@ -16,11 +16,13 @@
 
      emacs-file
      (awful.spawn.with_shell
-      (.. "emacsclient --alternate-editor='' --no-wait --create-frame "
-          emacs-file
-          " -F '(quote (name . \""
-          (. workspace :tag-name)
-          "\"))' --display $DISPLAY")))))
+      (.. "emacsclient --alternate-editor='' --no-wait"
+          " --create-frame "
+          " -F '(quote (name . \"" (. workspace :tag-name) "\"))'"
+          " --display $DISPLAY"
+          " --eval "
+          " '(russ/open-workspace \"" (. workspace :tag-name) "\")'"
+          " '(find-file \"" emacs-file "\")'")))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Toggle Scratchpad

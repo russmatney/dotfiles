@@ -159,12 +159,17 @@
    ;; Create a taglist widget
    (set s.mytaglist
         (awful.widget.taglist
-         s awful.widget.taglist.filter.all taglist_buttons))
+         {:screen s
+          :filter awful.widget.taglist.filter.all
+          :buttons taglist_buttons
+          :update_function awful.widget.common.list_update}))
 
    ;; Create a tasklist widget
    (set s.mytasklist
         (awful.widget.tasklist
-         s awful.widget.tasklist.filter.currenttags tasklist_buttons))
+         {:screen s
+          :filter awful.widget.tasklist.filter.currenttags
+          :buttons tasklist_buttons}))
 
    ;; Create the wibox
    (set s.mywibox
