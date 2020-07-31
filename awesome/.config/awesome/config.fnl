@@ -348,5 +348,8 @@
                    (tset c :border_width beautiful.border_width)))))))))
 
 ;; spawn autorun
-;; TODO only run at login, not every restart
-(awful.spawn.with_shell "~/.config/awesome/autorun.sh")
+(awful.spawn.once "~/.config/awesome/autorun.sh")
+
+;; restart some app services
+(awful.spawn.once "run sc --user restart yodo yodo-fe bb-nrepl ralphie-nrepl")
+(awful.spawn "xset r rate 150 60")

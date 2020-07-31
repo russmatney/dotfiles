@@ -1,0 +1,11 @@
+[Unit]
+Description=ralphie babashka nrepl
+
+[Service]
+Type=simple
+WorkingDirectory=/home/russ/russmatney/ralphie
+ExecStart=rlwrap bb -cp $(clojure -Spath) --nrepl-server 7777
+Restart=on-failure
+
+[Install]
+WantedBy=graphical.target

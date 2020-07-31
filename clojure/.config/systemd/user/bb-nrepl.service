@@ -1,0 +1,11 @@
+[Unit]
+Description=generic babashka nrepl service
+
+[Service]
+Type=simple
+WorkingDirectory=/home/russ/russmatney/scratch
+ExecStart=rlwrap bb --nrepl-server 1667
+Restart=on-failure
+
+[Install]
+WantedBy=graphical.target
