@@ -84,12 +84,6 @@
               (awful.screen.focused)
               lain.layout.centerwork)))
 
-(global
- reapply_rules
- (fn []
-   (each [c (awful.client.iterate (fn [_] true))]
-     (awful.rules.apply c))))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Rules
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -296,3 +290,23 @@
    ;; kick variety to fix the background asap
    ;; TODO write the current/latest to the current theme
    (awful.spawn "variety --next")))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Global Functions
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+(global
+ reapply_rules
+ (fn []
+   (each [c (awful.client.iterate (fn [_] true))]
+     (awful.rules.apply c))))
+
+(global
+ set_layout
+ (fn [layout]
+   (-> (awful.screen.focused)
+       (. :selected_tag)
+       ((fn [t]
+          (t.object.set_layout layout))))))
+
