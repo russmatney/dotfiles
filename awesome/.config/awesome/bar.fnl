@@ -130,6 +130,8 @@
             :mute_color "#ff0000"
             :inc_volume_cmd "pactl set-sink-volume @DEFAULT_SINK@ +5%"
             :dec_volume_cmd "pactl set-sink-volume @DEFAULT_SINK@ -5%"
+            :get_volume_cmd "get-volume"
+            :tog_volume_cmd "pactl set-sink-mute @DEFAULT_SINK@ toggle"
             :width 80
             :shape "rounded_bar"
             :margins 4})
