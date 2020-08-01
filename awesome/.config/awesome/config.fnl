@@ -12,6 +12,8 @@
 (local gears (require "gears"))
 (local awful (require "awful"))
 
+(local lain (require "lain"))
+
 (local view (require :fennelview))
 (local inspect (require :inspect))
 (global pp (fn [x] (print (view x))))
@@ -42,6 +44,7 @@
 (set beautiful.bg_focus "#222B2E")
 (set beautiful.font "Noto Sans Regular 10")
 (set beautiful.notification_font "Noto Sans Bold 14")
+(set beautiful.useless_gap 30)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Error Handling
@@ -78,7 +81,7 @@
 (fn add-all-tags []
   (awful.tag w.tag-names
              (awful.screen.focused)
-             awful.layout.suit.tile))
+             lain.layout.centerwork))
 
 ;; TODO create an init?
 (add-all-tags)

@@ -8,6 +8,7 @@
 (local w (require :workspaces))
 
 (local tablex (require :pl.tablex))
+(local lain (require :lain))
 
 (local exp {})
 
@@ -75,6 +76,10 @@
                           (dashboard.dashboard_show)))
 
         ;; cycle clients
+        ;;
+        ;; (key [:mod] "Tab"
+        ;;      (fn []
+        ;;        (lain.util.menu_clients_current_tags {:width 350 } {:keygrabber true})))
         (key [:mod] "Tab"
              (fn []
                (awful.client.focus.byidx 1)
