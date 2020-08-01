@@ -4,11 +4,14 @@
 # key: defcom
 # condition: t
 # --
+(:require
+   [ralphie.command :refer [defcom]])
+
 (defn $1-handler [_config _parsed]
   $4)
 
-(def $1-cmd
+(defcom $1-cmd
   {:name          "$1"
-   :one-line-desc "$1"
+   :one-line-desc "$2"
    :description ["$3"]
    :handler       $1-handler})
