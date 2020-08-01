@@ -78,14 +78,15 @@
      :desc "Open file in ~/dotfiles/"      :n "z" #'russ/open-dotfile
      :desc "Open file in ~/.doom.d/"       :n "c" #'russ/open-emacs-config-file
      :desc "Open file in yodo"             :n "y" #'russ/open-yodo-file
+     :desc "Open file in awesomeWM/awesome/lib" :n "A" #'russ/open-awesomewm-source
+     :desc "Open awesome config"         :n "a" (cmd! (find-file "~/.config/awesome/rc.lua"))
 
      :desc "Open ~/.zshrc"                 :n "v" (cmd! (find-file "~/.zshrc"))
      :desc "Open ~/.doom.d/+bindings.el"   :n "b" (cmd! (find-file "~/.doom.d/+bindings.el"))
      :desc "Open ~/.config/i3/config"      :n "i" (cmd! (find-file "~/.config/i3/config.base"))
      :desc "Open ~/.config/polybar/config" :n "p" (cmd! (find-file "~/.config/polybar/config"))
      :desc "Open ~/.tmux.conf"             :n "T" (cmd! (find-file "~/.tmux.conf"))
-     :desc "Open ~/todo/journal.org"        :n "j" (cmd! (find-file "~/todo/journal.org"))
-     :desc "Open awesome config"         :n "a" (cmd! (find-file "~/.config/awesome/rc.lua")))))
+     :desc "Open ~/todo/journal.org"        :n "j" (cmd! (find-file "~/todo/journal.org")))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

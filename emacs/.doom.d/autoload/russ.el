@@ -103,6 +103,12 @@ If DIR is not a project, it will be indexed (but not cached)."
   (doom-project-find-file "~/dotfiles/"))
 
 ;;;###autoload
+(defun russ/open-awesomewm-source ()
+  "Open a file from awesomewm's local repo."
+  (interactive)
+  (doom-project-find-file "~/awesomeWM/awesome/lib/"))
+
+;;;###autoload
 ;; Set transparency of emacs
 (defun russ/transparency (value)
   "Sets the transparency of the frame window. 0=transparent/100=opaque"
