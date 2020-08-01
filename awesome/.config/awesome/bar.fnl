@@ -139,14 +139,15 @@
         7 (brightness_widget)
         8 (weather_widget
            {:api_key "72dbd41948a77f4190010d7e2526aef0"
-            :coordinates [40.6782 73.9442]
+            :coordinates [40.6782 -73.9442]
             :time_format_12h   true
             :units   "imperial"
             :both_units_widget   true
             :font_name   "Carter One"
             :icons   "VitalyGorbachev"
             :show_hourly_forecast   true
-            :show_daily_forecast   true}
+            :show_daily_forecast   true
+            :icons_extension ".svg"}
            )
         9 (spotify_widget)
         }
