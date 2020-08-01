@@ -126,6 +126,9 @@
 
 (use-package! friar)
 
+(use-package! lua-mode
+  :hook (lua-mode . rainbow-delimiters-mode))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; other config files
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

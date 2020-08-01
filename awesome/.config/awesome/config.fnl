@@ -5,16 +5,23 @@
 (local awful (require "awful"))
 (require "awful.autofocus")
 (local naughty (require "naughty"))
-(local wibox (require "wibox"))
 (require "awful.hotkeys_popup.keys.vim")
 (local beautiful (require "beautiful"))
+
+(local wibox (require "wibox"))
+(local gears (require "gears"))
+(local awful (require "awful"))
 
 (local view (require :fennelview))
 (local inspect (require :inspect))
 (global pp (fn [x] (print (view x))))
 (global ppi (fn [x] (print (inspect x))))
 
+;; REPL env
 (require "./remote")
+
+;; top/bottom bar
+(require "./bar")
 
 (local w (require :workspaces))
 (local bindings (require :bindings))
@@ -47,6 +54,9 @@
                      :title  "Oops, there were errors during startup!"
                      :text  _G.awesome.startup_errors }))
 
+;; TODO fix the p.o.s. default config's bg, bindings, etc
+;; TODO fix error handling ux
+
 ;; Handle runtime errors after startup
 (let []
   (var in_error false)
@@ -62,22 +72,8 @@
          (set in_error false)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Tools
+;; Tags init
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(local modifiers {:mod "Mod4"
-                  :shift "Shift"
-                  :ctrl "Control"})
-
-(fn map-mods
-  [mods]
-  (->> mods
-       (fun.map (partial . modifiers))
-       (fun.totable)))
-
-(fn btn
-  [mods btn-code fun]
-  (awful.button (map-mods mods) btn-code fun))
 
 (fn add-all-tags []
   (awful.tag w.tag-names
@@ -87,120 +83,9 @@
 ;; TODO create an init?
 (add-all-tags)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; WIBAR
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-;; Create a textclock widget
-(local mytextclock (wibox.widget.textclock "%H:%M "))
-
-(local blue "#9EBABA")
-(local separator (wibox.widget.textbox
-                  (.. "         <span color=\""
-                      blue
-                      "\">| </span>         ")))
-
-;; Create a wibox for each screen and add it
-(local taglist_buttons
-       (gears.table.join
-        (btn [] 1 (fn [t] (t:view_only)))
-        (btn [:mod] 1
-             (fn [t]
-               (if _G.client.focus
-                   (_G.client.focus:move_to_tag t))))
-        (btn [] 3 awful.tag.viewtoggle)
-        (btn [:mod] 3
-             (fn [t]
-               (if _G.client.focus
-                   (_G.client.focus:toggle_tag t))))
-        (btn [] 4 (fn [t] (awful.tag.viewnext t.screen)))
-        (btn [] 5 (fn [t] (awful.tag.viewprev t.screen)))))
-
-(local tasklist_buttons
-       (gears.table.join
-        (btn []  1
-             (fn [c]
-               (if
-                (= c _G.client.focus)
-                (tset c :minimized true))
-
-               (do
-                 ;; Without this, the following
-                 ;; :isvisible() makes no sense
-                 (tset c :minimized false)
-
-                 (when (and (not (c:isvisible)) c.first_tag)
-                   (c.first_tag:view_only))
-
-                 ;; This will also un-minimize
-                 ;; the client, if needed
-                 (tset _G.client :focus c)
-                 (c:raise))))
-
-        ;; TODO fill in global right click? maybe hit ralphie?
-        ;; awful.button({ }, 3, client_menu_toggle_fn()),
-        (btn [] 4 (fn [] (awful.client.focus.byidx 1)))
-        (btn [] 5 (fn [] (awful.client.focus.byidx -1)))))
-
-(awful.screen.connect_for_each_screen
- (fn [s]
-   ;; Create a promptbox for each screen
-   (set s.mypromptbox (awful.widget.prompt))
-   ;; Create an imagebox widget which will contains an icon indicating which layout we're using.
-   ;; We need one layoutbox per screen.
-   (set s.mylayoutbox (awful.widget.layoutbox s))
-
-   (s.mylayoutbox:buttons
-    (gears.table.join
-     (btn [] 1 (fn [] (awful.layout.inc 1)))
-     (btn [] 3 (fn [] (awful.layout.inc -1)))
-     (btn [] 4 (fn [] (awful.layout.inc 1)))
-     (btn [] 5 (fn [] (awful.layout.inc -1)))))
-
-   ;; Create a taglist widget
-   (set s.mytaglist
-        (awful.widget.taglist
-         {:screen s
-          :filter awful.widget.taglist.filter.all
-          :buttons taglist_buttons
-          :update_function awful.widget.common.list_update}))
-
-   ;; Create a tasklist widget
-   (set s.mytasklist
-        (awful.widget.tasklist
-         {:screen s
-          :filter awful.widget.tasklist.filter.currenttags
-          :buttons tasklist_buttons}))
-
-   ;; Create the wibox
-   (set s.mywibox
-        (awful.wibar {:position "top" :screen s}))
-
-   ;; Add widgets to the wibox
-   (s.mywibox:setup
-    {:layout wibox.layout.align.horizontal
-     1  {:layout wibox.layout.fixed.horizontal ;; Left widgets
-         1 s.mytaglist
-         2 s.mypromptbox
-         3 separator}
-
-     ;; Middle widget
-     2 s.mytasklist
-
-     ;; Right widgets
-     3 {:layout wibox.layout.fixed.horizontal
-        1 (wibox.widget.systray)
-        2 separator
-        3 mytextclock
-        4 s.mylayoutbox}})))
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Rules
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(var assigned-browser false)
 
 ;; Rules to apply to new clients (through the "manage" signal).
 (set awful.rules.rules
@@ -301,14 +186,14 @@
  (fn [c]
    (let [buttons
          (gears.table.join
-          (btn [] 1 (fn []
-                      (set client.focus c)
-                      (c:raise)
-                      (awful.mouse.client.move c)))
-          (btn [] 3 (fn []
-                      (set client.focus c)
-                      (c:raise)
-                      (awful.mouse.client.resize c))))
+          (bindings.btn [] 1 (fn []
+                               (set client.focus c)
+                               (c:raise)
+                               (awful.mouse.client.move c)))
+          (bindings.btn [] 3 (fn []
+                               (set client.focus c)
+                               (c:raise)
+                               (awful.mouse.client.resize c))))
 
          titlebar (awful.titlebar c)]
 
@@ -380,3 +265,7 @@
 ;; restart some app services
 (awful.spawn.once "run sc --user restart yodo yodo-fe bb-nrepl ralphie-nrepl")
 (awful.spawn "xset r rate 150 60")
+
+;; kick variety to fix the background asap
+;; TODO write the current/latest to the current theme
+(awful.spawn "variety --next")

@@ -111,6 +111,8 @@
                                   next-idx)
                      next-tag (. scr.tags next-idx)]
                  (next-tag:view_only))))
+        (key [:mod :shift] "n"
+             (spawn-fn "ralphie awesome-create-tag"))
 
 
         ;; terminal
