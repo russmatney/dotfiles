@@ -47,6 +47,15 @@
 ;; Global keybindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(local centerwork_layout?
+       (fn []
+         (-> (awful.screen.focused)
+             (. :selected_tag)
+             (. :layout)
+             (. :name)
+             (= "centerwork"))))
+
+
 (local global-keys
        (gears.table.join
         ;; helpers
@@ -80,23 +89,37 @@
         ;; (key [:mod] "Tab"
         ;;      (fn []
         ;;        (lain.util.menu_clients_current_tags {:width 350 } {:keygrabber true})))
+
         (key [:mod] "Tab"
              (fn []
+               ;; move focus forward
                (awful.client.focus.byidx 1)
+
+               ;; raise the focused client
                (when _G.client.focus
-                 (_G.client.focus:raise))))
+                 (_G.client.focus:raise))
+
+               ;; swap to centered if relevant
+               (when (centerwork_layout?)
+                 (when _G.client.focus
+                   (_G.client.focus:swap (awful.client.getmaster))))))
+
         (key [:mod :shift] "Tab"
              (fn []
                (awful.client.focus.byidx -1)
                (when _G.client.focus
-                 (_G.client.focus:raise))))
+                 (_G.client.focus:raise))
+
+               (when (centerwork_layout?)
+                 (when _G.client.focus
+                   (_G.client.focus:swap (awful.client.getmaster))))))
 
         ;; cycle workspaces
         (key [:mod] "n"
              (fn []
                (let [scr (awful.screen.focused)
                      current-tag scr.selected_tag
-                     idx (if current-tag current-tag.index 0)
+                     idx (if current-tag current-tag.index 1)
                      tag-count (tablex.size scr.tags)
                      next-idx (- idx 1)
                      next-idx (if (< next-idx 1)
