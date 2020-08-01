@@ -1,4 +1,4 @@
-print("\n\n\nWelcome!\n\n\n")
+print("\n\n\nWelcome to a new awesome lifespan!\n\n\n")
 
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
@@ -12,6 +12,7 @@ fennel.path = fennel.path .. ";.config/awesome/?.fnl"
 -- (may need reboot after installing)
 table.insert(package.loaders or package.searchers, fennel.searcher)
 
+-- TODO move these into the theme
 local beautiful = require("beautiful")
 local xrdb = beautiful.xresources.get_current_theme()
 -- Make dpi function global
@@ -39,4 +40,8 @@ x = {
     color15    = xrdb.color15,
 }
 
+-- load some necessary globals
 require("config")
+require("run-init")
+
+init_awesome()

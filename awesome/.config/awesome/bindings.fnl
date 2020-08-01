@@ -131,7 +131,7 @@
              (fn []
                (let [scr (awful.screen.focused)
                      current-tag scr.selected_tag
-                     idx (if current-tag current-tag.index 0)
+                     idx (if current-tag current-tag.index 1)
                      tag-count (tablex.size scr.tags)
                      next-idx (+ idx 1)
                      next-idx (if (> next-idx tag-count)
@@ -230,6 +230,7 @@
  (fn []
    (_G.root.keys (gears.table.join global-keys tag-keys))))
 
+;; TODO move to global init
 (set_global_keys)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -317,6 +318,7 @@
       (btn [:mod] 1 awful.mouse.client.move)
       (btn [:mod] 3 awful.mouse.client.resize)))
 
+;; TODO leave the buttons defs, but consume them in the global init
 (_G.root.buttons (gears.table.join
                   ;; (btn [] 1 mymainmenu:hide)
                   ;; (btn [] 3 mymainmenu:toggle)
