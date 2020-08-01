@@ -96,7 +96,7 @@
              (fn []
                (let [scr (awful.screen.focused)
                      current-tag scr.selected_tag
-                     idx current-tag.index
+                     idx (if current-tag current-tag.index 0)
                      tag-count (tablex.size scr.tags)
                      next-idx (- idx 1)
                      next-idx (if (< next-idx 1)
@@ -108,7 +108,7 @@
              (fn []
                (let [scr (awful.screen.focused)
                      current-tag scr.selected_tag
-                     idx current-tag.index
+                     idx (if current-tag current-tag.index 0)
                      tag-count (tablex.size scr.tags)
                      next-idx (+ idx 1)
                      next-idx (if (> next-idx tag-count)
@@ -202,8 +202,12 @@
                    (when scr-tag
                      (_G.client.focus:toggle_tag scr-tag)))))))))
 
+(global
+ set_global_keys
+ (fn []
+   (_G.root.keys (gears.table.join global-keys tag-keys))))
 
-(_G.root.keys (gears.table.join global-keys tag-keys))
+(set_global_keys)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Client Keybindings
