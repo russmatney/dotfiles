@@ -32,19 +32,24 @@
 ;; Theming
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; (beautiful.init "/usr/share/awesome/themes/default/theme.lua")
-(beautiful.init "/usr/share/awesome/themes/cesious/theme.lua")
-;; (beautiful.init "/usr/share/awesome/themes/gtk/theme.lua")
-;; (beautiful.init "/usr/share/awesome/themes/sky/theme.lua")
-;; (beautiful.init "/usr/share/awesome/themes/xresources/theme.lua")
-;; (beautiful.init "/usr/share/awesome/themes/zenburn/theme.lua")
-;; (beautiful.init "./theme.lua")
-(set beautiful.icon_theme "Papirus-Dark")
-(set beautiful.bg_normal "#141A1B")
-(set beautiful.bg_focus "#222B2E")
-(set beautiful.font "Noto Sans Regular 10")
-(set beautiful.notification_font "Noto Sans Bold 14")
-(set beautiful.useless_gap 30)
+(global
+ init-theme
+ (fn []
+   ;; init theme
+   (-> (require "gears.filesystem")
+       (. :get_configuration_dir)
+       ((fn [f] (f)))
+       (.. "theme/theme.lua")
+       beautiful.init)
+   (set beautiful.icon_theme "Papirus-Dark")
+   (set beautiful.bg_normal "#141A1B")
+   (set beautiful.bg_focus "#222B2E")
+   (set beautiful.font "Noto Sans Regular 10")
+   (set beautiful.notification_font "Noto Sans Bold 14")
+   (set beautiful.useless_gap 30)))
+
+;; TODO move to global init
+(init-theme)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Error Handling
@@ -86,7 +91,7 @@
               lain.layout.centerwork)))
 
 ;; ;; TODO create an init?
-;; (add_all_tags)
+(add_all_tags)
 
 (global
  reapply_rules
