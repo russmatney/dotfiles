@@ -78,13 +78,21 @@
 ;; Tags init
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(fn add-all-tags []
-  (awful.tag w.tag-names
-             (awful.screen.focused)
-             lain.layout.centerwork))
+(global
+ add_all_tags
+ (fn []
+   (awful.tag w.tag-names
+              (awful.screen.focused)
+              lain.layout.centerwork)))
 
-;; TODO create an init?
-(add-all-tags)
+;; ;; TODO create an init?
+;; (add_all_tags)
+
+(global
+ reapply_rules
+ (fn []
+   (each [c (awful.client.iterate (fn [_] true))]
+     (awful.rules.apply c))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Rules
