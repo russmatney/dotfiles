@@ -76,4 +76,6 @@
    (_G.init_spawns config)))
 
 ;; hand off to ralphie
-(awful.spawn "ralphie awesome-init")
+;; (awful.spawn "ralphie awesome-init")
+;; or call it yourself
+(init)

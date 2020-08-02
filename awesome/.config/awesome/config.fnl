@@ -71,7 +71,9 @@
 
 (global
  init_tags
- (fn []
+ (fn [config]
+   (when (and config (. config :tag-names))
+     (print config.tag-names))
    (awful.tag w.tag-names
               (awful.screen.focused)
               lain.layout.centerwork)))
