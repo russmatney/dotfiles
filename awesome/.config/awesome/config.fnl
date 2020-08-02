@@ -3,21 +3,13 @@
 (local fun (require "fun"))
 (local gears (require "gears"))
 (local awful (require "awful"))
-(require "awful.autofocus")
 (local naughty (require "naughty"))
-(require "awful.hotkeys_popup.keys.vim")
 (local beautiful (require "beautiful"))
-
 (local wibox (require "wibox"))
-(local gears (require "gears"))
-(local awful (require "awful"))
 
 (local lain (require "lain"))
-
-(local view (require :fennelview))
 (local inspect (require :inspect))
-(global pp (fn [x] (print (view x))))
-(global ppi (fn [x] (print (inspect x))))
+(local view (require :fennelview))
 
 (local w (require :workspaces))
 (local bindings (require :bindings))

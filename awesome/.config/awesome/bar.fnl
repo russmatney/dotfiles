@@ -163,5 +163,4 @@
         3 {:layout wibox.layout.fixed.horizontal
            1 separator
            2 (wibox.widget.systray)
-           3 mytextclock}})))
-   ))
+           3 mytextclock}})))))

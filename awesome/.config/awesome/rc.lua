@@ -40,8 +40,5 @@ x = {
     color15    = xrdb.color15,
 }
 
--- load some necessary globals
-require("config")
+-- Setup done, start 'er up
 require("run-init")
-
-init_awesome()

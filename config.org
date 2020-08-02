@@ -1,0 +1,14 @@
+#+TITLE: Config
+
+* :type: tags
+** awesome
+** slack
+** spotify
+** web
+** notes
+** yodo
+** journal
+** dotfiles
+** ralphie
+** orgcrud
+** newrepo
