@@ -53,8 +53,21 @@
              (. :selected_tag)
              (. :layout)
              (. :name)
-             (= "centerwork"))))
+             ((fn [n]
+                (or
+                 (= n "centerworkh")
+                 (= n "centerwork")))))))
 
+(local cycled-layouts
+       [awful.layout.suit.tile
+        awful.layout.suit.floating
+        awful.layout.suit.fair
+        awful.layout.suit.magnifier
+        awful.layout.suit.spiral
+        awful.layout.suit.spiral.dwindle
+        lain.layout.centerwork
+        lain.layout.centerwork.horizontal
+        ])
 
 (local global-keys
        (gears.table.join
@@ -89,7 +102,6 @@
         ;; (key [:mod] "Tab"
         ;;      (fn []
         ;;        (lain.util.menu_clients_current_tags {:width 350 } {:keygrabber true})))
-
         (key [:mod] "Tab"
              (fn []
                ;; move focus forward
@@ -139,9 +151,17 @@
                                   next-idx)
                      next-tag (. scr.tags next-idx)]
                  (next-tag:view_only))))
-        (key [:mod :shift] "n"
-             (spawn-fn "ralphie awesome-create-tag"))
 
+        ;; cycle tags
+        (key [:mod :shift] "n"
+             (fn []
+               (let [scr (awful.screen.focused)]
+                 (awful.layout.inc 1 scr cycled-layouts))))
+        (key [:mod :shift] "p"
+             (fn []
+               (let [scr (awful.screen.focused)]
+                 (awful.layout.inc -1 scr cycled-layouts))
+               ))
 
         ;; terminal
         (key [:mod] "Return"
