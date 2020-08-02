@@ -129,6 +129,12 @@
 (use-package! lua-mode
   :hook (lua-mode . rainbow-delimiters-mode))
 
+(defun doom-buffer-has-long-lines-p ()
+  (when comment-use-syntax
+    (so-long-detected-long-line-p)))
+
+(setq so-long-predicate #'doom-buffer-has-long-lines-p)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; other config files
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
