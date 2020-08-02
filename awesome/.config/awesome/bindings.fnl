@@ -274,27 +274,37 @@
 
       ;; widen/shink windows
       (key [:mod :shift] "l"
+           (fn [c] (awful.client.focus.bydirection "right")))
+      (key [:mod :shift] "h"
+           (fn [c] (awful.client.focus.bydirection "left")))
+      (key [:mod :shift] "j"
+           (fn [c] (awful.client.focus.bydirection "down")))
+      (key [:mod :shift] "k"
+           (fn [c] (awful.client.focus.bydirection "up")))
+
+      ;; widen/shink windows
+      (key [:ctrl :shift] "l"
            (fn [c]
              (if c.floating
                  (awful.placement.scale
                   c {:direction "right"
                      :by_percent 1.1})
                  (awful.tag.incmwfact 0.05))))
-      (key [:mod :shift] "h"
+      (key [:ctrl :shift] "h"
            (fn [c]
              (if c.floating
                  (awful.placement.scale
                   c {:direction "right"
                      :by_percent 0.9})
                  (awful.tag.incmwfact -0.05))))
-      (key [:mod :shift] "j"
+      (key [:ctrl :shift] "j"
            (fn [c]
              (if c.floating
                  (awful.placement.scale
                   c {:direction "down"
                      :by_percent 1.1})
                  (awful.client.incwfact 0.05))))
-      (key [:mod :shift] "k"
+      (key [:ctrl :shift] "k"
            (fn [c]
              (if c.floating
                  (awful.placement.scale
