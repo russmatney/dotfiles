@@ -230,9 +230,6 @@
  (fn []
    (_G.root.keys (gears.table.join global-keys tag-keys))))
 
-;; TODO move to global init
-(set_global_keys)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Client Keybindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -319,10 +316,13 @@
       (btn [:mod] 3 awful.mouse.client.resize)))
 
 ;; TODO leave the buttons defs, but consume them in the global init
-(_G.root.buttons (gears.table.join
-                  ;; (btn [] 1 mymainmenu:hide)
-                  ;; (btn [] 3 mymainmenu:toggle)
-                  (btn [] 4 awful.tag.viewnext)
-                  (btn [] 5 awful.tag.viewprev)))
+(global
+ init_root_buttons
+ (fn []
+   (_G.root.buttons (gears.table.join
+                     ;; (btn [] 1 mymainmenu:hide)
+                     ;; (btn [] 3 mymainmenu:toggle)
+                     (btn [] 4 awful.tag.viewnext)
+                     (btn [] 5 awful.tag.viewprev)))))
 
 exp

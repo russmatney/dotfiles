@@ -42,29 +42,38 @@
 (global
  init
  (fn [config]
-   (print "\n\ninit_theme\n")
-   (_G.init_theme config)
+   ;; error handling
    (print "\n\ninit_error_handling\n")
    (_G.init_error_handling config)
-   (print "\n\ninit_tags\n")
-   (_G.init_tags config)
-   (print "\n\ninit_screen")
+
+   ;; theme
+   (print "\n\ninit_theme\n")
+   (_G.init_theme config)
+
+   ;; screen and tags
+   (print "\n\ninit screen and tags")
    (_G.init_screen config)
+   (_G.init_tags config)
+
+   ;; bindings
+   (print "\n\ninit bindings\n")
+   (_G.set_global_keys config)
+   (_G.init_root_buttons config)
+
+   ;; rules
    (print "\n\nset_rules\n")
    (_G.set_rules config)
-   (print "\n\ninit_manage_signal\n")
+
+   ;; signals
+   (print "\n\ninit_signals\n")
    (_G.init_manage_signal config)
-   (print "\n\ninit_request_titlebars\n")
    (_G.init_request_titlebars config)
-   (print "\n\ninit_focus_signals\n")
    (_G.init_focus_signals config)
-   (print "\n\ninit_arrange_signal\n")
    (_G.init_arrange_signal config)
+
+   ;; spawns
    (print "\n\ninit_spawns\n")
    (_G.init_spawns config)))
 
 ;; hand off to ralphie
 (awful.spawn "ralphie awesome-init")
-
-;; TODO remove once it works!
-(init)

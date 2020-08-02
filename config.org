@@ -1,11 +1,14 @@
 #+TITLE: Config
 
-* :type: tags
+* tags
+:PROPERTIES:
+:child-tag: awesometag
+:END:
 ** awesome
 ** slack
 ** spotify
 ** web
-** notes
+** hello
 ** yodo
 ** journal
 ** dotfiles
