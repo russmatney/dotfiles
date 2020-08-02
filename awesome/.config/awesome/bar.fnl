@@ -232,10 +232,10 @@
            :expand "none"
            1 s.mytasklist
            2 pomodoro_widget
-           2 (ram_widget)
-           3 (todo_widget)
+           3 (ram_widget)
+           4 (todo_widget)
            ;; 4 (batteryarc_widget) ;; not necessary on algo
-           4 (stackoverflow_widget
+           5 (stackoverflow_widget
               {:limit 10
                :tagged "clojure,fennel,babashka"})
            ;; 6 (volumebar_widget
@@ -249,7 +249,7 @@
            ;;     :shape "rounded_bar"
            ;;     :margins 4})
            ;; TODO double check on vader
-           5 (brightness_widget)
+           6 (brightness_widget)
            ;; 8 (weather_widget
            ;;    {:api_key "$OPENWEATHERMAP_APIKEY"
            ;;     :coordinates [40.6782 -73.9442]
@@ -262,7 +262,7 @@
            ;;     :show_daily_forecast   true
            ;;     :icons_extension ".svg"}
            ;;    )
-           6 (spotify_widget)
+           7 (spotify_widget)
            }
 
         ;; Right widgets

@@ -9,5 +9,6 @@ source "/home/russ/.secrets"
 
 eval $(luarocks path --bin)
 
-# b/c awesomewm does not believe in luarocks
-export LUA_PATH="$LUA_PATH;/usr/share/awesome/lib/?.lua;/usr/share/awesome/lib/?/init.lua"
+export LUA_PATH="$LUA_PATH\
+;/usr/share/awesome/lib/?.lua\
+;/usr/share/awesome/lib/?/init.lua"

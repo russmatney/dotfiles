@@ -29,6 +29,5 @@ i3/.config/i3/config.ralphie
 awesome/.config/awesome/stdout
 awesome/.config/awesome/logs
 awesome/.config/awesome/.luacheckcache
-awesome/.config/awesome/awesome-wm-widgets
 
 *flycheck*

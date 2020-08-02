@@ -1,7 +1,5 @@
 ;; named `run-init` rather than `init` to prevent accidental lua module loading
 
-(pcall "require" "luarocks.loader")
-
 (local view (require :fennelview))
 (local inspect (require :inspect))
 (local fun (require "fun"))
@@ -9,11 +7,9 @@
 (local awful (require "awful"))
 (local naughty (require "naughty"))
 (local beautiful (require "beautiful"))
-
 (local wibox (require "wibox"))
-(local gears (require "gears"))
-(local lain (require "lain"))
 
+(local lain (require "lain"))
 
 ;; TODO remove these
 (require "awful.autofocus")
