@@ -72,89 +72,96 @@
         (bindings.btn [] 4 (fn [] (awful.client.focus.byidx 1)))
         (bindings.btn [] 5 (fn [] (awful.client.focus.byidx -1)))))
 
-(awful.screen.connect_for_each_screen
- (fn [s]
-   ;; Create a promptbox for each screen
-   (set s.mypromptbox (awful.widget.prompt))
-   ;; Create an imagebox widget which will contains an icon indicating which layout we're using.
-   ;; We need one layoutbox per screen.
-   (set s.mylayoutbox (awful.widget.layoutbox s))
+;; TODO give global names a larger font size, or green flycheck underline
+(global
+ init_screen
+ (fn []
+   (awful.screen.connect_for_each_screen
+    (fn [s]
+      ;; Create a promptbox for each screen
+      (set s.mypromptbox (awful.widget.prompt))
+      ;; Create an imagebox widget which will contains an icon indicating which layout we're using.
+      ;; We need one layoutbox per screen.
+      (set s.mylayoutbox (awful.widget.layoutbox s))
 
-   (s.mylayoutbox:buttons
-    (gears.table.join
-     (bindings.btn [] 1 (fn [] (awful.layout.inc 1)))
-     (bindings.btn [] 3 (fn [] (awful.layout.inc -1)))
-     (bindings.btn [] 4 (fn [] (awful.layout.inc 1)))
-     (bindings.btn [] 5 (fn [] (awful.layout.inc -1)))))
+      ;; TODO move to bindings file
+      (s.mylayoutbox:buttons
+       (gears.table.join
+        (bindings.btn [] 1 (fn [] (awful.layout.inc 1)))
+        (bindings.btn [] 3 (fn [] (awful.layout.inc -1)))
+        (bindings.btn [] 4 (fn [] (awful.layout.inc 1)))
+        (bindings.btn [] 5 (fn [] (awful.layout.inc -1)))))
 
-   ;; Create a taglist widget
-   (set s.mytaglist
-        (awful.widget.taglist
-         {:screen s
-          :filter awful.widget.taglist.filter.all
-          :buttons taglist_buttons
-          :update_function awful.widget.common.list_update}))
+      ;; Create a taglist widget
+      (set s.mytaglist
+           (awful.widget.taglist
+            {:screen s
+             :filter awful.widget.taglist.filter.all
+             :buttons taglist_buttons
+             :update_function awful.widget.common.list_update}))
 
-   ;; Create a tasklist widget
-   (set s.mytasklist
-        (awful.widget.tasklist
-         {:screen s
-          :filter awful.widget.tasklist.filter.currenttags
-          :buttons tasklist_buttons}))
+      ;; Create a tasklist widget
+      (set s.mytasklist
+           (awful.widget.tasklist
+            {:screen s
+             :filter awful.widget.tasklist.filter.currenttags
+             :buttons tasklist_buttons}))
 
-   ;; Create the wibox
-   (set s.mywibox
-        (awful.wibar {:position "top" :screen s}))
+      ;; Create the wibox
+      (set s.mywibox
+           (awful.wibar {:position "top" :screen s}))
 
-   ;; Add widgets to the wibox
-   (s.mywibox:setup
-    {:layout wibox.layout.align.horizontal
-     1  {:layout wibox.layout.fixed.horizontal ;; Left widgets
-         1 s.mytaglist
-         2 s.mypromptbox
-         3 separator}
+      ;; Add widgets to the wibox
+      (s.mywibox:setup
+       {:layout wibox.layout.align.horizontal
+        1  {:layout wibox.layout.fixed.horizontal ;; Left widgets
+            1 s.mylayoutbox
+            2 separator
+            3 s.mytaglist
+            4 s.mypromptbox
+            5 separator}
 
-     ;; Middle widget
-     2 {:layout wibox.layout.fixed.horizontal
-        :expand "none"
-        1 s.mytasklist
-        2 pomodoro_widget
-        2 (ram_widget)
-        3 (todo_widget)
-        4 (batteryarc_widget) ;; not necessary on algo
-        5 (stackoverflow_widget
-           {:limit 10
-            :tagged "clojure,fennel,babashka"})
-        6 (volumebar_widget
-           {:main_color "#af13f7"
-            :mute_color "#ff0000"
-            :inc_volume_cmd "pactl set-sink-volume @DEFAULT_SINK@ +5%"
-            :dec_volume_cmd "pactl set-sink-volume @DEFAULT_SINK@ -5%"
-            :get_volume_cmd "get-volume"
-            :tog_volume_cmd "pactl set-sink-mute @DEFAULT_SINK@ toggle"
-            :width 80
-            :shape "rounded_bar"
-            :margins 4})
-        ;; TODO double check on vader
-        7 (brightness_widget)
-        8 (weather_widget
-           {:api_key "72dbd41948a77f4190010d7e2526aef0"
-            :coordinates [40.6782 -73.9442]
-            :time_format_12h   true
-            :units   "imperial"
-            :both_units_widget   true
-            :font_name   "Carter One"
-            :icons   "VitalyGorbachev"
-            :show_hourly_forecast   true
-            :show_daily_forecast   true
-            :icons_extension ".svg"}
-           )
-        9 (spotify_widget)
-        }
+        ;; Middle widget
+        2 {:layout wibox.layout.fixed.horizontal
+           :expand "none"
+           1 s.mytasklist
+           2 pomodoro_widget
+           2 (ram_widget)
+           3 (todo_widget)
+           4 (batteryarc_widget) ;; not necessary on algo
+           5 (stackoverflow_widget
+              {:limit 10
+               :tagged "clojure,fennel,babashka"})
+           6 (volumebar_widget
+              {:main_color "#af13f7"
+               :mute_color "#ff0000"
+               :inc_volume_cmd "pactl set-sink-volume @DEFAULT_SINK@ +5%"
+               :dec_volume_cmd "pactl set-sink-volume @DEFAULT_SINK@ -5%"
+               :get_volume_cmd "get-volume"
+               :tog_volume_cmd "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+               :width 80
+               :shape "rounded_bar"
+               :margins 4})
+           ;; TODO double check on vader
+           7 (brightness_widget)
+           8 (weather_widget
+              {:api_key "$OPENWEATHERMAP_APIKEY"
+               :coordinates [40.6782 -73.9442]
+               :time_format_12h   true
+               :units   "imperial"
+               :both_units_widget   true
+               :font_name   "Carter One"
+               :icons   "VitalyGorbachev"
+               :show_hourly_forecast   true
+               :show_daily_forecast   true
+               :icons_extension ".svg"}
+              )
+           9 (spotify_widget)
+           }
 
-     ;; Right widgets
-     3 {:layout wibox.layout.fixed.horizontal
-        1 separator
-        2 (wibox.widget.systray)
-        3 mytextclock
-        4 s.mylayoutbox}})))
+        ;; Right widgets
+        3 {:layout wibox.layout.fixed.horizontal
+           1 separator
+           2 (wibox.widget.systray)
+           3 mytextclock}})))
+   ))

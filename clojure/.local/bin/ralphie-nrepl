@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd /home/russ/russmatney/ralphie || exit
+
+rlwrap bb -cp "$(clojure -Spath)" --nrepl-server 7777

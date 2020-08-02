@@ -295,7 +295,6 @@
 ;; Global Functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-
 (global
  reapply_rules
  (fn []
@@ -305,8 +304,4 @@
 (global
  set_layout
  (fn [layout]
-   (-> (awful.screen.focused)
-       (. :selected_tag)
-       ((fn [t]
-          (t.object.set_layout layout))))))
-
+   (awful.layout.set layout)))
