@@ -274,13 +274,42 @@
 
       ;; widen/shink windows
       (key [:mod :shift] "l"
-           (fn [c] (awful.client.focus.bydirection "right")))
+           (fn [c]
+             (awful.client.focus.bydirection "right")
+             ;; swap to centered if relevant
+             (when (centerwork_layout?)
+               (awful.client.focus.bydirection "up")
+
+               (when _G.client.focus
+                 (_G.client.focus:swap (awful.client.getmaster))))))
+
       (key [:mod :shift] "h"
-           (fn [c] (awful.client.focus.bydirection "left")))
+           (fn [c]
+             (awful.client.focus.bydirection "left")
+             ;; swap to centered if relevant
+             (when (centerwork_layout?)
+               (awful.client.focus.bydirection "down")
+               (when _G.client.focus
+                 (_G.client.focus:swap (awful.client.getmaster))))
+             ))
       (key [:mod :shift] "j"
-           (fn [c] (awful.client.focus.bydirection "down")))
+           (fn [c]
+             (if (centerwork_layout?)
+                 (do
+                   (awful.client.focus.bydirection "right")
+                   (awful.client.focus.bydirection "down")
+                   (when _G.client.focus
+                     (_G.client.focus:swap (awful.client.getmaster))))
+                 (awful.client.focus.bydirection "down"))))
       (key [:mod :shift] "k"
-           (fn [c] (awful.client.focus.bydirection "up")))
+           (fn [c]
+             (if (centerwork_layout?)
+                 (do
+                   (awful.client.focus.bydirection "left")
+                   (awful.client.focus.bydirection "up")
+                   (when _G.client.focus
+                     (_G.client.focus:swap (awful.client.getmaster))))
+                 (awful.client.focus.bydirection "up"))))
 
       ;; widen/shink windows
       (key [:ctrl :shift] "l"
