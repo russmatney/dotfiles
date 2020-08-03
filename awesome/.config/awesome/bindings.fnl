@@ -97,34 +97,15 @@
         (key [:mod] "d" (fn []
                           (dashboard.dashboard_show)))
 
-        ;; cycle clients
-        ;;
-        ;; (key [:mod] "Tab"
-        ;;      (fn []
-        ;;        (lain.util.menu_clients_current_tags {:width 350 } {:keygrabber true})))
+        ;; cycle layouts
         (key [:mod] "Tab"
              (fn []
-               ;; move focus forward
-               (awful.client.focus.byidx 1)
-
-               ;; raise the focused client
-               (when _G.client.focus
-                 (_G.client.focus:raise))
-
-               ;; swap to centered if relevant
-               (when (centerwork_layout?)
-                 (when _G.client.focus
-                   (_G.client.focus:swap (awful.client.getmaster))))))
-
+               (let [scr (awful.screen.focused)]
+                 (awful.layout.inc 1 scr cycled-layouts))))
         (key [:mod :shift] "Tab"
              (fn []
-               (awful.client.focus.byidx -1)
-               (when _G.client.focus
-                 (_G.client.focus:raise))
-
-               (when (centerwork_layout?)
-                 (when _G.client.focus
-                   (_G.client.focus:swap (awful.client.getmaster))))))
+               (let [scr (awful.screen.focused)]
+                 (awful.layout.inc -1 scr cycled-layouts))))
 
         ;; cycle workspaces
         (key [:mod] "n"
@@ -151,17 +132,6 @@
                                   next-idx)
                      next-tag (. scr.tags next-idx)]
                  (next-tag:view_only))))
-
-        ;; cycle tags
-        (key [:mod :shift] "n"
-             (fn []
-               (let [scr (awful.screen.focused)]
-                 (awful.layout.inc 1 scr cycled-layouts))))
-        (key [:mod :shift] "p"
-             (fn []
-               (let [scr (awful.screen.focused)]
-                 (awful.layout.inc -1 scr cycled-layouts))
-               ))
 
         ;; terminal
         (key [:mod] "Return"
