@@ -76,8 +76,7 @@
 
 
 (local color-wheel
-       [
-        "#D1908E"
+       ["#D1908E"
         "#EBCAA2"
         "#F99482"
         "#F27BE9"
@@ -89,6 +88,18 @@
         "#F99482"
         "#F27BE9"
         ])
+
+(local dark-color-wheel
+       ["#1b3a4C"
+        "#1b448C"
+        "#1e334b"
+        "#5f3e3C"
+        "#3b3a3C"
+        "#1a3b4C"
+        "#1b3a4C"
+        "#1b448C"
+        "#1b3a4C"
+        "#be33aC"])
 
 (global
  create_taglist
@@ -115,7 +126,7 @@
      {1 {1 {1 {1 {1 {:id     "index_role"
                      :widget wibox.widget.textbox
                      :opacity 0.9}
-                  :margins 8
+                  :margins 6
                   :widget  wibox.container.margin}
                ;; :bg     "#1D334C#617082"
                :id "circle_role"
@@ -123,7 +134,7 @@
                :widget wibox.container.background}
             2 {1 {:id     "icon_role"
                   :widget wibox.widget.imagebox}
-               :margins 2
+               :margins -2
                :widget  wibox.container.margin}
             3 {:id   "text_role"
                :font "Roboto Mono Nerd Font 24"
@@ -146,8 +157,8 @@
 
         (-> (self:get_children_by_id "circle_role")
             (. 1)
-            (tset :bg "#1D334C"
-                  ;; (. color-wheel index)
+            (tset :bg ;; "#1D334C"
+                  (. dark-color-wheel index)
                   ))
 
         (self:connect_signal
@@ -160,7 +171,9 @@
       (fn [self c3 index objects]
         (-> (self:get_children_by_id "index_role")
             (. 1)
-            (tset :markup (.. "<b> " index " </b>"))))}})))
+            (tset :markup (..  "<span color='"
+                               (. color-wheel index)
+                               "'><b> " index " </b></span>"))))}})))
 
 ;; TODO give global names a larger font size, or green flycheck underline
 (global
