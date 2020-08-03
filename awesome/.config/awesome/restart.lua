@@ -3,7 +3,7 @@ local posix = require("posix")
 require("./table-serialization")
 require("./table-indexof")
 
-local my_state_file = awful.util.get_cache_dir() .. "/state"
+local tags_state_file = awful.util.get_cache_dir() .. "/state"
 
 local obj = {}
 
@@ -14,20 +14,24 @@ function obj.save_state()
   local params = {}
 
   for i, t in ipairs(tags) do
+    print "saving tag"
+    print(t.name)
+    print(t.selected)
     table.insert(params, {
       i,
       table.indexof(layouts, t.layout),
       awful.tag.getncol(t),
       awful.tag.getmwfact(t),
-      awful.tag.getnmaster(t)
+      awful.tag.getnmaster(t),
+      t.selected,
     })
   end
 
-  if posix.stat(my_state_file) ~= nil then
-    os.remove(my_state_file)
+  if posix.stat(tags_state_file) ~= nil then
+    os.remove(tags_state_file)
   end
 
-  table.save(params, my_state_file)
+  table.save(params, tags_state_file)
 end
 
 function obj.save_state_and_restart()
@@ -37,8 +41,8 @@ function obj.save_state_and_restart()
 end
 
 function obj.restore_state()
-  if posix.stat(my_state_file) ~= nil then
-    local params = table.load(my_state_file)
+  if posix.stat(tags_state_file) ~= nil then
+    local params = table.load(tags_state_file)
 
     local s = awful.screen.focused()
     for j, p in ipairs(params) do
@@ -47,6 +51,7 @@ function obj.restore_state()
       local ncol = p[3]
       local mwfact = p[4]
       local nmaster = p[5]
+      local selected = p[6]
 
       local t = s.tags[i]
       t.layout = layouts[layout]
@@ -54,6 +59,17 @@ function obj.restore_state()
       awful.tag.setncol(ncol, t)
       awful.tag.setmwfact(mwfact, t)
       awful.tag.setnmaster(nmaster, t)
+
+      print "restoring tag"
+      print(t.name)
+      print(t.selected)
+      print(selected)
+
+      if selected and t.selected == false then
+        awful.tag.viewtoggle(t);
+      end
+
+      print(t.selected)
     end
   end
 end

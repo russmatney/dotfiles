@@ -81,8 +81,7 @@
        ;; no tag? create it
        (not x-tag)
        (do
-         (awful.tag.add tag-name {:screen s
-                                  :gap 10})
+         (awful.tag.add tag-name)
          ;; TODO should only create here if no x-client exists
          ;; across whole system, not just in this tag
          (create-client workspace))

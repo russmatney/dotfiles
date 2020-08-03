@@ -74,11 +74,17 @@
  (fn [config]
    (when (and config (. config :tag-names))
      (print config.tag-names))
-   (awful.tag w.tag-names
-              (awful.screen.focused)
-              ;; lain.layout.centerwork
-              awful.layout.suit.tile
-              )))
+
+   (each [_ tag-name (pairs w.tag-names)]
+     ;; TODO only add if no tag with this name exists
+     (awful.tag.add tag-name {:layout (. layouts 1)}))
+
+   ;; (awful.tag w.tag-names
+   ;;            (awful.screen.focused)
+   ;;            ;; lain.layout.centerwork
+   ;;            awful.layout.suit.tile
+   ;;            )
+   ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Rules
