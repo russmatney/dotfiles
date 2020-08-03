@@ -18,10 +18,10 @@ local focus_widget = {}
 
 focus_widget.widget = wibox.widget {
   { markup =
-      '<span size="large" font_weight="bold" color="#efaefb">Focus</span>',
+      '<span size="large" font_weight="bold" color="#536452">Current Focus: </span>',
     align = 'center',
-    forced_width = 350, -- for horizontal alignment
-    forced_height = 40,
+    -- forced_width = 350, -- for horizontal alignment
+    -- forced_height = 40,
     widget = wibox.widget.textbox
   },
   { id = "txt",
@@ -29,14 +29,14 @@ focus_widget.widget = wibox.widget {
   },
   layout = wibox.layout.fixed.horizontal,
   set_text = function(self, new_value)
-      self.txt.text = new_value
+    local str = '<span size="large" font_weight="bold" color="#efaefb">' ..
+      new_value .. '</span>';
+    self.txt.markup = str
   end,
 }
 
 function focus_widget:update_focus(latest_focus)
-  local str = latest_focus.name
-    -- .. "#" .. latest_focus.tags
-  focus_widget.widget:set_text(str);
+  focus_widget.widget:set_text(latest_focus.name);
 end
 
 local function worker(args)
