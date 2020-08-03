@@ -8,7 +8,7 @@
 local themes_path = require("gears.filesystem").get_configuration_dir().."theme/"
 theme = {}
 
-theme.font              = "Noto Sans Regular 10"
+theme.font              = "Noto Sans Regular 12"
 theme.notification_font = "Noto Sans Bold 14"
 
 theme.bg_normal   = "#141A1B"
@@ -103,6 +103,6 @@ theme.awesome_icon = themes_path .. "icons/manjaro64.png"
 
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
-theme.icon_theme = "Adwaita"
+--  theme.icon_theme = "Adwaita"
 
 return theme

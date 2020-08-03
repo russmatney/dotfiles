@@ -2,7 +2,6 @@
 (local gears (require "gears"))
 (local awful (require "awful"))
 
-(local mytaglist (require "mytaglist"))
 (local focus_widget (require "widgets.focus"))
 
 (local todo_widget (require "awesome-wm-widgets.todo-widget.todo"))
@@ -94,7 +93,7 @@
 (global
  create_taglist
  (fn [s]
-   (mytaglist
+   (awful.widget.taglist
     {:screen s
      :filter awful.widget.taglist.filter.all
 
@@ -116,7 +115,7 @@
      {1 {1 {1 {1 {1 {:id     "index_role"
                      :widget wibox.widget.textbox
                      :opacity 0.9}
-                  :margins 4
+                  :margins 8
                   :widget  wibox.container.margin}
                ;; :bg     "#1D334C#617082"
                :id "circle_role"
@@ -126,7 +125,8 @@
                   :widget wibox.widget.imagebox}
                :margins 2
                :widget  wibox.container.margin}
-            3 {:id     "text_role"
+            3 {:id   "text_role"
+               :font "Roboto Mono Nerd Font 24"
                :widget wibox.widget.textbox}
             :layout wibox.layout.fixed.horizontal}
          :left  18
@@ -140,11 +140,15 @@
       (fn [self c3 index objects]
         (-> (self:get_children_by_id "index_role")
             (. 1)
-            (tset :markup (..  "<b> " index " </b>")))
+            (tset :markup (..  "<span color='"
+                               (. color-wheel index)
+                               "'><b> " index " </b></span>")))
 
         (-> (self:get_children_by_id "circle_role")
             (. 1)
-            (tset :bg (. color-wheel index)))
+            (tset :bg "#1D334C"
+                  ;; (. color-wheel index)
+                  ))
 
         (self:connect_signal
          "mouse::enter" (fn [] (tset self :bg "#ff0000")))
@@ -156,8 +160,7 @@
       (fn [self c3 index objects]
         (-> (self:get_children_by_id "index_role")
             (. 1)
-            (tset :markup (.. "<b> " index " </b>")))
-        )}})))
+            (tset :markup (.. "<b> " index " </b>"))))}})))
 
 ;; TODO give global names a larger font size, or green flycheck underline
 (global

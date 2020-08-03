@@ -76,7 +76,9 @@
      (print config.tag-names))
    (awful.tag w.tag-names
               (awful.screen.focused)
-              lain.layout.centerwork)))
+              ;; lain.layout.centerwork
+              awful.layout.suit.tile
+              )))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Rules

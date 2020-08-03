@@ -2,4 +2,4 @@
 
 cd /home/russ/russmatney/ralphie || exit
 
-rlwrap bb -cp "$(clojure -Spath)" --nrepl-server 7777
+rlwrap bb -cp "$(clojure -Spath)" --nrepl-server 7666
