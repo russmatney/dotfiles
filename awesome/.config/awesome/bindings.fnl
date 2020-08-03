@@ -87,12 +87,11 @@
         (key [:mod] "Escape" awful.tag.history.restore)
 
         ;; scratchpads
-        (key [:mod] "a" (scratchpad.toggle w.awesome-tag))
+        (key [:mod] "a" (scratchpad.toggle w.efb-tag))
         (key [:mod] "u" (scratchpad.toggle w.journal-tag))
         (key [:mod] "y" (scratchpad.toggle w.yodo-tag))
         (key [:mod] "r" (scratchpad.toggle w.notes-tag))
         (key [:mod] "t" (scratchpad.toggle w.web-tag))
-        (key [:mod] "0" (scratchpad.toggle w.dotfiles-tag))
 
         (key [:mod] "d" (fn []
                           (dashboard.dashboard_show)))
@@ -176,7 +175,7 @@
 
 (var tag-keys [])
 
-(for [it 0 9]
+(for [it 0 10]
   (set tag-keys
        (gears.table.join
         tag-keys

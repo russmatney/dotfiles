@@ -7,8 +7,7 @@
 (local mytags {})
 
 (set mytags.slack-tag
-     {:sort-key 2
-      :tag-name "slack"
+     {:tag-name "slack"
       :apps [{:exec "slack"
               :classes ["Slack" "slack"]
               :names ["Slack" "slack"]}
@@ -17,8 +16,7 @@
               :names ["Discord" "discord"]}]})
 
 (set mytags.spotify-tag
-     {:sort-key 3
-      :tag-name "spotify"
+     {:tag-name "spotify"
       :apps [{:exec "spotify"
               :classes ["Spotify" "spotify"]
               :names ["Spotify" "spotify"]}
@@ -26,33 +24,28 @@
               :classes ["Pavucontrol" "pavucontrol"]
               :names ["Pavucontrol" "pavucontrol"]}]})
 
-(set mytags.awesome-tag
-     {:sort-key 1
-      :tag-name "awesome"
+(set mytags.efb-tag
+     {:tag-name "efb"
       :scratchpad-key "a"
-      :emacs-file "~/.config/awesome/config.fnl"})
+      :emacs-file "~/.config/awesome/run-init.fnl"})
 
 (set mytags.journal-tag
-     {:sort-key 9
-      :tag-name "journal"
+     {:tag-name "journal"
       :scratchpad-key "u"
       :emacs-file "~/todo/journal.org"})
 
 (set mytags.notes-tag
-     {:sort-key 4
-      :tag-name "notes"
+     {:tag-name "notes"
       :scratchpad-key "r"
       :emacs-file "~/Dropbox/notes/readme.org"})
 
 (set mytags.dotfiles-tag
-     {:sort-key 0
-      :tag-name "dotfiles"
+     {:tag-name "dotfiles"
       :scratchpad-key "0"
       :emacs-file "~/dotfiles/readme.org"})
 
 (set mytags.yodo-tag
-     {:sort-key 6
-      :tag-name "yodo"
+     {:tag-name "yodo"
       :browser-url "http://localhost:4200"
       :floating false
       :apps [{:names ["localhost:4200"
@@ -60,8 +53,7 @@
       })
 
 (set mytags.web-tag
-     {:sort-key 5
-      :tag-name "web"
+     {:tag-name "web"
       :browser-url "chrome://newtab"
       :except_any {:names ["localhost"]}
       :floating true
@@ -71,14 +63,16 @@
 
 ;; NOTE order here determines order in bar
 (local tag-list
-       [mytags.awesome-tag
+       [mytags.efb-tag
         mytags.slack-tag
         mytags.spotify-tag
         mytags.web-tag
         mytags.notes-tag
         mytags.yodo-tag
         mytags.journal-tag
-        mytags.dotfiles-tag])
+        mytags.dotfiles-tag
+        {:tag-name "ralphie"}
+        {:tag-name "org-crud"}])
 
 (local tag-names
        (lume.map tag-list
