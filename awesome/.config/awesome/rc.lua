@@ -18,30 +18,30 @@ table.insert(package.loaders or package.searchers, fennel.searcher)
 
 -- TODO move these into the theme
 local beautiful = require("beautiful")
-local xrdb = beautiful.xresources.get_current_theme()
+-- local xrdb = beautiful.xresources.get_current_theme()
 -- Make dpi function global
 dpi = beautiful.xresources.apply_dpi
 -- Make xresources colors global
 x = {
     --           xrdb variable
-    background = xrdb.background,
-    foreground = xrdb.foreground,
-    color0     = xrdb.color0,
-    color1     = xrdb.color1,
-    color2     = xrdb.color2,
-    color3     = xrdb.color3,
-    color4     = xrdb.color4,
-    color5     = xrdb.color5,
-    color6     = xrdb.color6,
-    color7     = xrdb.color7,
-    color8     = xrdb.color8,
-    color9     = xrdb.color9,
-    color10    = xrdb.color10,
-    color11    = xrdb.color11,
-    color12    = xrdb.color12,
-    color13    = xrdb.color13,
-    color14    = xrdb.color14,
-    color15    = xrdb.color15,
+    background = "#000000",
+    foreground = "#000000",
+    color0     = "#000000",
+    color1     = "#000000",
+    color2     = "#000000",
+    color3     = "#000000",
+    color4     = "#000000",
+    color5     = "#000000",
+    color6     = "#000000",
+    color7     = "#000000",
+    color8     = "#000000",
+    color9     = "#000000",
+    color10    = "#000000",
+    color11    = "#000000",
+    color12    = "#000000",
+    color13    = "#000000",
+    color14    = "#000000",
+    color15    = "#000000",
 }
 
 -- Setup done, start 'er up

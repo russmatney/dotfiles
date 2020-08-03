@@ -9,21 +9,25 @@ local obj = {}
 
 function obj.save_state()
   local screen = mouse.screen
-  local tags = awful.tag.gettags(screen)
+  local tags = screen.tags
 
   local params = {}
 
   for i, t in ipairs(tags) do
-    print "saving tag"
-    print(t.name)
-    print(t.selected)
+    local sel = false
+    if t.selected == true then
+      sel = 'true'
+    else
+      sel = 'false'
+    end
+
     table.insert(params, {
       i,
       table.indexof(layouts, t.layout),
-      awful.tag.getncol(t),
-      awful.tag.getmwfact(t),
-      awful.tag.getnmaster(t),
-      t.selected,
+      t.column_count,
+      t.master_width_factor,
+      t.master_count,
+      sel,
     })
   end
 
@@ -51,25 +55,18 @@ function obj.restore_state()
       local ncol = p[3]
       local mwfact = p[4]
       local nmaster = p[5]
-      local selected = p[6]
+      local selected = p[6] == 'true'
 
       local t = s.tags[i]
       t.layout = layouts[layout]
 
-      awful.tag.setncol(ncol, t)
-      awful.tag.setmwfact(mwfact, t)
-      awful.tag.setnmaster(nmaster, t)
-
-      print "restoring tag"
-      print(t.name)
-      print(t.selected)
-      print(selected)
+      t.column_count = ncol
+      t.master_width_factor = mwfact
+      t.master_count = nmaster
 
       if selected and t.selected == false then
         awful.tag.viewtoggle(t);
       end
-
-      print(t.selected)
     end
   end
 end
