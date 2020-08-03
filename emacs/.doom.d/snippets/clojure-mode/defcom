@@ -8,7 +8,7 @@
    [ralphie.command :refer [defcom]])
 
 (defn $1-handler
-  ([] (init-tags nil nil))
+  ([] ($1-handler nil nil))
   ([_config _parsed]
    $4))
 
