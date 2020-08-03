@@ -19,6 +19,24 @@
 ;; REPL env
 (require "./remote")
 
+
+(global layouts
+        [awful.layout.suit.tile
+         ;; awful.layout.suit.floating
+         ;; awful.layout.suit.fair
+         ;; awful.layout.suit.magnifier
+         ;; awful.layout.suit.spiral
+         ;; awful.layout.suit.spiral.dwindle
+         lain.layout.centerwork
+         ;; lain.layout.centerwork.horizontal
+         ])
+
+(local restart-helper (require "./restart"))
+
+(awesome.connect_signal
+ "startup"
+ (fn [] (restart-helper.restore_state)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Global Helpers
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

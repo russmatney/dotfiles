@@ -10,6 +10,8 @@
 (local tablex (require :pl.tablex))
 (local lain (require :lain))
 
+(local restart-helper (require "./restart"))
+
 (local exp {})
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -58,23 +60,10 @@
                  (= n "centerworkh")
                  (= n "centerwork")))))))
 
-(local cycled-layouts
-       [awful.layout.suit.tile
-        ;; awful.layout.suit.floating
-        ;; awful.layout.suit.fair
-        ;; awful.layout.suit.magnifier
-        ;; awful.layout.suit.spiral
-        ;; awful.layout.suit.spiral.dwindle
-        lain.layout.centerwork
-        ;; lain.layout.centerwork.horizontal
-        ])
-
 (local global-keys
        (gears.table.join
         ;; helpers
-        ;; TODO syntax check/verify on config files before restarting
-        (key [:mod :shift] "r" _G.awesome.restart)
-        ;; (key [:mod :shift] "?" hotkeys_popup.widget.show_help)
+        (key [:mod :shift] "r" restart-helper.save_state_and_restart)
 
         ;; ralphie rofi
         (key [:mod] "x" (spawn-fn "ralphie rofi"))
@@ -100,11 +89,11 @@
         (key [:mod] "Tab"
              (fn []
                (let [scr (awful.screen.focused)]
-                 (awful.layout.inc 1 scr cycled-layouts))))
+                 (awful.layout.inc 1 scr _G.layouts))))
         (key [:mod :shift] "Tab"
              (fn []
                (let [scr (awful.screen.focused)]
-                 (awful.layout.inc -1 scr cycled-layouts))))
+                 (awful.layout.inc -1 scr _G.layouts))))
 
         ;; cycle workspaces
         (key [:mod] "n"
