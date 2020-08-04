@@ -1,12 +1,9 @@
--------------------------------------------------
--- Originally gutted from:
--- https://github.com/streetturtle/awesome-wm-widgets/tree/master/todo-widget
--------------------------------------------------
-
+local awful = require("awful")
 local wibox = require("wibox")
 local spawn = require("awful.spawn")
 
-local UPDATE_FOCUS = 'bash -c "ralphie set-focus first"'
+local UPDATE_FOCUS_LATEST = 'bash -c "ralphie set-focus first"'
+local UPDATE_FOCUS_ROFI = 'bash -c "ralphie set-focus"'
 
 local focus_widget = {}
 
@@ -41,8 +38,15 @@ local function worker()
         focus_widget:update_focus(focus)
     end
 
+    focus_widget.widget:buttons(
+            awful.util.table.join(
+                    awful.button({}, 1, function()
+                        spawn.easy_async(UPDATE_FOCUS_ROFI,
+                                         function () print "focus via rofi requested" end);
+                    end)))
+
     -- depends on update callback from ralphie
-    spawn.easy_async(UPDATE_FOCUS, function () print "focus update requested" end);
+    spawn.easy_async(UPDATE_FOCUS_LATEST, function () print "latest focus requested" end);
 
     return focus_widget.widget
 end

@@ -8,8 +8,6 @@ local beautiful = require("beautiful")
 
 local UPDATE_REPOS = 'bash -c "ralphie update-dirty-repos"'
 
-local rows  = {layout = wibox.layout.fixed.vertical}
-
 local function row (item)
   return wibox.widget {
     {
@@ -73,6 +71,8 @@ local function worker()
   function update_repos_widget(repos)
     repos_widget:update_count(repos)
 
+    local rows = {layout = wibox.layout.fixed.vertical}
+
     for _, item in ipairs(repos) do
       table.insert(rows, row(item))
     end
@@ -96,6 +96,13 @@ local function worker()
         popup.visible = false
       end
     end)
+
+    repos_widget.widget:buttons(
+            awful.util.table.join(
+                    awful.button({}, 1, function()
+                        spawn.easy_async(UPDATE_REPOS,
+                                         function () print "repos update requested" end);
+                    end)))
 
   -- depends on update callback from ralphie
   spawn.easy_async(UPDATE_REPOS,
