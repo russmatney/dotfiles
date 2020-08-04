@@ -208,7 +208,8 @@
             2 separator
             3 s.mytaglist
             4 separator
-            5 (focus_widget)}
+            5 (focus_widget)
+            6 separator}
 
         ;; Middle widget
         2 {:layout wibox.layout.fixed.horizontal
