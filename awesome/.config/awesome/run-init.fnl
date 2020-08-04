@@ -1,24 +1,19 @@
 ;; named `run-init` rather than `init` to prevent accidental lua module loading
 
+(local awful (require "awful"))
 (local view (require :fennelview))
 (local inspect (require :inspect))
-(local fun (require "fun"))
-(local gears (require "gears"))
-(local awful (require "awful"))
-(local naughty (require "naughty"))
-(local beautiful (require "beautiful"))
-(local wibox (require "wibox"))
-
 (local lain (require "lain"))
 
-;; TODO remove these
+;; focus client after awesome.restart
 (require "awful.autofocus")
-(require "awful.hotkeys_popup.keys.vim")
 
-;; TODO wrap side effects of these requires
-;; REPL env
-(require "./remote")
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Global Helpers
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(global pp (fn [x] (print (view x))))
+(global ppi (fn [x] (print (inspect x))))
 
 (global layouts
         [awful.layout.suit.tile
@@ -31,6 +26,10 @@
          ;; lain.layout.centerwork.horizontal
          ])
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Global Helpers
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (local restart-helper (require "./restart"))
 
 (awesome.connect_signal
@@ -38,27 +37,31 @@
  (fn [] (restart-helper.restore_state)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Global Helpers
+;; Load global init functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(global pp (fn [x] (print (view x))))
-(global ppi (fn [x] (print (inspect x))))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; INIT
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; load init globals
 (require :config)
 (require :bar)
+(require :remote)
+(require :rules)
+(require :signals)
+(require :titlebars)
+(require :autorun)
 
-;; create function
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; init
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (global
  init
  (fn [config]
    ;; error handling
    (print "\n\ninit_error_handling\n")
    (_G.init_error_handling config)
+
+   ;; init remote
+   (print "\n\ninit_remote\n")
+   (_G.init_remote config)
 
    ;; theme
    (print "\n\ninit_theme\n")
@@ -75,8 +78,8 @@
    (_G.init_root_buttons config)
 
    ;; rules
-   (print "\n\nset_rules\n")
-   (_G.set_rules config)
+   (print "\n\ninit_rules\n")
+   (_G.init_rules config)
 
    ;; signals
    (print "\n\ninit_signals\n")
@@ -89,7 +92,5 @@
    (print "\n\ninit_spawns\n")
    (_G.init_spawns config)))
 
-;; hand off to ralphie
 ;; (awful.spawn "ralphie awesome-init")
-;; or call it yourself
 (init)

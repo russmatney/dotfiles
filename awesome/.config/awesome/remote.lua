@@ -48,32 +48,34 @@ function client_env_mt:__index(key)
     return client_env[key]
 end
 
-if dbus then
-    dbus.connect_signal("org.awesomewm.awful.Remote", function(data, code)
-        if data.member == "Eval" then
-            local f, e = load(code, '=(load)', 't', client_env)
-            if not f then
-                return "s", e
-            end
-            local results = { pcall(f) }
-            if not table.remove(results, 1) then
-                return "s", "Error during execution: " .. tostring(results[1])
-            end
-            local retvals = {}
-            for _, v in ipairs(results) do
-                local t = type(v)
-                if t == "boolean" then
-                    table.insert(retvals, "b")
-                    table.insert(retvals, v)
-                elseif t == "number" then
-                    table.insert(retvals, "d")
-                    table.insert(retvals, v)
-                else
-                    table.insert(retvals, "s")
-                    table.insert(retvals, tostring(v))
-                end
-            end
-            return unpack(retvals)
-        end
-    end)
+function init_remote()
+  if dbus then
+      dbus.connect_signal("org.awesomewm.awful.Remote", function(data, code)
+          if data.member == "Eval" then
+              local f, e = load(code, '=(load)', 't', client_env)
+              if not f then
+                  return "s", e
+              end
+              local results = { pcall(f) }
+              if not table.remove(results, 1) then
+                  return "s", "Error during execution: " .. tostring(results[1])
+              end
+              local retvals = {}
+              for _, v in ipairs(results) do
+                  local t = type(v)
+                  if t == "boolean" then
+                      table.insert(retvals, "b")
+                      table.insert(retvals, v)
+                  elseif t == "number" then
+                      table.insert(retvals, "d")
+                      table.insert(retvals, v)
+                  else
+                      table.insert(retvals, "s")
+                      table.insert(retvals, tostring(v))
+                  end
+              end
+              return unpack(retvals)
+          end
+      end)
+  end
 end

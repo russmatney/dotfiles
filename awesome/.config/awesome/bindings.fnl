@@ -1,15 +1,13 @@
-(local fun (require "fun"))
 (local gears (require "gears"))
 (local awful (require "awful"))
 
-(local dashboard (require :dashboard))
-
-(local scratchpad (require :scratchpad))
-(local w (require :workspaces))
-
+(local fun (require "fun"))
 (local tablex (require :pl.tablex))
 (local lain (require :lain))
 
+(local dashboard (require :dashboard.dashboard))
+(local scratchpad (require :scratchpad))
+(local w (require :workspaces))
 (local restart-helper (require "./restart"))
 
 (local exp {})
@@ -43,7 +41,6 @@
   [cmd]
   (fn []
     (awful.spawn cmd)))
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Global keybindings
@@ -332,7 +329,6 @@
       (btn [:mod] 1 awful.mouse.client.move)
       (btn [:mod] 3 awful.mouse.client.resize)))
 
-;; TODO leave the buttons defs, but consume them in the global init
 (global
  init_root_buttons
  (fn []
@@ -341,5 +337,21 @@
                      ;; (btn [] 3 mymainmenu:toggle)
                      (btn [] 4 awful.tag.viewnext)
                      (btn [] 5 awful.tag.viewprev)))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Titlebar buttons
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(set exp.titlebarbuttons
+     (fn [c]
+       (gears.table.join
+        (btn [] 1 (fn []
+                    (set client.focus c)
+                    (c:raise)
+                    (awful.mouse.client.move c)))
+        (btn [] 3 (fn []
+                    (set client.focus c)
+                    (c:raise)
+                    (awful.mouse.client.resize c))))))
 
 exp

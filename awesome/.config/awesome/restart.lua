@@ -3,6 +3,11 @@ local posix = require("posix")
 require("./table-serialization")
 require("./table-indexof")
 
+-- `layouts` defined in run-init.fnl
+--
+-- This save/restore assumes the tags maintain their order.
+-- It'd probably be better to match on tag names.
+
 local tags_state_file = awful.util.get_cache_dir() .. "/state"
 
 local obj = {}
@@ -14,7 +19,7 @@ function obj.save_state()
   local params = {}
 
   for i, t in ipairs(tags) do
-    local sel = false
+    local sel
     if t.selected == true then
       sel = 'true'
     else
