@@ -209,6 +209,27 @@
 ;; Client Keybindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(fn is-emacs [c] (= c.class "Emacs"))
+
+;; too slow
+(fn emacs-move [dir]
+  ;; (print "attempting to move")
+  ;; (print dir)
+  (let [cmd
+        (.. "emacsclient -e '(evil-window-" dir " 1)'")]
+    ;; (print cmd)
+    (awful.spawn cmd)))
+
+(fn focus-move [dir centerwork-dir centerwork-dir2]
+  (if (centerwork_layout?)
+      (do
+        (awful.client.focus.bydirection centerwork-dir)
+        (awful.client.focus.bydirection centerwork-dir2)
+        (when _G.client.focus
+          (_G.client.focus:swap (awful.client.getmaster))))
+
+      (awful.client.focus.bydirection dir)))
+
 ;; exported to add to global rules
 (set exp.clientkeys
      (gears.table.join
@@ -227,44 +248,32 @@
                      awful.placement.centered)
                   {:to_percent 0.75}))))
 
-      ;; widen/shink windows
-      (key [:mod :shift] "l"
-           (fn [c]
-             (awful.client.focus.bydirection "right")
-             ;; swap to centered if relevant
-             (when (centerwork_layout?)
-               (awful.client.focus.bydirection "up")
+      ;; (key [:mod] "l"
+      ;;      (fn [c]
+      ;;        (if (is-emacs c)
+      ;;            (emacs-move "right")
+      ;;            (focus-move "right" "right" "up"))))
+      ;; (key [:mod] "h"
+      ;;      (fn [c]
+      ;;        (if (is-emacs c)
+      ;;            (emacs-move "left")
+      ;;            (focus-move "left" "left" "down"))))
+      ;; (key [:mod] "j"
+      ;;      (fn [c]
+      ;;        (if (is-emacs c)
+      ;;            (emacs-move "down")
+      ;;            (focus-move "down" "right" "down"))))
+      ;; (key [:mod] "k"
+      ;;      (fn [c]
+      ;;        (if (is-emacs c)
+      ;;            (emacs-move "up")
+      ;;            (focus-move "up" "left" "up"))))
 
-               (when _G.client.focus
-                 (_G.client.focus:swap (awful.client.getmaster))))))
-
-      (key [:mod :shift] "h"
-           (fn [c]
-             (awful.client.focus.bydirection "left")
-             ;; swap to centered if relevant
-             (when (centerwork_layout?)
-               (awful.client.focus.bydirection "down")
-               (when _G.client.focus
-                 (_G.client.focus:swap (awful.client.getmaster))))
-             ))
-      (key [:mod :shift] "j"
-           (fn [c]
-             (if (centerwork_layout?)
-                 (do
-                   (awful.client.focus.bydirection "right")
-                   (awful.client.focus.bydirection "down")
-                   (when _G.client.focus
-                     (_G.client.focus:swap (awful.client.getmaster))))
-                 (awful.client.focus.bydirection "down"))))
-      (key [:mod :shift] "k"
-           (fn [c]
-             (if (centerwork_layout?)
-                 (do
-                   (awful.client.focus.bydirection "left")
-                   (awful.client.focus.bydirection "up")
-                   (when _G.client.focus
-                     (_G.client.focus:swap (awful.client.getmaster))))
-                 (awful.client.focus.bydirection "up"))))
+      ;; focus movement
+      (key [:mod :shift] "l" (fn [c] (focus-move "right" "right" "up")))
+      (key [:mod :shift] "h" (fn [c] (focus-move "left" "left" "down")))
+      (key [:mod :shift] "j" (fn [c] (focus-move "down" "right" "down")))
+      (key [:mod :shift] "k" (fn [c] (focus-move "up" "left" "up")))
 
       ;; widen/shink windows
       (key [:ctrl :shift] "l"

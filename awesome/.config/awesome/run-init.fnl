@@ -7,6 +7,7 @@
 
 ;; focus client after awesome.restart
 (require "awful.autofocus")
+(require "./helpers")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Global Helpers
@@ -25,6 +26,7 @@
          lain.layout.centerwork
          ;; lain.layout.centerwork.horizontal
          ])
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Global Helpers
