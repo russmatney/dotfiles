@@ -4,42 +4,39 @@
 -------------------------------------------------
 
 local wibox = require("wibox")
-local json = require("rxi-json-lua")
 local spawn = require("awful.spawn")
 
-local HOME_DIR = os.getenv("HOME")
 local UPDATE_FOCUS = 'bash -c "ralphie set-focus first"'
 
 local focus_widget = {}
 
 focus_widget.widget = wibox.widget {
-  { markup =
-      '<span size="large" font_weight="bold" color="#536452">Current Focus: </span>',
-    align = 'center',
-    -- forced_width = 350, -- for horizontal alignment
-    -- forced_height = 40,
-    widget = wibox.widget.textbox
-  },
-  { id = "txt",
-    widget = wibox.widget.textbox
-  },
-  layout = wibox.layout.fixed.horizontal,
-  set_text = function(self, new_value)
-    local str = '<span size="large" font_weight="bold" color="#efaefb">' ..
-      new_value .. '</span>';
-    self.txt.markup = str
-  end,
+    { markup =
+          '<span size="large" font_weight="bold" color="#536452">Current Focus: </span>',
+      align = 'center',
+      -- forced_width = 350, -- for horizontal alignment
+      -- forced_height = 40,
+      widget = wibox.widget.textbox
+    },
+    { id = "txt",
+      widget = wibox.widget.textbox
+    },
+    layout = wibox.layout.fixed.horizontal,
+    set_text = function(self, new_value)
+        local str = '<span size="large" font_weight="bold" color="#efaefb">' ..
+            new_value .. '</span>';
+        self.txt.markup = str
+    end,
 }
 
 function focus_widget:update_focus(latest_focus)
-  focus_widget.widget:set_text(latest_focus.name);
+    focus_widget.widget:set_text(latest_focus.name);
 end
 
-local function worker(args)
-    local args = args or {}
-
+local function worker()
     -- global function called by ralphie via dbus repl
     function update_focus_widget(focus)
+        print("current focus passed:")
         pp(focus)
         focus_widget:update_focus(focus)
     end

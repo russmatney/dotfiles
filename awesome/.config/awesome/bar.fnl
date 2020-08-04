@@ -3,6 +3,7 @@
 (local awful (require "awful"))
 
 (local focus_widget (require "widgets.focus"))
+(local repos_widget (require "widgets.repos"))
 
 (local todo_widget (require "awesome-wm-widgets.todo-widget.todo"))
 ;; (local stackoverflow_widget (require "awesome-wm-widgets.stackoverflow-widget.stackoverflow"))
@@ -27,9 +28,7 @@
 
 (local blue "#9EBABA")
 (local separator (wibox.widget.textbox
-                  (.. "         <span color=\""
-                      blue
-                      "\">| </span>         ")))
+                  (.. "<span color=\"" blue "\"> | </span>")))
 
 ;; Create a wibox for each screen and add it
 (local taglist_buttons
@@ -208,8 +207,10 @@
             2 separator
             3 s.mytaglist
             4 separator
-            5 (focus_widget)
-            6 separator}
+            5 (repos_widget)
+            6 separator
+            7 (focus_widget)
+            8 separator}
 
         ;; Middle widget
         2 {:layout wibox.layout.fixed.horizontal
