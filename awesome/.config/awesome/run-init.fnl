@@ -79,40 +79,40 @@
  init
  (fn [config]
    ;; error handling
-   (print "\n\ninit_error_handling\n")
+   (print "init_error_handling")
    (_G.init_error_handling config)
 
    ;; init remote
-   (print "\n\ninit_remote\n")
+   (print "init_remote")
    (_G.init_remote config)
 
    ;; theme
-   (print "\n\ninit_theme\n")
+   (print "init_theme")
    (_G.init_theme config)
 
    ;; screen and tags
-   (print "\n\ninit screen and tags")
+   (print "init screen and tags")
    (_G.init_screen config)
    (_G.init_tags config)
 
    ;; bindings
-   (print "\n\ninit bindings\n")
+   (print "init bindings")
    (_G.set_global_keys config)
    (_G.init_root_buttons config)
 
    ;; rules
-   (print "\n\ninit_rules\n")
+   (print "init_rules")
    (_G.init_rules config)
 
    ;; signals
-   (print "\n\ninit_signals\n")
+   (print "init_signals")
    (_G.init_manage_signal config)
    (_G.init_request_titlebars config)
    (_G.init_focus_signals config)
    (_G.init_arrange_signal config)
 
    ;; spawns
-   (print "\n\ninit_spawns\n")
+   (print "init_spawns")
    (_G.init_spawns config)))
 
 ;; (awful.spawn "ralphie awesome-init")

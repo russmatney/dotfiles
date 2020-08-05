@@ -43,8 +43,6 @@ repos_widget.widget = wibox.widget {
       '<span size="large" font_weight="bold" color="#536452">' ..
       'Dirty Repos: </span>',
     align = 'center',
-    -- forced_width = 350, -- for horizontal alignment
-    -- forced_height = 40,
     widget = wibox.widget.textbox
   },
   { id = "txt",
@@ -61,7 +59,6 @@ repos_widget.widget = wibox.widget {
 function repos_widget:update_count(dirty_repos)
   if dirty_repos then
     local count = tablex.size(dirty_repos);
-    print(count);
     repos_widget.widget:set_count(count);
   end
 end

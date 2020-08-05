@@ -33,8 +33,6 @@ end
 local function worker()
     -- global function called by ralphie via dbus repl
     function update_focus_widget(focus)
-        print("current focus passed:")
-        pp(focus)
         focus_widget:update_focus(focus)
     end
 
