@@ -6,6 +6,7 @@
 (local lain (require :lain))
 
 (local dashboard (require :dashboard.dashboard))
+(local helpers (require :dashboard.helpers))
 (local scratchpad (require :scratchpad))
 (local w (require :workspaces))
 (local restart-helper (require "./restart"))
@@ -174,9 +175,7 @@
                      keyed-tag (. scr.tags it)
                      current-tag scr.selected_tag]
                  (when keyed-tag
-                   (if (and current-tag (= keyed-tag.name current-tag.name))
-                       (awful.tag.history.restore scr 1)
-                       (keyed-tag:view_only))))))
+                   (helpers.tag_back_and_forth keyed-tag.index)))))
 
         ;; add tag to current perspective
         (key [:mod :ctrl] (.. "#" (+ 9 it))

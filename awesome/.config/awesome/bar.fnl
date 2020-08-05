@@ -1,6 +1,9 @@
 (local wibox (require "wibox"))
 (local gears (require "gears"))
 (local awful (require "awful"))
+(local beautiful (require "beautiful"))
+
+(local helpers (require "dashboard.helpers"))
 
 (local focus_widget (require "widgets.focus"))
 (local repos_widget (require "widgets.repos"))
@@ -33,7 +36,7 @@
 ;; Create a wibox for each screen and add it
 (local taglist_buttons
        (gears.table.join
-        (bindings.btn [] 1 (fn [t] (t:view_only)))
+        (bindings.btn [] 1 (fn [t] (helpers.tag_back_and_forth t.index)))
         (bindings.btn [:mod] 1
                       (fn [t]
                         (if _G.client.focus
@@ -100,6 +103,20 @@
         "#1b3a4C"
         "#be33aC"])
 
+(local fg-occupied "#ddddddee")
+(local bg-occupied "#1b448C44") ;; blue
+(local fg-empty "#adadad99")
+(local bg-empty "#1a3b4C") ;; blue/green
+
+(local bg-hover "#d2834399") ;; orange, transparent
+;; (local fg-hover "#d2834399") ;; orange, transparent
+
+(local bg-focus "#d28343") ;; orange
+(local fg-focus "white") ;; orange
+
+(local bg-urgent "#3b3a3C") ;; brown
+(local fg-urgent "#d28343dd") ;; orange
+
 (global
  create_taglist
  (fn [s]
@@ -111,7 +128,14 @@
      :update_function awful.widget.common.list_update
 
      :style
-     {:bg_focus "#617082"
+     {:bg_focus bg-focus
+      :fg_focus fg-focus
+      :fg_urgent fg-urgent
+      :bg_urgent bg-urgent
+      :fg_empty fg-empty
+      :bg_empty bg-empty
+      :fg_occupied fg-occupied
+      :bg_occupied bg-occupied
       :shape gears.shape.powerline}
 
      :layout
@@ -123,11 +147,9 @@
 
      :widget_template
      {1 {1 {1 {1 {1 {:id     "index_role"
-                     :widget wibox.widget.textbox
-                     :opacity 0.9}
+                     :widget wibox.widget.textbox}
                   :margins 6
                   :widget  wibox.container.margin}
-               ;; :bg     "#1D334C#617082"
                :id "circle_role"
                :shape  gears.shape.circle
                :widget wibox.container.background}
@@ -156,15 +178,27 @@
 
         (-> (self:get_children_by_id "circle_role")
             (. 1)
-            (tset :bg ;; "#1D334C"
-                  (. dark-color-wheel index)
-                  ))
+            (tset :bg (. dark-color-wheel index)))
 
         (self:connect_signal
-         "mouse::enter" (fn [] (tset self :bg "#ff0000")))
+         "button::press"
+         (fn [] (tset self :backup nil)))
 
         (self:connect_signal
-         "mouse::leave" (fn [] (tset self :bg nil))))
+         "mouse::enter"
+         (fn []
+           (if (not (= bg-hover self.bg))
+               (do
+                 (tset self :backup self.bg)
+                 (tset self :bg bg-hover)))))
+
+        (self:connect_signal
+         "mouse::leave"
+         (fn []
+           (if self.backup
+               (tset self :bg self.backup)
+               ;; (tset self :bg nil)
+               ))))
 
       :update_callback
       (fn [self c3 index objects]
