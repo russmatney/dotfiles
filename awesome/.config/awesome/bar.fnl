@@ -15,7 +15,7 @@
 ;; (local batteryarc_widget (require"awesome-wm-widgets.batteryarc-widget.batteryarc"))
 ;; (local volumebar_widget (require"awesome-wm-widgets.volumebar-widget.volumebar"))
 (local brightness_widget (require "awesome-wm-widgets.brightness-widget.brightness"))
-;; (local weather_widget (require "awesome-wm-widgets.weather-widget.weather"))
+(local weather_widget (require "awesome-wm-widgets.weather-widget.weather"))
 (local spotify_widget (require"awesome-wm-widgets.spotify-widget.spotify"))
 
 (local awful (require "awful"))
@@ -268,18 +268,18 @@
            ;;     :width 80
            ;;     :shape "rounded_bar"
            ;;     :margins 4})
-           ;; 8 (weather_widget
-           ;;    {:api_key "$OPENWEATHERMAP_APIKEY"
-           ;;     :coordinates [40.6782 -73.9442]
-           ;;     :time_format_12h   true
-           ;;     :units   "imperial"
-           ;;     :both_units_widget   true
-           ;;     :font_name   "Carter One"
-           ;;     :icons   "VitalyGorbachev"
-           ;;     :show_hourly_forecast   true
-           ;;     :show_daily_forecast   true
-           ;;     :icons_extension ".svg"}
-           ;;    )
+           6 (weather_widget
+              {:api_key (os.getenv "OPENWEATHERMAP_APIKEY")
+               :coordinates [40.6782 -73.9442]
+               :time_format_12h   true
+               :units   "imperial"
+               :both_units_widget   true
+               :font_name   "Carter One"
+               :icons   "VitalyGorbachev"
+               :show_hourly_forecast   true
+               :show_daily_forecast   true
+               :icons_extension ".svg"}
+              )
            }
 
         ;; Right widgets
