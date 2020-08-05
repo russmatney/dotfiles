@@ -40,7 +40,7 @@
 (fn spawn-fn
   [cmd]
   (fn []
-    (awful.spawn cmd)))
+    (awful.spawn cmd false)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Global keybindings
@@ -147,6 +147,7 @@
         (key [:mod :shift] "a" (spawn-fn "/home/russ/.local/bin/screenshot-region"))
 
         ;; media controls
+        ;; TODO play-pause should create spotify it its not open
         (key [] "XF86AudioPlay" (spawn-fn "spotifycli --playpause"))
         (key [] "XF86AudioNext" (spawn-fn "playerctl next"))
         (key [] "XF86AudioPrev" (spawn-fn "playerctl previous"))
