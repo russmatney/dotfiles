@@ -7,30 +7,35 @@ local UPDATE_POMODORO = 'bash -c "ralphie update-pomodoro-widget"'
 local pomodoro_widget = {}
 
 pomodoro_widget.widget = wibox.widget {
-    { markup =
-          '<span size="large" font_weight="bold" color="#536452">Pomo time: </span>',
-      align = 'center',
+    {
+      id = "lbl",
       widget = wibox.widget.textbox
     },
     { id = "txt",
       widget = wibox.widget.textbox
     },
     layout = wibox.layout.fixed.horizontal,
-    set_text = function(self, new_value)
+    set_text = function(self, new_label, new_value)
+        print(new_value)
         local str = '<span size="large" font_weight="bold" color="#efaefb">' ..
             new_value .. '</span>';
         self.txt.markup = str
+
+        print(new_label)
+        local label_str = '<span size="large" font_weight="bold" color="#536452">' ..
+            new_label .. '</span>';
+        self.lbl.markup = label_str
     end,
 }
 
-function pomodoro_widget:update_pomodoro(pomodoro_str)
-    pomodoro_widget.widget:set_text(pomodoro_str);
+function pomodoro_widget:update_pomodoro(msg)
+    pomodoro_widget.widget:set_text(msg.label, msg.value);
 end
 
 local function worker()
     -- global function called by ralphie via dbus repl
-    function update_pomodoro_widget(pomodoro_str)
-        pomodoro_widget:update_pomodoro(pomodoro_str)
+    function update_pomodoro_widget(msg)
+        pomodoro_widget:update_pomodoro(msg)
     end
 
     gears.timer {

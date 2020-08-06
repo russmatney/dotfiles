@@ -63,14 +63,16 @@ function obj.restore_state()
       local selected = p[6] == 'true'
 
       local t = s.tags[i]
-      t.layout = layouts[layout]
+      if t then
+        t.layout = layouts[layout]
 
-      t.column_count = ncol
-      t.master_width_factor = mwfact
-      t.master_count = nmaster
+        t.column_count = ncol
+        t.master_width_factor = mwfact
+        t.master_count = nmaster
 
-      if selected and t.selected == false then
-        awful.tag.viewtoggle(t);
+        if selected and t.selected == false then
+          awful.tag.viewtoggle(t);
+        end
       end
     end
   end
