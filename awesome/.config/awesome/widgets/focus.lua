@@ -9,10 +9,8 @@ local focus_widget = {}
 
 focus_widget.widget = wibox.widget {
     { markup =
-          '<span size="large" font_weight="bold" color="#536452">Current Focus: </span>',
+          '<span size="large" font_weight="bold" color="#536452">Focus: </span>',
       align = 'center',
-      -- forced_width = 350, -- for horizontal alignment
-      -- forced_height = 40,
       widget = wibox.widget.textbox
     },
     { id = "txt",

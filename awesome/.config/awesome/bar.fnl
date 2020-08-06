@@ -7,12 +7,13 @@
 
 (local focus_widget (require "widgets.focus"))
 (local repos_widget (require "widgets.repos"))
+(local pomodoro_widget (require "widgets.pomodoro"))
 
 (local todo_widget (require "awesome-wm-widgets.todo-widget.todo"))
 ;; (local stackoverflow_widget (require "awesome-wm-widgets.stackoverflow-widget.stackoverflow"))
-(local pomodoro_widget (require "awesome-wm-widgets.pomodoroarc-widget.pomodoroarc"))
+;; (local pomodoro_widget (require "awesome-wm-widgets.pomodoroarc-widget.pomodoroarc"))
 (local ram_widget (require "awesome-wm-widgets.ram-widget.ram-widget"))
-;; (local batteryarc_widget (require"awesome-wm-widgets.batteryarc-widget.batteryarc"))
+(local batteryarc_widget (require"awesome-wm-widgets.batteryarc-widget.batteryarc"))
 ;; (local volumebar_widget (require"awesome-wm-widgets.volumebar-widget.volumebar"))
 (local brightness_widget (require "awesome-wm-widgets.brightness-widget.brightness"))
 (local weather_widget (require "awesome-wm-widgets.weather-widget.weather"))
@@ -208,7 +209,6 @@
                                (. color-wheel index)
                                "'><b> " index " </b></span>"))))}})))
 
-;; TODO give global names a larger font size, or green flycheck underline
 (global
  init_screen
  (fn []
@@ -249,12 +249,12 @@
         ;; Middle widget
         2 {:layout wibox.layout.fixed.horizontal
            :expand "none"
-           1 pomodoro_widget
+           1 (pomodoro_widget)
            2 (ram_widget)
            3 (todo_widget)
            4 (brightness_widget)
            5 (spotify_widget)
-           ;; 4 (batteryarc_widget) ;; not necessary on algo
+           6 (batteryarc_widget) ;; not necessary on algo
            ;; 5 (stackoverflow_widget
            ;;    {:limit 10
            ;;     :tagged "clojure,fennel,babashka"})
@@ -268,18 +268,18 @@
            ;;     :width 80
            ;;     :shape "rounded_bar"
            ;;     :margins 4})
-           6 (weather_widget
-              {:api_key (os.getenv "OPENWEATHERMAP_APIKEY")
-               :coordinates [40.6782 -73.9442]
-               :time_format_12h   true
-               :units   "imperial"
-               :both_units_widget   true
-               :font_name   "Carter One"
-               :icons   "VitalyGorbachev"
-               :show_hourly_forecast   true
-               :show_daily_forecast   true
-               :icons_extension ".svg"}
-              )
+           ;; 7 (weather_widget
+           ;;    {:api_key (os.getenv "OPENWEATHERMAP_APIKEY")
+           ;;     :coordinates [40.6782 -73.9442]
+           ;;     :time_format_12h   true
+           ;;     :units   "imperial"
+           ;;     :both_units_widget   true
+           ;;     :font_name   "Carter One"
+           ;;     :icons   "VitalyGorbachev"
+           ;;     :show_hourly_forecast   true
+           ;;     :show_daily_forecast   true
+           ;;     :icons_extension ".svg"}
+           ;;    )
            }
 
         ;; Right widgets
