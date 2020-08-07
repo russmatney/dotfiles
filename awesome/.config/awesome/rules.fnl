@@ -48,6 +48,10 @@
          {:rule_any {:type ["normal" "dialog"]}
           :properties {:titlebars_enabled true}}
 
+         ;; disable titlebars in electron
+         {:rule_any {:class ["Electron"]}
+          :properties {:titlebars_enabled false}}
+
          ;; attempt to wrangle browser windows
          ;; currently too broad, catching slack, discord, spotify
          {:rule {:role "browser"}

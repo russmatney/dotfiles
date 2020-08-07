@@ -49,6 +49,16 @@
 ;; Arrange Signal
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(fn no-borders? [s c]
+  (let [layout (awful.layout.getname (awful.layout.get s))]
+    (or
+     (= (. c :name) "Yodo Electron")
+     c.maximized
+     (= layout "max")
+     (= layout "fullscreen")
+     (let [tiled (awful.client.tiled c.screen)]
+       (= #tiled 1)))))
+
 (global
  init_arrange_signal
  (fn []
@@ -64,7 +74,7 @@
 
           (each [_ c (pairs clients)]
             ;; No borders with only one humanly visible client
-            (if c.maximized
+            (if (no-borders? s c)
                 ;; NOTE: also handled in focus, but that does not cover maximizing from a
                 ;; tiled state (when the client had focus).
                 (set c.border_width 0)
@@ -72,15 +82,4 @@
                 (or c.floating (= layout "floating"))
                 (set c.border_width beautiful.border_width)
 
-                (or (=  layout "max")  (= layout "fullscreen"))
-                (set c.border_width 0)
-
-                (do
-                  (local tiled (awful.client.tiled c.screen))
-                  (if (= #tiled 1) ;; and c = tiled[1] then
-                      (tset (. tiled 1) :border_width 0)
-                      ;; if layout ~= "max" and layout ~= "fullscreen" then
-                      ;; XXX: SLOW!
-                      ;; awful.client.moveresize(0, 0, 2, 0, tiled[1])
-                      ;; end
-                      (tset c :border_width beautiful.border_width)))))))))))
+                (tset c :border_width beautiful.border_width)))))))))
