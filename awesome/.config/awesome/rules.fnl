@@ -53,7 +53,6 @@
           :properties {:titlebars_enabled false}}
 
          ;; attempt to wrangle browser windows
-         ;; currently too broad, catching slack, discord, spotify
          {:rule {:role "browser"}
           :properties {:screen 1}
           :callback
@@ -69,8 +68,7 @@
                       (tset c :name_change_handled true)
                       (c:disconnect_signal "property::name" f)
                       (awful.rules.apply c)
-                      (set c.minimized false)
-                      ))
+                      (set c.minimized false)))
                (set c.minimized true)
                (c:connect_signal "property::name" f))))}
          ]

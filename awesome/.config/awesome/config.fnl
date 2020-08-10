@@ -39,20 +39,6 @@
             (set in_error false)))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Tags init
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(global
- init_tags
- (fn [config]
-   (when (and config (. config :tag-names))
-     (print config.tag-names))
-
-   (each [_ tag-name (pairs w.tag-names)]
-     ;; TODO only add if no tag with this name exists
-     (awful.tag.add tag-name {:layout (. layouts 1)}))))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Global (External) Functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -66,3 +52,27 @@
  set_layout
  (fn [layout]
    (awful.layout.set layout)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Tags init
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(global
+ init_tags
+ (fn [config]
+   (when (and config (. config :tag_names))
+     (print "found tag_names in config")
+     (pp config.tag_names))
+
+   (let [tag-names (or (and config config.tag_names) w.tag-names)]
+     (each [_ tag-name (pairs tag-names)]
+       (let [existing-tag (-> (awful.screen.focused)
+                              (awful.tag.find_by_name tag-name))]
+         (print (..  "Tag for " tag-name "?"))
+         (pp existing-tag)
+         (when (not existing-tag)
+           (awful.tag.add tag-name {:layout (. layouts 1)})))))
+
+   (when (and config (. config :tag_names))
+     (reapply_rules))
+   ))
