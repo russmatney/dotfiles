@@ -16,12 +16,12 @@ pomodoro_widget.widget = wibox.widget {
     },
     layout = wibox.layout.fixed.horizontal,
     set_text = function(self, new_label, new_value)
-        print(new_value)
+        -- print(new_value)
         local str = '<span size="large" font_weight="bold" color="#efaefb">' ..
             new_value .. '</span>';
         self.txt.markup = str
 
-        print(new_label)
+        -- print(new_label)
         local label_str = '<span size="large" font_weight="bold" color="#536452">' ..
             new_label .. '</span>';
         self.lbl.markup = label_str
@@ -43,7 +43,9 @@ local function worker()
         call_now  = true,
         autostart = true,
         callback  = function()
-          spawn.easy_async(UPDATE_POMODORO, function() print "Pomodoro update requested" end)
+            spawn.easy_async(UPDATE_POMODORO, function()
+                                 -- print "Pomodoro update requested"
+            end)
         end
     }
 
