@@ -76,7 +76,7 @@
         ;; scratchpads
         (key [:mod] "a" (scratchpad.toggle w.efb-tag))
         (key [:mod] "u" (scratchpad.toggle w.journal-tag))
-        (key [:mod] "y" (scratchpad.toggle w.yodo-tag))
+        (key [:mod] "y" (scratchpad.toggle w.yodo-app-tag))
         (key [:mod] "r" (scratchpad.toggle w.notes-tag))
         (key [:mod] "t" (scratchpad.toggle w.web-tag))
 

@@ -1,4 +1,5 @@
 (local awful (require "awful"))
+(local lume (require :lume))
 
 (local scratchpad {})
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -8,8 +9,20 @@
 (fn create-client
   [workspace]
   (let [emacs-file (. workspace :emacs-file)
-        browser-url (. workspace :browser-url)]
+        browser-url (. workspace :browser-url)
+
+        ;; TODO handle starting multiple apps, filtering on already opened
+        app-exec (-?> workspace
+                      (. :apps)
+                      lume.first
+                      (. :exec))]
     (if
+     app-exec
+     (do
+       (print "Starting app via app-exec")
+       (print app-exec)
+       (awful.spawn app-exec))
+
      browser-url
      (awful.spawn
       (.. "google-chrome-stable --new-window " browser-url))

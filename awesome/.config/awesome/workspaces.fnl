@@ -44,13 +44,13 @@
       :scratchpad-key "0"
       :emacs-file "~/dotfiles/readme.org"})
 
-(set mytags.yodo-tag
-     {:tag-name "yodo"
-      :browser-url "http://localhost:4200"
-      :floating false
-      :apps [{:names ["localhost:4200"
-                      "localhost:4200 - Google Chrome"]}]
-      })
+(set mytags.yodo-app-tag
+     {:tag-name "yodo-app"
+      :apps [{:exec ["/home/russ/.local/bin/start-yodo-electron.sh"]
+              :names ["Yodo Electron"]}]})
+
+(set mytags.yodo-dev-tag
+     {:tag-name "yodo-dev"})
 
 (set mytags.web-tag
      {:tag-name "web"
@@ -68,11 +68,13 @@
         mytags.spotify-tag
         mytags.web-tag
         mytags.notes-tag
-        mytags.yodo-tag
-        mytags.journal-tag
+        mytags.yodo-dev-tag
         mytags.dotfiles-tag
         {:tag-name "ralphie"}
-        {:tag-name "org-crud"}])
+        {:tag-name "org-crud"}
+        mytags.journal-tag
+        mytags.yodo-app-tag
+        ])
 
 (local tag-names
        (lume.map tag-list
