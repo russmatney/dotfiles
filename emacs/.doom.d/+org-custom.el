@@ -131,6 +131,11 @@
 - source :: ${ref}"
            :unnarrowed t))))
 
+(defadvice org-capture
+    (after make-full-window-frame activate)
+  "Advise capture to be the only window when used as a popup"
+  (if (equal "doom-capture" (frame-parameter nil 'name))
+      (delete-other-windows)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

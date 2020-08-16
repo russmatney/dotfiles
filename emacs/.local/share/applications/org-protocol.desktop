@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Org-Protocol
-Exec=emacsclient %u
+Exec=/home/russ/.local/bin/org-protocol %u
 Icon=emacs-icon
 Type=Application
 Terminal=false

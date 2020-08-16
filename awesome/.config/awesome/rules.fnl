@@ -52,6 +52,18 @@
          {:rule_any {:class ["Electron"]}
           :properties {:titlebars_enabled false}}
 
+         ;; disable titlebars in electron
+         {:rule_any {:name ["org-capture-frame"
+                            "doom-capture"]}
+          :properties {
+                       ;; :titlebars_enabled false
+                       :floating true
+                       :ontop true
+                       :width     1600
+                       :height    800
+                       :placement awful.placement.centered
+                       }}
+
          ;; attempt to wrangle browser windows
          {:rule {:role "browser"}
           :properties {:screen 1}
