@@ -108,16 +108,6 @@
         org-roam-server-network-label-truncate-length 60
         org-roam-server-network-label-wrap-length 20))
 
-
-(use-package! monroe
-  :config
-  (setq monroe-nrepl-server-cmd "jeejah"
-        monroe-nrepl-server-cmd-args "--fennel --port 7777 --debug"
-        monroe-nrepl-server-project-file ".gitignore"))
-
-(defun fennel-enable-monroe ()
-  (monroe-interaction-mode t))
-
 (use-package! fennel-mode
   :hook (fennel-mode . rainbow-delimiters-mode)
   :config
@@ -142,6 +132,49 @@
     "k" #'russ/love-module-reload
     "r" #'russ/open-love-repl
     "R" #'russ/love-kill-and-restart))
+
+(flycheck-define-checker fennel-lua-luacheck
+  "Some docstring"
+  :command ("fennelcheck"
+            "--formatter" "plain"
+            "--codes"                   ; Show warning codes
+            "--no-color"
+            (option-list "--std" flycheck-luacheck-standards)
+            (config-file "--config" flycheck-luacheckrc)
+            ;; TODO might be saner to use .lua here
+            "--filename" source-original
+            ;; Read from standard input
+            "-")
+  :standard-input t
+  :error-patterns
+  ((warning line-start
+            (optional (file-name))
+            ":" line ":" column
+            ": (" (id "W" (one-or-more digit)) ") "
+            (message) line-end)
+   (error line-start
+          (optional (file-name))
+          ":" line ":" column ":"
+          ;; `luacheck' before 0.11.0 did not output codes for errors, hence
+          ;; the ID is optional here
+          (optional " (" (id "E" (one-or-more digit)) ") ")
+          (message) line-end))
+  :modes fennel-mode)
+
+(add-to-list 'flycheck-checkers 'fennel-lua-luacheck)
+
+;; (flycheck-define-checker lua
+;; " doc string"
+;;   :command ("luac" "-p" "-")
+;;   :standard-input t
+;;   :error-patterns
+;;   ((error line-start
+;;           ;; Skip the name of the luac executable.
+;;           (minimal-match (zero-or-more not-newline))
+;;           ": stdin:" line ": " (message) line-end))
+;;   :modes lua-mode)
+
+
 
 (use-package! friar)
 
