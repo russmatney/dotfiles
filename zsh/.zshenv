@@ -7,6 +7,7 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 
 source "/home/russ/.secrets"
 
+[ -s ~/.luaver/luaver ] && . ~/.luaver/luaver
 eval $(luarocks path --bin)
 
 export LUA_PATH="$LUA_PATH\
