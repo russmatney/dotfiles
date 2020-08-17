@@ -1,18 +1,24 @@
 ;;; ~/dotfiles/emacs/.doom.d/autoload/fennel.el -*- lexical-binding: t; -*-
 
-;; Supports running love2d games from emacs
+;;; Commentary:
+
+;; Supports running love2d games from Emacs
 ;; Creates a comint/inferior-lisp buffer for each project
 ;; Depends on projectile.
 
+;;; Code:
+
 (defun love-buffer-name-no-ax ()
+  "A project-based buffer name for the love process. No asterisks included."
   (concat "love2d-" (projectile-project-name)))
 
 (defun love-buffer-name ()
+  "Wrap the name in the usual asterisks, to match the buffer created by `make-comint'."
   (concat "*" (love-buffer-name-no-ax) "*"))
 
 ;;;###autoload
 (defun russ/run-love-for-project ()
-  "Starts a love 2d game in the current directory"
+  "Start a love 2d game for the current directory."
   (interactive)
 
   ;; move to project root
@@ -34,6 +40,7 @@
 
 ;;;###autoload
 (defun russ/love-kill-process-buffer ()
+  "Destroy the love game, no prompts."
   (interactive)
   (when inferior-lisp-buffer
 
@@ -48,6 +55,7 @@
 
 ;;;###autoload
 (defun russ/love-kill-and-restart ()
+  "Destroy and recreate the love game."
   (interactive)
   ;; Kill inferior lisp buffer if there is one
   (russ/love-kill-process-buffer)
@@ -58,6 +66,7 @@
 
 ;;;###autoload
 (defun russ/open-love-repl ()
+  "Open a love repl. Start the love game first to create it."
   (interactive)
 
   (if (get-buffer-process inferior-lisp-buffer)
@@ -70,7 +79,7 @@
 
 ;;;###autoload
 (defun russ/fennel-hotswap-module (module-keyword)
-  "Return a string of the code to reload the `module-keyword' module."
+  "Return a string of fennel to reload the `MODULE-KEYWORD' module."
   (format "%s\n" `(let [(res err) (lume.hotswap ,module-keyword)]
                     (print (.. "Attempted Reload for " ,module-keyword))
                     (if err
@@ -80,12 +89,20 @@
                       res))))
 
 (defun get-module-name ()
-  "Ask for the name of a module for the current file; returns keyword.
-TODO expand to support namespaced module reload."
+  "TODO expand to support namespaced module reload."
   (intern (concat ":" (file-name-base))))
+
+;; ;;;###autoload
+;; (defun russ/love-restart-in-place ()
+;;   (interactive)
+;;   (comint-send-string (inferior-lisp-proc)
+;;                       (format "%s\n"
+;;                               `(love.event.quit "restart"))))
 
 ;;;###autoload
 (defun russ/love-module-reload ()
+  "Reloads the visited module in place via lume.hotswap.
+Supports lua and fennel."
   (interactive)
   ;; check if file needs to be saved first
   (comint-check-source buffer-file-name)
@@ -113,6 +130,4 @@ TODO expand to support namespaced module reload."
      (print "hi")
      (print "bye")
      (print "bye")
-     (print "bye")
-   )
- )
+     (print "bye")))
