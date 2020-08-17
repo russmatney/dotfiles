@@ -13,6 +13,7 @@
    ;; startup some app services
    (awful.spawn.once "run sc --user restart yodo yodo-fe bb-nrepl ralphie-nrepl" false)
    (awful.spawn "xset r rate 170 60" false)
+   (awful.spawn.once "picom" false)
 
    ;; kick variety to fix the background asap
    ;; TODO write the current/latest to the current theme
