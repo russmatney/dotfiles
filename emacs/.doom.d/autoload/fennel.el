@@ -71,11 +71,16 @@
 ;;;###autoload
 (defun russ/fennel-hotswap-module (module-keyword)
   "Return a string of the code to reload the `module-keyword' module."
-  (format "%s\n" `(lume.hotswap ,module-keyword)))
+  (format "%s\n" `(let [(res err) (lume.hotswap ,module-keyword)]
+                    (print (.. "Attempted Reload for " ,module-keyword))
+                    (if err
+                        (do
+                            (print err)
+                            err)
+                      res))))
 
 (defun get-module-name ()
   "Ask for the name of a module for the current file; returns keyword.
-
 TODO expand to support namespaced module reload."
   (intern (concat ":" (file-name-base))))
 
@@ -89,7 +94,17 @@ TODO expand to support namespaced module reload."
   (let* ((module (get-module-name)))
 
     ;; send to repl
-    (comint-send-string (inferior-lisp-proc) (fennel-hotswap-module module))))
+    (comint-send-string (inferior-lisp-proc) (fennel-hotswap-module module))
+
+    ;; attempt to get all output to show (not just success output)
+    ;; (comint-redirect-send-command-to-process
+    ;;  (fennel-hotswap-module module) ;; command
+    ;;  (love-buffer-name) ;; output buffer
+    ;;  (inferior-lisp-proc) ;; process
+    ;;  t ;; show input command
+    ;;  t ;; don't show process buffer
+    ;;  )
+    ))
 
 (comment
  fennel-mode
