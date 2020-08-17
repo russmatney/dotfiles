@@ -127,12 +127,24 @@
 (after! fennel-mode
   (map! :map fennel-mode-map
     :localleader
+    "z" #'fennel-repl
+    "k" #'russ/love-module-reload
+    "l" #'fennel-view-compilation
+    "r" #'russ/open-love-repl
+    "R" #'russ/love-kill-and-restart))
+
+(use-package! lua-mode
+  :hook (lua-mode . rainbow-delimiters-mode))
+
+(after! lua-mode
+  (map! :map lua-mode-map
+    :localleader
+    "k" #'russ/love-module-reload
+    "r" #'russ/open-love-repl
     "R" #'russ/love-kill-and-restart))
 
 (use-package! friar)
 
-(use-package! lua-mode
-  :hook (lua-mode . rainbow-delimiters-mode))
 
 (defun doom-buffer-has-long-lines-p ()
   (when comment-use-syntax

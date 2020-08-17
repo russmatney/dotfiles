@@ -52,10 +52,47 @@
   ;; Kill inferior lisp buffer if there is one
   (russ/love-kill-process-buffer)
 
-  ;; start a new love project
+  ;; start a new love instance
   (russ/run-love-for-project))
 
+
+;;;###autoload
+(defun russ/open-love-repl ()
+  (interactive)
+
+  (if (get-buffer-process inferior-lisp-buffer)
+      (pop-to-buffer inferior-lisp-buffer)
+
+    ;; start a new love instance
+    (russ/run-love-for-project)
+    ;; pop to buffer
+    (pop-to-buffer inferior-lisp-buffer)))
+
+;;;###autoload
+(defun russ/fennel-hotswap-module (module-keyword)
+  "Return a string of the code to reload the `module-keyword' module."
+  (format "%s\n" `(lume.hotswap ,module-keyword)))
+
+(defun get-module-name ()
+  "Ask for the name of a module for the current file; returns keyword.
+
+TODO expand to support namespaced module reload."
+  (intern (concat ":" (file-name-base))))
+
+;;;###autoload
+(defun russ/love-module-reload ()
+  (interactive)
+  ;; check if file needs to be saved first
+  (comint-check-source buffer-file-name)
+
+  ;; get module name
+  (let* ((module (get-module-name)))
+
+    ;; send to repl
+    (comint-send-string (inferior-lisp-proc) (fennel-hotswap-module module))))
+
 (comment
+ fennel-mode
  (concat "hi" (projectile-project-root))
  (if nil
      (print "hi")
