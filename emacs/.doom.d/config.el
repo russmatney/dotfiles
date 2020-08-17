@@ -124,6 +124,11 @@
   ;; (add-hook 'fennel-mode-hook #'fennel-enable-monroe)
   (setq fennel-mode-switch-to-repl-after-reload nil))
 
+(after! fennel-mode
+  (map! :map fennel-mode-map
+    :localleader
+    "R" #'russ/love-kill-and-restart))
+
 (use-package! friar)
 
 (use-package! lua-mode
