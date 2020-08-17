@@ -69,7 +69,7 @@
 (require :rules)
 (require :signals)
 (require :titlebars)
-(require :autorun)
+(require :spawns)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; init
