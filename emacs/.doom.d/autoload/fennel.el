@@ -80,13 +80,7 @@
 ;;;###autoload
 (defun russ/fennel-hotswap-module (module-keyword)
   "Return a string of fennel to reload the `MODULE-KEYWORD' module."
-  (format "%s\n" `(let [(res err) (lume.hotswap ,module-keyword)]
-                    (print (.. "Attempted Reload for " ,module-keyword))
-                    (if err
-                        (do
-                            (print err)
-                            err)
-                      res))))
+  (format "%s\n" `(lume.hotswap ,module-keyword)))
 
 (defun get-module-name ()
   "TODO expand to support namespaced module reload."
@@ -111,7 +105,7 @@ Supports lua and fennel."
   (let* ((module (get-module-name)))
 
     ;; send to repl
-    (comint-send-string (inferior-lisp-proc) (fennel-hotswap-module module))
+    (comint-send-string (inferior-lisp-proc) (russ/fennel-hotswap-module module))
 
     ;; attempt to get all output to show (not just success output)
     ;; (comint-redirect-send-command-to-process
