@@ -25,18 +25,17 @@
   (cd (projectile-project-root))
 
   ;; create process and buffer if they don't exist
-  (let ((cmd "love ."))
-    (if (not (comint-check-proc (love-buffer-name)))
-        (let ((cmdlist (split-string cmd)))
-          (set-buffer (apply #'make-comint
-                             (love-buffer-name-no-ax)
-                             (car cmdlist) nil (cdr cmdlist)))
-          (inferior-lisp-mode)
-          (setq inferior-lisp-buffer (love-buffer-name))
-          (set (make-local-variable 'lisp-describe-sym-command) "(doc %s)\n")
-          (set (make-local-variable 'inferior-lisp-prompt) ">> ")
-          (set (make-local-variable 'lisp-arglist-command)
-               fennel-arglist-command)))))
+  (when (not (comint-check-proc (love-buffer-name)))
+    (let ((cmdlist (split-string "love .")))
+     (set-buffer (apply #'make-comint
+                        (love-buffer-name-no-ax)
+                        (car cmdlist) nil (cdr cmdlist)))
+     (inferior-lisp-mode)
+     (setq inferior-lisp-buffer (love-buffer-name))
+     (set (make-local-variable 'lisp-describe-sym-command) "(doc %s)\n")
+     (set (make-local-variable 'inferior-lisp-prompt) ">> ")
+     (set (make-local-variable 'lisp-arglist-command)
+          fennel-arglist-command))))
 
 ;;;###autoload
 (defun russ/love-kill-process-buffer ()
@@ -104,7 +103,8 @@ Supports lua and fennel."
   ;; get module name
   (let* ((module (get-module-name)))
     ;; send to repl
-    (comint-send-string (inferior-lisp-proc) (russ/fennel-hotswap-module module))))
+    (comint-send-string (inferior-lisp-proc)
+                        (russ/fennel-hotswap-module module))))
 
 ;;;###autoload
 (defun russ/reload-scene ()
@@ -116,7 +116,6 @@ Supports lua and fennel."
                         (format "%s\n" `(_G.load-scene ,module)))))
 
 (comment
-
  fennel-mode
  (concat "hi" (projectile-project-root))
  (if nil
