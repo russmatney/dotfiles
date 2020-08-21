@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: new-fennel-love-scene
+# uuid: new-fennel-love-scene
+# key: new-fennel-love-scene
+# condition: t
+# --
+(local game {})
+
+(fn game.load [_self]
+  (pp {:loading :game}))
+
+(fn game.draw [_self])
+(fn game.update [_self _dt])
+(fn game.keypressed [_self key]
+  (pp {:keypress key}))
+
+game

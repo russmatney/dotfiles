@@ -103,21 +103,20 @@ Supports lua and fennel."
 
   ;; get module name
   (let* ((module (get-module-name)))
-
     ;; send to repl
-    (comint-send-string (inferior-lisp-proc) (russ/fennel-hotswap-module module))
+    (comint-send-string (inferior-lisp-proc) (russ/fennel-hotswap-module module))))
 
-    ;; attempt to get all output to show (not just success output)
-    ;; (comint-redirect-send-command-to-process
-    ;;  (fennel-hotswap-module module) ;; command
-    ;;  (love-buffer-name) ;; output buffer
-    ;;  (inferior-lisp-proc) ;; process
-    ;;  t ;; show input command
-    ;;  t ;; don't show process buffer
-    ;;  )
-    ))
+;;;###autoload
+(defun russ/reload-scene ()
+  (interactive)
+  (russ/love-module-reload)
+  (let* ((module (get-module-name)))
+    ;; send to repl
+    (comint-send-string (inferior-lisp-proc)
+                        (format "%s\n" `(_G.load-scene ,module)))))
 
 (comment
+
  fennel-mode
  (concat "hi" (projectile-project-root))
  (if nil
