@@ -239,15 +239,6 @@
       ;; toggle floating
       (key [:mod] "f" awful.client.floating.toggle)
 
-      ;; center on screen
-      (key [:mod] "c"
-           (fn [c]
-             (-> c
-                 (tset :floating true)
-                 ((+ awful.placement.scale
-                     awful.placement.centered)
-                  {:to_percent 0.75}))))
-
       ;; (key [:mod] "l"
       ;;      (fn [c]
       ;;        (if (is-emacs c)
@@ -305,6 +296,15 @@
                      :by_percent 0.9})
                  (awful.client.incwfact -0.05))))
 
+      ;; center on screen
+      (key [:mod] "c"
+           (fn [c]
+             (-> c
+                 (tset :floating true)
+                 ((+ awful.placement.scale
+                     awful.placement.centered)
+                  {:honor_padding true
+                   :to_percent 0.75}))))
 
       ;; large centered
       (key [:mod :shift] "c"
@@ -313,7 +313,8 @@
                  (tset :floating true)
                  ((+ awful.placement.scale
                      awful.placement.centered)
-                  {:to_percent 0.9}))))
+                  {:honor_padding true
+                   :to_percent 0.9}))))
 
       ;; center without resizing
       (key [:mod :ctrl] "c"
