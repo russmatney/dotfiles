@@ -304,6 +304,7 @@
                  ((+ awful.placement.scale
                      awful.placement.centered)
                   {:honor_padding true
+                   :honor_workarea true
                    :to_percent 0.75}))))
 
       ;; large centered
@@ -314,6 +315,7 @@
                  ((+ awful.placement.scale
                      awful.placement.centered)
                   {:honor_padding true
+                   :honor_workarea true
                    :to_percent 0.9}))))
 
       ;; center without resizing
@@ -321,7 +323,9 @@
            (fn [c]
              (-> c
                  (tset :floating true)
-                 awful.placement.centered)))
+                 (awful.placement.centered
+                  {:honor_padding true
+                   :honor_workarea true}))))
 
       ;; swap with master
       (key [:mod :ctrl] "Return" (fn [c] (c:swap (awful.client.getmaster))))))
