@@ -270,7 +270,7 @@
         ;; Middle widget
         2 {:layout wibox.layout.fixed.horizontal
            :expand "none"
-           1 (pomodoro_widget)
+           ;; 1 (pomodoro_widget)
            2 (ram_widget)
            3 (todo_widget)
            4 (brightness_widget)
