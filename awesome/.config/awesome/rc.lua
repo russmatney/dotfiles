@@ -6,7 +6,11 @@ pcall(require, "luarocks.loader")
 
 package.path = (package.path -- luacheck:ignore 122
                 .. ";/home/russ/streetturtle/?.lua"
-                .. ";/home/russ/.luaver/luarocks/3.3.1_5.3/share/lua/5.3/?.lua")
+                  .. ";/home/russ/.luaver/luarocks/3.3.1_5.3/share/lua/5.3/?.lua"
+                  .. ";/home/russ/.luaver/luarocks/3.3.1_5.3/share/lua/5.3/?/init.lua"
+               )
+package.cpath = (package.cpath -- luacheck:ignore 122
+                  .. ";/home/russ/.luaver/luarocks/3.3.1_5.3/lib/lua/5.3/?.so")
 
 -- this finds generated fennel.lua at /usr/lib/lua/<version>/fennel.lua
 local fennel = require("fennel")
