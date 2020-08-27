@@ -53,6 +53,7 @@
   (let [layout (awful.layout.getname (awful.layout.get s))]
     (or
      (= (. c :name) "Yodo Electron")
+     (= (. c :name) "yodo/bar")
      c.maximized
      (= layout "max")
      (= layout "fullscreen")
