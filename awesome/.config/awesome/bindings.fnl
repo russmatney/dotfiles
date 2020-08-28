@@ -135,7 +135,8 @@
                  (awful.spawn (.. "ralphie open-emacs " name)))))
 
         ;; browser
-        (key [:mod :shift] "b" (spawn-fn "google-chrome-stable"))
+        ;; (key [:mod :shift] "b" (spawn-fn "google-chrome-stable"))
+        (key [:mod :shift] "b" (spawn-fn "firefox"))
 
         ;; launcher (rofi)
         (key [:mod] "space" (spawn-fn "/usr/bin/rofi -show drun -modi drun"))

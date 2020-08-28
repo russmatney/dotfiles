@@ -25,7 +25,9 @@
 
      browser-url
      (awful.spawn
-      (.. "google-chrome-stable --new-window " browser-url))
+      ;; (.. "google-chrome-stable --new-window " browser-url)
+      (.. "firefox --new-window " browser-url)
+      )
 
      emacs-file
      (awful.spawn.with_shell

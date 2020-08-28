@@ -53,6 +53,18 @@
  (fn [layout]
    (awful.layout.set layout)))
 
+(global
+ set_geometry
+ (fn [window-id geo]
+   ;; should only call once, presuming unique window-ids
+   (each [c (awful.client.iterate (fn [c] (= c.window window-id)))]
+     (pp {:event "Setting client geometry"
+          :window-id window-id
+          :client c
+          :geometry geo})
+     (c:geometry geo))))
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Tags init
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

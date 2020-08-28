@@ -275,7 +275,7 @@
            3 (todo_widget)
            4 (brightness_widget)
            5 (spotify_widget)
-           6 (batteryarc_widget) ;; not necessary on algo
+           ;; 6 (batteryarc_widget) ;; not necessary on algo
            ;; 5 (stackoverflow_widget
            ;;    {:limit 10
            ;;     :tagged "clojure,fennel,babashka"})

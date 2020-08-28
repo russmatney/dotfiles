@@ -54,11 +54,14 @@
 
 (set mytags.web-tag
      {:tag-name "web"
-      :browser-url "chrome://newtab"
+      ;; :browser-url "chrome://newtab"
+      :browser-url "about:home"
       :except_any {:names ["localhost"]}
       :floating true
-      :apps [{:classes ["Google-chrome"]
-              :names ["Google-chrome" "google chrome" "Google Chrome"]}]
+      :apps [{:classes ["firefox"]
+              :names ["Mozilla Firefox" "firefox"]}]
+      ;; :apps [{:classes ["Google-chrome"]
+      ;;         :names ["Google-chrome" "google chrome" "Google Chrome"]}]
       })
 
 ;; NOTE order here determines order in bar
