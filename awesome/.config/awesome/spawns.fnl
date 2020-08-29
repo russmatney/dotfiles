@@ -17,4 +17,7 @@
 
    ;; kick variety to fix the background asap
    ;; TODO write the current/latest to the current theme
-   (awful.spawn "variety --next" false)))
+   (awful.spawn "variety --next" false)
+
+   (awful.spawn "ralphie start-bar")
+   ))

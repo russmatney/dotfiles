@@ -222,6 +222,7 @@
     (awful.spawn cmd)))
 
 (fn focus-move [dir centerwork-dir centerwork-dir2]
+  ;; TODO consider toggling when there is a floating window
   (if (centerwork_layout?)
       (do
         (awful.client.focus.bydirection centerwork-dir)
@@ -239,27 +240,6 @@
 
       ;; toggle floating
       (key [:mod] "f" awful.client.floating.toggle)
-
-      ;; (key [:mod] "l"
-      ;;      (fn [c]
-      ;;        (if (is-emacs c)
-      ;;            (emacs-move "right")
-      ;;            (focus-move "right" "right" "up"))))
-      ;; (key [:mod] "h"
-      ;;      (fn [c]
-      ;;        (if (is-emacs c)
-      ;;            (emacs-move "left")
-      ;;            (focus-move "left" "left" "down"))))
-      ;; (key [:mod] "j"
-      ;;      (fn [c]
-      ;;        (if (is-emacs c)
-      ;;            (emacs-move "down")
-      ;;            (focus-move "down" "right" "down"))))
-      ;; (key [:mod] "k"
-      ;;      (fn [c]
-      ;;        (if (is-emacs c)
-      ;;            (emacs-move "up")
-      ;;            (focus-move "up" "left" "up"))))
 
       ;; focus movement
       (key [:mod :shift] "l" (fn [c] (focus-move "right" "right" "up")))
@@ -296,6 +276,36 @@
                   c {:direction "down"
                      :by_percent 0.9})
                  (awful.client.incwfact -0.05))))
+
+      ;; ;; widen/shink windows
+      ;; (key [:ctrl :shift :mod] "l"
+      ;;      (fn [c]
+      ;;        (if c.floating
+      ;;            (awful.placement.scale
+      ;;             c {:direction "right"
+      ;;                :by_percent 1.1})
+      ;;            (awful.tag.incmwfact 0.05))))
+      ;; (key [:ctrl :shift :mod] "h"
+      ;;      (fn [c]
+      ;;        (if c.floating
+      ;;            (awful.placement.scale
+      ;;             c {:direction "right"
+      ;;                :by_percent 0.9})
+      ;;            (awful.tag.incmwfact -0.05))))
+      ;; (key [:ctrl :shift :mod] "j"
+      ;;      (fn [c]
+      ;;        (if c.floating
+      ;;            (awful.placement.scale
+      ;;             c {:direction "down"
+      ;;                :by_percent 1.1})
+      ;;            (awful.client.incwfact 0.05))))
+      ;; (key [:ctrl :shift :mod] "k"
+      ;;      (fn [c]
+      ;;        (if c.floating
+      ;;            (awful.placement.scale
+      ;;             c {:direction "down"
+      ;;                :by_percent 0.9})
+      ;;            (awful.client.incwfact -0.05))))
 
       ;; center on screen
       (key [:mod] "c"
