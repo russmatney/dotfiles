@@ -235,6 +235,12 @@
  (fn []
    (awful.screen.connect_for_each_screen
     (fn [s]
+      ;; set padding for top-status bar
+      (tset s :padding {:top 100 ;; matches status bar height
+                        :bottom s.padding.bottom
+                        :left s.padding.left
+                        :right s.padding.right})
+
       ;; Create an imagebox widget which will contains an icon indicating which layout we're using.
       ;; We need one layoutbox per screen.
       (set s.mylayoutbox (awful.widget.layoutbox s))

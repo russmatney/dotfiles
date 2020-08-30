@@ -44,10 +44,10 @@
       :scratchpad-key "0"
       :emacs-file "~/dotfiles/readme.org"})
 
-(set mytags.yodo-app-tag
-     {:tag-name "yodo-app"
-      :apps [{:exec ["/home/russ/.local/bin/start-yodo-electron.sh"]
-              :names ["Yodo Electron"]}]})
+;; (set mytags.yodo-app-tag
+;;      {:tag-name "yodo-app"
+;;       :apps [{:exec ["/home/russ/.local/bin/start-yodo-electron.sh"]
+;;               :names ["Yodo Electron"]}]})
 
 (set mytags.yodo-dev-tag
      {:tag-name "yodo-dev"})
@@ -76,7 +76,7 @@
         {:tag-name "ralphie"}
         {:tag-name "org-crud"}
         mytags.journal-tag
-        mytags.yodo-app-tag
+        ;; mytags.yodo-app-tag
         ])
 
 (local tag-names

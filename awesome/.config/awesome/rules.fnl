@@ -52,7 +52,18 @@
          {:rule_any {:class ["Electron"]}
           :properties {:titlebars_enabled false}}
 
-         ;; disable titlebars in electron
+         ;; handle status bar
+         {:rule_any {:name ["yodo/bar"]}
+          :properties {:titlebars_enabled false
+                       :floating true
+                       :sticky true
+                       :focusable false
+                       :maximized_horizontal true
+                       :height 100
+                       :x 0
+                       :y 0}}
+
+         ;; handle org protocol/emacs popups
          {:rule_any {:name ["org-capture-frame"
                             "doom-capture"]}
           :properties {
@@ -65,9 +76,12 @@
                        }}
 
          ;; attempt to wrangle browser windows
-         {:rule {:role "browser"}
+         {:rule
+          ;; {:role "browser"}
+          {:class "firefox"}
           :properties {:screen 1}
           :callback
+          ;; TODO refactor away from this nonsense
           (fn [c]
             (if
              (and
