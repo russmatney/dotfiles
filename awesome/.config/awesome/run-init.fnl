@@ -28,17 +28,6 @@
          ;; lain.layout.centerwork.horizontal
          ])
 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Global Helpers
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(local restart-helper (require "./restart"))
-
-(awesome.connect_signal
- "startup"
- (fn [] (restart-helper.restore_state)))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Theming
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -61,17 +50,76 @@
    ;; (set beautiful.useless_gap 30)
    (set beautiful.useless_gap 10)))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Load global init functions
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; External (Ralphie?) Functions
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(require :config)
+(local w (require :workspaces))
+
+
+(global
+ reapply_rules
+ (fn []
+   (each [c (awful.client.iterate (fn [_] true))]
+     (awful.rules.apply c))))
+
+(global
+ set_layout
+ (fn [layout]
+   (awful.layout.set layout)))
+
+(global
+ set_geometry
+ (fn [window-id geo]
+   ;; should only call once, presuming unique window-ids
+   (each [c (awful.client.iterate (fn [c] (= c.window window-id)))]
+     (pp {:event "Setting client geometry"
+          :window-id window-id
+          :client c
+          :geometry geo})
+     (c:geometry geo))))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Tags init
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(local restart-helper (require "./restart"))
+(require :errors)
 (require :bar)
 (require :remote)
 (require :rules)
 (require :signals)
 (require :titlebars)
 (require :spawns)
+
+(global
+ init_tags
+ (fn [config]
+   (when (and config (. config :tag_names))
+     (print "found tag_names in config")
+     (pp config.tag_names))
+
+   (let [tag-names (and config config.tag_names)]
+     (each [_ tag-name (pairs tag-names)]
+       (let [existing-tag (-> mouse.screen.tags
+                              (awful.tag.find_by_name tag-name))]
+         (if existing-tag
+             (print (..  "Tag " tag-name " exists"))
+             (do
+               (print (..  "Creating tag " tag-name))
+               (awful.tag.add tag-name {:layout (. layouts 1)}))))))
+
+   (restart-helper.restore_state)
+
+   ;; reapply rules to all clients
+   (reapply_rules)
+   ))
+
+
+(fn ralphie-init []
+  (awful.spawn "ralphie init-tags")
+  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; init
@@ -92,19 +140,19 @@
    (print "init_theme")
    (_G.init_theme config)
 
-   ;; screen and tags
+   ;; screen
    (print "init screen and tags")
    (_G.init_screen config)
-   (_G.init_tags config)
 
    ;; bindings
    (print "init bindings")
    (_G.set_global_keys config)
    (_G.init_root_buttons config)
 
-   ;; rules
-   (print "init_rules")
-   (_G.init_rules config)
+   ;; tags, then restore state, then apply rules to all clients...?
+   ;; calls into init_tags with built config
+
+   (ralphie-init)
 
    ;; signals
    (print "init_signals")
@@ -113,9 +161,13 @@
    (_G.init_focus_signals config)
    (_G.init_arrange_signal config)
 
+   (_G.init_rules config)
+
    ;; spawns
    (print "init_spawns")
-   (_G.init_spawns config)))
+   (_G.init_spawns config)
+
+   ))
 
 ;; (awful.spawn "ralphie awesome-init")
 (init)

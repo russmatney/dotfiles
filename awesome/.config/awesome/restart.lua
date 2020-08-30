@@ -16,7 +16,7 @@ function obj.save_state()
   local screen = mouse.screen
   local tags = screen.tags
 
-  local params = {}
+  local tags_to_restore = {}
 
   for i, t in ipairs(tags) do
     local sel
@@ -26,8 +26,9 @@ function obj.save_state()
       sel = 'false'
     end
 
-    table.insert(params, {
+    table.insert(tags_to_restore, {
       i,
+      t.name,
       table.indexof(layouts, t.layout),
       t.column_count,
       t.master_width_factor,
@@ -40,7 +41,7 @@ function obj.save_state()
     os.remove(tags_state_file)
   end
 
-  table.save(params, tags_state_file)
+  table.save(tags_to_restore, tags_state_file)
 end
 
 function obj.save_state_and_restart()
@@ -51,16 +52,24 @@ end
 
 function obj.restore_state()
   if posix.stat(tags_state_file) ~= nil then
-    local params = table.load(tags_state_file)
+    local tags_to_restore = table.load(tags_state_file)
 
+    -- TODO handle creating tags here if they aren't found
+    -- TODO refactor to find a tag for the name rather than use the index
     local s = awful.screen.focused()
-    for j, p in ipairs(params) do
+    for _j, p in ipairs(s.tags) do
+      pp(p)
+    end
+    for j, p in ipairs(tags_to_restore) do
       local i = p[1]
-      local layout = p[2] -- index of layout in layouts table
-      local ncol = p[3]
-      local mwfact = p[4]
-      local nmaster = p[5]
-      local selected = p[6] == 'true'
+      local name = p[2]
+      local layout = p[3] -- index of layout in layouts table
+      local ncol = p[4]
+      local mwfact = p[5]
+      local nmaster = p[6]
+      local selected = p[7] == 'true'
+
+      pp(p)
 
       local t = s.tags[i]
       if t then

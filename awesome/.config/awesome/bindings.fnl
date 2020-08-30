@@ -175,8 +175,14 @@
                (let [scr (awful.screen.focused)
                      keyed-tag (. scr.tags it)
                      current-tag scr.selected_tag]
-                 (when keyed-tag
-                   (helpers.tag_back_and_forth keyed-tag.index)))))
+                 (if keyed-tag
+                     (helpers.tag_back_and_forth keyed-tag.index)
+                     (let []
+                       ;; create tag
+                       ;; TODO fetch name  from config for index
+                       ;; include other tag config?
+                       (awful.tag.add (.. "num" it) {:layout (. layouts 1)
+                                                     :selected true}))))))
 
         ;; add tag to current perspective
         (key [:mod :ctrl] (.. "#" (+ 9 it))
