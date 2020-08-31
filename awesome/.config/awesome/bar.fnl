@@ -1,13 +1,7 @@
 (local wibox (require "wibox"))
 (local gears (require "gears"))
-(local awful (require "awful"))
-(local beautiful (require "beautiful"))
 
 (local helpers (require "dashboard.helpers"))
-
-(local focus_widget (require "widgets.focus"))
-(local repos_widget (require "widgets.repos"))
-(local pomodoro_widget (require "widgets.pomodoro"))
 
 (local todo_widget (require "awesome-wm-widgets.todo-widget.todo"))
 ;; (local stackoverflow_widget (require "awesome-wm-widgets.stackoverflow-widget.stackoverflow"))
@@ -266,12 +260,7 @@
         1  {:layout wibox.layout.fixed.horizontal ;; Left widgets
             1 s.mylayoutbox
             2 separator
-            3 s.mytaglist
-            4 separator
-            5 (repos_widget)
-            6 separator
-            7 (focus_widget)
-            8 separator}
+            3 s.mytaglist}
 
         ;; Middle widget
         2 {:layout wibox.layout.fixed.horizontal
