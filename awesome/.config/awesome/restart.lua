@@ -8,11 +8,13 @@ require("./table-indexof")
 -- This save/restore assumes the tags maintain their order.
 -- It'd probably be better to match on tag names.
 
-local tags_state_file = awful.util.get_cache_dir() .. "/state"
+local tags_state_file = awful.util.get_cache_dir() .. "/tags-state"
+local clients_state_file = awful.util.get_cache_dir() .. "/clients-state"
 
-local obj = {}
+local mod = {}
 
-function obj.save_state()
+function mod.save_state()
+  -- clear and save tags
   local screen = mouse.screen
   local tags = screen.tags
 
@@ -42,24 +44,43 @@ function obj.save_state()
   end
 
   table.save(tags_to_restore, tags_state_file)
+
+
+  -- clear and save clients
+  local clients = client.get()
+
+  local clients_to_restore = {}
+
+  for i, c in ipairs(clients) do
+    pp({tag=c:tags()[1].name,
+        first_tag=c.first_tag.name,
+        client=c.name})
+    table.insert(clients_to_restore, {
+      i,
+      c.window,
+      c.name,
+      c.first_tag.name
+    })
+  end
+
+  if posix.stat(clients_state_file) ~= nil then
+    os.remove(clients_state_file)
+  end
+
+  table.save(clients_to_restore, clients_state_file)
 end
 
-function obj.save_state_and_restart()
+function mod.save_state_and_restart()
   -- TODO syntax check/verify on config files before restarting
-  obj.save_state()
+  mod.save_state()
   awesome.restart()
 end
 
-function obj.restore_state()
+function mod.restore_state()
   if posix.stat(tags_state_file) ~= nil then
     local tags_to_restore = table.load(tags_state_file)
 
-    -- TODO handle creating tags here if they aren't found
-    -- TODO refactor to find a tag for the name rather than use the index
     local s = awful.screen.focused()
-    for _j, p in ipairs(s.tags) do
-      pp(p)
-    end
     for j, p in ipairs(tags_to_restore) do
       local i = p[1]
       local name = p[2]
@@ -87,9 +108,37 @@ function obj.restore_state()
         if selected and t.selected == false then
           awful.tag.viewtoggle(t);
         end
+      else
+        pp({missed_tag_cache_for=name})
+      end
+    end
+  end
+
+  if posix.stat(clients_state_file) ~= nil then
+    local clients_to_restore = table.load(clients_state_file)
+
+    for _, p in ipairs(clients_to_restore) do
+      local window = p[2]
+      local name = p[3]
+      local tag = p[4]
+
+      local c
+      for _, cl in pairs(client.get()) do
+        if cl.window == window then
+          c = cl
+        end
+      end
+
+      if c then
+        local t = awful.tag.find_by_name(s, name)
+        if t then
+          c:tags({t})
+        end
+      else
+        pp({missed_cached_client=name})
       end
     end
   end
 end
 
-return obj
+return mod

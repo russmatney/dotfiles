@@ -113,8 +113,7 @@
    (restart-helper.restore_state)
 
    ;; reapply rules to all clients
-   (reapply_rules)
-   ))
+   (reapply_rules)))
 
 
 (fn ralphie-init []
