@@ -69,9 +69,14 @@ function obj.restore_state()
       local nmaster = p[6]
       local selected = p[7] == 'true'
 
-      pp(p)
+      local t = awful.tag.find_by_name(s, name)
 
-      local t = s.tags[i]
+      if not t then
+        pp({creating_cached_tag=name})
+        awful.tag.add(name, {screen=s})
+        t = awful.tag.find_by_name(s, name)
+      end
+
       if t then
         t.layout = layouts[layout]
 
