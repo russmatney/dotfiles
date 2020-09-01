@@ -49,8 +49,15 @@
           :properties {:titlebars_enabled true}}
 
          ;; disable titlebars in electron
-         {:rule_any {:class ["Electron"]}
-          :properties {:titlebars_enabled false}}
+         ;; {:rule_any {:class ["Electron"]}
+         ;;  :properties {:titlebars_enabled false}}
+
+         ;; handle status bar
+         {:rule_any {:name ["yodo"]}
+          :properties {:titlebars_enabled true
+                       :floating false
+                       :sticky false
+                       :focusable true}}
 
          ;; handle status bar
          {:rule_any {:name ["yodo/bar"]}
