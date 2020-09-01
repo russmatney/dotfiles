@@ -97,10 +97,11 @@
                {;; put it on the tag name
                 :tag t.tag-name
                 :screen 1
-                :ontop true
-                :above true
-                :floating true
-                :focus true}}))))
+                ;; :ontop true
+                ;; :above true
+                ;; :floating true
+                ;; :focus true
+                }}))))
 
 (fn apps->match-rule
   [apps]
