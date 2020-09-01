@@ -237,7 +237,8 @@
 
       ;; Create an imagebox widget which will contains an icon indicating which layout we're using.
       ;; We need one layoutbox per screen.
-      (set s.mylayoutbox (awful.widget.layoutbox s))
+      (set s.mylayoutbox
+           (awful.widget.layoutbox s))
 
       ;; layoutbox cycling
       ;; TODO move to bindings file
@@ -258,8 +259,8 @@
       (s.mywibox:setup
        {:layout wibox.layout.align.horizontal
         1  {:layout wibox.layout.fixed.horizontal ;; Left widgets
-            1 s.mylayoutbox
-            2 separator
+            ;; 1 s.mylayoutbox
+            ;; 2 separator
             3 s.mytaglist}
 
         ;; Middle widget
