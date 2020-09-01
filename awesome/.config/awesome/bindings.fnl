@@ -7,7 +7,6 @@
 
 (local dashboard (require :dashboard.dashboard))
 (local helpers (require :dashboard.helpers))
-(local scratchpad (require :scratchpad))
 (local restart-helper (require "./restart"))
 
 (local exp {})
@@ -74,7 +73,7 @@
 
         ;; scratchpads
         (key [:mod] "u" (spawn-fn "ralphie toggle-scratchpad journal"))
-        ;; (key [:mod] "y" (spawn-fn "ralphie toggle-scratchpad yodo-app"))
+        (key [:mod] "y" (spawn-fn "ralphie toggle-scratchpad yodo-app"))
         (key [:mod] "r" (spawn-fn "ralphie toggle-scratchpad notes"))
         (key [:mod] "t" (spawn-fn "ralphie toggle-scratchpad web"))
 
