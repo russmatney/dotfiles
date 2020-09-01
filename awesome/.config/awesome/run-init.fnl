@@ -54,8 +54,6 @@
 ;; External (Ralphie?) Functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(local w (require :workspaces))
-
 
 (global
  reapply_rules

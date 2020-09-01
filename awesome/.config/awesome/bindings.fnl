@@ -8,7 +8,6 @@
 (local dashboard (require :dashboard.dashboard))
 (local helpers (require :dashboard.helpers))
 (local scratchpad (require :scratchpad))
-(local w (require :workspaces))
 (local restart-helper (require "./restart"))
 
 (local exp {})
@@ -74,11 +73,10 @@
         (key [:mod] "Escape" awful.tag.history.restore)
 
         ;; scratchpads
-        (key [:mod] "a" (scratchpad.toggle w.efb-tag))
-        (key [:mod] "u" (scratchpad.toggle w.journal-tag))
-        (key [:mod] "y" (scratchpad.toggle w.yodo-app-tag))
-        (key [:mod] "r" (scratchpad.toggle w.notes-tag))
-        (key [:mod] "t" (scratchpad.toggle w.web-tag))
+        (key [:mod] "u" (spawn-fn "ralphie toggle-scratchpad journal"))
+        ;; (key [:mod] "y" (spawn-fn "ralphie toggle-scratchpad yodo-app"))
+        (key [:mod] "r" (spawn-fn "ralphie toggle-scratchpad notes"))
+        (key [:mod] "t" (spawn-fn "ralphie toggle-scratchpad web"))
 
         (key [:mod] "d" (fn []
                           (dashboard.dashboard_show)))

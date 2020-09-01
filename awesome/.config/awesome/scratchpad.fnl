@@ -7,11 +7,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (fn scratchpad.toggle
-  [workspace]
+  [tag-name]
   (fn []
-    (let [tag-name (. workspace :tag-name)
-
-          s (awful.screen.focused)
+    (let [s (awful.screen.focused)
           x-tag (awful.tag.find_by_name s tag-name)
           x-client (when x-tag
                      (when (> (length (x-tag:clients)) 0)
@@ -55,7 +53,7 @@
        ;; if tag but no client, create client
        (and x-tag (not x-client))
        (awful.spawn
-        (.. "ralphie create-client" (. workspace :tag-name)))
+        (.. "ralphie create-client" tag-name))
 
        ;; no tag? create it
        (not x-tag)
@@ -64,7 +62,7 @@
          ;; TODO should only create here if no x-client exists
          ;; across whole system, not just in this tag
          (awful.spawn
-          (.. "ralphie create-client" (. workspace :tag-name))))
+          (.. "ralphie create-client" tag-name)))
        ))))
 
 scratchpad
