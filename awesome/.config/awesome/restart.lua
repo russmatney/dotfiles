@@ -52,9 +52,9 @@ function mod.save_state()
   local clients_to_restore = {}
 
   for i, c in ipairs(clients) do
-    pp({tag=c:tags()[1].name,
-        first_tag=c.first_tag.name,
-        client=c.name})
+    -- pp({tag=c:tags()[1].name,
+    --     first_tag=c.first_tag.name,
+    --     client=c.name})
     table.insert(clients_to_restore, {
       i,
       c.window,
