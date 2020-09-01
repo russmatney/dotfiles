@@ -1,43 +1,6 @@
 (local awful (require "awful"))
-(local lume (require :lume))
 
 (local scratchpad {})
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Create Client
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(fn create-client
-  [workspace]
-  (let [emacs-file (. workspace :emacs-file)
-        browser-url (. workspace :browser-url)
-
-        ;; TODO handle starting multiple apps, filtering on already opened
-        app-exec (-?> workspace
-                      (. :apps)
-                      lume.first
-                      (. :exec))]
-    (if
-     app-exec
-     (do
-       (print "Starting app via app-exec")
-       (print app-exec)
-       (awful.spawn app-exec))
-
-     browser-url
-     (awful.spawn
-      ;; (.. "google-chrome-stable --new-window " browser-url)
-      (.. "firefox --new-window " browser-url)
-      )
-
-     emacs-file
-     (awful.spawn.with_shell
-      (.. "emacsclient --alternate-editor='' --no-wait"
-          " --create-frame "
-          " -F '(quote (name . \"" (. workspace :tag-name) "\"))'"
-          " --display $DISPLAY"
-          " --eval "
-          " '(russ/open-workspace \"" (. workspace :tag-name) "\")'"
-          " '(find-file \"" emacs-file "\")'")))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Toggle Scratchpad
@@ -91,7 +54,8 @@
 
        ;; if tag but no client, create client
        (and x-tag (not x-client))
-       (create-client workspace)
+       (awful.spawn
+        (.. "ralphie create-client" (. workspace :tag-name)))
 
        ;; no tag? create it
        (not x-tag)
@@ -99,7 +63,8 @@
          (awful.tag.add tag-name)
          ;; TODO should only create here if no x-client exists
          ;; across whole system, not just in this tag
-         (create-client workspace))
+         (awful.spawn
+          (.. "ralphie create-client" (. workspace :tag-name))))
        ))))
 
 scratchpad
