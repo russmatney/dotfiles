@@ -130,7 +130,7 @@
 (load! "+org-custom")
 (load! "+wakatime")
 (load! "+custom")
-;; (load! "+exwm")
+(load! "+exwm")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; misc fixes

@@ -11,29 +11,16 @@
 (setq display-time-default-load-average nil)
 (display-time-mode t)
 
-;; You are strongly encouraged to enable something like `ido-mode' to alter
-;; the default behavior of 'C-x b', or you will take great pains to switch
-;; to or back from a floating frame (remember 'C-x 5 o' if you refuse this
-;; proposal however).
-;; You may also want to call `exwm-config-ido' later (see below).
-                                        ;(ido-mode 1)
-
 ;; Emacs server is not required to run EXWM but it has some interesting uses
 ;; (see next section).
-;; (server-start)
+(server-start)
 
 ;;;; Below are configurations for EXWM.
 
-;; Add paths (not required if EXWM is installed from GNU ELPA).
-                                        ;(add-to-list 'load-path "/path/to/xelb/")
-                                        ;(add-to-list 'load-path "/path/to/exwm/")
-
 ;; Load EXWM.
 (require 'exwm)
-
-;; Fix problems with Ido (if you use it).
-                                        ;(require 'exwm-config)
-                                        ;(exwm-config-ido)
+(require 'exwm-systemtray)
+(exwm-systemtray-enable)
 
 ;; Set the initial number of workspaces (they can also be created later).
 (setq exwm-workspace-number 2)
@@ -44,7 +31,7 @@
 ;; some advice on this topic:
 ;; + Always use `exwm-workspace-rename-buffer` to avoid naming conflict.
 ;; + For applications with multiple windows (e.g. GIMP), the class names of
-                                        ;    all windows are probably the same.  Using window titles for them makes
+;;    all windows are probably the same.  Using window titles for them makes
 ;;   more sense.
 ;; In the following example, we use class names for all windows expect for
 ;; Java applications and GIMP.
@@ -60,30 +47,81 @@
                       (string= "gimp" exwm-instance-name))
               (exwm-workspace-rename-buffer exwm-title))))
 
-;; Global keybindings can be defined with `exwm-input-global-keys'.
-;; Here are a few examples:
-(setq exwm-input-global-keys
-      `(
-        ;; Bind "s-r" to exit char-mode and fullscreen mode.
-        ([?\s-r] . exwm-reset)
-        ;; Bind "s-w" to switch workspace interactively.
-        ([?\s-w] . exwm-workspace-switch)
-        ;; Bind "s-0" to "s-9" to switch to a workspace by its index.
-        ,@(mapcar (lambda (i)
-                    `(,(kbd (format "s-%d" i)) .
-                      (lambda ()
-                        (interactive)
-                        (exwm-workspace-switch-create ,i))))
-                  (number-sequence 0 9))
-        ;; Bind "s-&" to launch applications ('M-&' also works if the output
-        ;; buffer does not bother you).
-        ([?\s-&] . (lambda (command)
-                     (interactive (list (read-shell-command "$ ")))
-                     (start-process-shell-command command nil command)))
-        ;; Bind "s-<f2>" to "slock", a simple X display locker.
-        ([s-f2] . (lambda ()
-                    (interactive)
-                    (start-process "" nil "/usr/bin/slock")))))
+;; Bind "s-&" to launch applications ('M-&' also works if the output
+;; buffer does not bother you).
+(exwm-input-set-key
+ (kbd "s-&")
+ (lambda (command)
+   (interactive (list (read-shell-command "$ ")))
+   (start-process-shell-command command nil command)))
+
+;; Bind "s-<f2>" to "slock", a simple X display locker.
+(exwm-input-set-key
+ (kbd "s-<f2>")
+ (lambda ()
+   (interactive)
+   (start-process "" nil "/usr/bin/slock")))
+
+;; Bind "s-r" to exit char-mode and fullscreen mode.
+(exwm-input-set-key (kbd "s-r") 'exwm-reset)
+
+;; Bind "s-w" to switch workspace interactively.
+(exwm-input-set-key (kbd "s-w") 'exwm-workspace-switch)
+
+;; Bind "s-0" to "s-9" to switch to a workspace by its index.
+(mapc
+    (lambda (i)
+      (exwm-input-set-key (kbd (format "s-%d" i))
+                          (lambda ()
+                              (interactive)
+                              (print (format "switching to workspace %d" i))
+                              (exwm-workspace-switch-create i))))
+  (number-sequence 0 9))
+
+;; scratchpad keybindings
+(exwm-input-set-key (kbd "s-u") (lambda ()
+                                  (interactive)
+                                  (print "journal toggle!")))
+
+
+;; run a desktop app
+(exwm-input-set-key
+ (kbd "s-SPC")
+ (lambda ()
+   (interactive)
+   (start-process "" nil "rofi" "-show" "drun" "-modi" "drun")))
+
+;; ralphie rofi
+(defun ralphie-rofi ()
+  (interactive)
+  (start-process "" nil "ralphie" "rofi"))
+(exwm-input-set-key (kbd "s-x") 'ralphie-rofi)
+
+;; open browser
+(defun open-browser ()
+  (interactive)
+  (start-process "" nil "firefox"))
+(exwm-input-set-key (kbd "s-b") 'open-browser)
+
+;; open terminal
+(defun alacritty ()
+  (interactive)
+  (start-process "" nil "alacritty"))
+(exwm-input-set-key (kbd "s-<return>") 'alacritty)
+
+
+;; volume helpers from https://github.com/ch11ng/exwm/issues/409
+(defun my/adjust-volume (delta)
+  "Adjust sound volume by DELTA."
+  (shell-command-to-string (format "amixer set Master %s" delta)))
+
+(defmacro my/volume-command (delta)
+  "Return a command modifying sound volume by DELTA."
+  `(lambda () (interactive) (my/adjust-volume ,delta)))
+
+;; volume control
+(exwm-input-set-key (kbd "<XF86AudioRaiseVolume>") (my/volume-command "5%+"))
+(exwm-input-set-key (kbd "<XF86AudioLowerVolume>") (my/volume-command "5%-"))
 
 ;; To add a key binding only available in line-mode, simply define it in
 ;; `exwm-mode-map'.  The following example shortens 'C-c q' to 'C-q'.
@@ -94,27 +132,27 @@
 ;; list of cons cells (SRC . DEST), where SRC is the key sequence you press
 ;; and DEST is what EXWM actually sends to application.  Note that both SRC
 ;; and DEST should be key sequences (vector or string).
-(setq exwm-input-simulation-keys
-      '(
-        ;; movement
-        ([?\C-b] . [left])
-        ([?\M-b] . [C-left])
-        ([?\C-f] . [right])
-        ([?\M-f] . [C-right])
-        ([?\C-p] . [up])
-        ([?\C-n] . [down])
-        ([?\C-a] . [home])
-        ([?\C-e] . [end])
-        ([?\M-v] . [prior])
-        ([?\C-v] . [next])
-        ([?\C-d] . [delete])
-        ([?\C-k] . [S-end delete])
-        ;; cut/paste.
-        ([?\C-w] . [?\C-x])
-        ([?\M-w] . [?\C-c])
-        ([?\C-y] . [?\C-v])
-        ;; search
-        ([?\C-s] . [?\C-f])))
+;; (setq exwm-input-simulation-keys
+;;       '(
+;;         ;; movement
+;;         ([?\C-b] . [left])
+;;         ([?\M-b] . [C-left])
+;;         ([?\C-f] . [right])
+;;         ([?\M-f] . [C-right])
+;;         ([?\C-p] . [up])
+;;         ([?\C-n] . [down])
+;;         ([?\C-a] . [home])
+;;         ([?\C-e] . [end])
+;;         ([?\M-v] . [prior])
+;;         ([?\C-v] . [next])
+;;         ([?\C-d] . [delete])
+;;         ([?\C-k] . [S-end delete])
+;;         ;; cut/paste.
+;;         ([?\C-w] . [?\C-x])
+;;         ([?\M-w] . [?\C-c])
+;;         ([?\C-y] . [?\C-v])
+;;         ;; search
+;;         ([?\C-s] . [?\C-f])))
 
 ;; You can hide the minibuffer and echo area when they're not used, by
 ;; uncommenting the following line.
