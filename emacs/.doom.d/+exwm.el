@@ -1,15 +1,8 @@
 ;;; ~/dotfiles/emacs/.doom.d/+exwm.el -*- lexical-binding: t; -*-
 
-;; Disable menu-bar, tool-bar and scroll-bar to increase the usable space.
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-;; Also shrink fringes to 1 pixel.
-(fringe-mode 1)
-
-;; Turn on `display-time-mode' if you don't use an external bar.
-(setq display-time-default-load-average nil)
-(display-time-mode t)
+(defmacro comment (&rest _)
+  "Comment out one or more s-expressions."
+  nil)
 
 ;; Emacs server is not required to run EXWM but it has some interesting uses
 ;; (see next section).
@@ -19,33 +12,11 @@
 
 ;; Load EXWM.
 (require 'exwm)
-(require 'exwm-systemtray)
-(exwm-systemtray-enable)
+;; (require 'exwm-systemtray)
+;; (exwm-systemtray-enable)
 
 ;; Set the initial number of workspaces (they can also be created later).
 (setq exwm-workspace-number 2)
-
-;; All buffers created in EXWM mode are named "*EXWM*". You may want to
-;; change it in `exwm-update-class-hook' and `exwm-update-title-hook', which
-;; are run when a new X window class name or title is available.  Here's
-;; some advice on this topic:
-;; + Always use `exwm-workspace-rename-buffer` to avoid naming conflict.
-;; + For applications with multiple windows (e.g. GIMP), the class names of
-;;    all windows are probably the same.  Using window titles for them makes
-;;   more sense.
-;; In the following example, we use class names for all windows expect for
-;; Java applications and GIMP.
-(add-hook 'exwm-update-class-hook
-          (lambda ()
-            (unless (or (string-prefix-p "sun-awt-X11-" exwm-instance-name)
-                        (string= "gimp" exwm-instance-name))
-              (exwm-workspace-rename-buffer exwm-class-name))))
-(add-hook 'exwm-update-title-hook
-          (lambda ()
-            (when (or (not exwm-instance-name)
-                      (string-prefix-p "sun-awt-X11-" exwm-instance-name)
-                      (string= "gimp" exwm-instance-name))
-              (exwm-workspace-rename-buffer exwm-title))))
 
 ;; Bind "s-&" to launch applications ('M-&' also works if the output
 ;; buffer does not bother you).
@@ -65,6 +36,10 @@
 ;; Bind "s-r" to exit char-mode and fullscreen mode.
 (exwm-input-set-key (kbd "s-r") 'exwm-reset)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Workspaces
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Bind "s-w" to switch workspace interactively.
 (exwm-input-set-key (kbd "s-w") 'exwm-workspace-switch)
 
@@ -78,10 +53,28 @@
                               (exwm-workspace-switch-create i))))
   (number-sequence 0 9))
 
+;; cycle workspaces by index
+(defun exwm-workspace-next (&optional reverse)
+  (interactive "P")
+  (let ((fn (if reverse #'- #'+)))
+    (exwm-workspace-switch
+     (mod (apply fn (list exwm-workspace-current-index 1))
+          (length exwm-workspace--list)))))
+
+(comment
+     (mod (apply #'+ (list 1 exwm-workspace-current-index))
+          (length exwm-workspace--list)))
+
+;; workspace cycling
+(exwm-input-set-key (kbd "s-n") (lambda () (interactive) (exwm-workspace-next t)))
+(exwm-input-set-key (kbd "s-p") (lambda () (interactive) (exwm-workspace-next nil)))
+
+
 ;; scratchpad keybindings
-(exwm-input-set-key (kbd "s-u") (lambda ()
-                                  (interactive)
-                                  (print "journal toggle!")))
+(exwm-input-set-key (kbd "s-u") (lambda () (interactive) (print "journal toggle!")))
+(exwm-input-set-key (kbd "s-y") (lambda () (interactive) (print "yodo toggle!")))
+(exwm-input-set-key (kbd "s-t") (lambda () (interactive) (print "browser toggle!")))
+(exwm-input-set-key (kbd "s-r") (lambda () (interactive) (print "notes toggle!")))
 
 
 ;; run a desktop app
@@ -110,6 +103,8 @@
 (exwm-input-set-key (kbd "s-<return>") 'alacritty)
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; volume control
 ;; volume helpers from https://github.com/ch11ng/exwm/issues/409
 (defun my/adjust-volume (delta)
   "Adjust sound volume by DELTA."
@@ -119,44 +114,81 @@
   "Return a command modifying sound volume by DELTA."
   `(lambda () (interactive) (my/adjust-volume ,delta)))
 
-;; volume control
 (exwm-input-set-key (kbd "<XF86AudioRaiseVolume>") (my/volume-command "5%+"))
 (exwm-input-set-key (kbd "<XF86AudioLowerVolume>") (my/volume-command "5%-"))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; brightness
+
+(defun my/increase-brightness ()
+  "Increase brightness"
+  (interactive)
+  (shell-command-to-string "light -A 5"))
+
+(defun my/decrease-brightness ()
+  "Increase brightness"
+  (interactive)
+  (shell-command-to-string "light -U 5"))
+
+(exwm-input-set-key (kbd "<XF86MonBrightnessDown>") 'my/decrease-brightness)
+(exwm-input-set-key (kbd "<XF86MonBrightnessUp>") 'my/increase-brightness)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Client bindings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; To add a key binding only available in line-mode, simply define it in
 ;; `exwm-mode-map'.  The following example shortens 'C-c q' to 'C-q'.
-(define-key exwm-mode-map [?\C-q] #'exwm-input-send-next-key)
+(define-key exwm-mode-map (kbd "C-q") #'exwm-input-send-next-key)
+(define-key exwm-mode-map (kbd "C-c") nil)
 
-;; The following example demonstrates how to use simulation keys to mimic
-;; the behavior of Emacs.  The value of `exwm-input-simulation-keys` is a
-;; list of cons cells (SRC . DEST), where SRC is the key sequence you press
-;; and DEST is what EXWM actually sends to application.  Note that both SRC
-;; and DEST should be key sequences (vector or string).
-;; (setq exwm-input-simulation-keys
-;;       '(
-;;         ;; movement
-;;         ([?\C-b] . [left])
-;;         ([?\M-b] . [C-left])
-;;         ([?\C-f] . [right])
-;;         ([?\M-f] . [C-right])
-;;         ([?\C-p] . [up])
-;;         ([?\C-n] . [down])
-;;         ([?\C-a] . [home])
-;;         ([?\C-e] . [end])
-;;         ([?\M-v] . [prior])
-;;         ([?\C-v] . [next])
-;;         ([?\C-d] . [delete])
-;;         ([?\C-k] . [S-end delete])
-;;         ;; cut/paste.
-;;         ([?\C-w] . [?\C-x])
-;;         ([?\M-w] . [?\C-c])
-;;         ([?\C-y] . [?\C-v])
-;;         ;; search
-;;         ([?\C-s] . [?\C-f])))
+(define-key exwm-mode-map (kbd "s-f") #'exwm-floating-toggle-floating)
+(define-key exwm-mode-map (kbd "s-q") #'kill-buffer-and-window)
 
-;; You can hide the minibuffer and echo area when they're not used, by
-;; uncommenting the following line.
-;;(setq exwm-workspace-minibuffer-position 'bottom)
+;; super+click+drag to move
+(setq exwm-input-move-event 's-down-mouse-1
+      exwm-input-resize-event 'M-down-mouse-1)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; app startup hooks
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(add-hook 'exwm-update-class-hook
+          (lambda ()
+            (unless (or (string-prefix-p "sun-awt-X11-" exwm-instance-name)
+                        (string= "gimp" exwm-instance-name))
+              (exwm-workspace-rename-buffer exwm-class-name))))
+(add-hook 'exwm-update-title-hook
+          (lambda ()
+            (when (or (not exwm-instance-name)
+                      (string-prefix-p "sun-awt-X11-" exwm-instance-name)
+                      (string= "gimp" exwm-instance-name))
+              (exwm-workspace-rename-buffer exwm-title))))
+
+
+(add-hook 'exwm-manage-finish-hook
+          (lambda ()
+            (when (and exwm-class-name
+                       (string= exwm-class-name "Firefox"))
+              (exwm-input-set-local-simulation-keys nil))))
+
+(setq exwm-layout-show-all-buffers t)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Clean up UI
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Disable menu-bar, tool-bar and scroll-bar to increase the usable space.
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+;; Also shrink fringes to 1 pixel.
+(fringe-mode 2)
+
+;; Turn on `display-time-mode' if you don't use an external bar.
+(setq display-time-default-load-average nil)
+(display-time-mode t)
+
 
 ;; Do not forget to enable EXWM. It will start by itself when things are
 ;; ready.  You can put it _anywhere_ in your configuration.
