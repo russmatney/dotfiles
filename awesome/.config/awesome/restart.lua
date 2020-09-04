@@ -130,10 +130,14 @@ function mod.restore_state()
       end
 
       if c then
+        c.urgent = false
+
         local t = awful.tag.find_by_name(s, name)
         if t then
           c:tags({t})
         end
+
+
       else
         pp({missed_cached_client=name})
       end
