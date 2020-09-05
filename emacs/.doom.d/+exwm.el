@@ -4,27 +4,15 @@
   "Comment out one or more s-expressions."
   nil)
 
-;; Emacs server is not required to run EXWM but it has some interesting uses
-;; (see next section).
-(server-start)
-
 ;;;; Below are configurations for EXWM.
 
 ;; Load EXWM.
 (require 'exwm)
-;; (require 'exwm-systemtray)
-;; (exwm-systemtray-enable)
 
-;; Set the initial number of workspaces (they can also be created later).
-(setq exwm-workspace-number 2)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Workspaces
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Bind "s-&" to launch applications ('M-&' also works if the output
-;; buffer does not bother you).
-(exwm-input-set-key
- (kbd "s-&")
- (lambda (command)
-   (interactive (list (read-shell-command "$ ")))
-   (start-process-shell-command command nil command)))
 
 ;; Bind "s-<f2>" to "slock", a simple X display locker.
 (exwm-input-set-key
@@ -35,6 +23,7 @@
 
 ;; Bind "s-r" to exit char-mode and fullscreen mode.
 (exwm-input-set-key (kbd "s-r") 'exwm-reset)
+(exwm-input-set-key (kbd "s-R") 'exwm-restart)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Workspaces
@@ -69,53 +58,95 @@
 (exwm-input-set-key (kbd "s-n") (lambda () (interactive) (exwm-workspace-next t)))
 (exwm-input-set-key (kbd "s-p") (lambda () (interactive) (exwm-workspace-next nil)))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Scratchpad/App Helpers
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; https://github.com/ch11ng/exwm/issues/459
+(defun my-quiet-run (command)
+  (interactive (list (read-shell-command "$ ")))
+  (start-process-shell-command command nil command))
+
+(defun my-run-or-raise (cmd buffer-name)
+  (let ((buf (get-buffer buffer-name)))
+    (if buf
+        ;; TODO open/close buffer as new window in current workspace
+        (if (doom-visible-buffer-p buf)
+            (bury-buffer buf)
+            (switch-to-buffer buf))
+      (my-quiet-run cmd))))
+
+(defun my-firefox ()
+  (interactive)
+  (my-run-or-raise "firefox" "firefox"))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Scratchpads/Apps
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(exwm-input-set-key (kbd "s-b") #'my-firefox)
 
 ;; scratchpad keybindings
 (exwm-input-set-key (kbd "s-u") (lambda () (interactive) (print "journal toggle!")))
 (exwm-input-set-key (kbd "s-y") (lambda () (interactive) (print "yodo toggle!")))
 (exwm-input-set-key (kbd "s-t") (lambda () (interactive) (print "browser toggle!")))
-(exwm-input-set-key (kbd "s-r") (lambda () (interactive) (print "notes toggle!")))
+;; (exwm-input-set-key (kbd "s-r") (lambda () (interactive) (print "notes toggle!")))
 
 
-;; run a desktop app
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Launcher
+;; (exwm-input-set-key
+;;  (kbd "s-SPC")
+;;  (lambda ()
+;;    (interactive)
+;;    (start-process "" nil "rofi" "-show" "drun" "-modi" "drun")))
 (exwm-input-set-key
  (kbd "s-SPC")
- (lambda ()
-   (interactive)
-   (start-process "" nil "rofi" "-show" "drun" "-modi" "drun")))
+ (lambda (command)
+   (interactive (list (read-shell-command "$ ")))
+   (start-process-shell-command command nil command)))
 
-;; ralphie rofi
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Ralphie Rofi
 (defun ralphie-rofi ()
   (interactive)
   (start-process "" nil "ralphie" "rofi"))
+
 (exwm-input-set-key (kbd "s-x") 'ralphie-rofi)
 
-;; open browser
-(defun open-browser ()
-  (interactive)
-  (start-process "" nil "firefox"))
-(exwm-input-set-key (kbd "s-b") 'open-browser)
-
-;; open terminal
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Terminal
 (defun alacritty ()
   (interactive)
   (start-process "" nil "alacritty"))
+
 (exwm-input-set-key (kbd "s-<return>") 'alacritty)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Emacs (new window)
+(defun new-split ()
+  (interactive)
+  (evil-split-next-buffer))
+
+(exwm-input-set-key (kbd "S-s-<return>") 'new-split)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; System / Util
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; volume control
 ;; volume helpers from https://github.com/ch11ng/exwm/issues/409
 (defun my/adjust-volume (delta)
   "Adjust sound volume by DELTA."
-  (shell-command-to-string (format "amixer set Master %s" delta)))
+  (shell-command-to-string (format "pactl set-sink-volume @DEFAULT_SINK@ %s" delta)))
 
 (defmacro my/volume-command (delta)
   "Return a command modifying sound volume by DELTA."
   `(lambda () (interactive) (my/adjust-volume ,delta)))
 
-(exwm-input-set-key (kbd "<XF86AudioRaiseVolume>") (my/volume-command "5%+"))
-(exwm-input-set-key (kbd "<XF86AudioLowerVolume>") (my/volume-command "5%-"))
+(exwm-input-set-key (kbd "<XF86AudioRaiseVolume>") (my/volume-command "+5%"))
+(exwm-input-set-key (kbd "<XF86AudioLowerVolume>") (my/volume-command "-5%"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; brightness
@@ -145,32 +176,39 @@
 (define-key exwm-mode-map (kbd "s-f") #'exwm-floating-toggle-floating)
 (define-key exwm-mode-map (kbd "s-q") #'kill-buffer-and-window)
 
+(define-key exwm-mode-map (kbd "s-l") #'evil-window-right)
+(define-key exwm-mode-map (kbd "s-h") #'evil-window-left)
+(define-key exwm-mode-map (kbd "s-j") #'evil-window-bottom)
+(define-key exwm-mode-map (kbd "s-k") #'evil-window-up)
+
+;; (define-key exwm-mode-map
+;;   (kbd "S-C-h") #'exwm-layout-shrink-window-horizontally)
+;; (define-key exwm-mode-map
+;;   (kbd "S-C-l") #'exwm-layout-enlarge-window-horizontally)
+;; (define-key exwm-mode-map (kbd "S-C-j") #'exwm-layout-enlarge-window)
+;; (define-key exwm-mode-map (kbd "S-C-k") #'exwm-layout-shrink-window)
+
 ;; super+click+drag to move
 (setq exwm-input-move-event 's-down-mouse-1
       exwm-input-resize-event 'M-down-mouse-1)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; app startup hooks
+;; Window
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (add-hook 'exwm-update-class-hook
-          (lambda ()
-            (unless (or (string-prefix-p "sun-awt-X11-" exwm-instance-name)
-                        (string= "gimp" exwm-instance-name))
-              (exwm-workspace-rename-buffer exwm-class-name))))
+          (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
 (add-hook 'exwm-update-title-hook
           (lambda ()
-            (when (or (not exwm-instance-name)
-                      (string-prefix-p "sun-awt-X11-" exwm-instance-name)
-                      (string= "gimp" exwm-instance-name))
+            (when (not exwm-instance-name)
               (exwm-workspace-rename-buffer exwm-title))))
 
-
-(add-hook 'exwm-manage-finish-hook
-          (lambda ()
-            (when (and exwm-class-name
-                       (string= exwm-class-name "Firefox"))
-              (exwm-input-set-local-simulation-keys nil))))
+;; (add-hook 'exwm-manage-finish-hook
+;;           (lambda ()
+;;             (when (and exwm-class-name
+;;                        (string= exwm-class-name "firefox"))
+;;               ;; (exwm-input-set-local-simulation-keys nil)
+;;               )))
 
 (setq exwm-layout-show-all-buffers t)
 
@@ -186,8 +224,8 @@
 (fringe-mode 2)
 
 ;; Turn on `display-time-mode' if you don't use an external bar.
-(setq display-time-default-load-average nil)
-(display-time-mode t)
+;; (setq display-time-default-load-average nil)
+;; (display-time-mode t)
 
 
 ;; Do not forget to enable EXWM. It will start by itself when things are

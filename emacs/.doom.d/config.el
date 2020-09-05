@@ -90,7 +90,7 @@
 (use-package! company
   :config
   (setq
-   company-idle-delay 0.5
+   company-idle-delay 1.5
    company-minimum-prefix-length 5))
 
 (use-package deft
