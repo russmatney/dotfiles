@@ -2,7 +2,6 @@
 (local awful (require "awful"))
 (local beautiful (require "beautiful"))
 
-(local w (require :workspaces))
 (local bindings (require :bindings))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -31,7 +30,6 @@
          ;;  (fn [c]
          ;;    (print "\n\nnew client!")
          ;;    (pp c)
-         ;;    (ppi c)
          ;;    (print c.class)
          ;;    (print c.name)
          ;;    )}
@@ -48,16 +46,10 @@
          {:rule_any {:type ["normal" "dialog"]}
           :properties {:titlebars_enabled true}}
 
-         ;; disable titlebars in electron
-         ;; {:rule_any {:class ["Electron"]}
-         ;;  :properties {:titlebars_enabled false}}
-
          ;; handle status bar
-         {:rule_any {:name ["yodo"]}
-          :properties {:titlebars_enabled true
-                       :floating false
-                       :sticky false
-                       :focusable true}}
+         {:rule_any {:name ["yodo/app"]}
+          :properties {:tag "yodo-app"
+                       :titlebars_enabled true}}
 
          ;; handle status bar
          {:rule_any {:name ["yodo/bar"]}
@@ -68,11 +60,11 @@
                        :maximized_horizontal true
                        :height 100
                        :x 0
-                       :y 0}}
+                       :y 0}
+          :callback (fn [c] (c:tags {}))}
 
          ;; handle org protocol/emacs popups
-         {:rule_any {:name ["org-capture-frame"
-                            "doom-capture"]}
+         {:rule_any {:name ["org-capture-frame" "doom-capture"]}
           :properties {
                        ;; :titlebars_enabled false
                        :floating true
@@ -82,34 +74,27 @@
                        :placement awful.placement.centered
                        }}
 
-         ;; attempt to wrangle browser windows
-         {:rule
-          ;; {:role "browser"}
-          {:class "firefox"}
-          :properties {:screen 1}
-          :callback
-          ;; TODO refactor away from this nonsense
-          (fn [c]
-            (if
-             (and
-              (not (= c.class "Slack"))
-              (not c.name_change_handled))
-             (do
-               (var f nil)
-               (set f
-                    (fn [c]
-                      (tset c :name_change_handled true)
-                      (c:disconnect_signal "property::name" f)
-                      (awful.rules.apply c)
-                      (set c.minimized false)))
-               (set c.minimized true)
-               (c:connect_signal "property::name" f))))}
-         ]
+         {:rule {:class "firefox"}
+          :properties {:tag "web"}}
+         {:rule {:name "notes"}
+          :properties {:tag "notes"}}
+         {:rule {:name "journal"}
+          :properties {:tag "journal"}}
+         {:rule {:name "ralphie"}
+          :properties {:tag "ralphie"}}
+         {:rule {:name "org-crud"}
+          :properties {:tag "org-crud"}}
+         ;; TODO support arbitrary name <> tag for repos
 
-        w.rules-scratchpad-emacs
-        w.rules-apps-on-tag))
+         {:rule_any {:class ["Spotify" "spotify" "Pavucontrol" "pavucontrol"]
+                     :name ["Spotify" "spotify" "Pavucontrol" "pavucontrol"]}
+          :properties {:tag "spotify"}}
 
-(global
- init_rules
+         {:rule_any {:class ["Slack" "slack" "Discord" "discord"]
+                     :name ["Slack" "slack" "Discord" "discord"]}
+          :properties {:tag "slack"}}]))
+
+(set
+ _G.init_rules
  (fn []
    (set awful.rules.rules global_rules)))

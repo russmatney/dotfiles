@@ -55,11 +55,15 @@ function mod.save_state()
     -- pp({tag=c:tags()[1].name,
     --     first_tag=c.first_tag.name,
     --     client=c.name})
+    local ftag = nil
+    if c.first_tag then
+      ftag = c.first_tag.name
+    end
     table.insert(clients_to_restore, {
       i,
       c.window,
       c.name,
-      c.first_tag.name
+      ftag
     })
   end
 
@@ -115,6 +119,7 @@ function mod.restore_state()
   end
 
   if posix.stat(clients_state_file) ~= nil then
+    local s = awful.screen.focused()
     local clients_to_restore = table.load(clients_state_file)
 
     for _, p in ipairs(clients_to_restore) do
@@ -132,11 +137,12 @@ function mod.restore_state()
       if c then
         c.urgent = false
 
-        local t = awful.tag.find_by_name(s, name)
-        if t then
-          c:tags({t})
+        if tag then
+          local t = awful.tag.find_by_name(s, tag)
+          if t then
+            c:tags({t})
+          end
         end
-
 
       else
         pp({missed_cached_client=name})

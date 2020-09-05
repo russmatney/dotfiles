@@ -3,7 +3,6 @@
 
 (local fun (require "fun"))
 (local tablex (require :pl.tablex))
-(local lain (require :lain))
 
 (local dashboard (require :dashboard.dashboard))
 (local helpers (require :dashboard.helpers))
@@ -29,11 +28,13 @@
   [mods key-code fun opt]
   (let [opt (or opt {})]
     (awful.key (map-mods mods) key-code fun opt)))
+
 (set exp.key key)
 
 (fn btn
   [mods btn-code fun]
   (awful.button (map-mods mods) btn-code fun))
+
 (set exp.btn btn)
 
 (fn spawn-fn
@@ -45,16 +46,15 @@
 ;; Global keybindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(local centerwork_layout?
-       (fn []
-         (-> (awful.screen.focused)
-             (. :selected_tag)
-             (. :layout)
-             (. :name)
-             ((fn [n]
-                (or
-                 (= n "centerworkh")
-                 (= n "centerwork")))))))
+(fn centerwork_layout? []
+  (-> (awful.screen.focused)
+      (. :selected_tag)
+      (. :layout)
+      (. :name)
+      ((fn [n]
+         (or
+          (= n "centerworkh")
+          (= n "centerwork"))))))
 
 (local global-keys
        (gears.table.join

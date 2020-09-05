@@ -253,7 +253,7 @@
       (set s.mytaglist (create_taglist s))
 
       ;; Create the wibox
-      (set s.mywibox (awful.wibox {:position "bottom" :screen s}))
+      (set s.mywibox (awful.wibar {:position "bottom" :screen s}))
 
       ;; Add widgets to the wibox
       (s.mywibox:setup
