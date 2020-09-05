@@ -1,4 +1,5 @@
 -- this luacheckrc originally pulled from awesome repo
+-- edited with pase of ignores and globals from working on chess-em-up
 
 -- Only allow symbols available in all Lua versions
 std = "min"
@@ -7,7 +8,14 @@ std = "min"
 self = false
 
 -- Theme files, ignore max line length
-files["themes/*"].ignore = {"631"}
+files["themes/*"].ignore = {
+  "21/_.*",
+  "431",
+  "111", -- allow globals in fennel :yeehaw:
+  "631", -- line too long. mostly not in our control
+  "541", -- empty do-end blocks? seem to show up (: some :times)
+  "311" -- unused var (false positive with let/when/-?>)
+}
 
 -- Global objects defined by the C code
 read_globals = {
@@ -24,6 +32,8 @@ read_globals = {
     "window",
     "table.unpack",
     "math.atan2",
+
+"love", "pp", "fennel", "lume", "u",
 
     "package",
 }
@@ -43,3 +53,5 @@ globals = {
 
 -- Enable cache (uses .luacheckcache relative to this rc file).
 cache = true
+
+stds.fennel = {globals ={"fennel", "pp", "lume", "self", "u"}}
