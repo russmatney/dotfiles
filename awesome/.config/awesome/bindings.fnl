@@ -145,6 +145,10 @@
         (key [:mod :shift] "s" (spawn-fn "/usr/bin/i3-scrot"))
         (key [:mod :shift] "a" (spawn-fn "/home/russ/.local/bin/screenshot-region"))
 
+        ;; brightness
+        (key [] "XF86MonBrightnessUp" (spawn-fn "light -A 5"))
+        (key [] "XF86MonBrightnessDown" (spawn-fn "light -U 5"))
+
         ;; media controls
         ;; TODO play-pause should create spotify if its not open
         (key [] "XF86AudioPlay" (spawn-fn "spotifycli --playpause"))
@@ -279,36 +283,6 @@
                   c {:direction "down"
                      :by_percent 0.9})
                  (awful.client.incwfact -0.05))))
-
-      ;; ;; widen/shink windows
-      ;; (key [:ctrl :shift :mod] "l"
-      ;;      (fn [c]
-      ;;        (if c.floating
-      ;;            (awful.placement.scale
-      ;;             c {:direction "right"
-      ;;                :by_percent 1.1})
-      ;;            (awful.tag.incmwfact 0.05))))
-      ;; (key [:ctrl :shift :mod] "h"
-      ;;      (fn [c]
-      ;;        (if c.floating
-      ;;            (awful.placement.scale
-      ;;             c {:direction "right"
-      ;;                :by_percent 0.9})
-      ;;            (awful.tag.incmwfact -0.05))))
-      ;; (key [:ctrl :shift :mod] "j"
-      ;;      (fn [c]
-      ;;        (if c.floating
-      ;;            (awful.placement.scale
-      ;;             c {:direction "down"
-      ;;                :by_percent 1.1})
-      ;;            (awful.client.incwfact 0.05))))
-      ;; (key [:ctrl :shift :mod] "k"
-      ;;      (fn [c]
-      ;;        (if c.floating
-      ;;            (awful.placement.scale
-      ;;             c {:direction "down"
-      ;;                :by_percent 0.9})
-      ;;            (awful.client.incwfact -0.05))))
 
       ;; center on screen
       (key [:mod] "c"
