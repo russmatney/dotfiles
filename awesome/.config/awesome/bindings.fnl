@@ -77,8 +77,7 @@
         (key [:mod] "r" (spawn-fn "ralphie toggle-scratchpad notes"))
         (key [:mod] "t" (spawn-fn "ralphie toggle-scratchpad web"))
 
-        (key [:mod] "d" (fn []
-                          (dashboard.dashboard_show)))
+        (key [:mod] "d" (fn [] (dashboard.dashboard_show)))
 
         ;; cycle layouts
         (key [:mod] "Tab"

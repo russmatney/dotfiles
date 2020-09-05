@@ -11,7 +11,7 @@
    (awful.spawn "~/.config/awesome/autorun.sh" false)
 
    ;; startup some app services
-   (awful.spawn.once "run sc --user restart yodo yodo-fe bb-nrepl ralphie-nrepl" false)
+   (awful.spawn.once "sc --user restart yodo yodo-fe bb-nrepl ralphie-nrepl" false)
    (awful.spawn "xset r rate 170 60" false)
    (awful.spawn.once "picom" false)
 
