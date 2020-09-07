@@ -141,8 +141,8 @@
         (key [:mod] "e" (spawn-fn "/usr/bin/thunar"))
 
         ;; screenshots
-        (key [:mod :shift] "s" (spawn-fn "/usr/bin/i3-scrot"))
-        (key [:mod :shift] "a" (spawn-fn "/home/russ/.local/bin/screenshot-region"))
+        (key [:mod :shift] "s" (spawn-fn "ralphie screenshot full"))
+        (key [:mod :shift] "a" (spawn-fn "ralphie screenshot region"))
 
         ;; brightness
         (key [] "XF86MonBrightnessUp" (spawn-fn "light -A 5"))
