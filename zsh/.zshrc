@@ -17,6 +17,7 @@ export FONTCONFIG_PATH='/etc/fonts'
 alias 'zz'='source ~/.zshrc'
 
 setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
 
 ################################################################################
 # Antibody setup
