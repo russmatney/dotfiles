@@ -4,4 +4,5 @@
 filename="screenshot_$(date +%Y-%m-%d_%H:%M:%S%z)".jpg
 destination_dir=~/Screenshots
 
-maim -s $destination_dir/$filename
+exec shotgun $(slop -f "-i %i -g %g") \
+    "$destination_dir"/"$filename"

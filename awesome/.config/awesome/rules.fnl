@@ -61,7 +61,9 @@
                        :height 100
                        :x 0
                        :y 0}
-          :callback (fn [c] (c:tags {}))}
+          :callback (fn [c]
+                      ;; remove from any tags
+                      (c:tags {}))}
 
          ;; handle org protocol/emacs popups
          {:rule_any {:name ["org-capture-frame" "doom-capture"]}
