@@ -94,8 +94,55 @@
          (make-frame-visible (company-box--get-frame)))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; cider mappings
+;; switch cider relp
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun russ/prompt-for-cider-session ()
+  (interactive)
+  (ivy-read "Select connection: " (cider-sessions)))
+
+(defun russ/attach-to-cider-session ()
+  "Prompts for a session, then activates it for the current buffer.
+The goal is to immediately allow for evaluation."
+  (interactive)
+  (let ((selected (russ/prompt-for-connection)))
+    (message "selected:")
+    (print selected)))
+
+(defun cljc-file-p ()
+  (string-match-p (rx (and ".cljc" eol))
+                      (buffer-file-name)))
+
+(defun russ/cider-cljc-toggle-mode ()
+  (interactive)
+  (if (= "cljc" (file-name-extension (buffer-file-name)))
+      (if (eq major-mode 'clojure-mode)
+          ;; TODO replace with 'start cljs mode' fn
+          (clojurescript-mode)
+          ;; TODO replace with 'start clj mode' fn
+        (clojure-mode))
+    (russ/attach-to-cider-session)))
+
+                                        ;
+
+;; cider-set-repl-type is interesting
+;; cider-interactive-eval
+
+(comment
+ (russ/cider-cljc-load))
+
+
+
+;; delete me
+(defun russ/cider-cljc-test ()
+  (interactive)
+  (message "current-repl")
+  (print (cider-current-repl)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; switch cider relp
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 
 (map!
  (:after cider-mode
@@ -128,7 +175,7 @@
          :n  "T"  #'cider-test-run-test
 
          :n  "r"  #'systemic/restart
-         :n  "s"  #'systemic/start
+         :n  "s"  #'russ/cider-cljc-toggle-mode
          :n  "g"  #'cider-user-go
 
          :n  "m"  #'clojure-move-to-let)))
