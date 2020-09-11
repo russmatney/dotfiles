@@ -94,55 +94,46 @@
          (make-frame-visible (company-box--get-frame)))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; switch cider relp
+;; cider helpers
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defun russ/prompt-for-cider-session ()
+(defun russ/switch-cider-connection ()
+  "Buries the current cider repl buffer, promoting other cider conns."
   (interactive)
-  (ivy-read "Select connection: " (cider-sessions)))
+  (bury-buffer (cider-current-repl))
+  (cider-switch-to-repl-buffer)
+  (cider-switch-to-last-clojure-buffer))
 
-(defun russ/attach-to-cider-session ()
-  "Prompts for a session, then activates it for the current buffer.
-The goal is to immediately allow for evaluation."
+(defun rs/cider-cycle-buffer-type ()
+  "Cycles between clojure, clojurescript, and clojurec repl types"
   (interactive)
-  (let ((selected (russ/prompt-for-connection)))
-    (message "selected:")
-    (print selected)))
+  (if (string= "cljc" (file-name-extension (buffer-file-name)))
+      (let ((repl-open? (get-buffer-window (cider-current-repl-buffer)))
+            (window (selected-window)))
+        (setq clojure-verify-major-mode nil)
+        (cond
+         ((eq 'clojurec-mode major-mode) (clojure-mode))
+         ((eq 'clojure-mode major-mode) (clojurescript-mode))
+         ((eq 'clojurescript-mode major-mode) (clojurec-mode)))
+        (when (and repl-open? (not (eq 'clojurec-mode major-mode)))
+          (cider-switch-to-repl-buffer)
+          (select-window window)))
+    (message (concat "Cycle repl type called from non .cljc file" (buffer-file-name)))))
 
-(defun cljc-file-p ()
-  (string-match-p (rx (and ".cljc" eol))
-                      (buffer-file-name)))
-
-(defun russ/cider-cljc-toggle-mode ()
+(defun rs/cider-clear-all-buffers ()
+  "Clear all cider buffers"
   (interactive)
-  (if (= "cljc" (file-name-extension (buffer-file-name)))
-      (if (eq major-mode 'clojure-mode)
-          ;; TODO replace with 'start cljs mode' fn
-          (clojurescript-mode)
-          ;; TODO replace with 'start clj mode' fn
-        (clojure-mode))
-    (russ/attach-to-cider-session)))
-
-                                        ;
-
-;; cider-set-repl-type is interesting
-;; cider-interactive-eval
-
-(comment
- (russ/cider-cljc-load))
-
-
-
-;; delete me
-(defun russ/cider-cljc-test ()
-  (interactive)
-  (message "current-repl")
-  (print (cider-current-repl)))
+  (let ((inhibit-read-only 't))
+    (dolist (repl (cider-repls))
+      (with-current-buffer repl
+        (cider-repl--clear-region (point-min) cider-repl-prompt-start-mark)
+        (cider-repl--clear-region cider-repl-output-start cider-repl-output-end)
+        (when (< (point) cider-repl-input-start-mark)
+          (goto-char cider-repl-input-start-mark))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; switch cider relp
+;; cider bindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 
 (map!
  (:after cider-mode
@@ -167,15 +158,15 @@ The goal is to immediately allow for evaluation."
            :desc "Browse Namespace" :n  "n" #'cider-browse-ns
            :desc "Browse Spec"      :n  "s" #'cider-browse-spec)
          :n  "h"  #'cider-doc
-         :n  "c"  #'cider-repl-clear-buffer
+         :n  "c"  #'rs/cider-clear-all-buffers
          :n  "i"  #'cider-inspect-last-result
          :n  "p"  #'cider-eval-sexp-at-point
          :n  "f"  #'cider-eval-defun-at-point
          :n  "t"  #'cider-test-run-ns-tests
          :n  "T"  #'cider-test-run-test
 
-         :n  "r"  #'systemic/restart
-         :n  "s"  #'russ/cider-cljc-toggle-mode
+         :n  "r"  #'rs/cider-cycle-buffer-type
+         :n  "s"  #'russ/switch-cider-connection
          :n  "g"  #'cider-user-go
 
          :n  "m"  #'clojure-move-to-let)))
