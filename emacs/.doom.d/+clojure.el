@@ -102,7 +102,8 @@
   (interactive)
   (bury-buffer (cider-current-repl))
   (cider-switch-to-repl-buffer)
-  (cider-switch-to-last-clojure-buffer))
+  (cider-switch-to-last-clojure-buffer)
+  (cider-refresh-dynamic-font-lock))
 
 (defun rs/cider-cycle-buffer-type ()
   "Cycles between clojure, clojurescript, and clojurec repl types"
