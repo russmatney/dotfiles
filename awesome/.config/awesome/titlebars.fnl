@@ -11,13 +11,13 @@
  init_request_titlebars
  (fn []
    ;; add signal for toggling title bars on float toggle
-   (client.connect_signal
-    "property::floating"
-    (fn [c]
-      ;; https://www.reddit.com/r/awesomewm/comments/bki1md/show_titlebar_only_when_window_is_floating/
-      (if c.floating
-          (awful.titlebar.show c)
-          (awful.titlebar.hide c))))
+   ;; (client.connect_signal
+   ;;  "property::floating"
+   ;;  (fn [c]
+   ;;    ;; https://www.reddit.com/r/awesomewm/comments/bki1md/show_titlebar_only_when_window_is_floating/
+   ;;    (if c.floating
+   ;;        (awful.titlebar.show c)
+   ;;        (awful.titlebar.hide c))))
 
    ;; Add a titlebar if titlebars_enabled is set to true in the rules.
    (_G.client.connect_signal
