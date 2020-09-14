@@ -99,8 +99,7 @@
       (deft-recursive t)
       (deft-directory org-roam-directory))
 
-(use-package org-roam-server
-  :ensure t
+(use-package! org-roam-server
   :config
   (setq org-roam-server-host "127.0.0.1"
         org-roam-server-port 8888
