@@ -179,3 +179,5 @@
 ;;                               (file-name-nondirectory (buffer-file-name))))
 ;;               (add-hook (make-variable-buffer-local 'after-save-hook)
 ;;                         'my-reload-dir-locals-for-all-buffer-in-this-directory))))
+
+(use-package! org-rich-yank)

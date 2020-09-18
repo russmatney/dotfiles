@@ -51,3 +51,5 @@
 
 ;; org-roam
 (package! org-roam-server)
+
+(package! org-rich-yank)
