@@ -228,6 +228,7 @@
     (awful.spawn cmd)))
 
 (fn focus-move [dir centerwork-dir centerwork-dir2]
+  ;; TODO should move floating windows if floating
   ;; TODO consider toggling when there is a floating window
   (if (centerwork_layout?)
       (do
@@ -237,6 +238,15 @@
           (_G.client.focus:swap (awful.client.getmaster))))
 
       (awful.client.focus.bydirection dir)))
+
+(fn move-client [c dir]
+  (if
+   (= "right" dir) (set c.x (+ c.x 10))
+   (=  "left" dir) (set c.x (+ c.x -10))
+   ;; y 0 at top
+   (= "up" dir) (set c.y (+ c.y -10))
+   (= "down" dir) (set c.y (+ c.y 10)))
+  )
 
 ;; exported to add to global rules
 (set exp.clientkeys
@@ -248,10 +258,22 @@
       (key [:mod] "f" awful.client.floating.toggle)
 
       ;; focus movement
-      (key [:mod :shift] "l" (fn [c] (focus-move "right" "right" "up")))
-      (key [:mod :shift] "h" (fn [c] (focus-move "left" "left" "down")))
-      (key [:mod :shift] "j" (fn [c] (focus-move "down" "right" "down")))
-      (key [:mod :shift] "k" (fn [c] (focus-move "up" "left" "up")))
+      (key [:mod :shift] "l" (fn [c]
+                               (if c.floating
+                                   (move-client c "right")
+                                   (focus-move "right" "right" "up"))))
+      (key [:mod :shift] "h" (fn [c]
+                               (if c.floating
+                                   (move-client c "left")
+                                   (focus-move "left" "left" "down"))))
+      (key [:mod :shift] "j" (fn [c]
+                               (if c.floating
+                                   (move-client c "down")
+                                   (focus-move "down" "right" "down"))))
+      (key [:mod :shift] "k" (fn [c]
+                               (if c.floating
+                                   (move-client c "up")
+                                   (focus-move "up" "left" "up"))))
 
       ;; widen/shink windows
       (key [:ctrl :shift] "l"

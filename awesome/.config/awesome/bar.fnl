@@ -259,19 +259,17 @@
       (s.mywibox:setup
        {:layout wibox.layout.align.horizontal
         1  {:layout wibox.layout.fixed.horizontal ;; Left widgets
-            ;; 1 s.mylayoutbox
-            ;; 2 separator
-            3 s.mytaglist}
+            1 s.mytaglist}
 
         ;; Middle widget
         2 {:layout wibox.layout.fixed.horizontal
            :expand "none"
            ;; 1 (pomodoro_widget)
-           2 (ram_widget)
-           3 (todo_widget)
-           4 (brightness_widget)
-           5 (spotify_widget)
-           ;; 6 (batteryarc_widget) ;; not necessary on algo
+           ;; 2 (ram_widget)
+           ;; 3 (todo_widget)
+           ;; 1 (brightness_widget)
+           1 (spotify_widget)
+           2 (batteryarc_widget) ;; not necessary on algo
            ;; 5 (stackoverflow_widget
            ;;    {:limit 10
            ;;     :tagged "clojure,fennel,babashka"})
