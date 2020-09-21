@@ -96,17 +96,17 @@
  (fn [config]
    (when (and config (. config :tag_names))
      (print "found tag_names in config")
-     (pp config.tag_names))
+     (pp config.tag_names)
 
-   (let [tag-names (and config config.tag_names)]
-     (each [_ tag-name (pairs tag-names)]
-       (let [existing-tag (-> mouse.screen.tags
-                              (awful.tag.find_by_name tag-name))]
-         (if existing-tag
-             (print (..  "Tag " tag-name " exists"))
-             (do
-               (print (..  "Creating tag " tag-name))
-               (awful.tag.add tag-name {:layout (. layouts 1)}))))))
+     (let [tag-names (and config config.tag_names)]
+       (each [_ tag-name (pairs tag-names)]
+         (let [existing-tag (-> mouse.screen.tags
+                                (awful.tag.find_by_name tag-name))]
+           (if existing-tag
+               (print (..  "Tag " tag-name " exists"))
+               (do
+                 (print (..  "Creating tag " tag-name))
+                 (awful.tag.add tag-name {:layout (. layouts 1)})))))))
 
    (restart-helper.restore_state)
 
