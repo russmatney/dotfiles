@@ -53,3 +53,7 @@
 (package! org-roam-server)
 
 (package! org-rich-yank)
+
+;; ink
+(package! ink-mode :recipe
+  (:host github :repo "russmatney/ink-mode"))

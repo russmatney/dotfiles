@@ -181,3 +181,5 @@
 ;;                         'my-reload-dir-locals-for-all-buffer-in-this-directory))))
 
 (use-package! org-rich-yank)
+
+(use-package! ink-mode)
