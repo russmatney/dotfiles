@@ -86,6 +86,10 @@
               mu4e gnus github debug lsp minor-modes input-method
               indent-info buffer-encoding major-mode process vcs)))
 
+(use-package! evil
+  :preface
+  (setq evil-ex-substitute-global t))
+
 ;; company
 (use-package! company
   :config
