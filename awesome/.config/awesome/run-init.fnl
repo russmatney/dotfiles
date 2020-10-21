@@ -7,6 +7,7 @@
 (local lain (require "lain"))
 
 ;; focus client after awesome.restart
+(require "awful.autofocus")
 (require "./helpers")
 (require "steamfix")
 

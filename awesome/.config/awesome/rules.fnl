@@ -11,8 +11,14 @@
 ;; prevent matching clients from stealing focus
 ;; not sure why this isn't handled by the rules...
 (awful.ewmh.add_activate_filter
- (fn [c] (if (= c.class "love") false))
- "ewmh")
+ (fn [c ctx _hints]
+   ;; (print (.. ctx " activation filter requested"))
+   ;; (print c.class)
+   ;; (print c.name)
+   ;; (pp hints)
+   (when (or (= ctx "rules")
+             (= ctx "ewmh"))
+     (if (= c.class "love") false))))
 
 ;; Rules to apply to new clients (through the "manage" signal).
 (local global_rules
