@@ -8,6 +8,12 @@
 ;; Rules
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; prevent matching clients from stealing focus
+;; not sure why this isn't handled by the rules...
+(awful.ewmh.add_activate_filter
+ (fn [c] (if (= c.class "love") false))
+ "ewmh")
+
 ;; Rules to apply to new clients (through the "manage" signal).
 (local global_rules
        (gears.table.join

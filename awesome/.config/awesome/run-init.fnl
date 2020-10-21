@@ -7,7 +7,6 @@
 (local lain (require "lain"))
 
 ;; focus client after awesome.restart
-(require "awful.autofocus")
 (require "./helpers")
 (require "steamfix")
 
@@ -33,23 +32,21 @@
 ;; Theming
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(global
- init_theme
- (fn []
-   ;; init theme
-   (-> (require "gears.filesystem")
-       (. :get_configuration_dir)
-       ((fn [f] (f)))
-       (.. "theme/theme.lua")
-       beautiful.init)
-   (set beautiful.icon_theme "Papirus-Dark")
-   (set beautiful.bg_normal "#141A1B")
-   (set beautiful.bg_focus "#222B2E")
-   (set beautiful.font "Noto Sans Regular 10")
-   (set beautiful.notification_font "Noto Sans Bold 14")
-   ;; TODO if hostname algo/vader, use 30/10
-   ;; (set beautiful.useless_gap 30)
-   (set beautiful.useless_gap 10)))
+(fn _G.init_theme []
+  ;; init theme
+  (-> (require "gears.filesystem")
+      (. :get_configuration_dir)
+      ((fn [f] (f)))
+      (.. "theme/theme.lua")
+      beautiful.init)
+  (set beautiful.icon_theme "Papirus-Dark")
+  (set beautiful.bg_normal "#141A1B")
+  (set beautiful.bg_focus "#222B2E")
+  (set beautiful.font "Noto Sans Regular 10")
+  (set beautiful.notification_font "Noto Sans Bold 14")
+  ;; TODO if hostname algo/vader, use 30/10
+  ;; (set beautiful.useless_gap 30)
+  (set beautiful.useless_gap 10))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; External (Ralphie?) Functions

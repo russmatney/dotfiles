@@ -8,7 +8,7 @@ std = "min"
 self = false
 
 -- Theme files, ignore max line length
-files["themes/*"].ignore = {
+ignore = {
   "21/_.*",
   "431",
   "111", -- allow globals in fennel :yeehaw:
@@ -32,10 +32,12 @@ read_globals = {
     "window",
     "table.unpack",
     "math.atan2",
-
-"love", "pp", "fennel", "lume", "u",
-
     "package",
+}
+
+new_globals = {
+  "love", "pp", "fennel", "lume", "u", "ppi",
+  "layouts",
 }
 
 -- screen may not be read-only, because newer luacheck versions complain about
