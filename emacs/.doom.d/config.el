@@ -188,3 +188,23 @@
 
 (add-hook 'ink-mode-hook 'flymake-mode)
 (use-package! ink-mode)
+
+
+
+(use-package! magit
+  :config
+  (setq magit-repository-directories
+        '(("~/dotfiles" . 0)
+          ("~/russmatney" . 1))
+
+        magit-repolist-columns
+        '(("Name" 25 magit-repolist-column-ident nil)
+          ("Dirty" 3 magit-repolist-column-dirty (:right-align t))
+          ("Unpulled" 3 magit-repolist-column-unpulled-from-upstream
+           ((:right-align t)
+            (:help-echo "Upstream changes not in branch")))
+          ("Unpushed" 3 magit-repolist-column-unpushed-to-upstream
+           ((:right-align t)
+            (:help-echo "Local changes not in upstream")))
+          ("Path" 99 magit-repolist-column-path nil)))
+  )
