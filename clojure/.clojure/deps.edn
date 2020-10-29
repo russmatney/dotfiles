@@ -4,4 +4,12 @@
   :ancient {:main-opts  ["-m" "deps-ancient.deps-ancient"]
             :extra-deps {deps-ancient/deps-ancient {:mvn/version "0.0.4"}}}
   :graph   {:deps      {org.clojure/tools.deps.graph {:mvn/version "0.2.30"}}
-            :main-opts ["-m" "clojure.tools.deps.graph"]}}}
+            :main-opts ["-m" "clojure.tools.deps.graph"]}
+
+  :cider-nrepl
+  {:extra-deps {nrepl/nrepl                   {:mvn/version "0.8.3"}
+                refactor-nrepl/refactor-nrepl {:mvn/version "2.5.0"}
+                cider/cider-nrepl             {:mvn/version "0.25.4"}}
+   :main-opts  ["-m" "nrepl.cmdline" "--middleware"
+                "[cider.nrepl/cider-middleware,refactor-nrepl.middleware/wrap-refactor]"]}
+  }}
