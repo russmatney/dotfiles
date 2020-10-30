@@ -89,7 +89,9 @@
                        }}
 
          {:rule {:class "firefox"}
-          :properties {:tag "web"}}
+          :properties {:tag "web"
+                       :maximized false
+                       :floating false}}
          {:rule {:name "notes"}
           :properties {:tag "notes"}}
          {:rule {:name "journal"}
