@@ -120,7 +120,7 @@
              (fn []
                (let [current-tag (. (awful.screen.focused) :selected_tag)
                      name current-tag.name
-                     str (.. "ralphie open-term " name)]
+                     str (.. "ralphie-open-term " name)]
                  (awful.spawn str))))
 
         ;; emacs
@@ -128,7 +128,7 @@
              (fn []
                (let [current-tag (. (awful.screen.focused) :selected_tag)
                      name current-tag.name]
-                 (awful.spawn (.. "ralphie open-emacs " name)))))
+                 (awful.spawn (.. "ralphie-open-emacs " name)))))
 
         ;; browser
         ;; (key [:mod :shift] "b" (spawn-fn "google-chrome-stable"))
