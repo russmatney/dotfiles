@@ -72,10 +72,10 @@
         (key [:mod] "Escape" awful.tag.history.restore)
 
         ;; scratchpads
-        (key [:mod] "u" (spawn-fn "toggle-scratchpad journal"))
-        (key [:mod] "y" (spawn-fn "toggle-scratchpad yodo-app"))
-        (key [:mod] "r" (spawn-fn "toggle-scratchpad notes"))
-        (key [:mod] "t" (spawn-fn "toggle-scratchpad web"))
+        (key [:mod] "u" (spawn-fn "ralphie-toggle-scratchpad journal"))
+        (key [:mod] "y" (spawn-fn "ralphie-toggle-scratchpad yodo-app"))
+        (key [:mod] "r" (spawn-fn "ralphie-toggle-scratchpad notes"))
+        (key [:mod] "t" (spawn-fn "ralphie-toggle-scratchpad web"))
 
         (key [:mod] "d" (fn [] (dashboard.dashboard_show)))
 
