@@ -4,7 +4,7 @@
 (local fun (require "fun"))
 (local tablex (require :pl.tablex))
 
-(local dashboard (require :dashboard.dashboard))
+;; (local dashboard (require :dashboard.dashboard))
 (local helpers (require :dashboard.helpers))
 (local restart-helper (require "./restart"))
 
@@ -61,9 +61,6 @@
         ;; helpers
         (key [:mod :shift] "r" restart-helper.save_state_and_restart)
 
-        ;; ralphie rofi
-        (key [:mod] "x" (spawn-fn "ralphie rofi"))
-
         ;; walk tags
         (key [:mod] "Left" awful.tag.viewprev)
         (key [:mod] "Right" awful.tag.viewnext)
@@ -71,13 +68,24 @@
         ;; previous tag
         (key [:mod] "Escape" awful.tag.history.restore)
 
+        ;; TODO move all these bindings into ralphie itself
+        ;; ralphie rofi
+        (key [:mod] "x" (spawn-fn "ralphie rofi"))
+
         ;; scratchpads
+        ;; TODO should pull the letter from workspaces.org
+        ;; and write into ralphie-build-and-install
         (key [:mod] "u" (spawn-fn "ralphie-toggle-scratchpad journal"))
         (key [:mod] "y" (spawn-fn "ralphie-toggle-scratchpad yodo-app"))
         (key [:mod] "r" (spawn-fn "ralphie-toggle-scratchpad notes"))
         (key [:mod] "t" (spawn-fn "ralphie-toggle-scratchpad web"))
 
-        (key [:mod] "d" (fn [] (dashboard.dashboard_show)))
+        ;; TODO rename to 'open-workspace'
+        (key [:mod] "d" (spawn-fn "ralphie clean-up-workspaces"))
+        (key [:mod] "o" (spawn-fn "ralphie create-workspace"))
+
+        ;; TODO impl ralphie-awm
+        ;; (key [:mod] "d" (spawn-fn "ralphie-awm '(delete-current-workspace)'"))
 
         ;; cycle layouts
         (key [:mod] "Tab"
