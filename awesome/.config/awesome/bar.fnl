@@ -224,6 +224,16 @@
                                (. color-wheel index)
                                "'><b> " index " </b></span>"))))}})))
 
+(fn get-hostname []
+  "ty to https://gist.github.com/h1k3r/089d43771bdf811eefe8 for this."
+  (let [f (io.popen "/bin/hostname")
+        hostname (or (f:read "*a") "")]
+    (f:close)
+    (string.gsub hostname "\n$" "")))
+
+(fn is-vader []
+  (= (get-hostname) "vader"))
+
 (global
  init_screen
  (fn []
@@ -269,7 +279,7 @@
            ;; 3 (todo_widget)
            ;; 1 (brightness_widget)
            1 (spotify_widget)
-           2 (batteryarc_widget) ;; not necessary on algo
+           2 (when (is-vader) (batteryarc_widget)) ;; not necessary on algo
            ;; 5 (stackoverflow_widget
            ;;    {:limit 10
            ;;     :tagged "clojure,fennel,babashka"})
