@@ -187,7 +187,9 @@
 (use-package! org-rich-yank)
 
 (add-hook 'ink-mode-hook 'flymake-mode)
-(use-package! ink-mode)
+(use-package! ink-mode
+  :config
+  (auto-fill-mode 1))
 
 
 
