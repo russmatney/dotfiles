@@ -81,8 +81,8 @@
         (key [:mod] "t" (spawn-fn "ralphie-toggle-scratchpad web"))
 
         ;; TODO rename to 'open-workspace'
-        (key [:mod] "d" (spawn-fn "ralphie clean-up-workspaces"))
-        (key [:mod] "o" (spawn-fn "ralphie create-workspace"))
+        (key [:mod] "d" (spawn-fn "ralphie-clean-up-workspaces"))
+        (key [:mod] "o" (spawn-fn "ralphie-create-workspace"))
 
         ;; TODO impl ralphie-awm
         ;; (key [:mod] "d" (spawn-fn "ralphie-awm '(delete-current-workspace)'"))
@@ -122,6 +122,9 @@
                                   next-idx)
                      next-tag (. scr.tags next-idx)]
                  (next-tag:view_only))))
+
+        (key [:mod :shift] "n" (spawn-fn "ralphie-swap-workspace-index down"))
+        (key [:mod :shift] "p" (spawn-fn "ralphie-swap-workspace-index up"))
 
         ;; terminal
         (key [:mod] "Return"
