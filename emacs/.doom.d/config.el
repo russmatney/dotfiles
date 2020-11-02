@@ -60,7 +60,7 @@
 ;; turn on whitespace mode
 (global-whitespace-mode t)
 ;; but not in org
-(setq whitespace-global-modes '(not org-mode))
+(setq whitespace-global-modes '(not org-mode ink-mode))
 ;; turn on whitespace cleanup
 (add-hook! 'before-save-hook 'whitespace-cleanup)
 
@@ -187,8 +187,11 @@
 (use-package! org-rich-yank)
 
 (add-hook 'ink-mode-hook 'flymake-mode)
+(add-hook 'ink-play-mode-hook 'toggle-truncate-lines)
+
 (use-package! ink-mode
   :config
+  (toggle-truncate-lines)
   (auto-fill-mode 1))
 
 
