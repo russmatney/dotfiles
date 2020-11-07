@@ -243,6 +243,10 @@
     'clojurescript-mode
     '(company-capf company-yasnippet company-flow company-css-classes-backend))
 
+  (set-company-backend!
+    'clojurec-mode
+    '(company-capf company-yasnippet company-flow company-css-classes-backend))
+
   (setq cljr-magic-require-namespaces
         '(("io" . "clojure.java.io")
           ("sh" . "clojure.java.shell")
