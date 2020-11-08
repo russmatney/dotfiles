@@ -84,9 +84,6 @@
         (key [:mod] "d" (spawn-fn "ralphie-clean-up-workspaces"))
         (key [:mod] "o" (spawn-fn "ralphie-create-workspace"))
 
-        ;; TODO impl ralphie-awm
-        ;; (key [:mod] "d" (spawn-fn "ralphie-awm '(delete-current-workspace)'"))
-
         ;; cycle layouts
         (key [:mod] "Tab"
              (fn []

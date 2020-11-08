@@ -3,6 +3,8 @@
 
 (local helpers (require "dashboard.helpers"))
 
+(local repos_widget (require "widgets.repos"))
+
 (local todo_widget (require "awesome-wm-widgets.todo-widget.todo"))
 ;; (local stackoverflow_widget (require "awesome-wm-widgets.stackoverflow-widget.stackoverflow"))
 ;; (local pomodoro_widget (require "awesome-wm-widgets.pomodoroarc-widget.pomodoroarc"))
@@ -282,6 +284,7 @@
            ;; 1 (brightness_widget)
            1 (spotify_widget)
            2 (when (is-vader) (batteryarc_widget)) ;; not necessary on algo
+           3 (repos_widget)
            ;; 5 (stackoverflow_widget
            ;;    {:limit 10
            ;;     :tagged "clojure,fennel,babashka"})
