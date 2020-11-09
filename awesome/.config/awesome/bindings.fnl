@@ -287,30 +287,50 @@
       (key [:ctrl :shift] "l"
            (fn [c]
              (if c.floating
-                 (awful.placement.scale
-                  c {:direction "right"
-                     :by_percent 1.1})
+                 (do
+                   (awful.placement.scale
+                    c {:direction "right"
+                       :by_percent 1.1})
+                   (awful.placement.scale
+                    c {:direction "left"
+                       :by_percent 1.1})
+                   )
                  (awful.tag.incmwfact 0.05))))
       (key [:ctrl :shift] "h"
            (fn [c]
              (if c.floating
-                 (awful.placement.scale
-                  c {:direction "right"
-                     :by_percent 0.9})
+                 (do
+                   (awful.placement.scale
+                    c {:direction "left"
+                       :by_percent 0.9})
+                   (awful.placement.scale
+                    c {:direction "right"
+                       :by_percent 0.9})
+                   )
                  (awful.tag.incmwfact -0.05))))
       (key [:ctrl :shift] "j"
            (fn [c]
              (if c.floating
-                 (awful.placement.scale
-                  c {:direction "down"
-                     :by_percent 1.1})
+                 (do
+                   (awful.placement.scale
+                    c {:direction "down"
+                       :by_percent 1.1})
+                   (awful.placement.scale
+                    c {:direction "up"
+                       :by_percent 1.1})
+                   )
                  (awful.client.incwfact 0.05))))
       (key [:ctrl :shift] "k"
            (fn [c]
              (if c.floating
-                 (awful.placement.scale
-                  c {:direction "down"
-                     :by_percent 0.9})
+                 (do
+                   (awful.placement.scale
+                    c {:direction "up"
+                       :by_percent 0.9})
+                   (awful.placement.scale
+                    c {:direction "down"
+                       :by_percent 0.9})
+                   )
                  (awful.client.incwfact -0.05))))
 
       ;; center on screen
