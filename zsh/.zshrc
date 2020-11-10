@@ -347,3 +347,30 @@ unalias 'sp'
 
 [ -s ~/.luaver/luaver ] && . ~/.luaver/luaver
 [ -s ~/.luaver/completions/luaver.bash ] && . ~/.luaver/completions/luaver.bash
+
+################################################################################
+# Delete from history via fzf
+################################################################################
+
+# https://superuser.com/questions/1316668/zsh-bash-delete-specific-lines-from-history
+function delete-command () {
+  # Prevent the specified history line from being saved.
+  local HISTORY_IGNORE="${(b)$(fc -ln $1 $1)}"
+
+  # Write out the history to file, excluding lines that match `$HISTORY_IGNORE`.
+  fc -W
+
+  # Dispose of the current history and read the new history from file.
+  fc -p "$HISTFILE" "$HISTSIZE" "$SAVEHIST"
+
+  # TA-DA!
+  print "Deleted '$HISTORY_IGNORE' from history."
+}
+
+function pick_from_history () {
+  history | fzf --tac --tiebreak=index | perl -ne 'm/^\s*([0-9]+)/ and print "$1"'
+}
+
+function delete_from_history () {
+  delete-command "$(pick_from_history)"
+}
