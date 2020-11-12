@@ -240,7 +240,9 @@
    (awful.screen.connect_for_each_screen
     (fn [s]
       ;; set padding for top-status bar
-      (tset s :padding {:top 100 ;; matches status bar height
+      (tset s :padding {
+                        :top 0
+                        ;; :top 100 ;; matches status bar height
                         :bottom s.padding.bottom
                         :left s.padding.left
                         :right s.padding.right})
