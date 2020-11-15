@@ -246,21 +246,9 @@
            :expand "none"
            ;; 1 (pomodoro_widget)
            1 (spotify_widget)
-           2 (when (is-vader) (batteryarc_widget)) ;; not necessary on algo
+           2 (when (is-vader) (batteryarc_widget))
            3 separator
            4 (dirty_repos_widget)
-           ;; 7 (weather_widget
-           ;;    {:api_key (os.getenv "OPENWEATHERMAP_APIKEY")
-           ;;     :coordinates [40.6782 -73.9442]
-           ;;     :time_format_12h   true
-           ;;     :units   "imperial"
-           ;;     :both_units_widget   true
-           ;;     :font_name   "Carter One"
-           ;;     :icons   "VitalyGorbachev"
-           ;;     :show_hourly_forecast   true
-           ;;     :show_daily_forecast   true
-           ;;     :icons_extension ".svg"}
-           ;;    )
            }
 
         ;; Right widgets

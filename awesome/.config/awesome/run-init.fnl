@@ -90,6 +90,10 @@
 (require :titlebars)
 (require :spawns)
 
+(fn clear_urgent_clients []
+  (each [_ cl (pairs (_G.client.get))]
+    (set cl.urgent false)))
+
 (global
  init_tags
  (fn [config]
@@ -99,7 +103,7 @@
 
      (let [tag-names (and config config.tag_names)]
        (each [_ tag-name (pairs tag-names)]
-         (let [existing-tag (-> mouse.screen.tags
+         (let [existing-tag (-> _G.mouse.screen.tags
                                 (awful.tag.find_by_name tag-name))]
            (if existing-tag
                (print (..  "Tag " tag-name " exists"))
@@ -110,12 +114,15 @@
    (restart-helper.restore_state)
 
    ;; reapply rules to all clients
-   (reapply_rules)))
+   (_G.reapply_rules)
+
+   (clear_urgent_clients)
+
+   ))
 
 
 (fn ralphie-init []
-  (awful.spawn "ralphie init-tags")
-  )
+  (awful.spawn "ralphie init-tags"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; init
@@ -166,4 +173,4 @@
    ))
 
 ;; (awful.spawn "ralphie awesome-init")
-(init)
+(_G.init)
