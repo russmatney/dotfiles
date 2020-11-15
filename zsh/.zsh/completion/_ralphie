@@ -1,0 +1,52 @@
+#compdef _ralphie ralphie
+
+_arguments -C \
+  "1: :(
+init-tags \
+update-dirty-repos \
+rofi \
+reapply-rules \
+clean-up-zsh-history \
+fire \
+find-read \
+swap-workspace-index \
+date \
+clean-up-zsh-history-dry-run \
+doctor-checkup \
+watch \
+build-readme \
+set-monitor-resolution \
+clean-up-workspaces \
+awesome-delete-current-tag \
+rofi-dev \
+start-bar \
+autojump \
+opacity-increase \
+update-doom \
+set-layout \
+install-micro \
+find-watch \
+story \
+resize-window \
+help \
+opacity-decrease \
+install-dev \
+list-dirty-repos \
+set-focus \
+list-items \
+screenshot \
+clone \
+create-client \
+gprom \
+open-term \
+new-prompt \
+any-outdated \
+picom \
+open-emacs \
+create-workspace \
+consolidate-workspaces \
+export-notes \
+restart-yodo \
+build-and-install-uberscript \
+toggle-scratchpad \
+install-zsh-completion)"
