@@ -3,7 +3,6 @@
 
 (local helpers (require "dashboard.helpers"))
 
-(local repos_widget (require "widgets.repos"))
 (local dirty_repos_widget (require "widgets.dirty-repos"))
 
 ;; (local pomodoro_widget (require "awesome-wm-widgets.pomodoroarc-widget.pomodoroarc"))
@@ -154,7 +153,7 @@
 
       ;; Adds support for hover colors and an index label
       :create_callback
-      (fn [self c3 index objects]
+      (fn [self _c3 index _objects]
         (-> (self:get_children_by_id "index_role")
             (. 1)
             (tset :markup (..  "<span color='"
@@ -186,7 +185,7 @@
                ))))
 
       :update_callback
-      (fn [self c3 index objects]
+      (fn [self _c3 index _objects]
         (-> (self:get_children_by_id "index_role")
             (. 1)
             (tset :markup (..  "<span color='"
@@ -231,7 +230,7 @@
         (bindings.btn [] 5 (fn [] (awful.layout.inc -1)))))
 
       ;; Create a taglist widget
-      (set s.mytaglist (create_taglist s))
+      (set s.mytaglist (_G.create_taglist s))
 
       ;; Create the wibox
       (set s.mywibox (awful.wibar {:position "bottom" :screen s}))
