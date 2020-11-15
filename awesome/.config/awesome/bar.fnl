@@ -4,15 +4,10 @@
 (local helpers (require "dashboard.helpers"))
 
 (local repos_widget (require "widgets.repos"))
+(local dirty_repos_widget (require "widgets.dirty-repos"))
 
-(local todo_widget (require "awesome-wm-widgets.todo-widget.todo"))
-;; (local stackoverflow_widget (require "awesome-wm-widgets.stackoverflow-widget.stackoverflow"))
 ;; (local pomodoro_widget (require "awesome-wm-widgets.pomodoroarc-widget.pomodoroarc"))
-(local ram_widget (require "awesome-wm-widgets.ram-widget.ram-widget"))
 (local batteryarc_widget (require"awesome-wm-widgets.batteryarc-widget.batteryarc"))
-;; (local volumebar_widget (require"awesome-wm-widgets.volumebar-widget.volumebar"))
-(local brightness_widget (require "awesome-wm-widgets.brightness-widget.brightness"))
-(local weather_widget (require "awesome-wm-widgets.weather-widget.weather"))
 (local spotify_widget (require"awesome-wm-widgets.spotify-widget.spotify"))
 
 (local awful (require "awful"))
@@ -45,34 +40,6 @@
                             (_G.client.focus:toggle_tag t))))
         (bindings.btn [] 4 (fn [t] (awful.tag.viewnext t.screen)))
         (bindings.btn [] 5 (fn [t] (awful.tag.viewprev t.screen)))))
-
-(local tasklist_buttons
-       (gears.table.join
-        (bindings.btn
-         []  1
-         (fn [c]
-           (if
-            (= c _G.client.focus)
-            (tset c :minimized true))
-
-           (do
-             ;; Without this, the following
-             ;; :isvisible() makes no sense
-             (tset c :minimized false)
-
-             (when (and (not (c:isvisible)) c.first_tag)
-               (c.first_tag:view_only))
-
-             ;; This will also un-minimize
-             ;; the client, if needed
-             (tset _G.client :focus c)
-             (c:raise))))
-
-        ;; TODO fill in global right click? maybe hit ralphie?
-        ;; awful.button({ }, 3, client_menu_toggle_fn()),
-        (bindings.btn [] 4 (fn [] (awful.client.focus.byidx 1)))
-        (bindings.btn [] 5 (fn [] (awful.client.focus.byidx -1)))))
-
 
 (local color-wheel
        ["#D1908E"
@@ -279,25 +246,10 @@
         2 {:layout wibox.layout.fixed.horizontal
            :expand "none"
            ;; 1 (pomodoro_widget)
-           ;; 2 (ram_widget)
-           ;; 3 (todo_widget)
-           ;; 1 (brightness_widget)
            1 (spotify_widget)
            2 (when (is-vader) (batteryarc_widget)) ;; not necessary on algo
-           3 (repos_widget)
-           ;; 5 (stackoverflow_widget
-           ;;    {:limit 10
-           ;;     :tagged "clojure,fennel,babashka"})
-           ;; 6 (volumebar_widget
-           ;;    {:main_color "#af13f7"
-           ;;     :mute_color "#ff0000"
-           ;;     :inc_volume_cmd "pactl set-sink-volume @DEFAULT_SINK@ +5%"
-           ;;     :dec_volume_cmd "pactl set-sink-volume @DEFAULT_SINK@ -5%"
-           ;;     :get_volume_cmd "get-volume"
-           ;;     :tog_volume_cmd "pactl set-sink-mute @DEFAULT_SINK@ toggle"
-           ;;     :width 80
-           ;;     :shape "rounded_bar"
-           ;;     :margins 4})
+           3 separator
+           4 (dirty_repos_widget)
            ;; 7 (weather_widget
            ;;    {:api_key (os.getenv "OPENWEATHERMAP_APIKEY")
            ;;     :coordinates [40.6782 -73.9442]
