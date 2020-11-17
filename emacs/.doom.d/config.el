@@ -211,5 +211,9 @@
           ("Unpushed" 3 magit-repolist-column-unpushed-to-upstream
            ((:right-align t)
             (:help-echo "Local changes not in upstream")))
-          ("Path" 99 magit-repolist-column-path nil)))
-  )
+          ("Path" 99 magit-repolist-column-path nil))))
+
+(use-package! projectile
+  :config
+  (setq projectile-project-search-path '("~/russmatney/" "~/.config/")
+        projectile-create-missing-test-files t))
