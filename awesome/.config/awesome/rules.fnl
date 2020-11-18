@@ -104,11 +104,13 @@
 
          {:rule_any {:class ["Spotify" "spotify" "Pavucontrol" "pavucontrol"]
                      :name ["Spotify" "spotify" "Pavucontrol" "pavucontrol"]}
-          :properties {:tag "spotify"}}
+          :properties {:tag "spotify"
+                       :new_tag "spotify"}}
 
          {:rule_any {:class ["Slack" "slack" "Discord" "discord"]
                      :name ["Slack" "slack" "Discord" "discord"]}
-          :properties {:tag "slack"}}]))
+          :properties {:tag "slack"
+                       :new_tag "slack"}}]))
 
 (set
  _G.init_rules
