@@ -45,6 +45,7 @@
   (set beautiful.bg_focus "#222B2E")
   (set beautiful.font "Noto Sans Regular 10")
   (set beautiful.notification_font "Noto Sans Bold 14")
+  (set beautiful.notification_max_height 100)
   ;; TODO if hostname algo/vader, use 30/10
   ;; (set beautiful.useless_gap 30)
   (set beautiful.useless_gap 10))
