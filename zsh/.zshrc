@@ -374,3 +374,9 @@ function pick_from_history () {
 function delete_from_history () {
   delete-command "$(pick_from_history)"
 }
+
+################################################################################
+# Ruby
+################################################################################
+
+export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
