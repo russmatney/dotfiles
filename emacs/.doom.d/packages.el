@@ -57,3 +57,6 @@
 ;; ink
 (package! ink-mode :recipe
   (:host github :repo "russmatney/ink-mode"))
+
+;; nov.el
+(package! nov)

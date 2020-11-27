@@ -217,3 +217,7 @@
   :config
   (setq projectile-project-search-path '("~/russmatney/" "~/.config/")
         projectile-create-missing-test-files t))
+
+
+(use-package! nov-mode
+  :mode "\\.epub$")
