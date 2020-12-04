@@ -60,3 +60,7 @@
 
 ;; nov.el
 (package! nov)
+
+
+;; magit
+(package! magit-org-todos)

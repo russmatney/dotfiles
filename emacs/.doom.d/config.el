@@ -194,7 +194,10 @@
   (toggle-truncate-lines)
   (auto-fill-mode 1))
 
+;; TODO some todo
 
+
+(add-hook 'magit-mode-hook 'magit-todos-mode)
 
 (use-package! magit
   :config
@@ -212,6 +215,15 @@
            ((:right-align t)
             (:help-echo "Local changes not in upstream")))
           ("Path" 99 magit-repolist-column-path nil))))
+
+(use-package! magit-todos
+  :config
+  (setq magit-todos-rg-extra-args '("--hidden")))
+
+
+(use-package! magit-org-todos
+  :config
+  (magit-org-todos-autoinsert))
 
 (use-package! projectile
   :config

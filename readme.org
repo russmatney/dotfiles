@@ -51,7 +51,4 @@ Update `rg` command in emacs to use `--hidden` flag:
 (setq counsel-rg-base-command
     "rg -zS --hidden --no-heading --line-number --color never %s .")
 #+END_SRC
-* TODOs
-** [ ] break out awesome config
-** [ ] break out emacs config
-** [ ] document things
+* [[file:todo.org][Todos]]
