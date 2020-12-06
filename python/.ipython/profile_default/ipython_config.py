@@ -533,7 +533,6 @@
 
 ## Extension of the completer class with IPython-specific features
 
-## DEPRECATED as of version 5.0.
 #
 #  Instruct the completer to use __all__ for the completion
 #
