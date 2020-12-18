@@ -42,6 +42,9 @@
 
 (package! monroe :recipe (:host github :repo "sanel/monroe"))
 
+(package! clojure-essential-ref)
+(package! clojure-essential-ref-nov)
+
 ;; wakatime
 (package! wakatime-mode)
 

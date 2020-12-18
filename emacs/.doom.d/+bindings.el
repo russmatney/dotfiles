@@ -292,6 +292,7 @@
   (when (string= system-type "darwin")
     (setq dired-use-ls-dired nil))
   :config
+  (enable-command 'dired-find-alternate-file)
   (map!
    :n "-" #'dired-jump
    :map dired-mode-map

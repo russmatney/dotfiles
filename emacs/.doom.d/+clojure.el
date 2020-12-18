@@ -157,7 +157,8 @@
          :n  "j"  #'cider-find-var
          (:desc "docs" :prefix "d"
            :desc "Browse Namespace" :n  "n" #'cider-browse-ns
-           :desc "Browse Spec"      :n  "s" #'cider-browse-spec)
+           :desc "Browse Spec"      :n  "s" #'cider-browse-spec
+           :desc "Essential Ref"    :n  "f" #'clojure-essential-ref)
          :n  "h"  #'cider-doc
          :n  "c"  #'rs/cider-clear-all-buffers
          :n  "i"  #'cider-inspect-last-result
@@ -281,3 +282,11 @@
 
 (use-package! ivy-cider
   :after cider-mode)
+
+(use-package! clojure-essential-ref)
+(use-package! clojure-essential-ref-nov
+  :init
+  (setq clojure-essential-ref-nov-epub-path
+        "~/Dropbox/books/Clojure_The_Essential_Reference_v30.epub")
+  (setq clojure-essential-ref-default-browse-fn
+        #'clojure-essential-ref-nov-browse))
