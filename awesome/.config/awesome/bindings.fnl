@@ -79,6 +79,8 @@
         (key [:mod] "y" (spawn-fn "ralphie-toggle-scratchpad yodo-app"))
         (key [:mod] "r" (spawn-fn "ralphie-toggle-scratchpad notes"))
         (key [:mod] "t" (spawn-fn "ralphie-toggle-scratchpad web"))
+        (key [:mod] "a" (spawn-fn "ralphie-toggle-scratchpad slack"))
+        (key [:mod] "s" (spawn-fn "ralphie-toggle-scratchpad spotify"))
 
         ;; TODO rename to 'open-workspace'
         (key [:mod] "d" (spawn-fn "ralphie-clean-up-workspaces"))
