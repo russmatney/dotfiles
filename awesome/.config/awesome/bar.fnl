@@ -3,11 +3,12 @@
 
 (local helpers (require "dashboard.helpers"))
 
-(local dirty_repos_widget (require "widgets.dirty-repos"))
+(local dirty-repos-widget (require "widgets.dirty-repos"))
+(local org-pomo-widget (require "widgets.org-pomodoro"))
 
-;; (local pomodoro_widget (require "awesome-wm-widgets.pomodoroarc-widget.pomodoroarc"))
-(local batteryarc_widget (require"awesome-wm-widgets.batteryarc-widget.batteryarc"))
-(local spotify_widget (require"awesome-wm-widgets.spotify-widget.spotify"))
+;; (local pomodoro-widget (require "awesome-wm-widgets.pomodoroarc-widget.pomodoroarc"))
+(local batteryarc-widget (require"awesome-wm-widgets.batteryarc-widget.batteryarc"))
+(local spotify-widget (require"awesome-wm-widgets.spotify-widget.spotify"))
 
 (local awful (require "awful"))
 
@@ -244,11 +245,13 @@
         ;; Middle widget
         2 {:layout wibox.layout.fixed.horizontal
            :expand "none"
-           ;; 1 (pomodoro_widget)
-           1 (spotify_widget)
-           2 (when (is-vader) (batteryarc_widget))
+           ;; 1 (pomodoro-widget)
+           1 (spotify-widget)
+           2 (when (is-vader) (batteryarc-widget))
            3 separator
-           4 (dirty_repos_widget)
+           4 (dirty-repos-widget)
+           5 separator
+           6 (org-pomo-widget)
            }
 
         ;; Right widgets
