@@ -174,7 +174,7 @@
         +hugo
         ;;+ipython         ; ipython support for babel
         +pandoc          ; pandoc integration into org's exporter
-        ;;+pomodoro
+        +pomodoro
         +present ; using Emacs for presentations
         +roam)
        ;;php               ; perl's insecure younger brother

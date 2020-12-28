@@ -269,7 +269,6 @@
         clojure-align-forms-automatically t
 
         cider-save-file-on-load t
-        cider-auto-select-error-buffer t
 
         cider-default-cljs-repl 'shadow
         cider-offer-to-open-cljs-app-in-browser nil

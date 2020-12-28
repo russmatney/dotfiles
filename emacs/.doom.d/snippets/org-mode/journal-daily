@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: journal-daily
+# key: jd
+# condition: t
+# --
+* `(format-time-string "%Y-%m-%d %A")`
+:PROPERTIES:
+:id: `(shell-command-to-string "uuidgen")`:host: `(shell-command-to-string "hostname")`:END:

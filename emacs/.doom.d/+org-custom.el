@@ -20,14 +20,14 @@
 (setq org-archive-location (concat "~/Dropbox/todo/archive/" (format-time-string "%Y-%m") ".org::"))
 
 ;; allow refiling into a file without choosing a headline
-(setq org-refile-use-outline-path 'file)
-(setq org-refile-allow-creating-parent-nodes t)
-(setq org-refile-targets
-      '(("~/Dropbox/todo/todo.org" :maxlevel . 2)
-        ("~/Dropbox/todo/specs.org" :maxlevel . 2))
+(setq org-refile-use-outline-path 'file
+      org-refile-allow-creating-parent-nodes t
+      org-outline-path-complete-in-steps nil
+      org-agenda-files (file-expand-wildcards "~/Dropbox/todo/*.org")
 
-      org-agenda-files (file-expand-wildcards "~/Dropbox/todo/*.org"))
-
+      org-refile-targets
+      '((nil :maxlevel . 9)
+        (org-agenda-files :maxlevel . 2)))
 
 (advice-add 'org-archive-subtree
             :after
@@ -146,3 +146,27 @@
  :leader
    :desc "notes" :prefix "n"
    :desc "add story to clubhouse" :n "c" #'org-clubhouse-create-story)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Org pomodoro
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package! org-pomodoro
+  :config
+  (setq org-pomodoro-length 35
+        org-pomodoro-short-break-length 10))
+
+(defun ruborcalor/org-pomodoro-time ()
+  "Return the remaining pomodoro time"
+  (if (org-pomodoro-active-p)
+      (cl-case org-pomodoro-state
+        (:pomodoro
+           (format "Pomo: %d minutes - %s" (/ (org-pomodoro-remaining-seconds) 60) org-clock-heading))
+        (:short-break
+         (format "Short break time: %d minutes" (/ (org-pomodoro-remaining-seconds) 60)))
+        (:long-break
+         (format "Long break time: %d minutes" (/ (org-pomodoro-remaining-seconds) 60)))
+        (:overtime
+         (format "Overtime! %d minutes" (/ (org-pomodoro-remaining-seconds) 60))))
+    "No active pomo"))
