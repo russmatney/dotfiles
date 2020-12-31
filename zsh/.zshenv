@@ -13,3 +13,4 @@ eval $(luarocks path --bin)
 export LUA_PATH="$LUA_PATH\
 ;/usr/share/awesome/lib/?.lua\
 ;/usr/share/awesome/lib/?/init.lua"
+if [ -e /home/russ/.nix-profile/etc/profile.d/nix.sh ]; then . /home/russ/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
