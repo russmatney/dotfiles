@@ -25,9 +25,15 @@
       org-outline-path-complete-in-steps nil
       org-agenda-files (file-expand-wildcards "~/Dropbox/todo/*.org")
 
+      org-journal-archive-files (file-expand-wildcards "~/Dropbox/todo/journal/*.org")
+      org-dailies-files (file-expand-wildcards "~/Dropbox/notes/daily/*.org")
+
       org-refile-targets
-      '((nil :maxlevel . 9)
-        (org-agenda-files :maxlevel . 2)))
+      '((org-journal-archive-files :maxlevel . 1)
+        (nil :maxlevel . 9)
+        (org-agenda-files :maxlevel . 2)
+        (org-dailies-files :maxlevel . 2)
+        ))
 
 (advice-add 'org-archive-subtree
             :after
