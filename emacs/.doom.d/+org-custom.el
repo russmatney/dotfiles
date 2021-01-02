@@ -1,5 +1,10 @@
 ;;;  -*- lexical-binding: t; -*-
 
+
+(defmacro comment (&rest _)
+  "Comment out one or more s-expressions."
+  nil)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Markdown
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -23,17 +28,43 @@
 (setq org-refile-use-outline-path 'file
       org-refile-allow-creating-parent-nodes t
       org-outline-path-complete-in-steps nil
-      org-agenda-files (file-expand-wildcards "~/Dropbox/todo/*.org")
+      org-agenda-files (append (cl-remove-if
+                                (lambda (s)
+                                  (or
+                                   (s-contains? "icebox" s)
+                                   (s-contains? "goals" s)
+                                   (s-contains? "ideas" s)
+                                   (s-contains? "prompts" s)
+                                   (s-contains? "reads" s)
+                                   (s-contains? "watches" s)))
+                                (file-expand-wildcards "~/Dropbox/todo/*.org"))
+                               (file-expand-wildcards "~/Dropbox/notes/**/*.org"))
 
+      org-todo-files (file-expand-wildcards "~/Dropbox/todo/*.org")
       org-journal-archive-files (file-expand-wildcards "~/Dropbox/todo/journal/*.org")
       org-dailies-files (file-expand-wildcards "~/Dropbox/notes/daily/*.org")
 
       org-refile-targets
       '((org-journal-archive-files :maxlevel . 1)
         (nil :maxlevel . 9)
-        (org-agenda-files :maxlevel . 2)
+        (org-todo-files :maxlevel . 2)
         (org-dailies-files :maxlevel . 2)
         ))
+
+(comment
+ (append
+  (cl-remove-if
+   (lambda (s)
+     (or
+      (s-contains? "icebox" s)
+      (s-contains? "goals" s)
+      (s-contains? "ideas" s)
+      (s-contains? "prompts" s)
+      (s-contains? "reads" s)
+      (s-contains? "watches" s)))
+   (file-expand-wildcards "~/Dropbox/todo/*.org"))
+  (file-expand-wildcards "~/Dropbox/notes/**/*.org"))
+ )
 
 (advice-add 'org-archive-subtree
             :after
