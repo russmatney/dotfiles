@@ -97,8 +97,6 @@
         "z w"    #'widen))
 
 
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org mode config
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -111,11 +109,11 @@
 
 
 ;; org capture
-(map! :after org-capture
-      :map org-capture-mode-map
-      [remap evil-save-and-close]          #'org-capture-finalize
-      [remap evil-save-modified-and-close] #'org-capture-finalize
-      [remap evil-quit]                    #'org-capture-kill)
+(after! org-capture
+  (map! :map org-capture-mode-map
+        [remap evil-save-and-close]          #'org-capture-finalize
+        [remap evil-save-modified-and-close] #'org-capture-finalize
+        [remap evil-quit]                    #'org-capture-kill))
 
 (after! org-capture
   (setq org-capture-templates

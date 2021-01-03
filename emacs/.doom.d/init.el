@@ -1,5 +1,10 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
+;; NOTE `doom/help' to access Doom's documentation.
+;; NOTE Move your cursor over a module's name (or its flags)
+;;      and press `+lookup/documentation' for module documentation,
+;;      or `+lookup/definition' for quick access to the module's source code.
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; themes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -142,7 +147,7 @@
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
        ;;crystal           ; ruby at the speed of c
-       (csharp +unity)            ; unity, .NET, and mono shenanigans
+       ;;(csharp +unity)            ; unity, .NET, and mono shenanigans
        data              ; config/data formats
        ;;(dart +flutter)   ; paint ui and not much else
        ;;elixir            ; erlang done right
@@ -177,6 +182,7 @@
         +dragndrop       ; file drag & drop support
         +hugo
         ;;+ipython         ; ipython support for babel
+        +noter
         +pandoc          ; pandoc integration into org's exporter
         +pomodoro
         +present ; using Emacs for presentations
