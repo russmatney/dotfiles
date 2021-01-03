@@ -62,6 +62,12 @@
   ;; start a new love instance
   (russ/run-love-for-project))
 
+;;;###autoload
+(defun russ/love-kill-and-restart-via-tmux ()
+  "Destroy and recreate the love game."
+  (interactive)
+  ;; TODO might need to expand to something smarter to kill a running game
+  (shell-command-to-string "C-c C-c \\nralphie fire love ."))
 
 ;;;###autoload
 (defun russ/open-love-repl ()

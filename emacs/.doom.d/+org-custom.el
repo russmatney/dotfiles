@@ -90,11 +90,13 @@
         "M-t"   #'org-set-tags-command
         "TAB"   #'+org/toggle-fold
         "M-o"   #'+org/insert-item-below
-        "M-O"   #'+org/insert-item-above))
+        "M-O"   #'+org/insert-item-above
+        :n "z a"   #'org-cycle))
 
 (after! evil-org
   (map! :map evil-normal-state-map
-        "z w"    #'widen))
+        :n "z a"   #'org-cycle
+        "z w"   #'widen))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -172,7 +174,8 @@
   (if (org-pomodoro-active-p)
       (cl-case org-pomodoro-state
         (:pomodoro
-           (format "Pomo: %d minutes - %s" (/ (org-pomodoro-remaining-seconds) 60) org-clock-heading))
+         ;; TODO title case
+         (format "%s: %d minutes" org-clock-heading (/ (org-pomodoro-remaining-seconds) 60)))
         (:short-break
          (format "Short break time: %d minutes" (/ (org-pomodoro-remaining-seconds) 60)))
         (:long-break
