@@ -83,46 +83,21 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; org
-(map! :after org
-      :map org-mode-map
-      "M-j"    nil
-      "M-k"    nil
-      "M-h"    nil
-      "M-l"    nil
-      :nm "M-j"    nil
-      :nm "M-k"    nil
-      :nm "M-h"    nil
-      :nm "M-l"    nil
-      "M-v"    #'evil-paste-after
-      "M-RET"  #'org-insert-item
-      "M-t"    #'org-set-tags-command
-      "TAB"    #'+org/toggle-fold
+(after! org
+  (map! :map org-mode-map
+        "M-v"   #'evil-paste-after
+        "M-RET" #'org-insert-item
+        "M-t"   #'org-set-tags-command
+        "TAB"   #'+org/toggle-fold
+        "M-o"   #'+org/insert-item-below
+        "M-O"   #'+org/insert-item-above))
 
-      :map evil-org-agenda-mode-map
-      :nm "M-j"    nil
-      :nm "M-k"    nil
-      :nm "M-h"    nil
-      :nm "M-l"    nil)
-
-(map! :after evil-org
-      :map evil-org-mode-map
-      :nm "M-j"    nil
-      :nm "M-k"    nil
-      :nm "M-h"    nil
-      :nm "M-l"    nil
-
-      :map evil-normal-state-map
-      "z w"    #'widen
-
-      :map evil-org-agenda-mode-map
-      :nm "M-j"    nil
-      :nm "M-k"    nil)
+(after! evil-org
+  (map! :map evil-normal-state-map
+        "z w"    #'widen))
 
 
-(map! :after markdown
-      :map markdown-mode-map
-      "M-n" nil
-      "M-p" nil)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org mode config
