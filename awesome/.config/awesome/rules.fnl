@@ -125,13 +125,14 @@
          {:rule_any {:class ["Spotify" "spotify" "Pavucontrol" "pavucontrol"]
                      :name ["Spotify" "spotify" "Pavucontrol" "pavucontrol"]}
           :properties {:tag "spotify"
+                       :new_tag "spotify"
                        :switch_to_tags true
-                       :first_tag "spotify"
-                       }}
+                       :first_tag "spotify"}}
 
          {:rule_any {:class ["Slack" "slack" "Discord" "discord"]
                      :name ["Slack" "slack" "Discord" "discord"]}
           :properties {:tag "slack"
+                       :new_tag "slack"
                        :first_tag "slack"
                        :switch_to_tags true}}]))
 
