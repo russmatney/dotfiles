@@ -5,6 +5,8 @@
 (local gears (require "gears"))
 (local beautiful (require "beautiful"))
 
+(local icons (require "icons"))
+
 (local UPDATE_REPOS "bash -c \"ralphie update-dirty-repos\"")
 
 (fn row [item]
@@ -43,7 +45,8 @@
                       "Dirty Repos: </span>")
           :widget wibox.widget.textbox}
        2 {:id "txt"
-          :widget wibox.widget.textbox}}))
+          :widget wibox.widget.textbox}
+       3 icons.fa-timeicon}))
 
 (fn _G.update_repos_widget [repos]
   (when repos
