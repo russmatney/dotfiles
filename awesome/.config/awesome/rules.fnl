@@ -87,13 +87,17 @@
                        :height    800
                        :placement awful.placement.centered}}
 
-         {:rule_any {:class ["workrave" "Workrave"]
-                     :name ["workrave" "Workrave"]}
+         {:rule_any {:class ["workrave" "Workrave"
+                             "Rest break" "Micro break"]
+                     :name ["workrave" "Workrave"
+                            "Rest break" "Micro break"]}
           :properties {:floating true
                        :ontop true
-                       :width 500
-                       :height 500
-                       :sticky true}}
+                       :above true
+                       :sticky true
+                       :switch_to_tags true
+                       :tag "workrave"
+                       :new_tag "workrave"}}
 
          {:rule {:class "firefox"}
           :properties {:tag "web"
