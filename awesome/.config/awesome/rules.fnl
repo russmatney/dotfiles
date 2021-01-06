@@ -85,8 +85,15 @@
                        :ontop true
                        :width     1600
                        :height    800
-                       :placement awful.placement.centered
-                       }}
+                       :placement awful.placement.centered}}
+
+         {:rule_any {:class ["workrave" "Workrave"]
+                     :name ["workrave" "Workrave"]}
+          :properties {:floating true
+                       :ontop true
+                       :width 500
+                       :height 500
+                       :sticky true}}
 
          {:rule {:class "firefox"}
           :properties {:tag "web"
