@@ -92,6 +92,15 @@
           :properties {:tag "web"
                        :maximized false
                        :floating false}}
+
+         ;; youtube fix
+         {:rule {:instance "plugin-container"}
+          :properties {:floating true}}
+         {:rule {:instance "_NET_WM_STATE_FULLSCREEN"}
+          :properties {:floating true}}
+         {:rule {:instance "exe"}
+          :properties {:floating true}}
+
          {:rule {:name "notes"}
           :properties {:tag "notes"}}
          {:rule {:name "journal"}
