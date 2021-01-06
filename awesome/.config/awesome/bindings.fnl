@@ -134,11 +134,7 @@
                  (awful.spawn str))))
 
         ;; emacs
-        (key [:mod :shift] "Return"
-             (fn []
-               (let [current-tag (. (awful.screen.focused) :selected_tag)
-                     name current-tag.name]
-                 (awful.spawn (.. "ralphie open-emacs " name)))))
+        (key [:mod :shift] "Return" (spawn-fn "ralphie open-emacs"))
 
         ;; browser
         ;; (key [:mod :shift] "b" (spawn-fn "google-chrome-stable"))
