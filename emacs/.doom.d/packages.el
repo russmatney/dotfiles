@@ -51,11 +51,12 @@
 ;; exwm
 (package! exwm)
 
+;; org
+(package! doct)
+(package! org-rich-yank)
 
 ;; org-roam
 (package! org-roam-server)
-
-(package! org-rich-yank)
 
 ;; ink
 (package! ink-mode :recipe

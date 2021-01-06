@@ -6,19 +6,6 @@
   nil)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Markdown
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(map! :after markdown-mode
-      :map markdown-mode-map
-      "M-p"    nil
-      "M-n"    nil
-
-      :map evil-markdown-mode-map
-      "M-p"    nil
-      "M-n"    nil)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org Settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -28,6 +15,15 @@
 (setq org-refile-use-outline-path 'file
       org-refile-allow-creating-parent-nodes t
       org-outline-path-complete-in-steps nil
+
+      ;; org-log-done 'note ;; <-- an interesting option
+      org-log-done 'time
+
+      ;; don't show completed items in the agenda
+      org-agenda-skip-scheduled-if-done t
+      org-agenda-skip-deadline-if-done t
+      org-agenda-skip-scheduled-if-deadline-is-shown t
+
       org-agenda-files (append (cl-remove-if
                                 (lambda (s)
                                   (or
@@ -48,8 +44,7 @@
       '((org-journal-archive-files :maxlevel . 1)
         (nil :maxlevel . 9)
         (org-todo-files :maxlevel . 2)
-        (org-dailies-files :maxlevel . 2)
-        ))
+        (org-dailies-files :maxlevel . 2)))
 
 (comment
  (append
@@ -76,13 +71,14 @@
             (lambda (&rest _)
               (org-save-all-org-buffers)))
 
+(advice-add 'org-agenda-redo :after 'org-save-all-org-buffers)
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org Bindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; org
 (after! org
   (map! :map org-mode-map
         "M-v"   #'evil-paste-after
@@ -109,22 +105,20 @@
 ;; Org Capture
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-
-;; org capture
 (after! org-capture
   (map! :map org-capture-mode-map
         [remap evil-save-and-close]          #'org-capture-finalize
         [remap evil-save-modified-and-close] #'org-capture-finalize
         [remap evil-quit]                    #'org-capture-kill))
 
+
 (after! org-capture
   (setq org-capture-templates
-        '(("t" "Todo [inbox]" entry
-           (file+headline "~/Dropbox/todo/inbox.org" "Tasks")
-           "* [ ] %i%?"))))
+        '(;; TODO use doct to write notes with hooks in sane way
+          ;; ("d" "Daily [notes]" entry (file (org-roam-dailies-today)) "* %i%?")
+          ("t" "Todo [journal]" entry (file "~/Dropbox/todo/journal.org") "* [ ] %i%?"))))
 
 (after! org-roam
-  ;; https://github.com/org-roam/org-roam/issues/217
   (setq org-roam-capture-templates
         '(("d" "default" plain (function org-roam--capture-get-point)
            "%?"
