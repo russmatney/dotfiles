@@ -74,6 +74,13 @@
 (advice-add 'org-agenda-redo :after 'org-save-all-org-buffers)
 
 
+(setq org-agenda-custom-commands
+      '(
+        ("n" "Agenda and all TODOs" ((agenda "") (alltodo "")))
+        ("d" "Today's items" agenda ""
+         ((org-agenda-span 1)
+          (org-agenda-start-on-weekday nil)
+          (org-agenda-start-day "0d")))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org Bindings
