@@ -5,7 +5,7 @@
 # condition: t
 # --
 (:require
-   [ralphie.command :refer [defcom]])
+   [ralph.defcom :refer [defcom]])
 
 (defn $1-handler
   ([] ($1-handler nil nil))
