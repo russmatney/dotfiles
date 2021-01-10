@@ -1,5 +1,6 @@
 ;;;  -*- lexical-binding: t; -*-
 
+(require 'doct)
 
 (defmacro comment (&rest _)
   "Comment out one or more s-expressions."
@@ -124,11 +125,27 @@
         [remap evil-quit]                    #'org-capture-kill))
 
 
+(comment
+ '(("t" "Todo [journal]" entry (file "~/todo/journal.org") "* [ ] %i%?")
+   ("p" "Prompt" entry (file "~/todo/prompts.org") "* [ ] %i%?")
+   ("d" "Garden Daily" entry #'org-roam-dailies-capture-today nil))
+
+
+ )
+
 (after! org-capture
   (setq org-capture-templates
-        '(;; TODO use doct to write notes with hooks in sane way
-          ;; ("d" "Daily [notes]" entry (file (org-roam-dailies-today)) "* %i%?")
-          ("t" "Todo [journal]" entry (file "~/Dropbox/todo/journal.org") "* [ ] %i%?"))))
+        (doct '(("Todo [journal]"
+                 :keys "t"
+                 :file "~/todo/journal.org"
+                 :template ("* [ ] %i%?"))
+                ("Prompt"
+                 :keys "p"
+                 :file "~/todo/prompts.org"
+                 :template ("* [ ] %i%?"))
+                ("Garden Daily"
+                 :keys "d"
+                 :function org-roam-dailies-capture-today)))))
 
 (after! org-roam
   (setq org-roam-capture-templates
