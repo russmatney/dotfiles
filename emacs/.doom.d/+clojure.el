@@ -289,3 +289,18 @@
         "~/Dropbox/books/Clojure_The_Essential_Reference_v30.epub")
   (setq clojure-essential-ref-default-browse-fn
         #'clojure-essential-ref-nov-browse))
+
+;; from @glittershark
+;; https://cs.tvl.fyi/depot/-/blob/users/glittershark/emacs.d/+bindings.el#L1256-1267
+(defun grfn/cider-copy-last-result ()
+  (interactive)
+  (cider-interactive-eval
+   "*1"
+   (nrepl-make-response-handler
+    (current-buffer)
+    (lambda (_ value)
+      (kill-new value)
+      (message "Copied last result (%s) to clipboard"
+               (if (= (length value) 1) "1 char"
+                 (format "%d chars" (length value)))))
+    nil nil nil)))
