@@ -66,8 +66,10 @@
 (defun russ/love-kill-and-restart-via-tmux ()
   "Destroy and recreate the love game."
   (interactive)
-  ;; TODO might need to expand to something smarter to kill a running game
-  (shell-command-to-string "C-c C-c \\nralphie fire love ."))
+  ;; TODO expand to some smarter way to kill a running game
+  ;; (shell-command-to-string "ralphie fire C-c C-c")
+  (shell-command-to-string "ralphie fire love .")
+  )
 
 ;;;###autoload
 (defun russ/open-love-repl ()
