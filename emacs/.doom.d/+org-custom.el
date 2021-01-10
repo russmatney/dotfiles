@@ -80,7 +80,12 @@
         ("d" "Today's items" agenda ""
          ((org-agenda-span 1)
           (org-agenda-start-on-weekday nil)
-          (org-agenda-start-day "0d")))))
+          (org-agenda-start-day "0d")))
+        ("D" "Today's items (export)" agenda ""
+         ((org-agenda-span 1)
+          (org-agenda-start-on-weekday nil)
+          (org-agenda-start-day "0d"))
+         "~/todo/daily-agenda.html")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org Bindings
