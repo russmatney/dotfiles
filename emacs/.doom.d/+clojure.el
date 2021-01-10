@@ -277,7 +277,10 @@
         cider-auto-select-test-report-buffer nil
         cider-test-show-report-on-success t
         ;; cider-session-name-template "%j:%S"
-        ))
+        )
+
+  (set-file-template!
+   'clojure-mode :trigger "__deps.edn" :mode 'clojure-mode))
 
 (use-package! ivy-cider
   :after cider-mode)

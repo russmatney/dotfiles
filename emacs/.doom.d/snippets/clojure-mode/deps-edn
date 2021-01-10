@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: deps.edn
+# key: __deps.edn
+# condition: t
+# --
+{:paths ["src"]
+ :deps  {wing/wing {:mvn/version "0.1.4"}}}
