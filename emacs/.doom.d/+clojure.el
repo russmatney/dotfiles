@@ -279,8 +279,8 @@
         ;; cider-session-name-template "%j:%S"
         )
 
-  (set-file-template!
-   'clojure-mode :trigger "__deps.edn" :mode 'clojure-mode))
+  (set-file-template! "/deps\\.edn$" :trigger "__deps.edn" :mode 'clojure-mode)
+  (set-file-template! "/user\\.clj$" :trigger "__user.clj" :mode 'clojure-mode))
 
 (use-package! ivy-cider
   :after cider-mode)
