@@ -175,8 +175,8 @@
     "z" #'fennel-repl
     "k" #'russ/love-module-reload
     "l" #'fennel-view-compilation
-    "r" #'russ/open-love-repl
-    "R" #'russ/love-kill-and-restart))
+    ;; "r" #'russ/open-love-repl
+    "R" #'russ/love-kill-and-restart-via-tmux))
 
 (use-package! lua-mode
   :hook (lua-mode . rainbow-delimiters-mode))
