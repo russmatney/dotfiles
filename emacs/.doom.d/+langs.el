@@ -186,6 +186,6 @@
     :localleader
     "k" #'russ/love-module-reload
     "r" #'russ/open-love-repl
-    "R" #'russ/love-kill-and-restart))
+    "R" #'russ/love-kill-and-restart-via-tmux))
 
 (use-package! friar)
