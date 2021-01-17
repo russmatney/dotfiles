@@ -7,4 +7,7 @@ xset r rate 170 50
 secrets=$HOME/.secrets
 . $secrets
 
+# add fennel to the path that awm uses
+export PATH="$PATH:/home/russ/.luaver/luarocks/3.3.1_5.3/bin/"
+
 dropbox &
