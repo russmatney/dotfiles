@@ -12,6 +12,7 @@
 
 (setq org-archive-location (concat "~/Dropbox/todo/archive/" (format-time-string "%Y-%m") ".org::"))
 
+
 ;; allow refiling into a file without choosing a headline
 (setq org-refile-use-outline-path 'file
       org-refile-allow-creating-parent-nodes t
@@ -19,6 +20,13 @@
 
       ;; org-log-done 'note ;; <-- an interesting option
       org-log-done 'time
+
+      org-agenda-time-grid
+      '((daily today require-timed remove-match)
+        (900 1700)
+        "......"
+        "----------------")
+      org-agenda-show-current-time-in-grid nil
 
       ;; don't show completed items in the agenda
       org-agenda-skip-scheduled-if-done t
