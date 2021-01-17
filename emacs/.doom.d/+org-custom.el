@@ -6,6 +6,7 @@
   "Comment out one or more s-expressions."
   nil)
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org Settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -135,7 +136,7 @@
 
 (comment
  '(("t" "Todo [journal]" entry (file "~/todo/journal.org") "* [ ] %i%?")
-   ("p" "Prompt" entry (file "~/todo/prompts.org") "* [ ] %i%?")
+   ("r" "Prompt" entry (file "~/todo/prompts.org") "* [ ] %i%?")
    ("d" "Garden Daily" entry #'org-roam-dailies-capture-today nil))
 
 
@@ -148,7 +149,7 @@
                  :file "~/todo/journal.org"
                  :template ("* [ ] %i%?"))
                 ("Prompt"
-                 :keys "p"
+                 :keys "r"
                  :file "~/todo/prompts.org"
                  :template ("* [ ] %i%?"))
                 ("Garden Daily"
@@ -214,3 +215,19 @@
         (:overtime
          (format "Overtime! %d minutes" (/ (org-pomodoro-remaining-seconds) 60))))
     "No active pomo"))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; org projectile
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package! org-projectile
+  :after org-capture
+  :config
+  (org-projectile-per-project)
+  (setq org-projectile-per-project-filepath "todo.org"
+        org-agenda-files (append org-agenda-files
+                                 ;; TODO filter for existing
+                                 ;; and maybe for contains /russmatney/teknql/
+                                 (org-projectile-todo-files)))
+
+  (push (org-projectile-project-todo-entry) org-capture-templates))

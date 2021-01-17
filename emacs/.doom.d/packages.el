@@ -54,6 +54,7 @@
 ;; org
 (package! doct)
 (package! org-rich-yank)
+(package! org-projectile)
 
 ;; org-roam
 (package! org-roam-server)
