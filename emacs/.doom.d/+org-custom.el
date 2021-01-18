@@ -50,6 +50,7 @@
 
       ;; org-log-done 'note ;; <-- an interesting option
       org-log-done 'time
+      org-agenda-log-mode-items '(closed clock state)
 
       org-agenda-time-grid
       '((daily today require-timed remove-match)
@@ -69,7 +70,7 @@
                                    (s-contains? "icebox" s)
                                    (s-contains? "goals" s)
                                    (s-contains? "ideas" s)
-                                   (s-contains? "prompts" s)
+                                   ;; (s-contains? "prompts" s)
                                    (s-contains? "reads" s)
                                    (s-contains? "watches" s)))
                                 (file-expand-wildcards "~/Dropbox/todo/*.org"))
@@ -116,7 +117,11 @@
 
 (setq org-agenda-custom-commands
       '(
-        ("n" "Agenda and all TODOs" ((agenda "") (alltodo "")))
+        ;; TODO note that this misses items scheduled beyond the current agenda
+        ("n" "Agenda and unscheduled TODOs"
+         ((agenda "") (alltodo "" ((org-agenda-todo-ignore-with-date t)))))
+        ("i" "Icebox"
+         ((alltodo "" ((org-agenda-files (file-expand-wildcards "~/todo/icebox.org"))))))
         ("d" "Today's items" agenda ""
          ((org-agenda-span 1)
           (org-agenda-start-on-weekday nil)
@@ -125,7 +130,15 @@
          ((org-agenda-span 1)
           (org-agenda-start-on-weekday nil)
           (org-agenda-start-day "0d"))
-         "~/todo/daily-agenda.html")))
+         "~/todo/daily-agenda.html")
+        ("u" "stand [u]p - all tasks yesterday, today, tomorrow" agenda ""
+         ((org-agenda-span 3)
+          (org-agenda-start-day "-1d")
+          (org-agenda-skip-scheduled-if-done nil)
+          (org-agenda-skip-deadline-if-done nil)
+          (org-agenda-skip-scheduled-if-deadline-is-shown nil)
+          (org-agenda-start-with-log-mode '(clock state))
+          (org-agenda-archives-mode t)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org Bindings
