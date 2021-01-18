@@ -13,6 +13,35 @@
 
 (setq org-archive-location (concat "~/Dropbox/todo/archive/" (format-time-string "%Y-%m") ".org::"))
 
+(setq org-todo-keywords
+      '((sequence
+         "TODO(t)"               ; A task that needs doing & is ready to do
+         "PROJ(p)"               ; A project, which usually contains other tasks
+         "STRT(s)"               ; A task that is in progress
+         "WAIT(w)"               ; Something external is holding up this task
+         "HOLD(h)"               ; This task is paused/on hold because of me
+         "STREAM(m)"               ; This task is paused/on hold because of me
+         "|"
+         "DONE(d)"      ; Task successfully completed
+         "SKIP(k)"     ; Skipped a recurring task
+         ;; "KILL(k)"
+         )    ;; Task was cancelled, aborted or is no longer applicable
+        (sequence
+         "[ ](T)"                       ; A task that needs doing
+         "[-](S)"                       ; Task is in progress
+         "[?](W)"                       ; Task is being held up or paused
+         "|"
+         "[X](D)"      ; Task was completed
+         "[K](K)"      ; Task was skipped
+         ))
+      org-todo-keyword-faces
+      '(("[-]" . +org-todo-active)
+        ("STRT" . +org-todo-active)
+        ("STREAM" . +org-todo-active)
+        ("[?]" . +org-todo-onhold)
+        ("WAIT" . +org-todo-onhold)
+        ("HOLD" . +org-todo-onhold)
+        ("PROJ" . +org-todo-project)))
 
 ;; allow refiling into a file without choosing a headline
 (setq org-refile-use-outline-path 'file
@@ -44,6 +73,7 @@
                                    (s-contains? "reads" s)
                                    (s-contains? "watches" s)))
                                 (file-expand-wildcards "~/Dropbox/todo/*.org"))
+                               (file-expand-wildcards "~/Dropbox/notes/*.org")
                                (file-expand-wildcards "~/Dropbox/notes/**/*.org"))
 
       org-todo-files (file-expand-wildcards "~/Dropbox/todo/*.org")
