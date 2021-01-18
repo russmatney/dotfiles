@@ -246,6 +246,22 @@
          (format "Overtime! %d minutes" (/ (org-pomodoro-remaining-seconds) 60))))
     "No active pomo"))
 
+(defun russ/current-clock-string ()
+  (if org-clock-current-task
+      (substring-no-properties org-clock-current-task)
+    (format "No clock")))
+
+(comment
+ (org-element-property :raw-value org-clock-current-task)
+ (org-element-type org-clock-current-task)
+ (org-element--get-node-properties)
+ (org-clock-get-clock-string)
+
+ (text-properties-at 0 org-clock-current-task)
+
+ (org-with-clock
+     (org-entry-get nil "ITEM")))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; org projectile
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
