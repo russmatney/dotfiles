@@ -12,10 +12,16 @@
 (use-package! lsp-mode
   :hook
   (haskell-mode . lsp)
-  ;;(python-mode . lsp)
+  ;; (python-mode . lsp)
   (rust-mode . lsp)
   :commands
-  lsp)
+  lsp
+  :config
+  (setq lsp-keymap-prefix "SPC l"))
+
+(map! :after lsp-mode
+      :map lsp-mode-map
+      "SPC l" lsp-command-map)
 
 (after! rust-mode
   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
@@ -189,3 +195,7 @@
     "R" #'russ/love-kill-and-restart-via-tmux))
 
 (use-package! friar)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Python
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

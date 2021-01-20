@@ -181,7 +181,7 @@
        (org              ; organize your plain life in plain text
         +dragndrop       ; file drag & drop support
         +hugo
-        ;;+ipython         ; ipython support for babel
+        +ipython         ; ipython support for babel
         +noter
         +pandoc          ; pandoc integration into org's exporter
         +pomodoro
@@ -190,7 +190,9 @@
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
-       ;;(python +lsp)            ; beautiful is better than ugly
+       (python
+        +lsp
+        +pyright)            ; beautiful is better than ugly
        ;;qt
        ;;racket            ; a DSL for DSLs
        ;;raku              ; the artist formerly known as perl6
