@@ -16,11 +16,13 @@
 (setq org-todo-keywords
       '((sequence
          "TODO(t)"               ; A task that needs doing & is ready to do
-         "PROJ(p)"               ; A project, which usually contains other tasks
          "STRT(s)"               ; A task that is in progress
          "WAIT(w)"               ; Something external is holding up this task
          "HOLD(h)"               ; This task is paused/on hold because of me
-         "STREAM(m)"               ; This task is paused/on hold because of me
+         "STREAM(r)"
+         "MTG(m)"
+         "PILL(p)"
+         "CHORE(c)"
          "|"
          "DONE(d)"      ; Task successfully completed
          "SKIP(k)"     ; Skipped a recurring task
@@ -32,16 +34,17 @@
          "[?](W)"                       ; Task is being held up or paused
          "|"
          "[X](D)"      ; Task was completed
-         "[K](K)"      ; Task was skipped
          ))
       org-todo-keyword-faces
       '(("[-]" . +org-todo-active)
         ("STRT" . +org-todo-active)
+        ("MTG" . +org-todo-active)
         ("STREAM" . +org-todo-active)
+        ("CHORE" . +org-todo-active)
+        ("PILL" . +org-todo-active)
         ("[?]" . +org-todo-onhold)
         ("WAIT" . +org-todo-onhold)
-        ("HOLD" . +org-todo-onhold)
-        ("PROJ" . +org-todo-project)))
+        ("HOLD" . +org-todo-onhold)))
 
 ;; allow refiling into a file without choosing a headline
 (setq org-refile-use-outline-path 'file
@@ -159,6 +162,10 @@
         :n "z a"   #'org-cycle
         "z w"   #'widen))
 
+(map! :after org-agenda
+      :map org-agenda-mode-map
+      :localleader
+      "p" #'org-agenda-priority)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org mode config
