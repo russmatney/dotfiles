@@ -7,7 +7,7 @@ original: https://github.com/davatorium/rofi-themes/blob/master/User%20Themes/sl
   border-color: #2e343f;
   text-color: #8ea2ac;
   spacing: 2;
-  width: 1624px;
+  width: 1424px;
   font: "Droid Mono 22";
   transparent: rgba(0,0,0,0);
 }
@@ -18,7 +18,7 @@ inputbar {
 }
 
 prompt {
-  padding: 16px;
+  padding: 12px;
   border: 0 1px 0 0;
 }
 
@@ -42,9 +42,11 @@ listview {
 
 element {
   border: 0 0 1px 0;
-  padding: 16px;
+  padding: 14px;
 }
 
 element selected {
   background-color: #2e343f;
 }
+
+element-icon { size: 1.85ch ; }
