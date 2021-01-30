@@ -268,8 +268,7 @@
 
 (defun russ/current-clock-string ()
   (if org-clock-current-task
-      (substring-no-properties org-clock-current-task)
-    (format "No clock")))
+      (substring-no-properties org-clock-current-task)))
 
 (comment
  (org-element-property :raw-value org-clock-current-task)
