@@ -31,3 +31,5 @@ awesome/.config/awesome/logs
 *luacheckcache
 
 *flycheck*
+
+python/.ipython/profile_default/history.sqlite
