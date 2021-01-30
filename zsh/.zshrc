@@ -380,3 +380,4 @@ function delete_from_history () {
 ################################################################################
 
 export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
+eval "$(direnv hook zsh)"

@@ -14,14 +14,16 @@
   (haskell-mode . lsp)
   ;; (python-mode . lsp)
   (rust-mode . lsp)
-  :commands
-  lsp
+  ;; :commands lsp
   :config
-  (setq lsp-keymap-prefix "SPC l"))
+  ;; (setq lsp-keymap-prefix "SPC l")
+  )
 
 (map! :after lsp-mode
       :map lsp-mode-map
-      "SPC l" lsp-command-map)
+      "s-l" nil
+      "SPC" nil
+      )
 
 (after! rust-mode
   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
