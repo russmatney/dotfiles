@@ -217,7 +217,8 @@
 ;; company-css-classes-backend
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package! company-css-classes)
+;; TODO fix to work when no dir-locals are set
+;; (use-package! company-css-classes)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; clojure and cider mode configs
@@ -240,13 +241,13 @@
        'after-save-hook
        #'cider-eval-if-cider-buffer)))
 
-  (set-company-backend!
-    'clojurescript-mode
-    '(company-capf company-yasnippet company-flow company-css-classes-backend))
+  ;; (set-company-backend!
+  ;;   'clojurescript-mode
+  ;;   '(company-capf company-yasnippet company-flow company-css-classes-backend))
 
-  (set-company-backend!
-    'clojurec-mode
-    '(company-capf company-yasnippet company-flow company-css-classes-backend))
+  ;; (set-company-backend!
+  ;;   'clojurec-mode
+  ;;   '(company-capf company-yasnippet company-flow company-css-classes-backend))
 
   (setq cljr-magic-require-namespaces
         '(("io" . "clojure.java.io")

@@ -3,4 +3,4 @@
 # --
 * `(format-time-string "%Y-%m-%d %H:%M:%S")`
 :PROPERTIES:
-:id: `(shell-command-to-string "uuidgen")`:host: `(shell-command-to-string "hostname")`:listening: `(shell-command-to-string "python ~/.config/polybar/scripts/spotify_status.py")`:END:
+:id: `(shell-command-to-string "uuidgen")`:host: `(shell-command-to-string "hostname")`:END:
