@@ -253,6 +253,12 @@
      :desc "Git revert hunk"   :n  "r" #'git-gutter:revert-hunk
      :desc "Git revert hunk"   :n  "a" #'git-gutter:stage-hunk)))
 
+;; allow moving left/right in magit buffers
+(after! magit
+  (map! (:map magit-mode-map
+         "l" nil
+         "h" nil)))
+
 (map!
  ;; git-gutter
  :n  "]d" #'git-gutter:next-hunk
