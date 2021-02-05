@@ -77,12 +77,12 @@
                                    (s-contains? "reads" s)
                                    (s-contains? "watches" s)))
                                 (file-expand-wildcards "~/Dropbox/todo/*.org"))
-                               (file-expand-wildcards "~/Dropbox/notes/*.org")
-                               (file-expand-wildcards "~/Dropbox/notes/**/*.org"))
+                               (file-expand-wildcards "~/Dropbox/todo/garden/*.org")
+                               (file-expand-wildcards "~/Dropbox/todo/garden/**/*.org"))
 
       org-todo-files (file-expand-wildcards "~/Dropbox/todo/*.org")
       org-journal-archive-files (file-expand-wildcards "~/Dropbox/todo/journal/*.org")
-      org-dailies-files (file-expand-wildcards "~/Dropbox/notes/daily/*.org")
+      org-dailies-files (file-expand-wildcards "~/Dropbox/todo/garden/daily/*.org")
 
       org-refile-targets
       '((org-journal-archive-files :maxlevel . 1)
@@ -102,7 +102,7 @@
       (s-contains? "reads" s)
       (s-contains? "watches" s)))
    (file-expand-wildcards "~/Dropbox/todo/*.org"))
-  (file-expand-wildcards "~/Dropbox/notes/**/*.org"))
+  (file-expand-wildcards "~/Dropbox/todo/garden/**/*.org"))
  )
 
 (advice-add 'org-archive-subtree

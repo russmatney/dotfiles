@@ -271,6 +271,7 @@
 
         cider-save-file-on-load t
 
+        cider-show-error-buffer 'only-in-repl
         cider-default-cljs-repl 'shadow
         cider-offer-to-open-cljs-app-in-browser nil
         cider-auto-jump-to-error nil
