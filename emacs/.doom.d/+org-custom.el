@@ -77,7 +77,9 @@
                                    (s-contains? "reads" s)
                                    (s-contains? "watches" s)))
                                 (file-expand-wildcards "~/Dropbox/todo/*.org"))
-                               (file-expand-wildcards "~/Dropbox/todo/garden/*.org")
+                               )
+
+      org-garden-files (append (file-expand-wildcards "~/Dropbox/todo/garden/*.org")
                                (file-expand-wildcards "~/Dropbox/todo/garden/**/*.org"))
 
       org-todo-files (file-expand-wildcards "~/Dropbox/todo/*.org")
@@ -125,6 +127,9 @@
          ((agenda "") (alltodo "" ((org-agenda-todo-ignore-with-date t)))))
         ("i" "Icebox"
          ((alltodo "" ((org-agenda-files (file-expand-wildcards "~/todo/icebox.org"))))))
+        ("g" "Garden"
+         ((agenda "" ((org-agenda-files org-garden-files)))
+          (alltodo "" ((org-agenda-files org-garden-files)))))
         ("d" "Today's items" agenda ""
          ((org-agenda-span 1)
           (org-agenda-start-on-weekday nil)
