@@ -9,18 +9,18 @@
 ;; themes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(setq doom-theme 'doom-one)
+;; (setq doom-theme 'doom-one)
 ;; (setq doom-theme 'doom-one-light)
 ;; (setq doom-theme 'doom-molokai)
 ;; (setq doom-theme 'doom-tomorrow-night)
 ;; (setq doom-theme 'doom-tomorrow-day)
-;; (setq doom-theme 'doom-dracula)
+(setq doom-theme 'doom-dracula)
 ;; (setq doom-theme 'doom-solarized-light)
 ;; (setq doom-theme 'doom-moonlight)
 ;; (setq doom-theme 'doom-monokai-spectrum)
 
 (setq org-directory (expand-file-name "~/todo/"))
-(setq org-roam-directory (expand-file-name "~/Dropbox/todo/garden/"))
+(setq org-roam-directory (expand-file-name "~/todo/"))
 (setq org-roam-tag-sources '(prop all-directories))
 
 (setq custom-file (concat doom-private-dir "+custom.el"))

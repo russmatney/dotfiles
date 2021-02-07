@@ -84,7 +84,7 @@
 
       org-todo-files (file-expand-wildcards "~/Dropbox/todo/*.org")
       org-journal-archive-files (file-expand-wildcards "~/Dropbox/todo/journal/*.org")
-      org-dailies-files (file-expand-wildcards "~/Dropbox/todo/garden/daily/*.org")
+      org-dailies-files (file-expand-wildcards "~/Dropbox/todo/daily/*.org")
 
       org-refile-targets
       '((org-journal-archive-files :maxlevel . 1)
@@ -121,8 +121,7 @@
 
 
 (setq org-agenda-custom-commands
-      '(
-        ;; TODO note that this misses items scheduled beyond the current agenda
+      '(;; TODO note that this misses items scheduled beyond the current agenda
         ("n" "Agenda and unscheduled TODOs"
          ((agenda "") (alltodo "" ((org-agenda-todo-ignore-with-date t)))))
         ("i" "Icebox"
@@ -192,10 +191,7 @@
 (comment
  '(("t" "Todo [journal]" entry (file "~/todo/journal.org") "* [ ] %i%?")
    ("r" "Prompt" entry (file "~/todo/prompts.org") "* [ ] %i%?")
-   ("d" "Garden Daily" entry #'org-roam-dailies-capture-today nil))
-
-
- )
+   ("d" "Garden Daily" entry #'org-roam-dailies-capture-today nil)))
 
 (after! org-capture
   (setq org-capture-templates
@@ -215,20 +211,24 @@
   (setq org-roam-capture-templates
         '(("d" "default" plain (function org-roam--capture-get-point)
            "%?"
-           :file-name "%<%Y%m%d%H%M%S>-${slug}"
+           :file-name "garden/${slug}"
            :head
            "#+TITLE: ${title}
-#+ID: %(shell-command-to-string \"uuidgen\")"
+#+ID: %(shell-command-to-string \"uuidgen\")#+CREATED_AT: %<%Y%m%d:%H%M%S>"
            :unnarrowed t))
 
         org-roam-capture-ref-templates
         '(("r" "ref" plain (function org-roam-capture--get-point)
            "%?"
-           :file-name "websites/%<%Y%m%d%H%M%S>-${slug}"
+           :file-name "garden/websites/${slug}"
            :head "#+TITLE: ${title}
+#+CREATED_AT: %<%Y%m%d:%H%M%S>
 #+ROAM_KEY: ${ref}
 - source :: ${ref}"
-           :unnarrowed t))))
+           :unnarrowed t))
+
+        ;; org-roam-dailies-capture-templates
+        ))
 
 (defadvice org-capture
     (after make-full-window-frame activate)
@@ -243,8 +243,8 @@
 
 (map!
  :leader
-   :desc "notes" :prefix "n"
-   :desc "add story to clubhouse" :n "c" #'org-clubhouse-create-story)
+ :prefix "n"
+ :desc "add story to clubhouse" :n "c" #'org-clubhouse-create-story)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
