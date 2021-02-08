@@ -7,13 +7,9 @@
 (:require
    [ralph.defcom :refer [defcom]])
 
-(defn $1-handler
-  ([] ($1-handler nil nil))
-  ([_config _parsed]
-   $4))
-
-(defcom $1-cmd
-  {:name          "$1"
-   :one-line-desc "$2"
-   :description ["$3"]
-   :handler       $1-handler})
+(defcom $1
+  {:defcom/name          "$1"
+   :defcom/handler
+   (fn [_ _]
+    $2
+    )})

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: get-appdb
+# key: appdb
+# condition: t
+# --
+(comment
+  (get-in re-frame.db/app-db [::db/data $1])
+  )
