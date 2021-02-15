@@ -80,17 +80,22 @@
                                )
 
       org-garden-files (append (file-expand-wildcards "~/Dropbox/todo/garden/*.org")
-                               (file-expand-wildcards "~/Dropbox/todo/garden/**/*.org"))
+                               (file-expand-wildcards "~/Dropbox/todo/garden/**/*.org")))
 
-      org-todo-files (file-expand-wildcards "~/Dropbox/todo/*.org")
-      org-journal-archive-files (file-expand-wildcards "~/Dropbox/todo/journal/*.org")
-      org-dailies-files (file-expand-wildcards "~/Dropbox/todo/daily/*.org")
 
-      org-refile-targets
-      '((org-journal-archive-files :maxlevel . 1)
-        (nil :maxlevel . 9)
-        (org-todo-files :maxlevel . 2)
-        (org-dailies-files :maxlevel . 2)))
+(defun russ/reset-refile-targets ()
+  (setq
+   org-todo-files (file-expand-wildcards "~/Dropbox/todo/*.org")
+   org-journal-archive-files (file-expand-wildcards "~/Dropbox/todo/journal/*.org")
+   org-dailies-files (file-expand-wildcards "~/Dropbox/todo/daily/*.org")
+
+   org-refile-targets
+   '((org-journal-archive-files :maxlevel . 1)
+     (nil :maxlevel . 9)
+     (org-todo-files :maxlevel . 2)
+     (org-dailies-files :maxlevel . 2))))
+
+(russ/reset-refile-targets)
 
 (comment
  (append
