@@ -1,7 +1,7 @@
-# key: j
-# name: journal-timestamp
+# key: t
+# name: journal-todo
 # --
-* $1
+* [ ] $1
 :PROPERTIES:
 :id: `(shell-command-to-string "uuidgen")`:host: `(shell-command-to-string "hostname")`
 :created-at: `(format-time-string "%Y-%m-%d %H:%M:%S")`

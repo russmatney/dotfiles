@@ -3,6 +3,8 @@
 # key: jd
 # condition: t
 # --
-* `(format-time-string "%Y-%m-%d %A")`
+* $1
 :PROPERTIES:
+:created-at: `(format-time-string "%Y-%m-%d %A")`
 :id: `(shell-command-to-string "uuidgen")`:host: `(shell-command-to-string "hostname")`:END:
+$0
