@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: com
+# key: com
+# condition: t
+# --
+(comment
+ $0)

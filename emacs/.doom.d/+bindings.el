@@ -168,11 +168,14 @@
 
 (map!
  (:leader
-   :desc "Open vertical split" :n "v" #'evil-window-vsplit
-   :desc "Open vertical split" :n "s" #'evil-window-split
-   :desc "Open vertical split" :n "\\" #'evil-window-vsplit
-   :desc "Open vertical split" :n "-" #'evil-window-split))
+  :desc "Open vertical split" :n "v" #'evil-window-vsplit
+  :desc "Open vertical split" :n "s" #'evil-window-split
+  :desc "Open vertical split" :n "\\" #'evil-window-vsplit
+  :desc "Open vertical split" :n "-" #'evil-window-split))
 
+(map!
+ (:leader
+  :desc "Treemacs toggle" :n "t" #'+treemacs/toggle))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Navigating Windows
@@ -218,7 +221,8 @@
  :n "M-b"   #'ibuffer
 
  ;; test toggle
- (:leader :desc "projectile-test-toggle" :n  "t" #'projectile-toggle-between-implementation-and-test))
+ ;; (:leader :desc "projectile-test-toggle" :n  "t" #'projectile-toggle-between-implementation-and-test)
+ )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Workspaces

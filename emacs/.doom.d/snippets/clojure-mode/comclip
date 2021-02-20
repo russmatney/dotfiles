@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: comclip
+# key: comclip
+# condition: t
+# --
+(comment
+`(current-kill 0)`$0)
