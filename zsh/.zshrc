@@ -381,3 +381,13 @@ function delete_from_history () {
 
 export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
 eval "$(direnv hook zsh)"
+
+
+################################################################################
+# git summary
+################################################################################
+################################################################################
+
+#[[file:~/MirkoLedda/git-summary/README.md::git-summary][local git-summary readme]]
+
+alias git-summary='~/MirkoLedda/git-summary/git-summary'

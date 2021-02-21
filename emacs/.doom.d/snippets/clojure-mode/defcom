@@ -4,12 +4,17 @@
 # key: defcom
 # condition: t
 # --
-(:require
-   [ralph.defcom :refer [defcom]])
+
+  (:require
+   [ralph.defcom :refer [defcom]]
+   [ralphie.notify :as notify])
 
 (defcom $1
-  {:defcom/name          "$1"
+  {:defcom/name    "$1"
    :defcom/handler
    (fn [_ _]
-    $2
-    )})
+     (println "doctor-cmd called")
+     (notify/notify "doctor-cmd called")
+
+     $2
+     )})

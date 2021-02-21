@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: cljclip
+# uuid: cljclip
+# key: cljclip
+# condition: t
+# expand-env: ((yas-after-exit-snippet-hook #'evil-scroll-line-to-center))
+# --
+* $0
+
+#+BEGIN_SRC clojure
+`(current-kill 0)`
+#+END_SRC
