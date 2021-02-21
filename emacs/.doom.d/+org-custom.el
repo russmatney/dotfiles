@@ -164,11 +164,19 @@
         "TAB"   #'+org/toggle-fold
         "M-o"   #'+org/insert-item-below
         "M-O"   #'+org/insert-item-above
+        "S-<left>" nil
+        "S-<right>" nil
+        "S-<up>" nil
+        "S-<down>" nil
         :n "z a"   #'org-cycle))
 
 (after! evil-org
   (map! :map evil-normal-state-map
         :n "z a"   #'org-cycle
+        "S-<left>" nil
+        "S-<right>" nil
+        "S-<up>" nil
+        "S-<down>" nil
         "z w"   #'widen))
 
 (map! :after org-agenda
