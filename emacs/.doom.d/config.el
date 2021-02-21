@@ -238,3 +238,7 @@
 
 (use-package! nov-mode
   :mode "\\.epub$")
+
+(use-package! clomacs
+  :config
+  (setq))

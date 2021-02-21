@@ -45,6 +45,8 @@
 (package! clojure-essential-ref)
 (package! clojure-essential-ref-nov)
 
+(package! clomacs)
+
 ;; wakatime
 (package! wakatime-mode)
 
