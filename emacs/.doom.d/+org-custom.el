@@ -112,6 +112,11 @@
   (file-expand-wildcards "~/Dropbox/todo/garden/**/*.org"))
  )
 
+
+(setq +org-roam-open-buffer-on-find-file nil)
+
+
+
 (advice-add 'org-archive-subtree
             :after
             (lambda (&rest _)
