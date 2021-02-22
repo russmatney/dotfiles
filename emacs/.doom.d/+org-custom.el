@@ -189,6 +189,12 @@
       :localleader
       "p" #'org-agenda-priority)
 
+(after! org-roam
+  (map! :map org-mode-map
+        :localleader
+        :prefix ("m" . "org-roam")
+        "r" #'russ/org-roam-refile-headline-to-note))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org mode config
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
