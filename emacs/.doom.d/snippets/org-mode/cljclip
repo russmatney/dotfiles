@@ -5,7 +5,9 @@
 # condition: t
 # expand-env: ((yas-after-exit-snippet-hook #'evil-scroll-line-to-center))
 # --
-* $0
+* $1
+
+$0
 
 #+BEGIN_SRC clojure
 `(current-kill 0)`

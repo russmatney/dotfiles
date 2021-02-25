@@ -3,8 +3,7 @@
 # --
 * [ ] $1
 :PROPERTIES:
-:id: `(shell-command-to-string "uuidgen")`:host: `(shell-command-to-string "hostname")`
-:created-at: `(format-time-string "%Y-%m-%d %H:%M:%S")`
+:id: `(shell-command-to-string "uuidgen")`:host: `(shell-command-to-string "hostname")`:created-at: `(format-time-string "%Y-%m-%d %H:%M:%S")`
 :END:
 
 $0
