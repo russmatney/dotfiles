@@ -249,6 +249,9 @@
   ;;   'clojurec-mode
   ;;   '(company-capf company-yasnippet company-flow company-css-classes-backend))
 
+  (setq cider-known-endpoints
+        '(("system-babashka" "localhost" "1667")))
+
   (setq cljr-magic-require-namespaces
         '(("io" . "clojure.java.io")
           ("sh" . "clojure.java.shell")
