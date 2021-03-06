@@ -2,8 +2,7 @@
 
 ;; ref: https://org-roam.discourse.group/t/creating-an-org-roam-note-from-an-existing-headline/978
 ;;;###autoload
-;; org-roam-create-note-from-headline
-(defun russ/org-roam-refile-headline-to-note ()
+(defun russ/org-refile-to-new-note ()
   "Create an Org-roam note from the current headline and jump to it.
 
 Normally, insert the headline’s title using the ’#title:’ file-level property
@@ -28,5 +27,13 @@ Org-mode properties drawer already, keep the headline and don’t insert
     (when has-properties
       (kill-line)
       (kill-line))
-    (org-save-all-org-buffers)
-    ))
+    (org-save-all-org-buffers)))
+
+;;;###autoload
+(defun russ/org-refile-to-existing-note ()
+  "Refiles to an existing roam note."
+  (interactive)
+  (let ((org-refile-targets
+         `((,(file-expand-wildcards "~/Dropbox/todo/garden/*.org")
+            :maxlevel . 4))))
+    (call-interactively #'org-refile)))

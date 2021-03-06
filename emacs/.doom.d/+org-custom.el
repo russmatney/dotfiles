@@ -48,7 +48,8 @@
 
 ;; allow refiling into a file without choosing a headline
 (setq org-refile-use-outline-path 'file
-      org-refile-allow-creating-parent-nodes t
+      org-refile-allow-creating-parent-nodes 'confirm
+      org-refile-active-region-within-subtree t
       org-outline-path-complete-in-steps nil
 
       ;; org-log-done 'note ;; <-- an interesting option
@@ -93,7 +94,7 @@
    '((org-journal-archive-files :maxlevel . 1)
      (nil :maxlevel . 9)
      (org-todo-files :maxlevel . 2)
-     (org-dailies-files :maxlevel . 2))))
+     (org-dailies-files :maxlevel . 1))))
 
 (russ/reset-refile-targets)
 
@@ -193,7 +194,8 @@
   (map! :map org-mode-map
         :localleader
         :prefix ("m" . "org-roam")
-        "r" #'russ/org-roam-refile-headline-to-note))
+        "r" #'russ/org-refile-to-existing-note
+        "R" #'russ/org-refile-to-new-note))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org mode config
