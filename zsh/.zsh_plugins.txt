@@ -57,7 +57,7 @@ robbyrussell/oh-my-zsh path:plugins/yarn
 # https://gist.github.com/rschmukler/7d9317cde82c58be965d rs2.zsh-theme
 
 mafredri/zsh-async
-sindresorhus/pure
+# sindresorhus/pure
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-history-substring-search
 
@@ -65,3 +65,7 @@ jonmosco/kube-ps1
 ahmetb/kubectx
 
 johanhaleby/kubetail
+
+# NullSense/fuzzy-sys
+wfxr/forgit
+changyuheng/zsh-interactive-cd

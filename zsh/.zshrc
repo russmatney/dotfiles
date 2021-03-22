@@ -159,6 +159,9 @@ fi
     source /usr/share/fzf/key-bindings.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+[  -f /usr/bin/fzf ] && source ~/.zsh/fzf.zsh
+
+source ~/.zsh/fuzzy-sys.zsh
 
 ################################################################################
 # Color fix
