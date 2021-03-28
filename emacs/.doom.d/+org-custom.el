@@ -195,6 +195,7 @@
         :localleader
         :prefix ("m" . "org-roam")
         "r" #'russ/org-refile-to-existing-note
+        "j" #'russ/org-refile-to-daily-note
         "R" #'russ/org-refile-to-new-note))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

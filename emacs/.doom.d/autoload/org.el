@@ -1,6 +1,7 @@
 ;;; ../dotfiles/emacs/.doom.d/autoload/org.el -*- lexical-binding: t; -*-
 
 ;; ref: https://org-roam.discourse.group/t/creating-an-org-roam-note-from-an-existing-headline/978
+
 ;;;###autoload
 (defun russ/org-refile-to-new-note ()
   "Create an Org-roam note from the current headline and jump to it.
@@ -35,5 +36,14 @@ Org-mode properties drawer already, keep the headline and don’t insert
   (interactive)
   (let ((org-refile-targets
          `((,(file-expand-wildcards "~/Dropbox/todo/garden/*.org")
+            :maxlevel . 4))))
+    (call-interactively #'org-refile)))
+
+;;;###autoload
+(defun russ/org-refile-to-daily-note ()
+  "Refiles to today's daily roam note."
+  (interactive)
+  (let ((org-refile-targets
+         `((,(file-expand-wildcards "~/Dropbox/todo/daily/*.org")
             :maxlevel . 4))))
     (call-interactively #'org-refile)))
