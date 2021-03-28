@@ -68,25 +68,40 @@
 ;; Open misc files
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; bookmarks
 (map!
  (:leader
-   (:desc "Edit" :prefix "e"
+  (:desc "Edit" :prefix "e"
 
-     :desc "Open file in ~/.emacs.d/"      :n "d" #'russ/open-doom-file
-     :desc "Open file in ~/Dropbox/todo/"  :n "t" #'russ/open-org-file
-     :desc "Open file in ~/Dropbox/Writing/" :n "w" #'russ/open-writing-file
-     :desc "Open file in ~/dotfiles/"      :n "z" #'russ/open-dotfile
-     :desc "Open file in ~/.doom.d/"       :n "c" #'russ/open-emacs-config-file
-     :desc "Open file in yodo"             :n "y" #'russ/open-yodo-file
-     :desc "Open file in awesomeWM/awesome/lib" :n "A" #'russ/open-awesomewm-source
-     :desc "Open awesome config"         :n "a" (cmd! (find-file "~/.config/awesome/rc.lua"))
+   ;; misc dotfiles
+   :desc "Open file in ~/dotfiles/"      :n "." #'russ/open-dotfile
+   :desc "Open ~/.zshrc"                 :n "z" (cmd! (find-file "~/.zshrc"))
+   :desc "Open ~/.tmux.conf"             :n "T" (cmd! (find-file "~/.tmux.conf"))
+   ;; :desc "Open ~/.config/i3/config"      :n "i" (cmd! (find-file "~/.config/i3/config.base"))
+   ;; :desc "Open ~/.config/polybar/config" :n "p" (cmd! (find-file "~/.config/polybar/config"))
+   :desc "Open awesome config"           :n "a" (cmd! (find-file "~/.config/awesome/rc.lua"))
+   :desc "Open file in AwesomeWM source dir" :n "A" #'russ/open-awesomewm-source
 
-     :desc "Open ~/.zshrc"                 :n "v" (cmd! (find-file "~/.zshrc"))
-     :desc "Open ~/.doom.d/+bindings.el"   :n "b" (cmd! (find-file "~/.doom.d/+bindings.el"))
-     :desc "Open ~/.config/i3/config"      :n "i" (cmd! (find-file "~/.config/i3/config.base"))
-     :desc "Open ~/.config/polybar/config" :n "p" (cmd! (find-file "~/.config/polybar/config"))
-     :desc "Open ~/.tmux.conf"             :n "T" (cmd! (find-file "~/.tmux.conf"))
-     :desc "Open ~/todo/journal.org"        :n "j" (cmd! (find-file "~/todo/journal.org")))))
+   ;; doom, the emacs distribution (see also doom/help-modules)
+   :desc "Open file in ~/.emacs.d/"      :n "d" #'russ/open-doom-file
+
+   ;; doom config files
+   :desc "Open file in ~/.doom.d/"       :n "c" #'russ/open-emacs-config-file
+   :desc "Open emacs bindings"   :n "b" (cmd! (find-file "~/.doom.d/+bindings.el"))
+
+   ;; clawe config files
+   :desc "Open Clawe Binding defs"
+   :n "B" (cmd! (find-file "~/russmatney/clawe/src/clawe/defs/bindings.clj"))
+
+   ;; org files
+   :desc "Open ~/todo org file"  :n "t" #'russ/open-org-file
+   :desc "Open ~/todo/projects.org"        :n "p" (cmd! (find-file "~/todo/projects.org"))
+   :desc "Open ~/todo/journal.org"        :n "j" (cmd! (find-file "~/todo/journal.org"))
+
+   ;; writing
+   :desc "Open file in ~/Dropbox/Writing/" :n "w" #'russ/open-writing-file
+
+   )))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -95,22 +110,22 @@
 
 (map!
  (:leader
-   (:desc "Edit" :prefix "e"
-     :desc "Create new snippet" :n "s" #'+snippets/new
-     :desc "Edit snippet" :n "e" #'+snippets/find
-     :desc "Find snippet" :n "f" #'+snippets/find))
+  (:desc "Edit" :prefix "e"
+   :desc "Create new snippet" :n "s" #'+snippets/new
+   :desc "Edit snippet" :n "e" #'+snippets/find
+   :desc "Find snippet" :n "f" #'+snippets/find))
  (:after yasnippet
-   (:map yas-keymap
-     "C-e"           #'+snippets/goto-end-of-field
-     "C-a"           #'+snippets/goto-start-of-field
-     "<M-right>"     #'+snippets/goto-end-of-field
-     "<M-left>"      #'+snippets/goto-start-of-field
-     "<M-backspace>" #'+snippets/delete-to-start-of-field
-     [backspace]     #'+snippets/delete-backward-char
-     [delete]        #'+snippets/delete-forward-char-or-field)
-   (:map yas-minor-mode-map
-     :ig "<tab>" yas-maybe-expand
-     :v  "<tab>" #'yas-insert-snippet)))
+  (:map yas-keymap
+   "C-e"           #'+snippets/goto-end-of-field
+   "C-a"           #'+snippets/goto-start-of-field
+   "<M-right>"     #'+snippets/goto-end-of-field
+   "<M-left>"      #'+snippets/goto-start-of-field
+   "<M-backspace>" #'+snippets/delete-to-start-of-field
+   [backspace]     #'+snippets/delete-backward-char
+   [delete]        #'+snippets/delete-forward-char-or-field)
+  (:map yas-minor-mode-map
+   :ig "<tab>" yas-maybe-expand
+   :v  "<tab>" #'yas-insert-snippet)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Global Bindings
@@ -125,7 +140,7 @@
 
  ;; save file (buffer)
  (:leader
-   :desc "Save buffer (write file)" :n  "RET" #'save-buffer)
+  :desc "Save buffer (write file)" :n  "RET" #'save-buffer)
 
  ;; Text-scaling
  "M-+"    (λ! (text-scale-set 0))
