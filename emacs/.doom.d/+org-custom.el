@@ -158,6 +158,31 @@
           (org-agenda-start-with-log-mode '(clock state))
           (org-agenda-archives-mode t)))))
 
+
+;; https://www.reddit.com/r/orgmode/comments/grgzlb/display_file_path_in_agenda_view/
+
+(defun my-buffer-file-name ()
+  "Give the directory of (buffer-file-name), and replace the home path by '~'"
+  (interactive)
+  (if (buffer-file-name)
+      (->>
+          (file-name-directory
+           (file-relative-name
+            (buffer-file-name)
+            (expand-file-name "~")))
+        (s-replace "Dropbox/todo/" "")
+        (s-replace "russmatney/" "")
+        (s-replace-regexp "/$" ""))
+    ""))
+
+(setq org-agenda-prefix-format
+      '((agenda  . "%(my-buffer-file-name)%i %-12:c%?-12t% s")
+        (timeline  . "%(my-buffer-file-name)% s")
+        (todo  . "%(my-buffer-file-name)%i %-12:c")
+        (tags  . "%(my-buffer-file-name)%i %-12:c")
+        (search . "%(my-buffer-file-name)%i %-12:c")))
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org Bindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
