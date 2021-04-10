@@ -165,15 +165,17 @@
 ;; Kill the things
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
+
 (map!
  (:leader
-   (:desc "kill" :prefix "k"
-     :desc "delete-window"           :n "k" #'delete-window
-     :desc "doom/kill-other-buffers" :n "B" #'doom/kill-other-buffers
-     :desc "kill-buffer-from-list"   :n "b" #'kill-buffer
-     :desc "ace-delete-window"       :n "a" #'ace-delete-window
-     :desc "+workspace/delete"       :n "s" #'+workspace/delete
-     :desc "hide-neotree"            :n "n" #'neotree-hide)))
+  (:desc "kill" :prefix "k"
+   :desc "delete-window"           :n "k" #'delete-window
+   :desc "doom/kill-other-buffers" :n "B" #'doom/kill-other-buffers
+   :desc "kill-buffer-from-list"   :n "b" #'kill-buffer
+   :desc "ace-delete-window"       :n "a" #'ace-delete-window
+   :desc "+workspace/delete"       :n "s" #'+workspace/delete
+   :desc "hide-neotree"            :n "n" #'neotree-hide)))
 
 (ex! "k" #'kill-this-buffer)
 
@@ -245,14 +247,14 @@
 
 (map!
  ;; Workspaces
- "M-c"    #'+workspace/new
- "M-,"    #'+workspace/rename
- "M-P"    #'russ/projectile-open-file-from-project
+ ;; "M-c"    #'+workspace/new
+ ;; "M-,"    #'+workspace/rename
+ ;; "M-P"    #'russ/projectile-open-file-from-project
  (:leader "o" #'russ/projectile-open-file-from-project)
 
  ;; switch to
  (:leader "w" #'+workspace/switch-to)
- "M-w" #'+workspace/switch-to
+ ;; "M-w" #'+workspace/switch-to
  :n "[w"    #'+workspace/switch-left
  :n "]w"    #'+workspace/switch-right
  "M-p"    #'+workspace/switch-right
@@ -285,9 +287,9 @@
 
  ;; evil-magit
  (:after evil-magit
-   :map (magit-status-mode-map magit-revision-mode-map)
-   :n "C-j" nil
-   :n "C-k" nil)
+  :map (magit-status-mode-map magit-revision-mode-map)
+  :n "C-j" nil
+  :n "C-k" nil)
 
  ;; magit
  :n  "gm" #'magit
@@ -296,17 +298,25 @@
 
  ;; git-timemachine
  (:after git-timemachine
-   (:map git-timemachine-mode-map
-     :nv "p" #'git-timemachine-show-previous-revision
-     :nv "C-k" #'git-timemachine-show-previous-revision
-     :nv "n" #'git-timemachine-show-next-revision
-     :nv "C-j" #'git-timemachine-show-previous-revision
-     :nv "g" #'git-timemachine-show-nth-revision
-     :nv "c" #'git-timemachine-show-commit
-     :nv "q" #'git-timemachine-quit
-     :nv "w" #'git-timemachine-kill-abbreviated-revision
-     :nv "W" #'git-timemachine-kill-revision
-     :nv "b" #'git-timemachine-blame)))
+  (:map git-timemachine-mode-map
+   :nv "p" #'git-timemachine-show-previous-revision
+   :nv "C-k" #'git-timemachine-show-previous-revision
+   :nv "n" #'git-timemachine-show-next-revision
+   :nv "C-j" #'git-timemachine-show-previous-revision
+   :nv "g" #'git-timemachine-show-nth-revision
+   :nv "c" #'git-timemachine-show-commit
+   :nv "q" #'git-timemachine-quit
+   :nv "w" #'git-timemachine-kill-abbreviated-revision
+   :nv "W" #'git-timemachine-kill-revision
+   :nv "b" #'git-timemachine-blame)))
+
+;; (:after git-timemachine
+;;  :map git-timemachine-mode-map
+;;  :n "C-j" #'git-timemachine-show-next-revision
+;;  :n "C-k" #'git-timemachine-show-previous-revision
+;;  :n "C-c" #'git-timemachine-show-commit
+;;  :n "C-b" #'git-timemachine-blame
+;;  :n "C-u" #'git-timemachine-kill-revision)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Dired
