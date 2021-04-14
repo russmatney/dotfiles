@@ -4,6 +4,9 @@
   "Comment out one or more s-expressions."
   nil)
 
+;; TODO rewrite bindings to operate off of hyper, i suppose
+(setq x-hyper-keysym 'super)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Evil setup
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
