@@ -236,10 +236,10 @@
 
   (add-hook
    'cider-mode-hook
-   '(lambda ()
-      (add-hook
-       'after-save-hook
-       #'cider-eval-if-cider-buffer)))
+   #'(lambda ()
+       (add-hook
+        'after-save-hook
+        #'cider-eval-if-cider-buffer)))
 
   ;; (set-company-backend!
   ;;   'clojurescript-mode
