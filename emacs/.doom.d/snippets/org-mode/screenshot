@@ -1,4 +1,7 @@
 # key: scr
 # name: screenshot
+# expand-env: ((yas-after-exit-snippet-hook #'org-display-inline-images))
 # --
-`(shell-command-to-string "ls ~/Screenshots | sort -V | tail -n 1")`
+#+name: $1
+#+caption: $2
+[[~/Screenshots/`(russ/last-screenshot)`]]

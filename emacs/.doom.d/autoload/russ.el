@@ -109,7 +109,6 @@ If DIR is not a project, it will be indexed (but not cached)."
   (doom-project-find-file "~/awesomeWM/awesome/lib/"))
 
 ;;;###autoload
-;; Set transparency of emacs
 (defun russ/transparency (value)
   "Sets the transparency of the frame window. 0=transparent/100=opaque"
   (interactive "nTransparency Value 0 - 100 opaque:")
@@ -128,8 +127,8 @@ If DIR is not a project, it will be indexed (but not cached)."
     (-each to-delete '+workspace-delete)))
 
 ;;;###autoload
-;; Support opening emacs in a workspace
 (defun russ/open-workspace (name)
+  ;; Support opening emacs in a workspace
   (+workspace-switch name t)
   (russ/delete-numbered-workspace-names)
   ;; (russ/projectile-open-file-from-project)
@@ -158,3 +157,9 @@ If DIR is not a project, it will be indexed (but not cached)."
  org-id-add-location
  (org-id-locations-load)
  org-id-locations-file)
+
+
+;;;###autoload
+(defun russ/last-screenshot ()
+  (let ((filename (shell-command-to-string "ls ~/Screenshots | sort -V | tail -n 1")))
+    (s-trim filename)))
