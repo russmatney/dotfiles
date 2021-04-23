@@ -40,6 +40,17 @@ Org-mode properties drawer already, keep the headline and don’t insert
     (call-interactively #'org-refile)))
 
 ;;;###autoload
+(defun russ/org-refile-to-workspace-note ()
+  "Refiles to an existing workspace-garden note."
+  (interactive)
+  (let ((org-refile-targets
+         `((,(append (file-expand-wildcards "~/Dropbox/todo/garden/workspaces/*.org")
+                     ;; (org-projectile-todo-files)
+                     )
+            :maxlevel . 4))))
+    (call-interactively #'org-refile)))
+
+;;;###autoload
 (defun russ/org-refile-to-daily-note ()
   "Refiles to today's daily roam note."
   (interactive)

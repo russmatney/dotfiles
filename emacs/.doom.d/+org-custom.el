@@ -220,8 +220,9 @@
         :localleader
         :prefix ("m" . "org-roam")
         "r" #'russ/org-refile-to-existing-note
+        "R" #'russ/org-refile-to-new-note
         "j" #'russ/org-refile-to-daily-note
-        "R" #'russ/org-refile-to-new-note))
+        "w" #'russ/org-refile-to-workspace-note))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org mode config
@@ -241,9 +242,10 @@
 
 
 (comment
- '(("t" "Todo [journal]" entry (file "~/todo/journal.org") "* [ ] %i%?")
-   ("r" "Prompt" entry (file "~/todo/prompts.org") "* [ ] %i%?")
-   ("d" "Garden Daily" entry #'org-roam-dailies-capture-today nil)))
+ (setq org-capture-templates
+       '(("t" "Todo [journal]" entry (file "~/todo/journal.org") "* [ ] %i%?")
+         ("r" "Prompt" entry (file "~/todo/prompts.org") "* [ ] %i%?")
+         ("d" "Garden Daily" entry #'org-roam-dailies-capture-today nil))))
 
 (after! org-capture
   (setq org-capture-templates
