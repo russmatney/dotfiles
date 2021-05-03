@@ -125,7 +125,7 @@
        (lookup           ; helps you navigate your code and documentation
         +docsets)        ; ...or in Dash docsets locally
        lsp
-       magit             ; a git porcelain for Emacs
+       (magit +forge)             ; a git porcelain for Emacs
        make              ; run make tasks from Emacs
        ;;pass
        ;;pdf             ; pdf enhancements
@@ -158,7 +158,7 @@
        ;;faust
        ;;fsharp           ; ML stands for Microsoft's Language
        ;;fstar             ; (dependent) types and (monadic) effects and Z3
-       ;;gdscript          ; the language you waited for
+       (gdscript +lsp)          ; the language you waited for
        ;;(go +lsp)                ; the hipster dialect
        ;; (haskell +dante) ; a language that's lazier than I am
        ;;haskell ; a language that's lazier than I am
