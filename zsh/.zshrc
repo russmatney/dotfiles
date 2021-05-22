@@ -389,8 +389,18 @@ eval "$(direnv hook zsh)"
 ################################################################################
 # git summary
 ################################################################################
-################################################################################
 
 #[[file:~/MirkoLedda/git-summary/README.md::git-summary][local git-summary readme]]
 
 alias git-summary='~/MirkoLedda/git-summary/git-summary'
+
+################################################################################
+# babashka
+################################################################################
+
+_bb_tasks() {
+    local matches=(`bb tasks |tail -n +3 |cut -f1 -d ' '`)
+    compadd -a matches
+    _files # autocomplete filenames as well
+}
+compdef _bb_tasks bb
