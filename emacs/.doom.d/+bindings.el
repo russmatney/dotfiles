@@ -229,15 +229,18 @@
 
  ;; find file in project
  (:leader
-   :desc "projectile-find-file"   :n  "p"   #'projectile-find-file
-   :desc "projectile-find-file (burst cache)" :n  "P" (λ! (projectile-find-file t))
-   :desc "Find file"              :n  "."   #'find-file)
+  :desc "projectile-find-file"   :n  "p"   #'projectile-find-file
+  :desc "projectile-find-file (burst cache)" :n  "P" (λ! (projectile-find-file t))
+  :desc "Find file"              :n  "."   #'find-file)
 
  ;; recentf
- (:leader :desc "recentf"                :n "l"    #'counsel-recentf)
+ ;; (:leader :desc "recentf"                :n "l"    #'counsel-recentf)
 
  ;; toggle last two files
  (:leader :desc "last buffer"            :n "SPC"  #'evil-switch-to-windows-last-buffer)
+
+ ;; hydra base
+ (:leader :desc "Hydra entrypoint"       :n "l"  #'hydra-main/body)
 
  ;; find in open buffers
  (:leader :desc "Workspace buffers"      :n  "b"   #'switch-to-buffer)
@@ -245,7 +248,7 @@
  :n "M-b"   #'ibuffer
 
  ;; test toggle
- ;; (:leader :desc "projectile-test-toggle" :n  "t" #'projectile-toggle-between-implementation-and-test)
+ (:leader :desc "projectile-test-toggle" :n  "T" #'projectile-toggle-between-implementation-and-test)
  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

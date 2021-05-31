@@ -126,10 +126,15 @@
 
 (setq so-long-predicate #'doom-buffer-has-long-lines-p)
 
+(defmacro comment (&rest _)
+  "Comment out one or more s-expressions."
+  nil)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; other config files
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(load! "+hydra")
 (load! "+bindings")
 (load! "+langs")
 (load! "+lisp-editing")

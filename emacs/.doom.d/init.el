@@ -5,6 +5,10 @@
 ;;      and press `+lookup/documentation' for module documentation,
 ;;      or `+lookup/definition' for quick access to the module's source code.
 
+(when (and (fboundp 'native-comp-available-p)
+           (native-comp-available-p))
+  (setq comp-deferred-compilation 't))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; themes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

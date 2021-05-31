@@ -201,3 +201,27 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Python
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; fix for python-pytest in monorepos
+;; https://github.com/wbolster/emacs-python-pytest
+;; (add-hook 'python-mode-hook
+;;              (lambda ()
+;;                (when-let ((r (locate-dominating-file default-directory ".pyroot")))
+;;                  (setq python-pytest-executable
+;;                        (concat "PYTHONPATH=" r " nix-shell --run -- pytest")))))
+
+(use-package! python-pytest
+  :commands python-pytest-dispatch
+  :init
+  (map! :after python
+        :localleader
+        :map python-mode-map
+        :prefix ("t" . "test")
+        "a" #'python-pytest
+        "f" #'python-pytest-file-dwim
+        "F" #'python-pytest-file
+        "t" #'python-pytest-function-dwim
+        "T" #'python-pytest-function
+        "r" #'python-pytest-repeat
+        "p" #'python-pytest-dispatch
+        "l" #'python-pytest-last-failed))

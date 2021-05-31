@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: defworkspace
+# key: defw
+# condition: t
+# --
+(defworkspace $1
+  "$3"
+  awesome-rules
+  (fn [_] (local-repo "$2"))
+  $0
+  )
