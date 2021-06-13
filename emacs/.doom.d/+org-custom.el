@@ -187,6 +187,29 @@
 ;; Org Bindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; from https://emacs.stackexchange.com/questions/8045/org-refile-to-a-known-fixed-location
+(defun russ/refile-to (file headline)
+  "Move current headline to specified location"
+  (let ((pos (save-excursion
+               (find-file file)
+               (org-find-exact-headline-in-buffer headline))))
+    (org-refile nil nil (list headline file nil pos))
+    (switch-to-buffer (current-buffer))))
+
+(defhydra hydra-org-refile (:exit t)
+  ("r" org-refile "Org refile" :column "~/todo")
+  ("t" (russ/refile-to "~/todo/projects.org" "Todos") "project.org/Todos")
+  ("h" (russ/refile-to "~/todo/projects.org" "Hammock") "project.org/Hammock")
+  ("i" (+org/refile-to-file nil "~/todo/icebox.org") "To icebox.org")
+
+  ("g" russ/org-refile-to-existing-note "To existing note" :column "garden")
+  ("c" russ/org-refile-to-new-note "Create new note")
+  ("j" russ/org-refile-to-daily-note "To some daily note")
+  ("w" russ/org-refile-to-workspace-note "To some workspace note")
+
+  ;; TODO writing/ideas files, local todo.org files
+  )
+
 (after! org
   (map! :map org-mode-map
         "M-v"   #'evil-paste-after
@@ -199,7 +222,10 @@
         "S-<right>" nil
         "S-<up>" nil
         "S-<down>" nil
-        :n "z a"   #'org-cycle))
+        :n "z a"   #'org-cycle
+
+        :localleader
+        "r"     #'hydra-org-refile/body))
 
 (after! evil-org
   (map! :map evil-normal-state-map

@@ -77,39 +77,7 @@
 
 ;; bookmarks
 (map!
- (:leader
-  (:desc "Edit" :prefix "e"
-
-   ;; misc dotfiles
-   :desc "Open file in ~/dotfiles/"      :n "." #'russ/open-dotfile
-   :desc "Open ~/.zshrc"                 :n "z" (cmd! (find-file "~/.zshrc"))
-   :desc "Open ~/.tmux.conf"             :n "T" (cmd! (find-file "~/.tmux.conf"))
-   ;; :desc "Open ~/.config/i3/config"      :n "i" (cmd! (find-file "~/.config/i3/config.base"))
-   ;; :desc "Open ~/.config/polybar/config" :n "p" (cmd! (find-file "~/.config/polybar/config"))
-   :desc "Open awesome config"           :n "a" (cmd! (find-file "~/.config/awesome/rc.lua"))
-   :desc "Open file in AwesomeWM source dir" :n "A" #'russ/open-awesomewm-source
-
-   ;; doom, the emacs distribution (see also doom/help-modules)
-   :desc "Open file in ~/.emacs.d/"      :n "d" #'russ/open-doom-file
-
-   ;; doom config files
-   :desc "Open file in ~/.doom.d/"       :n "c" #'russ/open-emacs-config-file
-   :desc "Open emacs bindings"   :n "b" (cmd! (find-file "~/.doom.d/+bindings.el"))
-
-   ;; clawe config files
-   :desc "Open Clawe Binding defs"
-   :n "B" (cmd! (find-file "~/russmatney/clawe/src/clawe/defs/bindings.clj"))
-
-   ;; org files
-   :desc "Open ~/todo org file"  :n "t" #'russ/open-org-file
-   :desc "Open ~/todo/projects.org"        :n "p" (cmd! (find-file "~/todo/projects.org"))
-   :desc "Open ~/todo/journal.org"        :n "j" (cmd! (find-file "~/todo/journal.org"))
-
-   ;; writing
-   :desc "Open file in ~/Dropbox/Writing/" :n "w" #'russ/open-writing-file
-
-   )))
-
+ (:leader :desc "Edit/Open" "e" #'hydra-visit-bookmark/body))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Snippets
@@ -117,7 +85,7 @@
 
 (map!
  (:leader
-  (:desc "Edit" :prefix "e"
+  (:desc "Edit" :prefix "E"
    :desc "Create new snippet" :n "s" #'+snippets/new
    :desc "Edit snippet" :n "e" #'+snippets/find
    :desc "Find snippet" :n "f" #'+snippets/find))
@@ -166,6 +134,11 @@
  :n "g r"   '+lookup/references
 
  (:leader :desc "RAISE" :nv "r"   #'+popup/raise)
+
+ ;; hydra base
+ :nvime "M-y" #'hydra-main/body
+ (:leader :desc "Hydra entrypoint"       :n "l"  #'hydra-main/body)
+
  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -238,9 +211,6 @@
 
  ;; toggle last two files
  (:leader :desc "last buffer"            :n "SPC"  #'evil-switch-to-windows-last-buffer)
-
- ;; hydra base
- (:leader :desc "Hydra entrypoint"       :n "l"  #'hydra-main/body)
 
  ;; find in open buffers
  (:leader :desc "Workspace buffers"      :n  "b"   #'switch-to-buffer)
