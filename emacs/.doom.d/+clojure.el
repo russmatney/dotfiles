@@ -138,43 +138,40 @@
 
 (map!
  (:after cider-mode
+  (:map cider-mode-map
    (:leader
-     :desc "Lookup documentation at point" :n  "d"  #'cider-doc
-     :desc "Jump to definition at point"   :n  "l"  #'cider-find-var)
-   (:map cider-mode-map
-     (:leader
-       :n "DEL" #'ivy-cider-browse-ns
-       :n "\\" #'ivy-cider-apropos
-       (:desc "Cider" :prefix "c"
-         :n  "'"  #'cider-jack-in
-         :n  "\"" #'cider-jack-in-cljs
+    :n "DEL" #'ivy-cider-browse-ns
+    :n "\\" #'ivy-cider-apropos
+    (:desc "Cider" :prefix "c"
+     :n  "'"  #'cider-jack-in
+     :n  "\"" #'cider-jack-in-cljs
 
-         :n  "l"  #'cider-load-this-file
-         :n  "b"  #'cider-eval-buffer
+     :n  "l"  #'cider-load-this-file
+     :n  "b"  #'cider-eval-buffer
 
-         :n  "B"  #'cider-switch-to-repl-buffer
-         :n  "n"  #'cider-repl-set-ns
-         :n  "j"  #'cider-find-var
-         (:desc "docs" :prefix "d"
-           :desc "Browse Namespace" :n  "n" #'cider-browse-ns
-           :desc "Browse Spec"      :n  "s" #'cider-browse-spec
-           :desc "Essential Ref"    :n  "f" #'clojure-essential-ref)
-         :n  "h"  #'cider-doc
-         :n  "c"  #'rs/cider-clear-all-buffers
-         :n  "i"  #'cider-inspect-last-result
-         :n  "p"  #'cider-eval-sexp-at-point
-         :n  "f"  #'cider-eval-defun-at-point
-         :n  "t"  #'cider-test-run-ns-tests
-         :n  "T"  #'cider-test-run-test
+     :n  "B"  #'cider-switch-to-repl-buffer
+     :n  "n"  #'cider-repl-set-ns
+     :n  "j"  #'cider-find-var
+     (:desc "docs" :prefix "d"
+      :desc "Browse Namespace" :n  "n" #'cider-browse-ns
+      :desc "Browse Spec"      :n  "s" #'cider-browse-spec
+      :desc "Essential Ref"    :n  "f" #'clojure-essential-ref)
+     :n  "h"  #'cider-doc
+     :n  "c"  #'rs/cider-clear-all-buffers
+     :n  "i"  #'cider-inspect-last-result
+     :n  "p"  #'cider-eval-sexp-at-point
+     :n  "f"  #'cider-eval-defun-at-point
+     :n  "t"  #'cider-test-run-ns-tests
+     :n  "T"  #'cider-test-run-test
 
-         :n  "r"  #'rs/cider-cycle-buffer-type
-         :n  "s"  #'russ/switch-cider-connection
-         :n  "g"  #'cider-user-go
+     :n  "r"  #'rs/cider-cycle-buffer-type
+     :n  "s"  #'russ/switch-cider-connection
+     :n  "g"  #'cider-user-go
 
-         :n  "m"  #'clojure-move-to-let)))
-   (:after cider-browse-ns-mode
-     (:map cider-browse-ns-mode-map
-       :n "RET"       #'cider-browse-ns-operate-at-point))))
+     :n  "m"  #'clojure-move-to-let)))
+  (:after cider-browse-ns-mode
+   (:map cider-browse-ns-mode-map
+    :n "RET"       #'cider-browse-ns-operate-at-point))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; cider reload this file, on-save
