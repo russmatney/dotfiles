@@ -44,8 +44,12 @@
   "
 Commands that stick around (this hydra supports multiple presses).
 "
-  ("o" text-scale-decrease "out")
-  ("i" text-scale-increase "in"))
+  ("o" text-scale-decrease "out" :column "Zoom/Scale")
+  ("i" text-scale-increase "in")
+  ("e" flycheck-list-errors "list errors" :column "Flycheck")
+  ("n" flycheck-next-error "next error")
+  ("p" flycheck-previous-error "previous error")
+  )
 
 (defhydra hydra-clojure (:exit t)
   ("'"  cider-jack-in "jack-in (clj)" :column "jack in!")
@@ -59,29 +63,30 @@ Commands that stick around (this hydra supports multiple presses).
   ("<" cljr-thread-last-all "Thread last all"))
 
 (defhydra hydra-visit-bookmark (:exit t)
-  ;; org files
   ("t" russ/open-org-file "Open ~/todo org file" :column "~/todo")
   ("p" (find-file "~/todo/projects.org") "Open ~/todo/projects.org")
   ("j" (find-file "~/todo/journal.org") "Open ~/todo/journal.org")
+  ("a" org-agenda "Org Agenda")
 
   ("." russ/open-dotfile "~/dotfiles/*" :column "dotfiles")
   ("z" (find-file "~/.zshrc") "~/.zshrc")
   ("T" (find-file "~/.tmux.conf") "~/.tmux.conf")
 
-  ;; open doom/emacs config file
   ("d" russ/open-doom-file "Open DOOM source file" :column "emacs")
   ("c" russ/open-emacs-config-file "Open DOOM config file ~/.doom.d/")
   ("b" (find-file "~/.doom.d/+bindings.el") "Open emacs +bindings.el")
   ("h" (find-file "~/.doom.d/+hydra.el") "Open emacs +hydra.el")
 
-  ;; clawe config files
   ("B" (find-file "~/russmatney/clawe/src/clawe/defs/bindings.clj")
    "defs/bindings.clj" :column "clawe")
   ("W" (find-file "~/russmatney/clawe/src/clawe/defs/workspaces.clj")
    "defs/workspaces.clj")
 
-  ;; writing
-  ("w" russ/open-writing-file "Open file in ~/Dropbox/Writing/" :column "Misc"))
+  ("w" russ/open-writing-file "Open file in ~/Dropbox/Writing/" :column "Misc")
+
+  ;; TODO `g` for opening the current workspace's garden note
+  ;; TODO `r` for opening the current workspace's readme
+  )
 
 (defhydra hydra-main (:exit t)
   ("g" gdscript-hydra-show "Godot Script Hydra"

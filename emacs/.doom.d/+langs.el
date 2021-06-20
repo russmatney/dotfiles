@@ -90,7 +90,8 @@
   (add-hook 'js2-mode-hook #'prettier-js-mode)
   (add-hook 'json-mode-hook #'prettier-js-mode)
   (add-hook 'rjsx-mode-hook 'prettier-js-mode)
-  (add-hook 'css-mode-hook #'prettier-js-mode))
+  (add-hook 'css-mode-hook #'prettier-js-mode)
+  (add-hook 'typescript-mode-hook #'prettier-js-mode))
 
 (use-package! add-node-modules-path)
 

@@ -264,3 +264,5 @@
 (use-package! clomacs
   :config
   (setq))
+
+(use-package! logview)

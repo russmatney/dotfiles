@@ -11,6 +11,8 @@ nvim/.config/nvim/.init.vim*
 zsh/secrets
 zsh/.secrets
 zsh/.zsh_plugins.sh
+zsh/.zsh/completion/_clawe
+zsh/.zsh/completion/_ralphie
 
 
 tmux-client-*.log

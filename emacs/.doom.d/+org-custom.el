@@ -208,6 +208,7 @@
   ("w" russ/org-refile-to-workspace-note "To some workspace note")
 
   ;; TODO writing/ideas files, local todo.org files
+  ;; TODO refile to today's daily note, create if it doesn't exist
   )
 
 (after! org
@@ -225,7 +226,7 @@
         :n "z a"   #'org-cycle
 
         :localleader
-        "r"     #'hydra-org-refile/body))
+        :n "r"     #'hydra-org-refile/body))
 
 (after! evil-org
   (map! :map evil-normal-state-map

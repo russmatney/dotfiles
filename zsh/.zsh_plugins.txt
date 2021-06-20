@@ -44,7 +44,7 @@ robbyrussell/oh-my-zsh path:plugins/pylint
 # robbyrussell/oh-my-zsh path:plugins/pyenv
 robbyrussell/oh-my-zsh path:plugins/rand-quote
 robbyrussell/oh-my-zsh path:plugins/repo
-robbyrussell/oh-my-zsh path:plugins/ssh-agent
+# robbyrussell/oh-my-zsh path:plugins/ssh-agent
 robbyrussell/oh-my-zsh path:plugins/sudo
 robbyrussell/oh-my-zsh path:plugins/taskwarrior
 robbyrussell/oh-my-zsh path:plugins/tig

@@ -71,3 +71,6 @@
 
 ;; magit
 (package! magit-org-todos)
+
+;; logs
+(package! logview)

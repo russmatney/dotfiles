@@ -6,7 +6,7 @@
 
 (use-package! aggressive-indent
   :hook
-  ;; (clojure-mode . aggressive-indent-mode)
+  (clojure-mode . aggressive-indent-mode)
   (emacs-lisp-mode . aggressive-indent-mode)
   (lisp-mode . aggressive-indent-mode)
 
