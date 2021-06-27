@@ -200,7 +200,7 @@
   ("r" org-refile "Org refile" :column "~/todo")
   ("t" (russ/refile-to "~/todo/projects.org" "Todos") "project.org/Todos")
   ("h" (russ/refile-to "~/todo/projects.org" "Hammock") "project.org/Hammock")
-  ("i" (+org/refile-to-file nil "~/todo/icebox.org") "To icebox.org")
+  ("i" (russ/refile-to "~/todo/icebox.org" "new") "To icebox.org")
 
   ("g" russ/org-refile-to-existing-note "To existing note" :column "garden")
   ("c" russ/org-refile-to-new-note "Create new note")
