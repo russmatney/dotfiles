@@ -84,6 +84,7 @@
 
 (setq js-indent-level 2)
 (setq css-indent-offset 2)
+(setq typescript-indent-level 2)
 
 (use-package! prettier-js
   :config
@@ -91,7 +92,8 @@
   (add-hook 'json-mode-hook #'prettier-js-mode)
   (add-hook 'rjsx-mode-hook 'prettier-js-mode)
   (add-hook 'css-mode-hook #'prettier-js-mode)
-  (add-hook 'typescript-mode-hook #'prettier-js-mode))
+  (add-hook 'typescript-mode-hook #'prettier-js-mode)
+  (add-hook 'typescript-tsx-mode #'prettier-js-mode))
 
 (use-package! add-node-modules-path)
 

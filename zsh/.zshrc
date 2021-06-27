@@ -195,13 +195,6 @@ alias e='emacs -nw'
 alias ':q'='exit'
 
 
-
-################################################################################
-# Python
-################################################################################
-
-# eval "$(pyenv init -)"
-
 ################################################################################
 # Docker
 ################################################################################
@@ -309,6 +302,8 @@ alias nf='neofetch'
 alias pd='pandoc'
 
 
+source ~/.zsh/grfn.zsh-theme
+
 ################################################################################
 # Haskell
 ################################################################################
@@ -323,10 +318,20 @@ function stack-watch-test-path() {
 
 alias swtp='stack-watch-test-path'
 
+################################################################################
+# Node
+################################################################################
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/.cargo/bin:$PATH"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
-source ~/.zsh/grfn.zsh-theme
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+################################################################################
+# Rust
+################################################################################
+
+export PATH="$HOME/.cargo/bin:$PATH"
 
 ################################################################################
 # Doom emacs
@@ -404,3 +409,14 @@ _bb_tasks() {
     _files # autocomplete filenames as well
 }
 compdef _bb_tasks bb
+
+################################################################################
+# Python
+################################################################################
+
+# already on path to due to pyenv shims
+# export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+test ! -f ~/.pyenv/version && pyenv global system
+export PATH="$HOME/.pyenv/bin:$PATH"

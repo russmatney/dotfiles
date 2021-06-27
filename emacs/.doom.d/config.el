@@ -130,6 +130,14 @@
   "Comment out one or more s-expressions."
   nil)
 
+(setq typescript-indent-level 2)
+(setq js-indent-level 2)
+(setq css-indent-offset 2)
+
+(after! dtrt-indent
+  (add-to-list 'dtrt-indent-hook-mapping-list '(typescript-tsx-mode javascript typescript-indent-level))
+  (add-to-list 'dtrt-indent-hook-mapping-list '(typescript-mode javascript typescript-indent-level)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; other config files
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

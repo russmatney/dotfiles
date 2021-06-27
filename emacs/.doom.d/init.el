@@ -170,7 +170,7 @@
        ;;idris             ;
        json              ; At least it ain't XML
        ;;(java +meghanada) ; the poster child for carpal tunnel syndrome
-       (javascript +lsp)        ; all(hope(abandon(ye(who(enter(here))))))
+       javascript ;;+lsp        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        ;;kotlin
        ;;latex             ; writing papers in Emacs has never been so fun
@@ -211,7 +211,7 @@
        ;;solidity
        ;;swift             ; who asked for emoji variables?
        ;;terra
-       web               ; the tubes
+       ;; web               ; the tubes
        yaml
 
        :email

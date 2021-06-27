@@ -13,7 +13,6 @@
   (async-shell-command
    command
    (generate-new-buffer-name (concat "*" buff-name "*"))))
-
 ;; TODO option for streaming content from, e.g., a watchmedo
 ;; TODO re-use the buffer if it exists already
 ;; TODO or just pipe from the terminal to a file and open/clear that file in emacs
@@ -50,6 +49,19 @@ Commands that stick around (this hydra supports multiple presses).
   ("n" flycheck-next-error "next error")
   ("p" flycheck-previous-error "previous error")
   )
+
+(defhydra hydra-clawe (:exit t)
+  ("B" (find-file "~/russmatney/clawe/src/clawe/defs/bindings.clj")
+   "defs/bindings.clj" :column "Open file")
+  ("W" (find-file "~/russmatney/clawe/src/clawe/defs/workspaces.clj")
+   "defs/workspaces.clj")
+
+  ("R" (shell-command
+        "cd ~/russmatney/clawe && bb -cp $(clojure -Spath) --uberjar clawe.jar -m clawe.core")
+   "rebuild" :column "clawe mgmt")
+  ("r" (shell-command "clawe reload") "reload")
+  ;; NOTE this doesn't do the caching/restore that mod+shift+r does yet
+  ("A" (shell-command "awesome-client \"awesome.restart()\"") "restart awesome"))
 
 (defhydra hydra-clojure (:exit t)
   ("'"  cider-jack-in "jack-in (clj)" :column "jack in!")
@@ -93,6 +105,7 @@ Commands that stick around (this hydra supports multiple presses).
    :column "All your Hydra are belong to us")
   ("s" hydra-sticky/body "Sticky hydra")
   ("c" hydra-clojure/body "Clojure hydra")
+  ("C" hydra-clawe/body "Clawe hydra")
   ("e" hydra-visit-bookmark/body "Visit/Edit/Bookmarks")
   ("r" hydra-org-refile/body "Org refiling")
 
