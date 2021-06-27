@@ -206,8 +206,8 @@
   ("c" russ/org-refile-to-new-note "Create new note")
   ("j" russ/org-refile-to-daily-note "To some daily note")
   ("w" russ/org-refile-to-workspace-note "To some workspace note")
+  ("b" russ/org-refile-to-bucket-note "To a bucket note, i.e. ideas/writing accumulation files")
 
-  ;; TODO writing/ideas files, local todo.org files
   ;; TODO refile to today's daily note, create if it doesn't exist
   )
 

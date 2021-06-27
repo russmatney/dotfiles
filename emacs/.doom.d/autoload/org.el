@@ -36,7 +36,7 @@ Org-mode properties drawer already, keep the headline and don’t insert
   (interactive)
   (let ((org-refile-targets
          `((,(file-expand-wildcards "~/Dropbox/todo/garden/*.org")
-            :maxlevel . 4))))
+            :maxlevel . 2))))
     (call-interactively #'org-refile)))
 
 ;;;###autoload
@@ -47,7 +47,7 @@ Org-mode properties drawer already, keep the headline and don’t insert
          `((,(append (file-expand-wildcards "~/Dropbox/todo/garden/workspaces/*.org")
                      ;; (org-projectile-todo-files)
                      )
-            :maxlevel . 4))))
+            :maxlevel . 2))))
     (call-interactively #'org-refile)))
 
 ;;;###autoload
@@ -56,5 +56,20 @@ Org-mode properties drawer already, keep the headline and don’t insert
   (interactive)
   (let ((org-refile-targets
          `((,(file-expand-wildcards "~/Dropbox/todo/daily/*.org")
-            :maxlevel . 4))))
+            :maxlevel . 2))))
+    (call-interactively #'org-refile)))
+
+
+;;;###autoload
+(defun russ/org-refile-to-bucket-note ()
+  "Refiles to one of the roam bucket notes."
+  (interactive)
+  (let ((org-refile-targets
+         `((,(cl-remove-if-not
+              (lambda (s)
+                (or
+                 (s-contains? "ideas" s)
+                 (s-contains? "writing" s)))
+              (file-expand-wildcards "~/Dropbox/todo/garden/*.org"))
+            :maxlevel . 2))))
     (call-interactively #'org-refile)))
