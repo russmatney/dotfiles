@@ -25,15 +25,6 @@
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Fonts
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(setq doom-font (font-spec :family "RobotoMono Nerd Font" :size 20)
-      doom-variable-pitch-font (font-spec :family "Hack Nerd Font")
-      doom-unicode-font (font-spec :family "DejaVuSansMono Nerd Font Mono")
-      doom-big-font (font-spec :family "SpaceMono Nerd Font" :size 24))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; general format/whitespace
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -148,8 +139,8 @@
 (load! "+lisp-editing")
 (load! "+clojure")
 (load! "+org-custom")
-(load! "+wakatime")
 (load! "+custom")
+(load! "+wakatime")
 ;; (load! "+exwm")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

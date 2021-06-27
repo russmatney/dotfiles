@@ -37,14 +37,34 @@
     "watchmedo auto-restart --patterns='*.py' --ignore-patterns='*flycheck*;*migration*;*yapf*' --recursive --directory ../python/urbint_lib  --directory . --directory ../backend/src -- pytest -s api_tests/ -k 'actions_test and test_api_list_sort' --maxfail=1 --disable-warnings")))
 
 
+(defun russ/reload-emacs-font ()
+  "Duplicated font defs from init.el.
+
+For whatever reason changing the font-size seems to change fonts.... this resets
+that, but also resets the size..."
+  (interactive)
+  (setq doom-font (font-spec :family "RobotoMono Nerd Font" :size 20 :slant 'normal)
+        doom-variable-pitch-font (font-spec :family "Hack Nerd Font" :slant 'normal)
+        doom-unicode-font (font-spec :family "DejaVuSansMono Nerd Font Mono")
+        doom-big-font (font-spec :family "SpaceMono Nerd Font" :size 24 :slant 'normal))
+  (doom/reload-font))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Hydra defs
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (require 'hydra)
 
 (defhydra hydra-sticky ()
   "
 Commands that stick around (this hydra supports multiple presses).
 "
-  ("o" text-scale-decrease "out" :column "Zoom/Scale")
-  ("i" text-scale-increase "in")
+  ("o" text-scale-decrease "out (this window)" :column "Zoom/Scale")
+  ("i" text-scale-increase "in (this window)")
+  ("O" doom/decrease-font-size "Out (all windows)")
+  ("I" doom/increase-font-size "In (all windows)")
+  ("r" russ/reload-emacs-font "Reset emacs fonts")
   ("e" flycheck-list-errors "list errors" :column "Flycheck")
   ("n" flycheck-next-error "next error")
   ("p" flycheck-previous-error "previous error")
@@ -100,6 +120,10 @@ Commands that stick around (this hydra supports multiple presses).
   ;; TODO `r` for opening the current workspace's readme
   )
 
+(defhydra hydra-emacs-help (:exit t)
+  ("r" russ/reload-emacs-font "Reload emacs fonts")
+  )
+
 (defhydra hydra-main (:exit t)
   ("g" gdscript-hydra-show "Godot Script Hydra"
    :column "All your Hydra are belong to us")
@@ -108,6 +132,8 @@ Commands that stick around (this hydra supports multiple presses).
   ("C" hydra-clawe/body "Clawe hydra")
   ("e" hydra-visit-bookmark/body "Visit/Edit/Bookmarks")
   ("r" hydra-org-refile/body "Org refiling")
+
+  ("h" hydra-emacs-help/body "Emacs help")
 
   ;; TODO create an evil-ex for this as well
   ("a" counsel-projectile-rg "Projectile project search"))
