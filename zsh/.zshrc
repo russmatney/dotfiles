@@ -414,9 +414,9 @@ compdef _bb_tasks bb
 # Python
 ################################################################################
 
-# already on path to due to pyenv shims
-# export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-test ! -f ~/.pyenv/version && pyenv global system
-export PATH="$HOME/.pyenv/bin:$PATH"
+# already on path to due to .zshenv
+if (( $+commands[pyenv] )); then
+   eval "$(pyenv init -)";
+   eval "$(pyenv virtualenv-init -)";
+   test ! -f ~/.pyenv/version && pyenv global system;
+fi
