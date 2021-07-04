@@ -20,6 +20,16 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 
 ################################################################################
+# Keychain
+################################################################################
+
+# keychain for ssh and gpg
+if hash keychain 2>/dev/null; then
+  eval `keychain --eval id_rsa --systemd`
+  # && emacsclient -e '(russ/keychain-refresh-environment)' > /dev/null &
+fi
+
+################################################################################
 # Antibody setup
 ################################################################################
 
