@@ -65,3 +65,10 @@ get_session(){
 }
 
 #exec $(get_session)
+
+
+if ! tmux has-session -t sxhkd 2> /dev/null ; then
+	tmux new-session -s sxhkd -d
+	printf '%s\n' 'echo "hello world"' | tmux load-buffer -
+	tmux paste-buffer -t sxhkd
+fi
