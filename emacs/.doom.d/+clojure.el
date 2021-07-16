@@ -247,7 +247,9 @@
   ;;   '(company-capf company-yasnippet company-flow company-css-classes-backend))
 
   (setq cider-known-endpoints
-        '(("system-babashka" "localhost" "1667")))
+        '(("system-babashka" "localhost" "1667")
+          ("doctor-be" "localhost" "3336")
+          ("doctor-fe" "localhost" "3335")))
 
   (setq cljr-magic-require-namespaces
         '(("io" . "clojure.java.io")
