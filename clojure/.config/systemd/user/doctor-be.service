@@ -1,0 +1,11 @@
+[Unit]
+Description=doctor server
+
+[Service]
+Type=simple
+WorkingDirectory=/home/russ/russmatney/doctor
+ExecStart=/home/russ/russmatney/doctor/start-be.sh
+Restart=on-failure
+
+[Install]
+WantedBy=graphical.target
