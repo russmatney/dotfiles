@@ -249,7 +249,10 @@
   (setq cider-known-endpoints
         '(("system-babashka" "localhost" "1667")
           ("doctor-be" "localhost" "3336")
-          ("doctor-fe" "localhost" "3335")))
+          ("doctor-fe" "localhost" "3335")
+          ("expo-be" "localhost" "5553")
+          ("expo-fe" "localhost" "5554")
+          ))
 
   (setq cljr-magic-require-namespaces
         '(("io" . "clojure.java.io")
