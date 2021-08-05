@@ -265,3 +265,6 @@
   (setq))
 
 (use-package! logview)
+
+
+(use-package! browse-at-remote)

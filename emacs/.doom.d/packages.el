@@ -72,5 +72,7 @@
 ;; magit
 (package! magit-org-todos)
 
+(package! browse-at-remote)
+
 ;; logs
 (package! logview)
