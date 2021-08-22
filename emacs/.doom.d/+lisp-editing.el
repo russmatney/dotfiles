@@ -12,7 +12,11 @@
 
   :config
   (setq clojure-indent-style 'align-arguments)
-  (setq clojure-align-forms-automatically t))
+  (setq clojure-align-forms-automatically t)
+  (setq cider-dynamic-indentation nil
+        cider-font-lock-dynamically nil
+        cider-font-lock-reader-conditionals nil)
+  )
 
 (evil-define-command rm/lispyville-insert-at-end-of-list (count)
   "same as `lispyville-insert-at-end-of-list', but adds a newline."

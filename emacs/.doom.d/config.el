@@ -92,23 +92,23 @@
    company-idle-delay 1.5
    company-minimum-prefix-length 5))
 
-(use-package deft
-      :after org
-      :custom
-      (deft-recursive t)
-      (deft-directory org-roam-directory))
+; (use-package deft
+;       :after org
+;       :custom
+;       (deft-recursive t)
+;       (deft-directory org-roam-directory))
 
-(use-package! org-roam-server
-  :config
-  (setq org-roam-server-host "127.0.0.1"
-        org-roam-server-port 8888
-        org-roam-server-export-inline-images t
-        org-roam-server-authenticate nil
-        org-roam-server-network-poll t
-        org-roam-server-network-arrows nil
-        org-roam-server-network-label-truncate t
-        org-roam-server-network-label-truncate-length 60
-        org-roam-server-network-label-wrap-length 20))
+; (use-package! org-roam-server
+;   :config
+;   (setq org-roam-server-host "127.0.0.1"
+;         org-roam-server-port 8888
+;         org-roam-server-export-inline-images t
+;         org-roam-server-authenticate nil
+;         org-roam-server-network-poll t
+;         org-roam-server-network-arrows nil
+;         org-roam-server-network-label-truncate t
+;         org-roam-server-network-label-truncate-length 60
+;         org-roam-server-network-label-wrap-length 20))
 
 (defun doom-buffer-has-long-lines-p ()
   "Fix for dired sometimes asking for comment syntax."
@@ -141,7 +141,7 @@
 (load! "+org-custom")
 (load! "+custom")
 (load! "+wakatime")
-;; (load! "+exwm")
+; (load! "+exwm")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; misc fixes

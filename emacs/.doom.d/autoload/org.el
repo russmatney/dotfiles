@@ -18,7 +18,7 @@ Org-mode properties drawer already, keep the headline and don’t insert
         ;; (tags (nth 5 (org-heading-components)))
         (has-properties (org-get-property-block)))
     (org-cut-subtree)
-    (org-roam-find-file title nil nil 'no-confirm)
+    (org-roam-node-find title nil nil 'no-confirm)
     (org-paste-subtree)
     (unless has-properties
       (kill-line)

@@ -114,9 +114,6 @@
  )
 
 
-(setq +org-roam-open-buffer-on-find-file nil)
-
-
 
 (advice-add 'org-archive-subtree
             :after
@@ -242,14 +239,6 @@
       :localleader
       "p" #'org-agenda-priority)
 
-(after! org-roam
-  (map! :map org-mode-map
-        :localleader
-        :prefix ("m" . "org-roam")
-        "r" #'russ/org-refile-to-existing-note
-        "R" #'russ/org-refile-to-new-note
-        "j" #'russ/org-refile-to-daily-note
-        "w" #'russ/org-refile-to-workspace-note))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org mode config
@@ -288,6 +277,7 @@
                  :keys "d"
                  :function org-roam-dailies-capture-today)))))
 
+;; TODO review these in light of v2
 (after! org-roam
   (setq org-roam-capture-templates
         '(("d" "default" plain (function org-roam--capture-get-point)
@@ -316,6 +306,8 @@
   "Advise capture to be the only window when used as a popup"
   (if (equal "doom-capture" (frame-parameter nil 'name))
       (delete-other-windows)))
+
+(setq +org-roam-open-buffer-on-find-file nil)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -382,3 +374,32 @@
                                  (org-projectile-todo-files)))
 
   (push (org-projectile-project-todo-entry) org-capture-templates))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; org properties
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun org-hide-properties ()
+  "Hide all org-mode headline property drawers in buffer. Could be slow if it has a lot of overlays."
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (while (re-search-forward
+            "^ *:properties:\n\\( *:.+?:.*\n\\)+ *:end:\n" nil t)
+      (let ((ov_this (make-overlay (match-beginning 0) (match-end 0))))
+        (overlay-put ov_this 'display "")
+        (overlay-put ov_this 'hidden-prop-drawer t))))
+  (put 'org-toggle-properties-hide-state 'state 'hidden))
+
+(defun org-show-properties ()
+  "Show all org-mode property drawers hidden by org-hide-properties."
+  (interactive)
+  (remove-overlays (point-min) (point-max) 'hidden-prop-drawer t)
+  (put 'org-toggle-properties-hide-state 'state 'shown))
+
+(defun org-toggle-properties ()
+  "Toggle visibility of property drawers."
+  (interactive)
+  (if (eq (get 'org-toggle-properties-hide-state 'state) 'hidden)
+      (org-show-properties)
+    (org-hide-properties)))
