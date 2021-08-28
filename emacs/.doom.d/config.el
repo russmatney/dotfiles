@@ -268,3 +268,15 @@
 
 
 (use-package! browse-at-remote)
+
+(use-package! maple-preview
+  :config
+  (setq maple-preview:host "localhost")
+  (setq maple-preview:port 8080)
+  (setq maple-preview:websocket-port 8081)
+
+  (setq maple-preview:browser-open t)
+  ;; these are way too slow to be reasonable
+  (setq maple-preview:auto-update nil)
+  (setq maple-preview:auto-scroll nil)
+  )

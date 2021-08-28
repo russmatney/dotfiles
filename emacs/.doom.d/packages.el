@@ -76,3 +76,6 @@
 
 ;; logs
 (package! logview)
+
+(package! maple-preview :recipe
+  (:host github :repo "honmaple/emacs-maple-preview" :files ("*.el" "index.html" "static")))
