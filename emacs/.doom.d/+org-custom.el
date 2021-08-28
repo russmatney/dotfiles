@@ -403,3 +403,34 @@
   (if (eq (get 'org-toggle-properties-hide-state 'state) 'hidden)
       (org-show-properties)
     (org-hide-properties)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; org roam
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;; https://orgmode-exocortex.com/2021/07/22/configure-org-roam-v2-to-update-database-only-when-idle/
+;; update roam on idle, not on file-save
+(with-eval-after-load "org-roam"
+  ;; queue for files that will be updated in org-roam-db when emacs is idle
+  (setq org-roam-db-update-queue (list))
+  ;; save the original update function;
+  (setq orig-update-file (symbol-function 'org-roam-db-update-file))
+  ;; then redefine the db update function to add the filename to a queue
+  (defun org-roam-db-update-file (&optional file-path)
+    ;; do same logic as original to determine current file-path if not passed as arg
+    (setq file-path (or file-path (buffer-file-name (buffer-base-buffer))))
+    (message "org-roam: scheduling update of %s" file-path)
+    (if (not (memq file-path org-roam-db-update-queue))
+        (push file-path org-roam-db-update-queue)))
+
+  ;; this function will be called when emacs is idle for a few seconds
+  (defun org-roam-db-idle-update-files ()
+    ;; go through queued filenames one-by-one and update db
+    ;; if we're not idle anymore, stop. will get rest of queue next idle.
+    (while (and org-roam-db-update-queue (current-idle-time))
+      ;; apply takes function var and list
+      (apply orig-update-file (list (pop org-roam-db-update-queue)))))
+
+  ;; we'll only start updating db if we've been idle for this many seconds
+  (run-with-idle-timer 5 t #'org-roam-db-idle-update-files))
