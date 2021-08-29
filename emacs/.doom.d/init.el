@@ -19,10 +19,11 @@
 ;; (setq doom-theme 'doom-tomorrow-night)
 ;; (setq doom-theme 'doom-tomorrow-day)
 ;; (setq doom-theme 'doom-dracula)
-(setq doom-theme 'doom-1337)
+;; (setq doom-theme 'doom-1337)
 ;; (setq doom-theme 'doom-solarized-light)
 ;; (setq doom-theme 'doom-moonlight)
 ;; (setq doom-theme 'doom-monokai-spectrum)
+(setq doom-theme 'doom-monokai-machine)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Fonts
