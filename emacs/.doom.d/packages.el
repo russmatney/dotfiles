@@ -59,7 +59,7 @@
 (package! org-projectile)
 
 ;; org-roam
-(package! org-roam-server)
+;; (package! org-roam-server)
 
 ;; ink
 (package! ink-mode :recipe

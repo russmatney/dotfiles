@@ -279,27 +279,39 @@
 
 ;; TODO review these in light of v2
 (after! org-roam
+  ;; (setq org-roam-capture-templates
+  ;;       '(("r" "reference" plain
+  ;;          (file "/org/template.org")
+  ;;          :if-new (file+head "test/${citekey}.org"
+  ;;                             "#+TITLE: ${title}\n")
+  ;;          :unnarrowed t)))
+
   (setq org-roam-capture-templates
-        '(("d" "default" plain (function org-roam--capture-get-point)
+        '(("d" "default" plain
+           ;; (function org-roam--capture-get-point)
            "%?"
-           :file-name "garden/${slug}"
-           :head
-           "#+TITLE: ${title}
-#+ID: %(shell-command-to-string \"uuidgen\")#+CREATED_AT: %<%Y%m%d:%H%M%S>"
+           :if-new
+           (file+head "garden/${slug}.org"
+                      "#+TITLE: ${title}
+#+CREATED_AT: %<%Y%m%d:%H%M%S>")
            :unnarrowed t))
 
         org-roam-capture-ref-templates
-        '(("r" "ref" plain (function org-roam-capture--get-point)
+        '(("r" "ref" plain
+           ;; (function org-roam-capture--get-point)
            "%?"
-           :file-name "garden/websites/${slug}"
-           :head "#+TITLE: ${title}
+           :if-new (file+head "garden/websites/${slug}.org"
+                              "#+TITLE: ${title}
 #+CREATED_AT: %<%Y%m%d:%H%M%S>
 #+ROAM_KEY: ${ref}
-- source :: ${ref}"
-           :unnarrowed t))
+- source :: ${ref}")
+           :unnarrowed t)))
 
-        ;; org-roam-dailies-capture-templates
-        ))
+  ;; https://org-roam.discourse.group/t/v2-error-running-org-roam-dailies-find-today/1511/4
+  (setq org-roam-dailies-capture-templates
+        '(("d" "default" entry "* %?" :if-new
+           (file+head "%<%Y-%m-%d>.org"
+                      "#+title: %<%Y-%m-%d>")))))
 
 (defadvice org-capture
     (after make-full-window-frame activate)
@@ -407,6 +419,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; org roam
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(after! org-roam
+  (setq org-roam-mode-section-functions
+        (list #'org-roam-backlinks-section
+              #'org-roam-reflinks-section
+              ;; #'org-roam-unlinked-references-section ;; note, can be slow!
+              )))
 
 
 ;; https://orgmode-exocortex.com/2021/07/22/configure-org-roam-v2-to-update-database-only-when-idle/
