@@ -1,3 +1,7 @@
+* Emacs
+- Edit keybindings: [[file:./emacs/.doom.d/+bindings.el][.doom.d/+bindings.el]]
+- Edit module config: [[file:./emacs/.doom.d/+bindings.el][.doom.d/init.el]]
+- Edit hydra: [[file:./emacs/.doom.d/+bindings.el][.doom.d/hydra.el]]
 * Stow-based Dotfiles
 
 These files are structured to take advantage of `GNU Stow` for installation and
