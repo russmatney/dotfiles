@@ -77,7 +77,9 @@
 
 ;; bookmarks
 (map!
- (:leader :desc "Edit/Open" "e" #'hydra-visit-bookmark/body))
+ (:leader :desc "Edit/Open (Hydra)" "e" #'hydra-visit-bookmark/body)
+ (:desc "Sticky Hydra" "M-b" #'hydra-sticky/body)
+ )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Snippets
@@ -215,7 +217,6 @@
  ;; find in open buffers
  (:leader :desc "Workspace buffers"      :n  "b"   #'switch-to-buffer)
  (:leader :desc "iBuffer"                :n  "B"   #'ibuffer)
- :n "M-b"   #'ibuffer
 
  ;; test toggle
  (:leader :desc "projectile-test-toggle" :n  "T" #'projectile-toggle-between-implementation-and-test)
