@@ -79,6 +79,11 @@
 (map!
  (:leader :desc "Edit/Open (Hydra)" "e" #'hydra-visit-bookmark/body)
  (:desc "Sticky Hydra" "M-b" #'hydra-sticky/body)
+ (:leader :desc "CLAWE Hydra" "C" #'hydra-clawe/body)
+
+ ;; hydra base
+ :nvime "M-y" #'hydra-main/body
+ (:leader :desc "Hydra entrypoint"       :n "l"  #'hydra-main/body)
  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -136,10 +141,6 @@
  :n "g r"   '+lookup/references
 
  (:leader :desc "RAISE" :nv "r"   #'+popup/raise)
-
- ;; hydra base
- :nvime "M-y" #'hydra-main/body
- (:leader :desc "Hydra entrypoint"       :n "l"  #'hydra-main/body)
 
  )
 

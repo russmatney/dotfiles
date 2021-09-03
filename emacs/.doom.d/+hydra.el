@@ -70,6 +70,14 @@ Commands that stick around (this hydra supports multiple presses).
   ("p" flycheck-previous-error "previous error")
   )
 
+(defhydra hydra-workspace-garden-files (:exit t)
+  ("g" hydra-workspace-garden-files/body "workspace garden file"
+   :column "Garden Files")
+
+  ("c" (find-file "~/todo/garden/workspaces/clawe.org") "clawe workspace garden file")
+  ("d" (find-file "~/todo/garden/workspaces/doctor.org") "doctor workspace garden file")
+  )
+
 (defhydra hydra-clawe (:exit t)
   ("B" (find-file "~/russmatney/clawe/src/clawe/defs/bindings.clj")
    "defs/bindings.clj" :column "Open file")
@@ -81,7 +89,12 @@ Commands that stick around (this hydra supports multiple presses).
    "rebuild" :column "clawe mgmt")
   ("r" (shell-command "clawe reload") "reload")
   ;; NOTE this doesn't do the caching/restore that mod+shift+r does yet
-  ("A" (shell-command "awesome-client \"awesome.restart()\"") "restart awesome"))
+  ("A" (shell-command "awesome-client \"awesome.restart()\"") "restart awesome")
+
+  ;; can i expand this hydra into here? compose it?
+  ("g" hydra-workspace-garden-files/body "workspace garden file" :column "Garden Files")
+  ("c" (find-file "~/todo/garden/workspaces/clawe.org") "clawe workspace garden file")
+  ("d" (find-file "~/todo/garden/workspaces/doctor.org") "doctor workspace garden file"))
 
 (defhydra hydra-clojure (:exit t)
   ("'"  cider-jack-in "jack-in (clj)" :column "jack in!")
