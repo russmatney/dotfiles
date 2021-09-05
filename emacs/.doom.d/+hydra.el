@@ -79,9 +79,9 @@ Commands that stick around (this hydra supports multiple presses).
   )
 
 (defhydra hydra-clawe (:exit t)
-  ("B" (find-file "~/russmatney/clawe/src/clawe/defs/bindings.clj")
+  ("b" (find-file "~/russmatney/clawe/src/clawe/defs/bindings.clj")
    "defs/bindings.clj" :column "Open file")
-  ("W" (find-file "~/russmatney/clawe/src/clawe/defs/workspaces.clj")
+  ("w" (find-file "~/russmatney/clawe/src/clawe/defs/workspaces.clj")
    "defs/workspaces.clj")
 
   ("R" (shell-command

@@ -47,7 +47,7 @@ Org-mode properties drawer already, keep the headline and don’t insert
          `((,(append (file-expand-wildcards "~/Dropbox/todo/garden/workspaces/*.org")
                      ;; (org-projectile-todo-files)
                      )
-            :maxlevel . 1))))
+            :level . 0))))
     (call-interactively #'org-refile)))
 
 ;;;###autoload
@@ -56,7 +56,7 @@ Org-mode properties drawer already, keep the headline and don’t insert
   (interactive)
   (let ((org-refile-targets
          `((,(file-expand-wildcards "~/Dropbox/todo/daily/*.org")
-            :maxlevel . 1))))
+            :level . 0))))
     (call-interactively #'org-refile)))
 
 
@@ -71,5 +71,5 @@ Org-mode properties drawer already, keep the headline and don’t insert
                  (s-contains? "ideas" s)
                  (s-contains? "writing" s)))
               (file-expand-wildcards "~/Dropbox/todo/garden/*.org"))
-            :maxlevel . 1))))
+            :level . 0))))
     (call-interactively #'org-refile)))
