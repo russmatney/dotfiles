@@ -12,7 +12,7 @@ configuration {
 	me-select-entry:				"MouseSecondary";
 	me-accept-entry:				"MousePrimary";
 	scroll-method: 1;
-    lines: 12;
+    // lines: 12;
     // The display name of this browser
     display-ssh:                   "ssh";
     // The display name of this browser
@@ -33,4 +33,4 @@ configuration {
 }
 
 
-@import "./slate.rasi"
+@theme "slate"
