@@ -425,8 +425,9 @@
         (list #'org-roam-backlinks-section
               #'org-roam-reflinks-section
               ;; #'org-roam-unlinked-references-section ;; note, can be slow!
-              )))
-
+              ))
+  ;; disable by default because roam locks up emacs far too often
+  (org-roam-db-autosync-disable))
 
 ;; https://orgmode-exocortex.com/2021/07/22/configure-org-roam-v2-to-update-database-only-when-idle/
 ;; update roam on idle, not on file-save
