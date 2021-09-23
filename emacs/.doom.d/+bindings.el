@@ -90,12 +90,14 @@
 ;; Snippets
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defhydra hydra-snippets (:exit t)
+  ("s" +snippets/new "Create new snippet")
+  ("e" +snippets/find "Edit snippet")
+  ("f" +snippets/find "Find snippet"))
+
 (map!
  (:leader
-  (:desc "Edit" :prefix "E"
-   :desc "Create new snippet" :n "s" #'+snippets/new
-   :desc "Edit snippet" :n "e" #'+snippets/find
-   :desc "Find snippet" :n "f" #'+snippets/find))
+  (:desc "Edit" :n "E" #'hydra-snippets/body))
  (:after yasnippet
   (:map yas-keymap
    "C-e"           #'+snippets/goto-end-of-field
@@ -134,8 +136,8 @@
  :nvime "M-:" #'eval-expression
 
  ;; org
- (:leader :desc "org-capture"     :nv "x"   #'org-capture)
- (:leader :desc "org-agenda"     :nv "A"   #'org-agenda)
+ (:leader :desc "org-capture" :nv "x" #'org-capture)
+ (:leader :desc "org-agenda"  :nv "A" #'org-agenda)
 
  :n "g d"   '+lookup/definition
  :n "g r"   '+lookup/references
@@ -148,17 +150,17 @@
 ;; Kill the things
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-
+(defhydra hydra-kill (:exit t)
+  ("k" delete-window "delete window" :column "Time to Kill")
+  ("B" doom/kill-other-buffers "kill other buffers")
+  ("b" kill-buffer "kill buffer (from list)")
+  ("a" ace-delete-window "ace-delete-window")
+  ("s" +workspace/delete "+workspace/delete")
+  ("n" +treemacs/toggle "toggle treemacs"))
 
 (map!
  (:leader
-  (:desc "kill" :prefix "k"
-   :desc "delete-window"           :n "k" #'delete-window
-   :desc "doom/kill-other-buffers" :n "B" #'doom/kill-other-buffers
-   :desc "kill-buffer-from-list"   :n "b" #'kill-buffer
-   :desc "ace-delete-window"       :n "a" #'ace-delete-window
-   :desc "+workspace/delete"       :n "s" #'+workspace/delete
-   :desc "hide-neotree"            :n "n" #'neotree-hide)))
+  (:desc "kill" :n "k" #'hydra-kill/body)))
 
 (ex! "k" #'kill-this-buffer)
 
@@ -246,15 +248,18 @@
 ;; Git
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defhydra git-hydra (:exit t)
+  ("s" magit-status "Magit status" :column "Magit")
+  ("m" magit "Magit")
+  ("b" magit-blame "Magit blame")
+  ("l" magit-log "Magit log")
+  ("t" git-timemachine-toggle "Git Time Machine toggle" :column "Time Machine")
+  ("r" git-gutter:revert-hunk "Git Gutter revert hunk" :column "Gutter")
+  ("a" git-gutter:stage-hunk "Git Gutter stage hunk"))
+
 (map!
  (:leader
-   (:desc "git" :prefix "g"
-     :desc "Git status"        :n  "s" #'magit-status
-     :desc "Git blame"         :n  "b" #'magit-blame
-     :desc "Git status"        :n  "l" #'magit-log
-     :desc "Git time machine"  :n  "t" #'git-timemachine-toggle
-     :desc "Git revert hunk"   :n  "r" #'git-gutter:revert-hunk
-     :desc "Git revert hunk"   :n  "a" #'git-gutter:stage-hunk)))
+  (:desc "git" :n "g" #'git-hydra/body)))
 
 ;; allow moving left/right in magit buffers
 (after! magit
@@ -291,14 +296,6 @@
    :nv "w" #'git-timemachine-kill-abbreviated-revision
    :nv "W" #'git-timemachine-kill-revision
    :nv "b" #'git-timemachine-blame)))
-
-;; (:after git-timemachine
-;;  :map git-timemachine-mode-map
-;;  :n "C-j" #'git-timemachine-show-next-revision
-;;  :n "C-k" #'git-timemachine-show-previous-revision
-;;  :n "C-c" #'git-timemachine-show-commit
-;;  :n "C-b" #'git-timemachine-blame
-;;  :n "C-u" #'git-timemachine-kill-revision)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Dired
@@ -359,10 +356,10 @@
 (map!
  :desc "swiper"                :nv "/"   #'evil-ex-search-forward
  (:leader
-   :desc "Imenu"                 :nv "i"   #'imenu
-   :desc "Imenu across buffers"  :nv "I"   #'imenu-anywhere
-   :desc "Swiper"                :nv "f"   #'swiper
-   :desc "swiper"                :nv "/"   #'swiper))
+  :desc "Imenu"                 :nv "i"   #'imenu
+  :desc "Imenu across buffers"  :nv "I"   #'imenu-anywhere
+  :desc "Swiper"                :nv "f"   #'swiper
+  :desc "swiper"                :nv "/"   #'swiper))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Help Mode
@@ -370,26 +367,55 @@
 
 (map!
  (:map help-mode-map
-   :n "q"   #'quit-window))
+  :n "q"   #'quit-window))
+
+(defhydra hydra-help (:exit t)
+  ;; TODO how to consume this help-map?
+  ("h" (lambda () help-map) "Help map" :column "Emacs Help")
+  ("i" info "Info")
+  ("p" doom/toggle-profiler "Toggle profiler")
+  ("R" doom/reload-theme "Reload theme")
+
+  ("f" describe-function "Describe function" :column "Describe")
+  ("k" describe-key "Describe key")
+  ("c" describe-char "Describe char")
+  ("M" describe-mode "Describe mode")
+  ("v" describe-variable "Describe variable")
+  ("F" describe-face "Describe face")
+  ("d" doom/describe-module "Describe DOOM module")
+
+  ("." +jump/definition "Find definition" :column "Find")
+  ("/" +jump/references "Find references")
+  ("l" find-library "Find library")
+  ("a" apropos "Apropos"))
+
+;; (map!
+;;  (:leader
+;;   (:desc "help" :n "h" nil)))
+
+;; TODO use once help-map works from the above hydra
+;; (map!
+;;  (:leader
+;;   (:desc "help" :n "h" hydra-help/body)))
 
 (map!
  (:leader
-   (:desc "help" :prefix "h"
-     :desc "Help map"              :n "h" help-map
-     :desc "Apropos"               :n "a" #'apropos
-     :desc "Reload theme"          :n "R" #'doom/reload-theme
-     :desc "Find library"          :n "l" #'find-library
-     :desc "Describe function"     :n "f" #'describe-function
-     :desc "Describe key"          :n "k" #'describe-key
-     :desc "Describe char"         :n "c" #'describe-char
-     :desc "Describe mode"         :n "M" #'describe-mode
-     :desc "Describe variable"     :n "v" #'describe-variable
-     :desc "Describe face"         :n "F" #'describe-face
-     :desc "Describe DOOM module"  :n "d" #'doom/describe-module
-     :desc "Find definition"       :n "." #'+jump/definition
-     :desc "Find references"       :n "/" #'+jump/references
-     :desc "Info"                  :n "i" #'info
-     :desc "Toggle profiler"       :n "p" #'doom/toggle-profiler)))
+  (:desc "help" :prefix "h"
+   :desc "Help map"              :n "h" help-map
+   :desc "Apropos"               :n "a" #'apropos
+   :desc "Reload theme"          :n "R" #'doom/reload-theme
+   :desc "Find library"          :n "l" #'find-library
+   :desc "Describe function"     :n "f" #'describe-function
+   :desc "Describe key"          :n "k" #'describe-key
+   :desc "Describe char"         :n "c" #'describe-char
+   :desc "Describe mode"         :n "M" #'describe-mode
+   :desc "Describe variable"     :n "v" #'describe-variable
+   :desc "Describe face"         :n "F" #'describe-face
+   :desc "Describe DOOM module"  :n "d" #'doom/describe-module
+   :desc "Find definition"       :n "." #'+jump/definition
+   :desc "Find references"       :n "/" #'+jump/references
+   :desc "Info"                  :n "i" #'info
+   :desc "Toggle profiler"       :n "p" #'doom/toggle-profiler)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Company Mode
@@ -397,28 +423,28 @@
 
 (map!
  (:after company
-   (:map company-active-map
-     ;; Don't interfere with `evil-delete-backward-word' in insert mode
-     "C-w"        nil
+  (:map company-active-map
+   ;; Don't interfere with `evil-delete-backward-word' in insert mode
+   "C-w"        nil
 
-     ;; Navigate candidates
-     "C-n"        #'company-other-backend
-     "C-p"        #'company-other-backend
-     "C-j"        #'company-select-next
-     "C-k"        #'company-select-previous
-     "C-l"        #'company-complete-selection
-     "<down>"       #'company-select-next
-     "<up>"         #'company-select-previous
-     "<right>"       #'company-complete-selection
-     "C-SPC"      #'company-complete-common
-     "TAB"     #'company-complete-common-or-cycle
-     [backtab]    #'company-select-previous
-     [escape]     (λ! (company-abort) (evil-normal-state 1))
+   ;; Navigate candidates
+   "C-n"        #'company-other-backend
+   "C-p"        #'company-other-backend
+   "C-j"        #'company-select-next
+   "C-k"        #'company-select-previous
+   "C-l"        #'company-complete-selection
+   "<down>"       #'company-select-next
+   "<up>"         #'company-select-previous
+   "<right>"       #'company-complete-selection
+   "C-SPC"      #'company-complete-common
+   "TAB"     #'company-complete-common-or-cycle
+   [backtab]    #'company-select-previous
+   [escape]     (λ! (company-abort) (evil-normal-state 1))
 
-     ;; filter or show docs for candidate
-     "C-h"        #'company-show-doc-buffer
-     "<right>"        #'company-show-doc-buffer
-     "C-s"        #'company-filter-candidates)))
+   ;; filter or show docs for candidate
+   "C-h"        #'company-show-doc-buffer
+   "<right>"        #'company-show-doc-buffer
+   "C-s"        #'company-filter-candidates)))
 
 ;; TODO perhaps not a binding...
 ;; (after! company
