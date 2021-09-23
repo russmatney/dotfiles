@@ -36,9 +36,11 @@
   (interactive)
   (cider-interactive-eval "(wing.repl/sync-libs)"))
 
-(defun cider-user-go ()
-  (interactive)
-  (cider-interactive-eval "(user/go)"))
+(defhydra hydra-systemic (:exit t)
+  ("r" systemic/restart "systemic/restart")
+  ("s" systemic/start "systemic/start")
+  ("S" systemic/stop "systemic/stop")
+  ("l" wing-sync-libs "wing-sync-libs"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; cider company bindings fix
@@ -136,39 +138,47 @@
 ;; cider bindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defhydra hydra-clojure-docs (:exit t)
+  ("n" cider-browse-ns "Browse Namespace" :column "Clojure doc lookup")
+  ("s" cider-browse-spec "Browse Spec")
+  ("h" cider-doc "cider-doc")
+  ("f" clojure-essential-ref "Essential Ref"))
+
+(defhydra hydra-cider-mode (:exit t)
+  ("'" cider-jack-in "jack-in" :column "Jack in/Connect")
+  ("\"" cider-jack-in-cljs "jack-in-cljs")
+  ("c" cider-connect "cider-connect")
+  ("C" cider-connect-cljs "cider-connect-cljs")
+
+  ("DEL" ivy-cider-browse-ns "ivy-cider-browse-ns" :column "Browse")
+  ("\\" ivy-cider-apropos "cider-apropos")
+  ("j" cider-find-var "cider-find-var")
+  ("h" cider-doc "cider-doc")
+  ("d" hydra-clojure-docs/body "hydra-clojure-docs/body")
+
+  ("l" cider-load-this-file "cider-load-this-file" :column "Eval/Repl")
+  ("b" cider-eval-buffer "cider-eval-buffer")
+  ("p" cider-eval-sexp-at-point "cider-eval-sexp-at-point")
+  ("f" cider-eval-defun-at-point "cider-eval-defun-at-point")
+  ("B" cider-switch-to-repl-buffer "cider-switch-to-repl-buffer")
+  ("n" cider-repl-set-ns "cider-repl-set-ns")
+  ("k" rs/cider-clear-all-buffers "rs/cider-clear-all-buffers")
+  ("i" cider-inspect-last-result "cider-inspect-last-result")
+  ("r" rs/cider-cycle-buffer-type "rs/cider-cycle-buffer-type")
+  ("s" russ/switch-cider-connection "russ/switch-cider-connection")
+  ("S" hydra-systemic/body "hydra-systemic")
+
+  ("t" cider-test-run-ns-tests "cider-test-run-ns-tests" :column "Test")
+  ("T" cider-test-run-test "cider-test-run-test")
+
+  ("m" clojure-move-to-let "clojure-move-to-let" :column "Refactor")
+  )
+
 (map!
  (:after cider-mode
   (:map cider-mode-map
    (:leader
-    :n "DEL" #'ivy-cider-browse-ns
-    :n "\\" #'ivy-cider-apropos
-    (:desc "Cider" :prefix "c"
-     :n  "'"  #'cider-jack-in
-     :n  "\"" #'cider-jack-in-cljs
-
-     :n  "l"  #'cider-load-this-file
-     :n  "b"  #'cider-eval-buffer
-
-     :n  "B"  #'cider-switch-to-repl-buffer
-     :n  "n"  #'cider-repl-set-ns
-     :n  "j"  #'cider-find-var
-     (:desc "docs" :prefix "d"
-      :desc "Browse Namespace" :n  "n" #'cider-browse-ns
-      :desc "Browse Spec"      :n  "s" #'cider-browse-spec
-      :desc "Essential Ref"    :n  "f" #'clojure-essential-ref)
-     :n  "h"  #'cider-doc
-     :n  "c"  #'rs/cider-clear-all-buffers
-     :n  "i"  #'cider-inspect-last-result
-     :n  "p"  #'cider-eval-sexp-at-point
-     :n  "f"  #'cider-eval-defun-at-point
-     :n  "t"  #'cider-test-run-ns-tests
-     :n  "T"  #'cider-test-run-test
-
-     :n  "r"  #'rs/cider-cycle-buffer-type
-     :n  "s"  #'russ/switch-cider-connection
-     :n  "g"  #'cider-user-go
-
-     :n  "m"  #'clojure-move-to-let)))
+    :n "c" #'hydra-cider-mode/body))
   (:after cider-browse-ns-mode
    (:map cider-browse-ns-mode-map
     :n "RET"       #'cider-browse-ns-operate-at-point))))
