@@ -220,7 +220,10 @@
        ;;purescript        ; javascript, but functional
        (python
         +lsp
-        +pyright)            ; beautiful is better than ugly
+        +pyright
+        ;; +poetry
+        +pyenv
+        )            ; beautiful is better than ugly
        ;;qt
        ;;racket            ; a DSL for DSLs
        ;;raku              ; the artist formerly known as perl6
