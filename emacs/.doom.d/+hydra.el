@@ -108,10 +108,11 @@ Commands that stick around (this hydra supports multiple presses).
   ("<" cljr-thread-last-all "Thread last all"))
 
 (defhydra hydra-visit-bookmark (:exit t)
-  ("t" russ/open-org-file "Open ~/todo org file" :column "~/todo")
+  ("t" russ/open-org-file "Open ~/todo org file" :column "~/todo & Garden")
   ("p" (find-file "~/todo/projects.org") "Open ~/todo/projects.org")
   ("j" (find-file "~/todo/journal.org") "Open ~/todo/journal.org")
   ("a" org-agenda "Org Agenda")
+  ("D" org-roam-dailies-find-today "Roam Daily")
 
   ("." russ/open-dotfile "~/dotfiles/*" :column "dotfiles")
   ("z" (find-file "~/.zshrc") "~/.zshrc")
