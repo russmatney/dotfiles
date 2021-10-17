@@ -262,6 +262,7 @@
           ("doctor-fe" "localhost" "3335")
           ("expo-be" "localhost" "5553")
           ("expo-fe" "localhost" "5554")
+          ("godot-arcadia" "localhost" "3722")
           ))
 
   (setq cljr-magic-require-namespaces

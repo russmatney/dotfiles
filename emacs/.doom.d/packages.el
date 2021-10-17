@@ -81,3 +81,4 @@
   (:host github :repo "honmaple/emacs-maple-preview" :files ("*.el" "index.html" "static")))
 
 (package! map :pin "bb50dbaafc0f71743bd9ffd5784258a9fd682c20")
+(package! xref :pin "a82f459b37b31546bf274388baf8aca79e9c30d9")
