@@ -280,3 +280,7 @@
   (setq maple-preview:auto-update nil)
   (setq maple-preview:auto-scroll nil)
   )
+
+(use-package! gdscript-mode
+  :config
+  (setq gdscript-godot-executable "/usr/bin/godot-mono"))
