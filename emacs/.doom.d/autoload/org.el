@@ -18,7 +18,7 @@ Org-mode properties drawer already, keep the headline and don’t insert
         ;; (tags (nth 5 (org-heading-components)))
         (has-properties (org-get-property-block)))
     (org-cut-subtree)
-    (org-roam-node-find title nil nil 'no-confirm)
+    (org-roam-node-find 'other-window title nil)
     (org-paste-subtree)
     (unless has-properties
       (kill-line)
@@ -29,6 +29,7 @@ Org-mode properties drawer already, keep the headline and don’t insert
       (kill-line)
       (kill-line))
     (org-save-all-org-buffers)))
+
 
 ;;;###autoload
 (defun russ/org-refile-to-existing-note ()
@@ -65,11 +66,13 @@ Org-mode properties drawer already, keep the headline and don’t insert
   "Refiles to one of the roam bucket notes."
   (interactive)
   (let ((org-refile-targets
-         `((,(cl-remove-if-not
-              (lambda (s)
-                (or
-                 (s-contains? "ideas" s)
-                 (s-contains? "writing" s)))
-              (file-expand-wildcards "~/Dropbox/todo/garden/*.org"))
+         `((,(append
+              (file-expand-wildcards "~/Dropbox/todo/garden/workspaces/*.org")
+              (cl-remove-if-not
+               (lambda (s)
+                 (or
+                  (s-contains? "ideas" s)
+                  (s-contains? "writing" s)))
+               (file-expand-wildcards "~/Dropbox/todo/garden/*.org")))
             :level . 0))))
     (call-interactively #'org-refile)))
