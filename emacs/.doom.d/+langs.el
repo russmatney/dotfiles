@@ -9,6 +9,30 @@
 
 ;; LSP
 
+;; https://www.reddit.com/r/emacs/comments/hw0cqq/does_anyone_have_issues_with_lspuidoc/
+(defvar lva--lsp-ui-doc-atpoint-h 10
+  "lsp-ui-doc-max-height when lsp-ui is shown at point")
+(defvar lva--lsp-ui-doc-atpoint-w 50
+  "lsp-ui-doc-max-width when lsp-ui is shown at point")
+(defvar lva--lsp-ui-doc-anchored-h 20
+  "lsp-ui-doc-max-height when lsp-ui position is 'top or 'bottom")
+(defvar lva--lsp-ui-doc-anchored-w 150
+  "lsp-ui-doc-max-width when lsp-ui position is 'top or 'bottom")
+
+(defun lva/lsp-ui-toggle-doc (arg)
+  (interactive "P")
+  (if lsp-ui-doc-mode
+      (lsp-ui-doc-mode 0)
+    (progn
+      (if arg
+          (setq lsp-ui-doc-position 'at-point
+                lsp-ui-doc-max-height lva--lsp-ui-doc-atpoint-h
+                lsp-ui-doc-max-width lva--lsp-ui-doc-atpoint-w)
+        (setq lsp-ui-doc-position 'top
+              lsp-ui-doc-max-height lva--lsp-ui-doc-anchored-h
+              lsp-ui-doc-max-width lva--lsp-ui-doc-anchored-w))
+      (lsp-ui-doc-mode))))
+
 (use-package! lsp-mode
   :hook
   (haskell-mode . lsp)
@@ -16,8 +40,12 @@
   (rust-mode . lsp)
   ;; :commands lsp
   :config
-  ;; (setq lsp-keymap-prefix "SPC l")
+  ;; (lsp-ui-doc-mode 0)
+  (setq lsp-ui-doc-position 'top)
+  (setq lsp-keymap-prefix "SPC l")
+  ;; (lsp-ui-doc-mode nil)
   )
+
 
 (map! :after lsp-mode
       :map lsp-mode-map

@@ -1,0 +1,7 @@
+# key: cljc
+# name: cljc
+# --
+#?(:clj :cljs$1
+  (comment
+   $0
+    ))
