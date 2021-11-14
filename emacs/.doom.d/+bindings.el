@@ -83,7 +83,7 @@
 
  ;; hydra base
  :nvime "M-y" #'hydra-main/body
- (:leader :desc "Hydra entrypoint"       :n "l"  #'hydra-main/body)
+ ;; (:leader :desc "Hydra entrypoint"       :n "l"  #'hydra-main/body)
  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
