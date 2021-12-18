@@ -31,7 +31,7 @@ set number
 
 set backspace=2
 
-set clipboard=unnamed
+set clipboard=unnamedplus
 
 " indents and tab stuff
 set smartindent
