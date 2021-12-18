@@ -16,8 +16,6 @@ return require('packer').startup(function(use)
 
   -- Misc Syntax Plugins
   use 'vim-scripts/SyntaxComplete'
-  use 'rust-lang/rust.vim'
-  use 'racer-rust/vim-racer'
   use 'cespare/vim-toml'
 
   -- Git
@@ -76,31 +74,8 @@ return require('packer').startup(function(use)
   use 'roosta/srcery'
   use 'flazz/vim-colorschemes'
 
-  -- Docs
-  use 'rizzatti/dash.vim'
-
   -- Search
   use 'rking/ag.vim'
-
-  -- Proc managers
-  use 'benekastah/neomake'
-  -- use 'Shougo/vimproc.vim', {'do': 'make'}
-
-  -- Web
-  use 'pangloss/vim-javascript'
-  use 'othree/html5.vim'
-  use 'digitaltoad/vim-jade'
-  use 'rschmukler/typescript-vim'
-  use 'Quramy/tsuquyomi'
-  use 'marijnh/tern_for_vim'
-
-  -- Elixir
-  use 'elixir-lang/vim-elixir'
-  use 'slashmili/alchemist.vim'
-  use 'powerman/vim-plugin-AnsiEsc'
-
-  -- Elm
-  use 'elmcast/elm-vim'
 
   -- Completion
   use 'ervandew/supertab'
