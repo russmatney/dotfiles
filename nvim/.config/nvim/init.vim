@@ -2,6 +2,8 @@ set t_Co=256
 let g:hybrid_use_Xresources = 1
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
+" neovim-native fennel support
+let g:aniseed#env = v:true
 
 " autocmd VimEnter * color OceanicNext
 " autocmd VimEnter * color srcery
