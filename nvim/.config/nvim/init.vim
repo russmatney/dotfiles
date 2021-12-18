@@ -74,7 +74,7 @@ nnoremap <leader>s <c-w>s<c-w>k
 nnoremap <leader><leader> <c-^>
 
 "align
-nnoremap <leader>a =ip
+nnoremap <leader>a :Ag
 
 "open file in same dir
 nnoremap <leader>E :Explore<CR>
