@@ -1,0 +1,773 @@
+#compdef _kustomize kustomize
+
+
+function _kustomize {
+  local -a commands
+
+  _arguments -C \
+    '--stack-trace[print a stack-trace on error]' \
+    "1: :->cmnds" \
+    "*::arg:->args"
+
+  case $state in
+  cmnds)
+    commands=(
+      "build:Print configuration per contents of kustomization.yaml"
+      "cfg:Commands for reading and writing configuration."
+      "completion:Generate shell completion script"
+      "create:Create a new kustomization in the current directory"
+      "docs-fn:[Alpha] Documentation for developing and invoking Configuration Functions."
+      "docs-fn-spec:[Alpha] Documentation for Configuration Functions Specification."
+      "docs-io-annotations:[Alpha] Documentation for annotations used by io."
+      "docs-merge:[Alpha] Documentation for merging Resources (2-way merge)."
+      "docs-merge3:[Alpha] Documentation for merging Resources (3-way merge)."
+      "edit:Edits a kustomization file"
+      "fn:Commands for running functions against configuration."
+      "help:Help about any command"
+      "tutorials-command-basics:[Alpha] Tutorials for using basic config commands."
+      "tutorials-function-basics:[Alpha] Tutorials for using functions."
+      "version:Prints the kustomize version"
+    )
+    _describe "command" commands
+    ;;
+  esac
+
+  case "$words[1]" in
+  build)
+    _kustomize_build
+    ;;
+  cfg)
+    _kustomize_cfg
+    ;;
+  completion)
+    _kustomize_completion
+    ;;
+  create)
+    _kustomize_create
+    ;;
+  docs-fn)
+    _kustomize_docs-fn
+    ;;
+  docs-fn-spec)
+    _kustomize_docs-fn-spec
+    ;;
+  docs-io-annotations)
+    _kustomize_docs-io-annotations
+    ;;
+  docs-merge)
+    _kustomize_docs-merge
+    ;;
+  docs-merge3)
+    _kustomize_docs-merge3
+    ;;
+  edit)
+    _kustomize_edit
+    ;;
+  fn)
+    _kustomize_fn
+    ;;
+  help)
+    _kustomize_help
+    ;;
+  tutorials-command-basics)
+    _kustomize_tutorials-command-basics
+    ;;
+  tutorials-function-basics)
+    _kustomize_tutorials-function-basics
+    ;;
+  version)
+    _kustomize_version
+    ;;
+  esac
+}
+
+function _kustomize_build {
+  _arguments \
+    '--enable-exec[enable support for exec functions -- note: exec functions run arbitrary code -- do not use for untrusted configs!!! (Alpha)]' \
+    '--enable-star[enable support for starlark functions. (Alpha)]' \
+    '--enable_alpha_plugins[enable plugins, an alpha feature.
+See https://github.com/kubernetes-sigs/kustomize/blob/master/docs/plugins/README.md
+]' \
+    '--enable_kyaml[enable dependence on kyaml instead of k8sdeps.]' \
+    '--enable_managedby_label[enable adding app.kubernetes.io/managed-by]' \
+    '(*-e *--env)'{\*-e,\*--env}'[a list of environment variables to be used by functions]:' \
+    '--load_restrictor[if set to '\''LoadRestrictionsNone'\'', local kustomizations may load files from outside their root. This does, however, break the relocatability of the kustomization.]:' \
+    '*--mount[a list of storage options read from the filesystem]:' \
+    '--network[enable network access for functions that declare it]' \
+    '--network-name[the docker network to run the container in]:' \
+    '(-o --output)'{-o,--output}'[If specified, write the build output to this path.]:' \
+    '--reorder[Reorder the resources just before output. Use '\''legacy'\'' to apply a legacy reordering (Namespaces first, Webhooks last, etc). Use '\''none'\'' to suppress a final reordering.]:' \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+
+function _kustomize_cfg {
+  local -a commands
+
+  _arguments -C \
+    '--stack-trace[print a stack-trace on error]' \
+    "1: :->cmnds" \
+    "*::arg:->args"
+
+  case $state in
+  cmnds)
+    commands=(
+      "annotate:[Alpha] Set an annotation on Resources."
+      "cat:[Alpha] Print Resource Config from a local directory."
+      "count:[Alpha] Count Resources Config from a local directory."
+      "create-setter:[Alpha] Create a custom setter for a Resource field"
+      "create-subst:"
+      "fmt:[Alpha] Format yaml configuration files."
+      "grep:[Alpha] Search for matching Resources in a directory or from stdin"
+      "init:[Alpha] Initialize a directory with a Krmfile."
+      "list-setters:[Alpha] List setters for Resources."
+      "merge:[Alpha] Merge Resource configuration files"
+      "merge3:[Alpha] Merge diff of Resource configuration files into a destination (3-way)"
+      "set:[Alpha] Set values on Resources fields values."
+      "tree:[Alpha] Display Resource structure from a directory or stdin."
+    )
+    _describe "command" commands
+    ;;
+  esac
+
+  case "$words[1]" in
+  annotate)
+    _kustomize_cfg_annotate
+    ;;
+  cat)
+    _kustomize_cfg_cat
+    ;;
+  count)
+    _kustomize_cfg_count
+    ;;
+  create-setter)
+    _kustomize_cfg_create-setter
+    ;;
+  create-subst)
+    _kustomize_cfg_create-subst
+    ;;
+  fmt)
+    _kustomize_cfg_fmt
+    ;;
+  grep)
+    _kustomize_cfg_grep
+    ;;
+  init)
+    _kustomize_cfg_init
+    ;;
+  list-setters)
+    _kustomize_cfg_list-setters
+    ;;
+  merge)
+    _kustomize_cfg_merge
+    ;;
+  merge3)
+    _kustomize_cfg_merge3
+    ;;
+  set)
+    _kustomize_cfg_set
+    ;;
+  tree)
+    _kustomize_cfg_tree
+    ;;
+  esac
+}
+
+function _kustomize_cfg_annotate {
+  _arguments \
+    '--apiVersion[Resource apiVersion to annotate]:' \
+    '--kind[Resource kind to annotate]:' \
+    '*--kv[annotation as KEY=VALUE]:' \
+    '--name[Resource name to annotate]:' \
+    '--namespace[Resource namespace to annotate]:' \
+    '(-R --recurse-subpackages)'{-R,--recurse-subpackages}'[add annotations recursively in all the nested subpackages]' \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_cfg_cat {
+  _arguments \
+    '--annotate[annotate resources with their file origins.]' \
+    '--dest[if specified, write output to a file rather than stdout]:' \
+    '--exclude-non-local[if true, exclude non-local-config in the output.]' \
+    '--format[format resource config yaml before printing.]' \
+    '--function-config[path to function config to put in ResourceList -- only if wrapped in a ResourceList.]:' \
+    '--include-local[if true, include local-config in the output.]' \
+    '(-R --recurse-subpackages)'{-R,--recurse-subpackages}'[print resources recursively in all the nested subpackages]' \
+    '--strip-comments[remove comments from yaml.]' \
+    '*--style[yaml styles to apply.  may be '\''TaggedStyle'\'', '\''DoubleQuotedStyle'\'', '\''LiteralStyle'\'', '\''FoldedStyle'\'', '\''FlowStyle'\''.]:' \
+    '--wrap-kind[if set, wrap the output in this list type kind.]:' \
+    '--wrap-version[if set, wrap the output in this list type apiVersion.]:' \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_cfg_count {
+  _arguments \
+    '--kind[count resources by kind.]' \
+    '(-R --recurse-subpackages)'{-R,--recurse-subpackages}'[prints count of resources recursively in all the nested subpackages]' \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_cfg_create-setter {
+  _arguments \
+    '--description[record a description for the current setter value.]:' \
+    '--field[name of the field to set, a suffix of the path to the field, or the full path to the field. Default is to match all fields.]:' \
+    '(-R --recurse-subpackages)'{-R,--recurse-subpackages}'[creates setter recursively in all the nested subpackages]' \
+    '--required[indicates that this setter must be set by package consumer before live apply/preview]' \
+    '--schema-path[openAPI schema file path for setter constraints -- file content e.g. {"type": "string", "maxLength": 15, "enum": ["allowedValue1", "allowedValue2"]}]:' \
+    '--set-by[record who the field was default by.]:' \
+    '--type[OpenAPI field type for the setter -- e.g. integer,boolean,string.]:' \
+    '--value[optional flag, alternative to specifying the value as an argument. e.g. used to specify values that start with '\''-'\'']:' \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_cfg_create-subst {
+  _arguments \
+    '--field[name of the field to set -- e.g. --field image]:' \
+    '--field-value[value of the field to create substitution for -- e.g. --field-value nginx:0.1.0]:' \
+    '--pattern[substitution pattern -- e.g. --pattern \${my-image-setter}:\${my-tag-setter}]:' \
+    '(-R --recurse-subpackages)'{-R,--recurse-subpackages}'[creates substitution recursively in all the nested subpackages]' \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_cfg_fmt {
+  _arguments \
+    '--keep-annotations[if true, keep index and filename annotations set on Resources.]' \
+    '--override[if true, override existing filepath annotations.]' \
+    '--pattern[pattern to use for generating filenames for resources -- may contain the following
+formatting substitution verbs {'\''%n'\'': '\''metadata.name'\'', '\''%s'\'': '\''metadata.namespace'\'', '\''%k'\'': '\''kind'\''}]:' \
+    '(-R --recurse-subpackages)'{-R,--recurse-subpackages}'[formats resource files recursively in all the nested subpackages]' \
+    '--set-filenames[if true, set default filenames on Resources without them]' \
+    '--use-schema[if true, uses openapi resource schema to format resources.]' \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_cfg_grep {
+  _arguments \
+    '--annotate[annotate resources with their file origins.]' \
+    '--invert-match[Selected Resources are those not matching any of the specified patterns..]' \
+    '(-R --recurse-subpackages)'{-R,--recurse-subpackages}'[also print resources recursively in all the nested subpackages]' \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_cfg_init {
+  _arguments \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_cfg_list-setters {
+  _arguments \
+    '--include-subst[include substitutions in the output]' \
+    '--markdown[output as github markdown]' \
+    '(-R --recurse-subpackages)'{-R,--recurse-subpackages}'[list setters recursively in all the nested subpackages]' \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_cfg_merge {
+  _arguments \
+    '--invert-order[if true, merge Resources in the reverse order]' \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_cfg_merge3 {
+  _arguments \
+    '--ancestor[Path to original package]:' \
+    '--from[Path to updated package]:' \
+    '--path-merge-key[Use the path as part of the merge key when merging resources]' \
+    '--to[Path to destination package]:' \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_cfg_set {
+  _arguments \
+    '--description[annotate the field with a description of its value]:' \
+    '(-R --recurse-subpackages)'{-R,--recurse-subpackages}'[sets recursively in all the nested subpackages]' \
+    '--set-by[annotate the field with who set it]:' \
+    '*--values[optional flag, the values of the setter to be set to]:' \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_cfg_tree {
+  _arguments \
+    '--all[print all field infos]' \
+    '--args[print args field]' \
+    '--command[print command field]' \
+    '--env[print env field]' \
+    '--exclude-non-local[if true, exclude non-local-config in the output.]' \
+    '*--field[print field]:' \
+    '--graph-structure[Graph structure to use for printing the tree.  may be any of: owners,directory]:' \
+    '--image[print image field]' \
+    '--include-local[if true, include local-config in the output.]' \
+    '--name[print name field]' \
+    '--ports[print ports field]' \
+    '--replicas[print replicas field]' \
+    '--resources[print resources field]' \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_completion {
+  _arguments \
+    '(-h --help)'{-h,--help}'[help for completion]' \
+    '--stack-trace[print a stack-trace on error]' \
+    '1: :("bash" "zsh" "fish" "powershell")'
+}
+
+function _kustomize_create {
+  _arguments \
+    '--annotations[Add one or more common annotations.]:' \
+    '--autodetect[Search for kubernetes resources in the current directory to be added to the kustomization file.]' \
+    '--labels[Add one or more common labels.]:' \
+    '--nameprefix[Sets the value of the namePrefix field in the kustomization file.]:' \
+    '--namespace[Set the value of the namespace field in the customization file.]:' \
+    '--namesuffix[Sets the value of the nameSuffix field in the kustomization file.]:' \
+    '--recursive[Enable recursive directory searching for resource auto-detection.]' \
+    '--resources[Name of a file containing a file to add to the kustomization file.]:' \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_docs-fn {
+  _arguments \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_docs-fn-spec {
+  _arguments \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_docs-io-annotations {
+  _arguments \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_docs-merge {
+  _arguments \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_docs-merge3 {
+  _arguments \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+
+function _kustomize_edit {
+  local -a commands
+
+  _arguments -C \
+    '--stack-trace[print a stack-trace on error]' \
+    "1: :->cmnds" \
+    "*::arg:->args"
+
+  case $state in
+  cmnds)
+    commands=(
+      "add:Adds an item to the kustomization file."
+      "fix:Fix the missing fields in kustomization file"
+      "remove:Removes items from the kustomization file."
+      "set:Sets the value of different fields in kustomization file."
+    )
+    _describe "command" commands
+    ;;
+  esac
+
+  case "$words[1]" in
+  add)
+    _kustomize_edit_add
+    ;;
+  fix)
+    _kustomize_edit_fix
+    ;;
+  remove)
+    _kustomize_edit_remove
+    ;;
+  set)
+    _kustomize_edit_set
+    ;;
+  esac
+}
+
+
+function _kustomize_edit_add {
+  local -a commands
+
+  _arguments -C \
+    '--stack-trace[print a stack-trace on error]' \
+    "1: :->cmnds" \
+    "*::arg:->args"
+
+  case $state in
+  cmnds)
+    commands=(
+      "annotation:Adds one or more commonAnnotations to kustomization.yaml"
+      "base:Adds one or more bases to the kustomization.yaml in current directory"
+      "component:Add the name of a file containing a component to the kustomization file."
+      "configmap:Adds a configmap to the kustomization file."
+      "label:Adds one or more commonLabels to kustomization.yaml"
+      "patch:Add an item to patches field."
+      "resource:Add the name of a file containing a resource to the kustomization file."
+      "secret:Adds a secret to the kustomization file."
+      "transformer:Add the name of a file containing a transformer configuration to the kustomization file."
+    )
+    _describe "command" commands
+    ;;
+  esac
+
+  case "$words[1]" in
+  annotation)
+    _kustomize_edit_add_annotation
+    ;;
+  base)
+    _kustomize_edit_add_base
+    ;;
+  component)
+    _kustomize_edit_add_component
+    ;;
+  configmap)
+    _kustomize_edit_add_configmap
+    ;;
+  label)
+    _kustomize_edit_add_label
+    ;;
+  patch)
+    _kustomize_edit_add_patch
+    ;;
+  resource)
+    _kustomize_edit_add_resource
+    ;;
+  secret)
+    _kustomize_edit_add_secret
+    ;;
+  transformer)
+    _kustomize_edit_add_transformer
+    ;;
+  esac
+}
+
+function _kustomize_edit_add_annotation {
+  _arguments \
+    '(-f --force)'{-f,--force}'[overwrite commonAnnotation if it already exists]' \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_edit_add_base {
+  _arguments \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_edit_add_component {
+  _arguments \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_edit_add_configmap {
+  _arguments \
+    '--behavior[Specify the behavior for config map generation, i.e whether to create a new configmap (the default),  to merge with a previously defined one, or to replace an existing one. Merge and replace should be used only  when overriding an existing configmap defined in a base]:' \
+    '--disableNameSuffixHash[Disable the name suffix for the configmap]' \
+    '--from-env-file[Specify the path to a file to read lines of key=val pairs to create a configmap (i.e. a Docker .env file).]:' \
+    '*--from-file[Key file can be specified using its file path, in which case file basename will be used as configmap key, or optionally with a key and file path, in which case the given key will be used.  Specifying a directory will iterate each named file in the directory whose basename is a valid configmap key.]:' \
+    '*--from-literal[Specify a key and literal value to insert in configmap (i.e. mykey=somevalue)]:' \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_edit_add_label {
+  _arguments \
+    '(-f --force)'{-f,--force}'[overwrite commonLabel if it already exists]' \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_edit_add_patch {
+  _arguments \
+    '--annotation-selector[annotationSelector in patch target]:' \
+    '--group[API group in patch target]:' \
+    '--kind[Resource kind in patch target]:' \
+    '--label-selector[labelSelector in patch target]:' \
+    '--name[Resource name in patch target]:' \
+    '--namespace[Resource namespace in patch target]:' \
+    '--patch[Literal string of patch content. Cannot be used with --path at the same time.]:' \
+    '--path[Path to the patch file. Cannot be used with --patch at the same time.]:' \
+    '--version[API version in patch target]:' \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_edit_add_resource {
+  _arguments \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_edit_add_secret {
+  _arguments \
+    '--disableNameSuffixHash[Disable the name suffix for the secret]' \
+    '--from-env-file[Specify the path to a file to read lines of key=val pairs to create a secret (i.e. a Docker .env file).]:' \
+    '*--from-file[Key file can be specified using its file path, in which case file basename will be used as secret key, or optionally with a key and file path, in which case the given key will be used.  Specifying a directory will iterate each named file in the directory whose basename is a valid secret key.]:' \
+    '*--from-literal[Specify a key and literal value to insert in secret (i.e. mykey=somevalue)]:' \
+    '--namespace[Specify the namespace of the secret]:' \
+    '--type[Specify the secret type this can be '\''Opaque'\'' (default), or '\''kubernetes.io/tls'\'']:' \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_edit_add_transformer {
+  _arguments \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_edit_fix {
+  _arguments \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+
+function _kustomize_edit_remove {
+  local -a commands
+
+  _arguments -C \
+    '--stack-trace[print a stack-trace on error]' \
+    "1: :->cmnds" \
+    "*::arg:->args"
+
+  case $state in
+  cmnds)
+    commands=(
+      "annotation:Removes one or more commonAnnotations from kustomization.yaml"
+      "label:Removes one or more commonLabels from kustomization.yaml"
+      "patch:Removes a patch from kustomization.yaml"
+      "resource:Removes one or more resource file paths from kustomization.yaml"
+      "transformer:Removes one or more transformers from kustomization.yaml"
+    )
+    _describe "command" commands
+    ;;
+  esac
+
+  case "$words[1]" in
+  annotation)
+    _kustomize_edit_remove_annotation
+    ;;
+  label)
+    _kustomize_edit_remove_label
+    ;;
+  patch)
+    _kustomize_edit_remove_patch
+    ;;
+  resource)
+    _kustomize_edit_remove_resource
+    ;;
+  transformer)
+    _kustomize_edit_remove_transformer
+    ;;
+  esac
+}
+
+function _kustomize_edit_remove_annotation {
+  _arguments \
+    '(-i --ignore-non-existence)'{-i,--ignore-non-existence}'[ignore error if the given label doesn'\''t exist]' \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_edit_remove_label {
+  _arguments \
+    '(-i --ignore-non-existence)'{-i,--ignore-non-existence}'[ignore error if the given label doesn'\''t exist]' \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_edit_remove_patch {
+  _arguments \
+    '--annotation-selector[annotationSelector in patch target]:' \
+    '--group[API group in patch target]:' \
+    '--kind[Resource kind in patch target]:' \
+    '--label-selector[labelSelector in patch target]:' \
+    '--name[Resource name in patch target]:' \
+    '--namespace[Resource namespace in patch target]:' \
+    '--patch[Literal string of patch content. Cannot be used with --path at the same time.]:' \
+    '--path[Path to the patch file. Cannot be used with --patch at the same time.]:' \
+    '--version[API version in patch target]:' \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_edit_remove_resource {
+  _arguments \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_edit_remove_transformer {
+  _arguments \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+
+function _kustomize_edit_set {
+  local -a commands
+
+  _arguments -C \
+    '--stack-trace[print a stack-trace on error]' \
+    "1: :->cmnds" \
+    "*::arg:->args"
+
+  case $state in
+  cmnds)
+    commands=(
+      "image:Sets images and their new names, new tags or digests in the kustomization file"
+      "nameprefix:Sets the value of the namePrefix field in the kustomization file."
+      "namespace:Sets the value of the namespace field in the kustomization file"
+      "namesuffix:Sets the value of the nameSuffix field in the kustomization file."
+      "replicas:Sets replicas count for resources in the kustomization file"
+    )
+    _describe "command" commands
+    ;;
+  esac
+
+  case "$words[1]" in
+  image)
+    _kustomize_edit_set_image
+    ;;
+  nameprefix)
+    _kustomize_edit_set_nameprefix
+    ;;
+  namespace)
+    _kustomize_edit_set_namespace
+    ;;
+  namesuffix)
+    _kustomize_edit_set_namesuffix
+    ;;
+  replicas)
+    _kustomize_edit_set_replicas
+    ;;
+  esac
+}
+
+function _kustomize_edit_set_image {
+  _arguments \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_edit_set_nameprefix {
+  _arguments \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_edit_set_namespace {
+  _arguments \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_edit_set_namesuffix {
+  _arguments \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_edit_set_replicas {
+  _arguments \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+
+function _kustomize_fn {
+  local -a commands
+
+  _arguments -C \
+    '--stack-trace[print a stack-trace on error]' \
+    "1: :->cmnds" \
+    "*::arg:->args"
+
+  case $state in
+  cmnds)
+    commands=(
+      "run:[Alpha] Reoncile config functions to Resources."
+      "sink:[Alpha] Implement a Sink by writing input to a local directory."
+      "source:[Alpha] Implement a Source by reading a local directory."
+      "wrap:Wrap an executable so it implements the config fn interface"
+      "xargs:Convert functionConfig to commandline flags and envs"
+    )
+    _describe "command" commands
+    ;;
+  esac
+
+  case "$words[1]" in
+  run)
+    _kustomize_fn_run
+    ;;
+  sink)
+    _kustomize_fn_sink
+    ;;
+  source)
+    _kustomize_fn_source
+    ;;
+  wrap)
+    _kustomize_fn_wrap
+    ;;
+  xargs)
+    _kustomize_fn_xargs
+    ;;
+  esac
+}
+
+function _kustomize_fn_run {
+  _arguments \
+    '--as-current-user[use the uid and gid that kpt is running with to run the function in the container]' \
+    '--dry-run[print results to stdout]' \
+    '--enable-exec[enable support for exec functions -- note: exec functions run arbitrary code -- do not use for untrusted configs!!! (Alpha)]' \
+    '--enable-star[enable support for starlark functions. (Alpha)]' \
+    '(*-e *--env)'{\*-e,\*--env}'[a list of environment variables to be used by functions]:' \
+    '--exec-path[run an executable as a function. (Alpha)]:' \
+    '*--fn-path[read functions from these directories instead of the configuration directory.]:' \
+    '--global-scope[set global scope for functions.]' \
+    '--image[run this image as a function instead of discovering them.]:' \
+    '--include-subpackages[also print resources from subpackages.]' \
+    '--log-steps[log steps to stderr]' \
+    '*--mount[a list of storage options read from the filesystem]:' \
+    '--network[enable network access for functions that declare it]' \
+    '--results-dir[write function results to this dir]:' \
+    '--star-name[name of starlark program. (Alpha)]:' \
+    '--star-path[run a starlark script as a function. (Alpha)]:' \
+    '--star-url[run a starlark script as a function. (Alpha)]:' \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_fn_sink {
+  _arguments \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_fn_source {
+  _arguments \
+    '--function-config[path to function config.]:filename:_files -g "yaml" -g "json" -g "yml"' \
+    '--wrap-kind[output using this format.]:' \
+    '--wrap-version[output using this format.]:' \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_fn_wrap {
+  _arguments \
+    '--env-only[only set env vars, not arguments.]' \
+    '--wrap-kind[wrap the input xargs give to the command in this type.]:' \
+    '--wrap-version[wrap the input xargs give to the command in this type.]:' \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_fn_xargs {
+  _arguments \
+    '--env-only[only add env vars, not flags]' \
+    '--wrap-kind[wrap the input xargs give to the command in this type.]:' \
+    '--wrap-version[wrap the input xargs give to the command in this type.]:' \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_help {
+  _arguments \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_tutorials-command-basics {
+  _arguments \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_tutorials-function-basics {
+  _arguments \
+    '--stack-trace[print a stack-trace on error]'
+}
+
+function _kustomize_version {
+  _arguments \
+    '--short[short form]' \
+    '--stack-trace[print a stack-trace on error]'
+}
+
