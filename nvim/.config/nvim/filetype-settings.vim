@@ -27,7 +27,6 @@ au BufReadPre * setlocal shiftwidth=2
 au BufReadPre *.elm setlocal tabstop=4
 au BufReadPre *.elm setlocal shiftwidth=4
 
-
 " Elixir
 " Run elixir tests on that line. Credit to: @wpcarro
 nnoremap <leader>t :call ExTestToggle()<CR>
@@ -71,4 +70,8 @@ if has("autocmd")
     autocmd FileType elixir autocmd BufEnter * :syntax sync fromstart
   augroup END
 endif
+
+" Lua
+autocmd FileType lua nnoremap <buffer> <c-k> :call LuaFormat()<cr>
+autocmd BufWrite *.lua call LuaFormat()
 

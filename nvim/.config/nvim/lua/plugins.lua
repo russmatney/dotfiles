@@ -4,10 +4,15 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   -- Lua
-  use_rocks 'penlight'
-  use_rocks {'lua-resty-http', 'lpeg'}
+  use 'andrejlevkovitch/vim-lua-format'
+  use_rocks {'luaformatter', server = 'https://luarocks.org/dev'}
+  use_rocks {'penlight', 'lua-cjson', 'lua-resty-http', 'lpeg'}
 
+  -- Local
   -- use '~/russmatney/some-nvim-plugin/blah.nvim'
+
+  -- Vim lifecycle
+  use 'famiu/nvim-reload'
 
   -- Misc Syntax Plugins
   use 'vim-scripts/SyntaxComplete'
@@ -27,6 +32,10 @@ return require('packer').startup(function(use)
   use 'othree/javascript-libraries-syntax.vim'
   use 'othree/es.next.syntax.vim'
   use 'Quramy/vim-js-pretty-template'
+  use {
+    "folke/which-key.nvim",
+    config = function() require("which-key").setup {} end
+  }
 
   -- Alignment
   use 'godlygeek/tabular'
@@ -67,7 +76,7 @@ return require('packer').startup(function(use)
   use 'roosta/srcery'
   use 'flazz/vim-colorschemes'
 
-  --Docs
+  -- Docs
   use 'rizzatti/dash.vim'
 
   -- Search
@@ -99,7 +108,8 @@ return require('packer').startup(function(use)
   use 'Valloric/YouCompleteMe'
 
   use {
-    'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' },
+    'lewis6991/gitsigns.nvim',
+    requires = {'nvim-lua/plenary.nvim'},
     config = function() require('gitsigns').setup() end
   }
 end)

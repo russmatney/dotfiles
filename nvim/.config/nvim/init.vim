@@ -24,6 +24,7 @@ set backupdir=~/.vim-tmp
 set directory=~/.vim-tmp
 
 set encoding=utf-8
+set timeoutlen=300
 
 set nowrap
 set number
@@ -168,6 +169,14 @@ source ~/.config/nvim/tmux_navigator.vim
 nmap <leader>o :hi Normal guibg=NONE ctermbg=NONE<CR>
 
 " Quickly edit/reload this configuration file
-nnoremap gev :e ~/.config/nvim/init.vim<CR>
-nnoremap gsv :so ~/.config/nvim/init.vim<CR>
+nnoremap gei :e ~/.config/nvim/init.vim<CR>
+nnoremap gep :e ~/.config/nvim/lua/plugins.lua<CR>
+nnoremap gec :e ~/.config/nvim/lua/config.vim<CR>
+nnoremap geb :e ~/.config/nvim/lua/bindings.vim<CR>
+nnoremap gsi :so ~/.config/nvim/init.vim<CR>
 
+nnoremap <silent> <A-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <A-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <A-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <A-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <A-\> :TmuxNavigatePrevious<cr>
