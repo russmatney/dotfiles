@@ -45,7 +45,8 @@ elif [ $choice == "home-monitor-only" ]; then
     i3-msg mode "default"
 elif [ $choice == "algo" ]; then
     xrandr \
-        --output HDMI-0 --mode 3840x2160
+        --output DP-4 --mode 3840x2160
+        # --output HDMI-0 --mode 3840x2160
     i3-msg mode "default"
 else
     echo "Unhandled configuration name: $choice"
