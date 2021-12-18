@@ -134,8 +134,6 @@ function! DeleteEmptyBuffers()
     endif
 endfunction
 
-nmap <C-s> :w<CR>
-nmap <leader>w :w<CR>
 nmap <leader><CR> :w<CR>
 
 nmap <leader>bd :call DeleteEmptyBuffers()<CR>
@@ -164,19 +162,7 @@ lua require('plugins')
 source ~/.config/nvim/filetype-settings.vim
 source ~/.config/nvim/config.vim
 source ~/.config/nvim/tmux_navigator.vim
+lua require('bindings')
 
-"transparent bg
-nmap <leader>o :hi Normal guibg=NONE ctermbg=NONE<CR>
-
-" Quickly edit/reload this configuration file
-nnoremap gei :e ~/.config/nvim/init.vim<CR>
-nnoremap gep :e ~/.config/nvim/lua/plugins.lua<CR>
-nnoremap gec :e ~/.config/nvim/lua/config.vim<CR>
-nnoremap geb :e ~/.config/nvim/lua/bindings.vim<CR>
+" Re-source this configuration file
 nnoremap gsi :so ~/.config/nvim/init.vim<CR>
-
-nnoremap <silent> <A-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <A-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <A-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <A-l> :TmuxNavigateRight<cr>
-nnoremap <silent> <A-\> :TmuxNavigatePrevious<cr>

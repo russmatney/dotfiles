@@ -256,8 +256,6 @@ let g:go_fmt_fail_silently = 1
 let g:go_gocode_autobuild = 1
 let g:go_gocode_propose_builtins = 1
 
-nmap <leader>o :TagbarToggle<CR>
-
 " Elixir
 " let g:deoplete#ignore_sources.elixir=['member']
 let g:elixir_autobuild=1
