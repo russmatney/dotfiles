@@ -44,6 +44,8 @@
   (setq lsp-ui-doc-position 'top)
   (setq lsp-keymap-prefix "SPC l")
   ;; (lsp-ui-doc-mode nil)
+  ;; (setq lsp-ui-doc-enable nil)
+  ;; (setq lsp-keymap-prefix "SPC l")
   )
 
 
