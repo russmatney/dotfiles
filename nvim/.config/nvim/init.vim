@@ -159,7 +159,7 @@ nnoremap <leader>d :Dash<CR>
 
 nmap <leader>p <C-p>
 
-source ~/.config/nvim/plugins.vim
+lua require('plugins')
 source ~/.config/nvim/filetype-settings.vim
 source ~/.config/nvim/config.vim
 source ~/.config/nvim/tmux_navigator.vim

@@ -235,8 +235,8 @@ au FileType rust nmap <Leader>i :Nofmt<CR>
 au FileType rust nmap <Leader>r :RustRun<CR>
 
 "Deoplete
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#ignore_sources={}
+" let g:deoplete#enable_at_startup = 1
+" let g:deoplete#ignore_sources={}
 
 "" GOLANG
 " vim-go
@@ -259,7 +259,7 @@ let g:go_gocode_propose_builtins = 1
 nmap <leader>o :TagbarToggle<CR>
 
 " Elixir
-let g:deoplete#ignore_sources.elixir=['member']
+" let g:deoplete#ignore_sources.elixir=['member']
 let g:elixir_autobuild=1
 let g:elixir_showerror=0
 au FileType elixir nmap <Leader>d :ExDoc<CR>
