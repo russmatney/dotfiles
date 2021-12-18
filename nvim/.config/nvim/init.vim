@@ -91,11 +91,8 @@ inoremap <C-e> <Esc>A
 "nnoremap <leader>h <c-w>10>
 
 "rerun syntax highlighting (helpful for large files)
-nmap <leader>f :syntax sync fromstart<CR>
-inoremap <C-f> <Esc>:syntax sync fromstart<CR>i
-
-"for those mofoking binaries
-"nmap <leader>j :setf javascript<CR>
+" nmap <leader>f :syntax sync fromstart<CR>
+" inoremap <C-f> <Esc>:syntax sync fromstart<CR>i
 
 "Repeat last colon-command @wpcarro
 nnoremap ;; @:<CR>
