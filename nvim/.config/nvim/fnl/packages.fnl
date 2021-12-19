@@ -1,8 +1,7 @@
-(module packages
-  {autoload
-   {packer packer}})
+(module packages)
 
 (local a (require "aniseed.core"))
+(local packer (require "packer"))
 
 (a.println "evaling packages.fnl")
 
@@ -17,8 +16,9 @@
 
 (fn setup_packages []
   (a.println "setup_packages")
+
 (packer.startup
- (fn [use]
+  { 1 (fn [use]
   (use "wbthomason/packer.nvim")
 
   (use "kyazdani42/nvim-web-devicons")
@@ -29,19 +29,14 @@
          (local alpha (require "alpha"))
          (local dashboard (require "alpha.themes.dashboard"))
 
-         (set dashboard.section.header.val [
-                                            "NEOVIM" "neovim" "NEOVIM"
-                                            "NEOVIM" "neovim" "NEOVIM"
-                                            "NEOVIM" "neovim" "NEOVIM"
-                                            "NEOVIM" "neovim" "NEOVIM"
-                                            "NEOVIM" "neovim" "NEOVIM"
-
-                                            ])
+         (set dashboard.section.header.val ["NEOVIM" "neovim" "nEoViM" "NeOvIm"])
          (set dashboard.section.buttons.val [
              (dashboard.button "e" "  New file" ":ene <BAR> startinsert <CR>")
              (dashboard.button "q" "  Quit NVIM" ":qa<CR>")
              (dashboard.button :p "PackerSync" "<cmd>PackerSync<CR>")
              (dashboard.button :c "PackerCompile" "<cmd>PackerCompile<CR>")
+             (dashboard.button :i "Impatient Cache Clear" ":LuaCacheClear<CR>")
+             (dashboard.button :m "Messages" ":messages<CR>")
          ])
          (set dashboard.opts.opts.noautocmd true)
          (vim.cmd "autocmd User AlphaReady echo 'ready'")
@@ -129,8 +124,10 @@
     :config (fn []
               (let [gitsigns (require "gitsigns")]
                 (gitsigns:setup {})))})
-))
 )
+; :config {:compile_path (.. (vim.fn.stdpath "config") "/lua/packer_compiled.lua") }
+}
+))
 
 
 ;; Run script/sync.sh to update, install and clean your plugins.
