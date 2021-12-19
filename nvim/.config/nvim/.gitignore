@@ -1,2 +1,2 @@
-packer_compiled.lua
-lua/init.lua
+plugin/packer_compiled.lua
+lua/*

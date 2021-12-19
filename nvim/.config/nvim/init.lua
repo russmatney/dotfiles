@@ -1,3 +1,83 @@
+-- TODO handle this chicken and egg
+require("impatient")
+
+-- Enable Aniseed's automatic compilation and loading of Fennel source code.
+-- TODO safe compile (don't panic on compilation errors)
+require("aniseed.env").init({module = "core", compile = true})
+
+-- ensure packages and their configuration
+local packages = require("packages")
+packages.setup_packages()
+
+-- require fennel core, which should be compiled above by aniseed#env
+print("requiring core")
+local core = require("core")
+core.setup_keybindings()
+
+vim.cmd [[
+" config.vim
+
+" colors
+set t_Co=256
+let g:hybrid_use_Xresources = 1
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+" theme
+autocmd VimEnter * color Tomorrow-Night-Eighties
+set background=dark
+
+set showcmd
+set hidden
+
+set completeopt=longest,menuone,preview
+
+autocmd BufWritePre * %s/\s\+$//e
+
+set shell=zsh
+
+set backupdir=~/.vim-tmp
+set directory=~/.vim-tmp
+
+set encoding=utf-8
+set timeoutlen=300
+
+set nowrap
+set number
+
+set backspace=2
+
+set clipboard=unnamedplus
+
+" indents and tab stuff
+set smartindent
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set shiftround
+set smarttab
+set autoindent
+set copyindent
+set expandtab
+
+set wildmode=longest,list,full
+
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+
+set history=1000
+set undolevels=1000
+
+syntax on
+syntax enable
+filetype plugin indent on
+
+"force markdown syntax
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
+exec 'set viminfo=%,' . &viminfo
+
 " Indent Guides
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
@@ -24,28 +104,6 @@ let g:ctrlp_mruf_last_entered = 1
 " Markdown
 let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'json=javascript']
 
-function! <SID>LocationPrevious()
-  try
-    lprev
-  catch /^Vim\%((\a\+)\)\=:E553/
-    llast
-  endtry
-endfunction
-
-function! <SID>LocationNext()
-  try
-    lnext
-  catch /^Vim\%((\a\+)\)\=:E553/
-    lfirst
-  endtry
-endfunction
-
-nnoremap <Leader>[ :call <SID>LocationPrevious()<CR>
-nnoremap <Leader>] :call <SID>LocationNext()<CR>
-
-" Tern
-let g:tern_map_keys=1
-
 " Supertab
 let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 let g:SuperTabClosePreviewOnPopupClose = 1
@@ -67,7 +125,6 @@ let NERDTreeShowHidden=1
 "nnoremap <leader>x :NERDTreeMapOpenSplit<CR>
 "nnoremap <leader>v :NERDTreeMapOpenVSplit<CR>
 
-
 " Powerline
 let g:Powerline_symbols = 'fancy'
 " Airline
@@ -86,6 +143,30 @@ let g:airline_section_x = '%t'
 let g:airline_section_y = ''
 let g:airline_section_z = ''
 
-
 " fzf.vim
 let $FZF_DEFAULT_COMMAND = 'Ag -g ""'
+
+" trigger `autoread` when files changes on disk
+set autoread
+autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
+" notification after file change
+autocmd FileChangedShellPost *
+  \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+
+" JSON File Settings
+au BufNewFile,BufRead *.json set ft=javascript
+
+" Markdown File Settings
+autocmd BufReadPre *.md setlocal textwidth=80
+
+" Text File Settings
+"autocmd BufReadPre *.txt setlocal textwidth=80
+
+autocmd BufReadPre *.ejs set ft=html
+autocmd BufReadPre *.less set ft=css
+
+" Lua
+autocmd FileType lua nnoremap <buffer> <c-k> :call LuaFormat()<cr>
+autocmd BufWrite *.lua call LuaFormat()
+
+]]

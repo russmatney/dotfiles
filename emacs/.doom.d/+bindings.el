@@ -185,16 +185,22 @@
 
 (map!
  ;; movement
- "s-h"    #'evil-window-left
+ "s-h" #'evil-window-left
  "s-l"    #'evil-window-right
  "s-j"    #'evil-window-down
  "s-k"    #'evil-window-up
 
- ;; size Adjustments
+ ;; "A-h"    #'evil-window-left
+ ;; "A-l"    #'evil-window-right
+ ;; "A-j"    #'evil-window-down
+ ;; "A-k"    #'evil-window-up
+
  "S-<left>"  #'evil-window-increase-width
  "S-<right>" #'evil-window-decrease-width
  "S-<up>"    #'evil-window-increase-height
  "S-<down>"  #'evil-window-decrease-height)
+
+;; size Adjustments
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Navigating Files/Buffers
