@@ -1,9 +1,7 @@
-(module packages)
-
-(local a (require "aniseed.core"))
-(local packer (require "packer"))
-
-(a.println "evaling packages.fnl")
+(module packages
+  {autoload
+   {a aniseed.core
+    packer packer}})
 
 (vim.cmd "packadd packer.nvim")
 
@@ -15,8 +13,6 @@
   (= {1 :some-str :key "val"} (lua nil "{'some-str', key = 'val'}")))
 
 (fn setup_packages []
-  (a.println "setup_packages")
-
   (packer.startup
     { 1 (fn [use]
 
@@ -41,7 +37,7 @@
                           (local dashboard (require "alpha.themes.dashboard"))
 
                           (set dashboard.section.header.val ["NEOVIM" "neovim" "nEoViM" "NeOvIm"])
-                          (set dashboard.section.buttons.val 
+                          (set dashboard.section.buttons.val
                                [(dashboard.button "e" "  New file" ":ene <BAR> startinsert <CR>")
                                 (dashboard.button "q" "  Quit NVIM" ":qa<CR>")
                                 (dashboard.button :p "PackerSync" "<cmd>PackerSync<CR>")

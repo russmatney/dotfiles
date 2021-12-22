@@ -1,10 +1,6 @@
 (module bindings)
 
-(local a (require :aniseed.core))
-
 (fn setup-keybindings []
-    (a.println "setup-keybindings")
-
     ;; whick-key supported
     (local wk (require "which-key"))
 

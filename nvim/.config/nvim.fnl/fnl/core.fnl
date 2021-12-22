@@ -1,8 +1,7 @@
-(module core)
-
-(local a (require :aniseed.core))
-(local nvim (require :aniseed.nvim))
-(a.println "evaling core.fnl")
+(module core
+  {autoload
+   {a aniseed.core
+    nvim aniseed.nvim}})
 
 (fn keymap [...]
   (vim.api.nvim_set_keymap ...))
