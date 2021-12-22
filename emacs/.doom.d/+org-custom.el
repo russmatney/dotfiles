@@ -220,6 +220,7 @@
         "S-<right>" nil
         "S-<up>" nil
         "S-<down>" nil
+        "C-j" nil
         :n "z a"   #'org-cycle
 
         :localleader
@@ -232,6 +233,10 @@
         "S-<right>" nil
         "S-<up>" nil
         "S-<down>" nil
+        "C-h" nil
+        "C-l" nil
+        "C-j" nil
+        "C-k" nil
         "z w"   #'widen))
 
 (map! :after org-agenda
