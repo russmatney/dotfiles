@@ -19,3 +19,4 @@ export LUA_PATH="$LUA_PATH\
 if [ -e /home/russ/.nix-profile/etc/profile.d/nix.sh ]; then . /home/russ/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
 export SXHKD_SHELL=bg_shell
+. "$HOME/.cargo/env"

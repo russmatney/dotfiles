@@ -8,3 +8,4 @@ if test "$HOSTNAME" = 'algo' ; then
 elif test "$HOSTNAME" == 'vader' ; then
     export MONITOR=eDP-1
 fi
+. "$HOME/.cargo/env"
