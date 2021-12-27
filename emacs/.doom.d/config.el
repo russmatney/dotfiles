@@ -287,3 +287,16 @@
   ;; (setq gdscript-godot-executable "/usr/bin/godot-mono")
   (setq gdscript-godot-executable "/usr/bin/godot")
   )
+
+
+;; https://github.com/alexluigit/dirvish
+(use-package! dirvish
+  :config
+  (setq dired-kill-when-opening-new-dired-buffer t) ; added in emacs 28
+  (setq dired-clean-confirm-killing-deleted-buffers nil)
+  (setq dired-recursive-copies 'always)
+  (setq dired-recursive-deletes 'always)
+  ;; (setq delete-by-moving-to-trash t)
+  (setq dired-dwim-target t)
+  (setq dired-listing-switches
+        "-AGhlv --group-directories-first"))

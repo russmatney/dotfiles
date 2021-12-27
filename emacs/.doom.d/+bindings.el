@@ -320,12 +320,15 @@
   :config
   (enable-command 'dired-find-alternate-file)
   (map!
-   :n "-" #'dired-jump
+   ;; :n "-" #'dired-jump
+   :n "-" #'dirvish
    :map dired-mode-map
    :n "-"        #'dired-up-directory
    :n "<return>" #'dired-find-alternate-file
    :n "/"        #'dired
-   :n "q"        (cmd! (quit-window t))))
+   ;; :n "q"        (cmd! (quit-window t))
+   :n "q"        #'dirvish-quit
+   ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Flycheck
