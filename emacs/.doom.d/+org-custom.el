@@ -77,8 +77,7 @@
                                    ;; (s-contains? "prompts" s)
                                    (s-contains? "reads" s)
                                    (s-contains? "watches" s)))
-                                (file-expand-wildcards "~/Dropbox/todo/*.org"))
-                               )
+                                (file-expand-wildcards "~/Dropbox/todo/*.org")))
 
       org-garden-files (append (file-expand-wildcards "~/Dropbox/todo/garden/*.org")
                                (file-expand-wildcards "~/Dropbox/todo/garden/**/*.org")))
@@ -224,9 +223,19 @@
         :n "z a"   #'org-cycle
 
         :localleader
-        :n "r"     #'hydra-org-refile/body))
+        :n "r"     #'hydra-org-refile/body)
+
+  (map! :map org-agenda-mode-map
+        "C-k" nil)
+
+  (map! :map org-agenda-keymap
+        "C-k" nil))
 
 (after! evil-org
+  (map! :map evil-org-agenda-mode-map
+        :m "C-j" nil
+        :m "C-k" nil)
+
   (map! :map evil-normal-state-map
         :n "z a"   #'org-cycle
         "S-<left>" nil

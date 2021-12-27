@@ -176,12 +176,14 @@
 
 (map!
  (:after cider-mode
+  (:map cider-repl-mode-map
+   "C-j" nil)
   (:map cider-mode-map
    (:leader
     :n "c" #'hydra-cider-mode/body))
   (:after cider-browse-ns-mode
    (:map cider-browse-ns-mode-map
-    :n "RET"       #'cider-browse-ns-operate-at-point))))
+    :n "RET" #'cider-browse-ns-operate-at-point))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; cider reload this file, on-save
