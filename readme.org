@@ -1,16 +1,64 @@
-* Emacs
-- Edit module config: [[file:./emacs/.doom.d/init.el][.doom.d/init.el]]
-- Edit config: [[file:./emacs/.doom.d/config.el][.doom.d/config.el]]
-- Edit packages config: [[file:./emacs/.doom.d/packages.el][.doom.d/packages.el]]
-- Edit keybindings: [[file:./emacs/.doom.d/+bindings.el][.doom.d/+bindings.el]]
-- Edit hydra: [[file:./emacs/.doom.d/+hydra.el][.doom.d/+hydra.el]]
-- Edit org config: [[file:./emacs/.doom.d/+org-custom.el][.doom.d/+org-custom.el]]
-* Stow-based Dotfiles
+* Dotfiles
+Configuration for keeping sharp knives! Feel free to reach out about anything in
+here. I hope to document enough here to make this repo somewhat accessible, and
+to share some current opinions on dev productivity tools.
 
+These files are configured with ~stow~, which handles symlinking, and constrains
+the directory structure of this repo. See `Stow-based Dotfiles` below.
+
+** Emacs
+Via Doom Emacs. See ~emacs/.doom.d/*~.
+
+Quick links:
+
+- Doom modules: [[file:./emacs/.doom.d/init.el][.doom.d/init.el]]
+- Main config: [[file:./emacs/.doom.d/config.el][.doom.d/config.el]]
+- Packages: [[file:./emacs/.doom.d/packages.el][.doom.d/packages.el]]
+
+- Keybindings: [[file:./emacs/.doom.d/+bindings.el][.doom.d/+bindings.el]]
+- Hydra: [[file:./emacs/.doom.d/+hydra.el][.doom.d/+hydra.el]]
+- Org: [[file:./emacs/.doom.d/+org-custom.el][.doom.d/+org-custom.el]]
+- Langs: [[file:./emacs/.doom.d/+langs.el][.doom.d/+langs.el]]
+
+I hope to install cheemacs soon to start in on a vanilla configuration, but I
+don't expect any dev experience to beat Doom's ecosystem any time soon.
+** AwesomeWM
+This fennel-based awesome config is no longer in use - I ported everything into
+~russmatney/clawe~ where my awesomeWM usage is now clojure based.
+
+- [[https://github.com/russmatney/clawe][clawe (clojure awesome config)]]
+** Sxhkd
+I use sxhkd for keybindings that don't touch awesomeWM. Similar to the Awm
+stuff, this is mostly configured via clawe.
+
+- [[https://github.com/russmatney/clawe][clawe]]
+
+These commands fire in a persisted tmux session, which helps debugging and eases
+some of the env requirements (b/c we're firing in a true zsh session.)
+** Tmux
+Tmux allows terminal sessions to persist after Alacritty (or whatever terminal
+program) is closed/re-opened.
+
+- [[file:tmux/.tmux.conf][Tmux config]]
+** Zsh
+Plugins are handled via antibody.
+
+- [[file:zsh/.zshrc][Zsh config]]
+** Neovim
+Recently I'm poking around in neovim a bit, out of curiousity. Things are
+farther along since I was last a full-time vim user, including lua (and fennel)
+support, and misc ui-improvements. Maybe Neovim can rival normal emacs usage
+someday!
+
+At this point, this is all configured via `cheovim`, which supports simple
+moving between neovim configurations.
+
+** .local/bin
+This dir is used for executables.
+** Stow-based Dotfiles
 These files are structured to take advantage of `GNU Stow` for installation and
 symlink handling. `stow foo` will create symlinks for everything in the `./foo`
-directory exactly one relative directory above the current working directory
-(`cwd`).
+directory exactly one relative directory above the current working directory.
 
 To install:
 
@@ -26,25 +74,21 @@ then call `stow zsh` within `~/dotfiles` to take care of linking it to home
 directory, i.e. you should have a `~/dotfiles/zsh/.zshrc`. Then, from your
 dotfiles repo, call `stow zsh`, and that's it! Everything will have been
 symlinked properly.
+** Misc
+*** Enable Hidden Files where relevant
 
-This is convenient for me, as I can `stow i3` on machines that need it.
+The `stow` style leads to many "hidden" files (dot-prefixed: `emacs/.doom.d/*`,
+`zsh/.zshrc`, etc) being used, which reveals that many tools ignore hidden
+files by default.
 
-Note that dependencies are not covered by `stow` - it is a simple
-symlinking tool, so dependency management will require more digging.
-
-** Enable Hidden Files where relevant
-
-The `stow` style leads to many "hidden" files being used, which revealed
-that many tools ignore hidden files by default.
-
-*** Zsh fix
+**** Zsh fix
 
 #+BEGIN_SRC sh
 # ~/.zshrc
 setopt globdots
 #+END_SRC
 
-*** Rip-grep (emacs) fix
+**** Rip-grep (emacs) fix
 Create `~/.ignore` file with `.git` (so that --hidden does not include .git).
 [[https://github.com/BurntSushi/ripgrep/issues/340][See this issue]].
 
@@ -59,3 +103,6 @@ Update `rg` command in emacs to use `--hidden` flag:
     "rg -zS --hidden --no-heading --line-number --color never %s .")
 #+END_SRC
 * [[file:todo.org][Todos]]
+Planned features/fixes for some of these tools.
+* [[org:garden/workspaces/dotfiles.org][Workspace org file]]
+An inbox for ideas and bugs for this repo. (not shared)

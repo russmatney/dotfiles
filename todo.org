@@ -1,15 +1,2 @@
 #+TITLE: Todo
 
-* [X] surface todo.org todos
-* [X] surface in-line todos
-Seems to not look into hidden files
-
-#+begin_src
-(use-package! magit-todos
-  :config
-  (setq magit-todos-rg-extra-args '("--hidden")))
-#+end_src
-* [ ] document dotfiles components
-Share the features/why it's included. otherwise, delete it!
-* [ ] consider moving away from stow
-the `hidden` files break a number search capabilities that need fixing
