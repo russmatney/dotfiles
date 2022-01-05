@@ -1,5 +1,18 @@
 #!/usr/bin/env bash
 
+function _log() {
+  # echo "$@"
+  echo "" > /dev/null
+}
+
+function _print_time() {
+  # echo "$(date +%s-%N)"
+  echo "" > /dev/null
+}
+
+_log "top of zshrc"
+_print_time
+
 ################################################################################
 # Environment Vars
 ################################################################################
@@ -24,10 +37,10 @@ setopt HIST_IGNORE_SPACE
 ################################################################################
 
 # keychain for ssh and gpg
-if hash keychain 2>/dev/null; then
-  eval `keychain --eval id_rsa --systemd`
-  # && emacsclient -e '(russ/keychain-refresh-environment)' > /dev/null &
-fi
+# if hash keychain 2>/dev/null; then
+#   eval `keychain --eval id_rsa --systemd`
+#   # && emacsclient -e '(russ/keychain-refresh-environment)' > /dev/null &
+# fi
 
 ################################################################################
 # Antibody setup
@@ -37,9 +50,16 @@ fi
 export ZSH="$(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh"
 DISABLE_AUTO_UPDATE="true"
 
+_log "sourcing antibody"
+_print_time
+
 source <(antibody init)
+_print_time
 antibody bundle < ~/.zsh_plugins.txt
 # source ~/.zsh_plugins.sh
+
+_log "sourced antibody"
+_print_time
 
 alias 'ra'='antibody bundle \
             < ~/.zsh_plugins.txt \
@@ -78,6 +98,9 @@ alias ns='nix-shell'
 ################################################################################
 # vim-mode
 ################################################################################
+
+_log "setting keybindings"
+_print_time
 
 export KEYTIMEOUT=1
 
@@ -148,6 +171,9 @@ bindkey -M vicmd 'k' to-tmux-copy-mode \
 # Gcloud
 ################################################################################
 
+_log "sourcing gcloud"
+_print_time
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/russ/google-cloud-sdk/path.zsh.inc' ]; then
     source '/home/russ/google-cloud-sdk/path.zsh.inc';
@@ -162,6 +188,9 @@ fi
 ################################################################################
 # Fzf
 ################################################################################
+
+_log "sourcing fzf"
+_print_time
 
 [ -f /usr/bin/fzf ] &&
     source /usr/share/fzf/completion.zsh
@@ -312,6 +341,8 @@ alias nf='neofetch'
 alias pd='pandoc'
 
 
+_log "sourcing zsh theme"
+_print_time
 source ~/.zsh/grfn.zsh-theme
 
 ################################################################################
@@ -363,6 +394,8 @@ unalias 'sp'
 # Lua
 ################################################################################
 
+_log "sourcing luaver"
+_print_time
 [ -s ~/.luaver/luaver ] && . ~/.luaver/luaver
 [ -s ~/.luaver/completions/luaver.bash ] && . ~/.luaver/completions/luaver.bash
 
@@ -398,6 +431,9 @@ function delete_from_history () {
 ################################################################################
 
 export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
+
+_log "eval direnv hook zsh"
+_print_time
 eval "$(direnv hook zsh)"
 
 
@@ -424,9 +460,15 @@ compdef _bb_tasks bb
 # Python
 ################################################################################
 
+_log "pyenv init"
+_print_time
+
 # already on path to due to .zshenv
 if (( $+commands[pyenv] )); then
    eval "$(pyenv init -)";
    eval "$(pyenv virtualenv-init -)";
    test ! -f ~/.pyenv/version && pyenv global system;
 fi
+
+_log "bottom of zshrc"
+_print_time
