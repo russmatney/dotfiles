@@ -1,2 +1,7 @@
 #+TITLE: Todo
 
+
+* [ ] doom 'all-hydras'
+rewrite doom keybindings as hydras
+* [ ] emacs profile switcher
+https://github.com/plexus/chemacs2
