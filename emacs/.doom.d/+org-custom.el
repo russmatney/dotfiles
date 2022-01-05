@@ -180,7 +180,7 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Org Bindings
+;; Org refile helpers
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; from https://emacs.stackexchange.com/questions/8045/org-refile-to-a-known-fixed-location
@@ -192,20 +192,42 @@
     (org-refile nil nil (list headline file nil pos))
     (switch-to-buffer (current-buffer))))
 
+(defun russ/refile-to-daily (n)
+  (let ((file-s (format-time-string "daily/%Y-%m-%d.org" (time-add (* n 86400) (current-time)))))
+    (save-excursion
+      (org-roam-dailies-capture-tomorrow n t)
+      ;; TODO write the file?
+      )
+    (russ/refile-to file-s "new")))
+
+(comment
+ (format-time-string "%Y-%m-%d.org" (current-time))
+ (format-time-string "%Y-%m-%d.org" (time-add 86400 (current-time)))
+ (format-time-string "%Y-%m-%d.org" (time-add (* (- 1) 86400) (current-time))))
+
+(defhydra hydra-org-refile-daily (:exit t)
+  ;; TODO refile to today's daily note, create if it doesn't exist
+  ("t" (russ/refile-to-daily 0) "Today")
+  ("y" (russ/refile-to-daily -1) "Yesterday")
+  ("T" (russ/refile-to-daily 1) "Tomorrow")
+  ("j" russ/org-refile-to-daily-note "To some daily note" :column "Filter"))
+
 (defhydra hydra-org-refile (:exit t)
   ("r" org-refile "Org refile" :column "~/todo")
   ("t" (russ/refile-to "~/todo/projects.org" "Todos") "project.org/Todos")
   ("h" (russ/refile-to "~/todo/projects.org" "Hammock") "project.org/Hammock")
   ("i" (russ/refile-to "~/todo/icebox.org" "new") "To icebox.org")
+  ("p" (russ/refile-to "~/todo/principles.org" "new") "To principles.org")
 
   ("g" russ/org-refile-to-existing-note "To existing note" :column "garden")
   ("c" russ/org-refile-to-new-note "Create new note")
-  ("j" russ/org-refile-to-daily-note "To some daily note")
+  ("d" hydra-org-refile-daily/body "To some daily note")
   ("w" russ/org-refile-to-workspace-note "To some workspace note")
-  ("b" russ/org-refile-to-bucket-note "To a bucket note, i.e. ideas/writing accumulation files")
+  ("b" russ/org-refile-to-bucket-note "To a bucket note, i.e. ideas/writing accumulation files"))
 
-  ;; TODO refile to today's daily note, create if it doesn't exist
-  )
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Org bindings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (after! org
   (map! :map org-mode-map
