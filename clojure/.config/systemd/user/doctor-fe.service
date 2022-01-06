@@ -3,8 +3,7 @@ Description=doctor frontend
 
 [Service]
 Type=simple
-WorkingDirectory=/home/russ/russmatney/doctor
-ExecStart=/home/russ/russmatney/doctor/start-fe.sh
+ExecStart=bb --config /home/russ/russmatney/clawe/bb.edn doctor-fe
 Restart=on-failure
 
 [Install]

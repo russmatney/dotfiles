@@ -3,8 +3,8 @@ Description=doctor server
 
 [Service]
 Type=simple
-WorkingDirectory=/home/russ/russmatney/doctor
-ExecStart=/home/russ/russmatney/doctor/start-be.sh
+Environment="PATH=/home/russ/.local/bin:/home/russ/.nix-profile/bin:/bin:/usr/bin:/usr/local/bin:/usr/local/sbin"
+ExecStart=bb --config /home/russ/russmatney/clawe/bb.edn doctor-be
 Restart=on-failure
 
 [Install]

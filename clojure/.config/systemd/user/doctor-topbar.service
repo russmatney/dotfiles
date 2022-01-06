@@ -3,8 +3,7 @@ Description=doctor topbar app
 
 [Service]
 Type=simple
-WorkingDirectory=/home/russ/russmatney/doctor
-ExecStart=/home/russ/russmatney/doctor/start-doctor-topbar-electron.sh
+ExecStart=bb --config /home/russ/russmatney/clawe/bb.edn topbar
 Restart=on-failure
 
 [Install]
