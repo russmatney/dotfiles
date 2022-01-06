@@ -10,6 +10,5 @@ local packages = require("packages")
 packages.setup_packages()
 
 -- require fennel core, which should be compiled above by aniseed#env
-print("requiring core")
 local core = require("core")
 core.setup()
