@@ -8,4 +8,4 @@ ExecStart=rlwrap bb --nrepl-server 1667
 Restart=on-failure
 
 [Install]
-WantedBy=graphical.target
+WantedBy=default.target

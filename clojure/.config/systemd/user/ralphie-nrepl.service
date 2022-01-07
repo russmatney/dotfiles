@@ -1,9 +1,0 @@
-[Unit]
-Description=ralphie babashka nrepl
-
-[Service]
-Type=simple
-ExecStart=/home/russ/.local/bin/ralphie-nrepl
-
-[Install]
-WantedBy=graphical.target

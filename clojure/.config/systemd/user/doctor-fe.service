@@ -7,4 +7,4 @@ ExecStart=bb --config /home/russ/russmatney/clawe/bb.edn doctor-fe
 Restart=on-failure
 
 [Install]
-WantedBy=graphical.target
+WantedBy=default.target

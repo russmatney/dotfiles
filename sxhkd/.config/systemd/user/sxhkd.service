@@ -8,4 +8,4 @@ ExecReload=/usr/bin/kill -SIGUSR1 $MAINPID
 Environment=SXHKD_SHELL=/home/russ/.local/bin/bg_shell
 
 [Install]
-WantedBy=graphical.target
+WantedBy=default.target
