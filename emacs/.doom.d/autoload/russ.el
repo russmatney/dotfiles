@@ -129,6 +129,8 @@ If DIR is not a project, it will be indexed (but not cached)."
 ;;;###autoload
 (defun russ/open-workspace (name)
   ;; Support opening emacs in a workspace
+  (require 'persp-mode)
+  (persp-mode t)
   (+workspace-switch name t)
   (russ/delete-numbered-workspace-names)
   ;; (russ/projectile-open-file-from-project)
