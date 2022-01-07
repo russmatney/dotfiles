@@ -5,6 +5,7 @@ Description=doctor topbar app
 Type=simple
 ExecStart=bb --config /home/russ/russmatney/clawe/bb.edn topbar
 Environment="DISPLAY=:0"
+Environment="PATH=/home/russ/.local/bin:/home/russ/.cargo/bin:/home/russ/.nix-profile/bin:/bin:/usr/bin:/usr/local/bin:/usr/local/sbin"
 Restart=on-failure
 
 [Install]
