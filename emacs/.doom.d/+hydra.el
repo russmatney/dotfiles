@@ -113,6 +113,7 @@ Commands that stick around (this hydra supports multiple presses).
   ("j" (find-file "~/todo/journal.org") "Open ~/todo/journal.org")
   ("a" org-agenda "Org Agenda")
   ("D" org-roam-dailies-find-today "Roam Daily")
+  ("J" org-roam-dailies-find-today "Roam Daily")
 
   ("." russ/open-dotfile "~/dotfiles/*" :column "dotfiles")
   ("z" (find-file "~/.zshrc") "~/.zshrc")

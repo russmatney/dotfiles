@@ -255,8 +255,8 @@
 
 (after! evil-org
   (map! :map evil-org-agenda-mode-map
-        :m "C-j" nil
-        :m "C-k" nil)
+        "C-j" nil
+        "C-k" nil)
 
   (map! :map evil-normal-state-map
         :n "z a"   #'org-cycle

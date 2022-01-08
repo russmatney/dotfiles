@@ -176,6 +176,8 @@
 
 (map!
  (:after cider-mode
+  (:map cider-inspector-mode-map
+   "C-j" nil)
   (:map cider-repl-mode-map
    "C-j" nil)
   (:map cider-mode-map
