@@ -35,3 +35,7 @@ awesome/.config/awesome/logs
 *flycheck*
 
 python/.ipython/profile_default/history.sqlite
+
+
+.clj-kondo/.cache
+.lsp
