@@ -275,9 +275,17 @@
 
 ;; allow moving left/right in magit buffers
 (after! magit
-  (map! (:map magit-mode-map
-         "l" nil
-         "h" nil)))
+  (map!
+   (:map magit-mode-map
+    "l" nil
+    "h" nil)
+   (:map code-review-mode-map
+    "C-k" nil
+    "C-j" nil)
+   (:map org-roam-mode-map
+    "C-k" nil
+    "C-j" nil)
+   ))
 
 (map!
  ;; git-gutter

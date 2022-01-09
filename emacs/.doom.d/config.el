@@ -202,9 +202,6 @@
   (toggle-truncate-lines)
   (auto-fill-mode 1))
 
-;; TODO some todo
-
-
 (add-hook 'magit-mode-hook 'magit-todos-mode)
 
 (use-package! magit
