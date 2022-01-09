@@ -37,11 +37,16 @@ setopt HIST_IGNORE_SPACE
 ################################################################################
 
 # From oh-my-zsh
-export ZSH="$(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh"
+export ZSH="$(antibody path robbyrussell/oh-my-zsh)"
+# export ZSH_CACHE_DIR="$(antibody path robbyrussell/oh-my-zsh)/cache"
 DISABLE_AUTO_UPDATE="true"
 
 # speedier? does not seem to make a difference
 # skip_global_compinit=1
+
+# enable completion features
+fpath=(~/.zsh/completion $fpath)
+autoload -Uz compinit && compinit -i
 
 # source <(antibody init)
 # antibody bundle < ~/.zsh_plugins.txt
@@ -52,16 +57,10 @@ alias 'ra'='antibody bundle \
             > ~/.zsh_plugins.sh && \
             antibody update'
 
-# completion for npx
-# compctl -m npx
-
-# enable completion features
-fpath=(~/.zsh/completion $fpath)
-autoload -Uz compinit && compinit -i
-
 # allow .hidden file tab completion
 setopt globdots
 
+# https://gist.github.com/ctechols/ca1035271ad134841284
 # function loadzshcomp() {
 #     # http://zsh.sourceforge.net/Doc/Release/Options.html#Scripts-and-Functions
 #     setopt LOCAL_OPTIONS extendedglob
@@ -384,7 +383,10 @@ unalias 'sp'
 # Lua
 ################################################################################
 
-[ -s ~/.luaver/luaver ] && . ~/.luaver/luaver
+function useluaver() {
+  [ -s ~/.luaver/luaver ] && . ~/.luaver/luaver
+}
+
 
 ################################################################################
 # Delete from history via fzf
