@@ -42,6 +42,10 @@
   ("S" systemic/stop "systemic/stop")
   ("l" wing-sync-libs "wing-sync-libs"))
 
+(defun russ/cider-set-print-length ()
+  (interactive)
+  (cider-interactive-eval "(set! *print-length* 100)"))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; cider company bindings fix
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -159,6 +163,7 @@
   ("l" cider-load-this-file "cider-load-this-file" :column "Eval/Repl")
   ("b" cider-eval-buffer "cider-eval-buffer")
   ("p" cider-eval-sexp-at-point "cider-eval-sexp-at-point")
+  ("P" russ/cider-set-print-length "russ/cider-set-print-length")
   ("f" cider-eval-defun-at-point "cider-eval-defun-at-point")
   ("B" cider-switch-to-repl-buffer "cider-switch-to-repl-buffer")
   ("n" cider-repl-set-ns "cider-repl-set-ns")
@@ -171,15 +176,29 @@
   ("t" cider-test-run-ns-tests "cider-test-run-ns-tests" :column "Test")
   ("T" cider-test-run-test "cider-test-run-test")
 
-  ("m" clojure-move-to-let "clojure-move-to-let" :column "Refactor")
-  )
+  ("m" clojure-move-to-let "clojure-move-to-let" :column "Refactor"))
+
+(defhydra hydra-cider-inspector-mode (:exit t)
+  ("RET" cider-inspector-operate-on-point "cider-inspector-operate-on-point" :column "Inspector")
+  ("l" cider-inspector-pop "cider-inspector-pop")
+  ("r" cider-inspector-refresh "cider-inspector-refresh")
+  ("j" cider-inspector-next-page "cider-inspector-next-page")
+  ("k" cider-inspector-prev-page "cider-inspector-prev-page")
+  ("d" cider-inspector-def-current-val "cider-inspector-def-current-val")
+  ("n" cider-inspector-next-inspectable-object "cider-inspector-next-inspectable-object")
+  ("p" cider-inspector-previous-inspectable-object "cider-inspector-previous-inspectable-object")
+  ("q" cider-popup-buffer-quit-function "cider-popup-buffer-quit-function"))
 
 (map!
  (:after cider-mode
   (:map cider-inspector-mode-map
-   "C-j" nil)
+   "C-j" nil
+   "C-k" nil
+   ;; (:leader "i" #'hydra-cider-inspector-mode/body)
+   )
   (:map cider-repl-mode-map
-   "C-j" nil)
+   "C-j" nil
+   "C-k" nil)
   (:map cider-mode-map
    (:leader
     :n "c" #'hydra-cider-mode/body))
