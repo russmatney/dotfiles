@@ -3,6 +3,8 @@ Description=doctor frontend
 
 [Service]
 Type=simple
+Environment="PATH=/home/russ/.local/bin:/home/russ/.nix-profile/bin:/bin:/usr/bin:/usr/local/bin:/usr/local/sbin"
+Environment="DISPLAY=:0"
 ExecStart=bb --config /home/russ/russmatney/clawe/bb.edn doctor-fe
 Restart=on-failure
 
