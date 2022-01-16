@@ -58,9 +58,6 @@
 (package! org-rich-yank)
 (package! org-projectile)
 
-;; org-roam
-;; (package! org-roam-server)
-
 ;; ink
 (package! ink-mode :recipe
   (:host github :repo "russmatney/ink-mode"))
@@ -73,6 +70,7 @@
 (package! magit-org-todos)
 
 (package! browse-at-remote)
+(package! git-link :recipe (:host github :repo "sshaw/git-link"))
 
 ;; logs
 (package! logview)

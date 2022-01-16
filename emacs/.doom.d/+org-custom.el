@@ -79,21 +79,21 @@
                                    (s-contains? "watches" s)))
                                 (file-expand-wildcards "~/Dropbox/todo/*.org")))
 
+      ;; org-dailies-files (file-expand-wildcards "~/Dropbox/todo/daily/*.org")
       org-garden-files (append (file-expand-wildcards "~/Dropbox/todo/garden/*.org")
                                (file-expand-wildcards "~/Dropbox/todo/garden/**/*.org")))
 
-
 (defun russ/reset-refile-targets ()
   (setq
-   org-todo-files (file-expand-wildcards "~/Dropbox/todo/*.org")
-   org-journal-archive-files (file-expand-wildcards "~/Dropbox/todo/journal/*.org")
-   org-dailies-files (file-expand-wildcards "~/Dropbox/todo/daily/*.org")
+   org-todo-targets (file-expand-wildcards "~/Dropbox/todo/*.org")
+   org-journal-archive-targets (file-expand-wildcards "~/Dropbox/todo/journal/*.org")
+   org-dailies-targets (file-expand-wildcards "~/Dropbox/todo/daily/*.org")
 
    org-refile-targets
-   '((org-journal-archive-files :maxlevel . 1)
+   '((org-journal-archive-targets :maxlevel . 1)
      (nil :maxlevel . 9)
-     (org-todo-files :maxlevel . 2)
-     (org-dailies-files :maxlevel . 1))))
+     (org-todo-targets :maxlevel . 2)
+     (org-dailies-targets :maxlevel . 1))))
 
 (russ/reset-refile-targets)
 
@@ -315,19 +315,12 @@
 
 ;; TODO review these in light of v2
 (after! org-roam
-  ;; (setq org-roam-capture-templates
-  ;;       '(("r" "reference" plain
-  ;;          (file "/org/template.org")
-  ;;          :if-new (file+head "test/${citekey}.org"
-  ;;                             "#+TITLE: ${title}\n")
-  ;;          :unnarrowed t)))
-
   (setq org-roam-capture-templates
         '(("d" "default" plain
            ;; (function org-roam--capture-get-point)
            "%?"
            :if-new
-           (file+head "garden/${slug}.org"
+           (file+head "~/todo/garden/${slug}.org"
                       "#+TITLE: ${title}
 #+CREATED_AT: %<%Y%m%d:%H%M%S>")
            :unnarrowed t))
@@ -336,7 +329,7 @@
         '(("r" "ref" plain
            ;; (function org-roam-capture--get-point)
            "%?"
-           :if-new (file+head "garden/websites/${slug}.org"
+           :if-new (file+head "~/todo/garden/websites/${slug}.org"
                               "#+TITLE: ${title}
 #+CREATED_AT: %<%Y%m%d:%H%M%S>
 #+ROAM_KEY: ${ref}
@@ -372,25 +365,25 @@
 ;; Org pomodoro
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package! org-pomodoro
-  :config
-  (setq org-pomodoro-length 35
-        org-pomodoro-short-break-length 10))
+;; (use-package! org-pomodoro
+;;   :config
+;;   (setq org-pomodoro-length 35
+;;         org-pomodoro-short-break-length 10))
 
-(defun ruborcalor/org-pomodoro-time ()
-  "Return the remaining pomodoro time"
-  (if (org-pomodoro-active-p)
-      (cl-case org-pomodoro-state
-        (:pomodoro
-         ;; TODO title case
-         (format "%s: %d minutes" org-clock-heading (/ (org-pomodoro-remaining-seconds) 60)))
-        (:short-break
-         (format "Short break time: %d minutes" (/ (org-pomodoro-remaining-seconds) 60)))
-        (:long-break
-         (format "Long break time: %d minutes" (/ (org-pomodoro-remaining-seconds) 60)))
-        (:overtime
-         (format "Overtime! %d minutes" (/ (org-pomodoro-remaining-seconds) 60))))
-    "No active pomo"))
+;; (defun ruborcalor/org-pomodoro-time ()
+;;   "Return the remaining pomodoro time"
+;;   (if (org-pomodoro-active-p)
+;;       (cl-case org-pomodoro-state
+;;         (:pomodoro
+;;          ;; TODO title case
+;;          (format "%s: %d minutes" org-clock-heading (/ (org-pomodoro-remaining-seconds) 60)))
+;;         (:short-break
+;;          (format "Short break time: %d minutes" (/ (org-pomodoro-remaining-seconds) 60)))
+;;         (:long-break
+;;          (format "Long break time: %d minutes" (/ (org-pomodoro-remaining-seconds) 60)))
+;;         (:overtime
+;;          (format "Overtime! %d minutes" (/ (org-pomodoro-remaining-seconds) 60))))
+;;     "No active pomo"))
 
 (defun russ/current-clock-string ()
   (if org-clock-current-task
@@ -463,30 +456,31 @@
               ;; #'org-roam-unlinked-references-section ;; note, can be slow!
               ))
   ;; disable by default because roam locks up emacs far too often
-  (org-roam-db-autosync-disable))
+  ;; (org-roam-db-autosync-disable)
+  )
 
 ;; https://orgmode-exocortex.com/2021/07/22/configure-org-roam-v2-to-update-database-only-when-idle/
 ;; update roam on idle, not on file-save
-(with-eval-after-load "org-roam"
-  ;; queue for files that will be updated in org-roam-db when emacs is idle
-  (setq org-roam-db-update-queue (list))
-  ;; save the original update function;
-  (setq orig-update-file (symbol-function 'org-roam-db-update-file))
-  ;; then redefine the db update function to add the filename to a queue
-  (defun org-roam-db-update-file (&optional file-path)
-    ;; do same logic as original to determine current file-path if not passed as arg
-    (setq file-path (or file-path (buffer-file-name (buffer-base-buffer))))
-    (message "org-roam: scheduling update of %s" file-path)
-    (if (not (memq file-path org-roam-db-update-queue))
-        (push file-path org-roam-db-update-queue)))
+;; (with-eval-after-load "org-roam"
+;;   ;; queue for files that will be updated in org-roam-db when emacs is idle
+;;   (setq org-roam-db-update-queue (list))
+;;   ;; save the original update function;
+;;   (setq orig-update-file (symbol-function 'org-roam-db-update-file))
+;;   ;; then redefine the db update function to add the filename to a queue
+;;   (defun org-roam-db-update-file (&optional file-path)
+;;     ;; do same logic as original to determine current file-path if not passed as arg
+;;     (setq file-path (or file-path (buffer-file-name (buffer-base-buffer))))
+;;     (message "org-roam: scheduling update of %s" file-path)
+;;     (if (not (memq file-path org-roam-db-update-queue))
+;;         (push file-path org-roam-db-update-queue)))
 
-  ;; this function will be called when emacs is idle for a few seconds
-  (defun org-roam-db-idle-update-files ()
-    ;; go through queued filenames one-by-one and update db
-    ;; if we're not idle anymore, stop. will get rest of queue next idle.
-    (while (and org-roam-db-update-queue (current-idle-time))
-      ;; apply takes function var and list
-      (apply orig-update-file (list (pop org-roam-db-update-queue)))))
+;;   ;; this function will be called when emacs is idle for a few seconds
+;;   (defun org-roam-db-idle-update-files ()
+;;     ;; go through queued filenames one-by-one and update db
+;;     ;; if we're not idle anymore, stop. will get rest of queue next idle.
+;;     (while (and org-roam-db-update-queue (current-idle-time))
+;;       ;; apply takes function var and list
+;;       (apply orig-update-file (list (pop org-roam-db-update-queue)))))
 
-  ;; we'll only start updating db if we've been idle for this many seconds
-  (run-with-idle-timer 5 t #'org-roam-db-idle-update-files))
+;;   ;; we'll only start updating db if we've been idle for this many seconds
+;;   (run-with-idle-timer 5 t #'org-roam-db-idle-update-files))
