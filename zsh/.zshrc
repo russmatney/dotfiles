@@ -44,18 +44,22 @@ DISABLE_AUTO_UPDATE="true"
 # speedier? does not seem to make a difference
 # skip_global_compinit=1
 
-# enable completion features
-fpath=(~/.zsh/completion $fpath)
-autoload -Uz compinit && compinit -i
-
+# antibody dynamic load
 # source <(antibody init)
 # antibody bundle < ~/.zsh_plugins.txt
+
+# antibody static load
 source ~/.zsh_plugins.sh
 
+# rebuild antibody static
 alias 'ra'='antibody bundle \
             < ~/.zsh_plugins.txt \
             > ~/.zsh_plugins.sh && \
             antibody update'
+
+# enable completion features
+fpath=(~/.zsh/completion $fpath)
+autoload -Uz compinit && compinit -i
 
 # allow .hidden file tab completion
 setopt globdots
@@ -239,7 +243,7 @@ alias dcr='docker-compose restart'
 alias dcud='docker-compose up -d'
 alias dcub='docker-compose up -d --build'
 alias dcl='docker-compose logs'
-unalias dclf
+# unalias dclf
 function dclf() {
   docker-compose logs -f "$@" | cut -f2- -d'|'
 }
@@ -377,7 +381,7 @@ export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PR
 # misc
 ################################################################################
 
-unalias 'sp'
+# unalias 'sp'
 
 ################################################################################
 # Lua
@@ -453,6 +457,15 @@ if (( $+commands[pyenv] )); then
    eval "$(pyenv virtualenv-init -)";
    test ! -f ~/.pyenv/version && pyenv global system;
 fi
+
+################################################################################
+# perf
+################################################################################
+
+timezsh() {
+  local shell=${1-$SHELL}
+  for i in $(seq 1 10); do time $shell -i -c exit; done
+}
 
 # print profiling
 # zprof
