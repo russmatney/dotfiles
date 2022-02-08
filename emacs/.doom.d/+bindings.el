@@ -335,7 +335,7 @@
    :n "<return>" #'dired-find-alternate-file
    :n "/"        #'dired
    ;; :n "q"        (cmd! (quit-window t))
-   :n "q"        #'dirvish-quit
+   :n "q"        #'+dired/quit-all
    ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

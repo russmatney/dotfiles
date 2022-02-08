@@ -14,8 +14,8 @@
   pager = delta
 
 [delta]
-  plus-color = "#012800"
-  minus-color = "#340001"
+  plus-color = "syntax #012800"
+  minus-color = "normal #340001"
   syntax-theme = Monokai Extended
 
 [interactive]

@@ -224,7 +224,9 @@
 (use-package! magit-todos
   :config
   (setq magit-todos-rg-extra-args '("--hidden")
-        magit-todos-branch-list nil))
+        magit-todos-branch-list 'branch
+        magit-todos-branch-list-merge-base-ref "origin/main"
+        ))
 
 
 (use-package! magit-org-todos

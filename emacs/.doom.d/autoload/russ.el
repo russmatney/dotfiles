@@ -165,3 +165,8 @@ If DIR is not a project, it will be indexed (but not cached)."
 (defun russ/last-screenshot ()
   (let ((filename (shell-command-to-string "ls ~/Screenshots | sort -V | tail -n 1")))
     (s-trim filename)))
+
+;;;###autoload
+(defun russ/fix-visual-select ()
+  (interactive)
+  (setq-local transient-mark-mode t))
