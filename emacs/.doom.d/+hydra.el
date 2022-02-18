@@ -78,6 +78,17 @@ Commands that stick around (this hydra supports multiple presses).
   ("d" (find-file "~/todo/garden/workspaces/doctor.org") "doctor workspace garden file")
   )
 
+;;; clawe widen/narrow ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defhydra hydra-narrow-widen (:exit t)
+  ("w" (widen) "widen" :column "<--Widen-->")
+  ("b" (org-narrow-to-block) "org-narrow-to-block" :column "-->Narrow<--")
+  ("r" (org-narrow-to-region) "org-narrow-to-region")
+  ("e" (org-narrow-to-element) "org-narrow-to-element"))
+
+
+;;; clawe hydra ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (defhydra hydra-clawe (:exit t)
   ("b" (find-file "~/russmatney/clawe/src/clawe/defs/bindings.clj")
    "defs/bindings.clj" :column "Open file")
@@ -96,6 +107,8 @@ Commands that stick around (this hydra supports multiple presses).
   ("c" (find-file "~/todo/garden/workspaces/clawe.org") "clawe workspace garden file")
   ("d" (find-file "~/todo/garden/workspaces/doctor.org") "doctor workspace garden file"))
 
+;;; clojure hydra ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (defhydra hydra-clojure (:exit t)
   ("'"  cider-jack-in "jack-in (clj)" :column "jack in!")
   ("\"" cider-jack-in-cljs "jack-in (cljs)")
@@ -107,17 +120,21 @@ Commands that stick around (this hydra supports multiple presses).
   (">" cljr-thread-first-all "Thread first all")
   ("<" cljr-thread-last-all "Thread last all"))
 
+;;;;;;;;;;;;;;;
+;; jump to file
+
 (defhydra hydra-visit-bookmark (:exit t)
-  ("t" russ/open-org-file "Open ~/todo org file" :column "~/todo & Garden")
+  ("t" org-roam-dailies-find-today "Today's .org")
+  ("T" org-roam-dailies-find-tomorrow "Today's .org")
+  ("D" org-roam-dailies-find-yesterday "Today's .org")
+
   ("p" (find-file "~/todo/projects.org") "Open ~/todo/projects.org")
   ("j" (find-file "~/todo/journal.org") "Open ~/todo/journal.org")
   ("a" org-agenda "Org Agenda")
-  ("D" org-roam-dailies-find-today "Roam Daily")
-  ("J" org-roam-dailies-find-today "Roam Daily")
 
   ("." russ/open-dotfile "~/dotfiles/*" :column "dotfiles")
   ("z" (find-file "~/.zshrc") "~/.zshrc")
-  ("T" (find-file "~/.tmux.conf") "~/.tmux.conf")
+  ;; ("T" (find-file "~/.tmux.conf") "~/.tmux.conf")
 
   ("d" russ/open-doom-file "Open DOOM source file" :column "emacs")
   ("c" russ/open-emacs-config-file "Open DOOM config file ~/.doom.d/")
@@ -139,6 +156,8 @@ Commands that stick around (this hydra supports multiple presses).
   ("r" russ/reload-emacs-font "Reload emacs fonts")
   )
 
+;;; main hydra ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (defhydra hydra-main (:exit t)
   ("g" gdscript-hydra-show "Godot Script Hydra"
    :column "All your Hydra are belong to us")
@@ -147,6 +166,8 @@ Commands that stick around (this hydra supports multiple presses).
   ("C" hydra-clawe/body "Clawe hydra")
   ("e" hydra-visit-bookmark/body "Visit/Edit/Bookmarks")
   ("r" hydra-org-refile/body "Org refiling")
+
+  ("n" hydra-narrow/body "narrow/widen")
 
   ("h" hydra-emacs-help/body "Emacs help")
 

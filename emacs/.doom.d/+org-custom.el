@@ -134,6 +134,8 @@
          ((agenda "") (alltodo "" ((org-agenda-todo-ignore-with-date t)))))
         ("i" "Icebox"
          ((alltodo "" ((org-agenda-files (file-expand-wildcards "~/todo/icebox.org"))))))
+        ("f" "Food"
+         ((agenda "" ((org-agenda-files (file-expand-wildcards "~/todo/food.org"))))))
         ("g" "Garden"
          ((agenda "" ((org-agenda-files org-garden-files)))
           (alltodo "" ((org-agenda-files org-garden-files)))))

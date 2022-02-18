@@ -82,6 +82,7 @@
  (:leader :desc "CLAWE Hydra" "C" #'hydra-clawe/body)
 
  ;; hydra base
+ :n "N" #'hydra-narrow-widen/body
  :nvime "M-y" #'hydra-main/body
  ;; (:leader :desc "Hydra entrypoint"       :n "l"  #'hydra-main/body)
  )
