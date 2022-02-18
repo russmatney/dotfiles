@@ -83,3 +83,6 @@
 
 ;; dirvish
 (package! dirvish)
+
+;; graphql
+(package! graphql-mode)

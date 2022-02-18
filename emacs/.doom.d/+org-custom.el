@@ -74,6 +74,7 @@
                                    (s-contains? "icebox" s)
                                    (s-contains? "goals" s)
                                    (s-contains? "ideas" s)
+                                   (s-contains? "urbint" s)
                                    ;; (s-contains? "prompts" s)
                                    (s-contains? "reads" s)
                                    (s-contains? "watches" s)))
