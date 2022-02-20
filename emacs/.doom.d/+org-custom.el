@@ -68,19 +68,29 @@
       org-agenda-skip-deadline-if-done t
       org-agenda-skip-scheduled-if-deadline-is-shown t
 
-      org-agenda-files (append (cl-remove-if
-                                (lambda (s)
-                                  (or
-                                   (s-contains? "icebox" s)
-                                   (s-contains? "goals" s)
-                                   (s-contains? "ideas" s)
-                                   (s-contains? "urbint" s)
-                                   ;; (s-contains? "prompts" s)
-                                   (s-contains? "reads" s)
-                                   (s-contains? "watches" s)))
-                                (file-expand-wildcards "~/Dropbox/todo/*.org")))
 
-      ;; org-dailies-files (file-expand-wildcards "~/Dropbox/todo/daily/*.org")
+      recent-daily-dates (cl-loop for i from 0 below 7 collect
+                                  (format-time-string "%Y-%m-%d" (time-subtract (current-time) (days-to-time i))))
+      recent-dailies (cl-remove-if-not
+                      (lambda (s)
+                        (member (file-name-base s) recent-daily-dates))
+                      (org-roam-dailies--list-files))
+
+      org-agenda-files (append
+                        (cl-remove-if
+                         (lambda (s)
+                           (or
+                            (s-contains? "icebox" s)
+                            (s-contains? "goals" s)
+                            (s-contains? "ideas" s)
+                            (s-contains? "urbint" s)
+                            ;; (s-contains? "prompts" s)
+                            (s-contains? "reads" s)
+                            (s-contains? "watches" s)))
+                         (file-expand-wildcards "~/Dropbox/todo/*.org"))
+
+                        recent-dailies)
+
       org-garden-files (append (file-expand-wildcards "~/Dropbox/todo/garden/*.org")
                                (file-expand-wildcards "~/Dropbox/todo/garden/**/*.org")))
 
@@ -196,7 +206,8 @@
     (switch-to-buffer (current-buffer))))
 
 (defun russ/refile-to-daily (n)
-  (let ((file-s (format-time-string "daily/%Y-%m-%d.org" (time-add (* n 86400) (current-time)))))
+  ;; TODO this seems to sometimes nest the `daily/` an extra time :/
+  (let ((file-s (format-time-string "~/todo/daily/%Y-%m-%d.org" (time-add (* n 86400) (current-time)))))
     (save-excursion
       (org-roam-dailies-capture-tomorrow n t)
       ;; TODO write the file?
