@@ -69,27 +69,17 @@
       org-agenda-skip-scheduled-if-deadline-is-shown t
 
 
-      recent-daily-dates (cl-loop for i from 0 below 7 collect
-                                  (format-time-string "%Y-%m-%d" (time-subtract (current-time) (days-to-time i))))
-      recent-dailies (cl-remove-if-not
-                      (lambda (s)
-                        (member (file-name-base s) recent-daily-dates))
-                      (org-roam-dailies--list-files))
-
-      org-agenda-files (append
-                        (cl-remove-if
-                         (lambda (s)
-                           (or
-                            (s-contains? "icebox" s)
-                            (s-contains? "goals" s)
-                            (s-contains? "ideas" s)
-                            (s-contains? "urbint" s)
-                            ;; (s-contains? "prompts" s)
-                            (s-contains? "reads" s)
-                            (s-contains? "watches" s)))
-                         (file-expand-wildcards "~/Dropbox/todo/*.org"))
-
-                        recent-dailies)
+      org-agenda-files (cl-remove-if
+                        (lambda (s)
+                          (or
+                           (s-contains? "icebox" s)
+                           (s-contains? "goals" s)
+                           (s-contains? "ideas" s)
+                           (s-contains? "urbint" s)
+                           ;; (s-contains? "prompts" s)
+                           (s-contains? "reads" s)
+                           (s-contains? "watches" s)))
+                        (file-expand-wildcards "~/Dropbox/todo/*.org"))
 
       org-garden-files (append (file-expand-wildcards "~/Dropbox/todo/garden/*.org")
                                (file-expand-wildcards "~/Dropbox/todo/garden/**/*.org")))
@@ -170,26 +160,26 @@
 
 ;; https://www.reddit.com/r/orgmode/comments/grgzlb/display_file_path_in_agenda_view/
 
-(defun my-buffer-file-name ()
+(defun my-buffer-dir-name ()
   "Give the directory of (buffer-file-name), and replace the home path by '~'"
   (interactive)
   (if (buffer-file-name)
       (->>
-          (file-name-directory
-           (file-relative-name
-            (buffer-file-name)
-            (expand-file-name "~")))
-        (s-replace "Dropbox/todo/" "")
-        (s-replace "russmatney/" "")
-        (s-replace-regexp "/$" ""))
+       (file-name-directory
+        (file-relative-name
+         (buffer-file-name)
+         (expand-file-name "~")))
+       (s-replace "Dropbox/todo/" "")
+       (s-replace "russmatney/" "")
+       (s-replace-regexp "/$" ""))
     ""))
 
 (setq org-agenda-prefix-format
-      '((agenda  . "%(my-buffer-file-name)%i %-12:c%?-12t% s")
-        (timeline  . "%(my-buffer-file-name)% s")
-        (todo  . "%(my-buffer-file-name)%i %-12:c")
-        (tags  . "%(my-buffer-file-name)%i %-12:c")
-        (search . "%(my-buffer-file-name)%i %-12:c")))
+      '((agenda  . " %-12(my-buffer-dir-name)%?i%-12:c%?-12t% s")
+        (timeline  . "%?(my-buffer-dir-name)% s")
+        (todo  . " %?-24(my-buffer-dir-name)%?-12:c")
+        (tags  . "%?(my-buffer-dir-name)%i %-12:c")
+        (search . "%?(my-buffer-dir-name)%i %-12:c")))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -354,7 +344,18 @@
   (setq org-roam-dailies-capture-templates
         '(("d" "default" entry "* %?" :if-new
            (file+head "%<%Y-%m-%d>.org"
-                      "#+title: %<%Y-%m-%d>")))))
+                      "#+title: %<%Y-%m-%d>"))))
+
+
+  (setq
+   recent-daily-dates (cl-loop for i from 0 below 14 collect
+                               (format-time-string "%Y-%m-%d" (time-subtract (current-time) (days-to-time i))))
+   recent-dailies (cl-remove-if-not
+                   (lambda (s)
+                     (member (file-name-base s) recent-daily-dates))
+                   (org-roam-dailies--list-files))
+
+   org-agenda-files (append org-agenda-files recent-dailies)))
 
 (defadvice org-capture
     (after make-full-window-frame activate)
