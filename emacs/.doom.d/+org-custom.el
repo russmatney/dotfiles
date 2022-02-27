@@ -317,6 +317,18 @@
                  :keys "d"
                  :function org-roam-dailies-capture-today)))))
 
+(use-package! org-roam
+  :config
+  (require 'org-roam-dailies)
+  (setq recent-daily-dates (cl-loop for i from 0 below 14 collect
+                                    (format-time-string "%Y-%m-%d" (time-subtract (current-time) (days-to-time i))))
+        recent-dailies (cl-remove-if-not
+                        (lambda (s)
+                          (member (file-name-base s) recent-daily-dates))
+                        (org-roam-dailies--list-files))
+
+        org-agenda-files (append org-agenda-files recent-dailies)))
+
 ;; TODO review these in light of v2
 (after! org-roam
   (setq org-roam-capture-templates
@@ -347,15 +359,7 @@
                       "#+title: %<%Y-%m-%d>"))))
 
 
-  (setq
-   recent-daily-dates (cl-loop for i from 0 below 14 collect
-                               (format-time-string "%Y-%m-%d" (time-subtract (current-time) (days-to-time i))))
-   recent-dailies (cl-remove-if-not
-                   (lambda (s)
-                     (member (file-name-base s) recent-daily-dates))
-                   (org-roam-dailies--list-files))
-
-   org-agenda-files (append org-agenda-files recent-dailies)))
+  )
 
 (defadvice org-capture
     (after make-full-window-frame activate)
