@@ -367,6 +367,9 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 export PATH="$HOME/.cargo/bin:$PATH"
 
+alias ps=procs
+alias du=dua
+
 ################################################################################
 # Doom emacs
 ################################################################################

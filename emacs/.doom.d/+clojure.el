@@ -305,21 +305,21 @@
           ("s" . "clojure.spec.alpha")
           ("rf" . "re-frame.core")
           ("r" . "reagent.core")
-          ("t" . "tick.alpha.api"))
+          ("t" . "tick.alpha.api")))
 
-        clojure-align-forms-automatically t
+  (setq clojure-align-forms-automatically t
 
         cider-save-file-on-load t
 
-        cider-show-error-buffer 'only-in-repl
+        cider-show-error-buffer 'except-in-repl
         cider-default-cljs-repl 'shadow
         cider-offer-to-open-cljs-app-in-browser nil
         cider-auto-jump-to-error nil
         cider-auto-select-error-buffer nil
         cider-auto-select-test-report-buffer nil
-        cider-test-show-report-on-success t
-        ;; cider-session-name-template "%j:%S"
-        )
+        cider-test-show-report-on-success t)
+  ;; cider-session-name-template "%j:%S"
+
 
   (set-file-template! "/deps\\.edn$" :trigger "__deps.edn" :mode 'clojure-mode)
   (set-file-template! "/user\\.clj$" :trigger "__user.clj" :mode 'clojure-mode))

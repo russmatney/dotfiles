@@ -46,6 +46,17 @@
   ;; (lsp-ui-doc-mode nil)
   ;; (setq lsp-ui-doc-enable nil)
   ;; (setq lsp-keymap-prefix "SPC l")
+
+
+  (setq gc-cons-threshold 100000000)
+  (setq read-process-output-max (* 1024 1024))
+
+  ;; rust
+  (setq lsp-rust-server 'rust-analyzer)
+  (setq lsp-rust-analyzer-import-merge-behaviour "last"
+        lsp-rust-analyzer-cargo-watch-command "clippy"
+        lsp-rust-analyzer-cargo-watch-args ["--target-dir" "/tmp/rust-analyzer-check"]
+        lsp-ui-doc-enable t)
   )
 
 
@@ -55,9 +66,20 @@
       "SPC" nil
       )
 
+;; (defun russ/setup-rust ()
+;;   (setq rust-format-on-save t)
+;;   (setq rust-format-show-buffer nil)
+;;   (rust-enable-format-on-save)
+;;   (lsp))
+
+;; ;; (use-package! rust-mode
+;; ;;   :config
+;; ;;   (russ/setup-rust))
+
+;; (add-hook 'rust-mode-hook #'russ/setup-rust)
+
 (after! rust-mode
-  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
-  (setq rust-format-on-save t))
+  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
 (use-package! lsp-ui
   :commands
@@ -72,17 +94,17 @@
 
 (map!
  (:after haskell-mode
-   (:map haskell-mode-map
-     :n "g SPC" 'haskell-process-load-file
-     ;; :n "g r"   'lsp-ui-peek-find-references
-     ;; :n "g d"   'lsp-ui-peek-find-definitions
-     :n "g d"   'xref-find-definitions
-     ;; :n "g SPC" 'intero-repl-load
-     :n "g a"   'lsp-apply-commands
-     :n "g m"   'lsp-ui-imenu
-     :n "g i"   'dante-info
-     ;; :n "g i"   'haskell-navigate-imports-go
-     :n "g b"   'haskell-navigate-imports-return)))
+  (:map haskell-mode-map
+   :n "g SPC" 'haskell-process-load-file
+   ;; :n "g r"   'lsp-ui-peek-find-references
+   ;; :n "g d"   'lsp-ui-peek-find-definitions
+   :n "g d"   'xref-find-definitions
+   ;; :n "g SPC" 'intero-repl-load
+   :n "g a"   'lsp-apply-commands
+   :n "g m"   'lsp-ui-imenu
+   :n "g i"   'dante-info
+   ;; :n "g i"   'haskell-navigate-imports-go
+   :n "g b"   'haskell-navigate-imports-return)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Elixir

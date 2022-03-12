@@ -20,3 +20,5 @@ if [ -e /home/russ/.nix-profile/etc/profile.d/nix.sh ]; then . /home/russ/.nix-p
 
 export SXHKD_SHELL=bg_shell
 # . "$HOME/.cargo/env"
+
+export LSP_USE_PLISTS=true
