@@ -82,7 +82,7 @@
  (:leader :desc "CLAWE Hydra" "C" #'hydra-clawe/body)
 
  ;; hydra base
- :n "N" #'hydra-narrow-widen/body
+ ;; :n "N" #'hydra-narrow-widen/body
  :nvime "M-y" #'hydra-main/body
  ;; (:leader :desc "Hydra entrypoint"       :n "l"  #'hydra-main/body)
  )
@@ -275,17 +275,25 @@
   (:desc "git" :n "g" #'git-hydra/body)))
 
 ;; allow moving left/right in magit buffers
-(after! magit
+(use-package! magit
+  :config
   (map!
    (:map magit-mode-map
     "l" nil
-    "h" nil)
+    "h" nil
+    :n "C-k"
+    :n "C-j"
+    )
+   (:map magit-diff-mode-map
+    "C-k" nil
+    "C-j" nil)
    (:map code-review-mode-map
-    "C-k" nil
-    "C-j" nil)
+    :n "C-k" nil
+    :n "C-j" nil)
+   ;; TODO this doesn't belong here!
    (:map org-roam-mode-map
-    "C-k" nil
-    "C-j" nil)
+    :n "C-k" nil
+    :n "C-j" nil)
    ))
 
 (map!

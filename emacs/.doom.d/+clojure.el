@@ -190,22 +190,23 @@
   ("p" cider-inspector-previous-inspectable-object "cider-inspector-previous-inspectable-object")
   ("q" cider-popup-buffer-quit-function "cider-popup-buffer-quit-function"))
 
-(map!
- (:after cider-mode
-  (:map cider-inspector-mode-map
-   "C-j" nil
-   "C-k" nil
-   ;; (:leader "i" #'hydra-cider-inspector-mode/body)
-   )
-  (:map cider-repl-mode-map
-   "C-j" nil
-   "C-k" nil)
-  (:map cider-mode-map
-   (:leader
-    :n "c" #'hydra-cider-mode/body))
-  (:after cider-browse-ns-mode
-   (:map cider-browse-ns-mode-map
-    :n "RET" #'cider-browse-ns-operate-at-point))))
+(use-package! cider
+  :config
+
+  (map!
+   (:map cider-inspector-mode-map
+    :n "C-j" nil
+    :n "C-k" nil
+    :n "i" #'hydra-cider-inspector-mode/body)
+   (:map cider-repl-mode-map
+    "C-j" nil
+    "C-k" nil)
+   (:map cider-mode-map
+    (:leader
+     :n "c" #'hydra-cider-mode/body))
+   (:after cider-browse-ns-mode
+    (:map cider-browse-ns-mode-map
+     :n "RET" #'cider-browse-ns-operate-at-point))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; cider reload this file, on-save
