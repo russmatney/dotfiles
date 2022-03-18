@@ -186,21 +186,10 @@
 
 (map!
  ;; movement
- "s-h" #'evil-window-left
- "s-l" #'evil-window-right
- "s-j" #'evil-window-down
- "s-k" #'evil-window-up
-
  "C-h" #'evil-window-left
  "C-l" #'evil-window-right
  "C-j" #'evil-window-down
  "C-k" #'evil-window-up
-
-
- ;; "A-h"    #'evil-window-left
- ;; "A-l"    #'evil-window-right
- ;; "A-j"    #'evil-window-down
- ;; "A-k"    #'evil-window-up
 
  "S-<left>"  #'evil-window-increase-width
  "S-<right>" #'evil-window-decrease-width
