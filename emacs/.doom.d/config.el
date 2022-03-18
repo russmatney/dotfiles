@@ -59,6 +59,8 @@
 ;; misc package config
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(setq eval-expression-print-length 200)
+
 (setq +ivy-buffer-icons t)
 
 ;; Add '--hidden' to rg command to include hidden files in search
