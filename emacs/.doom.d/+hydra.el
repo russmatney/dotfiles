@@ -124,9 +124,9 @@ Commands that stick around (this hydra supports multiple presses).
 ;; jump to file
 
 (defhydra hydra-visit-bookmark (:exit t)
-  ("t" org-roam-dailies-find-today "Today's .org")
-  ("T" org-roam-dailies-find-tomorrow "Today's .org")
-  ("D" org-roam-dailies-find-yesterday "Today's .org")
+  ("t" org-roam-dailies-find-today "Today" :column "Org dailies")
+  ("T" org-roam-dailies-find-tomorrow "Tomorrow")
+  ("y" org-roam-dailies-find-yesterday "Yesterday")
 
   ("p" (find-file "~/todo/projects.org") "Open ~/todo/projects.org")
   ("j" (find-file "~/todo/journal.org") "Open ~/todo/journal.org")

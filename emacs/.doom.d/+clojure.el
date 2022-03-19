@@ -298,6 +298,8 @@
           ("expo-fe" "localhost" "5554")
           ("godot-arcadia" "localhost" "3722")))
 
+  ;; cider-inspector-auto-select-buffer
+
   (setq cider-save-file-on-load t
         cider-repl-init-code (append cider-repl-init-code '("(set! *print-length* 100)"))
         cider-show-error-buffer 'except-in-repl
@@ -319,10 +321,15 @@
     "C-k" nil)
    (:map cider-mode-map
     (:leader
-     :n "c" #'hydra-cider-mode/body))
+     :n "c" #'hydra-cider-mode/body)
+    )
+   (:map cider-stacktrace-mode-map
+    :n "C-j" nil
+    :n "C-k" nil)
    (:after cider-browse-ns-mode
     (:map cider-browse-ns-mode-map
-     :n "RET" #'cider-browse-ns-operate-at-point))))
+     :n "RET" #'cider-browse-ns-operate-at-point))
+   ))
 
 
 (use-package! ivy-cider
