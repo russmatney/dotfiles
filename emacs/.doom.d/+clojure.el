@@ -190,24 +190,6 @@
   ("p" cider-inspector-previous-inspectable-object "cider-inspector-previous-inspectable-object")
   ("q" cider-popup-buffer-quit-function "cider-popup-buffer-quit-function"))
 
-(use-package! cider
-  :config
-
-  (map!
-   (:map cider-inspector-mode-map
-    :n "C-j" nil
-    :n "C-k" nil
-    :n "i" #'hydra-cider-inspector-mode/body)
-   (:map cider-repl-mode-map
-    "C-j" nil
-    "C-k" nil)
-   (:map cider-mode-map
-    (:leader
-     :n "c" #'hydra-cider-mode/body))
-   (:after cider-browse-ns-mode
-    (:map cider-browse-ns-mode-map
-     :n "RET" #'cider-browse-ns-operate-at-point))))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; cider reload this file, on-save
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -266,13 +248,6 @@
   :config
   (require 'flycheck-clj-kondo)
 
-  (add-hook
-   'cider-mode-hook
-   #'(lambda ()
-       (add-hook
-        'after-save-hook
-        #'cider-eval-if-cider-buffer)))
-
   ;; (set-company-backend!
   ;;   'clojurescript-mode
   ;;   '(company-capf company-yasnippet company-flow company-css-classes-backend))
@@ -280,15 +255,6 @@
   ;; (set-company-backend!
   ;;   'clojurec-mode
   ;;   '(company-capf company-yasnippet company-flow company-css-classes-backend))
-
-  (setq cider-known-endpoints
-        '(("system-babashka" "localhost" "1667")
-          ("doctor-be" "localhost" "3336")
-          ("doctor-fe" "localhost" "3335")
-          ("expo-be" "localhost" "5553")
-          ("expo-fe" "localhost" "5554")
-          ("godot-arcadia" "localhost" "3722")
-          ))
 
   (setq cljr-magic-require-namespaces
         '(("io" . "clojure.java.io")
@@ -308,12 +274,32 @@
           ("r" . "reagent.core")
           ("t" . "tick.alpha.api")))
 
-  (setq clojure-align-forms-automatically t
+  (setq clojure-align-forms-automatically t)
 
-        cider-save-file-on-load t
 
+  (set-file-template! "/deps\\.edn$" :trigger "__deps.edn" :mode 'clojure-mode)
+  (set-file-template! "/user\\.clj$" :trigger "__user.clj" :mode 'clojure-mode))
+
+(use-package! cider
+  :config
+
+  (add-hook
+   'cider-mode-hook
+   #'(lambda ()
+       (add-hook
+        'after-save-hook
+        #'cider-eval-if-cider-buffer)))
+
+  (setq cider-known-endpoints
+        '(("system-babashka" "localhost" "1667")
+          ("doctor-be" "localhost" "3336")
+          ("doctor-fe" "localhost" "3335")
+          ("expo-be" "localhost" "5553")
+          ("expo-fe" "localhost" "5554")
+          ("godot-arcadia" "localhost" "3722")))
+
+  (setq cider-save-file-on-load t
         cider-repl-init-code (append cider-repl-init-code '("(set! *print-length* 100)"))
-
         cider-show-error-buffer 'except-in-repl
         cider-default-cljs-repl 'shadow
         cider-offer-to-open-cljs-app-in-browser nil
@@ -323,9 +309,21 @@
         cider-test-show-report-on-success t)
   ;; cider-session-name-template "%j:%S"
 
+  (map!
+   (:map cider-inspector-mode-map
+    :n "C-j" nil
+    :n "C-k" nil
+    :n "i" #'hydra-cider-inspector-mode/body)
+   (:map cider-repl-mode-map
+    "C-j" nil
+    "C-k" nil)
+   (:map cider-mode-map
+    (:leader
+     :n "c" #'hydra-cider-mode/body))
+   (:after cider-browse-ns-mode
+    (:map cider-browse-ns-mode-map
+     :n "RET" #'cider-browse-ns-operate-at-point))))
 
-  (set-file-template! "/deps\\.edn$" :trigger "__deps.edn" :mode 'clojure-mode)
-  (set-file-template! "/user\\.clj$" :trigger "__user.clj" :mode 'clojure-mode))
 
 (use-package! ivy-cider
   :after cider-mode)

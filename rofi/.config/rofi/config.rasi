@@ -13,13 +13,9 @@ configuration {
 	me-accept-entry:				"MousePrimary";
 	scroll-method: 1;
     // lines: 12;
-    // The display name of this browser
     display-ssh:                   "ssh";
-    // The display name of this browser
     display-run:                    "#! ";
-    // The display name of this browser
     display-drun:                   "";
-    // The display name of this browser
     display-window:                 "";
     display-combi:                  "Go to";
     show-icons: true;

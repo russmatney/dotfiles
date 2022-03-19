@@ -66,15 +66,14 @@
       "SPC" nil
       )
 
-;; (defun russ/setup-rust ()
-;;   (setq rust-format-on-save t)
-;;   (setq rust-format-show-buffer nil)
-;;   (rust-enable-format-on-save)
-;;   (lsp))
+(defun russ/setup-rust ()
+  (setq rust-format-on-save t)
+  (setq rust-format-show-buffer nil)
+  (lsp))
 
-;; ;; (use-package! rust-mode
-;; ;;   :config
-;; ;;   (russ/setup-rust))
+(use-package! rustic
+  :config
+  (russ/setup-rust))
 
 ;; (add-hook 'rust-mode-hook #'russ/setup-rust)
 
