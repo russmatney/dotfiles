@@ -121,14 +121,14 @@ Commands that stick around (this hydra supports multiple presses).
   ("<" cljr-thread-last-all "Thread last all"))
 
 ;;;;;;;;;;;;;;;
-;; jump to file
+;; jump to file --- space-e
 
 (defhydra hydra-visit-bookmark (:exit t)
   ("t" org-roam-dailies-find-today "Today" :column "Org dailies")
   ("T" org-roam-dailies-find-tomorrow "Tomorrow")
   ("y" org-roam-dailies-find-yesterday "Yesterday")
 
-  ("p" (find-file "~/todo/projects.org") "Open ~/todo/projects.org")
+  ("p" (find-file "~/todo/projects.org") "Open ~/todo/projects.org" :column "Todo")
   ("j" (find-file "~/todo/journal.org") "Open ~/todo/journal.org")
   ("a" org-agenda "Org Agenda")
 
