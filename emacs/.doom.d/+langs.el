@@ -77,8 +77,8 @@
 
 ;; (add-hook 'rust-mode-hook #'russ/setup-rust)
 
-(after! rust-mode
-  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+;; (after! rust-mode
+;;   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
 (use-package! lsp-ui
   :commands

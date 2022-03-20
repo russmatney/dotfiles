@@ -149,14 +149,14 @@
 ;; misc fixes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package! Man-mode
-  :config
-  (map!
-   (:map Man-mode-map
-    :n "C-j" nil
-    :n "C-k" nil
-    ))
-  )
+; (use-package! Man
+;   :config
+;   (map!
+;    (:map Man-mode-map
+;     :n "C-j" nil
+;     :n "C-k" nil
+;     ))
+;   )
 
 
 ;; https://github.com/Malabarba/aggressive-indent-mode/issues/138
