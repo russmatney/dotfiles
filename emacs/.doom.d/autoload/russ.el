@@ -109,6 +109,37 @@ If DIR is not a project, it will be indexed (but not cached)."
   (doom-project-find-file "~/awesomeWM/awesome/lib/"))
 
 ;;;###autoload
+(defun russ/open-workspace-garden ()
+  ""
+  (interactive)
+  (doom-project-find-file "~/Dropbox/todo/garden/workspaces/"))
+
+;;;###autoload
+(defun russ/open-ink-file ()
+  ""
+  (interactive)
+  (doom-project-find-file "~/Dropbox/Writing/ink"))
+
+;;;###autoload
+(defun russ/open-project-file ()
+  ""
+  (interactive)
+  (doom-project-find-file (doom-project-root)))
+
+(comment
+ (russ/open-context-readme)
+
+ ;; some elisp learning...of course, opening the whole project solves everything
+ ;; but wouldn't you just cmd+p?
+ (let* ((readme-roots '("readme.org" "readme.md"))
+        (exists (cl-first (cl-remove-if-not
+                           (lambda (f) (file-exists-p! f (doom-project-root)))
+                           readme-roots))))
+   (when exists
+     (doom-project-find-file exists)))
+ )
+
+;;;###autoload
 (defun russ/transparency (value)
   "Sets the transparency of the frame window. 0=transparent/100=opaque"
   (interactive "nTransparency Value 0 - 100 opaque:")

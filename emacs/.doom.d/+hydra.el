@@ -146,10 +146,11 @@ Commands that stick around (this hydra supports multiple presses).
   ("W" (find-file "~/russmatney/clawe/src/clawe/defs/workspaces.clj")
    "defs/workspaces.clj")
 
-  ("w" russ/open-writing-file "Open file in ~/Dropbox/Writing/" :column "Misc")
+  ("r" russ/open-project-file "...project file (readme?)" :column "Workspace....")
+  ("g" russ/open-workspace-garden "...garden")
 
-  ;; TODO `g` for opening the current workspace's garden note
-  ;; TODO `r` for opening the current workspace's readme
+  ("w" russ/open-writing-file "Writing" :column "Misc")
+  ("i" russ/open-ink-file "Ink")
   )
 
 (defhydra hydra-emacs-help (:exit t)
