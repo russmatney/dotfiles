@@ -8,7 +8,7 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 export PATH="$HOME/.poetry/bin:$PATH"
 (( $+commands[pyenv] )) && eval "$(pyenv init --path)"
 
-source "/home/russ/.secrets"
+source "$HOME/.secrets"
 
 [ -s ~/.luaver/luaver ] && . ~/.luaver/luaver
 eval $(luarocks path --bin)
