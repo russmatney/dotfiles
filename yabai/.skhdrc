@@ -156,10 +156,6 @@ cmd - l : yabai -m window --focus east
 cmd - j : yabai -m window --focus south
 cmd - k : yabai -m window --focus north
 
-# float / unfloat window and center on screen
-cmd - f : yabai -m window --toggle float;\
-          yabai -m window --grid 4:4:1:1:2:2
-
 # toggle window split type
 cmd - e : yabai -m window --toggle split
 
@@ -180,7 +176,14 @@ shift + ctrl - s : yabai -m window --move rel:0:20
 shift + ctrl - w : yabai -m window --move rel:0:-20
 shift + ctrl - d : yabai -m window --move rel:20:0
 
+# float / unfloat window and center on screen
+cmd - f : yabai -m window --toggle float;\
+          yabai -m window --grid 4:4:1:1:2:2
+
 # floating window fill screen
+cmd - c : yabai -m window --toggle float;\
+          yabai -m window --grid 12:12:1:1:10:10
+
 # TODO set floating, not toggle? the toggle is kind of nice
 shift + cmd - c : yabai -m window --toggle float;\
                   yabai -m window --grid 1:1:0:0:1:1
@@ -190,10 +193,7 @@ shift + cmd - c : yabai -m window --toggle float;\
 #                      yabai -m window --grid 1:2:0:0:1:1
 
 # TODO quit on super-q, etc
-
-# emacs, term basics
-shift + cmd - return : clawe open-emacs # does not have a name/workspace context
-cmd - return : clawe open-term # TODO currently locks up skhd
+cmd - q : yabai -m window --close
 
 # walking spaces
 cmd - p : yabai -m space --focus next || yabai -m space --focus first
@@ -214,3 +214,17 @@ cmd - 7 : yabai -m space --focus 7
 cmd - 8 : yabai -m space --focus 8
 cmd - 9 : yabai -m space --focus 9
 cmd - 0 : yabai -m space --focus 0
+
+cmd - r : clawe clawe-restart-kbd-modr
+
+# emacs, term toggling
+# shift + cmd - return : clawe open-emacs # does not have a name/workspace context
+shift + cmd - return : clawe toggle-emacs-kbd-modshiftReturn
+# cmd - return : clawe open-term # TODO currently locks up skhd
+cmd - return : clawe toggle-terminal-kbd-modReturn
+
+# tap again to go to the previous space
+cmd - u : yabai -m space --focus journal || yabai -m space --focus recent
+cmd - t : yabai -m space --focus web || yabai -m space --focus recent
+cmd - s : yabai -m space --focus spotify || yabai -m space --focus recent
+cmd - a : yabai -m space --focus slack || yabai -m space --focus recent
