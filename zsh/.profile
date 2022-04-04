@@ -13,3 +13,7 @@ elif test "$HOSTNAME" == 'vader' ; then
     export MONITOR=eDP-1
 fi
 # . "$HOME/.cargo/env"
+
+
+# disable husky git hooks
+export HUSKY=0

@@ -22,3 +22,7 @@ export SXHKD_SHELL=bg_shell
 # . "$HOME/.cargo/env"
 
 export LSP_USE_PLISTS=true
+
+
+# disable husky git hooks
+export HUSKY=0
