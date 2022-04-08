@@ -228,8 +228,10 @@ cmd - return : clawe toggle-terminal-kbd-modReturn
 cmd - u : clawe toggle-journal-2
 # cmd - t : yabai -m space --focus web || yabai -m space --focus recent
 cmd - t : clawe toggle-web-2
-cmd - s : yabai -m space --focus spotify || yabai -m space --focus recent
-cmd - a : yabai -m space --focus slack || yabai -m space --focus recent
+# cmd - s : yabai -m space --focus spotify || yabai -m space --focus recent
+cmd - s : clawe toggle-spotify-2
+cmd - a : clawe toggle-slack-2
+# cmd - a : yabai -m space --focus slack || yabai -m space --focus recent
 
 cmd - d : clawe yabai-set-space-labels
 cmd - w : clawe m-x
