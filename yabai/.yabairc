@@ -41,7 +41,7 @@ yabai -m config mouse_drop_action            swap
 # general space settings
 yabai -m config layout                       bsp
 yabai -m config top_padding                  12
-yabai -m config bottom_padding               12
+yabai -m config bottom_padding               32
 yabai -m config left_padding                 12
 yabai -m config right_padding                12
 yabai -m config window_gap                   06
@@ -51,5 +51,8 @@ yabai -m config window_gap                   06
 
 # float system preferences
 yabai -m rule --add app="^System Preferences$" manage=off
+yabai -m rule --add app="^Safari$" manage=off
+yabai -m rule --add app="^Emacs$" title="journal" manage=off
+yabai -m rule --add app="choose" manage=off
 
 echo "yabai configuration loaded.."

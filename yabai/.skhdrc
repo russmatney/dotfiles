@@ -224,7 +224,12 @@ shift + cmd - return : clawe toggle-emacs-kbd-modshiftReturn
 cmd - return : clawe toggle-terminal-kbd-modReturn
 
 # tap again to go to the previous space
-cmd - u : yabai -m space --focus journal || yabai -m space --focus recent
-cmd - t : yabai -m space --focus web || yabai -m space --focus recent
+# cmd - u : yabai -m space --focus journal || yabai -m space --focus recent
+cmd - u : clawe toggle-journal-2
+# cmd - t : yabai -m space --focus web || yabai -m space --focus recent
+cmd - t : clawe toggle-web-2
 cmd - s : yabai -m space --focus spotify || yabai -m space --focus recent
 cmd - a : yabai -m space --focus slack || yabai -m space --focus recent
+
+cmd - d : clawe yabai-set-space-labels
+cmd - w : clawe m-x
