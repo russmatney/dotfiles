@@ -241,3 +241,4 @@ cmd - a : clawe toggle-slack-2
 
 cmd - d : clawe yabai-clean-up-spaces
 cmd - w : clawe m-x
+cmd - x : clawe m-x
