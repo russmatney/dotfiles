@@ -118,6 +118,7 @@
 
 (map!
  :nvime "M-x" #'execute-extended-command
+ :nvime "s-x" #'execute-extended-command
 
  (:leader :desc "evil-ex" :nv ";" #'evil-ex)
 

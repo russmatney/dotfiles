@@ -33,6 +33,17 @@
       doom-variable-pitch-font (font-spec :family "Hack Nerd Font" :slant 'normal)
       doom-unicode-font (font-spec :family "DejaVuSansMono Nerd Font Mono")
       doom-big-font (font-spec :family "SpaceMono Nerd Font" :size 24 :slant 'normal))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; mac keybinds
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq mac-command-modifier      'super
+      ns-command-modifier       'super
+      mac-option-modifier       'meta
+      ns-option-modifier        'meta
+
+      mac-right-option-modifier 'meta
+      ns-right-option-modifier 'meta)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; org init
@@ -164,7 +175,7 @@
        ;;upload          ; map local to remote projects via ssh/ftp
 
        :os
-       ;; (:if IS-MAC macos)  ; improve compatibility with macOS
+       (:if IS-MAC macos)  ; improve compatibility with macOS
        ;;tty               ; improve the terminal Emacs experience
 
        :lang
