@@ -24,6 +24,10 @@
 ;; autofill mode for text-mode
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
+;; https://github.com/d12frosted/homebrew-emacs-plus/issues/383
+(if IS-MAC
+    (setq insert-directory-program "gls" dired-use-ls-dired t))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; general format/whitespace
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

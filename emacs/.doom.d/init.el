@@ -29,10 +29,12 @@
 ;; Fonts
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(setq doom-font (font-spec :family "RobotoMono Nerd Font" :size 20 :slant 'normal)
-      doom-variable-pitch-font (font-spec :family "Hack Nerd Font" :slant 'normal)
-      doom-unicode-font (font-spec :family "DejaVuSansMono Nerd Font Mono")
-      doom-big-font (font-spec :family "SpaceMono Nerd Font" :size 24 :slant 'normal))
+(if (not IS-MAC)
+    (setq doom-font (font-spec :family "RobotoMono Nerd Font" :size 20 :slant 'normal)
+          doom-variable-pitch-font (font-spec :family "Hack Nerd Font" :slant 'normal)
+          doom-unicode-font (font-spec :family "DejaVuSansMono Nerd Font Mono")
+          doom-big-font (font-spec :family "SpaceMono Nerd Font" :size 24 :slant 'normal)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; mac keybinds
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -42,6 +44,7 @@
       mac-option-modifier       'meta
       ns-option-modifier        'meta
 
+      ;; required to send M-x instead of mac unicode shortcuts
       mac-right-option-modifier 'meta
       ns-right-option-modifier 'meta)
 
