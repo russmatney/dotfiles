@@ -176,9 +176,18 @@ shift + ctrl - s : yabai -m window --move rel:0:20
 shift + ctrl - w : yabai -m window --move rel:0:-20
 shift + ctrl - d : yabai -m window --move rel:20:0
 
+# --grid <rows>:<cols>:<start-x>:<start-y>:<width>:<height>
+#     Set the frame of the selected window based on a
+#     self-defined grid.
+#
+# move abs|rel:<dx>:<dy>
+#     If type is rel the selected window is moved by dx pixels
+#     horizontally and dy pixels vertically, otherwise dx and
+#     dy will become its new position.
+
 # float / unfloat window and center on screen
 cmd - f : yabai -m window --toggle float;\
-          yabai -m window --grid 4:4:1:1:2:2
+          yabai -m window --grid 10:8:1:1:8:6
 
 # floating window fill screen
 cmd - c : yabai -m window --toggle float;\
@@ -238,6 +247,7 @@ cmd - u : clawe toggle-journal-2
 cmd - t : clawe toggle-web-2
 cmd - s : clawe toggle-spotify-2
 cmd - a : clawe toggle-slack-2
+cmd - m : clawe toggle-messages-2
 
 cmd - d : clawe yabai-clean-up-spaces
 cmd - w : clawe m-x

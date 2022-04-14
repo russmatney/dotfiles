@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# TODO add notes up here with links to zsh-managment docs
 
 # enable profiling
 # zmodload zsh/zprof
@@ -90,11 +91,6 @@ export LD_LIBRARY_PATH=/usr/local/lib
 alias wa='wal -Req'
 
 alias ns='nix-shell'
-
-
-# Powerline
-# powerline-daemon -q
-# . /usr/lib/python3.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
 ################################################################################
 # vim-mode
@@ -306,8 +302,6 @@ alias cwb='git symbolic-ref --short HEAD'
 alias gwip="git commit -m 'wip'"
 
 alias delete-merged-branches="git checkout master && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
-
-alias hst="cosmos hub-status"
 
 # from jskrzypek
 # alias is-unmerged="! f() { local branch=$(git rev-parse --abbrev-ref ${1-HEAD}) ; local base=${2-master} ; echo $(git cherry $base $(git commit-tree $(git rev-parse $branch^{tree}) -p $(git merge-base $base $branch) -m _) | cut -f1 -d' ') $branch; }; f"
