@@ -319,10 +319,12 @@ alias clean-merged-branches="!f() { git checkout -q ${1-master} && git branch-me
 # Systemctl
 ################################################################################
 
+# TODO only on linux
+
 alias sc='systemctl'
 alias scr='systemctl restart'
 alias scs='systemctl status'
-alias jc='journalctl'
+# alias jc='journalctl'
 
 ################################################################################
 # Misc
@@ -478,3 +480,29 @@ timezsh() {
 ################################################################################
 
 PATH=$PATH:~/.local/share/Steam/steamapps/common/Aseprite
+
+
+#########################################################################
+# osx
+#########################################################################
+
+case "$OSTYPE" in
+  darwin*)
+    # gls in emacs
+    PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+
+    # java for clojure/babashka
+    PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
+    # homebrew
+    alias b="brew"
+    alias bs="brew services"
+    alias bsr="brew services restart"
+    alias bsl="brew services list"
+    alias bi="brew install"
+    alias bu="brew uninstall"
+    alias binf="brew info"
+
+    # autojump
+    [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
+esac
