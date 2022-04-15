@@ -319,12 +319,13 @@ alias clean-merged-branches="!f() { git checkout -q ${1-master} && git branch-me
 # Systemctl
 ################################################################################
 
-# TODO only on linux
-
-alias sc='systemctl'
-alias scr='systemctl restart'
-alias scs='systemctl status'
-# alias jc='journalctl'
+case "$OSTYPE" in
+  linux*)
+    alias sc='systemctl'
+    alias scr='systemctl restart'
+    alias scs='systemctl status'
+    alias jc='journalctl'
+esac
 
 ################################################################################
 # Misc
