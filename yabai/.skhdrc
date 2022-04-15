@@ -187,7 +187,7 @@ shift + ctrl - d : yabai -m window --move rel:20:0
 
 # float / unfloat window and center on screen
 cmd - f : yabai -m window --toggle float;\
-          yabai -m window --grid 10:8:1:1:8:6
+          yabai -m window --grid 12:9:1:1:7:10
 
 # floating window fill screen
 cmd - c : yabai -m window --toggle float;\
@@ -195,7 +195,7 @@ cmd - c : yabai -m window --toggle float;\
 
 # TODO set floating, not toggle? the toggle is kind of nice
 shift + cmd - c : yabai -m window --toggle float;\
-                  yabai -m window --grid 1:1:0:0:1:1
+                  yabai -m window --grid 50:50:1:1:48:48
 
 # make floating window fill left-half of screen
 # shift + cmd - left : yabai -m window --toggle float;\
