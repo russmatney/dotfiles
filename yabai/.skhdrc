@@ -248,7 +248,8 @@ cmd - t : clawe toggle-web-2
 cmd - s : clawe toggle-spotify-2
 cmd - a : clawe toggle-slack-2
 cmd - m : clawe toggle-messages-2
+cmd - g : clawe toggle-godot-2
 
-cmd - d : clawe yabai-clean-up-spaces
+cmd - d : clawe yabai-correct-workspaces
 cmd - w : clawe m-x
 cmd - x : clawe m-x
