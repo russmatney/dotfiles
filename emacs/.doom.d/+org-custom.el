@@ -249,7 +249,9 @@
         :n "z a"   #'org-cycle
 
         :localleader
-        :n "r"     #'hydra-org-refile/body)
+        :n "r"     #'hydra-org-refile/body
+        :n "i"     #'russ/org-roam-insert-node-level-0
+        )
 
   (map! :map org-agenda-mode-map
         "C-k" nil)
@@ -278,6 +280,36 @@
       :map org-agenda-mode-map
       :localleader
       "p" #'org-agenda-priority)
+
+(use-package! org-roam
+  :init
+  (map! :after org
+        :map org-mode-map
+        :localleader
+        :prefix ("m" . "org-roam")
+        ;; "b" #'org-roam-switch-to-buffer
+        ;; "f" #'org-roam-find-file
+        "f" #'russ/org-roam-find-node-level-0
+        "F" #'russ/org-roam-find-node-relevant
+        ;; "g" #'org-roam-graph
+        ;; "i" #'org-roam-insert
+        "i" #'russ/org-roam-insert-node-level-0
+        ;; "I" #'org-roam-insert-immediate
+        "I" #'russ/org-roam-insert-relevant-nodes
+        ;; "m" #'org-roam
+        ;; "t" #'org-roam-tag-add
+        ;; "T" #'org-roam-tag-delete
+        ;; (:prefix ("d" . "by date")
+        ;;  :desc "Find previous note" "b" #'org-roam-dailies-find-previous-note
+        ;;  :desc "Find date"          "d" #'org-roam-dailies-find-date
+        ;;  :desc "Find next note"     "f" #'org-roam-dailies-find-next-note
+        ;;  :desc "Find tomorrow"      "m" #'org-roam-dailies-find-tomorrow
+        ;;  :desc "Capture today"      "n" #'org-roam-dailies-capture-today
+        ;;  :desc "Find today"         "t" #'org-roam-dailies-find-today
+        ;;  :desc "Capture Date"       "v" #'org-roam-dailies-capture-date
+        ;;  :desc "Find yesterday"     "y" #'org-roam-dailies-find-yesterday
+        ;;  :desc "Find directory"     "." #'org-roam-dailies-find-directory)
+        )
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -384,26 +416,6 @@
 ;; Org pomodoro
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; (use-package! org-pomodoro
-;;   :config
-;;   (setq org-pomodoro-length 35
-;;         org-pomodoro-short-break-length 10))
-
-;; (defun ruborcalor/org-pomodoro-time ()
-;;   "Return the remaining pomodoro time"
-;;   (if (org-pomodoro-active-p)
-;;       (cl-case org-pomodoro-state
-;;         (:pomodoro
-;;          ;; TODO title case
-;;          (format "%s: %d minutes" org-clock-heading (/ (org-pomodoro-remaining-seconds) 60)))
-;;         (:short-break
-;;          (format "Short break time: %d minutes" (/ (org-pomodoro-remaining-seconds) 60)))
-;;         (:long-break
-;;          (format "Long break time: %d minutes" (/ (org-pomodoro-remaining-seconds) 60)))
-;;         (:overtime
-;;          (format "Overtime! %d minutes" (/ (org-pomodoro-remaining-seconds) 60))))
-;;     "No active pomo"))
-
 (defun russ/current-clock-string ()
   (if org-clock-current-task
       (substring-no-properties org-clock-current-task)))
@@ -431,7 +443,8 @@
         org-agenda-files (append org-agenda-files
                                  ;; TODO filter for existing
                                  ;; and maybe for contains /russmatney/teknql/
-                                 (org-projectile-todo-files)))
+                                 (org-projectile-todo-files)
+                                 ))
 
   (push (org-projectile-project-todo-entry) org-capture-templates))
 
@@ -474,32 +487,43 @@
               #'org-roam-reflinks-section
               ;; #'org-roam-unlinked-references-section ;; note, can be slow!
               ))
-  ;; disable by default because roam locks up emacs far too often
-  ;; (org-roam-db-autosync-disable)
   )
 
-;; https://orgmode-exocortex.com/2021/07/22/configure-org-roam-v2-to-update-database-only-when-idle/
-;; update roam on idle, not on file-save
-;; (with-eval-after-load "org-roam"
-;;   ;; queue for files that will be updated in org-roam-db when emacs is idle
-;;   (setq org-roam-db-update-queue (list))
-;;   ;; save the original update function;
-;;   (setq orig-update-file (symbol-function 'org-roam-db-update-file))
-;;   ;; then redefine the db update function to add the filename to a queue
-;;   (defun org-roam-db-update-file (&optional file-path)
-;;     ;; do same logic as original to determine current file-path if not passed as arg
-;;     (setq file-path (or file-path (buffer-file-name (buffer-base-buffer))))
-;;     (message "org-roam: scheduling update of %s" file-path)
-;;     (if (not (memq file-path org-roam-db-update-queue))
-;;         (push file-path org-roam-db-update-queue)))
 
-;;   ;; this function will be called when emacs is idle for a few seconds
-;;   (defun org-roam-db-idle-update-files ()
-;;     ;; go through queued filenames one-by-one and update db
-;;     ;; if we're not idle anymore, stop. will get rest of queue next idle.
-;;     (while (and org-roam-db-update-queue (current-idle-time))
-;;       ;; apply takes function var and list
-;;       (apply orig-update-file (list (pop org-roam-db-update-queue)))))
+;;; sandbox ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;   ;; we'll only start updating db if we've been idle for this many seconds
-;;   (run-with-idle-timer 5 t #'org-roam-db-idle-update-files))
+(comment
+ (cl-first
+  (org-roam-node-read)
+  )
+
+ (org-roam-node-tags
+  (cdr
+   (cl-first
+    (org-roam-node-read--completions
+     (lambda (node)
+       (= 1 (org-roam-node-level node)))
+     ))))
+
+ (org-roam-node-tags
+  (org-roam-node-read
+   nil
+   (lambda (node)
+     (org-roam-node-tags node))))
+
+ (let ((node
+        (cdr
+         (cl-first
+          (org-roam-node-read--completions
+           (lambda (node)
+             (= 0 (org-roam-node-level node)))
+           )))))
+   (org-roam-node-file-title node))
+
+ (org-roam-node-read
+  nil (lambda (node)
+        (and
+         (not (string-match-p
+               "/old-nov-2020/\\|/old/\\|/drafts-journal/\\|/journal/\\|/archive/"
+               (org-roam-node-file node)))
+         (not (member "reviewed" (org-roam-node-tags node)))))))

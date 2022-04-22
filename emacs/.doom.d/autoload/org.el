@@ -76,3 +76,56 @@ Org-mode properties drawer already, keep the headline and don’t insert
                (file-expand-wildcards "~/Dropbox/todo/garden/*.org")))
             :level . 0))))
     (call-interactively #'org-refile)))
+
+(comment
+
+ (org-roam-node-read
+  nil (lambda (node)
+        (and
+         (not (string-match-p
+               "/old-nov-2020/\\|/old/\\|/drafts-journal/\\|/journal/\\|/archive/"
+               (org-roam-node-file node)))
+         (not (member "reviewed" (org-roam-node-tags node))))))
+ )
+
+(defun russ/org-roam-old-p (node)
+  "Returns true if the file is 'old', according to this function."
+  (or
+   (string-match-p
+    "/old-nov-2020/\\|/old/\\|/drafts-journal/\\|/journal/\\|/archive/"
+    (org-roam-node-file node))
+   (member "reviewed" (org-roam-node-tags node))))
+
+
+;;;###autoload
+(defun russ/org-roam-insert-node-relevant ()
+  "`org-roam-node-insert' but filtering out misc old notes"
+  (interactive)
+  (org-roam-node-insert
+   (lambda (node)
+     (not (russ/org-roam-old-p node)))))
+
+;;;###autoload
+(defun russ/org-roam-insert-file ()
+  "`org-roam-node-insert' but filtering for level 0 (files)"
+  (interactive)
+  (org-roam-node-insert
+   (lambda (node)
+     (= 0 (org-roam-node-level node)))))
+
+;;;###autoload
+(defun russ/org-roam-find-node-relevant ()
+  "`org-roam-node-insert' but filtering out misc old notes"
+  (interactive)
+  (org-roam-node-find
+   nil nil
+   (lambda (node)
+     (not (russ/org-roam-old-p node)))))
+
+;;;###autoload
+(defun russ/org-roam-find-file ()
+  "`org-roam-node-insert' but filtering out misc old notes"
+  (interactive)
+  (org-roam-node-find
+   nil nil (lambda (node)
+             (= 0 (org-roam-node-level node)))))
