@@ -309,7 +309,7 @@
         ;;  :desc "Capture Date"       "v" #'org-roam-dailies-capture-date
         ;;  :desc "Find yesterday"     "y" #'org-roam-dailies-find-yesterday
         ;;  :desc "Find directory"     "." #'org-roam-dailies-find-directory)
-        )
+        ))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
