@@ -289,13 +289,13 @@
         :prefix ("m" . "org-roam")
         ;; "b" #'org-roam-switch-to-buffer
         ;; "f" #'org-roam-find-file
-        "f" #'russ/org-roam-find-node-level-0
+        "f" #'russ/org-roam-find-file
         "F" #'russ/org-roam-find-node-relevant
         ;; "g" #'org-roam-graph
         ;; "i" #'org-roam-insert
-        "i" #'russ/org-roam-insert-node-level-0
+        "i" #'russ/org-roam-insert-file
         ;; "I" #'org-roam-insert-immediate
-        "I" #'russ/org-roam-insert-relevant-nodes
+        "I" #'russ/org-roam-insert-node-relevant
         ;; "m" #'org-roam
         ;; "t" #'org-roam-tag-add
         ;; "T" #'org-roam-tag-delete
