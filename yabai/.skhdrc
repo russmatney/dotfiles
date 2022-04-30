@@ -245,6 +245,7 @@ cmd - return : clawe toggle-terminal-kbd-modReturn
 # tap again to go to the previous space
 cmd - u : clawe toggle-journal-2
 cmd - t : clawe toggle-web-2
+cmd - b : clawe toggle-dev-web-2
 cmd - s : clawe toggle-spotify-2
 cmd - a : clawe toggle-slack-2
 cmd - m : clawe toggle-messages-2
