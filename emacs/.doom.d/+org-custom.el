@@ -52,6 +52,9 @@
       org-refile-active-region-within-subtree t
       org-outline-path-complete-in-steps nil
 
+      ;; startup folded by default (overwritable per file)
+      org-startup-folded t
+
       ;; org-log-done 'note ;; <-- an interesting option
       org-log-done 'time
       org-agenda-log-mode-items '(closed clock state)
@@ -310,7 +313,6 @@
         ;;  :desc "Find yesterday"     "y" #'org-roam-dailies-find-yesterday
         ;;  :desc "Find directory"     "." #'org-roam-dailies-find-directory)
         ))
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org mode config
