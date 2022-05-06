@@ -149,14 +149,17 @@
   ("f" clojure-essential-ref "Essential Ref"))
 
 (defhydra hydra-cider-mode (:exit t)
-  ("'" cider-jack-in "jack-in" :column "Jack in/Connect/Repl")
+  ("'" cider-jack-in "jack-in" :column "Jack in/Connect")
   ("\"" cider-jack-in-cljs "jack-in-cljs")
   ("c" cider-connect "cider-connect")
   ("C" cider-connect-cljs "cider-connect-cljs")
+  ("P" russ/cider-set-print-length "russ/cider-set-print-length")
+
+  ("'" cider-jack-in "jack-in" :column "Repl/Buffer")
   ("B" cider-switch-to-repl-buffer "cider-switch-to-repl-buffer")
+  ("E" (with-current-buffer cider-error-buffer (+popup/buffer)) "Error buffer")
   ("s" russ/switch-cider-connection "russ/switch-cider-connection")
   ("k" rs/cider-clear-all-buffers "rs/cider-clear-all-buffers")
-  ("P" russ/cider-set-print-length "russ/cider-set-print-length")
   ("r" rs/cider-cycle-buffer-type "rs/cider-cycle-buffer-type")
 
   ("DEL" ivy-cider-browse-ns "ivy-cider-browse-ns" :column "Browse")
@@ -176,8 +179,7 @@
 
   ("m" clojure-move-to-let "clojure-move-to-let" :column "Refactor/Other")
   ("i" cider-inspect-last-result "cider-inspect-last-result")
-  ("S" hydra-systemic/body "hydra-systemic")
-  )
+  ("S" hydra-systemic/body "hydra-systemic"))
 
 (defhydra hydra-cider-inspector-mode (:exit t)
   ("RET" cider-inspector-operate-on-point "cider-inspector-operate-on-point" :column "Inspector")
