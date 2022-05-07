@@ -34,7 +34,7 @@
 ;; clj-refactor 3.4.2 d7384a4edddc6c875f8562e2acd4e7346a68553f
 (package! clj-refactor :pin "d7384a4edddc6c875f8562e2acd4e7346a68553f")
 ;; cider 1.4 b2cee7fc301735b403920583cc2c23dcf70990a3
-(package! cider :pin "b2cee7fc301735b403920583cc2c23dcf70990a302ca53021682f426323dc7bb4e6b28e6c8f5eb30")
+(package! cider :pin "b2cee7fc301735b403920583cc2c23dcf70990a3")
 ;; clojure mode 5.14 b7d08b87f6a116ff47b33ee857926b60c66c3ab7
 
 (package! aggressive-indent)

@@ -157,7 +157,7 @@ cmd - j : yabai -m window --focus south
 cmd - k : yabai -m window --focus north
 
 # toggle window split type
-cmd - e : yabai -m window --toggle split
+shift + cmd - e : yabai -m window --toggle split
 
 # window horizontal size
 # TODO should work from both left and right
@@ -247,6 +247,7 @@ cmd - u : clawe toggle-journal-2
 cmd - t : clawe toggle-web-2
 cmd - b : clawe toggle-dev-web-2
 cmd - s : clawe toggle-spotify-2
+cmd - e : clawe toggle-aseprite-2
 cmd - a : clawe toggle-slack-2
 cmd - m : clawe toggle-messages-2
 cmd - g : clawe toggle-godot-2
