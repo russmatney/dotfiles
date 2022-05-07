@@ -148,12 +148,35 @@
   ("h" cider-doc "cider-doc")
   ("f" clojure-essential-ref "Essential Ref"))
 
+(defun russ/cider-connect-to-clawe (fe-or-be)
+  (pcase fe-or-be
+    ('fe (cider-connect-clj
+          '(:host "localhost" :port "3336"
+            :project-dir "~/russmatney/clawe")))
+    ('be (cider-connect-cljs
+          '(:host "localhost" :port "3335"
+            :project-dir "~/russmatney/clawe")))))
+
+(defun russ/cider-connect-to-clawe-be ()
+  (interactive)
+  (russ/cider-connect-to-clawe 'be))
+
+(defun russ/cider-connect-to-clawe-fe ()
+  (interactive)
+  (russ/cider-connect-to-clawe 'fe))
+
+(comment
+ (let ((x '(:foo "list-data")))
+   (plist-get x :foo)))
+
 (defhydra hydra-cider-mode (:exit t)
   ("'" cider-jack-in "jack-in" :column "Jack in/Connect")
   ("\"" cider-jack-in-cljs "jack-in-cljs")
   ("c" cider-connect "cider-connect")
   ("C" cider-connect-cljs "cider-connect-cljs")
   ("P" russ/cider-set-print-length "russ/cider-set-print-length")
+  ("j" (russ/cider-connect-to-clawe 'fe) "Clawe CLJS Connect")
+  ("J" (russ/cider-connect-to-clawe 'be) "Clawe CLJ Connect")
 
   ("'" cider-jack-in "jack-in" :column "Repl/Buffer")
   ("B" cider-switch-to-repl-buffer "cider-switch-to-repl-buffer")
@@ -164,7 +187,7 @@
 
   ("DEL" ivy-cider-browse-ns "ivy-cider-browse-ns" :column "Browse")
   ("\\" ivy-cider-apropos "cider-apropos")
-  ("j" cider-find-var "cider-find-var")
+  ;; ("j" cider-find-var "cider-find-var")
   ("h" cider-doc "cider-doc")
   ("d" hydra-clojure-docs/body "hydra-clojure-docs/body")
 
