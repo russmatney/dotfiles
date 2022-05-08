@@ -150,10 +150,10 @@
 
 (defun russ/cider-connect-to-clawe (fe-or-be)
   (pcase fe-or-be
-    ('fe (cider-connect-clj
+    ('be (cider-connect-clj
           '(:host "localhost" :port "3336"
             :project-dir "~/russmatney/clawe")))
-    ('be (cider-connect-cljs
+    ('fe (cider-connect-cljs
           '(:host "localhost" :port "3335"
             :project-dir "~/russmatney/clawe")))))
 
@@ -175,8 +175,8 @@
   ("c" cider-connect "cider-connect")
   ("C" cider-connect-cljs "cider-connect-cljs")
   ("P" russ/cider-set-print-length "russ/cider-set-print-length")
-  ("j" (russ/cider-connect-to-clawe 'fe) "Clawe CLJS Connect")
-  ("J" (russ/cider-connect-to-clawe 'be) "Clawe CLJ Connect")
+  ("j" (russ/cider-connect-to-clawe 'be) "Clawe CLJ Connect")
+  ("J" (russ/cider-connect-to-clawe 'fe) "Clawe CLJS Connect")
 
   ("'" cider-jack-in "jack-in" :column "Repl/Buffer")
   ("B" cider-switch-to-repl-buffer "cider-switch-to-repl-buffer")
