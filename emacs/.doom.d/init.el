@@ -208,7 +208,7 @@
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ;
        ;;(java +meghanada) ; the poster child for carpal tunnel syndrome
-       javascript ;;+lsp        ; all(hope(abandon(ye(who(enter(here))))))
+       (javascript +lsp)        ; all(hope(abandon(ye(who(enter(here))))))
        json              ; At least it ain't XML
        ;;julia             ; a better, faster MATLAB
        ;;kotlin
