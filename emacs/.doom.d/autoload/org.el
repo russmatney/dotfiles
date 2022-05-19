@@ -53,7 +53,7 @@ Org-mode properties drawer already, keep the headline and don’t insert
 
 ;;;###autoload
 (defun russ/org-refile-to-daily-note ()
-  "Refiles to today's daily roam note."
+  "Refiles to some daily roam note."
   (interactive)
   (let ((org-refile-targets
          `((,(file-expand-wildcards "~/Dropbox/todo/daily/*.org")
