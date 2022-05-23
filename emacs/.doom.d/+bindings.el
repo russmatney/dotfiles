@@ -283,8 +283,7 @@
    ;; TODO this doesn't belong here!
    (:map org-roam-mode-map
     :n "C-k" nil
-    :n "C-j" nil)
-   ))
+    :n "C-j" nil)))
 
 (map!
  ;; git-gutter
@@ -380,7 +379,6 @@
  (:leader
   :desc "Imenu"                 :nv "i"   #'imenu
   :desc "Imenu across buffers"  :nv "I"   #'imenu-anywhere
-  :desc "Swiper"                :nv "f"   #'swiper
   :desc "swiper"                :nv "/"   #'swiper))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -93,3 +93,8 @@
 
 ;; graphql
 (package! graphql-mode)
+
+;; task runners
+(package! run-command)
+
+(package! fabb :recipe (:local-repo "fabb" :build (:not compile)))
