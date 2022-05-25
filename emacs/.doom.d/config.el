@@ -232,21 +232,15 @@
 (use-package! ink-mode
   :config
   (toggle-truncate-lines)
-  (auto-fill-mode 1))
-
+  (auto-fill-mode 1)
+  (map!
+   (:map ink-mode-map
+    (:leader
+     "m" #'hydra-ink/body))))
 
 (defhydra hydra-ink (:exit t)
   ("c"  ink-play "play" :column "play")
-  ("h"  ink-display-manual "Ink Manual" :column "help")
-
-  ("\"" cider-jack-in-cljs "jack-in (cljs)")
-  ("B" cider-switch-to-repl-buffer "Switch to repl buffer" :column "Open buffer")
-  ("f" clojure-essential-ref "Open in Clojure, The Essential Reference")
-  ("t" cider-test-run-ns-tests "Run tests for namespace" :column "Run tests")
-  ("T" cider-test-run-test "Run THIS test")
-  ("m" clojure-move-to-let "Move" :column "Refactoring")
-  (">" cljr-thread-first-all "Thread first all")
-  ("<" cljr-thread-last-all "Thread last all"))
+  ("h"  ink-display-manual "Ink Manual" :column "help"))
 
 (add-hook 'magit-mode-hook 'magit-todos-mode)
 

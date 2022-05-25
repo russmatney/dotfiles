@@ -67,10 +67,6 @@
 (package! org-rich-yank)
 (package! org-projectile)
 
-;; ink
-(package! ink-mode :recipe
-  (:host github :repo "russmatney/ink-mode"))
-
 ;; nov.el
 (package! nov)
 
@@ -99,4 +95,9 @@
 ;; task runners
 (package! run-command)
 
+;; local
+
 (package! fabb :recipe (:local-repo "fabb" :build (:not compile)))
+
+;; ink
+(package! ink-mode :recipe (:local-repo "ink-mode" :build (:not compile)))

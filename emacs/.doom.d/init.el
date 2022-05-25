@@ -23,7 +23,8 @@
 ;; (setq doom-theme 'doom-solarized-light)
 ;; (setq doom-theme 'doom-moonlight)
 ;; (setq doom-theme 'doom-monokai-spectrum)
-(setq doom-theme 'doom-monokai-machine)
+;; (setq doom-theme 'doom-monokai-machine)
+(setq doom-theme 'doom-city-lights)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Fonts
