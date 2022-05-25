@@ -38,8 +38,10 @@
 ;; clojure mode 5.14 b7d08b87f6a116ff47b33ee857926b60c66c3ab7
 
 (package! aggressive-indent)
-(package! lispy)
-(package! lispyville)
+
+(package! lispy :pin "df1b7e614fb0f73646755343e8892ddda310f427")
+(when (featurep! :editor evil)
+  (package! lispyville :pin "9c14bed0359f659e246d345c706f895737c3d172"))
 
 (package! flycheck-clj-kondo)
 (package! ivy-cider :recipe (:host github :repo "rschmukler/ivy-cider"))
