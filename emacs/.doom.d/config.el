@@ -156,7 +156,7 @@
 (load! "+org-custom")
 (load! "+custom")
 (load! "+wakatime")
-(load! "+tasks")
+(load! "+fabb")
 ;; (load! "+exwm")
 
 
