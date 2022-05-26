@@ -10,6 +10,7 @@
    (:map fabb-mode-map
     :n "i" #'fabb-invoke-ivy
     :n "?" #'fabb-dispatch
+    :n "f" #'fabb-dispatch
     :n "q" #'quit-window)
 
    (:map fabb-status-mode-map
@@ -23,4 +24,10 @@
 
     :n "e" #'fabb-task-edit-and-reinvoke-task
     :n "r" #'fabb-task-reinvoke-task-prompt
-    :n "R" #'fabb-task-reinvoke-task-no-prompt)))
+    :n "R" #'fabb-task-reinvoke-task-no-prompt)
+   (:map compilation-mode-map
+    :n "C-k" nil
+    :n "C-j" nil)
+   (:map compilation-minor-mode-map
+    :n "C-k" nil
+    :n "C-j" nil)))

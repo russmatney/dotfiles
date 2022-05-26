@@ -271,9 +271,8 @@
    (:map magit-mode-map
     "l" nil
     "h" nil
-    :n "C-k"
-    :n "C-j"
-    )
+    :n "C-k" nil
+    :n "C-j" nil)
    (:map magit-diff-mode-map
     "C-k" nil
     "C-j" nil)
