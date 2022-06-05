@@ -67,6 +67,10 @@
 (package! org-rich-yank)
 (package! org-projectile)
 
+(package! org-roam
+  :recipe (:host github :repo "org-roam/org-roam")
+  :pin "32557afdbfd875b1cd47b3737ecb52a6ee97b910")
+
 ;; nov.el
 (package! nov)
 

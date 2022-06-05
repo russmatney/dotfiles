@@ -1,27 +1,13 @@
 ;;  -*- lexical-binding: t; -*-
 
-(defmacro comment (&rest _)
-  "Comment out one or more s-expressions."
-  nil)
-
-;; TODO rewrite bindings to operate off of hyper, i suppose
-(setq x-hyper-keysym 'super)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Evil setup
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; (map!
-;;  :nmvo doom-leader-key nil
-;;  :nmvo doom-localleader-key nil)
+(map!
+ :leader
+ :desc "Universal argument" "u" #'universal-argument)
 
 ;; helper for defining evil commands
 (defalias 'ex! 'evil-ex-define-cmd)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Search
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (defun rm/search ()
   (interactive)
   (evil-ex "pg "))
@@ -30,7 +16,6 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Evil Bindings
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (ex! "x" #'evil-save-modified-and-close)
 
@@ -67,15 +52,9 @@
 
  :n "gQ" #'org-fill-paragraph)
 
-(map!
- :leader
- :desc "Universal argument" "u" #'universal-argument)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Open misc files
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 ;; bookmarks
+
 (map!
  (:leader :desc "Edit/Open (Hydra)" "e" #'hydra-visit-bookmark/body)
  (:desc "Sticky Hydra" "M-b" #'hydra-sticky/body)
@@ -89,7 +68,6 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Snippets
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defhydra hydra-snippets (:exit t)
   ("s" +snippets/new "Create new snippet")
@@ -114,7 +92,6 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Global Bindings
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (map!
  :nvime "M-x" #'execute-extended-command
@@ -144,19 +121,21 @@
  :n "g d"   '+lookup/definition
  :n "g r"   '+lookup/references
 
- (:leader :desc "RAISE" :nv "r"   #'+popup/raise)
-
- )
+ (:leader :desc "RAISE" :nv "r"   #'+popup/raise))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Kill the things
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defhydra hydra-kill (:exit t)
-  ("k" delete-window "delete window" :column "Time to Kill")
-  ("B" doom/kill-other-buffers "kill other buffers")
+  ("k" kill-this-buffer "kill-this-buffer" :column "THIS")
+  ("K" delete-window "kill-this-window")
+  ("f" doom/delete-this-file "doom/delete-this-file")
+
+  ("B" doom/kill-other-buffers "all other buffers" :column "Other buffers")
   ("b" kill-buffer "kill buffer (from list)")
-  ("a" ace-delete-window "ace-delete-window")
+
+  ("a" ace-delete-window "ace-delete-window" :column "Misc")
   ("s" +workspace/delete "+workspace/delete")
   ("n" +treemacs/toggle "toggle treemacs"))
 
@@ -197,8 +176,6 @@
  "S-<up>"    #'evil-window-increase-height
  "S-<down>"  #'evil-window-decrease-height)
 
-;; size Adjustments
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Navigating Files/Buffers
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -214,9 +191,6 @@
   :desc "projectile-find-file (burst cache)" :n  "P" (λ! (projectile-find-file t))
   :desc "Find file"              :n  "."   #'find-file)
 
- ;; recentf
- ;; (:leader :desc "recentf"                :n "l"    #'counsel-recentf)
-
  ;; toggle last two files
  (:leader :desc "last buffer"            :n "SPC"  #'evil-switch-to-windows-last-buffer)
 
@@ -225,8 +199,7 @@
  (:leader :desc "iBuffer"                :n  "B"   #'ibuffer)
 
  ;; test toggle
- (:leader :desc "projectile-test-toggle" :n  "T" #'projectile-toggle-between-implementation-and-test)
- )
+ (:leader :desc "projectile-test-toggle" :n  "T" #'projectile-toggle-between-implementation-and-test))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Workspaces
@@ -234,106 +207,14 @@
 
 (map!
  ;; Workspaces
- ;; "M-c"    #'+workspace/new
- ;; "M-,"    #'+workspace/rename
- ;; "M-P"    #'russ/projectile-open-file-from-project
  (:leader "o" #'russ/projectile-open-file-from-project)
 
  ;; switch to
  (:leader "w" #'+workspace/switch-to)
- ;; "M-w" #'+workspace/switch-to
  :n "[w"    #'+workspace/switch-left
  :n "]w"    #'+workspace/switch-right
  "M-p"    #'+workspace/switch-right
  "M-n"    #'+workspace/switch-left)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Git
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defhydra git-hydra (:exit t)
-  ("s" magit-status "Magit status" :column "Magit")
-  ("m" magit "Magit")
-  ("b" magit-blame "Magit blame")
-  ("l" magit-log "Magit log")
-  ("t" git-timemachine-toggle "Git Time Machine toggle" :column "Time Machine")
-  ("r" git-gutter:revert-hunk "Git Gutter revert hunk" :column "Gutter")
-  ("a" git-gutter:stage-hunk "Git Gutter stage hunk"))
-
-(map!
- (:leader
-  (:desc "git" :n "g" #'git-hydra/body)))
-
-;; allow moving left/right in magit buffers
-(use-package! magit
-  :config
-  (map!
-   (:map magit-mode-map
-    "l" nil
-    "h" nil
-    :n "C-k" nil
-    :n "C-j" nil)
-   (:map magit-diff-mode-map
-    "C-k" nil
-    "C-j" nil)
-   (:map code-review-mode-map
-    :n "C-k" nil
-    :n "C-j" nil)
-   ;; TODO this doesn't belong here!
-   (:map org-roam-mode-map
-    :n "C-k" nil
-    :n "C-j" nil)))
-
-(map!
- ;; git-gutter
- :n  "]d" #'git-gutter:next-hunk
- :n  "[d" #'git-gutter:previous-hunk
-
- ;; evil-magit
- (:after evil-magit
-  :map (magit-status-mode-map magit-revision-mode-map)
-  :n "C-j" nil
-  :n "C-k" nil)
-
- ;; magit
- :n  "gm" #'magit
- :n  "gl" #'magit-log-head
- :n  "gt" #'git-timemachine
-
- ;; git-timemachine
- (:after git-timemachine
-  (:map git-timemachine-mode-map
-   :nv "p" #'git-timemachine-show-previous-revision
-   :nv "C-k" #'git-timemachine-show-previous-revision
-   :nv "n" #'git-timemachine-show-next-revision
-   :nv "C-j" #'git-timemachine-show-previous-revision
-   :nv "g" #'git-timemachine-show-nth-revision
-   :nv "c" #'git-timemachine-show-commit
-   :nv "q" #'git-timemachine-quit
-   :nv "w" #'git-timemachine-kill-abbreviated-revision
-   :nv "W" #'git-timemachine-kill-revision
-   :nv "b" #'git-timemachine-blame)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Dired
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(use-package! dired
-  :init
-  (when (string= system-type "darwin")
-    (setq dired-use-ls-dired nil))
-  :config
-  (enable-command 'dired-find-alternate-file)
-  (map!
-   ;; :n "-" #'dired-jump
-   :n "-" #'dirvish
-   :map dired-mode-map
-   :n "-"        #'dired-up-directory
-   :n "<return>" #'dired-find-alternate-file
-   :n "/"        #'dired
-   ;; :n "q"        (cmd! (quit-window t))
-   :n "q"        #'+dired/quit-all
-   ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Flycheck
@@ -344,41 +225,6 @@
  :n  "[e" #'previous-error)
 
 (ex! "er[rors]"    #'flycheck-list-errors)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Ivy/Counsel
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(map!
- :after ivy
- :map ivy-minibuffer-map
- [escape] #'keyboard-escape-quit
- "A-v" #'yank
- "A-z" #'undo
- "M-v" #'yank
- "M-z" #'undo
- "C-r" #'evil-paste-from-register
- "C-k" #'ivy-previous-line
- "C-j" #'ivy-next-line
- "C-l" #'ivy-alt-done
- "C-h" #'ivy-backward-kill-word
- "C-w" #'ivy-backward-kill-word
- "C-u" #'ivy-kill-line
- "C-b" #'backward-word
- "C-f" #'forward-word
-
- :map ivy-switch-buffer-map
- "C-k" #'ivy-previous-line
- "C-j" #'ivy-next-line
- "C-l" #'ivy-alt-done
- "C-h" #'ivy-backward-kill-word)
-
-(map!
- :desc "swiper"                :nv "/"   #'evil-ex-search-forward
- (:leader
-  :desc "Imenu"                 :nv "i"   #'imenu
-  :desc "Imenu across buffers"  :nv "I"   #'imenu-anywhere
-  :desc "swiper"                :nv "/"   #'swiper))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Help Mode
@@ -408,15 +254,6 @@
   ("l" find-library "Find library")
   ("a" apropos "Apropos"))
 
-;; (map!
-;;  (:leader
-;;   (:desc "help" :n "h" nil)))
-
-;; TODO use once help-map works from the above hydra
-;; (map!
-;;  (:leader
-;;   (:desc "help" :n "h" hydra-help/body)))
-
 (map!
  (:leader
   (:desc "help" :prefix "h"
@@ -437,44 +274,29 @@
    :desc "Toggle profiler"       :n "p" #'doom/toggle-profiler)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Company Mode
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(map!
- (:after company
-  (:map company-active-map
-   ;; Don't interfere with `evil-delete-backward-word' in insert mode
-   "C-w"        nil
-
-   ;; Navigate candidates
-   "C-n"        #'company-other-backend
-   "C-p"        #'company-other-backend
-   "C-j"        #'company-select-next
-   "C-k"        #'company-select-previous
-   "C-l"        #'company-complete-selection
-   "<down>"       #'company-select-next
-   "<up>"         #'company-select-previous
-   "<right>"       #'company-complete-selection
-   "C-SPC"      #'company-complete-common
-   "TAB"     #'company-complete-common-or-cycle
-   [backtab]    #'company-select-previous
-   [escape]     (λ! (company-abort) (evil-normal-state 1))
-
-   ;; filter or show docs for candidate
-   "C-h"        #'company-show-doc-buffer
-   "<right>"        #'company-show-doc-buffer
-   "C-s"        #'company-filter-candidates)))
-
-;; TODO perhaps not a binding...
-;; (after! company
-;;   ;; intending to start it with TAB
-;;   (setq company-minimum-prefix-length 5))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Term buffers
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (map!
  (:after comint
-   ;; TAB auto-completion in term buffers
-   :map comint-mode-map [tab] #'company-complete))
+  ;; TAB auto-completion in term buffers
+  :map comint-mode-map [tab] #'company-complete))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(after! Info-mode
+  (map!
+   (:map Info-mode-map
+    :n "C-j" nil
+    :n "C-k" nil)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;
+
+(after! esh-mode
+  (map! :map eshell-mode-map
+        ;; normal history lookup
+        :i "C-r"   #'+eshell/search-history
+        ;; maintain window movement
+        "C-l"   nil
+        :n "C-j"    nil
+        :n "C-k"    nil))

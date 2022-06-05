@@ -1,31 +1,5 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
-;; NOTE `doom/help' to access Doom's documentation.
-;; NOTE Move your cursor over a module's name (or its flags)
-;;      and press `+lookup/documentation' for module documentation,
-;;      or `+lookup/definition' for quick access to the module's source code.
-
-;; (when (and (fboundp 'native-comp-available-p)
-;;            (native-comp-available-p))
-;;   (setq comp-deferred-compilation 't))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; themes
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; (setq doom-theme 'doom-one)
-;; (setq doom-theme 'doom-one-light)
-;; (setq doom-theme 'doom-molokai)
-;; (setq doom-theme 'doom-tomorrow-night)
-;; (setq doom-theme 'doom-tomorrow-day)
-;; (setq doom-theme 'doom-dracula)
-;; (setq doom-theme 'doom-1337)
-;; (setq doom-theme 'doom-solarized-light)
-;; (setq doom-theme 'doom-moonlight)
-;; (setq doom-theme 'doom-monokai-spectrum)
-;; (setq doom-theme 'doom-monokai-machine)
-(setq doom-theme 'doom-city-lights)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Fonts
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -37,7 +11,7 @@
           doom-big-font (font-spec :family "SpaceMono Nerd Font" :size 24 :slant 'normal)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; mac keybinds
+;; super/meta keybinds
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq mac-command-modifier      'super
@@ -48,6 +22,8 @@
       ;; required to send M-x instead of mac unicode shortcuts
       mac-right-option-modifier 'meta
       ns-right-option-modifier 'meta)
+
+(setq x-hyper-keysym 'super)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; org init
@@ -64,7 +40,7 @@
 (setq custom-file (concat doom-private-dir "+custom.el"))
 
 (defvar +workspaces-main "todo")
-(defvar +workspaces-switch-project-function #'russ/doom-project-find-file)
+(defvar +workspaces-switch-project-function #'magit-status)
 
 (when noninteractive
   ;; allow for connection to ssh-agent

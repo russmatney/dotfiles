@@ -382,3 +382,7 @@
                (if (= (length value) 1) "1 char"
                  (format "%d chars" (length value)))))
     nil nil nil)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package! clomacs)

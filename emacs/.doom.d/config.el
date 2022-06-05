@@ -1,13 +1,16 @@
 ;;; .doom.d/config.el -*- lexical-binding: t; -*-
 
-;;; Commentary:
+(defmacro comment (&rest _)
+  "Comment out one or more s-expressions."
+  nil)
 
-;;; Code:
+;; theme
+;; (setq doom-theme 'doom-one-light)
+;; (setq doom-theme 'doom-solarized-light)
+;; (setq doom-theme 'doom-monokai-machine)
+(setq doom-theme 'doom-city-lights)
 
-;; Private keys'n'such
-(load! "+private")
-
-;; Basic Config
+;; Backup Config
 (setq backup-directory-alist `(("." . "~/.emacs-tmp/")))
 (setq auto-save-file-name-transforms `((".*" "~/.emacs-tmp/" t)))
 
@@ -18,20 +21,11 @@
 ;; Auto revert-mode
 (global-auto-revert-mode t)
 
-;; transparency
-;; (+russ/transparency 85)
-
-;; autofill mode for text-mode
-(add-hook 'text-mode-hook 'turn-on-auto-fill)
-
 ;; https://github.com/d12frosted/homebrew-emacs-plus/issues/383
 (if IS-MAC
     (setq insert-directory-program "gls" dired-use-ls-dired t))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; general format/whitespace
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
+;; format on save
 (setq +format-on-save-enabled-modes t)
 
 ;; Spaces over tabs
@@ -40,18 +34,22 @@
 (setq tab-width 2)
 (setq-default indent-tabs-mode nil)
 
-
 (set-face-attribute 'default nil :height 100)
 
 ;; Turn off line wrapping
 (setq-default truncate-lines 1)
 
 ;; 80 chars
-(setq whitespace-line-column 80
+(setq whitespace-line-column 100
       whitespace-style
       '(face trailing lines-tail))
+
 (setq-default fill-column 80)
 (auto-fill-mode 1)
+
+;; autofill mode for text-mode
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
+
 ;; turn on whitespace mode
 (global-whitespace-mode t)
 ;; but not in org
@@ -59,23 +57,43 @@
 ;; turn on whitespace cleanup
 (add-hook! 'before-save-hook 'whitespace-cleanup)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; misc package config
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
+;; eval max len
 (setq eval-expression-print-length 200)
 
-(setq +ivy-buffer-icons t)
 
-;; Add '--hidden' to rg command to include hidden files in search
-;; Note that `echo ".git/" >> ~/.ignore` will exclude .git from these searches
-(setq counsel-rg-base-command
-      "rg -zS -T jupyter -T svg -T lock -T license --no-heading --line-number --color never %s ."
+;; handle very long lines (so-long)
+(defun doom-buffer-has-long-lines-p ()
+  "Fix for dired sometimes asking for comment syntax."
+  (when comment-use-syntax
+    (so-long-detected-long-line-p)))
 
-      ;; counsel-projectile-rg
+(setq so-long-predicate #'doom-buffer-has-long-lines-p)
 
-      )
 
+(after! dtrt-indent
+  (add-to-list 'dtrt-indent-hook-mapping-list '(typescript-tsx-mode javascript typescript-indent-level))
+  (add-to-list 'dtrt-indent-hook-mapping-list '(typescript-mode javascript typescript-indent-level)))
+
+;; dir-locals
+
+;; from https://emacs.stackexchange.com/questions/13080/reloading-directory-local-variables
+(defun my-reload-dir-locals-for-current-buffer ()
+  "Reload dir locals for the current buffer."
+  (interactive)
+  (let ((enable-local-variables :all))
+    (hack-dir-local-variables-non-file-buffer)))
+
+(defun my-reload-dir-locals-for-all-buffer-in-this-directory ()
+  "For every buffer with the same `default-directory` as the current buffer's, reload dir-locals."
+  (interactive)
+  (let ((dir default-directory))
+    (dolist (buffer (buffer-list))
+      (with-current-buffer buffer
+        (when (equal default-directory dir))
+        (my-reload-dir-locals-for-current-buffer)))))
+
+
+;;;;;;;;;;;;;;;;;;;;;
 ;; modeline
 
 (use-package! doom-modeline
@@ -84,100 +102,16 @@
     '(bar workspace-name window-number modals matches checker buffer-info
           remote-host buffer-position word-count parrot selection-info)
     '(objed-state misc-info persp-name battery grip irc
-              mu4e gnus github debug lsp minor-modes input-method
-              indent-info buffer-encoding major-mode process vcs)))
+                  mu4e gnus github debug lsp minor-modes input-method
+                  indent-info buffer-encoding major-mode process vcs)))
+
+;;;;;;;;;;;;;;;;;;;;;
+;; evil
 
 (use-package! evil
   :preface
   (setq evil-ex-substitute-global t))
 
-;; company
-(use-package! company
-  :config
-  (setq
-   company-idle-delay 1.5
-   company-minimum-prefix-length 5))
-
-(after! esh-mode
-  (map! :map eshell-mode-map
-        ;; normal history lookup
-        :i "C-r"   #'+eshell/search-history
-        ;; maintain window movement
-        "C-l"   nil
-        :n "C-j"    nil
-        :n "C-k"    nil))
-
-;; (use-package deft
-;;       :after org
-;;       :custom
-;;       (deft-recursive t)
-;;       (deft-directory org-roam-directory))
-
-;; (use-package! org-roam-server
-;;   :config
-;;   (setq org-roam-server-host "127.0.0.1"
-;;         org-roam-server-port 8888
-;;         org-roam-server-export-inline-images t
-;;         org-roam-server-authenticate nil
-;;         org-roam-server-network-poll t
-;;         org-roam-server-network-arrows nil
-;;         org-roam-server-network-label-truncate t
-;;         org-roam-server-network-label-truncate-length 60
-;;         org-roam-server-network-label-wrap-length 20))
-
-(defun doom-buffer-has-long-lines-p ()
-  "Fix for dired sometimes asking for comment syntax."
-  (when comment-use-syntax
-    (so-long-detected-long-line-p)))
-
-(setq so-long-predicate #'doom-buffer-has-long-lines-p)
-
-(defmacro comment (&rest _)
-  "Comment out one or more s-expressions."
-  nil)
-
-(setq typescript-indent-level 2)
-(setq js-indent-level 2)
-(setq css-indent-offset 2)
-
-(after! dtrt-indent
-  (add-to-list 'dtrt-indent-hook-mapping-list '(typescript-tsx-mode javascript typescript-indent-level))
-  (add-to-list 'dtrt-indent-hook-mapping-list '(typescript-mode javascript typescript-indent-level)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; other config files
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(load! "+hydra")
-(load! "+bindings")
-(load! "+langs")
-(load! "+lisp-editing")
-(load! "+clojure")
-(load! "+org-custom")
-(load! "+custom")
-(load! "+wakatime")
-(load! "+fabb")
-;; (load! "+exwm")
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; misc fixes
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; (use-package! Man
-;;   :config
-;;   (map!
-;;    (:map Man-mode-map
-;;     :n "C-j" nil
-;;     :n "C-k" nil
-;;     ))
-;;   )
-
-(after! Info-mode
-  (map!
-   (:map Info-mode-map
-    :n "C-j" nil
-    :n "C-k" nil)))
 
 ;; https://github.com/Malabarba/aggressive-indent-mode/issues/138
 ;; https://github.com/Malabarba/aggressive-indent-mode/issues/137
@@ -195,119 +129,36 @@
            nil #'aggressive-indent--indent-if-changed (current-buffer)))))
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; dir-locals
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; other config files
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; from https://emacs.stackexchange.com/questions/13080/reloading-directory-local-variables
+;; Private keys'n'such
+(load! "+private")
 
-(defun my-reload-dir-locals-for-current-buffer ()
-  "Reload dir locals for the current buffer."
-  (interactive)
-  (let ((enable-local-variables :all))
-    (hack-dir-local-variables-non-file-buffer)))
+(load! "+company")
+(load! "+hydra")
+(load! "+bindings")
+(load! "+langs")
+(load! "+lisp-editing")
+(load! "+clojure")
+(load! "+org-custom")
+(load! "+custom")
+(load! "+wakatime")
+(load! "+ivy")
+(load! "+magit")
+(load! "+projectile")
+(load! "+dirvish")
+(load! "+fabb")
+(load! "+ink")
+;; (load! "+exwm")
 
-(defun my-reload-dir-locals-for-all-buffer-in-this-directory ()
-  "For every buffer with the same `default-directory` as the current buffer's, reload dir-locals."
-  (interactive)
-  (let ((dir default-directory))
-    (dolist (buffer (buffer-list))
-      (with-current-buffer buffer
-        (when (equal default-directory dir))
-        (my-reload-dir-locals-for-current-buffer)))))
-
-;; (add-hook 'emacs-lisp-mode-hook
-;;           (defun enable-autoreload-for-dir-locals ()
-;;             (when (and (buffer-file-name)
-;;                        (equal dir-locals-file
-;;                               (file-name-nondirectory (buffer-file-name))))
-;;               (add-hook (make-variable-buffer-local 'after-save-hook)
-;;                         'my-reload-dir-locals-for-all-buffer-in-this-directory))))
-
-(use-package! org-rich-yank)
-
-(add-hook 'ink-mode-hook 'flymake-mode)
-(add-hook 'ink-play-mode-hook 'toggle-truncate-lines)
-
-(use-package! ink-mode
-  :config
-  (toggle-truncate-lines)
-  (auto-fill-mode 1)
-  (map!
-   (:map ink-mode-map
-    (:leader
-     "m" #'hydra-ink/body))))
-
-(defhydra hydra-ink (:exit t)
-  ("c"  ink-play "play" :column "play")
-  ("h"  ink-display-manual "Ink Manual" :column "help"))
-
-(add-hook 'magit-mode-hook 'magit-todos-mode)
-
-(use-package! magit
-  :config
-  (setq magit-repository-directories
-        '(("~/dotfiles" . 0)
-          ("~/russmatney" . 1))
-
-        magit-repolist-columns
-        '(("Name" 25 magit-repolist-column-ident nil)
-          ("Dirty" 3 magit-repolist-column-dirty (:right-align t))
-          ("Unpulled" 3 magit-repolist-column-unpulled-from-upstream
-           ((:right-align t)
-            (:help-echo "Upstream changes not in branch")))
-          ("Unpushed" 3 magit-repolist-column-unpushed-to-upstream
-           ((:right-align t)
-            (:help-echo "Local changes not in upstream")))
-          ("Path" 99 magit-repolist-column-path nil))))
-
-(use-package! magit-todos
-  :config
-  (setq magit-todos-rg-extra-args '("--hidden")
-        magit-todos-branch-list 'branch
-        magit-todos-branch-list-merge-base-ref "origin/main"
-        ))
-
-
-(use-package! magit-org-todos
-  :config
-  (magit-org-todos-autoinsert))
-
-(use-package! forge
-  ;; :config
-  ;; (magit-add-section-hook 'magit-status-sections-hook
-  ;;                         'forge-insert-authored-pullreqs
-  ;;                         'forge-insert-pullreqs nil)
-  ;; (magit-add-section-hook 'magit-status-sections-hook
-  ;;                         'forge-insert-requested-reviews
-  ;;                         'forge-insert-pullreqs nil)
-  ;; (transient-append-suffix 'forge-dispatch '(0 -1)
-  ;;   ["Misc"
-  ;;    ("y" "yank" forge-copy-url-at-point-as-kill)])
-  ;; (transient-append-suffix 'forge-dispatch '(0 -1)
-  ;;   ["Edit"
-  ;;    ("e a" "assignees" forge-edit-topic-assignees)
-  ;;    ("e l" "labels" forge-edit-topic-labels)
-  ;;    ("e r" "review requests" forge-edit-topic-review-requests)])
-  )
-
-(use-package! projectile
-  :config
-  (setq projectile-project-search-path '("~/russmatney/" "~/.config/")
-        projectile-create-missing-test-files t))
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package! nov-mode
   :mode "\\.epub$")
 
-(use-package! clomacs
-  :config
-  (setq))
-
 (use-package! logview)
-
-
-(use-package! browse-at-remote)
 
 (use-package! maple-preview
   :config
@@ -324,18 +175,11 @@
 (use-package! gdscript-mode
   :config
   ;; (setq gdscript-godot-executable "/usr/bin/godot-mono")
-  (setq gdscript-godot-executable "/usr/bin/godot")
-  )
+  (setq gdscript-godot-executable "/usr/bin/godot"))
 
+;;;;;;;;;;;;;;;;;;;;;;;;
+;; js/web
 
-;; https://github.com/alexluigit/dirvish
-(use-package! dirvish
-  :config
-  (setq dired-kill-when-opening-new-dired-buffer t) ; added in emacs 28
-  (setq dired-clean-confirm-killing-deleted-buffers nil)
-  (setq dired-recursive-copies 'always)
-  (setq dired-recursive-deletes 'always)
-  ;; (setq delete-by-moving-to-trash t)
-  (setq dired-dwim-target t)
-  (setq dired-listing-switches
-        "-AGhlv --group-directories-first"))
+(setq typescript-indent-level 2)
+(setq js-indent-level 2)
+(setq css-indent-offset 2)

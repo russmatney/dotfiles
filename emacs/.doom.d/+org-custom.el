@@ -6,6 +6,7 @@
   "Comment out one or more s-expressions."
   nil)
 
+(use-package! org-rich-yank)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org Settings
