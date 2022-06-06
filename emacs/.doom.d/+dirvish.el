@@ -31,5 +31,4 @@
    :n "<return>" #'dired-find-alternate-file
    :n "/"        #'dired
    ;; :n "q"        (cmd! (quit-window t))
-   :n "q"        #'+dired/quit-all
-   ))
+   :ng "q"        #'quit-window))
