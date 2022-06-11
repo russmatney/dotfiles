@@ -192,8 +192,7 @@ cmd - c : yabai -m window --toggle float;\
           yabai -m window --grid 12:12:1:1:10:10
 
 # TODO set floating, not toggle? the toggle is kind of nice
-shift + cmd - c : yabai -m window --toggle float;\
-                  yabai -m window --grid 50:50:1:1:48:48
+shift + cmd - c : yabai -m window --grid 50:50:1:1:48:48
 
 # make floating window fill left-half of screen
 # shift + cmd - left : yabai -m window --toggle float;\
