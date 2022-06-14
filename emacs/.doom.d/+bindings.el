@@ -25,8 +25,8 @@
  ;; repeat in visual mode
  :v "." #'evil-repeat
  ;; don't leave visual mode after shifting
- :v "<" #'+evil/visual-dedent           ; vnoremap < <gv
- :v ">" #'+evil/visual-indent           ; vnoremap > >gv
+ ;; :v "<" #'+evil/visual-dedent           ; vnoremap < <gv
+ ;; :v ">" #'+evil/visual-indent           ; vnoremap > >gv
 
  ;; evil-commentary
  :n "gc" #'evil-commentary
