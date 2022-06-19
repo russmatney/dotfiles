@@ -38,4 +38,6 @@ python/.ipython/profile_default/history.sqlite
 
 
 .clj-kondo/.cache
+.clj-kondo/babashka
+.clj-kondo/rewrite-clj
 .lsp
