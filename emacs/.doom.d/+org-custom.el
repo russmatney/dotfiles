@@ -222,6 +222,7 @@
 
 (defhydra hydra-org-refile (:exit t)
   ("r" org-refile "Org refile" :column "~/todo")
+  ("f" +org/refile-to-file "Refile to File")
   ("t" (russ/refile-to "~/todo/projects.org" "Todos") "project.org/Todos")
   ("h" (russ/refile-to "~/todo/projects.org" "Hammock") "project.org/Hammock")
   ("i" (russ/refile-to "~/todo/icebox.org" "new") "To icebox.org")
