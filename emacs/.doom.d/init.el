@@ -42,9 +42,9 @@
 (defvar +workspaces-main "todo")
 (defvar +workspaces-switch-project-function #'magit-status)
 
-(when noninteractive
-  ;; allow for connection to ssh-agent
-  (add-to-list 'doom-env-whitelist "^SSH_"))
+;; (when noninteractive
+;;   ;; allow for connection to ssh-agent
+;;   (add-to-list 'doom-env-whitelist "^SSH_"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; doom!
@@ -61,11 +61,13 @@
        ;; a nicer company UI (Emacs 26+ only)
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
-       (ivy              ; a search engine for love and life
-        ;;+fuzzy
-        ;; +prescient
-        +icons)
+       ;; (ivy              ; a search engine for love and life
+       ;;  ;;+fuzzy
+       ;;  ;; +prescient
+       ;;  +icons)
        ;;+childframe)     ; uses childframes for popups (Emacs 26+ only)
+       (vertico
+        +icons)
 
        :ui
        deft
@@ -113,7 +115,8 @@
        :emacs
        (dired            ; making dired pretty [functional]
         ;;+ranger
-        +icons)
+        +icons
+        +dirvish)
        ;;electric        ; smarter, keyword-based electric-indent
        ibuffer
        (undo +tree)      ; persistent, smarter undo for your inevitable mistakes
@@ -245,4 +248,7 @@
        ;;irc              ; how neckbeards socialize
        ;;(rss +org)        ; emacs as an RSS reader
        ;;twitter           ; twitter client https://twitter.com/vnought
-       )
+
+       :config
+       ;; required for some vertico completion to work (project search, buffer search...)
+       default)

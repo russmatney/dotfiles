@@ -173,4 +173,6 @@ Commands that stick around (this hydra supports multiple presses).
   ("h" hydra-emacs-help/body "Emacs help")
 
   ;; TODO create an evil-ex for this as well
-  ("a" counsel-projectile-rg "Projectile project search"))
+  ;; TODO find vertico version
+  ;; ("a" counsel-projectile-rg "Projectile project search")
+  )

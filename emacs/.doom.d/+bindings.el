@@ -191,6 +191,10 @@
   :desc "projectile-find-file (burst cache)" :n  "P" (λ! (projectile-find-file t))
   :desc "Find file"              :n  "."   #'find-file)
 
+ (:leader
+  :desc "Imenu"                 :nv "i"   #'imenu
+  :desc "swiper"                :nv "/"   #'swiper)
+
  ;; toggle last two files
  (:leader :desc "last buffer"            :n "SPC"  #'evil-switch-to-windows-last-buffer)
 
@@ -207,7 +211,7 @@
 
 (map!
  ;; Workspaces
- (:leader "o" #'russ/projectile-open-file-from-project)
+ ;; (:leader "o" #'russ/projectile-open-file-from-project)
 
  ;; switch to
  (:leader "w" #'+workspace/switch-to)

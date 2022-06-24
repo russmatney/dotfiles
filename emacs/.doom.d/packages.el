@@ -44,7 +44,7 @@
   (package! lispyville :pin "9c14bed0359f659e246d345c706f895737c3d172"))
 
 (package! flycheck-clj-kondo)
-(package! ivy-cider :recipe (:host github :repo "rschmukler/ivy-cider"))
+; (package! ivy-cider :recipe (:host github :repo "rschmukler/ivy-cider"))
 
 (package! company-css-classes :recipe
   (:host github :repo "russmatney/company-css-classes" :files ("*")))

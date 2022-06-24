@@ -185,8 +185,9 @@
   ("k" rs/cider-clear-all-buffers "rs/cider-clear-all-buffers")
   ("r" rs/cider-cycle-buffer-type "rs/cider-cycle-buffer-type")
 
-  ("DEL" ivy-cider-browse-ns "ivy-cider-browse-ns" :column "Browse")
-  ("\\" ivy-cider-apropos "cider-apropos")
+  ;; TODO ivy-cider for vertico?
+  ;; ("DEL" ivy-cider-browse-ns "ivy-cider-browse-ns" :column "Browse")
+  ;; ("\\" ivy-cider-apropos "cider-apropos")
   ;; ("j" cider-find-var "cider-find-var")
   ("h" cider-doc "cider-doc")
   ("d" hydra-clojure-docs/body "hydra-clojure-docs/body")
@@ -357,8 +358,8 @@
    ))
 
 
-(use-package! ivy-cider
-  :after cider-mode)
+; (use-package! ivy-cider
+;   :after cider-mode)
 
 (use-package! clojure-essential-ref)
 (use-package! clojure-essential-ref-nov

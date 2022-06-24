@@ -9,62 +9,62 @@
   "Comment out one or more s-expressions."
   nil)
 
-;; require-match set to nil
-;;;###autoload
-(defun russ/counsel-projectile-find-file (&optional arg dwim)
-  "Jump to a file in the current project.
+;; ;; require-match set to nil
+;; ;;;###autoload
+;; (defun russ/counsel-projectile-find-file (&optional arg dwim)
+;;   "Jump to a file in the current project.
 
-With a prefix ARG, invalidate the cache first.  If DWIM is
-non-nil, use completion based on context."
-  (interactive "P")
-  (if (and (eq projectile-require-project-root 'prompt)
-           (not (projectile-project-p)))
-      (counsel-projectile-find-file-action-switch-project)
-    (projectile-maybe-invalidate-cache arg)
-    (let* ((project-files (projectile-current-project-files))
-           (files (and dwim (projectile-select-files project-files))))
-      (ivy-read (projectile-prepend-project-name "Find file: ")
-                (or files project-files)
-                :matcher counsel-projectile-find-file-matcher
-                :require-match nil
-                :sort counsel-projectile-sort-files
-                :action counsel-projectile-find-file-action
-                :caller 'counsel-projectile-find-file))))
+;; With a prefix ARG, invalidate the cache first.  If DWIM is
+;; non-nil, use completion based on context."
+;;   (interactive "P")
+;;   (if (and (eq projectile-require-project-root 'prompt)
+;;            (not (projectile-project-p)))
+;;       (counsel-projectile-find-file-action-switch-project)
+;;     (projectile-maybe-invalidate-cache arg)
+;;     (let* ((project-files (projectile-current-project-files))
+;;            (files (and dwim (projectile-select-files project-files))))
+;;       (ivy-read (projectile-prepend-project-name "Find file: ")
+;;                 (or files project-files)
+;;                 :matcher counsel-projectile-find-file-matcher
+;;                 :require-match nil
+;;                 :sort counsel-projectile-sort-files
+;;                 :action counsel-projectile-find-file-action
+;;                 :caller 'counsel-projectile-find-file))))
 
-;;;###autoload
-(defun russ/doom-project-find-file (dir)
-  "Jump to a file in DIR (searched recursively).
+;; ;;;###autoload
+;; (defun russ/doom-project-find-file (dir)
+;;   "Jump to a file in DIR (searched recursively).
 
-If DIR is not a project, it will be indexed (but not cached)."
-  (interactive)
-  (unless (file-directory-p dir)
-    (error "Directory %S does not exist" dir))
-  (unless (file-readable-p dir)
-    (error "Directory %S isn't readable" dir))
-  (let* ((default-directory (file-truename (expand-file-name dir)))
-         (project-root (doom-project-root default-directory))
-         (projectile-project-root default-directory)
-         (projectile-enable-caching projectile-enable-caching))
-    (cond ((and project-root (file-equal-p project-root projectile-project-root))
-           (unless (doom-project-p projectile-project-root)
-             ;; Disable caching if this is not a real project; caching
-             ;; non-projects easily has the potential to inflate the projectile
-             ;; cache beyond reason.
-             (setq projectile-enable-caching nil))
-           (call-interactively
-            ;; Intentionally avoid `helm-projectile-find-file', because it runs
-            ;; asynchronously, and thus doesn't see the lexical
-            ;; `default-directory'
-            (if (doom-module-p :completion 'ivy)
-                #'russ/counsel-projectile-find-file
-              #'projectile-find-file)))
-          ((fboundp 'counsel-file-jump) ; ivy only
-           (call-interactively #'counsel-file-jump))
-          ((project-current)
-           (project-find-file-in nil (list default-directory) nil))
-          ((fboundp 'helm-find-files)
-           (call-interactively #'helm-find-files))
-          ((call-interactively #'find-file)))))
+;; If DIR is not a project, it will be indexed (but not cached)."
+;;   (interactive)
+;;   (unless (file-directory-p dir)
+;;     (error "Directory %S does not exist" dir))
+;;   (unless (file-readable-p dir)
+;;     (error "Directory %S isn't readable" dir))
+;;   (let* ((default-directory (file-truename (expand-file-name dir)))
+;;          (project-root (doom-project-root default-directory))
+;;          (projectile-project-root default-directory)
+;;          (projectile-enable-caching projectile-enable-caching))
+;;     (cond ((and project-root (file-equal-p project-root projectile-project-root))
+;;            (unless (doom-project-p projectile-project-root)
+;;              ;; Disable caching if this is not a real project; caching
+;;              ;; non-projects easily has the potential to inflate the projectile
+;;              ;; cache beyond reason.
+;;              (setq projectile-enable-caching nil))
+;;            (call-interactively
+;;             ;; Intentionally avoid `helm-projectile-find-file', because it runs
+;;             ;; asynchronously, and thus doesn't see the lexical
+;;             ;; `default-directory'
+;;             (if (doom-module-p :completion 'ivy)
+;;                 #'russ/counsel-projectile-find-file
+;;               #'projectile-find-file)))
+;;           ((fboundp 'counsel-file-jump) ; ivy only
+;;            (call-interactively #'counsel-file-jump))
+;;           ((project-current)
+;;            (project-find-file-in nil (list default-directory) nil))
+;;           ((fboundp 'helm-find-files)
+;;            (call-interactively #'helm-find-files))
+;;           ((call-interactively #'find-file)))))
 
 ;;;###autoload
 (defun russ/open-yodo-file ()

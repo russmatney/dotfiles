@@ -1,4 +1,7 @@
-* Dotfiles
+#+title: dotfiles
+#+STARTUP: content
+
+* dotfiles
 Configuration for keeping sharp knives! Feel free to reach out about anything in
 here. I hope to document enough here to make this repo somewhat accessible, and
 to share some current opinions on dev productivity tools.

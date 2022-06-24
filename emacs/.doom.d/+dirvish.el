@@ -11,7 +11,20 @@
   ;; (setq delete-by-moving-to-trash t)
   (setq dired-dwim-target t)
   (setq dired-listing-switches
-        "-AGhlv --group-directories-first"))
+        "-AGhlv --group-directories-first")
+
+  (map! :map dirvish-mode-map
+        :n "b" #'dirvish-goto-bookmark
+        :n "z" #'dirvish-show-history
+        :n "f" #'dirvish-file-info-menu
+        :n "F" #'dirvish-toggle-fullscreen
+        :n "l" #'dired-find-file
+        :n "h" #'dired-up-directory
+        :localleader
+        "h" #'dired-omit-mode))
+
+
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Dired
@@ -30,5 +43,4 @@
    :n "-"        #'dired-up-directory
    :n "<return>" #'dired-find-alternate-file
    :n "/"        #'dired
-   ;; :n "q"        (cmd! (quit-window t))
-   :ng "q"        #'quit-window))
+   :n "q"        (cmd! (quit-window t))))
