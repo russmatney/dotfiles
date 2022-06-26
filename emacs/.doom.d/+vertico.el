@@ -6,7 +6,10 @@
         "C-j" #'vertico-next
         "C-k" #'vertico-previous
         "C-h" #'vertico-directory-delete-word
-        "C-l" #'vertico-directory-enter))
+        "C-l" #'vertico-directory-enter
+
+        "C-n" #'vertico-next-group
+        "C-p" #'vertico-previous-group))
 
 (use-package! embark
   :config
