@@ -1,2 +1,3 @@
 {:tasks
- {say-it-aint-so (shell "echo 'it aint so'")}}
+ {say-it-aint-so (shell "echo 'it aint so'")
+  doom-up        (shell "doom up -!")}}
