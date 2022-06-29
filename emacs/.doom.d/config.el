@@ -152,6 +152,7 @@
 (load! "+dirvish")
 (load! "+fabb")
 (load! "+ink")
+(load! "+godot")
 ;; (load! "+exwm")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -172,11 +173,6 @@
   (setq maple-preview:auto-update nil)
   (setq maple-preview:auto-scroll nil)
   )
-
-(use-package! gdscript-mode
-  :config
-  ;; (setq gdscript-godot-executable "/usr/bin/godot-mono")
-  (setq gdscript-godot-executable "/usr/bin/godot"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;
 ;; js/web
