@@ -252,6 +252,7 @@
         "S-<down>" nil
         "C-j" nil
         :n "z a"   #'org-cycle
+        :i "M-TAB" #'russ/org-roam-insert-file
 
         :localleader
         :n "r"     #'hydra-org-refile/body
@@ -267,7 +268,9 @@
 (after! evil-org
   (map! :map evil-org-agenda-mode-map
         "C-j" nil
-        "C-k" nil)
+        "C-k" nil
+
+        :i "M-TAB" #'russ/org-roam-insert-file)
 
   (map! :map evil-normal-state-map
         :n "z a"   #'org-cycle
