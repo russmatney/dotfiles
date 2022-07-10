@@ -13,6 +13,9 @@
   (setq dired-listing-switches
         "-AGhlv --group-directories-first")
 
+  (setq dirvish-attributes '(git-msg))
+  (setq dirvish-hide-details t) ;; toggleable via dirvish-dispatch `? ('
+
   (map! :map dirvish-mode-map
         :n "b" #'dirvish-goto-bookmark
         :n "z" #'dirvish-show-history
@@ -20,6 +23,7 @@
         :n "F" #'dirvish-toggle-fullscreen
         :n "l" #'dired-find-file
         :n "h" #'dired-up-directory
+        :n "?" #'dirvish-dispatch
         :localleader
         "h" #'dired-omit-mode))
 
