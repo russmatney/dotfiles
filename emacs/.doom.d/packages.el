@@ -44,8 +44,10 @@
   (package! lispyville :pin "9c14bed0359f659e246d345c706f895737c3d172"))
 
 (package! flycheck-clj-kondo)
-; (package! ivy-cider :recipe (:host github :repo "rschmukler/ivy-cider"))
+;; (package! ivy-cider :recipe (:host github :repo "rschmukler/ivy-cider"))
 
+;; TODO point to the local version
+;; TODO rename this
 (package! company-css-classes :recipe
   (:host github :repo "russmatney/company-css-classes" :files ("*")))
 
@@ -67,6 +69,7 @@
 (package! org-rich-yank)
 (package! org-projectile)
 
+;; TODO maybe this has shipped the perf fix by now?
 (package! org-roam
   :recipe (:host github :repo "org-roam/org-roam")
   :pin "32557afdbfd875b1cd47b3737ecb52a6ee97b910")
@@ -105,3 +108,6 @@
 
 ;; ink
 (package! ink-mode :recipe (:local-repo "ink-mode" :build (:not compile)))
+
+;; godot
+(package! gdscript-mode :recipe (:local-repo "gdscript-mode" :build (:not compile)))
