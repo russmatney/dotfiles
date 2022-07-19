@@ -143,7 +143,12 @@
 (defun russ/transparency (value)
   "Sets the transparency of the frame window. 0=transparent/100=opaque"
   (interactive "nTransparency Value 0 - 100 opaque:")
-  (set-frame-parameter (selected-frame) 'alpha value))
+  (set-frame-parameter (selected-frame)
+                       (if IS-MAC
+                           'alpha
+                         ;; linux supports proper transparency
+                         'alpha-background)
+                       value))
 
 ;; transparency
 ;; (russ/transparency 85)
