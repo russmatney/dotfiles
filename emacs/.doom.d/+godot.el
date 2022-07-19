@@ -16,9 +16,9 @@
 
   (setq gdscript-use-tab-indents nil)
   (setq gdscript-indent-offset 2)
+  (if IS-MAC (setq gdscript-godot-executable "/Applications/Godot.app/Contents/MacOS/Godot")
+    (setq gdscript-godot-executable "/usr/bin/godot"))
   ;; (setq gdscript-godot-executable "/usr/bin/godot-mono")
-  ;; (setq gdscript-godot-executable "/usr/bin/godot")
-  (setq gdscript-godot-executable "/Applications/Godot.app/Contents/MacOS/Godot")
   (setq gdscript-gdformat-save-and-format t)
 
   (set-lookup-handlers! 'gdscript-mode

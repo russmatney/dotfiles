@@ -286,6 +286,15 @@
   ;; TAB auto-completion in term buffers
   :map comint-mode-map [tab] #'company-complete))
 
+(map!
+ (:after comint
+  :map comint-mode-map
+  :n "C-j" nil
+  :n "C-k" nil)
+ (:map inferior-lisp-mode-map
+  :n "C-j" nil
+  :n "C-k" nil))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (after! Info-mode
