@@ -14,8 +14,8 @@
   :defer t
   :config
 
-  (setq gdscript-use-tab-indents nil)
-  (setq gdscript-indent-offset 2)
+  (setq gdscript-use-tab-indents t)
+  (setq gdscript-indent-offset 4)
   (if IS-MAC (setq gdscript-godot-executable "/Applications/Godot.app/Contents/MacOS/Godot")
     (setq gdscript-godot-executable "/usr/bin/godot"))
   ;; (setq gdscript-godot-executable "/usr/bin/godot-mono")
