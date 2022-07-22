@@ -30,8 +30,8 @@
   (map! :localleader
         :map gdscript-mode-map
 
-        (:desc "hydra" "m" #'gdscript-hydra--menu/body)
-        (:desc "hydra" "c" #'gdscript-hydra--menu/body)
+        (:desc "hydra" "m" #'gdscript-hydra-show)
+        (:desc "hydra" "c" #'gdscript-hydra-show)
 
         (:prefix ("r" . "run")
          :desc "Open project in Godot" "e" #'gdscript-godot-open-project-in-editor
