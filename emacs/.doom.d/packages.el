@@ -72,7 +72,7 @@
 ;; TODO maybe this has shipped the perf fix by now?
 (package! org-roam
   :recipe (:host github :repo "org-roam/org-roam")
-  :pin "32557afdbfd875b1cd47b3737ecb52a6ee97b910")
+  :pin "e435581215a9eb8e95dde49ce1fb3c25929b80f4")
 
 ;; nov.el
 (package! nov)
