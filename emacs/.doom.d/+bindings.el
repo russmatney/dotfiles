@@ -35,8 +35,10 @@
  :n "gx" #'evil-exchange
 
  :nv "TAB" #'evil-toggle-fold
- :i "TAB" #'+company/complete
- :i "C-SPC" #'+company/complete
+ ;; :i "TAB" #'+company/complete
+ ;; :i "C-SPC" #'+company/complete
+ :i "TAB" #'completion-at-point
+ :i "C-SPC" #'completion-at-point
 
  ;; evil-surround
  :v "S" #'evil-surround-region
@@ -284,7 +286,8 @@
 (map!
  (:after comint
   ;; TAB auto-completion in term buffers
-  :map comint-mode-map [tab] #'company-complete))
+  ;; :map comint-mode-map [tab] #'company-complete
+  ))
 
 (map!
  (:after comint

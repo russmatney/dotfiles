@@ -55,8 +55,8 @@
        ;;japanese
 
        :completion
-       (company          ; the ultimate code completion backend
-        +childframe)            ; as-you-type code completion
+       ;; (company          ; the ultimate code completion backend
+       ;;  +childframe)            ; as-you-type code completion
        ;; +childframe
        ;; a nicer company UI (Emacs 26+ only)
        ;;helm              ; the *other* search engine for love and life
@@ -66,7 +66,10 @@
        ;;  ;; +prescient
        ;;  +icons)
        ;;+childframe)     ; uses childframes for popups (Emacs 26+ only)
+       (corfu
+        +orderless)
        (vertico
+        +orderless
         +icons)
 
        :ui
