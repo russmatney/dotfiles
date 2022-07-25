@@ -14,6 +14,8 @@
 ;; super/meta keybinds
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(setq startup-notified nil)
+
 (setq mac-command-modifier      'super
       ns-command-modifier       'super
       mac-option-modifier       'meta
