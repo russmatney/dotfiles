@@ -39,9 +39,10 @@
 
 (package! aggressive-indent)
 
-(package! lispy :pin "df1b7e614fb0f73646755343e8892ddda310f427")
+(package! evil :pin "5826a8877736fc734ea9da7d2bba11ef2b05032c")
+(package! lispy :pin "dbab5899f26fa2ee27f5c2e8b32c20f2f69242fb")
 (when (featurep! :editor evil)
-  (package! lispyville :pin "9c14bed0359f659e246d345c706f895737c3d172"))
+  (package! lispyville :pin "14ee8711d58b649aeac03581d22b10ab077f06bd"))
 
 (package! flycheck-clj-kondo)
 ;; (package! ivy-cider :recipe (:host github :repo "rschmukler/ivy-cider"))
