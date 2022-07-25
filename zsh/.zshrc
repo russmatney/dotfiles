@@ -483,6 +483,10 @@ timezsh() {
 
 PATH=$PATH:~/.local/share/Steam/steamapps/common/Aseprite
 
+# gut without window
+alias gut='godot --no-window --debug-collisions --path $PWD -d -s addons/gut/gut_cmdln.gd'
+# gut with window
+alias gutw='godot --debug-collisions --path $PWD -d -s addons/gut/gut_cmdln.gd'
 
 #########################################################################
 # osx
