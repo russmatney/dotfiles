@@ -51,6 +51,8 @@
   (corfu-on-exact-match nil)
   (corfu-quit-no-match 'separator)
   (corfu-preselect-first nil)
+  (corfu-min-width 40)
+  (corfu-max-width 60)
   :hook
   (doom-first-buffer . global-corfu-mode)
   :bind (:map corfu-map
@@ -111,3 +113,17 @@
            (>= corfu--index 0)) ;; translates to "there are candidates to select"
       (corfu-insert)
     (funcall orig)))
+
+(use-package! corfu-history
+  :after corfu
+  :hook (corfu-mode . (lambda ()
+                        (corfu-history-mode 1)
+                        (savehist-mode 1)
+                        (add-to-list 'savehist-additional-variables 'corfu-history))))
+
+
+(use-package! corfu-quick
+  :after corfu
+  :bind (:map corfu-map
+         ("M-q" . corfu-quick-complete)
+         ("C-q" . corfu-quick-insert)))

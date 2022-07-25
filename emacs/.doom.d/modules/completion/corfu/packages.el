@@ -2,7 +2,9 @@
 ;;; completion/corfu/packages.el
 
 
-(package! corfu)
+(package! corfu
+  :recipe (:files (:defaults "extensions/*.el")))
+
 (when (featurep! +orderless)
   (package! orderless))
 (package! kind-icon)
