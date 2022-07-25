@@ -103,3 +103,11 @@
   (map! :map c-mode-base-map
         :i [remap c-indent-line-or-region] #'completion-at-point))
 
+
+;; https://discourse.doomemacs.org/t/new-completion-corfu-module/2685/12
+(defadvice! +corfu--org-return (orig) :around '+org/return
+  (if (and (featurep! :completion corfu) ;; omit if not using via a module
+           corfu-mode
+           (>= corfu--index 0)) ;; translates to "there are candidates to select"
+      (corfu-insert)
+    (funcall orig)))
