@@ -1,4 +1,4 @@
-;;; ../dotfiles/emacs/.doom.d/+tasks.el -*- lexical-binding: t; -*-
+;;; ../dotfiles/emacs/.doom.d/+fabb.el -*- lexical-binding: t; -*-
 
 
 (map!
@@ -17,7 +17,10 @@
    :n "R" #'fabb-status-invoke-task-in-background
    :n "e" #'fabb-status-edit-and-invoke-task
    :n "RET" #'fabb-status-show-task-buffer
-   :n "x" #'fabb-kill-fabb-buffers)
+   :n "x" #'fabb-kill-fabb-buffers
+
+   :n "j" #'fabb-status-goto-next-task
+   :n "k" #'fabb-status-goto-previous-task)
 
   (:map fabb-task-mode-map
    :n "i" #'fabb-invoke-ivy

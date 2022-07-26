@@ -328,7 +328,7 @@
 
   (setq cider-save-file-on-load t
         cider-repl-init-code (append cider-repl-init-code '("(set! *print-length* 100)"))
-        cider-show-error-buffer 'except-in-repl
+        cider-show-error-buffer nil
         cider-default-cljs-repl 'shadow
         cider-offer-to-open-cljs-app-in-browser nil
         cider-auto-jump-to-error nil
