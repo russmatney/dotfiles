@@ -31,8 +31,8 @@
 ;; org init
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(setq org-directory (expand-file-name "~/todo/"))
-(setq org-roam-directory (expand-file-name "~/todo/"))
+(setq org-directory (file-truename "~/todo/"))
+(setq org-roam-directory (file-truename "~/todo/"))
 ;; (setq org-roam-tag-sources '(prop all-directories))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

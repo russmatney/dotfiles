@@ -77,34 +77,12 @@ Org-mode properties drawer already, keep the headline and don’t insert
             :level . 0))))
     (call-interactively #'org-refile)))
 
-(comment
-
- (org-roam-node-read
-  nil (lambda (node)
-        (and
-         (not (string-match-p
-               "/old-nov-2020/\\|/old/\\|/drafts-journal/\\|/journal/\\|/archive/"
-               (org-roam-node-file node)))
-         (not (member "reviewed" (org-roam-node-tags node))))))
- )
-
-(defun russ/org-roam-old-p (node)
-  "Returns true if the file is 'old', according to this function."
-  (or
-   (string-match-p
-    "/old-nov-2020/\\|/old/\\|/drafts-journal/\\|/journal/\\|/archive/"
-    (org-roam-node-file node))
-   (member "reviewed" (org-roam-node-tags node))))
-
-
 ;;;###autoload
 (defun russ/org-roam-insert-node-relevant ()
   "`org-roam-node-insert' but filtering out misc old notes"
   (interactive)
   (let ((completion-ignore-case t))
-    (org-roam-node-insert
-     (lambda (node)
-       (not (russ/org-roam-old-p node))))))
+    (org-roam-node-insert)))
 
 ;;;###autoload
 (defun russ/org-roam-insert-file ()
@@ -120,10 +98,7 @@ Org-mode properties drawer already, keep the headline and don’t insert
   "`org-roam-node-insert' but filtering out misc old notes"
   (interactive)
   (let ((completion-ignore-case t))
-    (org-roam-node-find
-     nil nil
-     (lambda (node)
-       (not (russ/org-roam-old-p node))))))
+    (org-roam-node-find)))
 
 ;;;###autoload
 (defun russ/org-roam-find-file ()
