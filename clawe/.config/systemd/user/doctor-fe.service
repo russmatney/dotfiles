@@ -1,11 +1,11 @@
 [Unit]
-Description=doctor frontend
+Description=doctor and expo frontend
 
 [Service]
 Type=simple
 Environment="PATH=/home/russ/n/bin:/home/russ/.local/bin:/home/russ/.nix-profile/bin:/bin:/usr/bin:/usr/local/bin:/usr/local/sbin"
 Environment="DISPLAY=:0"
-ExecStart=bb --config /home/russ/russmatney/clawe/bb.edn doctor-fe
+ExecStart=bb --config /home/russ/russmatney/clawe/bb.edn clawe-fe
 Restart=on-failure
 
 [Install]
