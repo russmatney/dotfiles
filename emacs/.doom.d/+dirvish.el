@@ -15,6 +15,7 @@
 
   (setq dirvish-attributes '(git-msg))
   (setq dirvish-hide-details t) ;; toggleable via dirvish-dispatch `? ('
+  (setq dired-omit-files nil) ;; don't hide any files
 
   (map! :map dirvish-mode-map
         :n "b" #'dirvish-goto-bookmark
