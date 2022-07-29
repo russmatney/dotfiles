@@ -512,3 +512,9 @@ case "$OSTYPE" in
     # autojump
     [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 esac
+
+#########################################################################
+# clawe
+#########################################################################
+
+alias clawebb='bb --config ~/russmatney/clawe/bb.edn'
