@@ -191,7 +191,8 @@
  (:leader
   :desc "projectile-find-file"   :n  "p"   #'projectile-find-file
   :desc "projectile-find-file (burst cache)" :n  "P" (λ! (projectile-find-file t))
-  :desc "Find file"              :n  "."   #'find-file)
+  :desc "Find file"              :n  "."   #'find-file
+  :desc "Find file (Other project)" :n "o" #'doom/find-file-in-other-project)
 
  (:leader
   :desc "Imenu"                 :nv "i"   #'imenu
