@@ -236,18 +236,17 @@ shift + cmd - 0 : yabai -m window --space 0
 cmd - r : clawe clawe-restart-kbd-modr
 
 # emacs, term toggling
-shift + cmd - return : clawe toggle-emacs-kbd-modshiftReturn
-cmd - return : clawe toggle-terminal-kbd-modReturn
+shift + cmd - return : bb --config ~/russmatney/clawe/bb.edn -x clawe.toggle/toggle-app --client emacs --app Emacs
+cmd - return : bb --config ~/russmatney/clawe/bb.edn -x clawe.toggle/toggle-app --client terminal --app Alacritty
 
-# tap again to go to the previous space
-cmd - u : clawe toggle-journal-2
-cmd - t : clawe toggle-web-2
-cmd - b : clawe toggle-dev-web-2
-cmd - s : clawe toggle-spotify-2
-cmd - e : clawe toggle-aseprite-2
-cmd - a : clawe toggle-slack-2
-cmd - m : clawe toggle-messages-2
-cmd - g : clawe toggle-godot-2
+cmd - u : bb --config ~/russmatney/clawe/bb.edn -x clawe.toggle/toggle-app --wsp journal --title journal --app Emacs
+cmd - t : bb --config ~/russmatney/clawe/bb.edn -x clawe.toggle/toggle-app --wsp web --app Safari
+cmd - b : bb --config ~/russmatney/clawe/bb.edn -x clawe.toggle/toggle-app --wsp devweb --app "Firefox Developer Edition"
+cmd - s : bb --config ~/russmatney/clawe/bb.edn -x clawe.toggle/toggle-app --wsp spotify --app Spotify
+cmd - e : bb --config ~/russmatney/clawe/bb.edn -x clawe.toggle/toggle-app --wsp aseprite --app Aseprite
+cmd - a : bb --config ~/russmatney/clawe/bb.edn -x clawe.toggle/toggle-app --wsp slack --app Slack
+cmd - m : bb --config ~/russmatney/clawe/bb.edn -x clawe.toggle/toggle-app --wsp messages --app Messages
+cmd - g : bb --config ~/russmatney/clawe/bb.edn -x clawe.toggle/toggle-app --wsp godot --app Godot
 
 cmd - d : clawe yabai-correct-workspaces
 cmd - w : clawe m-x
