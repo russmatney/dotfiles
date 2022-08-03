@@ -85,7 +85,10 @@
           ("Unpushed" 3 magit-repolist-column-unpushed-to-upstream
            ((:right-align t)
             (:help-echo "Local changes not in upstream")))
-          ("Path" 99 magit-repolist-column-path nil))))
+          ("Path" 99 magit-repolist-column-path nil)))
+
+  ;; duplicate in most situations, but idc, it's annoys me when it's hidden
+  (magit-add-section-hook 'magit-status-sections-hook 'magit-insert-recent-commits nil t))
 
 (use-package! magit-todos
   :config

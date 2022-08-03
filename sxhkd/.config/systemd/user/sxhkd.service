@@ -6,6 +6,7 @@ Documentation=man:sxhkd(1)
 ExecStart=/usr/bin/sxhkd
 ExecReload=/usr/bin/kill -SIGUSR1 $MAINPID
 Environment=SXHKD_SHELL=/home/russ/.local/bin/bg_shell
+Restart=on-failure
 
 [Install]
 WantedBy=default.target
