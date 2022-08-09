@@ -198,10 +198,12 @@
   ("f" cider-eval-defun-at-point "cider-eval-defun-at-point")
   ("n" cider-repl-set-ns "cider-repl-set-ns")
 
-  ("t" cider-test-run-ns-tests "cider-test-run-ns-tests" :column "Test")
+  ("t" cider-test-run-ns-tests "cider-test-run-ns-tests" :column "Test/Refactor/Other")
   ("T" cider-test-run-test "cider-test-run-test")
 
-  ("m" clojure-move-to-let "clojure-move-to-let" :column "Refactor/Other")
+  ("a" lsp-execute-code-action "LSP code actions")
+
+  ("m" clojure-move-to-let "clojure-move-to-let")
   ("i" cider-inspect-last-result "cider-inspect-last-result")
   ("S" hydra-systemic/body "hydra-systemic"))
 
@@ -320,8 +322,6 @@
         '(("system-babashka" "localhost" "1667")
           ("doctor-be" "localhost" "3336")
           ("doctor-fe" "localhost" "3335")
-          ("expo-be" "localhost" "5553")
-          ("expo-fe" "localhost" "5554")
           ("godot-arcadia" "localhost" "3722")))
 
   ;; cider-inspector-auto-select-buffer
