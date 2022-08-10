@@ -183,6 +183,8 @@ if [ -f  "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.z
     source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc";
 fi
 
+export HOMEBREW_NO_AUTO_UPDATE=1
+
 ################################################################################
 # Fzf
 ################################################################################
