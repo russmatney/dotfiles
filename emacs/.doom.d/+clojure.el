@@ -300,7 +300,7 @@
           ("s" . "clojure.spec.alpha")
           ("rf" . "re-frame.core")
           ("r" . "reagent.core")
-          ("t" . "tick.alpha.api")))
+          ("t" . "tick.core")))
 
   (setq clojure-align-forms-automatically t)
 
