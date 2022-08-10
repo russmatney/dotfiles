@@ -233,21 +233,20 @@ shift + cmd - 8 : yabai -m window --space 8
 shift + cmd - 9 : yabai -m window --space 9
 shift + cmd - 0 : yabai -m window --space 0
 
-cmd - r : clawe clawe-restart-kbd-modr
+cmd - r : bb --config ~/russmatney/clawe/bb.edn -x clawe.restart/restart
 
 # emacs, term toggling
-shift + cmd - return : bb --config ~/russmatney/clawe/bb.edn -x clawe.toggle/toggle-app --client emacs --app Emacs
-cmd - return : bb --config ~/russmatney/clawe/bb.edn -x clawe.toggle/toggle-app --client terminal --app Alacritty
+shift + cmd - return : bb --config ~/russmatney/clawe/bb.edn -x clawe.toggle/toggle --key emacs
+cmd - return : bb --config ~/russmatney/clawe/bb.edn -x clawe.toggle/toggle --key terminal
 
-cmd - u : bb --config ~/russmatney/clawe/bb.edn -x clawe.toggle/toggle-app --wsp journal --title journal --app Emacs
-cmd - t : bb --config ~/russmatney/clawe/bb.edn -x clawe.toggle/toggle-app --wsp web --app Safari
-cmd - b : bb --config ~/russmatney/clawe/bb.edn -x clawe.toggle/toggle-app --wsp devweb --app "Firefox Developer Edition"
-cmd - s : bb --config ~/russmatney/clawe/bb.edn -x clawe.toggle/toggle-app --wsp spotify --app Spotify
-cmd - e : bb --config ~/russmatney/clawe/bb.edn -x clawe.toggle/toggle-app --wsp aseprite --app Aseprite
-cmd - a : bb --config ~/russmatney/clawe/bb.edn -x clawe.toggle/toggle-app --wsp slack --app Slack
-cmd - m : bb --config ~/russmatney/clawe/bb.edn -x clawe.toggle/toggle-app --wsp messages --app Messages
-cmd - g : bb --config ~/russmatney/clawe/bb.edn -x clawe.toggle/toggle-app --wsp godot --app Godot
+cmd - u : bb --config ~/russmatney/clawe/bb.edn -x clawe.toggle/toggle --key journal
+cmd - t : bb --config ~/russmatney/clawe/bb.edn -x clawe.toggle/toggle --key web
+cmd - b : bb --config ~/russmatney/clawe/bb.edn -x clawe.toggle/toggle --key devweb
+cmd - s : bb --config ~/russmatney/clawe/bb.edn -x clawe.toggle/toggle --key spotify
+cmd - e : bb --config ~/russmatney/clawe/bb.edn -x clawe.toggle/toggle --key aseprite
+cmd - a : bb --config ~/russmatney/clawe/bb.edn -x clawe.toggle/toggle --key slack
+cmd - m : bb --config ~/russmatney/clawe/bb.edn -x clawe.toggle/toggle --key messages
+cmd - g : bb --config ~/russmatney/clawe/bb.edn -x clawe.toggle/toggle --key godot
 
-cmd - d : clawe yabai-correct-workspaces
-cmd - w : clawe m-x
-cmd - x : clawe m-x
+cmd - d : bb --config ~/russmatney/clawe/bb.edn -x clawe.rules/clean-up-workspaces
+cmd - x : bb --config ~/russmatney/clawe/bb.edn -x clawe.m-x/do-m-x
