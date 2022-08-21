@@ -40,11 +40,12 @@ yabai -m config mouse_drop_action            swap
 
 # general space settings
 yabai -m config layout                       bsp
-yabai -m config top_padding                  36
-yabai -m config bottom_padding               16
-yabai -m config left_padding                 16
-yabai -m config right_padding                16
-yabai -m config window_gap                   32
+yabai -m config top_padding                  0
+yabai -m config bottom_padding               52
+yabai -m config left_padding                 4
+yabai -m config right_padding                4
+yabai -m config window_gap                   8
+# yabai -m config external_bar                 main:0:16
 
 # float system preferences
 yabai -m rule --add app="^System Preferences$" manage=off
@@ -55,6 +56,8 @@ yabai -m rule --add app="^Emacs$" title="^clawe" space=clawe
 yabai -m rule --add app="^Spotify$" space=spotify
 yabai -m rule --add app="^Safari$" space=web
 yabai -m rule --add app="^Slack$" space=slack
+
+yabai -m rule --add title="tauri/doctor-topbar" sticky=on manage=off
 
 # refocus after window close
 yabai -m signal --add event=window_destroyed label=focus-after-destroy active=yes action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null"
