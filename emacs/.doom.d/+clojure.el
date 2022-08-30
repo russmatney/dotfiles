@@ -327,7 +327,7 @@
   ;; cider-inspector-auto-select-buffer
 
   (setq cider-save-file-on-load t
-        cider-repl-init-code (append cider-repl-init-code '("(set! *print-length* 100)"))
+        cider-repl-init-code (append cider-repl-init-code '("(set! *print-length* 50)"))
         cider-show-error-buffer nil
         cider-default-cljs-repl 'shadow
         cider-offer-to-open-cljs-app-in-browser nil
@@ -337,6 +337,9 @@
         cider-test-show-report-on-success t)
   ;; cider-session-name-template "%j:%S"
 
+  (setq cider-eldoc-display-for-symbol-at-point nil) ; disabled in favor of lsp
+
+  (setq scroll-conservatively 40)
   (map!
    (:map cider-inspector-mode-map
     :n "C-j" nil
@@ -358,8 +361,8 @@
    ))
 
 
-; (use-package! ivy-cider
-;   :after cider-mode)
+;; (use-package! ivy-cider
+;;   :after cider-mode)
 
 (use-package! clojure-essential-ref)
 (use-package! clojure-essential-ref-nov
