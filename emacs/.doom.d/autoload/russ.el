@@ -175,6 +175,22 @@
 (comment
  (russ/open-workspace "cli-bindings"))
 
+(comment
+ (frames-on-display-list)
+ (select-frame "journal")
+ (frame-list)
+
+
+ (let ((journal-frame
+        (car
+         (filtered-frame-list
+          (lambda (frame) (equal (frame-parameter frame 'name) "journal"))))))
+   (if journal-frame
+       (select-frame journal-frame)))
+
+
+ )
+
 ;;;###autoload
 ;; Set ids on multiple org commands
 (defun russ/org-set-headline-ids (start end)
