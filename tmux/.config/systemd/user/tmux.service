@@ -7,6 +7,7 @@ Type=forking
 ExecStart=/usr/bin/tmux start
 ExecStop=/usr/bin/tmux kill-server
 Environment=DISPLAY=:0
+KillMode=process
 
 [Install]
 WantedBy=default.target
