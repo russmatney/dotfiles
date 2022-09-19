@@ -22,6 +22,8 @@
       ns-option-modifier        'meta
 
       ;; required to send M-x instead of mac unicode shortcuts
+      ;; TODO why isn't this being set at startup? perhaps it's overwritten later?
+      ;; [[file:~/.emacs.d/lisp/doom-keybinds.el::mac-right-option-modifier 'none][maybe overwritten here?]]
       mac-right-option-modifier 'meta
       ns-right-option-modifier 'meta)
 
@@ -39,7 +41,7 @@
 ;; misc
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(setq custom-file (concat doom-private-dir "+custom.el"))
+(setq custom-file (concat doom-user-dir "+custom.el"))
 
 (defvar +workspaces-main "todo")
 (defvar +workspaces-switch-project-function #'magit-status)
@@ -80,7 +82,7 @@
        doom-dashboard    ; a nifty splash screen for Emacs
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
        ;;(emoji +unicode)  ; 🙂
-       fill-column
+       ;;fill-column
        hl-todo           ; highlight TODO/FIXME/NOTE tags
        hydra
        ;;indent-guides
@@ -176,8 +178,8 @@
        ;;crystal           ; ruby at the speed of c
        (csharp +dotnet +unity)            ; unity, .NET, and mono shenanigans
        data              ; config/data formats
-       ;;(dart +flutter)   ; paint ui and not much else
-       ;;elixir            ; erlang done right
+       (dart +flutter)   ; paint ui and not much else
+       elixir            ; erlang done right
        ;;elm               ; care for a cup of TEA?
        emacs-lisp        ; drown in parentheses
        ;; erlang            ; an elegant language for a more civilized age
@@ -187,9 +189,9 @@
        ;;fsharp           ; ML stands for Microsoft's Language
        ;;fstar             ; (dependent) types and (monadic) effects and Z3
        ;; (gdscript +lsp)          ; the language you waited for
-       ;;(go +lsp)                ; the hipster dialect
-       ;; (haskell +dante) ; a language that's lazier than I am
-       ;;haskell ; a language that's lazier than I am
+       (go +lsp)                ; the hipster dialect
+       (haskell +dante) ; a language that's lazier than I am
+       ;; haskell ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ;
        ;;(java +meghanada) ; the poster child for carpal tunnel syndrome
@@ -235,7 +237,7 @@
        sh        ; she sells (ba|z|fi)sh shells on the C xor
        ;;sml
        ;;solidity
-       ;;swift             ; who asked for emoji variables?
+       swift             ; who asked for emoji variables?
        ;;terra
        ;; web               ; the tubes
        yaml
