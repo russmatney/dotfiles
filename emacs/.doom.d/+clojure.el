@@ -169,6 +169,15 @@
  (let ((x '(:foo "list-data")))
    (plist-get x :foo)))
 
+(defun clerk-show ()
+  (interactive)
+  (save-buffer)
+  (let
+      ((filename (buffer-file-name)))
+    (when filename
+      (cider-interactive-eval
+       (concat "(nextjournal.clerk/show! \"" filename "\")")))))
+
 (defhydra hydra-cider-mode (:exit t)
   ("'" cider-jack-in "jack-in" :column "Jack in/Connect")
   ("\"" cider-jack-in-cljs "jack-in-cljs")
@@ -193,6 +202,7 @@
   ("d" hydra-clojure-docs/body "hydra-clojure-docs/body")
 
   ("l" cider-load-this-file "cider-load-this-file" :column "Eval")
+  ("L" clerk-show "clerk/show! <this-filename>")
   ("b" cider-eval-buffer "cider-eval-buffer")
   ("p" cider-eval-sexp-at-point "cider-eval-sexp-at-point")
   ("f" cider-eval-defun-at-point "cider-eval-defun-at-point")
