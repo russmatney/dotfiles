@@ -3,7 +3,12 @@
 
 Welcome to my dotfiles!
 
-* clawe for clojure-y WM control
+* Clawe
+
+#+begin_src quote
+for clojure-y WM control
+#+end_src
+
 Most of my development environment (keybindings, window management stuff) is
 managed through [[https://github.com/russmatney/clawe][russmatney/clawe]] - be sure to check that out if you're
 interested!
