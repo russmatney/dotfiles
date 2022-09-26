@@ -24,15 +24,6 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 
 ################################################################################
-# Keychain
-################################################################################
-
-# keychain for ssh and gpg
-if hash keychain 2>/dev/null; then
-  eval "$(keychain --agents gpg --eval --systemd --noask)"
-fi
-
-################################################################################
 # Antibody setup
 ################################################################################
 
@@ -80,6 +71,24 @@ setopt globdots
 
 # required to find some shared libs
 export LD_LIBRARY_PATH=/usr/local/lib
+
+################################################################################
+# Keychain
+################################################################################
+
+# keychain for ssh and gpg
+# if hash keychain 2>/dev/null; then
+#   eval "$(keychain --agents gpg --eval --systemd --noask)"
+# fi
+
+if hash keychain 2>/dev/null; then
+  keychain_path="~/.keychain/$(hostname)-sh-gpg";  # this file won't exist if keychain isn't running
+  if [ -f "$keychain_path" ]; then
+    . $keychain_path;
+  else
+    eval $(keychain --agents gpg,ssh --eval --systemd --noask)
+  fi;
+fi
 
 ################################################################################
 # Theme/Style
