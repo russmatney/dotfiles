@@ -29,7 +29,7 @@ setopt HIST_IGNORE_SPACE
 
 # keychain for ssh and gpg
 if hash keychain 2>/dev/null; then
-  eval "$(keychain --eval id_rsa --systemd --noask)"
+  eval "$(keychain --agents gpg --eval --systemd --noask)"
 fi
 
 ################################################################################
