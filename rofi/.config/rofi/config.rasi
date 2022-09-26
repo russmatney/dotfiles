@@ -23,7 +23,7 @@ configuration {
     kb-remove-to-eol: "";
     kb-accept-entry: "Return,KP_Enter";
     kb-row-down: "Down,Control+n,Control+j";
-    kb-row-up:   "Control+k,Up,Control+p,ISO_Left_Tab";
+    kb-row-up:   "Control+k,Up,Control+p";
     kb-mode-next: "Shift+Right,Control+Tab,Super+n";
     kb-mode-previous: "Shift+Left,Control+ISO_Left_Tab,Super+p";
 }
