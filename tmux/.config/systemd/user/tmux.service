@@ -4,9 +4,10 @@ Documentation=man:tmux(1)
 
 [Service]
 Type=forking
-ExecStart=/usr/bin/tmux start
-ExecStop=/usr/bin/tmux kill-server
+ExecStart=/usr/bin/tmux new-session -s sxhkd -d
+ExecStop=/usr/bin/tmux kill-session -t sxhkd
 Environment=DISPLAY=:0
+Environment="PATH=/home/russ/.local/bin:/bin:/usr/bin:/usr/local/bin:/usr/local/sbin"
 KillMode=process
 
 [Install]
