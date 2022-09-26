@@ -28,10 +28,9 @@ setopt HIST_IGNORE_SPACE
 ################################################################################
 
 # keychain for ssh and gpg
-# if hash keychain 2>/dev/null; then
-#   eval `keychain --eval id_rsa --systemd`
-#   # && emacsclient -e '(russ/keychain-refresh-environment)' > /dev/null &
-# fi
+if hash keychain 2>/dev/null; then
+  eval "$(keychain --eval id_rsa --systemd --noask)"
+fi
 
 ################################################################################
 # Antibody setup
