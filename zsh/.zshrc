@@ -55,20 +55,6 @@ autoload -Uz compinit && compinit -i
 # allow .hidden file tab completion
 setopt globdots
 
-# https://gist.github.com/ctechols/ca1035271ad134841284
-# function loadzshcomp() {
-#     # http://zsh.sourceforge.net/Doc/Release/Options.html#Scripts-and-Functions
-#     setopt LOCAL_OPTIONS extendedglob
-#     # http://zsh.sourceforge.net/Doc/Release/Expansion.html#Glob-Qualifiers
-#     # http://zsh.sourceforge.net/Doc/Release/Conditional-Expressions.html#Conditional-Expressions
-#     if [[ ! -n ${ZDOTDIR:-$HOME}/.zcompdump(N.mh+2) ]]; then
-#         zi compinit > /dev/null
-#         zi cdreplay -q
-#     fi
-# }
-
-# loadzshcomp
-
 # required to find some shared libs
 export LD_LIBRARY_PATH=/usr/local/lib
 
@@ -77,10 +63,6 @@ export LD_LIBRARY_PATH=/usr/local/lib
 ################################################################################
 
 # keychain for ssh and gpg
-# if hash keychain 2>/dev/null; then
-#   eval "$(keychain --agents gpg --eval --systemd --noask)"
-# fi
-
 if hash keychain 2>/dev/null; then
   keychain_path="~/.keychain/$(hostname)-sh-gpg";  # this file won't exist if keychain isn't running
   if [ -f "$keychain_path" ]; then
