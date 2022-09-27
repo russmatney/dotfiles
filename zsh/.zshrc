@@ -68,7 +68,15 @@ if hash keychain 2>/dev/null; then
   if [ -f "$keychain_path" ]; then
     . $keychain_path;
   else
-    eval $(keychain --agents gpg,ssh --eval --systemd --noask)
+
+    case "$OSTYPE" in
+      darwin*)
+        eval $(keychain --agents gpg,ssh --eval --noask)
+        ;;
+      linux*)
+        eval $(keychain --agents gpg,ssh --eval --systemd --noask)
+        ;;
+    esac
   fi;
 fi
 
