@@ -518,3 +518,9 @@ esac
 #########################################################################
 
 alias clawebb='bb --config ~/russmatney/clawe/bb.edn'
+alias clawebb_ls_clients='clawebb -x clawe.debug/ls-clients'
+alias clawebb_ls_workspaces='clawebb -x clawe.debug/ls-workspaces'
+alias clawebb_toggle='clawebb -x clawe.toggle/toggle --key'
+alias clawebb_reload='clawebb -x clawe.restart/reload'
+alias clawebb_mx='clawebb -x clawe.m-x/m-x'
+alias clawebb_mx_fast='clawebb -x clawe.m-x/m-x-fast'
