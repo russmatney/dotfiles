@@ -178,7 +178,7 @@
       (cider-interactive-eval
        (concat "(nextjournal.clerk/show! \"" filename "\")")))))
 
-(defun clawe-notebooks-update ()
+(defun russ/clawe-notebooks-update ()
   (interactive)
   (save-buffer)
   (let
@@ -212,7 +212,7 @@
 
   ("l" cider-load-this-file "cider-load-this-file" :column "Eval")
   ;; ("L" clerk-show "clerk/show! <this-filename>")
-  ("L" clawe-notebooks-update "clawe-notebooks-update!")
+  ("L" russ/clawe-notebooks-update "clawe-notebooks-update!")
   ("b" cider-eval-buffer "cider-eval-buffer")
   ("p" cider-eval-sexp-at-point "cider-eval-sexp-at-point")
   ("f" cider-eval-defun-at-point "cider-eval-defun-at-point")
