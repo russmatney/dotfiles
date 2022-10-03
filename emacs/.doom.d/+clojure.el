@@ -169,14 +169,15 @@
  (let ((x '(:foo "list-data")))
    (plist-get x :foo)))
 
-(defun clerk-show ()
+(defun russ/clerk-show ()
   (interactive)
   (save-buffer)
   (let
       ((filename (buffer-file-name)))
     (when filename
       (cider-interactive-eval
-       (concat "(nextjournal.clerk/show! \"" filename "\")")))))
+       ;;;(concat "(nextjournal.clerk/show! \"" filename "\")")))))
+       (concat " (with-bindings {#'*print-length* false} (nextjournal.clerk/show! \"" filename "\"))")))))
 
 (defun russ/clawe-notebooks-update ()
   (interactive)
@@ -185,7 +186,9 @@
       ((filename (buffer-file-name)))
     (when filename
       (cider-interactive-eval
-       (concat "(notebooks.clerk/update-open-notebooks)")))))
+       (concat "
+(with-bindings {#'*print-length* nil}
+  (notebooks.clerk/update-open-notebooks))")))))
 
 (defhydra hydra-cider-mode (:exit t)
   ("'" cider-jack-in "jack-in" :column "Jack in/Connect")
