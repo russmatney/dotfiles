@@ -37,7 +37,7 @@
 (package! cider :pin "b2cee7fc301735b403920583cc2c23dcf70990a3")
 ;; clojure mode 5.14 b7d08b87f6a116ff47b33ee857926b60c66c3ab7
 
-(package! aggressive-indent)
+(package! aggressive-indent :pin "70b3f0add29faff41e480e82930a231d88ee9ca7")
 
 (package! evil :pin "5826a8877736fc734ea9da7d2bba11ef2b05032c")
 (package! lispy :pin "dbab5899f26fa2ee27f5c2e8b32c20f2f69242fb")
