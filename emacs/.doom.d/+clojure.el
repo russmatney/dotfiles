@@ -190,6 +190,16 @@
 (with-bindings {#'*print-length* nil}
   (notebooks.clerk/update-open-notebooks))")))))
 
+(defun russ/clerk-show-dwim ()
+  (interactive)
+  (save-buffer)
+  (let
+      ((filename (buffer-file-name)))
+    (message "clerk-show-dwim" filename)
+    (if (s-contains? filename "russmatney/clawe")
+        (russ/clawe-notebooks-update)
+      (russ/clerk-show))))
+
 (defhydra hydra-cider-mode (:exit t)
   ("'" cider-jack-in "jack-in" :column "Jack in/Connect")
   ("\"" cider-jack-in-cljs "jack-in-cljs")
@@ -215,7 +225,7 @@
 
   ("l" cider-load-this-file "cider-load-this-file" :column "Eval")
   ;; ("L" clerk-show "clerk/show! <this-filename>")
-  ("L" russ/clawe-notebooks-update "clawe-notebooks-update!")
+  ("L" russ/clerk-show-dwim "russ/clerk-show-dwim")
   ("b" cider-eval-buffer "cider-eval-buffer")
   ("p" cider-eval-sexp-at-point "cider-eval-sexp-at-point")
   ("f" cider-eval-defun-at-point "cider-eval-defun-at-point")
