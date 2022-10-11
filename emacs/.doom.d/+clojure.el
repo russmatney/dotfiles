@@ -367,6 +367,7 @@
         cider-auto-jump-to-error nil
         cider-auto-select-error-buffer nil
         cider-auto-select-test-report-buffer nil
+        cider-preferred-build-tool 'clojure-cli
         cider-test-show-report-on-success t)
   ;; cider-session-name-template "%j:%S"
 
