@@ -312,7 +312,7 @@ alias delete-merged-branches="git checkout master && git branch --merged | grep 
 
 # from jskrzypek
 # alias is-unmerged="! f() { local branch=$(git rev-parse --abbrev-ref ${1-HEAD}) ; local base=${2-master} ; echo $(git cherry $base $(git commit-tree $(git rev-parse $branch^{tree}) -p $(git merge-base $base $branch) -m _) | cut -f1 -d' ') $branch; }; f"
-alias branch-merged="! f() { git for-each-ref refs/heads/ '--format=%(refname:short)' | xargs -I {} git is-unmerged {} ${1-master} | egrep '^-' | cut -f2 -d' ' ; }; f"
+alias branch-merged="! f() { git for-each-ref refs/heads/ '--format=%(refname:short)' | xargs -I {} git is-unmerged {} ${1-master} | grep -E '^-' | cut -f2 -d' ' ; }; f"
 alias clean-merged-branches="!f() { git checkout -q ${1-master} && git branch-merged ${1-master} | xargs -n1 -p git branch -D; }; f"
 
 

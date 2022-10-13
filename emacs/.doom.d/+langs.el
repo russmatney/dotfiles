@@ -15,9 +15,9 @@
 (defvar lva--lsp-ui-doc-atpoint-w 50
   "lsp-ui-doc-max-width when lsp-ui is shown at point")
 (defvar lva--lsp-ui-doc-anchored-h 20
-  "lsp-ui-doc-max-height when lsp-ui position is 'top or 'bottom")
+  "lsp-ui-doc-max-height when lsp-ui position is top or bottom")
 (defvar lva--lsp-ui-doc-anchored-w 150
-  "lsp-ui-doc-max-width when lsp-ui position is 'top or 'bottom")
+  "lsp-ui-doc-max-width when lsp-ui position is top or bottom")
 
 (defun lva/lsp-ui-toggle-doc (arg)
   (interactive "P")
