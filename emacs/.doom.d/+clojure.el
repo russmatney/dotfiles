@@ -176,8 +176,7 @@
       ((filename (buffer-file-name)))
     (when filename
       (cider-interactive-eval
-       ;;;(concat "(nextjournal.clerk/show! \"" filename "\")")))))
-       (concat " (with-bindings {#'*print-length* false} (nextjournal.clerk/show! \"" filename "\"))")))))
+       (concat "(nextjournal.clerk/show! \"" filename "\")")))))
 
 (defun russ/clawe-notebooks-update ()
   (interactive)
@@ -186,16 +185,13 @@
       ((filename (buffer-file-name)))
     (when filename
       (cider-interactive-eval
-       (concat "
-(with-bindings {#'*print-length* nil}
-  (notebooks.clerk/update-open-notebooks))")))))
+       (concat "(notebooks.clerk/update-open-notebooks)")))))
 
 (defun russ/clerk-show-dwim ()
   (interactive)
   (save-buffer)
   (let
       ((filename (buffer-file-name)))
-    (message "clerk-show-dwim" filename)
     (if (s-contains? filename "russmatney/clawe")
         (russ/clawe-notebooks-update)
       (russ/clerk-show))))
