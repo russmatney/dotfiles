@@ -4,7 +4,6 @@
 Welcome to my dotfiles!
 
 * Clawe
-
 #+begin_src quote
 for clojure-y WM control
 #+end_src
@@ -12,7 +11,6 @@ for clojure-y WM control
 Most of my development environment (keybindings, window management stuff) is
 managed through [[https://github.com/russmatney/clawe][russmatney/clawe]] - be sure to check that out if you're
 interested!
-
 * Emacs
 Via Doom Emacs. See ~emacs/.doom.d/*~.
 

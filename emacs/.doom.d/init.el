@@ -16,6 +16,7 @@
 
 (setq startup-notified nil)
 
+;; duped in config.el
 (setq mac-command-modifier      'super
       ns-command-modifier       'super
       mac-option-modifier       'meta

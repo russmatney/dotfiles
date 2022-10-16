@@ -4,6 +4,18 @@
   "Comment out one or more s-expressions."
   nil)
 
+;; duped in init.el
+(setq mac-command-modifier      'super
+      ns-command-modifier       'super
+      mac-option-modifier       'meta
+      ns-option-modifier        'meta
+
+      ;; required to send M-x instead of mac unicode shortcuts
+      ;; TODO why isn't this being set at startup? perhaps it's overwritten later?
+      ;; [[file:~/.emacs.d/lisp/doom-keybinds.el::mac-right-option-modifier 'none][maybe overwritten here?]]
+      mac-right-option-modifier 'meta
+      ns-right-option-modifier 'meta)
+
 ;; theme
 ;; (setq doom-theme 'doom-one-light)
 ;; (setq doom-theme 'doom-solarized-light)

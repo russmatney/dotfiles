@@ -73,7 +73,7 @@
          ("M-d" . corfu-doc-toggle)))
 
 (use-package orderless
-  :when (featurep! +orderless)
+  :when (modulep! +orderless)
   :init
   (setq completion-styles '(orderless)
         completion-category-defaults nil
@@ -108,7 +108,7 @@
 
 ;; https://discourse.doomemacs.org/t/new-completion-corfu-module/2685/12
 (defadvice! +corfu--org-return (orig) :around '+org/return
-  (if (and (featurep! :completion corfu) ;; omit if not using via a module
+  (if (and (modulep! :completion corfu) ;; omit if not using via a module
            corfu-mode
            (>= corfu--index 0)) ;; translates to "there are candidates to select"
       (corfu-insert)
