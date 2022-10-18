@@ -14,7 +14,7 @@
 (package! company-lsp)
 
 ;; rust
-;;(package! lsp-rust)
+(package! rustic :pin "53cacf5039f1d88cdd5cad98d1e9e0ad92da2615")
 
 ;; fountain
 (package! fountain-mode :recipe (:host github :repo "rnkn/fountain-mode"))

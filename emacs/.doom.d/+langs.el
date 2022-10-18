@@ -37,48 +37,24 @@
   :hook
   (haskell-mode . lsp)
   ;; (python-mode . lsp)
-  (rust-mode . lsp)
   ;; :commands lsp
   :config
-  ;; (lsp-ui-doc-mode 0)
   (setq lsp-ui-doc-position 'top)
   (setq lsp-keymap-prefix "SPC l")
-  ;; (lsp-ui-doc-mode nil)
-  ;; (setq lsp-ui-doc-enable nil)
-  ;; (setq lsp-keymap-prefix "SPC l")
 
+  (setq lsp-ui-doc-enable t)
 
-  (setq gc-cons-threshold 100000000)
+  (setq gc-cons-threshold 10000000)
+  ;; (setq gc-cons-threshold 100000000)
   (setq read-process-output-max (* 1024 1024))
 
   ;; rust
-  (setq lsp-rust-server 'rust-analyzer)
-  (setq lsp-rust-analyzer-import-merge-behaviour "last"
-        lsp-rust-analyzer-cargo-watch-command "clippy"
-        lsp-rust-analyzer-cargo-watch-args ["--target-dir" "/tmp/rust-analyzer-check"]
-        lsp-ui-doc-enable t)
-  )
-
+  (setq rustic-lsp-server 'rust-analyzer))
 
 (map! :after lsp-mode
       :map lsp-mode-map
       "s-l" nil
-      "SPC" nil
-      )
-
-(defun russ/setup-rust ()
-  (setq rust-format-on-save t)
-  (setq rust-format-show-buffer nil)
-  (lsp))
-
-(use-package! rustic
-  :config
-  (russ/setup-rust))
-
-;; (add-hook 'rust-mode-hook #'russ/setup-rust)
-
-;; (after! rust-mode
-;;   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+      "SPC" nil)
 
 (use-package! lsp-ui
   :commands
