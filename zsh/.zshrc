@@ -520,6 +520,7 @@ esac
 #########################################################################
 
 alias clawebb='bb --config ~/russmatney/clawe/bb.edn'
+alias clawebb_ls='clawebb -x clawe.debug/ls-print --type'
 alias clawebb_ls_clients='clawebb -x clawe.debug/ls-clients'
 alias clawebb_ls_workspaces='clawebb -x clawe.debug/ls-workspaces'
 alias clawebb_toggle='clawebb -x clawe.toggle/toggle --key'
