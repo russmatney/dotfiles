@@ -1,6 +1,0 @@
-# requires Fennel >= 0.4.0 and readline.lua >= 2.6
-$if fennel
-  set enable-bracketed-paste on
-  set blink-matching-paren on
-  set show-all-if-ambiguous on
-$endif
