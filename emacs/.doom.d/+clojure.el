@@ -15,6 +15,12 @@
 ;; Fix docstring highlighting for `defsys`
 (put 'defsys 'clojure-doc-string-elt 2)
 
+(defun russ/reload-clawe-config ()
+  "Reloads the clawe config. Useful after clawe.edn is updated."
+  (interactive)
+  (cider-interactive-eval
+   "(do (clawe.config/write-config nil) (clawe.config/reload-config))"))
+
 ;; The below functions allow you to control systemic from Emacs.
 ;; Personally, I have found binding them to keys to be very convenient.
 (defun systemic/restart ()
