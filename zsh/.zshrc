@@ -527,3 +527,11 @@ alias clawebb_toggle='clawebb -x clawe.toggle/toggle --key'
 alias clawebb_reload='clawebb -x clawe.restart/reload'
 alias clawebb_mx='clawebb -x clawe.mx/mx'
 alias clawebb_mx_fast='clawebb -x clawe.m-x/m-x-fast'
+
+#########################################################################
+# itch.io
+#########################################################################
+
+# https://itch.io/docs/butler/pushing.html#appendix-b-beeps-4-life
+# alias butler='~/.config/itch/apps/butler/butler --beeps4life'
+export PATH="$HOME/.config/itch/apps/butler:$PATH"
