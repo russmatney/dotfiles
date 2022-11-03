@@ -31,18 +31,14 @@
 
 ;; clojure
 
-;; clj-refactor 3.4.2 d7384a4edddc6c875f8562e2acd4e7346a68553f
-(package! clj-refactor :pin "d7384a4edddc6c875f8562e2acd4e7346a68553f")
-;; cider 1.4 b2cee7fc301735b403920583cc2c23dcf70990a3
-(package! cider :pin "b2cee7fc301735b403920583cc2c23dcf70990a3")
-;; clojure mode 5.14 b7d08b87f6a116ff47b33ee857926b60c66c3ab7
+(package! clj-refactor)
+(package! cider)
 
-(package! aggressive-indent :pin "70b3f0add29faff41e480e82930a231d88ee9ca7")
+(package! aggressive-indent)
 
-(package! evil :pin "5826a8877736fc734ea9da7d2bba11ef2b05032c")
-(package! lispy :pin "dbab5899f26fa2ee27f5c2e8b32c20f2f69242fb")
-(when (featurep! :editor evil)
-  (package! lispyville :pin "14ee8711d58b649aeac03581d22b10ab077f06bd"))
+(package! evil)
+(package! lispy)
+(package! lispyville)
 
 (package! flycheck-clj-kondo)
 ;; (package! ivy-cider :recipe (:host github :repo "rschmukler/ivy-cider"))
