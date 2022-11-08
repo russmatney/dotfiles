@@ -333,6 +333,32 @@
 
 (after! org 'turn-on-auto-fill)
 
+(setq russ/suggested-links
+      '("https://github.com/russmatney"
+        "https://github.com/russmatney/org-blog"
+        "https://github.com/russmatney/org-crud"
+        "https://github.com/russmatney/clawe"
+        "https://github.com/russmatney/dino"
+        "https://russmatney.itch.io"
+        "https://russmatney.itch.io/dino"
+        "https://russmatney.itch.io/runner"
+        "https://russmatney.itch.io/dungeon-crawler"
+        "https://patreon.com/russmatney"
+        "https://danger.russmatney.com"))
+
+(after! org
+  (org-link-set-parameters
+   "https"
+   :complete
+   (lambda ()
+     (completing-read "link: "
+                      (cl-remove
+                       "https:"
+                       (delete-dups
+                        (cl-concatenate 'list
+                                        org-link--insert-history
+                                        russ/suggested-links)))))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org Capture
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
