@@ -9,17 +9,25 @@
   nil)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; systemic
+;; cider evals
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Fix docstring highlighting for `defsys`
-(put 'defsys 'clojure-doc-string-elt 2)
+(defun russ/cider-set-print-length ()
+  (interactive)
+  (cider-interactive-eval "(set! *print-length* 100)"))
+
+;; clawe
 
 (defun russ/reload-clawe-config ()
   "Reloads the clawe config. Useful after clawe.edn is updated."
   (interactive)
   (cider-interactive-eval
    "(do (clawe.config/write-config nil) (clawe.config/reload-config))"))
+
+;; systemic
+
+;; Fix docstring highlighting for `defsys`
+(put 'defsys 'clojure-doc-string-elt 2)
 
 ;; The below functions allow you to control systemic from Emacs.
 ;; Personally, I have found binding them to keys to be very convenient.
@@ -38,19 +46,76 @@
   (interactive)
   (cider-interactive-eval "(systemic.core/stop!)"))
 
+;; wing
+
 (defun wing-sync-libs ()
   (interactive)
   (cider-interactive-eval "(wing.repl/sync-libs)"))
 
-(defhydra hydra-systemic (:exit t)
-  ("r" systemic/restart "systemic/restart")
+;; portal
+;; https://github.com/djblue/portal/blob/master/doc/editors/emacs.md#xwidget-webkit-embed
+
+;; def portal to the dev namespace to allow dereferencing via @dev/portal
+(defun portal.api/open ()
+  (interactive)
+  (cider-nrepl-sync-request:eval
+   "(do
+(ns dev)
+(require '[portal.api :as p])
+(def portal (p/open {:theme :portal.colors/nord}))
+(add-tap #'p/submit))"))
+
+(defun portal.api/clear ()
+  (interactive)
+  (cider-nrepl-sync-request:eval "(portal.api/clear)"))
+
+(defun portal.api/close ()
+  (interactive)
+  (cider-nrepl-sync-request:eval "(portal.api/close)"))
+
+;; clerk
+
+(defun russ/clerk-show ()
+  (interactive)
+  (save-buffer)
+  (let
+      ((filename (buffer-file-name)))
+    (when filename
+      (cider-interactive-eval
+       (concat "(nextjournal.clerk/show! \"" filename "\")")))))
+
+(defun russ/clawe-notebooks-update ()
+  (interactive)
+  (save-buffer)
+  (let
+      ((filename (buffer-file-name)))
+    (when filename
+      (cider-interactive-eval
+       (concat "(notebooks.clerk/update-open-notebooks)")))))
+
+(defun russ/clerk-show-dwim ()
+  (interactive)
+  (save-buffer)
+  (let
+      ((filename (buffer-file-name)))
+    (if (s-contains? filename "russmatney/clawe")
+        (russ/clawe-notebooks-update)
+      (russ/clerk-show))))
+
+;; cider evals hydra
+
+(defhydra hydra-cider-evals (:exit t)
+  ("r" systemic/restart "systemic/restart" :column "Systemic")
   ("s" systemic/start "systemic/start")
   ("S" systemic/stop "systemic/stop")
-  ("l" wing-sync-libs "wing-sync-libs"))
 
-(defun russ/cider-set-print-length ()
-  (interactive)
-  (cider-interactive-eval "(set! *print-length* 100)"))
+  ("l" wing-sync-libs "wing-sync-libs" :column "Wing")
+
+  ("p" portal.api/open "portal.api/open" :column "Portal")
+  ("k" portal.api/clear "portal.api/clear")
+  ("C" portal.api/close "portal.api/close")
+
+  ("c" russ/clerk-show-dwim "russ/clerk-show-dwim" :column "Clerk"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; cider company bindings fix
@@ -175,33 +240,6 @@
  (let ((x '(:foo "list-data")))
    (plist-get x :foo)))
 
-(defun russ/clerk-show ()
-  (interactive)
-  (save-buffer)
-  (let
-      ((filename (buffer-file-name)))
-    (when filename
-      (cider-interactive-eval
-       (concat "(nextjournal.clerk/show! \"" filename "\")")))))
-
-(defun russ/clawe-notebooks-update ()
-  (interactive)
-  (save-buffer)
-  (let
-      ((filename (buffer-file-name)))
-    (when filename
-      (cider-interactive-eval
-       (concat "(notebooks.clerk/update-open-notebooks)")))))
-
-(defun russ/clerk-show-dwim ()
-  (interactive)
-  (save-buffer)
-  (let
-      ((filename (buffer-file-name)))
-    (if (s-contains? filename "russmatney/clawe")
-        (russ/clawe-notebooks-update)
-      (russ/clerk-show))))
-
 (defhydra hydra-cider-mode (:exit t)
   ("'" cider-jack-in "jack-in" :column "Jack in/Connect")
   ("\"" cider-jack-in-cljs "jack-in-cljs")
@@ -240,7 +278,7 @@
 
   ("m" clojure-move-to-let "clojure-move-to-let")
   ("i" cider-inspect-last-result "cider-inspect-last-result")
-  ("S" hydra-systemic/body "hydra-systemic"))
+  ("S" hydra-cider-evals/body "misc cider evals"))
 
 (defhydra hydra-cider-inspector-mode (:exit t)
   ("RET" cider-inspector-operate-on-point "cider-inspector-operate-on-point" :column "Inspector")
@@ -382,20 +420,27 @@
     :n "C-k" nil
     :n "i" #'hydra-cider-inspector-mode/body)
    (:map cider-repl-mode-map
-    "C-j" nil
-    "C-k" nil)
+         "C-j" nil
+         "C-k" nil)
    (:map cider-mode-map
-    (:leader
-     :n "c" #'hydra-cider-mode/body)
-    )
+         (:leader
+          :n "c" #'hydra-cider-mode/body)
+         )
    (:map cider-stacktrace-mode-map
     :n "C-j" nil
     :n "C-k" nil)
    (:after cider-browse-ns-mode
-    (:map cider-browse-ns-mode-map
-     :n "RET" #'cider-browse-ns-operate-at-point))
+           (:map cider-browse-ns-mode-map
+            :n "RET" #'cider-browse-ns-operate-at-point))
    ))
 
+
+;; neil
+
+(use-package! neil
+  :config
+  (setq neil-prompt-for-version-p nil
+        neil-inject-dep-to-project-p t))
 
 ;; (use-package! ivy-cider
 ;;   :after cider-mode)

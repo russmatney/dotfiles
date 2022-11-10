@@ -34,6 +34,8 @@
 (package! clj-refactor)
 (package! cider)
 
+(package! neil :recipe (:host github :repo "babashka/neil" :files ("*.el")))
+
 (package! aggressive-indent)
 
 (package! evil)
