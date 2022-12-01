@@ -48,6 +48,11 @@ alias 'ra'='antibody bundle \
             > ~/.zsh_plugins.sh && \
             antibody update'
 
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+fi
+
 # enable completion features
 fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit && compinit -i
