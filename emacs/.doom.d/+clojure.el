@@ -21,8 +21,7 @@
 (defun russ/reload-clawe-config ()
   "Reloads the clawe config. Useful after clawe.edn is updated."
   (interactive)
-  (cider-interactive-eval
-   "(do (clawe.config/write-config nil) (clawe.config/reload-config))"))
+  (cider-interactive-eval "(clawe.config/reload-config)"))
 
 ;; systemic
 
