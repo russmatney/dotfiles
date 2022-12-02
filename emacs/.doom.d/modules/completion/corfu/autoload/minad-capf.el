@@ -1,5 +1,3 @@
-;;; completion/corfu/autoload/minad-capf.el -*- lexical-binding: t; -*-
-
 ;; Daniel "minad" Mendler extra capfs -*- lexical-binding: t -*-
 ;; Source : https://github.com/minad/corfu/issues/9#issuecomment-945090516
 
