@@ -344,7 +344,8 @@
         "https://russmatney.itch.io/runner"
         "https://russmatney.itch.io/dungeon-crawler"
         "https://patreon.com/russmatney"
-        "https://danger.russmatney.com"))
+        "https://danger.russmatney.com"
+        "https://twitch.tv/russmatney"))
 
 (after! org
   (org-link-set-parameters
