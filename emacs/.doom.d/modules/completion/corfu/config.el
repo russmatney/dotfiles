@@ -5,8 +5,8 @@
 (use-package! corfu
   :custom
   (corfu-separator ?\s)
-  (corfu-auto t)
-  (corfu-auto-delay 0.2)
+  (corfu-auto nil)
+  ;; (corfu-auto-delay 0.2)
   (corfu-preview-current nil) ;; Disable current candidate preview
   (corfu-on-exact-match nil)
   (corfu-quit-no-match 'separator)
@@ -171,14 +171,14 @@
 (when (modulep! :editor evil +everywhere)
   (setq evil-collection-corfu-key-themes '(default magic-return)))
 
-(use-package! cape-yasnippet
-  :after cape
-  :init
-  (add-to-list 'completion-at-point-functions #'cape-yasnippet)
-  (after! lsp-mode
-    (add-hook 'lsp-managed-mode-hook #'cape-yasnippet--lsp))
-  (after! eglot
-    (add-hook 'eglot-managed-mode-hook #'cape-yasnippet--eglot)))
+;; (use-package! cape-yasnippet
+;;   :after cape
+;;   :init
+;;   (add-to-list 'completion-at-point-functions #'cape-yasnippet)
+;;   ;; (after! lsp-mode
+;;   ;;   (add-hook 'lsp-managed-mode-hook #'cape-yasnippet--lsp))
+;;   (after! eglot
+;;     (add-hook 'eglot-managed-mode-hook #'cape-yasnippet--eglot)))
 
 ;; Override :config default mapping by waiting for after corfu is loaded
 (add-hook! 'doom-after-modules-config-hook
