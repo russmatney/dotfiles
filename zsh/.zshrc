@@ -539,4 +539,11 @@ alias clawebb_mx_fast='clawebb -x clawe.m-x/m-x-fast'
 
 # https://itch.io/docs/butler/pushing.html#appendix-b-beeps-4-life
 # alias butler='~/.config/itch/apps/butler/butler --beeps4life'
-export PATH="$HOME/.config/itch/apps/butler:$PATH"
+case "$OSTYPE" in
+  darwin*)
+    export PATH="$PATH:$HOME/Library/Application Support/itch/apps/butler"
+    ;;
+  linux*)
+    export PATH="$PATH:$HOME/.config/itch/apps/butler"
+    ;;
+esac
