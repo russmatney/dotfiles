@@ -21,6 +21,8 @@
   ;; (setq gdscript-godot-executable "/usr/bin/godot-mono")
   (setq gdscript-gdformat-save-and-format t)
 
+  (setq lsp-gdscript-port "6005")
+
   (set-lookup-handlers! 'gdscript-mode
     :documentation #'gdscript-docs-browse-symbol-at-point)
 
