@@ -1,8 +1,9 @@
 ;;; packages.el -*- lexical-binding: t; -*-
 
 
-(package! compat :pin "e59e311d1ffc422f91e4e9c494598e978f5c2125" 
-          :recipe (:host github :repo "emacs-compat/compat"))
+;; https://github.com/minad/corfu/issues/290#issuecomment-1424842189
+;; (package! compat :pin "e59e311d1ffc422f91e4e9c494598e978f5c2125"
+;;           :recipe (:host github :repo "emacs-compat/compat"))
 
 ;; lisp
 (package! dash)
