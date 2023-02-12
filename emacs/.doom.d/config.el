@@ -183,9 +183,9 @@
 
 ;; make it
 
-(when (not startup-notified)
-  (require 'notifications)
-  (notifications-notify
-   :title "Emacs started!"
-   :body "Start your engines.")
-  (setq startup-notified t))
+;; (when (not startup-notified)
+;;   (require 'notifications)
+;;   (notifications-notify
+;;    :title "Emacs started!"
+;;    :body "Start your engines.")
+;;   (setq startup-notified t))

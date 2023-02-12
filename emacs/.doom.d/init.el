@@ -1,5 +1,8 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
+;; (when (and (boundp 'startup-notified) (not startup-notified)))
+(setq-default startup-notified nil)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Fonts
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -13,8 +16,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; super/meta keybinds
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(setq startup-notified nil)
 
 ;; duped in config.el
 (setq mac-command-modifier      'super
