@@ -56,3 +56,10 @@
         (:prefix ("f" . "format")
          :desc "Format buffer" "b" #'gdscript-format-buffer
          :desc "Format region" "r" #'gdscript-format-region)))
+
+;; shader support
+
+;; TODO add to doom's godot module? is there one?
+;;;###autoload
+(progn
+  (add-to-list 'auto-mode-alist '("\\.gdshader\\'" . glsl-mode)))
