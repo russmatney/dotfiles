@@ -43,7 +43,9 @@
 (package! add-node-modules-path)
 
 ;; lsp
-(package! lsp-mode)
+(package! lsp-mode :pin "03e1818acae6de9a6ed89c54573f8050e4d4e463"
+  ;; :recipe (:host github :repo "emacs-lsp/lsp-mode")
+  )
 (package! lsp-ui :recipe (:host github :repo "emacs-lsp/lsp-ui"))
 (package! company-lsp)
 
