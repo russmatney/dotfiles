@@ -6,31 +6,31 @@
 ;;           :recipe (:host github :repo "emacs-compat/compat"))
 
 ;; https://github.com/doomemacs/doomemacs/pull/7075/files
-(package! vertico
-  :recipe (:host github :repo "minad/vertico"
-           :files ("*.el" "extensions/*.el"))
-  :pin "f303790546edecc67aa3bd5e23c68f982f1345dd")
+;; (package! vertico
+;;   :recipe (:host github :repo "minad/vertico"
+;;            :files ("*.el" "extensions/*.el"))
+;;   :pin "f303790546edecc67aa3bd5e23c68f982f1345dd")
 
-(package! orderless :pin "ae849b3d9f8c8a777e05816321ed2b00e8304447")
-(package! consult :pin "b22a7de62ee4adf766be2f867dee8b6980902bba")
-(package! compat :pin "2bedcb5ea91914e75d4905bc53e537b33f8f51e9")
-(package! consult-dir :pin "ed8f0874d26f10f5c5b181ab9f2cf4107df8a0eb")
-(when (modulep! :checkers syntax)
-  (package! consult-flycheck :pin "51b1b48e8dad314f9c9d963376f2ea8de94b97f2"))
-(package! embark :pin "4882b395cef98a517d530ffe483aa0dc7201158c")
-(package! embark-consult :pin "4882b395cef98a517d530ffe483aa0dc7201158c")
+;; (package! orderless :pin "ae849b3d9f8c8a777e05816321ed2b00e8304447")
+;; (package! consult :pin "b22a7de62ee4adf766be2f867dee8b6980902bba")
+;; (package! compat :pin "2bedcb5ea91914e75d4905bc53e537b33f8f51e9")
+;; (package! consult-dir :pin "ed8f0874d26f10f5c5b181ab9f2cf4107df8a0eb")
+;; (when (modulep! :checkers syntax)
+;;   (package! consult-flycheck :pin "51b1b48e8dad314f9c9d963376f2ea8de94b97f2"))
+;; (package! embark :pin "4882b395cef98a517d530ffe483aa0dc7201158c")
+;; (package! embark-consult :pin "4882b395cef98a517d530ffe483aa0dc7201158c")
 
-(package! marginalia :pin "6d48ed54be87969e3ce53a24dbc63ec72ec6a91a")
-(package! wgrep :pin "edf768732a56840db6879706b64c5773c316d619")
+;; (package! marginalia :pin "6d48ed54be87969e3ce53a24dbc63ec72ec6a91a")
+;; (package! wgrep :pin "edf768732a56840db6879706b64c5773c316d619")
 
-(when (modulep! +childframe)
-  (package! vertico-posframe
-    :recipe (:host github :repo "tumashu/vertico-posframe")
-    :pin "790f74b49d5309dc2f0e6a438e2e89007d591d07"))
+;; (when (modulep! +childframe)
+;;   (package! vertico-posframe
+;;     :recipe (:host github :repo "tumashu/vertico-posframe")
+;;     :pin "790f74b49d5309dc2f0e6a438e2e89007d591d07"))
 
-(package! git-commit :pin "6d325d90ba1374d48c4c7088f96864b678155f48")
-(package! consult-lsp :pin "f8db3252c0daa41225ba4ed1c0d178b281cd3e90")
-(package! magit :pin "6d325d90ba1374d48c4c7088f96864b678155f48")
+;; (package! git-commit :pin "6d325d90ba1374d48c4c7088f96864b678155f48")
+;; (package! consult-lsp :pin "f8db3252c0daa41225ba4ed1c0d178b281cd3e90")
+;; (package! magit :pin "6d325d90ba1374d48c4c7088f96864b678155f48")
 
 
 
@@ -107,7 +107,7 @@
 ;; TODO maybe this has shipped the perf fix by now?
 (package! org-roam
   :recipe (:host github :repo "org-roam/org-roam")
-  :pin "e435581215a9eb8e95dde49ce1fb3c25929b80f4")
+  :pin "74422df546a515bc984c2f3d3a681c09d6f43916")
 
 ;; nov.el
 (package! nov)
@@ -122,8 +122,8 @@
 ;; logs
 (package! logview)
 
-(package! map :pin "bb50dbaafc0f71743bd9ffd5784258a9fd682c20")
-(package! xref :pin "a82f459b37b31546bf274388baf8aca79e9c30d9")
+;; (package! map :pin "bb50dbaafc0f71743bd9ffd5784258a9fd682c20")
+;; (package! xref :pin "a82f459b37b31546bf274388baf8aca79e9c30d9")
 
 ;; dirvish
 (package! dirvish)
