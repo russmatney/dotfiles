@@ -14,12 +14,14 @@
   :defer t
   :config
 
+  (rainbow-delimiters-mode t)
+
   (setq gdscript-use-tab-indents t)
   (setq gdscript-indent-offset 4)
-  (if IS-MAC (setq gdscript-godot-executable "/Applications/Godot.app/Contents/MacOS/Godot")
-    (setq gdscript-godot-executable "/usr/bin/godot"))
+  (if IS-MAC (setq gdscript-godot-executable "~/Downloads/Godot 4rc3.app/Contents/MacOS/Godot")
+    (setq gdscript-godot-executable "/usr/bin/godot4rc3"))
   ;; (setq gdscript-godot-executable "/usr/bin/godot-mono")
-  (setq gdscript-gdformat-save-and-format t)
+  (setq gdscript-gdformat-save-and-format nil)
 
   (setq lsp-gdscript-port "6005")
 
