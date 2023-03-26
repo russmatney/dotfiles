@@ -20,7 +20,8 @@
 ;; (setq doom-theme 'doom-one-light)
 ;; (setq doom-theme 'doom-solarized-light)
 ;; (setq doom-theme 'doom-monokai-machine)
-(setq doom-theme 'doom-city-lights)
+;; (setq doom-theme 'doom-city-lights)
+(setq doom-theme 'doom-monokai-pro)
 
 ;; Backup Config
 (setq backup-directory-alist `(("." . "~/.emacs-tmp/")))
