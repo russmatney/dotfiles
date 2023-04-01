@@ -92,6 +92,7 @@
       ;; this is actually compared to a relative path, despite org-attach-id-dir not being one
       (list org-attach-id-dir
             "old/"
+            "archive/"
             ;; (file-truename "~/todo/old/")
             ;; (expand-file-name "~/todo/old/")
             ))
