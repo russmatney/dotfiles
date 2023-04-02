@@ -102,7 +102,7 @@ Org-mode properties drawer already, keep the headline and don’t insert
 
 ;;;###autoload
 (defun russ/org-roam-find-file ()
-  "`org-roam-node-insert' but filtering out misc old notes"
+  "`org-roam-node-insert' but filtering for level 0 (files)"
   (interactive)
   (let ((completion-ignore-case t))
     (org-roam-node-find

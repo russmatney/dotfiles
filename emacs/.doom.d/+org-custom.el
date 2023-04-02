@@ -182,6 +182,7 @@
         (file-relative-name
          (buffer-file-name)
          (expand-file-name "~")))
+       (s-replace "Library/CloudStorage/" "")
        (s-replace "Dropbox/todo/" "")
        (s-replace "russmatney/" "")
        (s-replace-regexp "/$" ""))
@@ -431,10 +432,7 @@
   (setq org-roam-dailies-capture-templates
         '(("d" "default" entry "* %?" :if-new
            (file+head "%<%Y-%m-%d>.org"
-                      "#+title: %<%Y-%m-%d>"))))
-
-
-  )
+                      "#+title: %<%Y-%m-%d>")))))
 
 (defadvice org-capture
     (after make-full-window-frame activate)
@@ -444,35 +442,6 @@
 
 (setq +org-roam-open-buffer-on-find-file nil)
 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Org Clubhouse
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(map!
- :leader
- :prefix "n"
- :desc "add story to clubhouse" :n "c" #'org-clubhouse-create-story)
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Org pomodoro
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defun russ/current-clock-string ()
-  (if org-clock-current-task
-      (substring-no-properties org-clock-current-task)))
-
-(comment
- (org-element-property :raw-value org-clock-current-task)
- (org-element-type org-clock-current-task)
- (org-element--get-node-properties)
- (org-clock-get-clock-string)
-
- (text-properties-at 0 org-clock-current-task)
-
- (org-with-clock
-     (org-entry-get nil "ITEM")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; org projectile
@@ -486,8 +455,7 @@
         org-agenda-files (append org-agenda-files
                                  ;; TODO filter for existing
                                  ;; and maybe for contains /russmatney/teknql/
-                                 (org-projectile-todo-files)
-                                 ))
+                                 (org-projectile-todo-files)))
 
   (push (org-projectile-project-todo-entry) org-capture-templates))
 
@@ -529,13 +497,45 @@
         (list #'org-roam-backlinks-section
               #'org-roam-reflinks-section
               ;; #'org-roam-unlinked-references-section ;; note, can be slow!
-              ))
-  )
+              )))
 
+(defun russ/org-roam--get-root-titles ()
+  "Return all distinct titles and aliases in the Org-roam database."
+  (mapcar #'car (org-roam-db-query [:select :distinct title :from nodes
+                                    :where (= level 0)])))
+
+(defun russ/org-roam-complete-everywhere ()
+  "Modified version of `org-roam-complete-everywhere'"
+  (when (and org-roam-completion-everywhere
+             (thing-at-point 'word)
+             (not (org-in-src-block-p))
+             (not (save-match-data (org-in-regexp org-link-any-re))))
+    (let ((bounds (bounds-of-thing-at-point 'word)))
+      (list (car bounds) (cdr bounds)
+            (russ/org-roam--get-root-titles)
+            :exit-function
+            (lambda (str _status)
+              (delete-char (- (length str)))
+              (insert "[[roam:" str "]]"))
+            ;; Proceed with the next completion function if the returned titles
+            ;; do not match. This allows the default Org capfs or custom capfs
+            ;; of lower priority to run.
+            :exclusive 'no))))
+
+;; overwrite completion functions here
+(setq org-roam-completion-functions
+      (list #'org-roam-complete-link-at-point
+            #'russ/org-roam-complete-everywhere))
 
 ;;; sandbox ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (comment
+ (mapcar #'car (org-roam-db-query [:select :distinct title :from nodes
+                                   :where (= level 0)]))
+
+ (org-roam-db-query [:select * :from links])
+ (org-roam-db-query [:select * :from tags])
+
  (cl-first
   (org-roam-node-read)
   )
