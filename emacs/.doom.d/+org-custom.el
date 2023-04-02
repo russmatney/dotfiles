@@ -253,7 +253,7 @@
         "M-v"   #'evil-paste-after
         "M-RET" #'org-insert-item
         "M-t"   #'org-set-tags-command
-        "TAB"   #'+org/toggle-fold
+        [tab]   #'+org/toggle-fold
         "M-o"   #'+org/insert-item-below
         "M-O"   #'+org/insert-item-above
         "S-<left>" nil
@@ -262,12 +262,12 @@
         "S-<down>" nil
         "C-j" nil
         :n "z a"   #'org-cycle
+        :i [tab] #'completion-at-point
         :i "M-TAB" #'russ/org-roam-insert-file
 
         :localleader
         :n "r"     #'hydra-org-refile/body
-        :n "i"     #'russ/org-roam-insert-node-level-0
-        )
+        :n "i"     #'russ/org-roam-insert-node-level-0)
 
   (map! :map org-agenda-mode-map
         "C-k" nil)
@@ -276,6 +276,9 @@
         "C-k" nil))
 
 (after! evil-org
+  (map! :map evil-insert-state-map
+        [tab] #'completion-at-point)
+
   (map! :map evil-org-agenda-mode-map
         "C-j" nil
         "C-k" nil
