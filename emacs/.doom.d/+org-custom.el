@@ -528,7 +528,7 @@
 ;; overwrite completion functions here
 (setq org-roam-completion-functions
       (list #'org-roam-complete-link-at-point
-            #'russ/org-roam-complete-everywhere))
+            (cape-capf-case-fold #'russ/org-roam-complete-everywhere)))
 
 ;;; sandbox ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
