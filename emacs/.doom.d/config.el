@@ -97,7 +97,8 @@
     (hack-dir-local-variables-non-file-buffer)))
 
 (defun my-reload-dir-locals-for-all-buffer-in-this-directory ()
-  "For every buffer with the same `default-directory` as the current buffer's, reload dir-locals."
+  "For every buffer with the same `default-directory` as the current buffer's,
+reload dir-locals."
   (interactive)
   (let ((dir default-directory))
     (dolist (buffer (buffer-list))
@@ -181,8 +182,6 @@
 (setq typescript-indent-level 2)
 (setq js-indent-level 2)
 (setq css-indent-offset 2)
-
-;; make it
 
 ;; (when (not startup-notified)
 ;;   (require 'notifications)
