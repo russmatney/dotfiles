@@ -215,7 +215,9 @@
 
 ;;;###autoload
 (defun russ/last-screenshot ()
-  (let ((filename (shell-command-to-string "ls ~/Screenshots | sort -V | tail -n 1")))
+  (let ((filename
+         (shell-command-to-string
+          "ls ~/Screenshots | sed -E 's/Screen Shot/Screenshot/' | sort -V | tail -n 1")))
     (s-trim filename)))
 
 ;;;###autoload
