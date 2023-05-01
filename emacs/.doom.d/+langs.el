@@ -44,6 +44,9 @@
 
   (setq lsp-ui-doc-enable t)
 
+  (setq lsp-idle-delay 0.2)
+  (lsp-treemacs-sync-mode 1)
+
   (setq gc-cons-threshold 10000000)
   ;; (setq gc-cons-threshold 100000000)
   (setq read-process-output-max (* 1024 1024))
