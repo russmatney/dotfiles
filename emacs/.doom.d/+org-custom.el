@@ -73,20 +73,22 @@
       org-agenda-skip-scheduled-if-deadline-is-shown t
 
 
-      org-agenda-files (cl-remove-if
-                        (lambda (s)
-                          (or
-                           (s-contains? "icebox" s)
-                           (s-contains? "goals" s)
-                           (s-contains? "ideas" s)
-                           (s-contains? "urbint" s)
-                           ;; (s-contains? "prompts" s)
-                           (s-contains? "reads" s)
-                           (s-contains? "watches" s)))
-                        (file-expand-wildcards "~/Dropbox/todo/*.org"))
-
       org-garden-files (append (file-expand-wildcards "~/Dropbox/todo/garden/*.org")
                                (file-expand-wildcards "~/Dropbox/todo/garden/**/*.org")))
+
+(setq org-agenda-files
+      (cl-remove-if
+       (lambda (s)
+         (or
+          ;; (s-contains? "icebox" s)
+          (s-contains? "goals" s)
+          (s-contains? "ideas" s)
+          (s-contains? "urbint" s)
+          ;; (s-contains? "prompts" s)
+          (s-contains? "reads" s)
+          (s-contains? "watches" s)))
+       (file-expand-wildcards "~/Dropbox/todo/*.org")))
+
 
 (setq org-roam-file-exclude-regexp
       ;; this is actually compared to a relative path, despite org-attach-id-dir not being one
@@ -399,14 +401,17 @@
 (use-package! org-roam
   :config
   (require 'org-roam-dailies)
-  (setq recent-daily-dates (cl-loop for i from 0 below 14 collect
+  (setq recent-daily-dates (cl-loop for i from 0 below 60 collect
                                     (format-time-string "%Y-%m-%d" (time-subtract (current-time) (days-to-time i))))
         recent-dailies (cl-remove-if-not
                         (lambda (s)
                           (member (file-name-base s) recent-daily-dates))
                         (org-roam-dailies--list-files))
 
-        org-agenda-files (append org-agenda-files recent-dailies)))
+        org-agenda-files
+        (cl-remove-duplicates
+         (append org-agenda-files recent-dailies)
+         :test #'string=)))
 
 ;; TODO review these in light of v2
 (after! org-roam
@@ -455,10 +460,11 @@
   :config
   (org-projectile-per-project)
   (setq org-projectile-per-project-filepath "todo.org"
-        org-agenda-files (append org-agenda-files
-                                 ;; TODO filter for existing
-                                 ;; and maybe for contains /russmatney/teknql/
-                                 (org-projectile-todo-files)))
+        ;; org-agenda-files (append org-agenda-files
+        ;;                          ;; TODO filter for existing
+        ;;                          ;; and maybe for contains /russmatney/teknql/
+        ;;                          (org-projectile-todo-files))
+        )
 
   (push (org-projectile-project-todo-entry) org-capture-templates))
 
