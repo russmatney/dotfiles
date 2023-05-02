@@ -221,6 +221,13 @@
     (s-trim filename)))
 
 ;;;###autoload
+(defun russ/last-gif ()
+  (let ((filename
+         (shell-command-to-string
+          "ls ~/Dropbox/gifs | sort -V | tail -n 1")))
+    (s-trim filename)))
+
+;;;###autoload
 (defun russ/fix-visual-select ()
   (interactive)
   (setq-local transient-mark-mode t))

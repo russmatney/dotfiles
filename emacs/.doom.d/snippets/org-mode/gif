@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# key: gif
+# name: gif
+# expand-env: ((yas-after-exit-snippet-hook #'org-display-inline-images))
+# --
+#+name: $1
+#+caption: $2
+[[~/Dropbox/gifs/`(russ/last-gif)`]]
