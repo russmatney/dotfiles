@@ -422,7 +422,8 @@
            :if-new
            (file+head "~/todo/garden/${slug}.org"
                       "#+TITLE: ${title}
-#+CREATED_AT: %<%Y%m%d:%H%M%S>")
+#+CREATED_AT: %<%Y%m%d:%H%M%S>
+#+startup: content")
            :unnarrowed t))
 
         org-roam-capture-ref-templates
@@ -441,7 +442,8 @@
         '(("d" "default" entry "* %?" :if-new
            (file+head "%<%Y-%m-%d>.org"
                       "#+title: %<%Y-%m-%d>
-#+created_at: %<%Y%m%d:%H%M%S>")))))
+#+created_at: %<%Y%m%d:%H%M%S>
+#+startup: content")))))
 
 (defadvice org-capture
     (after make-full-window-frame activate)
