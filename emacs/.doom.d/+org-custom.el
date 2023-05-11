@@ -255,6 +255,7 @@
         "M-v"   #'evil-paste-after
         "M-RET" #'org-insert-item
         "M-t"   #'org-set-tags-command
+        "M-T"   #'org-insert-todo-subheading
         [tab]   #'+org/toggle-fold
         "M-o"   #'+org/insert-item-below
         "M-O"   #'+org/insert-item-above
