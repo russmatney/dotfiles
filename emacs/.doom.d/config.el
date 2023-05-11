@@ -66,7 +66,7 @@
 ;; turn on whitespace mode
 (global-whitespace-mode t)
 ;; but not in org
-(setq whitespace-global-modes '(not org-mode ink-mode))
+(setq whitespace-global-modes '(not org-mode ink-mode markdown-mode magit-mode))
 ;; turn on whitespace cleanup
 (add-hook! 'before-save-hook 'whitespace-cleanup)
 
