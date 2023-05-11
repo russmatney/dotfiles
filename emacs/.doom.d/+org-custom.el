@@ -16,6 +16,13 @@
 
 (setq org-todo-keywords
       '((sequence
+         "[ ](T)"                       ; A task that needs doing
+         "[-](S)"                       ; Task is in progress
+         "[?](W)"                       ; Task is being held up or paused
+         "|"
+         "[X](D)"      ; Task was completed
+         )
+        (sequence
          "TODO(t)"               ; A task that needs doing & is ready to do
          "STRT(s)"               ; A task that is in progress
          "WAIT(w)"               ; Something external is holding up this task
@@ -28,13 +35,7 @@
          "DONE(d)"      ; Task successfully completed
          "SKIP(k)"     ; Skipped a recurring task
          ;; "KILL(k)"
-         )    ;; Task was cancelled, aborted or is no longer applicable
-        (sequence
-         "[ ](T)"                       ; A task that needs doing
-         "[-](S)"                       ; Task is in progress
-         "[?](W)"                       ; Task is being held up or paused
-         "|"
-         "[X](D)"      ; Task was completed
+         ;;     ;; Task was cancelled, aborted or is no longer applicable
          ))
       org-todo-keyword-faces
       '(("[-]" . +org-todo-active)
