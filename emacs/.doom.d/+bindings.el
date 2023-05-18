@@ -129,10 +129,17 @@
 ;; Kill the things
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defun russ/kill-and-reopen-this-buffer ()
+  (interactive)
+  (let ((filename (buffer-file-name (current-buffer))))
+    (kill-this-buffer)
+    (find-file filename)))
+
 (defhydra hydra-kill (:exit t)
   ("k" kill-this-buffer "kill-this-buffer" :column "THIS")
   ("K" delete-window "kill-this-window")
   ("f" doom/delete-this-file "doom/delete-this-file")
+  ("r" russ/kill-and-reopen-this-buffer "russ/kill-and-reopen-this-buffer")
 
   ("B" doom/kill-other-buffers "all other buffers" :column "Other buffers")
   ("b" kill-buffer "kill buffer (from list)")
