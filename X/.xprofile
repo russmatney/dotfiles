@@ -1,13 +1,20 @@
+#!/bin/sh
 
+# set keyboard rate
 xset r rate 170 50
 
 # detect based on hostname?
 # /home/russ/.local/bin/set-monitor-config laptop-hr
 
+# add some secret env vars
 secrets=$HOME/.secrets
 . $secrets
 
 # add fennel to the path that awm uses
 export PATH="$PATH:/home/russ/.luaver/luarocks/3.3.1_5.3/bin/"
 
+# start dropbox
 dropbox &
+
+# start polkit
+/usr/lib/xfce-polkit/xfce-polkit &
