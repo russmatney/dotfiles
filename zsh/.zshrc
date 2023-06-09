@@ -531,7 +531,7 @@ alias clawebb_ls_workspaces='clawebb -x clawe.debug/ls-workspaces'
 alias clawebb_toggle='clawebb -x clawe.toggle/toggle --key'
 alias clawebb_reload='clawebb -x clawe.restart/reload'
 alias clawebb_mx='clawebb -x clawe.mx/mx'
-alias clawebb_mx_fast='clawebb -x clawe.m-x/m-x-fast'
+alias clawebb_mx_fast='clawebb -x clawe.mx/mx-fast'
 
 #########################################################################
 # itch.io
