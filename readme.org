@@ -39,8 +39,8 @@ farther along since I was last a full-time vim user, including lua (and fennel)
 support, and misc ui-improvements. Maybe Neovim can rival normal emacs usage
 someday!
 
-At this point, this is all configured via ~cheovim~, which supports simple
-moving between neovim configurations.
+Lately, I'm on an out-of-the-box AstroVim setup, to support random one-off vim
+moments.
 
 * ~stow~-based dotfiles
 These files are structured to take advantage of ~GNU Stow~ for installation and

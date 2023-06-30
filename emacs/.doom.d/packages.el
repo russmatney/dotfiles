@@ -134,6 +134,11 @@
 ;; task runners
 (package! run-command)
 
+;; kubernetes
+(package! kubernetes)
+(package! kubernetes-evil)
+(package! kele)
+
 ;; local
 
 (package! fabb :recipe (:local-repo "fabb" :build (:not compile)))
