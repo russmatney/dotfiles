@@ -61,6 +61,15 @@ then call ~stow zsh~ within ~~/dotfiles~ to take care of linking it to home
 directory, i.e. you should have a ~~/dotfiles/zsh/.zshrc~. Then, from your
 dotfiles repo, call ~stow zsh~, and that's it! Everything will have been
 symlinked properly.
+* Godot manual install
+
+something like:
+
+#+begin_src sh
+unzip Godot_v3.5-stable_x11.64.zip -d .
+mv Godot_v3.5-stable_x11.64 ~/usr/bin/godot # install godot from unzip downloads
+#+end_src
+
 * Misc
 ** Enable Hidden Files where relevant
 
