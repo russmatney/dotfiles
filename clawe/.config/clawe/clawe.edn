@@ -1,0 +1,255 @@
+{:client/defs
+ {"aseprite"
+  {:client/app-names ["aseprite"] :client/workspace-title "aseprite" :match/skip-title true}
+  "aseprite-preview" {:bury/ignore            true
+                      :client/app-names       ["preview"]
+                      :client/workspace-title "aseprite"
+                      :match/skip-title       true}
+  "clerk"            {:client/app-names       ["clove"]
+                      :client/create          {:create/cmd           ralphie.tmux/fire
+                                               :tmux.fire/cmd        "bb --config ~/russmatney/clawe/bb.edn clerk"
+                                               :tmux.fire/interrupt? true
+                                               :tmux.fire/session    "doctor-clerk"}
+                      :client/window-title    "tauri-doctor-clerk"
+                      :client/workspace-title "clerk-clove"}
+  "clerk-workspace"  {:client/app-names       ["clove"]
+                      :client/create          {:create/cmd           ralphie.tmux/fire
+                                               :tmux.fire/cmd
+                                               "bb --config ~/russmatney/clawe/bb.edn clerk-workspace"
+                                               :tmux.fire/interrupt? true
+                                               :tmux.fire/session    "doctor-workspace-clerk"}
+                      :client/window-title    "tauri-doctor-clerk-workspace"
+                      :client/workspace-title "clerk-clove"}
+  "devweb"           {:client/app-names       ["firefoxdeveloperedition" "google-chrome" "google chrome"
+                                               "firefox developer edition"]
+                      :client/create          ralphie.browser/open-dev
+                      :client/workspace-title "browsers"
+                      :match/skip-title       true}
+  "discord"          {:client/app-names       ["Discord"]
+                      :client/create          "discord"
+                      :client/workspace-title "slack"
+                      :match/skip-title       true}
+  "doctor-be"        {:client/create {:create/cmd           ralphie.tmux/fire
+                                      :tmux.fire/cmd        "clawebb doctor-be"
+                                      :tmux.fire/interrupt? true
+                                      :tmux.fire/session    "clawe"
+                                      :tmux.fire/window     "1"}}
+  "doctor-fe"        {:client/create {:create/cmd           ralphie.tmux/fire
+                                      :tmux.fire/cmd        "clawebb clawe-fe"
+                                      :tmux.fire/interrupt? true
+                                      :tmux.fire/session    "clawe"
+                                      :tmux.fire/window     "2"}}
+  "emacs"            {:client/app-names          ["Emacs"]
+                      :client/create             {:create/cmd           ralphie.emacs/open
+                                                  :emacs.open/directory :create/use-workspace-directory
+                                                  :emacs.open/workspace :create/use-workspace-title}
+                      :focus/float-and-center    true
+                      :hide/type                 :hide/close
+                      :match/use-workspace-title true}
+  "focus"            {:bury/ignore            true
+                      :client/app-names       ["clove"]
+                      :client/create          {:create/cmd           ralphie.tmux/fire
+                                               :tmux.fire/cmd        "bb --config ~/russmatney/clawe/bb.edn focus"
+                                               :tmux.fire/interrupt? true
+                                               :tmux.fire/session    "doctor-focus"}
+                      :client/window-title    "tauri-doctor-focus"
+                      :client/workspace-title "widgets"
+                      :focus/float-and-center false
+                      :focus/toggle-opts      [:focus.toggle/front-and-center :focus.toggle/bury
+                                               :focus.toggle/sticky-right {:focus.toggle/workspace "widgets"}]}
+  "godot"            {:client/app-names          ["godot" "godot_engine"]
+                      :client/create             {:create/cmd          ralphie.tmux/fire
+                                                  :tmux.fire/cmd       "godot -e"
+                                                  :tmux.fire/directory :create/use-workspace-directory
+                                                  :tmux.fire/session   :create/use-workspace-title}
+                      :client/workspace-title    "godot"
+                      :match/soft-title          true
+                      :match/use-workspace-title true
+                      :merge/skip-title          true}
+  "journal"          {:client/app-names    ["Emacs"]
+                      :client/create       {:create/cmd           ralphie.emacs/open
+                                            :emacs.open/file      "~/todo/journal.org"
+                                            :emacs.open/workspace "journal"}
+                      :client/window-title "journal"
+                      :match/soft-title    true}
+  "messages"
+  {:client/app-names ["Messages"] :client/workspace-title "messages" :match/skip-title true}
+  "mindnode"
+  {:client/app-names ["MindNode"] :client/workspace-title "mindnode" :match/skip-title true}
+  "obs"              {:bury/ignore            true
+                      :client/app-names       ["obs"]
+                      :client/workspace-title "obs"
+                      :match/skip-title       true}
+  "onepass"          {:client/app-names       ["1password"]
+                      :client/create          "/usr/bin/gtk-launch 1password.desktop"
+                      :client/workspace-title "onepass"
+                      :match/skip-title       true}
+  "pavucontrol"      {:client/app-names       ["pavucontrol"]
+                      :client/workspace-title "spotify"
+                      :match/skip-title       true}
+  "slack"            {:client/app-names       ["Slack"]
+                      :client/create          "slack"
+                      :client/workspace-title "slack"
+                      :match/skip-title       true}
+  "spotify"          {:client/app-names       ["spotify"]
+                      :client/create          "spotify"
+                      :client/workspace-title "spotify"
+                      :match/skip-title       true}
+  "steam"            {:client/app-names ["steam"] :client/workspace-title "steam" :match/skip-title true}
+  "terminal"         {:client/app-names          ["Alacritty"]
+                      :client/create             {:create/cmd        ralphie.tmux/open-session
+                                                  :tmux/directory    :create/use-workspace-directory
+                                                  :tmux/session-name :create/use-workspace-title}
+                      :focus/float-and-center    true
+                      :hide/type                 :hide/close
+                      :match/use-workspace-title true}
+  "todo"             {:client/app-names       ["clove"]
+                      :client/create          {:create/cmd           ralphie.tmux/fire
+                                               :tmux.fire/cmd        "bb --config ~/russmatney/clawe/bb.edn todo"
+                                               :tmux.fire/interrupt? true
+                                               :tmux.fire/session    "doctor-todo"}
+                      :client/window-title    "tauri-doctor-todo"
+                      :client/workspace-title "widgets"}
+  "topbar"           {:client/app-names       ["clove"]
+                      :client/create          {:create/cmd           ralphie.tmux/fire
+                                               :tmux.fire/cmd        "bb --config ~/russmatney/clawe/bb.edn topbar"
+                                               :tmux.fire/interrupt? true
+                                               :tmux.fire/session    "doctor-topbar"}
+                      :client/window-title    "clove-doctor-topbar"
+                      :client/workspace-title "widgets"}
+  "twitch-alerts"    {:bury/ignore            true
+                      :client/app-names       ["clove"]
+                      :client/window-title    "twitch-alerts"
+                      :client/workspace-title "widgets"}
+  "twitch-chat"      {:bury/ignore            true
+                      :client/app-names       ["clove"]
+                      :client/window-title    "twitch-chat"
+                      :client/workspace-title "widgets"}
+  "twitch-viewers"   {:bury/ignore            true
+                      :client/app-names       ["clove"]
+                      :client/window-title    "twitch-viewers"
+                      :client/workspace-title "widgets"}
+  "web"              {:client/app-names       ["Safari" "firefox"]
+                      :client/create          ralphie.browser/open
+                      :client/workspace-title "browsers"
+                      :match/ignore-names     ["picture-in-picture"]
+                      :match/skip-title       true}
+  "web-video-popout" {:bury/ignore true :client/app-names ["picture-in-picture"]}
+  "xcode"            {:client/app-name        "xcode"
+                      :client/app-names       ["xcode"]
+                      :client/workspace-title "xcode"
+                      :match/soft-title       true
+                      :merge/skip-title       true}
+  "zoom"             {:client/app-names ["zoom" "zoom meeting" "slack call"]}}
+ :doctor-base-url "http://localhost:3334"
+ :repo-roots      ["~/russmatney/*" "~/teknql/*"]
+ :workspace/defs
+ {"BulletUpHell"                {:workspace/directory "~/Dark-Peace/BulletUpHell"}
+  "Godot-3-2D-Day-Night-Cycle"  {:workspace/directory "~/hiulit/Godot-3-2D-Day-Night-Cycle"}
+  "Godot-Mixing-Desk"           {:workspace/directory "~/kyzfrintin/Godot-Mixing-Desk"}
+  "Gut"                         {:workspace/directory "~/bitwes/Gut"}
+  "Project-Map"                 {:workspace/directory "~/Yogoda/Project-Map"}
+  "Spicetify"                   {:workspace/directory "~/Comfy-Themes/Spicetify"}
+  "TilePIpe"                    {:workspace/directory "~/aleksandrbazhin/TilePIpe"}
+  "ViewportPlus"                {:workspace/directory "~/NesiAwesomeneess/ViewportPlus"}
+  "aave"                        {:workspace/directory "~/teknql/aave"}
+  "advent-of-babashka-template" {:workspace/directory "~/borkdude/advent-of-babashka-template"}
+  "advent-of-code"              {:workspace/directory "~/russmatney/advent-of-code"}
+  "advent-of-godot"             {:workspace/directory "~/russmatney/advent-of-godot"}
+  "apple-platform-rs"           {:workspace/directory "~/indygreg/apple-platform-rs"}
+  "aseprite"                    {:workspace/directory "~/aseprite/aseprite"}
+  "bbin"                        {:workspace/directory "~/babashka/bbin"}
+  "bean-of-the-wild"            {:workspace/directory "~/nagidev/bean-of-the-wild"}
+  "beatemup-three"              {:workspace/directory "~/russmatney/beatemup-three"}
+  "blog"                        {:workspace/directory "~/russmatney/blog" :workspace/preferred-index 3}
+  "blorg"                       {:workspace/directory "~/eigenhombre/blorg"}
+  "book"                        {:workspace/directory "~/babashka/book"}
+  "browsers"                    {:workspace/preferred-index 9}
+  "candy-icons"                 {:workspace/directory "~/EliverLara/candy-icons"}
+  "cider"                       {:workspace/directory "~/clojure-emacs/cider"}
+  "clawe"                       {:workspace/directory "~/russmatney/clawe" :workspace/preferred-index 2}
+  "clerk"                       {:workspace/directory "~/nextjournal/clerk"}
+  "clerk-demo"                  {:workspace/directory "~/nextjournal/clerk-demo"}
+  "clerk-slideshow"             {:workspace/directory "~/nextjournal/clerk-slideshow"}
+  "cli"                         {:workspace/directory "~/babashka/cli"}
+  "clj-kondo"                   {:workspace/directory "~/clj-kondo/clj-kondo"}
+  "clojure-lsp"                 {:workspace/directory "~/clojure-lsp/clojure-lsp"}
+  "clojuredocs"                 {:workspace/directory "~/zk/clojuredocs"}
+  "clove"                       {:workspace/directory "~/russmatney/clove"}
+  "clover"                      {:workspace/directory "~/russmatney/clover"}
+  "cybermonday"                 {:workspace/directory "~/kiranshila/cybermonday"}
+  "datascript-playground"       {:workspace/directory "~/markbastian/datascript-playground"}
+  "dice-nine"                   {:workspace/directory "~/russmatney/dice-nine"}
+  "dino"                        {:workspace/directory "~/russmatney/dino" :workspace/preferred-index 2}
+  "dotfiles"                    {:workspace/directory "~/russmatney/dotfiles" :workspace/preferred-index 1}
+  "editscript"                  {:workspace/directory "~/juji-io/editscript"}
+  "fabb"                        {:workspace/directory "~/teknql/fabb"}
+  "fishgame-godot"              {:workspace/directory "~/heroiclabs/fishgame-godot"}
+  "game-assets"                 {:workspace/directory "~/game-assets"}
+  "gatt"                        {:workspace/directory "~/sesopenko/gatt"}
+  "gdfxr"                       {:workspace/directory "~/timothyqiu/gdfxr"}
+  "gdlisp"                      {:workspace/directory "~/Mercerenies/gdlisp"}
+  "girouette"                   {:workspace/directory "~/green-coder/girouette"}
+  "gitops"                      {:workspace/directory "~/russmatney/gitops"}
+  "godot"                       {:workspace/directory "~/godotengine/godot"}
+  "godot-LDtk-import"           {:workspace/directory "~/levigilbert/godot-LDtk-import"}
+  "godot-actions"               {:workspace/directory "~/bend-n/godot-actions"}
+  "godot-aseprite-wizard"       {:workspace/directory "~/viniciusgerevini/godot-aseprite-wizard"}
+  "godot-demo-projects"         {:workspace/directory "~/godotengine/godot-demo-projects"}
+  "godot-docs"                  {:workspace/directory "~/godotengine/godot-docs"}
+  "godot-filesystem-view"       {:workspace/directory "~/zaevi/godot-filesystem-view"}
+  "godot-git-plugin"            {:workspace/directory "~/godotengine/godot-git-plugin"}
+  "godot-next"                  {:workspace/directory "~/godot-extended-libraries/godot-next"}
+  "godot-sfxr"                  {:workspace/directory "~/tomeyro/godot-sfxr"}
+  "godot-snake-game"            {:workspace/directory "~/MCMLXXXV/godot-snake-game"}
+  "godot-template"              {:workspace/directory "~/bakneko/godot-template"}
+  "godot-text_effects"          {:workspace/directory "~/teebarjunk/godot-text_effects"}
+  "godot-tutorials"             {:workspace/directory "~/nagidev/godot-tutorials"}
+  "godot-twitch-irc-client"     {:workspace/directory "~/rblopes/godot-twitch-irc-client"}
+  "godot_input_helper"          {:workspace/directory "~/nathanhoad/godot_input_helper"}
+  "heroicons"                   {:workspace/directory "~/tailwindlabs/heroicons"}
+  "http-server"                 {:workspace/directory "~/babashka/http-server"}
+  "ink-library"                 {:workspace/directory "~/inkle/ink-library"}
+  "inkgd"                       {:workspace/directory "~/ephread/inkgd"}
+  "instaparse"                  {:workspace/directory "~/Engelberg/instaparse"}
+  "journal"                     {:workspace/directory "~/todo" :workspace/preferred-index 0}
+  "just"                        {:workspace/directory "~/casey/just"}
+  "lichess-docker"              {:workspace/directory "~/benediktwerner/lichess-docker"}
+  "lila"                        {:workspace/directory "~/lichess-org/lila"}
+  "lila-ws"                     {:workspace/directory "~/lichess-org/lila-ws"}
+  "malli"                       {:workspace/directory "~/metosin/malli"}
+  "mate"                        {:workspace/directory "~/green-coder/mate"}
+  "mealprep"                    {:workspace/directory "~/russmatney/mealprep"}
+  "morphe"                      {:workspace/directory "~/Workiva/morphe"}
+  "my_first_flutter_app"        {:workspace/directory "~/russmatney/my_first_flutter_app"}
+  "neil"                        {:workspace/directory "~/babashka/neil"}
+  "new-blog"                    {:workspace/directory "~/russmatney/new-blog"}
+  "obs"                         {:workspace/directory "~/russmatney/obs-recordings" :workspace/preferred-index 0}
+  "org-blog"                    {:workspace/directory "~/russmatney/org-blog"}
+  "org-blog-content"            {:workspace/directory "~/russmatney/org-blog-content"}
+  "org-crud"                    {:workspace/directory "~/russmatney/org-crud"}
+  "org-roam"                    {:workspace/directory "~/org-roam/org-roam"}
+  "picture-pages"               {:workspace/directory "~/russmatney/picture-pages"}
+  "pirates"                     {:workspace/directory "~/russmatney/pirates"}
+  "plasma"                      {:workspace/directory "~/teknql/plasma"}
+  "pluggs"                      {:workspace/directory "~/russmatney/pluggs"}
+  "pollen"                      {:workspace/directory "~/mbutterick/pollen"}
+  "portal"                      {:workspace/directory "~/djblue/portal"}
+  "protomoon-two"               {:workspace/directory "~/russmatney/protomoon-two"}
+  "quickblog"                   {:workspace/directory "~/borkdude/quickblog"}
+  "re-db"                       {:workspace/directory "~/mhuebert/re-db"}
+  "repertoire-maker"            {:workspace/directory "~/Camsbury/repertoire-maker"}
+  "rewrite-clj"                 {:workspace/directory "~/clj-commons/rewrite-clj"}
+  "russmatney"                  {:workspace/directory "~/russmatney/russmatney"}
+  "slack"                       {:workspace/preferred-index 9}
+  "spicetify"                   {:workspace/directory "~/catppuccin/spicetify"}
+  "spicetify-cli"               {:workspace/directory "~/spicetify/spicetify-cli"}
+  "spicetify-themes"            {:workspace/directory "~/spicetify/spicetify-themes"}
+  "spotify"                     {:workspace/preferred-index 9}
+  "steam"                       {:workspace/directory "~"}
+  "the-great-tree"              {:workspace/directory "~/dandeliondino/the-great-tree"}
+  "tools.namespace"             {:workspace/directory "~/clojure/tools.namespace"}
+  "topgrade"                    {:workspace/directory "~/topgrade-rs/topgrade"}
+  "viewers"                     {:workspace/directory "~/nextjournal/viewers"}
+  "watch"                       {:workspace/directory "~/rads/watch"}
+  "when-is-my-ride"             {:workspace/directory "~/jackrr/when-is-my-ride"}}}

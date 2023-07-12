@@ -148,7 +148,7 @@ Commands that stick around (this hydra supports multiple presses).
 
   ("B" (find-file "~/russmatney/clawe/src/clawe/defs/bindings.clj")
    "defs/bindings.clj" :column "clawe")
-  ("W" (find-file "~/russmatney/clawe/resources/clawe.edn")
+  ("W" (find-file "~/.config/clawe/clawe.edn")
    "clawe.edn")
 
   ("r" russ/open-project-file "...project file (readme?)" :column "Workspace....")
