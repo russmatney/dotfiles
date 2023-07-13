@@ -197,6 +197,7 @@
   "godot-aseprite-wizard"       {:workspace/directory "~/viniciusgerevini/godot-aseprite-wizard"}
   "godot-demo-projects"         {:workspace/directory "~/godotengine/godot-demo-projects"}
   "godot-docs"                  {:workspace/directory "~/godotengine/godot-docs"}
+  "godot-edn"                   {:workspace/directory "~/russmatney/godot-edn"}
   "godot-filesystem-view"       {:workspace/directory "~/zaevi/godot-filesystem-view"}
   "godot-git-plugin"            {:workspace/directory "~/godotengine/godot-git-plugin"}
   "godot-next"                  {:workspace/directory "~/godot-extended-libraries/godot-next"}
@@ -212,6 +213,7 @@
   "ink-library"                 {:workspace/directory "~/inkle/ink-library"}
   "inkgd"                       {:workspace/directory "~/ephread/inkgd"}
   "instaparse"                  {:workspace/directory "~/Engelberg/instaparse"}
+  "instaparse-bb"               {:workspace/directory "~/babashka/instaparse-bb"}
   "journal"                     {:workspace/directory "~/todo" :workspace/preferred-index 0}
   "just"                        {:workspace/directory "~/casey/just"}
   "lichess-docker"              {:workspace/directory "~/benediktwerner/lichess-docker"}
@@ -252,4 +254,14 @@
   "topgrade"                    {:workspace/directory "~/topgrade-rs/topgrade"}
   "viewers"                     {:workspace/directory "~/nextjournal/viewers"}
   "watch"                       {:workspace/directory "~/rads/watch"}
-  "when-is-my-ride"             {:workspace/directory "~/jackrr/when-is-my-ride"}}}
+  "when-is-my-ride"             {:workspace/directory "~/jackrr/when-is-my-ride"}}
+ :local-dev-urls
+ [{:url "http://localhost:9999" :label "Local Blog"}
+  {:url "http://localhost:3333" :label "Clawe Doctor UI"}
+  {:url "http://localhost:3333" :label "local dino web build"}]
+ :common-urls
+ [{:url "https://russmatney.itch.io" :label "russmatney Itch.io dashboard"}
+  {:url "https://github.com/russmatney/dino" :label "Dino Github"}
+  {:url "https://github.com/russmatney/clawe" :label "Clawe Github"}
+  {:url "https://russmatney.com" :label "Prod Blog"}]
+ }

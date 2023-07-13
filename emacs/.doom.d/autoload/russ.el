@@ -262,6 +262,6 @@ information retrieved from files created by the keychain script."
   "Encrypts the provided input using kubeseal and replaces it with the output"
   (interactive "*r")
   (if (region-active-p)
-      (shell-command-on-region beg end "kubeseal --raw --from-file=/dev/stdin --scope cluster-wide"
+      (shell-command-on-region beg end "kubeseal --controller-namespace flux-system --raw --from-file=/dev/stdin --scope cluster-wide"
                                :replace t)
     (message "No active region")))
