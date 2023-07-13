@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>clawe.topbar</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/opt/homebrew/bin/bb</string>
+    <string>--config</string>
+    <string>/Users/russ/russmatney/clawe/bb.edn</string>
+    <string>topbar</string>
+  </array>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>PATH=/Users/russ/.local/bin:/Users/russ/.nix-profile/bin:/bin:/usr/bin:/usr/local/bin:/usr/local/sbin:/opt/homebrew/bin:/Users/russ/.cargo/bin:/Users/russ/n/bin</string>
+  </dict>
+  <key>KeepAlive</key>
+  <true/>
+  <key>StandardOutPath</key>
+  <string>/Users/russ/.log/clawe/doctor-topbar.out.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/russ/.log/clawe/doctor-topbar.out.log</string>
+  <key>ProcessType</key>
+  <string>Interactive</string>
+  <key>Nice</key>
+  <integer>-20</integer>
+</dict>
+</plist>
