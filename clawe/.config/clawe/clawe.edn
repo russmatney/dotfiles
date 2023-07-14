@@ -20,8 +20,8 @@
                                                :tmux.fire/session    "doctor-workspace-clerk"}
                       :client/window-title    "tauri-doctor-clerk-workspace"
                       :client/workspace-title "clerk-clove"}
-  "devweb"           {:client/app-names       ["firefoxdeveloperedition" "google-chrome" "google chrome"
-                                               "firefox developer edition"]
+  "devweb"           {:client/app-names       ["firefoxdeveloperedition" "firefox developer edition"
+                                               "google-chrome" "google chrome"]
                       :client/create          ralphie.browser/open-dev
                       :client/workspace-title "browsers"
                       :match/skip-title       true}
@@ -141,7 +141,14 @@
                       :match/soft-title       true
                       :merge/skip-title       true}
   "zoom"             {:client/app-names ["zoom" "zoom meeting" "slack call"]}}
+ :common-urls     [{:label "russmatney Itch.io dashboard" :url "https://russmatney.itch.io"}
+                   {:label "Dino Github" :url "https://github.com/russmatney/dino"}
+                   {:label "Clawe Github" :url "https://github.com/russmatney/clawe"}
+                   {:label "Prod Blog" :url "https://russmatney.com"}]
  :doctor-base-url "http://localhost:3334"
+ :local-dev-urls  [{:label "Local Blog" :url "http://localhost:9999"}
+                   {:label "Clawe Doctor UI" :url "http://localhost:3333"}
+                   {:label "local dino web build" :url "http://localhost:3333"}]
  :repo-roots      ["~/russmatney/*" "~/teknql/*"]
  :workspace/defs
  {"BulletUpHell"                {:workspace/directory "~/Dark-Peace/BulletUpHell"}
@@ -149,6 +156,7 @@
   "Godot-Mixing-Desk"           {:workspace/directory "~/kyzfrintin/Godot-Mixing-Desk"}
   "Gut"                         {:workspace/directory "~/bitwes/Gut"}
   "Project-Map"                 {:workspace/directory "~/Yogoda/Project-Map"}
+  "PuzzleScript"                {:workspace/directory "~/increpare/PuzzleScript"}
   "Spicetify"                   {:workspace/directory "~/Comfy-Themes/Spicetify"}
   "TilePIpe"                    {:workspace/directory "~/aleksandrbazhin/TilePIpe"}
   "ViewportPlus"                {:workspace/directory "~/NesiAwesomeneess/ViewportPlus"}
@@ -254,14 +262,4 @@
   "topgrade"                    {:workspace/directory "~/topgrade-rs/topgrade"}
   "viewers"                     {:workspace/directory "~/nextjournal/viewers"}
   "watch"                       {:workspace/directory "~/rads/watch"}
-  "when-is-my-ride"             {:workspace/directory "~/jackrr/when-is-my-ride"}}
- :local-dev-urls
- [{:url "http://localhost:9999" :label "Local Blog"}
-  {:url "http://localhost:3333" :label "Clawe Doctor UI"}
-  {:url "http://localhost:3333" :label "local dino web build"}]
- :common-urls
- [{:url "https://russmatney.itch.io" :label "russmatney Itch.io dashboard"}
-  {:url "https://github.com/russmatney/dino" :label "Dino Github"}
-  {:url "https://github.com/russmatney/clawe" :label "Clawe Github"}
-  {:url "https://russmatney.com" :label "Prod Blog"}]
- }
+  "when-is-my-ride"             {:workspace/directory "~/jackrr/when-is-my-ride"}}}
