@@ -76,7 +76,7 @@
 (defun russ/open-emacs-config-file ()
   "Browse your emacs config."
   (interactive)
-  (doom-project-find-file "~/.doom.d"))
+  (doom-project-find-file "~/.config/doom/"))
 
 ;;;###autoload
 (defun russ/open-org-file ()

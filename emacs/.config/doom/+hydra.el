@@ -142,9 +142,9 @@ Commands that stick around (this hydra supports multiple presses).
   ;; ("T" (find-file "~/.tmux.conf") "~/.tmux.conf")
 
   ("D" russ/open-doom-file "Open DOOM source file" :column "emacs")
-  ("c" russ/open-emacs-config-file "Open DOOM config file ~/.doom.d/")
-  ;; ("b" (find-file "~/.doom.d/+bindings.el") "Open emacs +bindings.el")
-  ("h" (find-file "~/.doom.d/+hydra.el") "Open emacs +hydra.el")
+  ("c" russ/open-emacs-config-file "Open DOOM config file ~/.config/doom/")
+  ;; ("b" (find-file "~/.config/doom/+bindings.el") "Open emacs +bindings.el")
+  ("h" (find-file "~/.config/doom/hydra.el") "Open emacs +hydra.el")
 
   ("B" (find-file "~/russmatney/clawe/src/clawe/defs/bindings.clj")
    "defs/bindings.clj" :column "clawe")
