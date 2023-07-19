@@ -1,8 +1,42 @@
+# Essentials
+
+# super key
+set $mod Mod4
+
+# none of that
+focus_follows_mouse no
+
+# Kill focused window
+bindsym $mod+q kill
+
+# restart i3 in place
+bindsym $mod+Shift+r restart
+
+# open rofi/launcher to start programs
+bindsym $mod+space  exec --no-startup-id rofi -show run
+
+# run a terminal
+bindsym $mod+Return exec --no-startup-id terminal
+
+# run an emacs
+bindsym $mod+Shift+Return exec --no-startup-id emacsclient -c
+
+# finder
+bindsym $mod+e exec --no-startup-id thunar
+
+# relative position
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+################################################################
+
 # (No) Title Bars
 for_window [class="^.*"] border pixel 0
 
 # Gaps
-gaps inner 10
+gaps inner 30
 gaps outer 0
 smart_gaps on
 
@@ -25,23 +59,12 @@ set $darkwhite   #a89984
 set $background  #000000
 set $transparent #00000000
 
-# Windows button
-set $mod Mod4
-
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font pango:Helvetica Neue, FontAwesome 11
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
-
-focus_follows_mouse no
-
-# Kill focused window
-bindsym $mod+q kill
-
-# switch focus between monitors
-bindsym $mod+Tab focus output left
 
 ################################################################################
 # universal script commands
@@ -96,7 +119,7 @@ bindsym $mod+f floating toggle
 # reload i3 inplace (preserves your layout/session, can be used to upgrade i3)
 # bindsym $mod+Shift+r exec --no-startup-id ~/russmatney/cosmos/scripts/i3-start.sh
 # bindsym $mod+Shift+r restart
-bindsym $mod+Shift+r exec --no-startup-id ralphie restart-i3
+# bindsym $mod+Shift+r exec --no-startup-id ralphie restart-i3
 
 # resize window (you can also use the mouse for that)
 bindsym $mod+w mode "window"
@@ -140,60 +163,60 @@ mode "window" {
 # emacs
 # bindsym $mod+Shift+Return exec --no-startup-id emacsclient --alternate-editor='' --no-wait --create-frame --frame-parameters='(quote (name . "my-floating-title"))' --display $DISPLAY
 # bindsym $mod+Shift+Return exec --no-startup-id emacsclient --alternate-editor='' --no-wait --create-frame --display $DISPLAY
-bindsym $mod+Shift+Return exec --no-startup-id ralphie open-emacs
+# bindsym $mod+Shift+Return exec --no-startup-id ralphie open-emacs
 
 # terminal
 # bindsym $mod+Return exec --no-startup-id "alacritty --working-directory=/home/russ/dotfiles -e 'tmux'"
-bindsym $mod+Return exec --no-startup-id ralphie open-term
+# bindsym $mod+Return exec --no-startup-id ralphie open-term
 
 # browser
-bindsym $mod+b exec --no-startup-id ~/.local/bin/cosmos open-bookmark
+# bindsym $mod+b exec --no-startup-id ~/.local/bin/cosmos open-bookmark
 
 # bindsym $mod+shift+b exec --no-startup-id google-chrome-stable
-bindsym $mod+shift+b exec --no-startup-id google-chrome-stable
+bindsym $mod+b exec --no-startup-id firefox-developer-edition
 # bindsym $mod+shift+b exec --no-startup-id firefox
 
 # finder
-bindsym $mod+e exec --no-startup-id thunar
+# bindsym $mod+e exec --no-startup-id thunar
 
 # lock
 bindsym $mod+Shift+q exec --no-startup-id i3lock -c 000000 --pass-media-keys
 
 # rofi
-bindsym $mod+space  exec --no-startup-id rofi -show run
-bindsym $mod+x      exec --no-startup-id ralphie rofi
+# bindsym $mod+space  exec --no-startup-id rofi -show run
+bindsym $mod+x      exec --no-startup-id clawebb -x clawe.mx/mx
 
 # screenshot
 # bindsym $mod+Shift+s exec --no-startup-id ~/.local/bin/screenshot
 bindsym $mod+Shift+a exec --no-startup-id ~/.local/bin/screenshot-region
 bindsym $mod+Shift+s exec --no-startup-id i3-scrot
 
-bindsym $mod+m mode "monitor"
-mode "monitor" {
-# TODO detect monitor and set res on i3 restart
-     # laptop
-     bindsym l exec --no-startup-id ~/.local/bin/set-monitor-config laptop
-     bindsym $mod+l exec --no-startup-id ~/.local/bin/set-monitor-config laptop-hr
+# bindsym $mod+m mode "monitor"
+# mode "monitor" {
+# # TODO detect monitor and set res on i3 restart
+#      # laptop
+#      bindsym l exec --no-startup-id ~/.local/bin/set-monitor-config laptop
+#      bindsym $mod+l exec --no-startup-id ~/.local/bin/set-monitor-config laptop-hr
 
-     # work laptop + monitor
-     bindsym w exec --no-startup-id ~/.local/bin/set-monitor-config work
+#      # work laptop + monitor
+#      bindsym w exec --no-startup-id ~/.local/bin/set-monitor-config work
 
-     # work monitor only
-     bindsym $mod+w exec --no-startup-id ~/.local/bin/set-monitor-config work-monitor-only
+#      # work monitor only
+#      bindsym $mod+w exec --no-startup-id ~/.local/bin/set-monitor-config work-monitor-only
 
-     # home laptop + monitor
-     bindsym h exec --no-startup-id ~/.local/bin/set-monitor-config home
+#      # home laptop + monitor
+#      bindsym h exec --no-startup-id ~/.local/bin/set-monitor-config home
 
-     # home laptop w/ monitor only
-     bindsym $mod+h exec --no-startup-id ~/.local/bin/set-monitor-config home-monitor-only
+#      # home laptop w/ monitor only
+#      bindsym $mod+h exec --no-startup-id ~/.local/bin/set-monitor-config home-monitor-only
 
-     # home monitor
-     bindsym a exec --no-startup-id ~/.local/bin/set-monitor-config algo
+#      # home monitor
+#      bindsym a exec --no-startup-id ~/.local/bin/set-monitor-config algo
 
-     bindsym Return mode "default"
-     bindsym Escape mode "default"
-     bindsym q mode "default"
-}
+#      bindsym Return mode "default"
+#      bindsym Escape mode "default"
+#      bindsym q mode "default"
+# }
 
 # border colors
 client.focused #4c7899 #285577 #ffffff #2e9ef4   #285577
@@ -208,7 +231,7 @@ exec_always --no-startup-id picom
 
 # exec_always --no-startup-id feh --bg-scale ~/Dropbox/wallpapers/cityscape-cartoon.jpg
 # exec_always --no-startup-id feh --bg-scale ~/Dropbox/wallpapers/firewatch-blue-orange.jpg
-exec_always --no-startup-id variety
+exec_always --no-startup-id variety --resume
 
 # start dropbox
 exec_always --no-startup-id dropbox &
@@ -269,3 +292,16 @@ workspace_auto_back_and_forth yes
 ipc-socket ~/.config/i3/i3-ipc.sock
 
 
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 0
+
+bindsym $mod+n workspace prev
+bindsym $mod+p workspace next

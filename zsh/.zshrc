@@ -383,7 +383,7 @@ alias du=dua
 # Doom emacs
 ################################################################################
 
-export PATH="$HOME/.emacs.d/bin:$PATH"
+export PATH="$HOME/.config/emacs/bin:$PATH"
 
 # Added by n-install (see http://git.io/n-install-repo).
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
@@ -491,9 +491,9 @@ timezsh() {
 PATH=$PATH:~/.local/share/Steam/steamapps/common/Aseprite
 
 # gut without window
-alias gut='godot --no-window --debug-collisions --path $PWD -d -s addons/gut/gut_cmdln.gd'
+alias gut='godot --headless --path . -d -s addons/gut/gut_cmdln.gd'
 # gut with window
-alias gutw='godot --debug-collisions --path $PWD -d -s addons/gut/gut_cmdln.gd'
+alias gutw='godot --path . -d -s addons/gut/gut_cmdln.gd'
 
 #########################################################################
 # osx

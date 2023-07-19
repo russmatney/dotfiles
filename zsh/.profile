@@ -9,7 +9,7 @@ export LSP_USE_PLISTS=true
 if test "$HOSTNAME" = 'algo' ; then
     # export MONITOR=HDMI-0
     export MONITOR=DP-4
-elif test "$HOSTNAME" == 'vader' ; then
+elif test "$HOSTNAME" == 'anton' ; then
     export MONITOR=eDP-1
 fi
 # . "$HOME/.cargo/env"
