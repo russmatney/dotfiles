@@ -4,7 +4,10 @@
 xset r rate 170 50
 
 # detect based on hostname?
-# /home/russ/.local/bin/set-monitor-config laptop-hr
+if test "$HOSTNAME" == 'anton' ; then
+    export MONITOR=eDP-1
+    /home/russ/.local/bin/set-monitor-config laptop-hr
+fi
 
 # add some secret env vars
 secrets=$HOME/.secrets

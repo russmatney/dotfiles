@@ -9,8 +9,11 @@ usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
 
-# awesome is kept as default
-DEFAULT_SESSION=awesome
+if test "$HOSTNAME" = 'algo' ; then
+    DEFAULT_SESSION=awesome
+elif test "$HOSTNAME" == 'anton' ; then
+    DEFAULT_SESSION=i3
+fi
 
 # merge in defaults and keymaps
 
