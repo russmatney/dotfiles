@@ -7,13 +7,10 @@ export EDITOR=/usr/bin/nvim
 export LSP_USE_PLISTS=true
 
 if test "$HOSTNAME" = 'algo' ; then
-    # export MONITOR=HDMI-0
     export MONITOR=DP-4
 elif test "$HOSTNAME" == 'anton' ; then
     export MONITOR=eDP-1
 fi
-# . "$HOME/.cargo/env"
 
-
-# disable husky git hooks
+# disable all husky git hooks
 export HUSKY=0

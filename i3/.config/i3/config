@@ -16,7 +16,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+space  exec --no-startup-id rofi -show run
 
 # run a terminal
-bindsym $mod+Return exec --no-startup-id terminal
+bindsym $mod+Return exec --no-startup-id alacritty
 
 # run an emacs
 bindsym $mod+Shift+Return exec --no-startup-id emacsclient -c
@@ -239,7 +239,7 @@ exec_always --no-startup-id dropbox &
 # start polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-bindsym XF86AudioPlay exec --no-startup-id "spotifycli --playpause"
+bindsym XF86AudioPlay exec --no-startup-id "playerctl --play-pause"
 bindsym XF86AudioNext exec --no-startup-id "playerctl next"
 bindsym XF86AudioPrev exec --no-startup-id "playerctl previous"
 bindsym XF86AudioMute exec --no-startup-id "pactl set-sink-mute @DEFAULT_SINK@ toggle"
@@ -271,9 +271,9 @@ bindsym $mod+t [con_mark="browse"] scratchpad show
 # bindsym $mod+g exec --no-startup-id ralphie scratchpad-pop
 
 # mind-Garden scratchpad
-bindsym $mod+Shift+g mark "notes", move scratchpad
-bindsym $mod+g [con_mark="notes"] scratchpad show
-bindsym $mod+r [con_mark="notes"] scratchpad show
+# bindsym $mod+Shift+g mark "notes", move scratchpad
+# bindsym $mod+g [con_mark="notes"] scratchpad show
+# bindsym $mod+r [con_mark="notes"] scratchpad show
 
 # cycle all scratchpads
 bindsym $mod+a scratchpad show
