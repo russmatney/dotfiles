@@ -147,9 +147,6 @@ reload dir-locals."
 ;; other config files
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Private keys'n'such
-(load! "+private")
-
 (load! "+company")
 (load! "+hydra")
 (load! "+bindings")
