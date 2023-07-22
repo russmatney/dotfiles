@@ -218,6 +218,7 @@
   "godot_input_helper"          {:workspace/directory "~/nathanhoad/godot_input_helper"}
   "heroicons"                   {:workspace/directory "~/tailwindlabs/heroicons"}
   "http-server"                 {:workspace/directory "~/babashka/http-server"}
+  "i3"                          {:workspace/directory "~/i3/i3"}
   "ink-library"                 {:workspace/directory "~/inkle/ink-library"}
   "inkgd"                       {:workspace/directory "~/ephread/inkgd"}
   "instaparse"                  {:workspace/directory "~/Engelberg/instaparse"}
