@@ -148,7 +148,8 @@
  :doctor-base-url "http://localhost:3334"
  :local-dev-urls  [{:label "Local Blog" :url "http://localhost:9999"}
                    {:label "Clawe Doctor UI" :url "http://localhost:3333"}
-                   {:label "local dino web build" :url "http://localhost:3333"}]
+                   {:label "local dino web build" :url "http://localhost:9999"}
+                   {:label "local mealprep browser" :url "http://localhost:3222"}]
  :repo-roots      ["~/russmatney/*" "~/teknql/*"]
  :workspace/defs
  {"BulletUpHell"                {:workspace/directory "~/Dark-Peace/BulletUpHell"}
