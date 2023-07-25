@@ -71,6 +71,7 @@
   "onepass"          {:client/app-names       ["1password"]
                       :client/create          "/usr/bin/gtk-launch 1password.desktop"
                       :client/workspace-title "onepass"
+                      :hide/type              :hide/scratchpad
                       :match/skip-title       true}
   "pavucontrol"      {:client/app-names       ["pavucontrol"]
                       :client/workspace-title "spotify"
