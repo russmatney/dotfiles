@@ -9,6 +9,7 @@
                                                "google-chrome" "google chrome"]
                       :client/create          ralphie.browser/open-dev
                       :client/workspace-title "browsers"
+                      :hide/type              :hide/scratchpad
                       :match/skip-title       true}
   "discord"          {:client/app-names       ["Discord"]
                       :client/create          "discord"
@@ -41,7 +42,8 @@
                       :client/workspace-title "widgets"
                       :focus/float-and-center false
                       :focus/toggle-opts      [:focus.toggle/front-and-center :focus.toggle/bury
-                                               :focus.toggle/sticky-right {:focus.toggle/workspace "widgets"}]}
+                                               :focus.toggle/sticky-right {:focus.toggle/workspace "widgets"}]
+                      :hide/type              :hide/scratchpad}
   "godot"            {:client/app-names          ["godot" "godot_engine"]
                       :client/create             {:create/cmd          ralphie.tmux/fire
                                                   :tmux.fire/cmd       "godot -e"
@@ -56,6 +58,7 @@
                                             :emacs.open/file      "~/todo/journal.org"
                                             :emacs.open/workspace "journal"}
                       :client/window-title "journal"
+                      :hide/type           :hide/scratchpad
                       :match/soft-title    true}
   "messages"
   {:client/app-names ["Messages"] :client/workspace-title "messages" :match/skip-title true}
@@ -79,6 +82,7 @@
   "spotify"          {:client/app-names       ["spotify"]
                       :client/create          "spotify"
                       :client/workspace-title "spotify"
+                      :hide/type              :hide/scratchpad
                       :match/skip-title       true}
   "steam"            {:client/app-names ["steam"] :client/workspace-title "steam" :match/skip-title true}
   "terminal"         {:client/app-names          ["Alacritty"]
@@ -118,6 +122,7 @@
   "web"              {:client/app-names       ["Safari" "firefox"]
                       :client/create          ralphie.browser/open
                       :client/workspace-title "browsers"
+                      :hide/type              :hide/scratchpad
                       :match/ignore-names     ["picture-in-picture"]
                       :match/skip-title       true}
   "web-video-popout" {:bury/ignore true :client/app-names ["picture-in-picture"]}
@@ -145,8 +150,10 @@
   "Gut"                         {:workspace/directory "~/bitwes/Gut"}
   "Project-Map"                 {:workspace/directory "~/Yogoda/Project-Map"}
   "PuzzleScript"                {:workspace/directory "~/increpare/PuzzleScript"}
+  "Seasons"                     {:workspace/directory "~/ydinkov/Seasons"}
   "Spicetify"                   {:workspace/directory "~/Comfy-Themes/Spicetify"}
   "TilePIpe"                    {:workspace/directory "~/aleksandrbazhin/TilePIpe"}
+  "Twinned-FediVerseGame"       {:workspace/directory "~/spots1000/Twinned-FediVerseGame"}
   "ViewportPlus"                {:workspace/directory "~/NesiAwesomeneess/ViewportPlus"}
   "aave"                        {:workspace/directory "~/teknql/aave"}
   "advent-of-babashka-template" {:workspace/directory "~/borkdude/advent-of-babashka-template"}
@@ -239,6 +246,7 @@
   "pollen"                      {:workspace/directory "~/mbutterick/pollen"}
   "portal"                      {:workspace/directory "~/djblue/portal"}
   "protomoon-two"               {:workspace/directory "~/russmatney/protomoon-two"}
+  "puget"                       {:workspace/directory "~/greglook/puget"}
   "quickblog"                   {:workspace/directory "~/borkdude/quickblog"}
   "re-db"                       {:workspace/directory "~/mhuebert/re-db"}
   "repertoire-maker"            {:workspace/directory "~/Camsbury/repertoire-maker"}
