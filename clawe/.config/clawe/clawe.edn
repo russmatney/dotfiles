@@ -216,6 +216,7 @@
   "godot-tutorials"             {:workspace/directory "~/nagidev/godot-tutorials"}
   "godot-twitch-irc-client"     {:workspace/directory "~/rblopes/godot-twitch-irc-client"}
   "godot_input_helper"          {:workspace/directory "~/nathanhoad/godot_input_helper"}
+  "grove-todo"                  {:workspace/directory "~/thheller/grove-todo"}
   "heroicons"                   {:workspace/directory "~/tailwindlabs/heroicons"}
   "http-server"                 {:workspace/directory "~/babashka/http-server"}
   "i3"                          {:workspace/directory "~/i3/i3"}
@@ -253,6 +254,7 @@
   "repertoire-maker"            {:workspace/directory "~/Camsbury/repertoire-maker"}
   "rewrite-clj"                 {:workspace/directory "~/clj-commons/rewrite-clj"}
   "russmatney"                  {:workspace/directory "~/russmatney/russmatney"}
+  "shadow-grove"                {:workspace/directory "~/thheller/shadow-grove"}
   "slack"                       {:workspace/preferred-index 9}
   "spicetify"                   {:workspace/directory "~/catppuccin/spicetify"}
   "spicetify-cli"               {:workspace/directory "~/spicetify/spicetify-cli"}
