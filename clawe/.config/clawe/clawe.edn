@@ -5,6 +5,19 @@
                       :client/app-names       ["preview"]
                       :client/workspace-title "aseprite"
                       :match/skip-title       true}
+  "dashboard"        {:bury/ignore            true
+                      :client/app-names       ["clove"]
+                      :client/create          {:create/cmd           ralphie.tmux/fire
+                                               :tmux.fire/cmd        "bb --config ~/russmatney/clawe/bb.edn dashboard"
+                                               :tmux.fire/interrupt? true
+                                               :tmux.fire/session    "doctor-dashboard"}
+                      :client/window-title    "tauri-doctor-dashboard"
+                      :client/workspace-title "widgets"
+                      :focus/float-and-center false
+                      :focus/toggle-opts      [:focus.toggle/front-and-center :focus.toggle/bury
+                                               :focus.toggle/sticky-right
+                                               {:focus.toggle/workspace "widgets"}]
+                      :hide/type              :hide/scratchpad}
   "devweb"           {:client/app-names       ["firefoxdeveloperedition" "firefox developer edition"
                                                "google-chrome" "google chrome"]
                       :client/create          ralphie.browser/open-dev
@@ -143,7 +156,6 @@
                    {:label "local dino web build" :url "http://localhost:9999"}
                    {:label "local mealprep browser" :url "http://localhost:3222"}]
  :repo-roots      ["~/russmatney/*" "~/teknql/*"]
- :wm              :wm/i3
  :workspace/defs
  {"BulletUpHell"                {:workspace/directory "~/Dark-Peace/BulletUpHell"}
   "Godot-3-2D-Day-Night-Cycle"  {:workspace/directory "~/hiulit/Godot-3-2D-Day-Night-Cycle"}
@@ -183,6 +195,7 @@
   "clojuredocs"                 {:workspace/directory "~/zk/clojuredocs"}
   "clove"                       {:git/status true :workspace/directory "~/russmatney/clove"}
   "clover"                      {:workspace/directory "~/russmatney/clover"}
+  "craftinginterpreters"        {:workspace/directory "~/russmatney/craftinginterpreters"}
   "cybermonday"                 {:workspace/directory "~/kiranshila/cybermonday"}
   "datascript-playground"       {:workspace/directory "~/markbastian/datascript-playground"}
   "dice-nine"                   {:workspace/directory "~/russmatney/dice-nine"}
