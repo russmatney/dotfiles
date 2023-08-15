@@ -533,6 +533,8 @@ alias clawebb_reload='clawebb -x clawe.restart/reload'
 alias clawebb_mx='clawebb -x clawe.mx/mx'
 alias clawebb_mx_fast='clawebb -x clawe.mx/mx-fast'
 
+alias dinobb='bb --config ~/russmatney/dino/bb.edn'
+
 #########################################################################
 # itch.io
 #########################################################################

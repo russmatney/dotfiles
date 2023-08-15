@@ -164,6 +164,7 @@
   "aseprite"                    {:workspace/directory "~/aseprite/aseprite"}
   "bbin"                        {:workspace/directory "~/babashka/bbin"}
   "bean-of-the-wild"            {:workspace/directory "~/nagidev/bean-of-the-wild"}
+  "beatemup-city"               {:workspace/directory "~/russmatney/beatemup-city"}
   "beatemup-three"              {:workspace/directory "~/russmatney/beatemup-three"}
   "blog"                        {:workspace/directory "~/russmatney/blog"}
   "blorg"                       {:workspace/directory "~/eigenhombre/blorg"}
