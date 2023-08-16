@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # create screenshot
-filename="screenshot_$(date +%Y-%m-%d_%H_%M_%S%z)".jpg
+filename="screenshot_$(date +%Y-%m-%d_%H_%M_%S%z)".png
 destination_dir=~/Screenshots
 
 exec shotgun "$destination_dir"/"$filename"
