@@ -79,7 +79,7 @@
         +icons)
 
        :ui
-       deft
+       ;; deft
        doom              ; what makes DOOM look the way it does
        doom-dashboard    ; a nifty splash screen for Emacs
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
@@ -89,7 +89,7 @@
        hydra
        ;;indent-guides
        ;;ligatures         ; ligatures and symbols to make your code pretty again
-       minimap           ; show a map of the code on the side
+       ;; minimap           ; show a map of the code on the side
        modeline     ; a snazzy Atom-inspired mode-line
        nav-flash         ; blink the current line after jumping
        ;; neotree           ; a project drawer, like NERDTree for vim
@@ -101,10 +101,10 @@
        (treemacs +lsp)          ; a project drawer, like neotree but cooler
        ;;unicode           ; extended unicode support for various languages
        vc-gutter
-       vi-tilde-fringe   ; fringe tildes to mark beyond EOB
-       window-select     ; visually switch windows
+       ;; vi-tilde-fringe   ; fringe tildes to mark beyond EOB
+       ;; window-select     ; visually switch windows
        workspaces        ; tab emulation, persistence & separate workspaces
-       zen
+       ;; zen
 
        :editor
        (evil +everywhere); come to the dark side, we have cookies
@@ -117,7 +117,7 @@
        ;;multiple-cursors  ; editing in many places at once
        ;;objed             ; text object editing for the innocent
        ;; parinfer          ; turn lisp into python, sort of
-       rotate-text       ; cycle region at point between text candidates
+       ;; rotate-text       ; cycle region at point between text candidates
        snippets          ; my elves. They type so I don't have to
        ;;word-wrap
 
@@ -161,7 +161,7 @@
        ;;pdf             ; pdf enhancements
        ;;prodigy         ; FIXME managing external services & code builders
        rgb               ; creating color strings
-       taskrunner        ; taskrunner for all your projects
+       ;; taskrunner        ; taskrunner for all your projects
        ;;terraform       ; infrastructure as code
        tmux              ; an API for interacting with tmux
        ;;upload          ; map local to remote projects via ssh/ftp
@@ -173,15 +173,15 @@
        :lang
        ;;agda              ; types of types of types of types...
        ;;beancount
-       (cc +lsp)                ; C/C++/Obj-C madness
+       ;; (cc +lsp)                ; C/C++/Obj-C madness
        (clojure +lsp)           ; java with a lisp
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
        ;;crystal           ; ruby at the speed of c
-       (csharp +dotnet +unity)            ; unity, .NET, and mono shenanigans
+       ;;(csharp +dotnet +unity)            ; unity, .NET, and mono shenanigans
        data              ; config/data formats
-       (dart +flutter)   ; paint ui and not much else
-       elixir            ; erlang done right
+       ;;(dart +flutter)   ; paint ui and not much else
+       ;; elixir            ; erlang done right
        ;;elm               ; care for a cup of TEA?
        emacs-lisp        ; drown in parentheses
        ;; erlang            ; an elegant language for a more civilized age
@@ -191,8 +191,8 @@
        ;;fsharp           ; ML stands for Microsoft's Language
        ;;fstar             ; (dependent) types and (monadic) effects and Z3
        ;; (gdscript +lsp)          ; the language you waited for
-       (go +lsp)                ; the hipster dialect
-       (haskell +dante) ; a language that's lazier than I am
+       ;; (go +lsp)                ; the hipster dialect
+       ;; (haskell +dante) ; a language that's lazier than I am
        ;; haskell ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ;
@@ -204,19 +204,19 @@
        ;;latex             ; writing papers in Emacs has never been so fun
        ;;lean
        ;;ledger            ; an accounting system in Emacs
-       (lua +moonscript)               ; one-based indices? one-based indices
+       ;; (lua +moonscript)               ; one-based indices? one-based indices
        markdown          ; writing docs for people to ignore
        ;;nim               ; python + lisp at the speed of c
-       nix               ; I hereby declare "nix geht mehr!"
+       ;; nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
        (org              ; organize your plain life in plain text
-        +dragndrop       ; file drag & drop support
-        +hugo
-        +ipython         ; ipython support for babel
-        +noter
-        +pandoc          ; pandoc integration into org's exporter
-        +pomodoro
-        +present ; using Emacs for presentations
+        ;; +dragndrop       ; file drag & drop support
+        ;; +hugo
+        ;; +ipython         ; ipython support for babel
+        ;; +noter
+        ;; +pandoc          ; pandoc integration into org's exporter
+        ;; +pomodoro
+        ;; +present ; using Emacs for presentations
         +roam2)
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
@@ -239,7 +239,7 @@
        sh        ; she sells (ba|z|fi)sh shells on the C xor
        ;;sml
        ;;solidity
-       swift             ; who asked for emoji variables?
+       ;; swift             ; who asked for emoji variables?
        ;;terra
        ;; web               ; the tubes
        yaml
@@ -261,3 +261,9 @@
        :config
        ;; required for some vertico completion to work (project search, buffer search...)
        default)
+
+(setq native-comp-always-compile t)
+(setq native-comp-jit-compilation nil)
+(setq package-native-compile t)
+(after! (doom-packages straight)
+  (setq straight--native-comp-available t))

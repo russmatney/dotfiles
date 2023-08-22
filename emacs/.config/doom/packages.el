@@ -32,7 +32,7 @@
 ;; (package! consult-lsp :pin "f8db3252c0daa41225ba4ed1c0d178b281cd3e90")
 ;; (package! magit :pin "6d325d90ba1374d48c4c7088f96864b678155f48")
 
-
+(package! doom-modeline :pin "6125309c2caa")
 
 ;; lisp
 (package! dash)
