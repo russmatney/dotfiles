@@ -255,6 +255,7 @@
   "org-blog-content"            {:git/status true :workspace/directory "~/russmatney/org-blog-content"}
   "org-crud"                    {:git/status true :workspace/directory "~/russmatney/org-crud"}
   "org-roam"                    {:workspace/directory "~/org-roam/org-roam"}
+  "pandora"                     {:workspace/directory "~/bitbrain/pandora"}
   "picture-pages"               {:workspace/directory "~/russmatney/picture-pages"}
   "pirates"                     {:workspace/directory "~/russmatney/pirates"}
   "plasma"                      {:workspace/directory "~/teknql/plasma"}
