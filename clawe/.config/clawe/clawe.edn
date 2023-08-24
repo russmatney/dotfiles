@@ -274,7 +274,7 @@
   "spicetify"                   {:workspace/directory "~/catppuccin/spicetify"}
   "spicetify-cli"               {:workspace/directory "~/spicetify/spicetify-cli"}
   "spicetify-themes"            {:workspace/directory "~/spicetify/spicetify-themes"}
-  "spotify"                     {:workspace/preferred-index 9}
+  "spotify"                     {:workspace/preferred-index 0}
   "steam"                       {:workspace/directory "~"}
   "the-great-tree"              {:workspace/directory "~/dandeliondino/the-great-tree"}
   "tools.namespace"             {:workspace/directory "~/clojure/tools.namespace"}
