@@ -53,17 +53,17 @@
 (package! rustic :pin "53cacf5039f1d88cdd5cad98d1e9e0ad92da2615")
 
 ;; fountain
-(package! fountain-mode :recipe (:host github :repo "rnkn/fountain-mode"))
+;; (package! fountain-mode :recipe (:host github :repo "rnkn/fountain-mode"))
 
 ;; fennel
 (package! fennel-mode :recipe (:host gitlab :repo "technomancy/fennel-mode"))
-(package! friar :recipe (:host github
-                         :repo "russmatney/friar"
-                         :branch "develop"
-                         :files (:defaults "*.lua" "*.fnl")))
+;; (package! friar :recipe (:host github
+;;                          :repo "russmatney/friar"
+;;                          :branch "develop"
+;;                          :files (:defaults "*.lua" "*.fnl")))
 
 ;; python
-(package! py-yapf)
+;; (package! py-yapf)
 
 ;; clojure
 
@@ -83,34 +83,33 @@
 
 ;; TODO point to the local version
 ;; TODO rename this
-(package! company-css-classes :recipe
-  (:host github :repo "russmatney/company-css-classes" :files ("*")))
+;; (package! company-css-classes :recipe
+;;   (:host github :repo "russmatney/company-css-classes" :files ("*")))
 
-(package! monroe :recipe (:host github :repo "sanel/monroe"))
+;; (package! monroe :recipe (:host github :repo "sanel/monroe"))
 
 (package! clojure-essential-ref)
 (package! clojure-essential-ref-nov)
 
-(package! clomacs)
+;; (package! clomacs)
 
 ;; wakatime
 (package! wakatime-mode)
 
 ;; exwm
-(package! exwm)
+;; (package! exwm)
 
 ;; org
 (package! doct)
 (package! org-rich-yank)
 (package! org-projectile)
 
-;; TODO maybe this has shipped the perf fix by now?
 (package! org-roam
   :recipe (:host github :repo "org-roam/org-roam")
   :pin "74422df546a515bc984c2f3d3a681c09d6f43916")
 
 ;; nov.el
-(package! nov)
+;; (package! nov)
 
 
 ;; magit
@@ -129,10 +128,10 @@
 (package! dirvish)
 
 ;; graphql
-(package! graphql-mode)
+;; (package! graphql-mode)
 
 ;; task runners
-(package! run-command)
+;; (package! run-command)
 
 ;; kubernetes
 (package! kubernetes)

@@ -70,43 +70,43 @@
 ;; Haskell
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(map!
- (:after haskell-mode
-  (:map haskell-mode-map
-   :n "g SPC" 'haskell-process-load-file
-   ;; :n "g r"   'lsp-ui-peek-find-references
-   ;; :n "g d"   'lsp-ui-peek-find-definitions
-   :n "g d"   'xref-find-definitions
-   ;; :n "g SPC" 'intero-repl-load
-   :n "g a"   'lsp-apply-commands
-   :n "g m"   'lsp-ui-imenu
-   :n "g i"   'dante-info
-   ;; :n "g i"   'haskell-navigate-imports-go
-   :n "g b"   'haskell-navigate-imports-return)))
+;; (map!
+;;  (:after haskell-mode
+;;   (:map haskell-mode-map
+;;    :n "g SPC" 'haskell-process-load-file
+;;    ;; :n "g r"   'lsp-ui-peek-find-references
+;;    ;; :n "g d"   'lsp-ui-peek-find-definitions
+;;    :n "g d"   'xref-find-definitions
+;;    ;; :n "g SPC" 'intero-repl-load
+;;    :n "g a"   'lsp-apply-commands
+;;    :n "g m"   'lsp-ui-imenu
+;;    :n "g i"   'dante-info
+;;    ;; :n "g i"   'haskell-navigate-imports-go
+;;    :n "g b"   'haskell-navigate-imports-return)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Elixir
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(add-hook! elixir-mode
-  (flycheck-mode)
-  (turn-off-smartparens-mode)
-  (rainbow-delimiters-mode))
-
-(use-package! flycheck-mix
-  :after elixir-mode
-  :config
-  (add-hook 'flycheck-mode-hook #'flycheck-mix-setup))
-
-(use-package! flycheck-credo
-  :after elixir-mode
-  :config
-  (setq flycheck-elixir-credo-strict t)
-  (add-hook 'flycheck-mode-hook #'flycheck-credo-setup))
-
-;; Create a buffer-local hook to run elixir-format on save, only when we enable elixir-mode.
-(add-hook 'elixir-mode-hook
-          (lambda () (add-hook 'before-save-hook 'elixir-format nil t)))
+;; (add-hook! elixir-mode
+;;   (flycheck-mode)
+;;   (turn-off-smartparens-mode)
+;;   (rainbow-delimiters-mode))
+;;
+;; (use-package! flycheck-mix
+;;   :after elixir-mode
+;;   :config
+;;   (add-hook 'flycheck-mode-hook #'flycheck-mix-setup))
+;;
+;; (use-package! flycheck-credo
+;;   :after elixir-mode
+;;   :config
+;;   (setq flycheck-elixir-credo-strict t)
+;;   (add-hook 'flycheck-mode-hook #'flycheck-credo-setup))
+;;
+;; ;; Create a buffer-local hook to run elixir-format on save, only when we enable elixir-mode.
+;; (add-hook 'elixir-mode-hook
+;;           (lambda () (add-hook 'before-save-hook 'elixir-format nil t)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Web
@@ -229,7 +229,7 @@
     "r" #'russ/open-love-repl
     "R" #'russ/love-kill-and-restart-via-tmux))
 
-(use-package! friar)
+;; (use-package! friar)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Python
