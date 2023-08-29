@@ -156,6 +156,7 @@
                    {:label "local dino web build" :url "http://localhost:9999"}
                    {:label "local mealprep browser" :url "http://localhost:3222"}]
  :repo-roots      ["~/russmatney/*" "~/teknql/*"]
+ :wm              :wm/i3
  :workspace/defs
  {"BulletUpHell"                {:workspace/directory "~/Dark-Peace/BulletUpHell"}
   "Godot-3-2D-Day-Night-Cycle"  {:workspace/directory "~/hiulit/Godot-3-2D-Day-Night-Cycle"}
@@ -203,7 +204,7 @@
   {:git/status true :workspace/directory "~/russmatney/dino" :workspace/preferred-index 2}
   "dotfiles"                    {:git/status                true
                                  :workspace/directory       "~/russmatney/dotfiles"
-                                 :workspace/preferred-index 1}
+                                 :workspace/preferred-index 0}
   "editscript"                  {:workspace/directory "~/juji-io/editscript"}
   "fabb"                        {:workspace/directory "~/teknql/fabb"}
   "fishgame-godot"              {:workspace/directory "~/heroiclabs/fishgame-godot"}
@@ -238,7 +239,7 @@
   "inkgd"                       {:workspace/directory "~/ephread/inkgd"}
   "instaparse"                  {:workspace/directory "~/Engelberg/instaparse"}
   "instaparse-bb"               {:workspace/directory "~/babashka/instaparse-bb"}
-  "journal"                     {:workspace/directory "~/todo" :workspace/preferred-index 0}
+  "journal"                     {:workspace/directory "~/todo" :workspace/preferred-index 1}
   "just"                        {:workspace/directory "~/casey/just"}
   "lichess-docker"              {:workspace/directory "~/benediktwerner/lichess-docker"}
   "lila"                        {:workspace/directory "~/lichess-org/lila"}
