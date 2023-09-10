@@ -159,6 +159,7 @@
  :wm              :wm/i3
  :workspace/defs
  {"BulletUpHell"                {:workspace/directory "~/Dark-Peace/BulletUpHell"}
+  "Godello"                     {:workspace/directory "~/alfredbaudisch/Godello"}
   "Godot-3-2D-Day-Night-Cycle"  {:workspace/directory "~/hiulit/Godot-3-2D-Day-Night-Cycle"}
   "Godot-Mixing-Desk"           {:workspace/directory "~/kyzfrintin/Godot-Mixing-Desk"}
   "Godot-Text-Database"         {:workspace/directory "~/KoBeWi/Godot-Text-Database"}
