@@ -161,6 +161,7 @@
  {"BulletUpHell"                {:workspace/directory "~/Dark-Peace/BulletUpHell"}
   "Godot-3-2D-Day-Night-Cycle"  {:workspace/directory "~/hiulit/Godot-3-2D-Day-Night-Cycle"}
   "Godot-Mixing-Desk"           {:workspace/directory "~/kyzfrintin/Godot-Mixing-Desk"}
+  "Godot-Text-Database"         {:workspace/directory "~/KoBeWi/Godot-Text-Database"}
   "Gut"                         {:workspace/directory "~/bitwes/Gut"}
   "Project-Map"                 {:workspace/directory "~/Yogoda/Project-Map"}
   "PuzzleScript"                {:workspace/directory "~/increpare/PuzzleScript"}
