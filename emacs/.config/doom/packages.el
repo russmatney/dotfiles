@@ -138,12 +138,10 @@
 (package! kubernetes-evil)
 (package! kele)
 
-;; local
+(package! elcord)
+
+;; local packages/forks
 
 (package! fabb :recipe (:local-repo "fabb" :build (:not compile)))
-
-;; ink
 (package! ink-mode :recipe (:local-repo "ink-mode" :build (:not compile)))
-
-;; godot
 (package! gdscript-mode :recipe (:local-repo "gdscript-mode" :build (:not compile)))
