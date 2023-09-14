@@ -99,6 +99,10 @@
                       :hide/type              :hide/scratchpad
                       :match/skip-title       true}
   "steam"            {:client/app-names ["steam"] :client/workspace-title "steam" :match/skip-title true}
+  "telegram"         {:client/app-names       ["Telegram"]
+                      :client/create          "telegram"
+                      :client/workspace-title "slack"
+                      :match/skip-title       true}
   "terminal"         {:client/app-names          ["Alacritty"]
                       :client/create             {:create/cmd        ralphie.tmux/open-session
                                                   :tmux/directory    :create/use-workspace-directory
