@@ -5,6 +5,8 @@
                       :client/app-names       ["preview"]
                       :client/workspace-title "aseprite"
                       :match/skip-title       true}
+  "audacity"
+  {:client/app-names ["audacity"] :client/workspace-title "audacity" :match/skip-title true}
   "dashboard"        {:bury/ignore            true
                       :client/app-names       ["clove"]
                       :client/create          {:create/cmd           ralphie.tmux/fire
@@ -181,6 +183,7 @@
   "advent-of-godot"             {:workspace/directory "~/russmatney/advent-of-godot"}
   "apple-platform-rs"           {:workspace/directory "~/indygreg/apple-platform-rs"}
   "aseprite"                    {:workspace/directory "~/aseprite/aseprite"}
+  "audacity"                    {:workspace/directory "~/game-assets/sounds/russmatney"}
   "bbin"                        {:workspace/directory "~/babashka/bbin"}
   "bean-of-the-wild"            {:workspace/directory "~/nagidev/bean-of-the-wild"}
   "beatemup-city"               {:workspace/directory "~/russmatney/beatemup-city"}
