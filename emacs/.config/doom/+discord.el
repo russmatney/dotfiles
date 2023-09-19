@@ -2,5 +2,5 @@
 
 (use-package! elcord
   :config
-  (setq elcord-idle-timer 150
+  (setq elcord-idle-timer 120
         elcord-idle-message "...afk..."))
