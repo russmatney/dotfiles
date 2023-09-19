@@ -3,4 +3,4 @@
 (use-package! elcord
   :config
   (setq elcord-idle-timer 150
-        elcord-idle-message "Idle..."))
+        elcord-idle-message "...afk..."))
