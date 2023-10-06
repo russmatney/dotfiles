@@ -354,7 +354,11 @@
         "https://russmatney.itch.io/dungeon-crawler"
         "https://patreon.com/russmatney"
         "https://danger.russmatney.com"
-        "https://twitch.tv/russmatney"))
+        "https://russmatney.com"
+        "https://twitch.tv/russmatney"
+        "https://mastodon.gamedev.place/@russmatney"
+        "https://programming.dev/u/russmatney"
+        ))
 
 (after! org
   (org-link-set-parameters

@@ -224,7 +224,7 @@ source ~/dotfiles/zsh/tmux.sh
 alias vim=nvim
 alias vi=nvim
 
-alias ls=exa
+alias ls=eza
 alias l='ls -lFha'
 
 alias cat=bat
