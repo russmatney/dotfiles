@@ -227,15 +227,18 @@
   "godot-LDtk-import"           {:workspace/directory "~/levigilbert/godot-LDtk-import"}
   "godot-actions"               {:workspace/directory "~/bend-n/godot-actions"}
   "godot-aseprite-wizard"       {:workspace/directory "~/viniciusgerevini/godot-aseprite-wizard"}
+  "godot-ci"                    {:workspace/directory "~/abarichello/godot-ci"}
   "godot-demo-projects"         {:workspace/directory "~/godotengine/godot-demo-projects"}
   "godot-docs"                  {:workspace/directory "~/godotengine/godot-docs"}
   "godot-edn"                   {:git/status true :workspace/directory "~/russmatney/godot-edn"}
   "godot-filesystem-view"       {:workspace/directory "~/zaevi/godot-filesystem-view"}
   "godot-git-plugin"            {:workspace/directory "~/godotengine/godot-git-plugin"}
+  "godot-html-export"           {:workspace/directory "~/dulvui/godot-html-export"}
   "godot-next"                  {:workspace/directory "~/godot-extended-libraries/godot-next"}
   "godot-sfxr"                  {:workspace/directory "~/tomeyro/godot-sfxr"}
   "godot-snake-game"            {:workspace/directory "~/MCMLXXXV/godot-snake-game"}
   "godot-template"              {:workspace/directory "~/bakneko/godot-template"}
+  "godot-tester"                {:workspace/directory "~/croconut/godot-tester"}
   "godot-text_effects"          {:workspace/directory "~/teebarjunk/godot-text_effects"}
   "godot-tutorials"             {:workspace/directory "~/nagidev/godot-tutorials"}
   "godot-twitch-irc-client"     {:workspace/directory "~/rblopes/godot-twitch-irc-client"}
