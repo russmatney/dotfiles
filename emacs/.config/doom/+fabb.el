@@ -5,7 +5,8 @@
  (:leader :desc "Fabb Status" :nv "f" #'fabb-status))
 
 (map!
- (:after fabb
+ (:after
+  fabb
   (:map fabb-mode-map
    :n "i" #'fabb-invoke-ivy
    :n "?" #'fabb-dispatch
@@ -26,9 +27,12 @@
    :n "i" #'fabb-invoke-ivy
    :n "?" #'fabb-dispatch
 
-   :n "e" #'fabb-task-edit-and-reinvoke-task
-   :n "r" #'fabb-task-reinvoke-task-prompt
-   :n "R" #'fabb-task-reinvoke-task-no-prompt))
+   :nv "e" #'fabb-task-edit-and-reinvoke-task
+   :nv "r" #'fabb-task-reinvoke-task-prompt
+   :nv "R" #'fabb-task-reinvoke-task-no-prompt
+
+   "q" nil
+   :n "q" nil))
 
  (:map compilation-mode-map
   :n "C-k" nil
