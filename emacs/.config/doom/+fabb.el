@@ -28,6 +28,7 @@
    :n "?" #'fabb-dispatch
 
    :nv "e" #'fabb-task-edit-and-reinvoke-task
+   :nv "f" #'fabb-task-edit-and-reinvoke-task-with-path
    :nv "r" #'fabb-task-reinvoke-task-prompt
    :nv "R" #'fabb-task-reinvoke-task-no-prompt
 
