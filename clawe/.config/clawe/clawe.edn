@@ -262,6 +262,7 @@
   "morphe"                      {:workspace/directory "~/Workiva/morphe"}
   "my_first_flutter_app"        {:workspace/directory "~/russmatney/my_first_flutter_app"}
   "neil"                        {:workspace/directory "~/babashka/neil"}
+  "nanowrimo"                   {:workspace/directory "~/Dropbox/Writing/nanowrimo-2023"}
   "new-blog"                    {:workspace/directory "~/russmatney/new-blog"}
   "obs"                         {:workspace/directory "~/russmatney/obs-recordings" :workspace/preferred-index 0}
   "org-blog"                    {:workspace/directory "~/russmatney/org-blog"}
