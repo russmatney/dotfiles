@@ -171,6 +171,7 @@
   "Godot-SplashScreens"         {:workspace/directory "~/KenneyNL/Godot-SplashScreens"}
   "Godot-Text-Database"         {:workspace/directory "~/KoBeWi/Godot-Text-Database"}
   "Gut"                         {:workspace/directory "~/bitwes/Gut"}
+  "Metroidvania-System"         {:workspace/directory "~/KoBeWi/Metroidvania-System"}
   "Project-Map"                 {:workspace/directory "~/Yogoda/Project-Map"}
   "PuzzleScript"                {:workspace/directory "~/increpare/PuzzleScript"}
   "Seasons"                     {:workspace/directory "~/ydinkov/Seasons"}
