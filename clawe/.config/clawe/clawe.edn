@@ -168,12 +168,14 @@
   "Godello"                     {:workspace/directory "~/alfredbaudisch/Godello"}
   "Godot-3-2D-Day-Night-Cycle"  {:workspace/directory "~/hiulit/Godot-3-2D-Day-Night-Cycle"}
   "Godot-Mixing-Desk"           {:workspace/directory "~/kyzfrintin/Godot-Mixing-Desk"}
+  "Godot-SplashScreens"         {:workspace/directory "~/KenneyNL/Godot-SplashScreens"}
   "Godot-Text-Database"         {:workspace/directory "~/KoBeWi/Godot-Text-Database"}
   "Gut"                         {:workspace/directory "~/bitwes/Gut"}
   "Project-Map"                 {:workspace/directory "~/Yogoda/Project-Map"}
   "PuzzleScript"                {:workspace/directory "~/increpare/PuzzleScript"}
   "Seasons"                     {:workspace/directory "~/ydinkov/Seasons"}
   "Spicetify"                   {:workspace/directory "~/Comfy-Themes/Spicetify"}
+  "SteamDesktopAuthenticator"   {:workspace/directory "~/Jessecar96/SteamDesktopAuthenticator"}
   "TilePIpe"                    {:workspace/directory "~/aleksandrbazhin/TilePIpe"}
   "Twinned-FediVerseGame"       {:workspace/directory "~/spots1000/Twinned-FediVerseGame"}
   "ViewportPlus"                {:workspace/directory "~/NesiAwesomeneess/ViewportPlus"}
@@ -219,6 +221,7 @@
   "fishgame-godot"              {:workspace/directory "~/heroiclabs/fishgame-godot"}
   "game-assets"                 {:workspace/directory "~/game-assets"}
   "gatt"                        {:workspace/directory "~/sesopenko/gatt"}
+  "gdUnit4"                     {:workspace/directory "~/MikeSchulze/gdUnit4"}
   "gdfxr"                       {:workspace/directory "~/timothyqiu/gdfxr"}
   "gdlisp"                      {:workspace/directory "~/Mercerenies/gdlisp"}
   "girouette"                   {:workspace/directory "~/green-coder/girouette"}
@@ -228,6 +231,7 @@
   "godot-actions"               {:workspace/directory "~/bend-n/godot-actions"}
   "godot-aseprite-wizard"       {:workspace/directory "~/viniciusgerevini/godot-aseprite-wizard"}
   "godot-ci"                    {:workspace/directory "~/abarichello/godot-ci"}
+  "godot-debug-builds"          {:workspace/directory "~/Calinou/godot-debug-builds"}
   "godot-demo-projects"         {:workspace/directory "~/godotengine/godot-demo-projects"}
   "godot-docs"                  {:workspace/directory "~/godotengine/godot-docs"}
   "godot-edn"                   {:git/status true :workspace/directory "~/russmatney/godot-edn"}
