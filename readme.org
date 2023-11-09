@@ -15,11 +15,6 @@
 #+html:   <a href="https://www.patreon.com/russmatney">
 #+html:     <img src="https://img.shields.io/badge/Patreon-red?style=for-the-badge&logo=patreon&logoColor=white" alt="Patreon Badge"/>
 #+html:   </a>
-#+html:   <a href="https://store.steampowered.com/app/2589550/Dino/">
-#+html:     <img
-#+html:     src="https://img.shields.io/badge/add%20to%20wishlist%20-%20?style=for-the-badge&logo=steam&label=steam&color=55abef"
-#+html:     alt="Dino on Steam" >
-#+html:   </a>
 #+html:   <a href="https://discord.gg/xZHWtGfAvF">
 #+html:     <img alt="Discord" src="https://img.shields.io/discord/758750490015563776?style=for-the-badge&logo=discord&logoColor=fff&label=discord" />
 #+html:   </a>
