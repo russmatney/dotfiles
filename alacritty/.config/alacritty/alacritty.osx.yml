@@ -7,15 +7,26 @@ window:
   decorations: Transparent
 
 
+# font:
+#   normal:
+#     family: Meslo LG S for Powerline
+#     style: Regular
+#   bold:
+#     family: Meslo LG S for Powerline
+#     style: Bold
+#   italic:
+#     family: Meslo LG S for Powerline
+#     style: Italic
+
 font:
   normal:
-    family: Meslo LG S for Powerline
+    family: FiraCode Nerd Font
     style: Regular
   bold:
-    family: Meslo LG S for Powerline
+    family: FiraCode Nerd Font
     style: Bold
   italic:
-    family: Meslo LG S for Powerline
+    family: FiraCode Nerd Font
     style: Italic
 
   size: 15.0
