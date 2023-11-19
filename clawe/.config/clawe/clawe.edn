@@ -237,6 +237,7 @@
   "godot-docs"                  {:workspace/directory "~/godotengine/godot-docs"}
   "godot-edn"                   {:git/status true :workspace/directory "~/russmatney/godot-edn"}
   "godot-filesystem-view"       {:workspace/directory "~/zaevi/godot-filesystem-view"}
+  "godot-game-settings"         {:workspace/directory "~/PunchablePlushie/godot-game-settings"}
   "godot-git-plugin"            {:workspace/directory "~/godotengine/godot-git-plugin"}
   "godot-html-export"           {:workspace/directory "~/dulvui/godot-html-export"}
   "godot-next"                  {:workspace/directory "~/godot-extended-libraries/godot-next"}
@@ -266,8 +267,8 @@
   "mealprep"                    {:git/status true :workspace/directory "~/russmatney/mealprep"}
   "morphe"                      {:workspace/directory "~/Workiva/morphe"}
   "my_first_flutter_app"        {:workspace/directory "~/russmatney/my_first_flutter_app"}
-  "neil"                        {:workspace/directory "~/babashka/neil"}
   "nanowrimo"                   {:workspace/directory "~/Dropbox/Writing/nanowrimo-2023"}
+  "neil"                        {:workspace/directory "~/babashka/neil"}
   "new-blog"                    {:workspace/directory "~/russmatney/new-blog"}
   "obs"                         {:workspace/directory "~/russmatney/obs-recordings" :workspace/preferred-index 0}
   "org-blog"                    {:workspace/directory "~/russmatney/org-blog"}
