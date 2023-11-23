@@ -358,6 +358,8 @@
         "https://twitch.tv/russmatney"
         "https://mastodon.gamedev.place/@russmatney"
         "https://programming.dev/u/russmatney"
+        "https://store.steampowered.com/app/2589550/Dino"
+        "https://discord.gg/xZHWtGfAvF" ;; discord invite
         ))
 
 (after! org
