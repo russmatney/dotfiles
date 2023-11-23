@@ -299,6 +299,7 @@
   "the-great-tree"              {:workspace/directory "~/dandeliondino/the-great-tree"}
   "tools.namespace"             {:workspace/directory "~/clojure/tools.namespace"}
   "topgrade"                    {:workspace/directory "~/topgrade-rs/topgrade"}
+  "vapor"                       {:workspace/directory "~/russmatney/vapor"}
   "viewers"                     {:workspace/directory "~/nextjournal/viewers"}
   "watch"                       {:workspace/directory "~/rads/watch"}
   "when-is-my-ride"             {:workspace/directory "~/jackrr/when-is-my-ride"}}}
