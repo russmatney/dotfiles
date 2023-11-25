@@ -243,7 +243,7 @@
        ;;terra
        ;; web               ; the tubes
        yaml
-       ;; zig
+       zig
 
        :email
        ;;(mu4e +gmail)
