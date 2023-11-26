@@ -4,6 +4,6 @@
 (use-package! kubernetes-evil
   :after kubernetes)
 
-(use-package! kele
-  :config
-  (kele-mode 1))
+;; (use-package! kele
+;;   :config
+;;   (kele-mode 1))

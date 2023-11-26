@@ -67,11 +67,11 @@
 
 ;; clojure
 
-(package! clojure-mode :pin "481ca480e8b7b6c90881f8bd8434addab1d33778")
-(package! clj-refactor :pin "b390a17a2b0db2bb7d2b0d1cf014513cc1346e4c")
-(package! cider :pin "9c605cd4938c0055c2766c55606f19ecbf664e8e")
+;; (package! clojure-mode :pin "481ca480e8b7b6c90881f8bd8434addab1d33778")
+;; (package! clj-refactor :pin "b390a17a2b0db2bb7d2b0d1cf014513cc1346e4c")
+;; (package! cider :pin "9c605cd4938c0055c2766c55606f19ecbf664e8e")
 
-(package! neil :recipe (:host github :repo "babashka/neil" :files ("*.el")))
+;; (package! neil :recipe (:host github :repo "babashka/neil" :files ("*.el")))
 
 (package! aggressive-indent)
 
