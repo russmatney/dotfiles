@@ -300,6 +300,7 @@
   "the-great-tree"              {:workspace/directory "~/dandeliondino/the-great-tree"}
   "tools.namespace"             {:workspace/directory "~/clojure/tools.namespace"}
   "topgrade"                    {:workspace/directory "~/topgrade-rs/topgrade"}
+  "uwm"                         {:workspace/directory "~/MaFackler/uwm"}
   "vapor"                       {:workspace/directory "~/russmatney/vapor"}
   "viewers"                     {:workspace/directory "~/nextjournal/viewers"}
   "watch"                       {:workspace/directory "~/rads/watch"}

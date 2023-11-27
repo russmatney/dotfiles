@@ -243,7 +243,7 @@
        ;;terra
        ;; web               ; the tubes
        yaml
-       zig
+       (zig +lsp +tree-sitter)
 
        :email
        ;;(mu4e +gmail)
