@@ -163,6 +163,13 @@ bindkey -M vicmd 'k' to-tmux-copy-mode \
                  'p' my-paste \
                  '-' choose-session
 
+################################################################################
+# Gerbil
+################################################################################
+
+if [ -f '/opt/gerbil/bin/gerbil' ]; then
+  export PATH="/opt/gerbil/bin/gxi:/opt/gerbil/bin/gxc:$PATH";
+fi
 
 ################################################################################
 # Gcloud

@@ -235,7 +235,7 @@
        ;;ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        (rust +lsp)              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
-       ;;scheme
+       (scheme +gambit)
        sh        ; she sells (ba|z|fi)sh shells on the C xor
        ;;sml
        ;;solidity

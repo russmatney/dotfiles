@@ -226,6 +226,7 @@
   "gdUnit4"                     {:workspace/directory "~/MikeSchulze/gdUnit4"}
   "gdfxr"                       {:workspace/directory "~/timothyqiu/gdfxr"}
   "gdlisp"                      {:workspace/directory "~/Mercerenies/gdlisp"}
+  "gerbil"                      {:workspace/directory "~/mighty-gerbils/gerbil"}
   "girouette"                   {:workspace/directory "~/green-coder/girouette"}
   "gitops"                      {:workspace/directory "~/russmatney/gitops"}
   "godot"                       {:workspace/directory "~/godotengine/godot"}
