@@ -46,7 +46,12 @@
         ("PILL" . +org-todo-active)
         ("[?]" . +org-todo-onhold)
         ("WAIT" . +org-todo-onhold)
-        ("HOLD" . +org-todo-onhold)))
+        ("HOLD" . +org-todo-onhold))
+
+      org-global-properties
+      '(("Effort_ALL" . "1 2 3 5 8 13 21 34 55")
+        )
+      )
 
 ;; allow refiling into a file without choosing a headline
 (setq org-refile-use-outline-path 'file
