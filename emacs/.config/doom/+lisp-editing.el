@@ -9,6 +9,7 @@
   (clojure-mode . aggressive-indent-mode)
   (emacs-lisp-mode . aggressive-indent-mode)
   (lisp-mode . aggressive-indent-mode)
+  (gerbil-mode . aggressive-indent-mode)
 
   :config
   (setq clojure-indent-style 'align-arguments)
@@ -49,6 +50,7 @@
   (emacs-lisp-mode . lispyville-mode)
   (clojure-mode . lispyville-mode)
   (lisp-mode . lispyville-mode)
+  (gerbil-mode . lispyville-mode)
 
   :config
   (lispyville-set-key-theme

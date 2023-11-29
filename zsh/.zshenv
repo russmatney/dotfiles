@@ -2,6 +2,11 @@
 # moved here to allow non-interactive modes to use it
 export PATH="$HOME/.local/bin/:$HOME/n/bin:$PATH"
 
+# Gerbil
+if [ -f '/opt/gerbil/bin/gerbil' ]; then
+  export PATH="/opt/gerbil/bin/:$PATH";
+fi
+
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 

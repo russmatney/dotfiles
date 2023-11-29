@@ -166,6 +166,7 @@ reload dir-locals."
 (load! "+godot")
 (load! "+kubernetes")
 (load! "+discord")
+(load! "+gerbil")
 ;; (load! "+exwm")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
