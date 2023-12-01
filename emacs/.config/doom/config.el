@@ -16,6 +16,20 @@
       mac-right-option-modifier 'meta
       ns-right-option-modifier 'meta)
 
+
+;; Fonts ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(if (not IS-MAC)
+    (setq doom-font (font-spec :family "RobotoMono Nerd Font" :size 20 :slant 'normal)
+          doom-variable-pitch-font (font-spec :family "Hack Nerd Font" :slant 'normal)
+          doom-serif-font (font-spec :family "Hack Nerd Font" :slant 'normal)
+          doom-symbol-font (font-spec :family "DejaVuSansMono Nerd Font Mono")
+          doom-big-font (font-spec :family "SpaceMono Nerd Font" :size 24 :slant 'normal)))
+
+(comment
+ (doom/increase-font-size 1)
+ (doom/decrease-font-size 1))
+
 ;; theme
 ;; (setq doom-theme 'doom-one-light)
 ;; (setq doom-theme 'doom-solarized-light)
