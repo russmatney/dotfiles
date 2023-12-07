@@ -183,8 +183,8 @@
   "aave"                        {:workspace/directory "~/teknql/aave"}
   "advent-of-babashka-template" {:workspace/directory "~/borkdude/advent-of-babashka-template"}
   "advent-of-code"              {:workspace/directory "~/russmatney/advent-of-code"}
-  "advent-of-code-zig"          {:workspace/directory "~/russmatney/advent-of-code-zig"}
   "advent-of-code-gerbil"       {:workspace/directory "~/russmatney/advent-of-code-gerbil"}
+  "advent-of-code-zig"          {:workspace/directory "~/russmatney/advent-of-code-zig"}
   "advent-of-godot"             {:workspace/directory "~/russmatney/advent-of-godot"}
   "apple-platform-rs"           {:workspace/directory "~/indygreg/apple-platform-rs"}
   "aseprite"                    {:workspace/directory "~/aseprite/aseprite"}
