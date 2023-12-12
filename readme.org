@@ -41,14 +41,14 @@ Via Doom Emacs. See ~emacs/.doom.d/*~.
 
 Quick links:
 
-- Doom modules: [[file:./emacs/.doom.d/init.el][.doom.d/init.el]]
-- Main config: [[file:./emacs/.doom.d/config.el][.doom.d/config.el]]
-- Packages: [[file:./emacs/.doom.d/packages.el][.doom.d/packages.el]]
+- Doom modules: [[file:./emacs/.config/doom/init.el][.config/doom/init.el]]
+- Main config: [[file:./emacs/.config/doom/config.el][.config/doom/config.el]]
+- Packages: [[file:./emacs/.config/doom/packages.el][.config/doom/packages.el]]
 
-- Keybindings: [[file:./emacs/.doom.d/+bindings.el][.doom.d/+bindings.el]]
-- Hydra: [[file:./emacs/.doom.d/+hydra.el][.doom.d/+hydra.el]]
-- Org: [[file:./emacs/.doom.d/+org-custom.el][.doom.d/+org-custom.el]]
-- Langs: [[file:./emacs/.doom.d/+langs.el][.doom.d/+langs.el]]
+- Keybindings: [[file:./emacs/.config/doom/+bindings.el][.config/doom/+bindings.el]]
+- Hydra: [[file:./emacs/.config/doom/+hydra.el][.config/doom/+hydra.el]]
+- Org: [[file:./emacs/.config/doom/+org-custom.el][.config/doom/+org-custom.el]]
+- Langs: [[file:./emacs/.config/doom/+langs.el][.config/doom/+langs.el]]
 * Tmux
 Tmux allows terminal sessions to persist after Alacritty (or whatever terminal
 program) is closed/re-opened.
