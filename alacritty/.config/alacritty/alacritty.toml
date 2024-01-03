@@ -1,6 +1,6 @@
 # "debug.render_timer" = false
-import = ["/home/russ/.config/alacritty/alacritty.linux.toml"]
-# import = ["/home/russ/.config/alacritty/alacritty.osx.toml"]
+# import = ["/home/russ/.config/alacritty/alacritty.linux.toml"]
+import = ["/home/russ/.config/alacritty/alacritty.osx.toml"]
 live_config_reload = true
 
 [bell]
@@ -982,7 +982,7 @@ columns = 80
 lines = 24
 
 [window.padding]
-# x = 2
-# y = 20
-x = 0
-y = 0
+x = 2
+y = 20
+# x = 0
+# y = 0
