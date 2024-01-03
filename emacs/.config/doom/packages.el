@@ -76,6 +76,7 @@
 (package! aggressive-indent)
 
 (package! evil)
+(package! evil-collection :pin "2eb68ac588f68c7d6706618754524595138900a1")
 (package! lispy)
 (package! lispyville)
 

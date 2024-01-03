@@ -74,7 +74,6 @@
        doom-dashboard    ; a nifty splash screen for Emacs
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
        ;;(emoji +unicode)  ; 🙂
-       ;;fill-column
        hl-todo           ; highlight TODO/FIXME/NOTE tags
        hydra
        ;;indent-guides
@@ -135,6 +134,7 @@
        :tools
        ;;ansible
        ;;biblio
+       ;;collab
        debugger          ; FIXME stepping through code, to help you add bugs
        direnv
        docker
@@ -154,6 +154,7 @@
        ;; taskrunner        ; taskrunner for all your projects
        ;;terraform       ; infrastructure as code
        tmux              ; an API for interacting with tmux
+       tree-sitter
        ;;upload          ; map local to remote projects via ssh/ftp
 
        :os
@@ -225,7 +226,7 @@
        ;;ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        (rust +lsp)              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
-       (scheme +gambit)
+       ;; (scheme +gambit)
        sh        ; she sells (ba|z|fi)sh shells on the C xor
        ;;sml
        ;;solidity

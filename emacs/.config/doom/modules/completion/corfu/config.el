@@ -58,10 +58,6 @@
                  "s"       #'cape-ispell
                  "C-n"     #'cape-keyword
                  "C-f"     #'cape-file))
-  (after! evil
-    (advice-add 'corfu--setup :after 'evil-normalize-keymaps)
-    (advice-add 'corfu--teardown :after 'evil-normalize-keymaps)
-    (evil-make-overriding-map corfu-map))
 
   (defadvice! +corfu--org-return (orig) :around '+org/return
     (if (and (modulep! :completion corfu)
