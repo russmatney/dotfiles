@@ -147,3 +147,5 @@
 (package! fabb :recipe (:local-repo "fabb" :build (:not compile)))
 (package! ink-mode :recipe (:local-repo "ink-mode" :build (:not compile)))
 (package! gdscript-mode :recipe (:local-repo "gdscript-mode" :build (:not compile)))
+
+(package! org-trello :recipe (:build (:not compile)))

@@ -1,4 +1,4 @@
-;;; ../dotfiles/emacs/.doom.d/+fabb.el -*- lexical-binding: t; -*-
+;;; ~/.config/doom/+fabb.el -*- lexical-binding: t; -*-
 
 
 (map!

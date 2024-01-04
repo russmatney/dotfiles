@@ -182,6 +182,7 @@ reload dir-locals."
 (load! "+discord")
 (load! "+gerbil")
 ;; (load! "+exwm")
+(load! "+trello")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
