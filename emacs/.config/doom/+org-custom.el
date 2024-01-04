@@ -95,6 +95,8 @@
           (s-contains? "watches" s)))
        (file-expand-wildcards "~/Dropbox/todo/*.org")))
 
+(setq org-trello-files '("~/Dropbox/todo/studio_trello.org")
+      org-trello-add-tags nil)
 
 (setq org-roam-file-exclude-regexp
       ;; this is actually compared to a relative path, despite org-attach-id-dir not being one
