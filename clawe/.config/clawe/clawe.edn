@@ -221,8 +221,9 @@
   "dotfiles"                    {:git/status                true
                                  :workspace/directory       "~/russmatney/dotfiles"
                                  :workspace/preferred-index 0}
-  "dothop"                      {:git/status          true
-                                 :workspace/directory "~/russmatney/dothop"}
+  "dothop"                      {:git/status                true
+                                 :workspace/directory       "~/russmatney/dothop"
+                                 :workspace/preferred-index 3}
   "editscript"                  {:workspace/directory "~/juji-io/editscript"}
   "fabb"                        {:workspace/directory "~/teknql/fabb"}
   "fishgame-godot"              {:workspace/directory "~/heroiclabs/fishgame-godot"}
