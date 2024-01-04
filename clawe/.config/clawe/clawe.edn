@@ -139,6 +139,8 @@
                       :client/app-names       ["clove"]
                       :client/window-title    "twitch-viewers"
                       :client/workspace-title "widgets"}
+  "unity"            {:client/app-names       ["unity"]
+                      :client/workspace-title "unity"}
   "web"              {:client/app-names       ["Safari" "firefox"]
                       :client/create          ralphie.browser/open
                       :client/workspace-title "browsers"
@@ -219,6 +221,8 @@
   "dotfiles"                    {:git/status                true
                                  :workspace/directory       "~/russmatney/dotfiles"
                                  :workspace/preferred-index 0}
+  "dothop"                      {:git/status          true
+                                 :workspace/directory "~/russmatney/dothop"}
   "editscript"                  {:workspace/directory "~/juji-io/editscript"}
   "fabb"                        {:workspace/directory "~/teknql/fabb"}
   "fishgame-godot"              {:workspace/directory "~/heroiclabs/fishgame-godot"}
@@ -268,8 +272,8 @@
   "malli"                       {:workspace/directory "~/metosin/malli"}
   "mate"                        {:workspace/directory "~/green-coder/mate"}
   "mealprep"                    {:git/status true :workspace/directory "~/russmatney/mealprep"}
-  "monkeyball"                  {:workspace/directory "~/russmatney/monkeyball"}
   "morphe"                      {:workspace/directory "~/Workiva/morphe"}
+  "munksphere"                  {:workspace/directory "~/russmatney/monkeyball"}
   "my_first_flutter_app"        {:workspace/directory "~/russmatney/my_first_flutter_app"}
   "nanowrimo"                   {:workspace/directory "~/Dropbox/Writing/nanowrimo-2023"}
   "neil"                        {:workspace/directory "~/babashka/neil"}
@@ -279,6 +283,7 @@
   "org-blog-content"            {:git/status true :workspace/directory "~/russmatney/org-blog-content"}
   "org-crud"                    {:git/status true :workspace/directory "~/russmatney/org-crud"}
   "org-roam"                    {:workspace/directory "~/org-roam/org-roam"}
+  "org-trello"                  {:workspace/directory "~/org-trello/org-trello"}
   "pandora"                     {:workspace/directory "~/bitbrain/pandora"}
   "picture-pages"               {:workspace/directory "~/russmatney/picture-pages"}
   "pirates"                     {:workspace/directory "~/russmatney/pirates"}
@@ -292,6 +297,7 @@
   "re-db"                       {:workspace/directory "~/mhuebert/re-db"}
   "repertoire-maker"            {:workspace/directory "~/Camsbury/repertoire-maker"}
   "rewrite-clj"                 {:workspace/directory "~/clj-commons/rewrite-clj"}
+  "river"                       {:workspace/directory "~/riverwm/river"}
   "russmatney"                  {:workspace/directory "~/russmatney/russmatney"}
   "shadow-grove"                {:workspace/directory "~/thheller/shadow-grove"}
   "slack"                       {:workspace/preferred-index 9}
