@@ -139,8 +139,7 @@
                       :client/app-names       ["clove"]
                       :client/window-title    "twitch-viewers"
                       :client/workspace-title "widgets"}
-  "unity"            {:client/app-names       ["unity"]
-                      :client/workspace-title "unity"}
+  "unity"            {:client/app-names ["unity"] :client/workspace-title "unity"}
   "web"              {:client/app-names       ["Safari" "firefox"]
                       :client/create          ralphie.browser/open
                       :client/workspace-title "browsers"
@@ -221,9 +220,10 @@
   "dotfiles"                    {:git/status                true
                                  :workspace/directory       "~/russmatney/dotfiles"
                                  :workspace/preferred-index 0}
-  "dothop"                      {:git/status                true
-                                 :workspace/directory       "~/russmatney/dothop"
-                                 :workspace/preferred-index 3}
+  "smash-fam"
+  {:git/status true :workspace/directory "~/russmatney/smash-fam" :workspace/preferred-index 3}
+  "dothop"
+  {:git/status true :workspace/directory "~/russmatney/dothop" :workspace/preferred-index 3}
   "editscript"                  {:workspace/directory "~/juji-io/editscript"}
   "fabb"                        {:workspace/directory "~/teknql/fabb"}
   "fishgame-godot"              {:workspace/directory "~/heroiclabs/fishgame-godot"}
