@@ -553,3 +553,5 @@ case "$OSTYPE" in
     export PATH="$PATH:$HOME/.config/itch/apps/butler"
     ;;
 esac
+
+eval "$(atuin init zsh)"
