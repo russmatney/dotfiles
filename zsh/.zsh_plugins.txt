@@ -1,4 +1,4 @@
-# zsh plugins for use with antibody
+# zsh plugins for use with antibody/antidote
 
 zsh-users/zsh-completions
 caarlos0/zsh-mkc
@@ -7,52 +7,52 @@ Tarrasch/zsh-autoenv
 Tarrasch/zsh-colors
 chisui/zsh-nix-shell
 
-robbyrussell/oh-my-zsh
-robbyrussell/oh-my-zsh path:plugins/aws
-robbyrussell/oh-my-zsh path:plugins/brew
-robbyrussell/oh-my-zsh path:plugins/cabal
-robbyrussell/oh-my-zsh path:plugins/command-not-found
-robbyrussell/oh-my-zsh path:plugins/common-aliases
-robbyrussell/oh-my-zsh path:plugins/compleat
-robbyrussell/oh-my-zsh path:plugins/dircycle
-# robbyrussell/oh-my-zsh path:plugins/dirhistory
-robbyrussell/oh-my-zsh path:plugins/docker
-robbyrussell/oh-my-zsh path:plugins/docker-compose
-robbyrussell/oh-my-zsh path:plugins/fasd
-robbyrussell/oh-my-zsh path:plugins/gas
-robbyrussell/oh-my-zsh path:plugins/geeknote
-robbyrussell/oh-my-zsh path:plugins/gpg-agent
-robbyrussell/oh-my-zsh path:plugins/git
-robbyrussell/oh-my-zsh path:plugins/gitfast
-robbyrussell/oh-my-zsh path:plugins/git-extras
-robbyrussell/oh-my-zsh path:plugins/git-flow
-robbyrussell/oh-my-zsh path:plugins/git-flow-avh
-robbyrussell/oh-my-zsh path:plugins/git-hubflow
-robbyrussell/oh-my-zsh path:plugins/github
-robbyrussell/oh-my-zsh path:plugins/httpie
-robbyrussell/oh-my-zsh path:plugins/history
-robbyrussell/oh-my-zsh path:plugins/jsontools
-robbyrussell/oh-my-zsh path:plugins/kubectl
-robbyrussell/oh-my-zsh path:plugins/last-working-dir
-robbyrussell/oh-my-zsh path:plugins/node
-robbyrussell/oh-my-zsh path:plugins/npm
-# robbyrussell/oh-my-zsh path:plugins/osx
-# robbyrussell/oh-my-zsh path:plugins/per-directory-history
-robbyrussell/oh-my-zsh path:plugins/pip
-robbyrussell/oh-my-zsh path:plugins/python
-robbyrussell/oh-my-zsh path:plugins/pylint
-# robbyrussell/oh-my-zsh path:plugins/pyenv
-robbyrussell/oh-my-zsh path:plugins/rand-quote
-robbyrussell/oh-my-zsh path:plugins/repo
-# robbyrussell/oh-my-zsh path:plugins/ssh-agent
-robbyrussell/oh-my-zsh path:plugins/sudo
-robbyrussell/oh-my-zsh path:plugins/taskwarrior
-robbyrussell/oh-my-zsh path:plugins/tig
-robbyrussell/oh-my-zsh path:plugins/tmux
-robbyrussell/oh-my-zsh path:plugins/urltools
-robbyrussell/oh-my-zsh path:plugins/vi-mode
-robbyrussell/oh-my-zsh path:plugins/web-search
-robbyrussell/oh-my-zsh path:plugins/yarn
+ohmyzsh/ohmyzsh
+ohmyzsh/ohmyzsh path:plugins/aws
+ohmyzsh/ohmyzsh path:plugins/brew
+ohmyzsh/ohmyzsh path:plugins/cabal
+ohmyzsh/ohmyzsh path:plugins/command-not-found
+ohmyzsh/ohmyzsh path:plugins/common-aliases
+ohmyzsh/ohmyzsh path:plugins/compleat
+ohmyzsh/ohmyzsh path:plugins/dircycle
+# ohmyzsh/ohmyzsh path:plugins/dirhistory
+ohmyzsh/ohmyzsh path:plugins/docker
+ohmyzsh/ohmyzsh path:plugins/docker-compose
+ohmyzsh/ohmyzsh path:plugins/fasd
+# ohmyzsh/ohmyzsh path:plugins/gas
+ohmyzsh/ohmyzsh path:plugins/geeknote
+ohmyzsh/ohmyzsh path:plugins/gpg-agent
+ohmyzsh/ohmyzsh path:plugins/git
+ohmyzsh/ohmyzsh path:plugins/gitfast
+ohmyzsh/ohmyzsh path:plugins/git-extras
+ohmyzsh/ohmyzsh path:plugins/git-flow
+ohmyzsh/ohmyzsh path:plugins/git-flow-avh
+ohmyzsh/ohmyzsh path:plugins/git-hubflow
+ohmyzsh/ohmyzsh path:plugins/github
+# ohmyzsh/ohmyzsh path:plugins/httpie
+ohmyzsh/ohmyzsh path:plugins/history
+ohmyzsh/ohmyzsh path:plugins/jsontools
+ohmyzsh/ohmyzsh path:plugins/kubectl
+ohmyzsh/ohmyzsh path:plugins/last-working-dir
+ohmyzsh/ohmyzsh path:plugins/node
+ohmyzsh/ohmyzsh path:plugins/npm
+# ohmyzsh/ohmyzsh path:plugins/osx
+# ohmyzsh/ohmyzsh path:plugins/per-directory-history
+ohmyzsh/ohmyzsh path:plugins/pip
+ohmyzsh/ohmyzsh path:plugins/python
+ohmyzsh/ohmyzsh path:plugins/pylint
+# ohmyzsh/ohmyzsh path:plugins/pyenv
+ohmyzsh/ohmyzsh path:plugins/rand-quote
+ohmyzsh/ohmyzsh path:plugins/repo
+# ohmyzsh/ohmyzsh path:plugins/ssh-agent
+ohmyzsh/ohmyzsh path:plugins/sudo
+ohmyzsh/ohmyzsh path:plugins/taskwarrior
+ohmyzsh/ohmyzsh path:plugins/tig
+ohmyzsh/ohmyzsh path:plugins/tmux
+ohmyzsh/ohmyzsh path:plugins/urltools
+ohmyzsh/ohmyzsh path:plugins/vi-mode
+ohmyzsh/ohmyzsh path:plugins/web-search
+ohmyzsh/ohmyzsh path:plugins/yarn
 
 # https://gist.github.com/rschmukler/7d9317cde82c58be965d rs2.zsh-theme
 
@@ -62,7 +62,7 @@ zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-history-substring-search
 
 jonmosco/kube-ps1
-ahmetb/kubectx
+# ahmetb/kubectx
 
 johanhaleby/kubetail
 

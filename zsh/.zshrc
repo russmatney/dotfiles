@@ -23,30 +23,34 @@ alias 'zz'='source ~/.zshrc'
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 
-################################################################################
-# Antibody setup
-################################################################################
+# Antidote ################################################################################
 
-# From oh-my-zsh
-export ZSH="$(antibody path robbyrussell/oh-my-zsh)"
-# export ZSH_CACHE_DIR="$(antibody path robbyrussell/oh-my-zsh)/cache"
-DISABLE_AUTO_UPDATE="true"
+if [ -f /usr/share/zsh-antidote/antidote.zsh ]; then
+  source '/usr/share/zsh-antidote/antidote.zsh'
+  antidote load
+else
+  # From oh-my-zsh
+  export ZSH="$(antibody path robbyrussell/oh-my-zsh)"
+  # export ZSH_CACHE_DIR="$(antibody path robbyrussell/oh-my-zsh)/cache"
+  DISABLE_AUTO_UPDATE="true"
 
-# speedier? does not seem to make a difference
-# skip_global_compinit=1
+  # speedier? does not seem to make a difference
+  # skip_global_compinit=1
 
-# antibody dynamic load
-# source <(antibody init)
-# antibody bundle < ~/.zsh_plugins.txt
+  # antibody dynamic load
+  # source <(antibody init)
+  # antibody bundle < ~/.zsh_plugins.txt
 
-# antibody static load
-source ~/.zsh_plugins.sh
+  # antibody static load
+  source ~/.zsh_plugins.sh
 
-# rebuild antibody static
-alias 'ra'='antibody bundle \
-            < ~/.zsh_plugins.txt \
-            > ~/.zsh_plugins.sh && \
-            antibody update'
+  # rebuild antibody static
+  alias 'ra'='antibody bundle \
+              < ~/.zsh_plugins.txt \
+              > ~/.zsh_plugins.sh && \
+              antibody update'
+fi
+
 
 if type brew &>/dev/null
 then
