@@ -75,6 +75,10 @@
                       :client/window-title "journal"
                       :hide/type           :hide/scratchpad
                       :match/soft-title    true}
+  "kdenlive"         {:bury/ignore            true
+                      :client/app-names       ["kdenlive"]
+                      :client/workspace-title "kdenlive"
+                      :match/skip-title       true}
   "messages"
   {:client/app-names ["Messages"] :client/workspace-title "messages" :match/skip-title true}
   "mindnode"
@@ -220,8 +224,6 @@
   "dotfiles"                    {:git/status                true
                                  :workspace/directory       "~/russmatney/dotfiles"
                                  :workspace/preferred-index 0}
-  "smash-fam"
-  {:git/status true :workspace/directory "~/russmatney/smash-fam" :workspace/preferred-index 3}
   "dothop"
   {:git/status true :workspace/directory "~/russmatney/dothop" :workspace/preferred-index 3}
   "editscript"                  {:workspace/directory "~/juji-io/editscript"}
@@ -232,6 +234,7 @@
   "gdUnit4"                     {:workspace/directory "~/MikeSchulze/gdUnit4"}
   "gdfxr"                       {:workspace/directory "~/timothyqiu/gdfxr"}
   "gdlisp"                      {:workspace/directory "~/Mercerenies/gdlisp"}
+  "generate-steam-boxart"       {:workspace/directory "~/russmatney/generate-steam-boxart"}
   "gerbil"                      {:workspace/directory "~/mighty-gerbils/gerbil"}
   "girouette"                   {:workspace/directory "~/green-coder/girouette"}
   "gitops"                      {:workspace/directory "~/russmatney/gitops"}
@@ -267,6 +270,7 @@
   "instaparse-bb"               {:workspace/directory "~/babashka/instaparse-bb"}
   "journal"                     {:workspace/directory "~/todo" :workspace/preferred-index 1}
   "just"                        {:workspace/directory "~/casey/just"}
+  "kdenlive"                    {:workspace/directory "~/Dropbox/devlogs" :workspace/preferred-index 0}
   "lichess-docker"              {:workspace/directory "~/benediktwerner/lichess-docker"}
   "lila"                        {:workspace/directory "~/lichess-org/lila"}
   "lila-ws"                     {:workspace/directory "~/lichess-org/lila-ws"}
@@ -302,6 +306,9 @@
   "russmatney"                  {:workspace/directory "~/russmatney/russmatney"}
   "shadow-grove"                {:workspace/directory "~/thheller/shadow-grove"}
   "slack"                       {:workspace/preferred-index 9}
+  "smash-fam"                   {:git/status                true
+                                 :workspace/directory       "~/russmatney/smash-fam"
+                                 :workspace/preferred-index 3}
   "spicetify"                   {:workspace/directory "~/catppuccin/spicetify"}
   "spicetify-cli"               {:workspace/directory "~/spicetify/spicetify-cli"}
   "spicetify-themes"            {:workspace/directory "~/spicetify/spicetify-themes"}
