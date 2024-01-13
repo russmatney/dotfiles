@@ -207,7 +207,7 @@
         ;; +noter
         ;; +pandoc          ; pandoc integration into org's exporter
         ;; +pomodoro
-        ;; +present ; using Emacs for presentations
+        +present ; using Emacs for presentations
         +roam2)
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
