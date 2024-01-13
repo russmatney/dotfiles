@@ -193,6 +193,7 @@
   "advent-of-godot"             {:workspace/directory "~/russmatney/advent-of-godot"}
   "apple-platform-rs"           {:workspace/directory "~/indygreg/apple-platform-rs"}
   "aseprite"                    {:workspace/directory "~/aseprite/aseprite"}
+  "aseprite-scripting"          {:workspace/directory "~/russmatney/aseprite-scripting-examples"}
   "audacity"                    {:workspace/directory "~/game-assets/sounds/russmatney"}
   "bbin"                        {:workspace/directory "~/babashka/bbin"}
   "bean-of-the-wild"            {:workspace/directory "~/nagidev/bean-of-the-wild"}
@@ -234,7 +235,6 @@
   "gdUnit4"                     {:workspace/directory "~/MikeSchulze/gdUnit4"}
   "gdfxr"                       {:workspace/directory "~/timothyqiu/gdfxr"}
   "gdlisp"                      {:workspace/directory "~/Mercerenies/gdlisp"}
-  "generate-steam-boxart"       {:workspace/directory "~/russmatney/generate-steam-boxart"}
   "gerbil"                      {:workspace/directory "~/mighty-gerbils/gerbil"}
   "girouette"                   {:workspace/directory "~/green-coder/girouette"}
   "gitops"                      {:workspace/directory "~/russmatney/gitops"}
