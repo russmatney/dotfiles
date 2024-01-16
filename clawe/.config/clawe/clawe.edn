@@ -172,11 +172,13 @@
  {"BulletUpHell"                {:workspace/directory "~/Dark-Peace/BulletUpHell"}
   "Godello"                     {:workspace/directory "~/alfredbaudisch/Godello"}
   "Godot-3-2D-Day-Night-Cycle"  {:workspace/directory "~/hiulit/Godot-3-2D-Day-Night-Cycle"}
+  "Godot-Action-Icon"           {:workspace/directory "~/KoBeWi/Godot-Action-Icon"}
   "Godot-Mixing-Desk"           {:workspace/directory "~/kyzfrintin/Godot-Mixing-Desk"}
   "Godot-SplashScreens"         {:workspace/directory "~/KenneyNL/Godot-SplashScreens"}
   "Godot-Text-Database"         {:workspace/directory "~/KoBeWi/Godot-Text-Database"}
   "Gut"                         {:workspace/directory "~/bitwes/Gut"}
   "Metroidvania-System"         {:workspace/directory "~/KoBeWi/Metroidvania-System"}
+  "One-Minute-Unity"            {:workspace/directory "~/Keyiter/One-Minute-Unity"}
   "Project-Map"                 {:workspace/directory "~/Yogoda/Project-Map"}
   "PuzzleScript"                {:workspace/directory "~/increpare/PuzzleScript"}
   "Seasons"                     {:workspace/directory "~/ydinkov/Seasons"}
@@ -287,6 +289,7 @@
   "org-blog"                    {:workspace/directory "~/russmatney/org-blog"}
   "org-blog-content"            {:git/status true :workspace/directory "~/russmatney/org-blog-content"}
   "org-crud"                    {:git/status true :workspace/directory "~/russmatney/org-crud"}
+  "org-reveal"                  {:workspace/directory "~/yjwen/org-reveal"}
   "org-roam"                    {:workspace/directory "~/org-roam/org-roam"}
   "org-trello"                  {:workspace/directory "~/org-trello/org-trello"}
   "pandora"                     {:workspace/directory "~/bitbrain/pandora"}
@@ -317,6 +320,7 @@
   "the-great-tree"              {:workspace/directory "~/dandeliondino/the-great-tree"}
   "tools.namespace"             {:workspace/directory "~/clojure/tools.namespace"}
   "topgrade"                    {:workspace/directory "~/topgrade-rs/topgrade"}
+  "unity-pirate-emblem"         {:workspace/directory "~/russmatney/unity_pirate_emblem"}
   "uwm"                         {:workspace/directory "~/MaFackler/uwm"}
   "vapor"                       {:workspace/directory "~/russmatney/vapor"}
   "viewers"                     {:workspace/directory "~/nextjournal/viewers"}
