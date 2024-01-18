@@ -1,162 +1,166 @@
 {:client/defs
  {"aseprite"
   {:client/app-names ["aseprite"] :client/workspace-title "aseprite" :match/skip-title true}
-  "aseprite-preview" {:bury/ignore            true
-                      :client/app-names       ["preview"]
-                      :client/workspace-title "aseprite"
-                      :match/skip-title       true}
+  "aseprite-preview"     {:bury/ignore            true
+                          :client/app-names       ["preview"]
+                          :client/workspace-title "aseprite"
+                          :match/skip-title       true}
   "audacity"
   {:client/app-names ["audacity"] :client/workspace-title "audacity" :match/skip-title true}
-  "dashboard"        {:bury/ignore            true
-                      :client/app-names       ["clove"]
-                      :client/create          {:create/cmd           ralphie.tmux/fire
-                                               :tmux.fire/cmd        "bb --config ~/russmatney/clawe/bb.edn dashboard"
-                                               :tmux.fire/interrupt? true
-                                               :tmux.fire/session    "doctor-dashboard"}
-                      :client/window-title    "tauri-doctor-dashboard"
-                      :client/workspace-title "widgets"
-                      :focus/float-and-center false
-                      :focus/toggle-opts      [:focus.toggle/front-and-center :focus.toggle/bury
-                                               :focus.toggle/sticky-right
-                                               {:focus.toggle/workspace "widgets"}]
-                      :hide/type              :hide/scratchpad}
-  "devweb"           {:client/app-names       ["firefoxdeveloperedition" "firefox developer edition"
-                                               "google-chrome" "google chrome"]
-                      :client/create          ralphie.browser/open-dev
-                      :client/workspace-title "browsers"
-                      :hide/type              :hide/scratchpad
-                      :match/skip-title       true}
-  "discord"          {:client/app-names       ["Discord"]
-                      :client/create          "discord"
-                      :client/workspace-title "slack"
-                      :match/skip-title       true}
-  "doctor-be"        {:client/create {:create/cmd           ralphie.tmux/fire
-                                      :tmux.fire/cmd        "clawebb doctor-be"
-                                      :tmux.fire/interrupt? true
-                                      :tmux.fire/session    "clawe"
-                                      :tmux.fire/window     "1"}}
-  "doctor-fe"        {:client/create {:create/cmd           ralphie.tmux/fire
-                                      :tmux.fire/cmd        "clawebb clawe-fe"
-                                      :tmux.fire/interrupt? true
-                                      :tmux.fire/session    "clawe"
-                                      :tmux.fire/window     "2"}}
-  "emacs"            {:client/app-names          ["Emacs"]
-                      :client/create             {:create/cmd           ralphie.emacs/open
-                                                  :emacs.open/directory :create/use-workspace-directory
-                                                  :emacs.open/workspace :create/use-workspace-title}
-                      :focus/float-and-center    true
-                      :hide/type                 :hide/close
-                      :match/use-workspace-title true}
-  "focus"            {:bury/ignore            true
-                      :client/app-names       ["clove"]
-                      :client/create          {:create/cmd           ralphie.tmux/fire
-                                               :tmux.fire/cmd        "bb --config ~/russmatney/clawe/bb.edn focus"
-                                               :tmux.fire/interrupt? true
-                                               :tmux.fire/session    "doctor-focus"}
-                      :client/window-title    "tauri-doctor-focus"
-                      :client/workspace-title "widgets"
-                      :focus/float-and-center false
-                      :focus/toggle-opts      [:focus.toggle/front-and-center :focus.toggle/bury
-                                               :focus.toggle/sticky-right {:focus.toggle/workspace "widgets"}]
-                      :hide/type              :hide/scratchpad}
-  "godot"            {:client/app-names          ["godot" "godot_engine"]
-                      :client/create             {:create/cmd          ralphie.tmux/fire
-                                                  :tmux.fire/cmd       "godot -e"
-                                                  :tmux.fire/directory :create/use-workspace-directory
-                                                  :tmux.fire/session   :create/use-workspace-title}
-                      :client/workspace-title    "godot"
-                      :match/soft-title          true
-                      :match/use-workspace-title true
-                      :merge/skip-title          true}
-  "journal"          {:client/app-names    ["Emacs"]
-                      :client/create       {:create/cmd           ralphie.emacs/open
-                                            :emacs.open/file      "~/todo/journal.org"
-                                            :emacs.open/workspace "journal"}
-                      :client/window-title "journal"
-                      :hide/type           :hide/scratchpad
-                      :match/soft-title    true}
-  "kdenlive"         {:bury/ignore            true
-                      :client/app-names       ["kdenlive"]
-                      :client/workspace-title "kdenlive"
-                      :match/skip-title       true}
+  "dashboard"            {:bury/ignore            true
+                          :client/app-names       ["clove"]
+                          :client/create          {:create/cmd           ralphie.tmux/fire
+                                                   :tmux.fire/cmd        "bb --config ~/russmatney/clawe/bb.edn dashboard"
+                                                   :tmux.fire/interrupt? true
+                                                   :tmux.fire/session    "doctor-dashboard"}
+                          :client/window-title    "tauri-doctor-dashboard"
+                          :client/workspace-title "widgets"
+                          :focus/float-and-center false
+                          :focus/toggle-opts      [:focus.toggle/front-and-center :focus.toggle/bury
+                                                   :focus.toggle/sticky-right
+                                                   {:focus.toggle/workspace "widgets"}]
+                          :hide/type              :hide/scratchpad}
+  "devweb"               {:client/app-names       ["firefoxdeveloperedition" "firefox developer edition"
+                                                   "google-chrome" "google chrome"]
+                          :client/create          ralphie.browser/open-dev
+                          :client/workspace-title "browsers"
+                          :hide/type              :hide/scratchpad
+                          :match/skip-title       true}
+  "discord"              {:client/app-names       ["Discord"]
+                          :client/create          "discord"
+                          :client/workspace-title "slack"
+                          :match/skip-title       true}
+  "doctor-be"            {:client/create {:create/cmd           ralphie.tmux/fire
+                                          :tmux.fire/cmd        "clawebb doctor-be"
+                                          :tmux.fire/interrupt? true
+                                          :tmux.fire/session    "clawe"
+                                          :tmux.fire/window     "1"}}
+  "doctor-fe"            {:client/create {:create/cmd           ralphie.tmux/fire
+                                          :tmux.fire/cmd        "clawebb clawe-fe"
+                                          :tmux.fire/interrupt? true
+                                          :tmux.fire/session    "clawe"
+                                          :tmux.fire/window     "2"}}
+  "emacs"                {:client/app-names          ["Emacs"]
+                          :client/create             {:create/cmd           ralphie.emacs/open
+                                                      :emacs.open/directory :create/use-workspace-directory
+                                                      :emacs.open/workspace :create/use-workspace-title}
+                          :focus/float-and-center    true
+                          :hide/type                 :hide/close
+                          :match/use-workspace-title true}
+  "focus"                {:bury/ignore            true
+                          :client/app-names       ["clove"]
+                          :client/create          {:create/cmd           ralphie.tmux/fire
+                                                   :tmux.fire/cmd        "bb --config ~/russmatney/clawe/bb.edn focus"
+                                                   :tmux.fire/interrupt? true
+                                                   :tmux.fire/session    "doctor-focus"}
+                          :client/window-title    "tauri-doctor-focus"
+                          :client/workspace-title "widgets"
+                          :focus/float-and-center false
+                          :focus/toggle-opts      [:focus.toggle/front-and-center :focus.toggle/bury
+                                                   :focus.toggle/sticky-right {:focus.toggle/workspace "widgets"}]
+                          :hide/type              :hide/scratchpad}
+  "garden-reveal-slides" {:bury/ignore            true
+                          :client/app-names       ["clove"]
+                          :client/window-title    "garden-reveal-slides"
+                          :client/workspace-title "journal"}
+  "godot"                {:client/app-names          ["godot" "godot_engine"]
+                          :client/create             {:create/cmd          ralphie.tmux/fire
+                                                      :tmux.fire/cmd       "godot -e"
+                                                      :tmux.fire/directory :create/use-workspace-directory
+                                                      :tmux.fire/session   :create/use-workspace-title}
+                          :client/workspace-title    "godot"
+                          :match/soft-title          true
+                          :match/use-workspace-title true
+                          :merge/skip-title          true}
+  "journal"              {:client/app-names    ["Emacs"]
+                          :client/create       {:create/cmd           ralphie.emacs/open
+                                                :emacs.open/file      "~/todo/journal.org"
+                                                :emacs.open/workspace "journal"}
+                          :client/window-title "journal"
+                          :hide/type           :hide/scratchpad
+                          :match/soft-title    true}
+  "kdenlive"             {:bury/ignore            true
+                          :client/app-names       ["kdenlive"]
+                          :client/workspace-title "kdenlive"
+                          :match/skip-title       true}
   "messages"
   {:client/app-names ["Messages"] :client/workspace-title "messages" :match/skip-title true}
   "mindnode"
   {:client/app-names ["MindNode"] :client/workspace-title "mindnode" :match/skip-title true}
-  "obs"              {:bury/ignore            true
-                      :client/app-names       ["obs"]
-                      :client/workspace-title "obs"
-                      :match/skip-title       true}
-  "onepass"          {:client/app-names       ["1password"]
-                      :client/create          "/usr/bin/gtk-launch 1password.desktop"
-                      :client/workspace-title "onepass"
-                      :hide/type              :hide/scratchpad
-                      :match/skip-title       true}
-  "pavucontrol"      {:client/app-names       ["pavucontrol"]
-                      :client/workspace-title "spotify"
-                      :match/skip-title       true}
-  "slack"            {:client/app-names       ["Slack"]
-                      :client/create          "slack"
-                      :client/workspace-title "slack"
-                      :match/skip-title       true}
-  "spotify"          {:client/app-names       ["spotify"]
-                      :client/create          "spotify"
-                      :client/workspace-title "spotify"
-                      :hide/type              :hide/scratchpad
-                      :match/skip-title       true}
-  "steam"            {:client/app-names ["steam"] :client/workspace-title "steam" :match/skip-title true}
-  "telegram"         {:client/app-names       ["Telegram"]
-                      :client/create          "telegram"
-                      :client/workspace-title "slack"
-                      :match/skip-title       true}
-  "terminal"         {:client/app-names          ["Alacritty"]
-                      :client/create             {:create/cmd        ralphie.tmux/open-session
-                                                  :tmux/directory    :create/use-workspace-directory
-                                                  :tmux/session-name :create/use-workspace-title}
-                      :focus/float-and-center    true
-                      :hide/type                 :hide/close
-                      :match/use-workspace-title true}
-  "todo"             {:client/app-names       ["clove"]
-                      :client/create          {:create/cmd           ralphie.tmux/fire
-                                               :tmux.fire/cmd        "bb --config ~/russmatney/clawe/bb.edn todo"
-                                               :tmux.fire/interrupt? true
-                                               :tmux.fire/session    "doctor-todo"}
-                      :client/window-title    "tauri-doctor-todo"
-                      :client/workspace-title "widgets"}
-  "topbar"           {:bury/ignore            true
-                      :client/app-names       ["clove"]
-                      :client/create          {:create/cmd           ralphie.tmux/fire
-                                               :tmux.fire/cmd        "bb --config ~/russmatney/clawe/bb.edn topbar"
-                                               :tmux.fire/interrupt? true
-                                               :tmux.fire/session    "doctor-topbar"}
-                      :client/window-title    "tauri-doctor-topbar"
-                      :client/workspace-title "widgets"}
-  "twitch-alerts"    {:bury/ignore            true
-                      :client/app-names       ["clove"]
-                      :client/window-title    "twitch-alerts"
-                      :client/workspace-title "widgets"}
-  "twitch-chat"      {:bury/ignore            true
-                      :client/app-names       ["clove"]
-                      :client/window-title    "twitch-chat"
-                      :client/workspace-title "widgets"}
-  "twitch-viewers"   {:bury/ignore            true
-                      :client/app-names       ["clove"]
-                      :client/window-title    "twitch-viewers"
-                      :client/workspace-title "widgets"}
-  "unity"            {:client/app-names ["unity"] :client/workspace-title "unity"}
-  "web"              {:client/app-names       ["Safari" "firefox"]
-                      :client/create          ralphie.browser/open
-                      :client/workspace-title "browsers"
-                      :hide/type              :hide/scratchpad
-                      :match/ignore-names     ["picture-in-picture"]
-                      :match/skip-title       true}
-  "web-video-popout" {:bury/ignore true :client/app-names ["picture-in-picture"]}
-  "xcode"            {:client/app-name        "xcode"
-                      :client/app-names       ["xcode"]
-                      :client/workspace-title "xcode"
-                      :match/soft-title       true
-                      :merge/skip-title       true}
-  "zoom"             {:client/app-names ["zoom" "zoom meeting" "slack call"]}}
+  "obs"                  {:bury/ignore            true
+                          :client/app-names       ["obs"]
+                          :client/workspace-title "obs"
+                          :match/skip-title       true}
+  "onepass"              {:client/app-names       ["1password"]
+                          :client/create          "/usr/bin/gtk-launch 1password.desktop"
+                          :client/workspace-title "onepass"
+                          :hide/type              :hide/scratchpad
+                          :match/skip-title       true}
+  "pavucontrol"          {:client/app-names       ["pavucontrol"]
+                          :client/workspace-title "spotify"
+                          :match/skip-title       true}
+  "slack"                {:client/app-names       ["Slack"]
+                          :client/create          "slack"
+                          :client/workspace-title "slack"
+                          :match/skip-title       true}
+  "spotify"              {:client/app-names       ["spotify"]
+                          :client/create          "spotify"
+                          :client/workspace-title "spotify"
+                          :hide/type              :hide/scratchpad
+                          :match/skip-title       true}
+  "steam"                {:client/app-names ["steam"] :client/workspace-title "steam" :match/skip-title true}
+  "telegram"             {:client/app-names       ["Telegram"]
+                          :client/create          "telegram"
+                          :client/workspace-title "slack"
+                          :match/skip-title       true}
+  "terminal"             {:client/app-names          ["Alacritty"]
+                          :client/create             {:create/cmd        ralphie.tmux/open-session
+                                                      :tmux/directory    :create/use-workspace-directory
+                                                      :tmux/session-name :create/use-workspace-title}
+                          :focus/float-and-center    true
+                          :hide/type                 :hide/close
+                          :match/use-workspace-title true}
+  "todo"                 {:client/app-names       ["clove"]
+                          :client/create          {:create/cmd           ralphie.tmux/fire
+                                                   :tmux.fire/cmd        "bb --config ~/russmatney/clawe/bb.edn todo"
+                                                   :tmux.fire/interrupt? true
+                                                   :tmux.fire/session    "doctor-todo"}
+                          :client/window-title    "tauri-doctor-todo"
+                          :client/workspace-title "widgets"}
+  "topbar"               {:bury/ignore            true
+                          :client/app-names       ["clove"]
+                          :client/create          {:create/cmd           ralphie.tmux/fire
+                                                   :tmux.fire/cmd        "bb --config ~/russmatney/clawe/bb.edn topbar"
+                                                   :tmux.fire/interrupt? true
+                                                   :tmux.fire/session    "doctor-topbar"}
+                          :client/window-title    "tauri-doctor-topbar"
+                          :client/workspace-title "widgets"}
+  "twitch-alerts"        {:bury/ignore            true
+                          :client/app-names       ["clove"]
+                          :client/window-title    "twitch-alerts"
+                          :client/workspace-title "widgets"}
+  "twitch-chat"          {:bury/ignore            true
+                          :client/app-names       ["clove"]
+                          :client/window-title    "twitch-chat"
+                          :client/workspace-title "widgets"}
+  "twitch-viewers"       {:bury/ignore            true
+                          :client/app-names       ["clove"]
+                          :client/window-title    "twitch-viewers"
+                          :client/workspace-title "widgets"}
+  "unity"                {:client/app-names ["unity"] :client/workspace-title "unity"}
+  "web"                  {:client/app-names       ["Safari" "firefox"]
+                          :client/create          ralphie.browser/open
+                          :client/workspace-title "browsers"
+                          :hide/type              :hide/scratchpad
+                          :match/ignore-names     ["picture-in-picture"]
+                          :match/skip-title       true}
+  "web-video-popout"     {:bury/ignore true :client/app-names ["picture-in-picture"]}
+  "xcode"                {:client/app-name        "xcode"
+                          :client/app-names       ["xcode"]
+                          :client/workspace-title "xcode"
+                          :match/soft-title       true
+                          :merge/skip-title       true}
+  "zoom"                 {:client/app-names ["zoom" "zoom meeting" "slack call"]}}
  :common-urls     [{:label "russmatney Itch.io dashboard" :url "https://russmatney.itch.io"}
                    {:label "Dino Github" :url "https://github.com/russmatney/dino"}
                    {:label "Clawe Github" :url "https://github.com/russmatney/clawe"}
@@ -293,6 +297,7 @@
   "org-roam"                    {:workspace/directory "~/org-roam/org-roam"}
   "org-trello"                  {:workspace/directory "~/org-trello/org-trello"}
   "pandora"                     {:workspace/directory "~/bitbrain/pandora"}
+  "phantom-camera"              {:workspace/directory "~/ramokz/phantom-camera"}
   "picture-pages"               {:workspace/directory "~/russmatney/picture-pages"}
   "pirates"                     {:workspace/directory "~/russmatney/pirates"}
   "plasma"                      {:workspace/directory "~/teknql/plasma"}
