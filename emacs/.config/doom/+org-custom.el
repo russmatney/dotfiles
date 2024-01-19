@@ -355,6 +355,8 @@
         "https://github.com/russmatney/org-crud"
         "https://github.com/russmatney/clawe"
         "https://github.com/russmatney/dino"
+        "https://github.com/russmatney/dothop"
+        "https://github.com/russmatney/russmatney"
         "https://russmatney.itch.io"
         "https://russmatney.itch.io/dino"
         "https://russmatney.itch.io/runner"
@@ -363,9 +365,11 @@
         "https://danger.russmatney.com"
         "https://russmatney.com"
         "https://twitch.tv/russmatney"
+        "https://youtube.com/@russmatney"
         "https://mastodon.gamedev.place/@russmatney"
         "https://programming.dev/u/russmatney"
         "https://store.steampowered.com/app/2589550/Dino"
+        "https://store.steampowered.com/app/2779710/Dot_Hop"
         "https://discord.gg/xZHWtGfAvF" ;; discord invite
         ))
 
