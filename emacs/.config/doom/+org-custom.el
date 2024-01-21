@@ -350,27 +350,30 @@
 (after! org 'turn-on-auto-fill)
 
 (setq russ/suggested-links
-      '("https://github.com/russmatney"
-        "https://github.com/russmatney/org-blog"
-        "https://github.com/russmatney/org-crud"
+      '("https://danger.russmatney.com"
+        "https://discord.gg/xZHWtGfAvF" ;; discord invite
+        "https://github.com/russmatney"
         "https://github.com/russmatney/clawe"
         "https://github.com/russmatney/dino"
         "https://github.com/russmatney/dothop"
+        "https://github.com/russmatney/org-blog"
+        "https://github.com/russmatney/org-crud"
         "https://github.com/russmatney/russmatney"
+        "https://mastodon.gamedev.place/@russmatney"
+        "https://patreon.com/russmatney"
+        "https://programming.dev/u/russmatney"
+        "https://russmatney.com"
+        "https://russmatney.com/devlogs/devlog_01_dino_so_far.html"
+        "https://russmatney.com/devlogs/devlog_02_aseprite_scripting.html"
         "https://russmatney.itch.io"
         "https://russmatney.itch.io/dino"
-        "https://russmatney.itch.io/runner"
         "https://russmatney.itch.io/dungeon-crawler"
-        "https://patreon.com/russmatney"
-        "https://danger.russmatney.com"
-        "https://russmatney.com"
-        "https://twitch.tv/russmatney"
-        "https://youtube.com/@russmatney"
-        "https://mastodon.gamedev.place/@russmatney"
-        "https://programming.dev/u/russmatney"
+        "https://russmatney.itch.io/runner"
         "https://store.steampowered.com/app/2589550/Dino"
         "https://store.steampowered.com/app/2779710/Dot_Hop"
-        "https://discord.gg/xZHWtGfAvF" ;; discord invite
+        "https://twitch.tv/russmatney"
+        "https://youtube.com/@russmatney"
+        "https://youtu.be/9cyAnNLGrZI" ;; 01 Dino Year One
         ))
 
 (after! org
