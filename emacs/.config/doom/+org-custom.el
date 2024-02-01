@@ -371,6 +371,7 @@
         "https://russmatney.itch.io/runner"
         "https://store.steampowered.com/app/2589550/Dino"
         "https://store.steampowered.com/app/2779710/Dot_Hop"
+        "https://trello.com/b/Uqzeh3aX/russ-game-dev-studio"
         "https://twitch.tv/russmatney"
         "https://youtube.com/@russmatney"
         "https://youtu.be/9cyAnNLGrZI" ;; 01 Dino Year One
