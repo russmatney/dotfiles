@@ -174,6 +174,7 @@
  :wm              :wm/i3
  :workspace/defs
  {"BulletUpHell"                {:workspace/directory "~/Dark-Peace/BulletUpHell"}
+  "Celeste64"                   {:workspace/directory "~/ExOK/Celeste64"}
   "Godello"                     {:workspace/directory "~/alfredbaudisch/Godello"}
   "Godot-3-2D-Day-Night-Cycle"  {:workspace/directory "~/hiulit/Godot-3-2D-Day-Night-Cycle"}
   "Godot-Action-Icon"           {:workspace/directory "~/KoBeWi/Godot-Action-Icon"}
@@ -255,6 +256,7 @@
   "godot-edn"                   {:git/status true :workspace/directory "~/russmatney/godot-edn"}
   "godot-filesystem-view"       {:workspace/directory "~/zaevi/godot-filesystem-view"}
   "godot-game-settings"         {:workspace/directory "~/PunchablePlushie/godot-game-settings"}
+  "godot-gamejam"               {:workspace/directory "~/bitbrain/godot-gamejam"}
   "godot-git-plugin"            {:workspace/directory "~/godotengine/godot-git-plugin"}
   "godot-html-export"           {:workspace/directory "~/dulvui/godot-html-export"}
   "godot-next"                  {:workspace/directory "~/godot-extended-libraries/godot-next"}
@@ -280,6 +282,7 @@
   "lichess-docker"              {:workspace/directory "~/benediktwerner/lichess-docker"}
   "lila"                        {:workspace/directory "~/lichess-org/lila"}
   "lila-ws"                     {:workspace/directory "~/lichess-org/lila-ws"}
+  "log"                         {:git/status true :workspace/directory "~/russmatney/log" :workspace/preferred-index 4}
   "malli"                       {:workspace/directory "~/metosin/malli"}
   "mate"                        {:workspace/directory "~/green-coder/mate"}
   "mealprep"                    {:git/status true :workspace/directory "~/russmatney/mealprep"}
