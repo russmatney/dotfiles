@@ -375,6 +375,7 @@
         "https://twitch.tv/russmatney"
         "https://youtube.com/@russmatney"
         "https://youtu.be/9cyAnNLGrZI" ;; 01 Dino Year One
+        "https://youtube.com/playlist?list=PL2gEO25pE6dogWyUby_sCCTst0LUyCEUK" ;; devlog playlist
         ))
 
 (after! org
