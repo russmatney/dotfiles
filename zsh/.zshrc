@@ -483,6 +483,7 @@ esac
 alias gut='godot --headless --path . -d -s addons/gut/gut_cmdln.gd'
 # gut with window
 alias gutw='godot --path . -d -s addons/gut/gut_cmdln.gd'
+alias godotsteam='~/.local/share/godotsteam/linux-421-editor.x86_64'
 
 #########################################################################
 # osx
