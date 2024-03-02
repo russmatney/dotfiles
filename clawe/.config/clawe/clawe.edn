@@ -181,6 +181,8 @@
   "Godot-Mixing-Desk"           {:workspace/directory "~/kyzfrintin/Godot-Mixing-Desk"}
   "Godot-SplashScreens"         {:workspace/directory "~/KenneyNL/Godot-SplashScreens"}
   "Godot-Text-Database"         {:workspace/directory "~/KoBeWi/Godot-Text-Database"}
+  "GodotDynamicInventorySystem" {:workspace/directory
+                                 "~/alfredbaudisch/GodotDynamicInventorySystem"}
   "Gut"                         {:workspace/directory "~/bitwes/Gut"}
   "Metroidvania-System"         {:workspace/directory "~/KoBeWi/Metroidvania-System"}
   "One-Minute-Unity"            {:workspace/directory "~/Keyiter/One-Minute-Unity"}
@@ -223,6 +225,7 @@
   "clojuredocs"                 {:workspace/directory "~/zk/clojuredocs"}
   "clove"                       {:git/status true :workspace/directory "~/russmatney/clove"}
   "clover"                      {:workspace/directory "~/russmatney/clover"}
+  "cohort-5-game-jam"           {:workspace/directory "~/jwagner3/Cohort-5-Game-Jam"}
   "craftinginterpreters"        {:workspace/directory "~/russmatney/craftinginterpreters"}
   "cybermonday"                 {:workspace/directory "~/kiranshila/cybermonday"}
   "datascript-playground"       {:workspace/directory "~/markbastian/datascript-playground"}
@@ -277,6 +280,7 @@
   "instaparse"                  {:workspace/directory "~/Engelberg/instaparse"}
   "instaparse-bb"               {:workspace/directory "~/babashka/instaparse-bb"}
   "journal"                     {:workspace/directory "~/todo" :workspace/preferred-index 1}
+  "juicy-breakout"              {:workspace/directory "~/grapefrukt/juicy-breakout"}
   "just"                        {:workspace/directory "~/casey/just"}
   "kdenlive"                    {:workspace/directory "~/Dropbox/devlogs" :workspace/preferred-index 0}
   "lichess-docker"              {:workspace/directory "~/benediktwerner/lichess-docker"}
