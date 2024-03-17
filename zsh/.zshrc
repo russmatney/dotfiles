@@ -209,7 +209,7 @@ alias vim=nvim
 alias vi=nvim
 
 alias ls=eza
-alias l='ls -lFha'
+alias l='ls -lha'
 
 alias cat=bat
 
