@@ -52,7 +52,11 @@
   (setq read-process-output-max (* 1024 1024))
 
   ;; rust
-  (setq rustic-lsp-server 'rust-analyzer))
+  (setq rustic-lsp-server 'rust-analyzer)
+
+  (setq lsp-file-watch-ignored-directories
+        (append lsp-file-watch-ignored-directories
+                '("[/\\\\]\\.plugged\\'"))))
 
 (map! :after lsp-mode
       :map lsp-mode-map

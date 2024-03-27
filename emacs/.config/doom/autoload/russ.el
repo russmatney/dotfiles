@@ -94,7 +94,7 @@
 (defun russ/open-doom-file ()
   "Open a file in doom itself."
   (interactive)
-  (doom-project-find-file "~/.emacs.d/"))
+  (doom-project-find-file "~/.config/emacs/"))
 
 ;;;###autoload
 (defun russ/open-dotfile ()

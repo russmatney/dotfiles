@@ -144,12 +144,11 @@ Commands that stick around (this hydra supports multiple presses).
   ("D" russ/open-doom-file "Open DOOM source file" :column "emacs")
   ("c" russ/open-emacs-config-file "Open DOOM config file ~/.config/doom/")
   ;; ("b" (find-file "~/.config/doom/+bindings.el") "Open emacs +bindings.el")
-  ("h" (find-file "~/.config/doom/hydra.el") "Open emacs +hydra.el")
+  ("h" (find-file "~/.config/doom/+hydra.el") "Open emacs +hydra.el")
 
   ("B" (find-file "~/russmatney/clawe/src/clawe/defs/bindings.clj")
    "defs/bindings.clj" :column "clawe")
-  ("W" (find-file "~/.config/clawe/clawe.edn")
-   "clawe.edn")
+  ("W" (find-file "~/.config/clawe/clawe.edn") "clawe.edn")
 
   ("r" russ/open-project-file "...project file (readme?)" :column "Workspace....")
   ("g" russ/open-workspace-garden "...garden")
