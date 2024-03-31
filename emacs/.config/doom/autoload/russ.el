@@ -233,6 +233,11 @@
   (setq-local transient-mark-mode t))
 
 
+;;;###autoload
+(defun russ/fix-lines-and-highlight ()
+  (interactive)
+  (toggle-truncate-lines)
+  (whitespace-turn-off))
 
 
 ;; https://github.com/tarsius/keychain-environment/blob/master/keychain-environment.el
