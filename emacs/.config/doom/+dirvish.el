@@ -42,7 +42,7 @@
   (enable-command 'dired-find-alternate-file)
   (map!
    ;; :n "-" #'dired-jump
-   :n "-" #'dirvish
+   ;; :n "-" nil
    :map dired-mode-map
    :n "-"        #'dired-up-directory
    :n "<return>" #'dired-find-alternate-file
