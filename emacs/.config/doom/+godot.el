@@ -12,9 +12,8 @@
 
 (use-package! gdscript-mode
   :defer t
+  :hook (gdscript-mode . rainbow-delimiters-mode)
   :config
-
-  (rainbow-delimiters-mode t)
 
   (setq gdscript-use-tab-indents t)
   (setq gdscript-indent-offset 4)
