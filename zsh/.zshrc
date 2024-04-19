@@ -479,6 +479,10 @@ case "$OSTYPE" in
     alias aseprite=~/Library/Application\\\ Support/Steam/steamapps/common/Aseprite/Aseprite.app/Contents/MacOS/aseprite
 esac
 
+################################################################################
+# godot
+################################################################################
+
 # gut without window
 alias gut='godot --headless --path . -d -s addons/gut/gut_cmdln.gd'
 # gut with window

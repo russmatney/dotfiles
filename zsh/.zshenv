@@ -1,3 +1,4 @@
+export GODOT_BIN=/bin/godot
 
 # moved here to allow non-interactive modes to use it
 export PATH="$HOME/.local/bin/:$HOME/n/bin:$PATH"
