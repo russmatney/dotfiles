@@ -1,4 +1,11 @@
-export GODOT_BIN=/bin/godot
+if [ -e /bin/godot ]; then
+    export GODOT_BIN=/bin/godot
+fi
+
+if [ -e /opt/homebrew/bin/godot ]; then
+    export GODOT_BIN=/opt/homebrew/bin/godot
+fi
+
 
 # moved here to allow non-interactive modes to use it
 export PATH="$HOME/.local/bin/:$HOME/n/bin:$PATH"
