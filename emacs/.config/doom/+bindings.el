@@ -203,6 +203,7 @@
 
  (:leader
   :desc "Imenu"                 :nv "i"   #'imenu
+  :desc "Imenu across buffers"  :nv "I"   #'consult-imenu-multi
   :desc "swiper"                :nv "/"   #'swiper)
 
  ;; toggle last two files

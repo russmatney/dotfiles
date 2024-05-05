@@ -180,7 +180,7 @@ reload dir-locals."
 (load! "+godot")
 (load! "+kubernetes")
 (load! "+discord")
-(load! "+gerbil")
+;; (load! "+gerbil")
 ;; (load! "+exwm")
 (load! "+trello")
 

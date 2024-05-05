@@ -12,7 +12,9 @@
 
 (use-package! gdscript-mode
   :defer t
-  :hook (gdscript-mode . rainbow-delimiters-mode)
+  :hook
+  (gdscript-mode . rainbow-delimiters-mode)
+  (gdscript-mode . eglot-ensure)
   :config
 
   (setq gdscript-use-tab-indents t)
@@ -22,13 +24,13 @@
   ;; (setq gdscript-godot-executable "/usr/bin/godot-mono")
   (setq gdscript-gdformat-save-and-format nil)
 
-  (setq lsp-gdscript-port "6005")
+  ;; (setq lsp-gdscript-port "6005")
 
   (set-lookup-handlers! 'gdscript-mode
     :documentation #'gdscript-docs-browse-symbol-at-point)
 
   ;; when (featurep! +lsp)
-  (add-hook 'gdscript-mode-local-vars-hook #'lsp! 'append)
+  ;; (add-hook 'gdscript-mode-local-vars-hook #'lsp! 'append)
 
   (map! :localleader
         :map gdscript-mode-map

@@ -42,6 +42,32 @@
 ;;   ;; allow for connection to ssh-agent
 ;;   (add-to-list 'doom-env-whitelist "^SSH_"))
 
+(setq native-comp-always-compile t)
+(setq native-comp-jit-compilation nil)
+(setq package-native-compile t)
+(after! (doom-packages straight)
+  (setq straight--native-comp-available t))
+
+;; (after! comp
+;;   (mapc (doom-partial #'add-to-list 'native-comp-bootstrap-deny-list)
+;;         (list
+;;           "/seq-tests\\.el\\'"
+;;           "/seq/tests/seq-tests\\.el\\'"
+;;           "/seq\\/tests\\/seq-tests\\.el\\'"
+;;               ))
+;;   ;; HACK Disable native-compilation for some troublesome packages
+;;   (mapc (doom-partial #'add-to-list 'native-comp-jit-compilation-deny-list)
+;;         (list "/emacs-jupyter.*\\.el\\'"
+;;               "/evil-collection-vterm\\.el\\'"
+;;               "/vterm\\.el\\'"
+;;               "/with-editor\\.el\\'"
+;;               "/seq-tests\\.el\\'"
+;;               "/seq/tests/seq-tests\\.el\\'"
+;;               "/seq\\/tests\\/seq-tests\\.el\\'"
+;;               )))
+
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; doom!
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -212,12 +238,12 @@
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
-       (python
-        +lsp
-        +pyright
-        ;; +poetry
-        +pyenv
-        )            ; beautiful is better than ugly
+       ;; (python
+       ;;  +lsp
+       ;;  +pyright
+       ;;  ;; +poetry
+       ;;  +pyenv
+       ;;  )            ; beautiful is better than ugly
        ;;qt
        ;;racket            ; a DSL for DSLs
        ;;raku              ; the artist formerly known as perl6
@@ -252,9 +278,3 @@
        :config
        ;; required for some vertico completion to work (project search, buffer search...)
        default)
-
-(setq native-comp-always-compile t)
-(setq native-comp-jit-compilation nil)
-(setq package-native-compile t)
-(after! (doom-packages straight)
-  (setq straight--native-comp-available t))
