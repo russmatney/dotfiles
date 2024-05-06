@@ -58,7 +58,22 @@
 
         (:prefix ("f" . "format")
          :desc "Format buffer" "b" #'gdscript-format-buffer
-         :desc "Format region" "r" #'gdscript-format-region)))
+         :desc "Format region" "r" #'gdscript-format-region))
+
+  (map! :map comint-mode-map
+        "C-j" #'evil-window-down
+        "C-k" #'evil-window-up
+        :n "C-j" #'evil-window-down
+        :n "C-k" #'evil-window-up)
+
+  (map! :localleader
+        :map comint-mode-map
+        ;; doesn't this leak gdscript bindings into all comint buffers?
+        (:desc "hydra" "m" #'gdscript-hydra-show)
+        (:desc "hydra" "c" #'gdscript-hydra-show)
+        )
+  )
+
 
 ;; shader support
 
