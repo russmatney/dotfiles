@@ -142,11 +142,11 @@
 
 (package! elcord)
 
+(package! gdscript-mode :pin "32086df83335ce0e5120b21b80cf7996edb2232e")
+
 ;; local packages/forks
 
 (package! fabb :recipe (:local-repo "fabb" :build (:not compile)))
 (package! ink-mode :recipe (:local-repo "ink-mode" :build (:not compile)))
-;; (package! gdscript-mode :recipe (:local-repo "gdscript-mode" :build (:not compile)))
-(package! gdscript-mode :pin "8a28276daaa23f10e986367b80dc751c5d26829e")
 
 (package! org-trello :recipe (:build (:not compile)))
