@@ -144,6 +144,9 @@
   ("B" doom/kill-other-buffers "all other buffers" :column "Other buffers")
   ("b" kill-buffer "kill buffer (from list)")
 
+  ("F" delete-file "Delete other file" :column "Files")
+  ("f" doom/delete-this-file "doom/delete-this-file")
+
   ("a" ace-delete-window "ace-delete-window" :column "Misc")
   ("s" +workspace/delete "+workspace/delete")
   ("n" +treemacs/toggle "toggle treemacs"))
