@@ -359,6 +359,7 @@
         "https://github.com/russmatney/org-blog"
         "https://github.com/russmatney/org-crud"
         "https://github.com/russmatney/russmatney"
+        "https://ko-fi.com/russmatney"
         "https://mastodon.gamedev.place/@russmatney"
         "https://patreon.com/russmatney"
         "https://programming.dev/u/russmatney"
@@ -374,6 +375,7 @@
         "https://trello.com/b/Uqzeh3aX/russ-game-dev-studio"
         "https://twitch.tv/russmatney"
         "https://youtube.com/@russmatney"
+        "https://www.youtube.com/c/RussellMatney"
         "https://youtu.be/9cyAnNLGrZI" ;; 01 Dino Year One
         "https://youtube.com/playlist?list=PL2gEO25pE6dogWyUby_sCCTst0LUyCEUK" ;; devlog playlist
         ))
