@@ -32,7 +32,7 @@
 ;; (package! consult-lsp :pin "f8db3252c0daa41225ba4ed1c0d178b281cd3e90")
 ;; (package! magit :pin "6d325d90ba1374d48c4c7088f96864b678155f48")
 
-(package! doom-modeline :pin "6125309c2caa")
+;; (package! doom-modeline :pin "6125309c2caa")
 
 ;; lisp
 (package! dash)
@@ -43,14 +43,17 @@
 (package! add-node-modules-path)
 
 ;; lsp
-(package! lsp-mode :pin "03e1818acae6de9a6ed89c54573f8050e4d4e463"
+(package! lsp-mode
+  ;; :pin "03e1818acae6de9a6ed89c54573f8050e4d4e463"
   ;; :recipe (:host github :repo "emacs-lsp/lsp-mode")
   )
 (package! lsp-ui :recipe (:host github :repo "emacs-lsp/lsp-ui"))
 (package! company-lsp)
 
 ;; rust
-(package! rustic :pin "53cacf5039f1d88cdd5cad98d1e9e0ad92da2615")
+(package! rustic
+  ;; :pin "53cacf5039f1d88cdd5cad98d1e9e0ad92da2615"
+  )
 
 ;; fountain
 ;; (package! fountain-mode :recipe (:host github :repo "rnkn/fountain-mode"))
@@ -76,7 +79,9 @@
 (package! aggressive-indent)
 
 (package! evil)
-(package! evil-collection :pin "2eb68ac588f68c7d6706618754524595138900a1")
+(package! evil-collection
+  :pin "2eb68ac588f68c7d6706618754524595138900a1"
+  )
 (package! lispy)
 (package! lispyville)
 
