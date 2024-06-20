@@ -15,7 +15,7 @@
 #+html:   <a href="https://www.patreon.com/russmatney">
 #+html:     <img src="https://img.shields.io/badge/Patreon-red?style=for-the-badge&logo=patreon&logoColor=white" alt="Patreon Badge"/>
 #+html:   </a>
-#+html:   <a href="https://discord.gg/xZHWtGfAvF">
+#+html:   <a href="https://discord.gg/PQvfdApHFQ">
 #+html:     <img alt="Discord" src="https://img.shields.io/discord/758750490015563776?style=for-the-badge&logo=discord&logoColor=fff&label=discord" />
 #+html:   </a>
 #+html: </div>

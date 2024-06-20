@@ -351,7 +351,7 @@
 
 (setq russ/suggested-links
       '("https://danger.russmatney.com"
-        "https://discord.gg/xZHWtGfAvF" ;; discord invite
+        "https://discord.gg/PQvfdApHFQ" ;; discord invite
         "https://github.com/russmatney"
         "https://github.com/russmatney/clawe"
         "https://github.com/russmatney/dino"
