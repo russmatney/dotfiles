@@ -160,7 +160,7 @@
   (let ((to-delete (-filter
                     (-partial 's-starts-with? "#")
                     (+workspace-list-names))))
-    (-each to-delete '+workspace-delete)))
+    (-each to-delete '+workspace-kill)))
 
 ;;;###autoload
 (defun russ/open-workspace (name)

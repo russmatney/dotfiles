@@ -560,3 +560,11 @@ eval "$(atuin init zsh)"
 # dotnet #########################################################################
 
 export PATH="$PATH:$HOME/.dotnet/tools"
+
+case "$OSTYPE" in
+  darwin*)
+    export DOTNET_ROOT="/opt/homebrew/opt/dotnet/libexec"
+    ;;
+  linux*)
+    ;;
+esac
