@@ -1,6 +1,8 @@
 ;;; packages.el -*- lexical-binding: t; -*-
 
 
+(package! corfu :pin "977ba4b89a68924d6f4137859a8ce6dd0c6884dc")
+
 ;; https://github.com/minad/corfu/issues/290#issuecomment-1424842189
 ;; (package! compat :pin "e59e311d1ffc422f91e4e9c494598e978f5c2125"
 ;;           :recipe (:host github :repo "emacs-compat/compat"))
