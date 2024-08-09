@@ -141,7 +141,7 @@
         ;;+ranger
         +icons
         +dirvish)
-       ;;electric        ; smarter, keyword-based electric-indent
+       electric        ; smarter, keyword-based electric-indent
        ibuffer
        (undo +tree)      ; persistent, smarter undo for your inevitable mistakes
        vc                ; remember, remember that commit in November
