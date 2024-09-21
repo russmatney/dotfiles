@@ -162,7 +162,7 @@ reload dir-locals."
 ;; other config files
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(load! "+company")
+(load! "+corfu")
 (load! "+hydra")
 (load! "+bindings")
 (load! "+langs")
