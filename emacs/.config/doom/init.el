@@ -276,5 +276,4 @@
        ;;twitter           ; twitter client https://twitter.com/vnought
 
        :config
-       ;; required for some vertico completion to work (project search, buffer search...)
        default)

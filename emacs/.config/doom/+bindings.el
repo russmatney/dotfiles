@@ -8,11 +8,12 @@
 (defalias 'ex! 'evil-ex-define-cmd)
 
 ;; Search
-(defun rm/search ()
-  (interactive)
-  (evil-ex "pg "))
+;; (defun rm/search ()
+;;   (interactive)
+;;   (evil-ex "pg "))
 
-(map! :leader "a" #'rm/search)
+;; (map! :leader "a" #'rm/search)
+(map! :leader "a" #'+vertico/project-search)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Evil Bindings
@@ -35,10 +36,6 @@
  :n "gx" #'evil-exchange
 
  :nv "TAB" #'evil-toggle-fold
- ;; :i "TAB" #'+company/complete
- ;; :i "C-SPC" #'+company/complete
- :i "TAB" #'completion-at-point
- :i "C-SPC" #'completion-at-point
 
  ;; evil-surround
  :v "S" #'evil-surround-region
