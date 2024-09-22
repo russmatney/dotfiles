@@ -171,7 +171,6 @@ reload dir-locals."
 (load! "+org-custom")
 (load! "+custom")
 (load! "+wakatime")
-;; (load! "+ivy")
 (load! "+vertico")
 (load! "+magit")
 (load! "+projectile")
@@ -183,7 +182,6 @@ reload dir-locals."
 (load! "+discord")
 ;; (load! "+gerbil")
 ;; (load! "+exwm")
-(load! "+trello")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
