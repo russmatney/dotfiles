@@ -437,13 +437,33 @@ alias git-summary='~/MirkoLedda/git-summary/git-summary'
 ################################################################################
 
 _bb_tasks() {
-    local matches=(`bb tasks |tail -n +3 |cut -f1 -d ' '`)
+    local matches=(`bb tasks | tail -n +3 | cut -f1 -d ' '`)
     compadd -a matches
     _files # autocomplete filenames as well
 }
 compdef _bb_tasks bb
 
 export PATH="$PATH:$HOME/.babashka/bbin/bin"
+
+################################################################################
+# gg
+################################################################################
+
+if [ -f "$HOME/russmatney/gg/bb.edn" ]; then
+  unalias gg
+  export PATH="$PATH:$HOME/russmatney/gg/bin"
+
+  _gg_tasks() {
+      local matches=(`bb tasks | tail -n +3 | cut -f1 -d ' '`)
+      compadd -a matches
+
+      local gg_matches=(`bb --config ~/russmatney/gg/bb.edn tasks | tail -n +3 | cut -f1 -d ' '`)
+      compadd -a gg_matches
+      _files # autocomplete filenames as well
+  }
+  compdef _gg_tasks gg
+fi
+
 
 ################################################################################
 # Python
