@@ -325,7 +325,7 @@
 ;; flycheck
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package! flycheck-clj-kondo)
+;; (use-package! flycheck-clj-kondo)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; company-css-classes-backend
@@ -346,7 +346,7 @@
   :mode ("\\.cljc$" . clojurec-mode)
 
   :config
-  (require 'flycheck-clj-kondo)
+  ;; (require 'flycheck-clj-kondo)
 
   ;; (set-company-backend!
   ;;   'clojurescript-mode
