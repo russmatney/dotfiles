@@ -53,6 +53,12 @@
   (gerbil-mode . lispyville-mode)
 
   :config
+
+  ;; (map! (:map +tree-sitter-inner-text-objects-map
+  ;;             "l" nil)
+  ;;       (:map +tree-sitter-outer-text-objects-map
+  ;;             "l" nil))
+
   (lispyville-set-key-theme
    '(operators
      c-w
