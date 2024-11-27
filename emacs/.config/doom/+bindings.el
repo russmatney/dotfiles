@@ -8,12 +8,12 @@
 (defalias 'ex! 'evil-ex-define-cmd)
 
 ;; Search
-;; (defun rm/search ()
-;;   (interactive)
-;;   (evil-ex "pg "))
+(defun rm/search ()
+  (interactive)
+  (evil-ex "pg "))
 
-;; (map! :leader "a" #'rm/search)
-(map! :leader "a" #'+vertico/project-search)
+(map! :leader "a" #'rm/search)
+;; (map! :leader "a" #'+vertico/project-search)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Evil Bindings
