@@ -63,11 +63,11 @@ style = "compact"
 # inline_height = 0
 
 ## Invert the UI - put the search bar at the top , Default to `false`
-# invert = false
+invert = false
 
 ## enable or disable showing a preview of the selected command
 ## useful when the command is longer than the terminal width and is cut off
-# show_preview = false
+show_preview = false
 
 ## what to do when the escape key is pressed when searching
 ## possible values: return-original, return-query
@@ -81,10 +81,6 @@ exit_mode = "return-query"
 
 ## number of context lines to show when scrolling by pages
 # scroll_context_lines = 1
-
-## use ctrl instead of alt as the shortcut modifier key for numerical UI shortcuts
-## alt-0 .. alt-9
-# ctrl_n_shortcuts = false
 
 ## prevent commands matching any of these regexes from being written to history.
 ## Note that these regular expressions are unanchored, i.e. if they don't start
@@ -115,6 +111,10 @@ max_preview_height = 4
 ## amount of commands in your history.
 show_help = true
 
+show_tabs = true
+
+store_failed = true
+
 ## Defaults to true. This matches history against a set of default regex, and will not save it if we get a match. Defaults include
 ## 1. AWS key id
 ## 2. Github pat (old and new)
@@ -123,26 +123,59 @@ show_help = true
 ## 5. Stripe live/test keys
 secrets_filter = true
 
-## Defaults to true. If enabled, upon hitting enter Atuin will immediately execute the command. Press tab to return to the shell and edit.
+## use ctrl instead of alt as the shortcut modifier key for numerical UI shortcuts
+## alt-0 .. alt-9
+ctrl_n_shortcuts = false
+
+## If enabled, upon hitting enter Atuin will immediately execute the command. Press tab to return to the shell and edit.
 # This applies for new installs. Old installs will keep the old behaviour unless configured otherwise.
 enter_accept = false
 
-#[stats]
+keymap_mode = "emacs"
+keymap_cursor = {emacs="blink-block"}
+
+[stats]
 # Set commands where we should consider the subcommand for statistics. Eg, kubectl get vs just kubectl
 common_subcommands = [
  "cargo",
+ "docker",
  "go",
  "git",
  "npm",
+ "npx",
  "yarn",
  "pnpm",
  "kubectl",
+ "systemctl",
+ "journalctl",
+ "tmux",
  "godot",
  "bb",
+ "clawe",
  "clawebb",
  "pamac",
  "yay",
 ]
 #
 # Set commands that should be totally stripped and ignored from stats
-# common_prefix = ["sudo", "su"]
+common_prefix = ["sudo", "su"]
+
+[sync]
+records = true
+
+[dotfiles]
+enabled = true
+
+[keys]
+scroll_exits = true
+prefix = 'a'
+
+[preview]
+strategy = "auto"
+
+[daemon]
+enabled = false
+sync_frequency = 300
+
+[theme]
+name = "autumn"
