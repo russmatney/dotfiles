@@ -178,7 +178,7 @@ reload dir-locals."
 (load! "+fabb")
 (load! "+ink")
 (load! "+godot")
-(load! "+kubernetes")
+;; (load! "+kubernetes")
 (load! "+discord")
 ;; (load! "+gerbil")
 ;; (load! "+exwm")
