@@ -10,14 +10,16 @@
 ;; Search
 
 ;; pulled in from doom/+commands.el
-(ex! "pgrep"  #'+vertico:project-search)
-(ex! "pg"  #'+vertico:project-search)
+(ex! "pgrep" #'+vertico:project-search)
+(ex! "pg" #'+vertico:project-search)
 (ex! "pgrepd" #'+vertico:project-search-from-cwd)
 (ex! "pgd" #'+vertico:project-search-from-cwd)
+(ex! "pg[rep]"   #'+vertico:project-search)
+;; (ex! "pg[grep]d" #'+vertico:project-search-from-cwd)
 
 (defun rm/search ()
   (interactive)
-  (evil-ex "pg! "))
+  (evil-ex "pg "))
 
 (map! :leader "a" #'rm/search)
 ;; (map! :leader "a" #'+vertico/project-search)
