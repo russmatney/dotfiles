@@ -315,7 +315,7 @@
 
 (setq cider-eval-on-save t)
 
-(defun cider-toggle-eval-on-save ()
+(defun russ/cider-toggle-eval-on-save ()
   (interactive)
   (let ((new-val (not cider-eval-on-save)))
     (print! "setting eval-on-save: %s" new-val)
