@@ -1,3 +1,6 @@
+
+export ZDOTDIR=~/.config/zsh
+
 if [ -e /bin/godot ]; then
     export GODOT_BIN=/bin/godot
 fi

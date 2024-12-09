@@ -172,8 +172,17 @@
   ;; (russ/projectile-open-file-from-project)
   )
 
+;;;###autoload
+(defun russ/ensure-workspace (name)
+  (unless (+workspace-exists-p name)
+    (+workspace/new-named name)))
+
 (comment
- (russ/open-workspace "cli-bindings"))
+ (russ/open-workspace "cli-bindings")
+ (russ/ensure-workspace "dino")
+ (unless (+workspace-exists-p "clawe")
+   (+workspace/new-named "clawe")
+   ))
 
 (comment
  (frames-on-display-list)

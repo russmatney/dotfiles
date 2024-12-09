@@ -18,7 +18,7 @@ export RANGER_LOAD_DEFAULT_RC=FALSE
 
 export FONTCONFIG_PATH='/etc/fonts'
 
-alias 'zz'='source ~/.zshrc'
+alias 'zz'='source ~/.config/zsh/.zshrc'
 
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
@@ -39,7 +39,7 @@ then
 fi
 
 # enable completion features
-fpath=(~/.zsh/completion $fpath)
+fpath=(~/.config/zsh/completion $fpath)
 autoload -Uz compinit && compinit -i
 
 # allow .hidden file tab completion
@@ -182,9 +182,9 @@ export HOMEBREW_NO_AUTO_UPDATE=1
     source /usr/share/fzf/key-bindings.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-[  -f /usr/bin/fzf ] && source ~/.zsh/fzf.zsh
+[  -f /usr/bin/fzf ] && source ~/.config/zsh/fzf.zsh
 
-source ~/.zsh/fuzzy-sys.zsh
+source ~/.config/zsh/fuzzy-sys.zsh
 
 ################################################################################
 # Color fix
@@ -280,12 +280,12 @@ alias grim='git rebase -i --autosquash master'
 alias gbm='git branch --merged'
 alias gwip="git commit -m 'wip'"
 alias pulls='open "https://github.com:/$(git remote -v | command ggrep -oP "'"(?<=git@github.com:).+(?=\.git)"'" | head -n 1)/pulls"'
-alias git=hub
+# alias git=hub
 alias gpr='git pull-request'
 alias gpo='git push -u origin'
 alias gpob='git push -u origin "$(git symbolic-ref --short HEAD)"'
 alias gcom='gco master'
-alias gclone='hub clone'
+alias gclone='git clone'
 
 # list recent branches
 # thanks: https://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
@@ -325,7 +325,7 @@ alias jk='bat ./readme.org'
 alias nf='neofetch'
 alias pd='pandoc'
 
-source ~/.zsh/grfn.zsh-theme
+source ~/.config/zsh/grfn.zsh-theme
 
 ################################################################################
 # Haskell
@@ -421,7 +421,7 @@ function delete_from_history () {
 
 export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
 
-eval "$(direnv hook zsh)"
+# eval "$(direnv hook zsh)"
 
 
 ################################################################################
