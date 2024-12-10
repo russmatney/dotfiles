@@ -37,3 +37,5 @@ python/.ipython/profile_default/history.sqlite
 .clj-kondo/babashka
 .clj-kondo/rewrite-clj
 .lsp
+.zcompdump*
+.zsh_plugins.zsh
