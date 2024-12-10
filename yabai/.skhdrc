@@ -1,0 +1,286 @@
+# ################################################################ #
+# THE FOLLOWING IS AN EXPLANATION OF THE GRAMMAR THAT SKHD PARSES. #
+# FOR SIMPLE EXAMPLE MAPPINGS LOOK FURTHER DOWN THIS FILE..        #
+# ################################################################ #
+
+# A list of all built-in modifier and literal keywords can
+# be found at https://github.com/koekeishiya/skhd/issues/1
+#
+# A hotkey is written according to the following rules:
+#
+#   hotkey       = <mode> '<' <action> | <action>
+#
+#   mode         = 'name of mode' | <mode> ',' <mode>
+#
+#   action       = <keysym> '[' <proc_map_lst> ']' | <keysym> '->' '[' <proc_map_lst> ']'
+#                  <keysym> ':' <command>          | <keysym> '->' ':' <command>
+#                  <keysym> ';' <mode>             | <keysym> '->' ';' <mode>
+#
+#   keysym       = <mod> '-' <key> | <key>
+#
+#   mod          = 'modifier keyword' | <mod> '+' <mod>
+#
+#   key          = <literal> | <keycode>
+#
+#   literal      = 'single letter or built-in keyword'
+#
+#   keycode      = 'apple keyboard kVK_<Key> values (0x3C)'
+#
+#   proc_map_lst = * <proc_map>
+#
+#   proc_map     = <string> ':' <command> | <string>     '~' |
+#                  '*'      ':' <command> | '*'          '~'
+#
+#   string       = '"' 'sequence of characters' '"'
+#
+#   command      = command is executed through '$SHELL -c' and
+#                  follows valid shell syntax. if the $SHELL environment
+#                  variable is not set, it will default to '/bin/bash'.
+#                  when bash is used, the ';' delimeter can be specified
+#                  to chain commands.
+#
+#                  to allow a command to extend into multiple lines,
+#                  prepend '\' at the end of the previous line.
+#
+#                  an EOL character signifies the end of the bind.
+#
+#   ->           = keypress is not consumed by skhd
+#
+#   *            = matches every application not specified in <proc_map_lst>
+#
+#   ~            = application is unbound and keypress is forwarded per usual, when specified in a <proc_map>
+#
+# A mode is declared according to the following rules:
+#
+#   mode_decl = '::' <name> '@' ':' <command> | '::' <name> ':' <command> |
+#               '::' <name> '@'               | '::' <name>
+#
+#   name      = desired name for this mode,
+#
+#   @         = capture keypresses regardless of being bound to an action
+#
+#   command   = command is executed through '$SHELL -c' and
+#               follows valid shell syntax. if the $SHELL environment
+#               variable is not set, it will default to '/bin/bash'.
+#               when bash is used, the ';' delimeter can be specified
+#               to chain commands.
+#
+#               to allow a command to extend into multiple lines,
+#               prepend '\' at the end of the previous line.
+#
+#               an EOL character signifies the end of the bind.
+
+# ############################################################### #
+# THE FOLLOWING SECTION CONTAIN SIMPLE MAPPINGS DEMONSTRATING HOW #
+# TO INTERACT WITH THE YABAI WM. THESE ARE SUPPOSED TO BE USED AS #
+# A REFERENCE ONLY, WHEN MAKING YOUR OWN CONFIGURATION..          #
+# ############################################################### #
+
+# focus window
+# cmd - h : yabai -m window --focus west
+# cmd - l : yabai -m window --focus east
+# cmd - j : yabai -m window --focus south
+# cmd - k : yabai -m window --focus north
+
+# swap managed window
+# shift + alt - h : yabai -m window --swap north
+
+# move managed window
+# shift + cmd - h : yabai -m window --warp east
+
+# balance size of windows
+# shift + alt - 0 : yabai -m space --balance
+
+# make floating window fill screen
+# shift + alt - up     : yabai -m window --grid 1:1:0:0:1:1
+
+# make floating window fill left-half of screen
+# shift + alt - left   : yabai -m window --grid 1:2:0:0:1:1
+
+# create desktop, move window and follow focus - uses jq for parsing json (brew install jq)
+# shift + cmd - n : yabai -m space --create && \
+#                   index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
+#                   yabai -m window --space "${index}" && \
+#                   yabai -m space --focus "${index}"
+
+# fast focus desktop
+# cmd + alt - x : yabai -m space --focus recent
+# cmd + alt - 1 : yabai -m space --focus 1
+
+# send window to desktop and follow focus
+# shift + cmd - z : yabai -m window --space next; yabai -m space --focus next
+# shift + cmd - 2 : yabai -m window --space  2; yabai -m space --focus 2
+
+# focus monitor
+# ctrl + alt - z  : yabai -m display --focus prev
+# ctrl + alt - 3  : yabai -m display --focus 3
+
+# send window to monitor and follow focus
+# ctrl + cmd - c  : yabai -m window --display next; yabai -m display --focus next
+# ctrl + cmd - 1  : yabai -m window --display 1; yabai -m display --focus 1
+
+# move floating window
+# shift + ctrl - a : yabai -m window --move rel:-20:0
+# shift + ctrl - s : yabai -m window --move rel:0:20
+
+# increase window size
+# shift + alt - a : yabai -m window --resize left:-20:0
+# shift + alt - w : yabai -m window --resize top:0:-20
+
+# decrease window size
+# shift + cmd - s : yabai -m window --resize bottom:0:-20
+# shift + cmd - w : yabai -m window --resize top:0:20
+
+# set insertion point in focused container
+# ctrl + alt - h : yabai -m window --insert west
+
+# toggle window zoom
+# alt - d : yabai -m window --toggle zoom-parent
+# alt - f : yabai -m window --toggle zoom-fullscreen
+
+# toggle window split type
+# alt - e : yabai -m window --toggle split
+
+# float / unfloat window and center on screen
+# alt - f : yabai -m window --toggle float;\
+#           yabai -m window --grid 4:4:1:1:2:2
+
+# toggle sticky(+float), topmost, picture-in-picture
+# alt - p : yabai -m window --toggle sticky;\
+#           yabai -m window --toggle topmost;\
+#           yabai -m window --toggle pip
+
+# focus window
+cmd - h : yabai -m window --focus west
+cmd - l : yabai -m window --focus east
+cmd - j : yabai -m window --focus south
+cmd - k : yabai -m window --focus north
+
+# toggle window split type
+# TODO use semi ;
+shift + cmd - e: yabai -m window --toggle split
+
+# window horizontal size
+shift + ctrl - h : yabai -m window --resize left:-80:0 || yabai -m window --resize right:-80:0
+shift + ctrl - l : yabai -m window --resize left:80:0 || yabai -m window --resize right:80:0
+
+# vertical window size
+shift + ctrl - j : yabai -m window --resize bottom:0:80 || yabai -m window --resize top:0:80
+shift + ctrl - k : yabai -m window --resize bottom:0:-80 || yabai -m window --resize top:0:-80
+
+# move floating window
+# TODO should be same as shift + cmd - dir bindings
+# shift + ctrl - a : yabai -m window --move rel:-20:0
+# shift + ctrl - s : yabai -m window --move rel:0:20
+# shift + ctrl - w : yabai -m window --move rel:0:-20
+# shift + ctrl - d : yabai -m window --move rel:20:0
+
+# --grid <rows>:<cols>:<start-x>:<start-y>:<width>:<height>
+#     Set the frame of the selected window based on a
+#     self-defined grid.
+#
+# move abs|rel:<dx>:<dy>
+#     If type is rel the selected window is moved by dx pixels
+#     horizontally and dy pixels vertically, otherwise dx and
+#     dy will become its new position.
+
+# float / unfloat window and center on screen
+shift + cmd - f : yabai -m window --toggle float;\
+          yabai -m window --grid 12:9:1:1:7:10
+
+# floating window fill screen
+# cmd - c : yabai -m window --toggle float;\
+#           yabai -m window --grid 12:12:1:1:10:10
+
+# TODO set floating, not toggle? the toggle is kind of nice
+shift + cmd - c : yabai -m window --toggle float; \
+                  yabai -m window --grid 50:50:1:1:48:48
+
+# TODO set floating, not toggle? the toggle is kind of nice
+shift + cmd - v : yabai -m window --toggle float; \
+                  yabai -m window --grid 50:50:10:10:30:30
+
+# make floating window fill left-half of screen
+# shift + cmd - left : yabai -m window --toggle float;\
+#                      yabai -m window --grid 1:2:0:0:1:1
+
+# TODO quit on super-q, etc
+cmd - q : yabai -m window --close
+
+# walking spaces
+cmd - p : yabai -m space --focus next || yabai -m space --focus first
+cmd - n : yabai -m space --focus prev || yabai -m space --focus last
+
+# cycle windows in current space (0x32 is `)
+# use skhd --observe to learn keycodes
+cmd - 0x32 : yabai -m window --focus next \
+       || yabai -m window --focus $(yabai -m query --windows --space mouse \
+         | jq 'map(select(."title" != "tauri-doctor-topbar"))' \
+         | jq 'map(select(."has-focus" != true))[-1].id') \
+       || yabai -m window --focus first
+cmd + shift - 0x32 : yabai -m window --focus prev \
+       || yabai -m window --focus $(yabai -m query --windows --space mouse \
+         | jq 'map(select(."title" != "tauri-doctor-topbar"))' \
+         | jq 'map(select(."has-focus" != true))[-1].id') \
+       || yabai -m window --focus last
+
+# dragging spaces
+shift + cmd - left : yabai -m space --move prev
+shift + cmd - right : yabai -m space --move next
+
+# jumping to spaces, jump back if on that space
+cmd - 1 : yabai -m space --focus 1 || yabai -m space --focus recent
+cmd - 2 : yabai -m space --focus 2 || yabai -m space --focus recent
+cmd - 3 : yabai -m space --focus 3 || yabai -m space --focus recent
+cmd - 4 : yabai -m space --focus 4 || yabai -m space --focus recent
+cmd - 5 : yabai -m space --focus 5 || yabai -m space --focus recent
+cmd - 6 : yabai -m space --focus 6 || yabai -m space --focus recent
+cmd - 7 : yabai -m space --focus 7 || yabai -m space --focus recent
+cmd - 8 : yabai -m space --focus 8 || yabai -m space --focus recent
+cmd - 9 : yabai -m space --focus 9 || yabai -m space --focus recent
+cmd - 0 : yabai -m space --focus 10 || yabai -m space --focus recent
+
+# TODO probably drop all these, and make something useful out of them ('modes' for 6-0?)
+# shift + cmd - 1 : yabai -m window --space 1
+# shift + cmd - 2 : yabai -m window --space 2
+# TODO remap screenshots
+# shift + cmd - 3 : yabai -m window --space 3
+# shift + cmd - 4 : yabai -m window --space 4
+# shift + cmd - 5 : yabai -m window --space 5
+shift + cmd - 6 : yabai -m window --space 6
+shift + cmd - 7 : yabai -m window --space 7
+shift + cmd - 8 : yabai -m window --space 8
+shift + cmd - 9 : yabai -m window --space 9
+shift + cmd - 0 : yabai -m window --space 0
+
+cmd - r : clawebb -x clawe.restart/reload
+
+# emacs, term toggling
+shift + cmd - return : clawebb -x clawe.toggle/toggle --key emacs
+cmd - return : clawebb -x clawe.toggle/toggle --key terminal
+
+# skhdrc
+# show all scratchpad windows if inaccessible due to yabai restart or crash
+cmd + alt - r : yabai -m window --scratchpad recover
+
+# toggle scratchpad windows or launch application if not running
+cmd + alt - s : yabai -m window --toggle spotify || open  -a Spotify
+cmd + alt - d : yabai -m window --toggle discord || open -a Discord
+cmd - t : yabai -m window --toggle web || open  -a Firefox
+cmd - y : yabai -m window --toggle clawe-dashboard || clawebb -x clawe.toggle/toggle --key dashboard
+cmd - u : yabai -m window --toggle emacs-journal || clawebb -x clawe.toggle/toggle --key journal
+cmd - e : yabai -m window --toggle emacs-floating || clawebb -x clawe.toggle/toggle --key floating-emacs
+
+cmd + alt - b : yabai -m window --toggle devweb || clawebb -x clawe.toggle/toggle --key devweb
+cmd + alt - a : yabai -m window --toggle slack || clawebb -x clawe.toggle/toggle --key slack
+cmd + alt - m : yabai -m window --toggle messages ||  clawebb -x clawe.toggle/toggle --key messages
+cmd + alt - n : yabai -m window --toggle notion
+cmd + alt - g : yabai -m window --toggle godot || clawebb -x clawe.toggle/toggle --key godot
+cmd + alt - x : yabai -m window --toggle xcode || clawebb -x clawe.toggle/toggle --key xcode
+cmd + alt - p : yabai -m window --toggle aseprite || clawebb -x clawe.toggle/toggle --key aseprite
+cmd + alt - o : yabai -m window --toggle obsidian || clawebb -x clawe.toggle/toggle --key obsidian
+
+cmd + shift - d : clawebb -x clawe.rules/clean-up-workspaces
+cmd + shift - x : clawebb -x clawe.mx/mx
+cmd + shift - w : clawebb -x clawe.mx/mx-suggestions
+cmd + shift - o : clawebb -x clawe.mx/mx-open
