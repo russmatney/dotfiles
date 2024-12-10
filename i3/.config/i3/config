@@ -186,17 +186,15 @@ bindsym XF86MonBrightnessDown exec --no-startup-id "light -U 5"
 # bindsym $mod+d [class="(Spotify|firefox|firefoxdeveloperedition)"] move scratchpad
 bindsym $mod+Shift+d exec clawebb -x clawe.rules/clean-up-workspaces
 
-for_window [class="Spotify"] move scratchpad
-# for_window [class="(Spotify|firefox)"] move scratchpad
-# for_window [title="Firefox Developer Edition$" type="normal"] move scratchpad
-for_window [class="Clove" title="tauri-doctor-focus"] move scratchpad
-for_window [class="Emacs" title="journal"] move scratchpad
-for_window [class="Emacs" title="floating-emacs"] move scratchpad
-for_window [class="^1Password$"] move scratchpad
-for_window [class="^Slack"] move scratchpad
-for_window [class="^Discord"] move scratchpad
-for_window [class="^Obsidian"] move scratchpad
-# for_window [class="Aseprite"] move scratchpad
+for_window [class="Spotify"] move scratchpad, scratchpad show
+for_window [class="Clove" title="tauri-doctor-focus"] move scratchpad, scratchpad show
+for_window [class="Emacs" title="journal"] move scratchpad, scratchpad show
+for_window [class="Emacs" title="floating-emacs"] move scratchpad, scratchpad show
+for_window [class="^1Password$"] move scratchpad, scratchpad show
+for_window [class="^Slack"] move scratchpad, scratchpad show
+for_window [class="^discord"] move scratchpad, scratchpad show
+for_window [class="^Obsidian"] move scratchpad, scratchpad show
+for_window [class="Aseprite"] move scratchpad, scratchpad show
 
 # cycle all scratchpads
 # tick ` == grave
@@ -230,7 +228,7 @@ bindsym $mod+$alt+a exec --no-startup-id i3-msg [class="Slack"] scratchpad show 
   clawebb -x clawe.toggle/toggle --key slack
 
 # toggle discord
-bindsym $mod+$alt+d exec --no-startup-id i3-msg [class="Discord"] scratchpad show || \
+bindsym $mod+$alt+d exec --no-startup-id i3-msg [class="discord"] scratchpad show || \
   clawebb -x clawe.toggle/toggle --key discord
 
 # toggle obsidian
@@ -316,5 +314,5 @@ exec --no-startup-id xautolock -time 5 -locker "i3lock -c 262626"
 exec_always --no-startup-id systemctl --user restart doctor-topbar
 
 # shouldn't we have a non-doctor (bb-based) clawe reload for doing this? or maybe this is that cmd?
-exec_always --no-startup-id clawebb -x clawe.doctor/reload
+exec_always --no-startup-id clawebb -x clawe.restart/reload
 exec_always --no-startup-id clawebb -x ralphie.notify/notify :subject "i3 config Restarted"
