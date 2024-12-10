@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+echo "Running 'clawebb' $*@"
+
+CLAWE_BB_PATH="$HOME/russmatney/clawe/bb.edn"
+
+bb --config "$CLAWE_BB_PATH" "$@"

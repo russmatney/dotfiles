@@ -547,16 +547,8 @@ esac
 # clawe
 #########################################################################
 
-alias clawebb='bb --config ~/russmatney/clawe/bb.edn'
-alias clawebb_ls='clawebb -x clawe.debug/ls-print --type'
-alias clawebb_ls_clients='clawebb -x clawe.debug/ls-clients'
-alias clawebb_ls_workspaces='clawebb -x clawe.debug/ls-workspaces'
-alias clawebb_toggle='clawebb -x clawe.toggle/toggle --key'
-alias clawebb_reload='clawebb -x clawe.restart/reload'
-alias clawebb_mx='clawebb -x clawe.mx/mx'
-alias clawebb_mx_fast='clawebb -x clawe.mx/mx-fast'
-
-alias dinobb='bb --config ~/russmatney/dino/bb.edn'
+# now just clawebb in ~/.local/bin/clawebb
+# alias clawebb='bb --config ~/russmatney/clawe/bb.edn'
 
 #########################################################################
 # itch.io

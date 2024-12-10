@@ -1,0 +1,319 @@
+###################################################
+## Config
+###################################################
+
+# none of that
+focus_follows_mouse no
+
+# super key
+set $mod Mod4
+# alt
+set $alt Mod1
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# nav to current wsp to return to prev
+workspace_auto_back_and_forth yes
+
+ipc-socket ~/.config/i3/i3-ipc.sock
+
+# (No) Title Bars
+for_window [class="^.*"] border pixel 1
+
+# Gaps - fyi could be custom per-workspace
+gaps inner 8
+gaps outer 4
+gaps top 60
+# gaps right 120
+
+default_floating_border pixel 2
+for_window [class="Emacs"] border pixel 2
+for_window [title="Terminal"] border pixel 2
+
+no_focus [title="tauri-doctor-topbar"]
+for_window [title="tauri-doctor-topbar"] floating enable, sticky enable, \
+    resize set width 100 ppt height 60 px, move position 0 px 36 px
+    # resize set width 100 ppt height 70 px, move position 0 px 2080 px
+
+no_focus [title="^Windowed Projector" class="obs"]
+for_window [title="^Windowed Projector" class="obs"] floating enable, sticky enable
+
+no_focus [title="twitch-chat" class="Clove"]
+for_window [title="twitch-chat" class="Clove"] floating enable, sticky enable
+
+no_focus [title="garden-reveal-slides" class="Clove"]
+for_window [title="garden-reveal-slides" class="Clove"] floating enable, \
+    resize set width 2160 px height 1440 px
+
+for_window [class="Rofi"] floating enable, sticky enable
+for_window [class="NautilusPreviewer"] floating enable, resize set width 70 ppt height 70 ppt, move position center
+
+###################################################
+## Fonts and colors
+###################################################
+
+set $black       #212121
+set $darkblack   #000000
+set $red         #fb4934
+set $darkred     #cc241d
+set $green       #b8bb26
+set $darkgreen   #98971a
+set $yellow      #fabd2f
+set $darkyellow  #d79921
+set $blue        #83a598
+set $darkblue    #458588
+set $magenta     #d3869b
+set $darkmagenta #b16286
+set $cyan        #8ec07c
+set $darkcyan    #689d6a
+set $white       #ebdbb2
+set $darkwhite   #a89984
+set $background  #000000
+set $transparent #00000000
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font pango:Helvetica Neue, FontAwesome 11
+
+# border colors
+client.focused #4c7899 #285577 #ffffff #2e9ef4 #285577
+
+###################################################
+## Basic keybinds
+###################################################
+
+# fully restart i3 in place
+bindsym $mod+Shift+r restart
+
+# reload i3
+bindsym $mod+r exec i3-msg reload && clawebb -x ralphie.notify/notify :subject "i3 config Reloaded"
+
+# Kill focused window
+bindsym $mod+q kill
+
+# open rofi/launcher to start programs
+bindsym $mod+space exec --no-startup-id "rofi -show combi -combi-modi window,drun,run"
+
+# move focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# lock screen
+bindsym $mod+Shift+q exec --no-startup-id i3lock -c 3e3e3e
+
+# screenshot
+bindsym $mod+Shift+a exec --no-startup-id ~/.local/bin/screenshot-region
+bindsym $mod+Shift+s exec --no-startup-id i3-scrot
+
+################################################################################
+# clawe
+################################################################################
+
+# these are also impled via sxhkd...
+
+# clawe-mx
+bindsym $mod+Shift+x exec clawebb -x clawe.mx/mx
+bindsym $mod+Shift+w exec clawebb -x clawe.mx/mx-suggestions
+bindsym $mod+Shift+o exec clawebb -x clawe.mx/mx-open
+
+# cycle window focus
+# because of the tree structure, cycling windows in a workspace is complicated :/
+focus_wrapping workspace
+bindsym $mod+Tab focus parent; focus next
+
+################################################################################
+# Layout/Window Position
+################################################################################
+
+# toggle floating
+bindsym $mod+Shift+f floating toggle
+
+# toggle fullscreen
+bindsym $mod+Shift+space fullscreen toggle
+
+# toggle layout (stacked, tabbed, toggle split)
+bindsym $mod+semicolon layout toggle splith splitv
+bindsym $mod+Shift+semicolon layout toggle tabbed stacking
+
+# window position commands
+bindsym $mod+c floating enable, resize set width 70 ppt height 70 ppt, move position center
+bindsym $mod+Shift+c floating enable, resize set width 90 ppt height 90 ppt, move position center
+bindsym $mod+Shift+v floating enable, resize set width 1920 px height 1080 px, move position center
+
+# absolute positioning
+bindsym $mod+shift+Right floating enable, resize set width 45 ppt height 90 ppt, move position 1008 48
+bindsym $mod+shift+Left floating enable, resize set width 45 ppt height 90 ppt, move position 48 48
+bindsym $mod+shift+Down resize set width 60 ppt height 100 ppt, move position 0 px 0 px
+
+# bsp, sort of
+default_orientation vertical
+for_window [class=".*"] split toggle
+
+################################################################################
+# resize windows
+################################################################################
+
+bindsym Ctrl+Shift+h resize shrink width 30 px or 5 ppt
+bindsym Ctrl+Shift+l resize grow width 30 px or 5 ppt
+bindsym Ctrl+Shift+j resize shrink height 30 px or 5 ppt
+bindsym Ctrl+Shift+k resize grow height 30 px or 5 ppt
+
+################################################################################
+# Media keybinds
+################################################################################
+
+bindsym $mod+XF86AudioPlay exec --no-startup-id "spotifycli --playpause"
+bindsym XF86AudioPlay exec --no-startup-id "playerctl play-pause"
+bindsym XF86AudioNext exec --no-startup-id "playerctl next"
+bindsym XF86AudioPrev exec --no-startup-id "playerctl previous"
+bindsym XF86AudioMute exec --no-startup-id "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-volume @DEFAULT_SINK@ +5%"
+bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-volume @DEFAULT_SINK@ -5%"
+
+# screen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id "light -A 5"
+bindsym XF86MonBrightnessDown exec --no-startup-id "light -U 5"
+
+################################################################################
+# Apps/Scratchpads
+################################################################################
+
+# clean up
+# TODO should move all scratchpad toggles to scratchpads
+# bindsym $mod+d [class="(Spotify|firefox|firefoxdeveloperedition)"] move scratchpad
+bindsym $mod+Shift+d exec clawebb -x clawe.rules/clean-up-workspaces
+
+for_window [class="Spotify"] move scratchpad
+# for_window [class="(Spotify|firefox)"] move scratchpad
+# for_window [title="Firefox Developer Edition$" type="normal"] move scratchpad
+for_window [class="Clove" title="tauri-doctor-focus"] move scratchpad
+for_window [class="Emacs" title="journal"] move scratchpad
+for_window [class="Emacs" title="floating-emacs"] move scratchpad
+for_window [class="^1Password$"] move scratchpad
+for_window [class="^Slack"] move scratchpad
+for_window [class="^Discord"] move scratchpad
+for_window [class="^Obsidian"] move scratchpad
+# for_window [class="Aseprite"] move scratchpad
+
+# cycle all scratchpads
+# tick ` == grave
+bindsym $mod+grave scratchpad show
+bindsym $mod+Shift+grave move scratchpad
+bindsym $mod+Shift+y move scratchpad
+
+# bindsym $mod+Return exec --no-startup-id "alacritty --working-directory=/home/russ/dotfiles -e 'tmux'"
+bindsym $mod+Return exec clawebb -x clawe.doctor/clawe-toggle --key terminal
+
+# bindsym $mod+Shift+Return exec --no-startup-id emacsclient -c
+bindsym $mod+Shift+Return exec clawebb -x clawe.doctor/clawe-toggle --key emacs
+
+bindsym $mod+e exec --no-startup-id i3-msg [class="Emacs" title="floating-emacs"] scratchpad show || \
+  clawebb -x clawe.doctor/clawe-toggle --key floating-emacs
+
+# toggle journal
+bindsym $mod+u exec --no-startup-id i3-msg [class="Emacs" title="journal"] scratchpad show || \
+  clawebb -x clawe.doctor/clawe-toggle --key journal
+
+# toggle yodo/clawe dashboard
+bindsym $mod+y exec --no-startup-id i3-msg [class="Clove" title="tauri-doctor-focus"] scratchpad show || \
+  clawebb -x clawe.doctor/clawe-toggle --key focus
+
+# toggle spotify
+bindsym $mod+$alt+s exec --no-startup-id i3-msg [class="Spotify"] scratchpad show || \
+  clawebb -x clawe.doctor/clawe-toggle --key spotify
+
+# toggle slack
+bindsym $mod+$alt+a exec --no-startup-id i3-msg [class="Slack"] scratchpad show || \
+  clawebb -x clawe.doctor/clawe-toggle --key slack
+
+# toggle discord
+bindsym $mod+$alt+d exec --no-startup-id i3-msg [class="Discord"] scratchpad show || \
+  clawebb -x clawe.doctor/clawe-toggle --key discord
+
+# toggle obsidian
+bindsym $mod+$alt+o exec --no-startup-id i3-msg [class="Obsidian"] scratchpad show || \
+  clawebb -x clawe.doctor/clawe-toggle --key obsidian
+
+# toggle web
+bindsym $mod+t exec --no-startup-id i3-msg [class="firefox$"] scratchpad show || \
+  clawebb -x clawe.doctor/clawe-toggle --key web
+
+# toggle dev browser
+bindsym $mod+$alt+b exec --no-startup-id i3-msg '[class="firefoxdeveloperedition"] scratchpad show' || \
+  clawebb -x clawe.doctor/clawe-toggle --key devweb
+
+# toggle 1password
+bindsym $mod+period exec --no-startup-id i3-msg '[class="1Password"] scratchpad show' || \
+  clawebb -x clawe.doctor/clawe-toggle --key onepass
+
+# toggle aseprite
+bindsym $mod+$alt+p exec --no-startup-id i3-msg '[class="^Aseprite"] scratchpad show' || \
+  clawebb -x clawe.doctor/clawe-toggle --key aseprite
+
+# toggle Godot
+bindsym $mod+$alt+g exec --no-startup-id i3-msg '[instance="Godot_Engine"] scratchpad show' || \
+  clawebb -x clawe.doctor/clawe-toggle --key godot
+
+# toggle unity
+bindsym $mod+$alt+u exec --no-startup-id i3-msg [class="Unity"] scratchpad show || \
+  clawebb -x clawe.doctor/clawe-toggle --key unity
+
+for_window [instance="Godot_Engine" title="Dino"] floating enable, sticky enable, move position center
+for_window [instance="Godot_Engine" title="Dot Hop"] floating enable, sticky enable, move position center
+for_window [instance="Godot_Engine" title="GDUnit"] move scratchpad
+# resize set width 50 ppt height 50 ppt
+
+###################################################################
+## workspaces
+###################################################################
+
+bindsym $mod+comma exec i3-input -F 'rename workspace to "%s"' -P 'New name for this workspace (n:<name>): '
+
+bindsym $mod+1 workspace number 1
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+0 workspace number 0
+bindsym $mod+Shift+0 move container to workspace number 0
+
+bindsym $mod+n workspace prev
+bindsym $mod+p workspace next
+
+###################################################################
+## startup execs
+###################################################################
+# exec_always runs whenever you i3 "restart" (vs reload)
+
+# Compositor (Animations, Shadows, Transparency)
+exec_always --no-startup-id compton --inactive-dim 0.1 --active-opacity 0.95 -i 0.98
+# exec_always --no-startup-id compton -cCfb --backend glx --vsync opengl
+# exec_always --no-startup-id picom
+
+# exec_always --no-startup-id feh --bg-scale ~/Dropbox/wallpapers/cityscape-cartoon.jpg
+exec_always --no-startup-id variety --resume
+
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec --no-startup-id bluetoothctl -- power on
+exec --no-startup-id xautolock -time 5 -locker "i3lock -c 262626"
+
+exec_always --no-startup-id systemctl --user restart doctor-topbar
+
+exec_always --no-startup-id clawebb -x clawe.doctor/reload
+exec_always --no-startup-id clawebb -x ralphie.notify/notify :subject "i3 config Restarted"
