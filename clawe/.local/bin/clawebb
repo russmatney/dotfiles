@@ -1,7 +1,13 @@
 #!/usr/bin/env sh
 
-echo "Running 'clawebb' $*@"
+set -e
 
-CLAWE_BB_PATH="$HOME/russmatney/clawe/bb.edn"
+{
+    echo "Running 'clawebb' $*"
 
-bb --config "$CLAWE_BB_PATH" "$@"
+    CLAWE_BB_PATH="$HOME/russmatney/clawe/bb.edn"
+
+    # TODO redirect to a useful log file
+    bb --config "$CLAWE_BB_PATH" "$@"
+
+} >> ~/.log/clawe/clawebb.out.txt 2>>~/.log/clawe/clawebb.err.txt

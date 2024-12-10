@@ -205,61 +205,61 @@ bindsym $mod+Shift+grave move scratchpad
 bindsym $mod+Shift+y move scratchpad
 
 # bindsym $mod+Return exec --no-startup-id "alacritty --working-directory=/home/russ/dotfiles -e 'tmux'"
-bindsym $mod+Return exec clawebb -x clawe.doctor/clawe-toggle --key terminal
+bindsym $mod+Return exec clawebb -x clawe.toggle/toggle --key terminal
 
 # bindsym $mod+Shift+Return exec --no-startup-id emacsclient -c
-bindsym $mod+Shift+Return exec clawebb -x clawe.doctor/clawe-toggle --key emacs
+bindsym $mod+Shift+Return exec clawebb -x clawe.toggle/toggle --key emacs
 
 bindsym $mod+e exec --no-startup-id i3-msg [class="Emacs" title="floating-emacs"] scratchpad show || \
-  clawebb -x clawe.doctor/clawe-toggle --key floating-emacs
+  clawebb -x clawe.toggle/toggle --key floating-emacs
 
 # toggle journal
 bindsym $mod+u exec --no-startup-id i3-msg [class="Emacs" title="journal"] scratchpad show || \
-  clawebb -x clawe.doctor/clawe-toggle --key journal
+  clawebb -x clawe.toggle/toggle --key journal
 
 # toggle yodo/clawe dashboard
 bindsym $mod+y exec --no-startup-id i3-msg [class="Clove" title="tauri-doctor-focus"] scratchpad show || \
-  clawebb -x clawe.doctor/clawe-toggle --key focus
+  clawebb -x clawe.toggle/toggle --key focus
 
 # toggle spotify
 bindsym $mod+$alt+s exec --no-startup-id i3-msg [class="Spotify"] scratchpad show || \
-  clawebb -x clawe.doctor/clawe-toggle --key spotify
+  clawebb -x clawe.toggle/toggle --key spotify
 
 # toggle slack
 bindsym $mod+$alt+a exec --no-startup-id i3-msg [class="Slack"] scratchpad show || \
-  clawebb -x clawe.doctor/clawe-toggle --key slack
+  clawebb -x clawe.toggle/toggle --key slack
 
 # toggle discord
 bindsym $mod+$alt+d exec --no-startup-id i3-msg [class="Discord"] scratchpad show || \
-  clawebb -x clawe.doctor/clawe-toggle --key discord
+  clawebb -x clawe.toggle/toggle --key discord
 
 # toggle obsidian
 bindsym $mod+$alt+o exec --no-startup-id i3-msg [class="Obsidian"] scratchpad show || \
-  clawebb -x clawe.doctor/clawe-toggle --key obsidian
+  clawebb -x clawe.toggle/toggle --key obsidian
 
 # toggle web
 bindsym $mod+t exec --no-startup-id i3-msg [class="firefox$"] scratchpad show || \
-  clawebb -x clawe.doctor/clawe-toggle --key web
+  clawebb -x clawe.toggle/toggle --key web
 
 # toggle dev browser
 bindsym $mod+$alt+b exec --no-startup-id i3-msg '[class="firefoxdeveloperedition"] scratchpad show' || \
-  clawebb -x clawe.doctor/clawe-toggle --key devweb
+  clawebb -x clawe.toggle/toggle --key devweb
 
 # toggle 1password
 bindsym $mod+period exec --no-startup-id i3-msg '[class="1Password"] scratchpad show' || \
-  clawebb -x clawe.doctor/clawe-toggle --key onepass
+  clawebb -x clawe.toggle/toggle --key onepass
 
 # toggle aseprite
 bindsym $mod+$alt+p exec --no-startup-id i3-msg '[class="^Aseprite"] scratchpad show' || \
-  clawebb -x clawe.doctor/clawe-toggle --key aseprite
+  clawebb -x clawe.toggle/toggle --key aseprite
 
 # toggle Godot
 bindsym $mod+$alt+g exec --no-startup-id i3-msg '[instance="Godot_Engine"] scratchpad show' || \
-  clawebb -x clawe.doctor/clawe-toggle --key godot
+  clawebb -x clawe.toggle/toggle --key godot
 
 # toggle unity
 bindsym $mod+$alt+u exec --no-startup-id i3-msg [class="Unity"] scratchpad show || \
-  clawebb -x clawe.doctor/clawe-toggle --key unity
+  clawebb -x clawe.toggle/toggle --key unity
 
 for_window [instance="Godot_Engine" title="Dino"] floating enable, sticky enable, move position center
 for_window [instance="Godot_Engine" title="Dot Hop"] floating enable, sticky enable, move position center
@@ -315,5 +315,6 @@ exec --no-startup-id xautolock -time 5 -locker "i3lock -c 262626"
 
 exec_always --no-startup-id systemctl --user restart doctor-topbar
 
+# shouldn't we have a non-doctor (bb-based) clawe reload for doing this? or maybe this is that cmd?
 exec_always --no-startup-id clawebb -x clawe.doctor/reload
 exec_always --no-startup-id clawebb -x ralphie.notify/notify :subject "i3 config Restarted"
