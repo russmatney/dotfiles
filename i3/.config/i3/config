@@ -89,6 +89,8 @@ bindsym $mod+Shift+r restart
 # reload i3
 bindsym $mod+r exec i3-msg reload && clawebb -x ralphie.notify/notify :subject "i3 config Reloaded"
 
+bindsym $mod+Shift+d exec clawebb -x clawe.rules/clean-up-workspaces
+
 # Kill focused window
 bindsym $mod+q kill
 
@@ -180,11 +182,6 @@ bindsym XF86MonBrightnessDown exec --no-startup-id "light -U 5"
 ################################################################################
 # Apps/Scratchpads
 ################################################################################
-
-# clean up
-# TODO should move all scratchpad toggles to scratchpads
-# bindsym $mod+d [class="(Spotify|firefox|firefoxdeveloperedition)"] move scratchpad
-bindsym $mod+Shift+d exec clawebb -x clawe.rules/clean-up-workspaces
 
 for_window [class="Spotify"] move scratchpad, scratchpad show
 for_window [class="Clove" title="tauri-doctor-focus"] move scratchpad, scratchpad show

@@ -55,6 +55,18 @@
     // Modules
     // -------------------------------------------------------------------------
 
+    "sway/workspaces": {
+        // "format": "{icon}",
+        // "window-rewrite-default": "{name}",
+        // "format-icons": [],
+        // "persistent-workspaces": {
+        //     "dotfiles": [],
+        //     "2": [],
+        //     "3": [],
+        //     "4": []
+        // }
+    },
+
     "battery": {
         "interval": 30,
         "states": {
@@ -359,14 +371,5 @@
         "on-click": "inhibit-idle off; inhibit-idle interactive",
         "on-click-middle": "inhibit-idle off",
         "signal": 15
-    },
-
-    "sway/workspaces": {
-        "persistent-workspaces": {
-            "1": [],
-            "2": [],
-            "3": [],
-            "4": []
-        }
     }
 }
