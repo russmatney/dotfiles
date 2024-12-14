@@ -216,7 +216,7 @@ bindsym $mod+u exec --no-startup-id i3-msg [class="Emacs" title="journal"] scrat
 
 # toggle yodo/clawe dashboard
 bindsym $mod+y exec --no-startup-id i3-msg [class="Clove" title="tauri-doctor-dashboard"] scratchpad show || \
-  clawebb-log -x clawe.toggle/toggle --key focus
+  clawebb-log -x clawe.toggle/toggle --key dashboard
 
 # toggle spotify
 bindsym $mod+$alt+s exec --no-startup-id i3-msg [class="Spotify"] scratchpad show || \

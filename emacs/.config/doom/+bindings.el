@@ -11,10 +11,10 @@
 
 ;; pulled in from doom/+commands.el
 (ex! "pgrep" #'+vertico:project-search)
-(ex! "pg" #'+vertico:project-search)
 (ex! "pgrepd" #'+vertico:project-search-from-cwd)
 (ex! "pgd" #'+vertico:project-search-from-cwd)
 (ex! "pg[rep]"   #'+vertico:project-search)
+(ex! "pg" #'+vertico:project-search)
 ;; (ex! "pg[grep]d" #'+vertico:project-search-from-cwd)
 
 (defun rm/search ()
