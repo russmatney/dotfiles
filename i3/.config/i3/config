@@ -193,6 +193,7 @@ for_window [class="^Slack"] move scratchpad, scratchpad show
 for_window [class="^discord"] move scratchpad, scratchpad show
 for_window [class="^Obsidian"] move scratchpad, scratchpad show
 for_window [class="Aseprite"] move scratchpad, scratchpad show
+for_window [class="firefox*"] move scratchpad, scratchpad show
 
 # cycle all scratchpads
 # tick ` == grave
@@ -238,23 +239,23 @@ bindsym $mod+t exec --no-startup-id i3-msg [class="firefox$"] scratchpad show ||
   clawebb-log -x clawe.toggle/toggle --key web
 
 # toggle dev browser
-bindsym $mod+$alt+b exec --no-startup-id i3-msg '[class="firefoxdeveloperedition"] scratchpad show' || \
+bindsym $mod+$alt+b exec --no-startup-id i3-msg '[class="firefox-developer-edition"]' scratchpad show || \
   clawebb-log -x clawe.toggle/toggle --key devweb
 
 # toggle 1password
-bindsym $mod+period exec --no-startup-id i3-msg '[class="1Password"] scratchpad show' || \
+bindsym $mod+period exec --no-startup-id i3-msg '[class="1Password"]' scratchpad show || \
   clawebb-log -x clawe.toggle/toggle --key onepass
 
 # toggle aseprite
-bindsym $mod+$alt+p exec --no-startup-id i3-msg '[class="^Aseprite"] scratchpad show' || \
+bindsym $mod+$alt+p exec --no-startup-id i3-msg '[class="^Aseprite"]' scratchpad show || \
   clawebb-log -x clawe.toggle/toggle --key aseprite
 
 # toggle Godot
-bindsym $mod+$alt+g exec --no-startup-id i3-msg '[instance="Godot_Engine"] scratchpad show' || \
+bindsym $mod+$alt+g exec --no-startup-id i3-msg '[instance="Godot_Engine"]' scratchpad show || \
   clawebb-log -x clawe.toggle/toggle --key godot
 
 # toggle unity
-bindsym $mod+$alt+u exec --no-startup-id i3-msg [class="Unity"] scratchpad show || \
+bindsym $mod+$alt+u exec --no-startup-id i3-msg '[class="Unity"]' scratchpad show || \
   clawebb-log -x clawe.toggle/toggle --key unity
 
 for_window [instance="Godot_Engine" title="Dino"] floating enable, sticky enable, move position center
