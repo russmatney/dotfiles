@@ -87,9 +87,9 @@ client.focused #4c7899 #285577 #ffffff #2e9ef4 #285577
 bindsym $mod+Shift+r restart
 
 # reload i3
-bindsym $mod+r exec i3-msg reload && clawebb -x ralphie.notify/notify :subject "i3 config Reloaded"
+bindsym $mod+r exec i3-msg reload && clawebb-log -x ralphie.notify/notify :subject "i3 config Reloaded"
 
-bindsym $mod+Shift+d exec clawebb -x clawe.rules/clean-up-workspaces
+bindsym $mod+Shift+d exec clawebb-log -x clawe.rules/clean-up-workspaces
 
 # Kill focused window
 bindsym $mod+q kill
@@ -117,9 +117,9 @@ bindsym $mod+Shift+s exec --no-startup-id i3-scrot
 # these are also impled via sxhkd...
 
 # clawe-mx
-bindsym $mod+Shift+x exec clawebb -x clawe.mx/mx
-bindsym $mod+Shift+w exec clawebb -x clawe.mx/mx-suggestions
-bindsym $mod+Shift+o exec clawebb -x clawe.mx/mx-open
+bindsym $mod+Shift+x exec clawebb-log -x clawe.mx/mx
+bindsym $mod+Shift+w exec clawebb-log -x clawe.mx/mx-suggestions
+bindsym $mod+Shift+o exec clawebb-log -x clawe.mx/mx-open
 
 # cycle window focus
 # because of the tree structure, cycling windows in a workspace is complicated :/
@@ -185,6 +185,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id "light -U 5"
 
 for_window [class="Spotify"] move scratchpad, scratchpad show
 for_window [class="Clove" title="tauri-doctor-focus"] move scratchpad, scratchpad show
+for_window [class="Clove" title="tauri-doctor-dashboard"] move scratchpad, scratchpad show
 for_window [class="Emacs" title="journal"] move scratchpad, scratchpad show
 for_window [class="Emacs" title="floating-emacs"] move scratchpad, scratchpad show
 for_window [class="^1Password$"] move scratchpad, scratchpad show
@@ -200,61 +201,61 @@ bindsym $mod+Shift+grave move scratchpad
 bindsym $mod+Shift+y move scratchpad
 
 # bindsym $mod+Return exec --no-startup-id "alacritty --working-directory=/home/russ/dotfiles -e 'tmux'"
-bindsym $mod+Return exec clawebb -x clawe.toggle/toggle --key terminal
+bindsym $mod+Return exec --no-startup-id clawebb-log -x clawe.toggle/toggle --key terminal
 
 # bindsym $mod+Shift+Return exec --no-startup-id emacsclient -c
-bindsym $mod+Shift+Return exec clawebb -x clawe.toggle/toggle --key emacs
+bindsym $mod+Shift+Return exec --no-startup-id clawebb-log -x clawe.toggle/toggle --key emacs
 
 bindsym $mod+e exec --no-startup-id i3-msg [class="Emacs" title="floating-emacs"] scratchpad show || \
-  clawebb -x clawe.toggle/toggle --key floating-emacs
+  clawebb-log -x clawe.toggle/toggle --key floating-emacs
 
 # toggle journal
 bindsym $mod+u exec --no-startup-id i3-msg [class="Emacs" title="journal"] scratchpad show || \
-  clawebb -x clawe.toggle/toggle --key journal
+  clawebb-log -x clawe.toggle/toggle --key journal
 
 # toggle yodo/clawe dashboard
-bindsym $mod+y exec --no-startup-id i3-msg [class="Clove" title="tauri-doctor-focus"] scratchpad show || \
-  clawebb -x clawe.toggle/toggle --key focus
+bindsym $mod+y exec --no-startup-id i3-msg [class="Clove" title="tauri-doctor-dashboard"] scratchpad show || \
+  clawebb-log -x clawe.toggle/toggle --key focus
 
 # toggle spotify
 bindsym $mod+$alt+s exec --no-startup-id i3-msg [class="Spotify"] scratchpad show || \
-  clawebb -x clawe.toggle/toggle --key spotify
+  clawebb-log -x clawe.toggle/toggle --key spotify
 
 # toggle slack
 bindsym $mod+$alt+a exec --no-startup-id i3-msg [class="Slack"] scratchpad show || \
-  clawebb -x clawe.toggle/toggle --key slack
+  clawebb-log -x clawe.toggle/toggle --key slack
 
 # toggle discord
 bindsym $mod+$alt+d exec --no-startup-id i3-msg [class="discord"] scratchpad show || \
-  clawebb -x clawe.toggle/toggle --key discord
+  clawebb-log -x clawe.toggle/toggle --key discord
 
 # toggle obsidian
 bindsym $mod+$alt+o exec --no-startup-id i3-msg [class="Obsidian"] scratchpad show || \
-  clawebb -x clawe.toggle/toggle --key obsidian
+  clawebb-log -x clawe.toggle/toggle --key obsidian
 
 # toggle web
 bindsym $mod+t exec --no-startup-id i3-msg [class="firefox$"] scratchpad show || \
-  clawebb -x clawe.toggle/toggle --key web
+  clawebb-log -x clawe.toggle/toggle --key web
 
 # toggle dev browser
 bindsym $mod+$alt+b exec --no-startup-id i3-msg '[class="firefoxdeveloperedition"] scratchpad show' || \
-  clawebb -x clawe.toggle/toggle --key devweb
+  clawebb-log -x clawe.toggle/toggle --key devweb
 
 # toggle 1password
 bindsym $mod+period exec --no-startup-id i3-msg '[class="1Password"] scratchpad show' || \
-  clawebb -x clawe.toggle/toggle --key onepass
+  clawebb-log -x clawe.toggle/toggle --key onepass
 
 # toggle aseprite
 bindsym $mod+$alt+p exec --no-startup-id i3-msg '[class="^Aseprite"] scratchpad show' || \
-  clawebb -x clawe.toggle/toggle --key aseprite
+  clawebb-log -x clawe.toggle/toggle --key aseprite
 
 # toggle Godot
 bindsym $mod+$alt+g exec --no-startup-id i3-msg '[instance="Godot_Engine"] scratchpad show' || \
-  clawebb -x clawe.toggle/toggle --key godot
+  clawebb-log -x clawe.toggle/toggle --key godot
 
 # toggle unity
 bindsym $mod+$alt+u exec --no-startup-id i3-msg [class="Unity"] scratchpad show || \
-  clawebb -x clawe.toggle/toggle --key unity
+  clawebb-log -x clawe.toggle/toggle --key unity
 
 for_window [instance="Godot_Engine" title="Dino"] floating enable, sticky enable, move position center
 for_window [instance="Godot_Engine" title="Dot Hop"] floating enable, sticky enable, move position center
@@ -308,8 +309,6 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id bluetoothctl -- power on
 exec --no-startup-id xautolock -time 5 -locker "i3lock -c 262626"
 
-exec_always --no-startup-id systemctl --user restart doctor-topbar
-
 # shouldn't we have a non-doctor (bb-based) clawe reload for doing this? or maybe this is that cmd?
-exec_always --no-startup-id clawebb -x clawe.restart/reload
-exec_always --no-startup-id clawebb -x ralphie.notify/notify :subject "i3 config Restarted"
+exec_always --no-startup-id clawebb-log -x clawe.restart/reload
+exec_always --no-startup-id clawebb-log -x ralphie.notify/notify :subject "i3 config Restarted"

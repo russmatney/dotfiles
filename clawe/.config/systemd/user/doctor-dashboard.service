@@ -1,0 +1,13 @@
+[Unit]
+Description=doctor dashboard app
+
+[Service]
+Type=simple
+ExecStart=bb --config /home/russ/russmatney/clawe/bb.edn dashboard
+Environment="DISPLAY=:0"
+Environment="WEBKIT_DISABLE_DMABUF_RENDERER=1"
+Environment="PATH=/home/russ/.local/bin:/home/russ/.cargo/bin:/home/russ/.nix-profile/bin:/bin:/usr/bin:/usr/local/bin:/usr/local/sbin"
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

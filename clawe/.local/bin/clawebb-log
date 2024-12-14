@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+set -e
+
+# TODO proper temp file logs
+clawebb "$@" >> ~/.log/clawe/clawebb.out.txt 2>>~/.log/clawe/clawebb.err.txt
