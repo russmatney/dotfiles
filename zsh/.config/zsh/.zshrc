@@ -464,6 +464,23 @@ if [ -f "$HOME/russmatney/gg/bb.edn" ]; then
   compdef _gg_tasks gg
 fi
 
+#########################################################################
+# clawe
+#########################################################################
+
+# now just clawebb in ~/.local/bin/clawebb
+# alias clawebb='bb --config ~/russmatney/clawe/bb.edn'
+
+# brainstorm ways to complete `clawebb -x ns/fn --blah arg`
+if [ -f "$HOME/russmatney/clawe/bb.edn" ]; then
+  _clawe_tasks() {
+      local clawe_matches=(`bb --config ~/russmatney/clawe/bb.edn tasks | tail -n +3 | cut -f1 -d ' '`)
+      compadd -a clawe_matches
+  }
+  compdef _clawe_tasks clawebb
+  compdef _clawe_tasks clawebb-log
+fi
+
 
 ################################################################################
 # Python
@@ -542,13 +559,6 @@ case "$OSTYPE" in
     # autojump
     [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 esac
-
-#########################################################################
-# clawe
-#########################################################################
-
-# now just clawebb in ~/.local/bin/clawebb
-# alias clawebb='bb --config ~/russmatney/clawe/bb.edn'
 
 #########################################################################
 # itch.io
