@@ -175,11 +175,11 @@
 ;;;###autoload
 (defun russ/ensure-workspace (name)
   (unless (+workspace-exists-p name)
-    (+workspace/new-named name)))
+    (+workspace-new name)))
 
 (comment
  (russ/open-workspace "cli-bindings")
- (russ/ensure-workspace "dino")
+ (russ/ensure-workspace "clove")
  (unless (+workspace-exists-p "clawe")
    (+workspace/new-named "clawe")
    ))
