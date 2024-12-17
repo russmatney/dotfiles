@@ -198,8 +198,14 @@ export RPROMPT='%@'
 # Tmux
 ################################################################################
 
-source ~/dotfiles/zsh/tmux.sh
-
+alias t=$(which tt)
+alias tk='tt tk'
+alias 't-'='tmux switch-client -l'
+alias 't -'='tmux switch-client -l'
+alias 'tt -'='tmux switch-client -l'
+alias tls='tmux list-sessions'
+alias tka='tmux kill-session -a'
+alias tkt='tmux kill-session -a -t'
 
 ################################################################################
 # Misc Aliases

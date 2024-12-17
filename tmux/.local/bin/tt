@@ -1,0 +1,68 @@
+#!/usr/bin/env zsh
+
+if ! command -v tmux >/dev/null; then
+  echo 'Missing dependency (tmux). Please install and try again. Exiting...'
+  return
+fi
+
+## tt
+
+tt() {
+  # Find or create a Tmux session.
+  # no args attaches to something or other
+  local session_name="${1}"
+  if ! tmux has-session -t "${session_name}" 2> /dev/null; then
+    local oldTMUX="${TMUX}"
+    unset TMUX
+    tmux new -d -s "${session_name}" -n "${session_name}"
+    export TMUX="${oldTMUX}"
+    unset oldTMUX
+
+    if command -v j >/dev/null; then
+      tmux send-keys -t "${session_name}" "j ${session_name}; clear" "C-m"
+    else
+      tmux send-keys -t "${session_name}"
+    fi
+  fi
+  if [[ -n "${TMUX}" ]]; then
+    tmux switch-client -t "${session_name}"
+  else
+    tmux attach -t "${session_name}"
+  fi
+}
+
+## tk
+
+tk() {
+  # `tk`: "tmux kill". Kills a tmux session by name.
+  # If no arguments are provided, kills the current session (after jumping to the previous session).
+  session_name="${1}"
+  if [ ! -z "${session_name}" ]; then
+    tmux kill-session -t "${session_name}"
+  else
+    session_name=tmux ls -f '#{?session_attached,#{session_name},}' | xargs
+    tmux switch-client -l
+    tmux kill-session -t "${session_name}"
+  fi
+}
+
+## run
+
+function run
+{
+  arg=$1
+
+  if [[ $arg == "tk" ]]
+  then
+    tk ${@:2}
+  elif [[ $arg == "workspace" ]]
+  then
+    # TODO impl some wsp-grab-name helper
+    tt curr-wsp-name
+  else
+    tt $@
+  fi
+
+}
+
+run $@
