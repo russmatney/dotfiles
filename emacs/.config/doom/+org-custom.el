@@ -8,6 +8,10 @@
 
 (use-package! org-rich-yank)
 
+(use-package! org
+  :config
+  (add-hook 'after-save-hook #'clawe/doctor-ingest-this-file))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org Settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

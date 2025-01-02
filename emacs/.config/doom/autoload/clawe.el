@@ -11,8 +11,10 @@
     (user-error "Buffer is not visiting any file"))
   (let ((path (buffer-file-name (buffer-base-buffer))))
     (message (concat "doctor ingesting file " path))
+    ;; consider 'without-popups' or naming and ignoring a common clawebb buffer
     (async-shell-command
-     (concat "clawebb -x clawe.doctor/ingest-file --path " path))))
+     (concat "clawebb -x clawe.doctor/ingest-file --path " path)
+     "*clawebb*")))
 
 (comment
  (message "hi")
