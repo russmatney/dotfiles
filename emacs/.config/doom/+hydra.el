@@ -95,12 +95,7 @@ Commands that stick around (this hydra supports multiple presses).
   ("w" (find-file "~/russmatney/clawe/src/clawe/defs/workspaces.clj")
    "defs/workspaces.clj")
 
-  ("R" (shell-command
-        "cd ~/russmatney/clawe && bb -cp $(clojure -Spath) --uberjar clawe.jar -m clawe.core")
-   "rebuild" :column "clawe mgmt")
   ("r" (shell-command "clawe reload") "reload")
-  ;; NOTE this doesn't do the caching/restore that mod+shift+r does yet
-  ("A" (shell-command "awesome-client \"awesome.restart()\"") "restart awesome")
 
   ;; can i expand this hydra into here? compose it?
   ("g" hydra-workspace-garden-files/body "workspace garden file" :column "Garden Files")
