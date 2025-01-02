@@ -18,7 +18,4 @@
 
 (comment
  (message "hi")
-
- (clawe/doctor-ingest-this-file)
-
- )
+ (clawe/doctor-ingest-this-file))
