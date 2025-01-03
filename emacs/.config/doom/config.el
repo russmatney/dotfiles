@@ -157,9 +157,15 @@ reload dir-locals."
            aggressive-indent-sit-for-time
            nil #'aggressive-indent--indent-if-changed (current-buffer)))))
 
-(set-popup-rules!
-  ;; tryna hide/prevent any kind of popup from showing...
-  '(("^\\*clawebb\\*" :quit t :ttl 0)))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; clawe
+
+(add-to-list 'display-buffer-alist
+             (cons "\\*clawebb\\*.*" (cons #'display-buffer-no-window nil)))
+
+;; (set-popup-rules!
+;;   ;; tryna hide/prevent any kind of popup from showing...
+;;   '(("^\\*clawebb\\*" :quit t :ttl 0)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; other config files
