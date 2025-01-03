@@ -299,9 +299,9 @@ bindsym $mod+p workspace next
 # exec_always runs whenever you i3 "restart" (vs reload)
 
 # Compositor (Animations, Shadows, Transparency)
-exec_always --no-startup-id compton --inactive-dim 0.1 --active-opacity 0.95 -i 0.98
+# exec_always --no-startup-id compton --inactive-dim 0.1 --active-opacity 0.95 -i 0.98
 # exec_always --no-startup-id compton -cCfb --backend glx --vsync opengl
-# exec_always --no-startup-id picom
+exec_always --no-startup-id picom
 
 # exec_always --no-startup-id feh --bg-scale ~/Dropbox/wallpapers/cityscape-cartoon.jpg
 exec_always --no-startup-id variety --resume
