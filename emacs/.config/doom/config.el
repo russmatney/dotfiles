@@ -161,7 +161,7 @@ reload dir-locals."
 ;; clawe
 
 (add-to-list 'display-buffer-alist
-             (cons "\\*clawebb\\*.*" (cons #'display-buffer-no-window nil)))
+             (cons "\\*clawebb.*" (cons #'display-buffer-no-window nil)))
 
 ;; (set-popup-rules!
 ;;   ;; tryna hide/prevent any kind of popup from showing...

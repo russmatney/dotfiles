@@ -14,8 +14,12 @@
     ;; consider 'without-popups' or naming and ignoring a common clawebb buffer
     (async-shell-command
      (concat "clawebb -x clawe.doctor/ingest-file --path " path)
-     "*clawebb*")))
+     ;; TODO add random int/timestamp to this buffer name
+     ;; TODO add filename to command
+     (concat "*clawebb-" (file-name-base (buffer-file-name)) "*"))))
 
 (comment
  (message "hi")
- (clawe/doctor-ingest-this-file))
+ (clawe/doctor-ingest-this-file)
+ (file-name-base) (buffer-file-name)
+ )

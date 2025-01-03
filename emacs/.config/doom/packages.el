@@ -1,6 +1,9 @@
 ;;; packages.el -*- lexical-binding: t; -*-
 
 
+;; ignore doom snippets
+(package! doom-snippets :ignore t)
+
 ;; lisp
 (package! dash)
 
