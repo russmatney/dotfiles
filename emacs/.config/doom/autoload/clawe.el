@@ -23,3 +23,23 @@
  (clawe/doctor-ingest-this-file)
  (file-name-base) (buffer-file-name)
  )
+
+;;;###autoload
+(defun blog/publish-this-org-file ()
+  (interactive)
+  (unless (and buffer-file-name (file-exists-p buffer-file-name))
+    (user-error "Buffer is not visiting any file"))
+  (let ((path (buffer-file-name (buffer-base-buffer))))
+    (message (concat "blog publishing file " path))
+    ;; consider 'without-popups' or naming and ignoring a common clawebb buffer
+    (async-shell-command
+     (concat "bb --config ~/russmatney/blog/bb.edn -x blog.garden/generate-post --path " path)
+     ;; TODO add random int/timestamp to this buffer name
+     ;; TODO add filename to command
+     (concat "*blogbb-" (file-name-base (buffer-file-name)) "*"))))
+
+(comment
+ (message "hi")
+ (blog/publish-this-org-file)
+ (file-name-base) (buffer-file-name)
+ )
