@@ -2,7 +2,7 @@
 
 
 ;; ignore doom snippets
-(package! doom-snippets :ignore t)
+;; (package! doom-snippets :ignore t)
 
 ;; lisp
 (package! dash)
@@ -81,3 +81,5 @@
 
 (package! fabb :recipe (:local-repo "fabb" :build (:not compile)))
 (package! ink-mode :recipe (:local-repo "ink-mode" :build (:not compile)))
+
+(package! org-roam-ui)

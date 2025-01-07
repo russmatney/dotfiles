@@ -615,3 +615,13 @@
                "/old-nov-2020/\\|/old/\\|/drafts-journal/\\|/journal/\\|/archive/"
                (org-roam-node-file node)))
          (not (member "reviewed" (org-roam-node-tags node)))))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; org roam ui
+
+(use-package! org-roam-ui
+  :hook (after-init . org-roam-ui-mode)
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t))
