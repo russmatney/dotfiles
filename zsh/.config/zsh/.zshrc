@@ -170,8 +170,6 @@ if [ -f  "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.z
     source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc";
 fi
 
-export HOMEBREW_NO_AUTO_UPDATE=1
-
 ################################################################################
 # Fzf
 ################################################################################
@@ -369,6 +367,11 @@ export PATH="$HOME/.cargo/bin:$PATH"
 alias ps=procs
 alias du=dua
 
+# zoxide #########################################################################
+
+export _ZO_ECHO=1
+[ -f ~/.cargo/bin/zoxide ] && eval "$(zoxide init zsh --cmd cd)"
+
 ################################################################################
 # Doom emacs
 ################################################################################
@@ -542,11 +545,12 @@ esac
 
 
 #########################################################################
-# osx
-#########################################################################
+# homebrew
 
 case "$OSTYPE" in
   darwin*)
+    export HOMEBREW_NO_AUTO_UPDATE=1
+
     # gls in emacs
     PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 
@@ -568,7 +572,7 @@ esac
 
 #########################################################################
 # itch.io
-#########################################################################
+
 
 # https://itch.io/docs/butler/pushing.html#appendix-b-beeps-4-life
 # alias butler='~/.config/itch/apps/butler/butler --beeps4life'
