@@ -359,6 +359,16 @@
 (setq russ/suggested-links
       '("https://danger.russmatney.com"
         "https://discord.gg/PQvfdApHFQ" ;; discord invite
+
+        "https://ko-fi.com/russmatney"
+        "https://mastodon.gamedev.place/@russmatney"
+        "https://patreon.com/russmatney"
+        "https://programming.dev/u/russmatney"
+
+        ;; web games
+        "https://games.russmatney.com"
+
+        ;; github
         "https://github.com/russmatney"
         "https://github.com/russmatney/clawe"
         "https://github.com/russmatney/dino"
@@ -366,19 +376,38 @@
         "https://github.com/russmatney/org-blog"
         "https://github.com/russmatney/org-crud"
         "https://github.com/russmatney/russmatney"
-        "https://ko-fi.com/russmatney"
-        "https://mastodon.gamedev.place/@russmatney"
-        "https://patreon.com/russmatney"
-        "https://programming.dev/u/russmatney"
+        "https://github.com/russmatney/gg"
+        "https://github.com/russmatney/bones"
+        "https://github.com/russmatney/log.gd"
+        "https://github.com/russmatney/clove"
+
+        ;; blog
         "https://russmatney.com"
+        ;; TODO these are broken
         "https://russmatney.com/devlogs/devlog_01_dino_so_far.html"
         "https://russmatney.com/devlogs/devlog_02_aseprite_scripting.html"
+
+        ;; itch
         "https://russmatney.itch.io"
         "https://russmatney.itch.io/dino"
         "https://russmatney.itch.io/dungeon-crawler"
         "https://russmatney.itch.io/runner"
+        "https://russmatney.itch.io/blox"
+        "https://russmatney.itch.io/thief-guard"
+        "https://moonstorm-clerics.itch.io"
+        "https://moonstorm-clerics.itch.io/overculted-prototype"
+        "https://moonstorm-clerics.itch.io/terrorware-prototype"
+        "https://moonstorm-clerics.itch.io/wicked-peak"
+        "https://moonstorm-clerics.itch.io/rapid-eye-madness"
+        "https://trensharo.itch.io/soul-commander"
+        "https://cat-tale-games.itch.io"
+        "https://cat-tale-games.itch.io/carving-with-care"
+
+        ;; steam
         "https://store.steampowered.com/app/2589550/Dino"
         "https://store.steampowered.com/app/2779710/Dot_Hop"
+        "https://store.steampowered.com/app/3248030/Rapid_Eye_Madness/"
+
         "https://trello.com/b/Uqzeh3aX/russ-game-dev-studio"
         "https://twitch.tv/russmatney"
         "https://youtube.com/@russmatney"
