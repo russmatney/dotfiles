@@ -386,6 +386,8 @@
         ;; TODO these are broken
         "https://russmatney.com/devlogs/devlog_01_dino_so_far.html"
         "https://russmatney.com/devlogs/devlog_02_aseprite_scripting.html"
+        "https://russmatney.com/#/devlogs/2024-01-08-zooming-in-on-dino"
+        "https://russmatney.com/#/devlogs/2024-12-11-glossolalia-listen-prototyping"
 
         ;; itch
         "https://russmatney.itch.io"
