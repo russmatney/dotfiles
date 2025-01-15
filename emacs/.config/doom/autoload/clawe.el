@@ -4,6 +4,20 @@
   "Comment out one or more s-expressions."
   nil)
 
+;;;###autoload
+(defun clawe/doctor-ingest-this-file-force ()
+  (interactive)
+  (unless (and buffer-file-name (file-exists-p buffer-file-name))
+    (user-error "Buffer is not visiting any file"))
+  (let ((path (buffer-file-name (buffer-base-buffer))))
+    (message (concat "doctor ingesting file " path))
+    ;; consider 'without-popups' or naming and ignoring a common clawebb buffer
+    (async-shell-command
+     (concat "clawebb -x clawe.doctor/ingest-file --path " path)
+     ;; TODO add random int/timestamp to this buffer name
+     ;; TODO add filename to command
+     (concat "*clawebb-" (file-name-base (buffer-file-name)) "*"))))
+
 (setq clawe/ingest-on-save t)
 
 ;;;###autoload
@@ -18,17 +32,7 @@
   (interactive)
   (if (not clawe/ingest-on-save)
       (message "ingest on save disabled, nothing doing")
-
-    (unless (and buffer-file-name (file-exists-p buffer-file-name))
-      (user-error "Buffer is not visiting any file"))
-    (let ((path (buffer-file-name (buffer-base-buffer))))
-      (message (concat "doctor ingesting file " path))
-      ;; consider 'without-popups' or naming and ignoring a common clawebb buffer
-      (async-shell-command
-       (concat "clawebb -x clawe.doctor/ingest-file --path " path)
-       ;; TODO add random int/timestamp to this buffer name
-       ;; TODO add filename to command
-       (concat "*clawebb-" (file-name-base (buffer-file-name)) "*")))))
+    (clawe/doctor-ingest-this-file-force)))
 
 (comment
  (message "hi")
