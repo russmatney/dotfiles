@@ -83,3 +83,5 @@
 (package! ink-mode :recipe (:local-repo "ink-mode" :build (:not compile)))
 
 (package! org-roam-ui)
+
+(package! ultra-scroll :recipe (:host github :repo "jdtsmith/ultra-scroll"))

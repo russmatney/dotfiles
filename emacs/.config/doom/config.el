@@ -212,3 +212,13 @@ reload dir-locals."
 ;;    :title "Emacs started!"
 ;;    :body "Start your engines.")
 ;;   (setq startup-notified t))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ultra-scroll
+
+(use-package! ultra-scroll
+  :init
+  (setq scroll-conservatively 101 ; important!
+        scroll-margin 0)
+  :config
+  (ultra-scroll-mode 1))
