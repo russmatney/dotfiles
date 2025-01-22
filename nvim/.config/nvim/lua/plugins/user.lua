@@ -77,7 +77,7 @@ return {
         opts = {
           mappings = { -- define a mapping to load the plugin module
             n = {
-              ["<Leader>gm"] = { function() require("neogit").open() end, desc = "Magit" },
+              ["gm"] = { function() require("neogit").open() end, desc = "Magit" },
             },
           },
         },

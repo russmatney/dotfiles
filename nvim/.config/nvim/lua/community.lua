@@ -11,7 +11,7 @@ return {
   { import = "astrocommunity.recipes.cache-colorscheme" },
   { import = "astrocommunity.recipes.telescope-lsp-mappings" },
   -- vscode
-  { import = "astrocommunity.recipes.vscode" },
+  -- { import = "astrocommunity.recipes.vscode" },
 
   -- langs
   { import = "astrocommunity.pack.lua" },
