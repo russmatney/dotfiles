@@ -46,4 +46,57 @@ return {
       luasnip.filetype_extend("javascript", { "javascriptreact" })
     end,
   },
+
+  -- extending telescope
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = { -- add a new dependency to telescope that is our new plugin
+      "nvim-telescope/telescope-media-files.nvim",
+    },
+    -- the first parameter is the plugin specification
+    -- the second is the table of options as set up in Lazy with the `opts` key
+    config = function(plugin, opts)
+      -- run the core AstroNvim configuration function with the options table
+      require "astronvim.plugins.configs.telescope"(plugin, opts)
+
+      -- require telescope and load extensions as necessary
+      require("telescope").load_extension "media_files"
+    end,
+  },
+
+  {
+    "NeogitOrg/neogit",
+    lazy = true, -- lazy load on module
+    dependencies = {
+      { -- AstroCore is always loaded on startup, so making it a dependency doesn't matter
+        "AstroNvim/astrocore",
+        opts = {
+          mappings = { -- define a mapping to load the plugin module
+            n = {
+              ["<Leader>gG"] = function() require("neogit").open() end,
+            },
+          },
+        },
+      },
+    },
+    opts = {}, -- run `require("neogit").setup({})`
+  },
+
+  {
+    "danymat/neogen",
+    cmd = "Neogen", -- lazy load on command
+    dependencies = {
+      { -- AstroCore is always loaded on startup, so making it a dependency doesn't matter
+        "AstroNvim/astrocore",
+        opts = {
+          mappings = { -- define a mapping to invoke the command
+            n = {
+              ["<Leader>a"] = function() vim.cmd "Neogen" end,
+            },
+          },
+        },
+      },
+    },
+    opts = {},
+  },
 }
