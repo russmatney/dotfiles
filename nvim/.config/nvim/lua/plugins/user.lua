@@ -29,6 +29,10 @@ return {
         "    ████   ██ ██    ██ ██ ████  ████",
         "    ██   ████   ████   ██ ██      ██",
       }
+
+      opts.section.buttons.val = {
+        opts.button("y", "  Say YO CUSTOM BUTTON", ':echo "YO WHATS REALLY GOOD, WORLD?!"<CR>'),
+      }
       return opts
     end,
   },
@@ -73,7 +77,7 @@ return {
         opts = {
           mappings = { -- define a mapping to load the plugin module
             n = {
-              ["<Leader>gG"] = function() require("neogit").open() end,
+              ["<Leader>gm"] = { function() require("neogit").open() end, desc = "Magit" },
             },
           },
         },
@@ -91,7 +95,7 @@ return {
         opts = {
           mappings = { -- define a mapping to invoke the command
             n = {
-              ["<Leader>a"] = function() vim.cmd "Neogen" end,
+              ["<Leader>a"] = { function() vim.cmd "Neogen" end, desc = "Neogen" },
             },
           },
         },

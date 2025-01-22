@@ -64,6 +64,9 @@ return {
 
         -- setting a mapping to false will disable it
         -- ["<C-S>"] = false,
+
+        ["<Leader><cr>"] = { ":w!<cr>", desc = "russ/save" },
+        ["<Leader><spc>"] = { "<C-^>", desc = "Toggle Last File" },
       },
     },
   },

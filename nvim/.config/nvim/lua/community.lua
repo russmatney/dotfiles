@@ -5,8 +5,21 @@
 ---@type LazySpec
 return {
   "AstroNvim/astrocommunity",
-  { import = "astrocommunity.pack.lua" },
-  -- import/override with your plugins folder
+
+  -- astro behavior
+  { import = "astrocommunity.recipes.astrolsp-no-insert-inlay-hints" },
+  { import = "astrocommunity.recipes.cache-colorscheme" },
+  { import = "astrocommunity.recipes.telescope-lsp-mappings" },
+  -- vscode
   { import = "astrocommunity.recipes.vscode" },
+
+  -- langs
+  { import = "astrocommunity.pack.lua" },
+  { import = "astrocommunity.pack.typescript" },
+  { import = "astrocommunity.pack.cpp" },
+  { import = "astrocommunity.pack.rust" },
+  { import = "astrocommunity.pack.java" },
+
+  -- themes
   { import = "astrocommunity.colorscheme.catppuccin" },
 }
