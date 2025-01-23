@@ -42,6 +42,9 @@ return {
           ["<Leader>ff"] = "<CMD>Find<CR>",
           ["<Leader>fw"] = "<CMD>call VSCodeNotify('workbench.action.findInFiles')<CR>",
           ["<Leader>ls"] = "<CMD>call VSCodeNotify('workbench.action.gotoSymbol')<CR>",
+
+          -- leader keys to disable
+          ["<Leader>c"] = false, -- closing the window makes vscode very confused
         },
       },
     },

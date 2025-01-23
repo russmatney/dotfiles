@@ -45,6 +45,9 @@ return {
     ---@diagnostic disable: missing-fields
     config = {
       -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
+      csharp_ls = {
+        root_dir = require("lspconfig.util").root_pattern ".git",
+      },
     },
     -- customize how language servers are attached
     handlers = {

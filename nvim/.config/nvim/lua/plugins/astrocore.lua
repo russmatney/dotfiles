@@ -68,6 +68,8 @@ return {
         ["<Leader><cr>"] = { ":w!<cr>", desc = "russ/save" },
         ["<Leader><space>"] = { "<C-^>", desc = "Toggle Last File" },
         ["<M-x>"] = { "<cmd>Telescope commands<cr>", desc = "M-x" },
+        ["<Leader>a"] = { "<cmd>Telescope live_grep<cr>", desc = "russ/search" },
+        ["<Leader>p"] = { "<cmd>Telescope find_files<cr>", desc = "russ/open-file" },
       },
     },
     autocmds = {

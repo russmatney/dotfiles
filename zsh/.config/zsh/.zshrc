@@ -591,6 +591,7 @@ eval "$(atuin init zsh)"
 
 # dotnet #########################################################################
 
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export PATH="$PATH:$HOME/.dotnet/tools"
 
 case "$OSTYPE" in
