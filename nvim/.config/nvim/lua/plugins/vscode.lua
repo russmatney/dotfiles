@@ -24,15 +24,21 @@ Config.options.defaults.cond = function(plugin) return vim.tbl_contains(plugins,
 
 ---@type LazySpec
 return {
-  -- add a few keybindings
   {
     "AstroNvim/astrocore",
     ---@type AstroCoreOpts
     opts = {
       mappings = {
         n = {
-          ["<Leader><CR>"] = "<CMD>Save<CR>",
-          ["<Leader><Space>"] = "<CMD>Toggle Last File<CR>",
+          -- bindings i'd love to write here but are otherwise just added to vscode directly
+          -- ["<Alt-x>"] = "<CMD>call VSCodeNotify('workbench.action.showCommands')<CR>",
+
+          -- leader key bindings
+          -- (vscode doesn't handle chords starting with Space)
+          ["<Leader>e"] = "<CMD>call VSCodeNotify('workbench.view.explorer')<CR>",
+          ["<Leader>o"] = "<CMD>call VSCodeNotify('workbench.files.action.focusFilesExplorer')<CR>",
+          ["<Leader><CR>"] = "<CMD>call VSCodeNotify('workbench.action.files.saveAll')<CR>",
+          ["<Leader><Space>"] = "<CMD>call VSCodeNotify('workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup')<CR>",
           ["<Leader>ff"] = "<CMD>Find<CR>",
           ["<Leader>fw"] = "<CMD>call VSCodeNotify('workbench.action.findInFiles')<CR>",
           ["<Leader>ls"] = "<CMD>call VSCodeNotify('workbench.action.gotoSymbol')<CR>",
