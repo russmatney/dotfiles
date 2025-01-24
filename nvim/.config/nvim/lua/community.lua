@@ -12,6 +12,8 @@ return {
   { import = "astrocommunity.recipes.telescope-lsp-mappings" },
   -- vscode
   -- { import = "astrocommunity.recipes.vscode" },
+  -- neovide
+  { import = "astrocommunity.recipes.neovide" },
 
   -- langs
   { import = "astrocommunity.pack.lua" },
