@@ -4,9 +4,58 @@
 ---@type LazySpec
 return {
 
-  -- == Examples of Adding Plugins ==
+  -- ctrl-p
+  -- (originally from https://github.com/twinlock/dotfiles/blob/9fc1576c7eccd4494db14f83ed7ad3ff9fb3def5/config/nvim/lua/plugins.lua#L62)
+  {
+    "ctrlpvim/ctrlp.vim",
+    config = function()
+      vim.cmd [[
+        let g:ctrlp_match_window = 'order:ttb,max:20'
+        " dont serch but every 250ms, eliminates some annoying fumble finger behavior
+        let g:ctrlp_lazy_update = 150
+        let g:ctrlp_working_path_mode = 'ra'
+        let g:ctrlp_working_path_mode = 0
+        " Regex mode by default (<c-r> to toggle)
+        let g:ctrlp_regexp = 0
+        let g:ctrlp_custom_ignore = {
+                      \ 'dir':  '\.git$\|\.hg$\|\.svn$|\.pants.d$',
+                      \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$|\.swp$' }
+        if executable('ag')
+          let s:ctrlp_fallback = 'ag %s --nocolor -l -g ""'
+        else
+          let s:ctrlp_fallback = 'find %s -type f'
+        endif
+        let g:ctrlp_user_command = {
+                      \ 'types': {
+                      \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
+                      \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+                      \ },
+                      \ 'fallback': s:ctrlp_fallback
+                      \ }
+      ]]
+    end,
 
-  -- "andweeb/presence.nvim",
+    -- keymap('n', "<leader>ppp", ":CtrlPMixed<CR>", opts)
+    -- keymap('n', "<leader>ppt", ":CtrlPTags<CR>", opts)
+    -- keymap('n', "<leader>pph", ":CtrlPMRUFiles<CR>", opts)
+    dependencies = {
+      { -- AstroCore is always loaded on startup, so making it a dependency doesn't matter
+        "AstroNvim/astrocore",
+        opts = {
+          mappings = { -- define a mapping to load the plugin module
+            n = {
+              ["<leader>p"] = { ":CtrlP<CR>", desc = "Ctrl-p files" },
+              ["<leader>P"] = { ":CtrlPClearAllCaches<CR>", desc = "Ctrl-p cache clear" },
+              ["<leader>bb"] = { ":CtrlPBuffer<CR>", desc = "Ctrl-p buffers" },
+              ["<leader>bm"] = { ":CtrlPMixed<CR>", desc = "Ctrl-p mixed" },
+              ["<leader>bf"] = { ":CtrlPMRUFiles<CR>", desc = "Ctrl-p MRU files" },
+            },
+          },
+        },
+      },
+    },
+  },
+
   {
     "ray-x/lsp_signature.nvim",
     event = "BufRead",
@@ -56,6 +105,7 @@ return {
     "nvim-telescope/telescope.nvim",
     dependencies = { -- add a new dependency to telescope that is our new plugin
       "nvim-telescope/telescope-media-files.nvim",
+      "nvim-telescope/telescope-project.nvim",
     },
     -- the first parameter is the plugin specification
     -- the second is the table of options as set up in Lazy with the `opts` key
@@ -65,6 +115,7 @@ return {
 
       -- require telescope and load extensions as necessary
       require("telescope").load_extension "media_files"
+      require("telescope").load_extension "project"
     end,
   },
 
@@ -101,6 +152,5 @@ return {
         },
       },
     },
-    opts = {},
   },
 }

@@ -69,7 +69,7 @@ return {
         ["<Leader><space>"] = { "<C-^>", desc = "Toggle Last File" },
         ["<M-x>"] = { "<cmd>Telescope commands<cr>", desc = "M-x" },
         ["<Leader>a"] = { "<cmd>Telescope live_grep<cr>", desc = "russ/search" },
-        ["<Leader>p"] = { "<cmd>Telescope find_files<cr>", desc = "russ/open-file" },
+        -- ["<Leader>p"] = { "<cmd>Telescope find_files<cr>", desc = "russ/open-file" },
       },
     },
     autocmds = {
@@ -82,12 +82,12 @@ return {
           nested = true, -- trigger other autocommands as buffers open
           callback = function()
             -- Only load the session if nvim was started with no args
-            if vim.fn.argc(-1) == 0 then
-              -- try to load a directory session using the current working directory
-              if not vim.g.vscode then
-                require("resession").load(vim.fn.getcwd(), { dir = "dirsession", silence_errors = true })
-              end
-            end
+            -- if vim.fn.argc(-1) == 0 then
+            --   -- try to load a directory session using the current working directory
+            --   if not vim.g.vscode then
+            --     require("resession").load(vim.fn.getcwd(), { dir = "dirsession", silence_errors = true })
+            --   end
+            -- end
           end,
         },
       },

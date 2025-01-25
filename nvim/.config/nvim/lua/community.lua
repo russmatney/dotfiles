@@ -10,10 +10,6 @@ return {
   { import = "astrocommunity.recipes.astrolsp-no-insert-inlay-hints" },
   { import = "astrocommunity.recipes.cache-colorscheme" },
   { import = "astrocommunity.recipes.telescope-lsp-mappings" },
-  -- vscode
-  -- { import = "astrocommunity.recipes.vscode" },
-  -- neovide
-  { import = "astrocommunity.recipes.neovide" },
 
   -- langs
   { import = "astrocommunity.pack.lua" },
@@ -26,4 +22,10 @@ return {
 
   -- themes
   { import = "astrocommunity.colorscheme.catppuccin" },
+
+  -- overwritten in lua/plugins/*
+  -- vscode
+  -- { import = "astrocommunity.recipes.vscode" },
+  -- neovide
+  -- { import = "astrocommunity.recipes.neovide" },
 }

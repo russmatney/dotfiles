@@ -274,11 +274,12 @@ cmd - e : yabai -m window --toggle emacs-floating || clawebb -x clawe.toggle/tog
 cmd + alt - b : yabai -m window --toggle devweb || clawebb -x clawe.toggle/toggle --key devweb
 cmd + alt - a : yabai -m window --toggle slack || clawebb -x clawe.toggle/toggle --key slack
 cmd + alt - m : yabai -m window --toggle messages ||  clawebb -x clawe.toggle/toggle --key messages
-cmd + alt - n : yabai -m window --toggle notion
 cmd + alt - g : yabai -m window --toggle godot || clawebb -x clawe.toggle/toggle --key godot
 cmd + alt - x : yabai -m window --toggle xcode || clawebb -x clawe.toggle/toggle --key xcode
 cmd + alt - p : yabai -m window --toggle aseprite || clawebb -x clawe.toggle/toggle --key aseprite
 cmd + alt - o : yabai -m window --toggle obsidian || clawebb -x clawe.toggle/toggle --key obsidian
+cmd + alt - n : yabai -m window --toggle neovide || clawebb -x clawe.toggle/toggle --key neovide
+cmd + alt - v : yabai -m window --toggle vscode || clawebb -x clawe.toggle/toggle --key vscode
 
 cmd + shift - d : clawebb -x clawe.rules/clean-up-workspaces
 cmd + shift - x : clawebb -x clawe.mx/mx
