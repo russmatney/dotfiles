@@ -22,6 +22,10 @@ Config.options.change_detection.enabled = false
 -- replace the default `cond`
 Config.options.defaults.cond = function(plugin) return vim.tbl_contains(plugins, plugin.name) end
 
+-- prevent neovim messages opening vscode output
+-- https://stackoverflow.com/questions/78611905/turn-off-neovim-messages-in-vscode
+vim.o.cmdheight = 1
+
 ---@type LazySpec
 return {
   {

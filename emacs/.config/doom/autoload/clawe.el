@@ -18,7 +18,7 @@
      ;; TODO add filename to command
      (concat "*clawebb-" (file-name-base (buffer-file-name)) "*"))))
 
-(setq clawe/ingest-on-save t)
+(setq clawe/ingest-on-save nil)
 
 ;;;###autoload
 (defun clawe/toggle-ingest-on-save ()
