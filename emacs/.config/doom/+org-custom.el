@@ -659,3 +659,35 @@
         org-roam-ui-update-on-save nil
         org-roam-ui-open-on-start nil
         ))
+
+(comment
+
+ (org-roam-db-query
+  [:select (funcall count)
+   :from links])
+
+ (org-roam-db-query
+  [:select (funcall count)
+   :from nodes])
+
+ (org-roam-db-query
+  [:select source
+   :from links
+   :group-by source
+   :having (= (funcall count) 1)])
+
+ (org-roam-db-query
+  "SELECT source
+  FROM links
+  GROUP BY source
+  HAVING COUNT(source) = 1;")
+
+
+ (org-roam-db-query
+  "SELECT COUNT(*) FROM (
+  SELECT source
+  FROM links
+  GROUP BY source
+  HAVING COUNT(source) = 1) as unique_ids;")
+
+ )
