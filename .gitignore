@@ -39,3 +39,5 @@ python/.ipython/profile_default/history.sqlite
 .lsp
 .zcompdump*
 .zsh_plugins.zsh
+
+lazy-lock.json
