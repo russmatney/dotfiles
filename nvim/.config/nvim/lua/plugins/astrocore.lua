@@ -69,6 +69,7 @@ return {
         ["<Leader><space>"] = { "<C-^>", desc = "Toggle Last File" },
         ["<M-x>"] = { "<cmd>Telescope commands<cr>", desc = "M-x" },
         ["<Leader>a"] = { "<cmd>Telescope live_grep<cr>", desc = "russ/search" },
+        ["<Leader>w"] = { function() require("resession").load() end, desc = "russ/load-session" },
         -- ["<Leader>p"] = { "<cmd>Telescope find_files<cr>", desc = "russ/open-file" },
         -- TODO figure wtf command this is
         ["<M-t>"] = { "<cmd><cr>", desc = "Toggle terminal" },
