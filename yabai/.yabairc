@@ -111,6 +111,10 @@ yabai -m signal --add event=space_created action='clawebb -x clawe.doctor/update
 yabai -m signal --add event=space_destroyed action='clawebb -x clawe.doctor/update-topbar'
 yabai -m signal --add event=space_changed action='clawebb -x clawe.doctor/update-topbar'
 
+yabai -m signal --add event=window_created action="~/.local/bin/refresh-query-windows.sh"
+yabai -m signal --add event=window_destroyed action="~/.local/bin/refresh-query-windows.sh"
+yabai -m signal --add event=window_title_changed action="~/.local/bin/refresh-query-windows.sh"
+
 yabai -m rule --apply
 
 # TODO determine/restore workspace names, drop empty workspaces
