@@ -3,6 +3,8 @@
 
 ---@type LazySpec
 return {
+  -- wakatime!!
+  { "wakatime/vim-wakatime", lazy = false },
 
   -- ctrl-p
   -- (originally from https://github.com/twinlock/dotfiles/blob/9fc1576c7eccd4494db14f83ed7ad3ff9fb3def5/config/nvim/lua/plugins.lua#L62)
