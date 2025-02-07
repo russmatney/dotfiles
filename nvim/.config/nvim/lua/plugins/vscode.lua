@@ -24,7 +24,10 @@ Config.options.defaults.cond = function(plugin) return vim.tbl_contains(plugins,
 
 -- prevent neovim messages opening vscode output
 -- https://stackoverflow.com/questions/78611905/turn-off-neovim-messages-in-vscode
-vim.o.cmdheight = 1
+-- https://github.com/vscode-neovim/vscode-neovim/issues/2099
+vim.g.cmdheight = 4
+vim.o.cmdheight = 4
+cmdheight = 4
 
 ---@type LazySpec
 return {
@@ -44,8 +47,13 @@ return {
           ["<Leader><CR>"] = "<CMD>call VSCodeNotify('workbench.action.files.saveAll')<CR>",
           ["<Leader><Space>"] = "<CMD>call VSCodeNotify('workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup')<CR>",
           ["<Leader>ff"] = "<CMD>Find<CR>",
-          ["<Leader>fw"] = "<CMD>call VSCodeNotify('workbench.action.findInFiles')<CR>",
-          ["<Leader>ls"] = "<CMD>call VSCodeNotify('workbench.action.gotoSymbol')<CR>",
+          ["<Leader>p"] = "<CMD>Find<CR>",
+          ["<Leader>a"] = "<CMD>call VSCodeNotify('workbench.action.findInFiles')<CR>",
+          ["<Leader>w"] = "<CMD>call VSCodeNotify('projectManager.listProjects')<CR>",
+          ["[b"] = "<CMD>call VSCodeNotify('workbench.action.previousEditor')<CR>",
+          ["]b"] = "<CMD>call VSCodeNotify('workbench.action.nextEditor')<CR>",
+          ["<Leader>h"] = "<CMD>call VSCodeNotify('workbench.action.previousEditor')<CR>",
+          ["<Leader>l"] = "<CMD>call VSCodeNotify('workbench.action.nextEditor')<CR>",
 
           -- leader keys to disable
           ["<Leader>c"] = false, -- closing the window makes vscode very confused
