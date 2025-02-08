@@ -1,0 +1,91 @@
+local function next_buffer() require("astrocore.buffer").nav(vim.v.count1) end
+local function previous_buffer() require("astrocore.buffer").nav(-vim.v.count1) end
+
+local function close_tab()
+  require("astroui.status.heirline").buffer_picker(function(bufnr) require("astrocore.buffer").close(bufnr) end)
+end
+
+local function switch_session() require("resession").load() end
+
+---@type LazySpec
+return {
+  {
+    "AstroNvim/astrocore",
+    ---@type AstroCoreOpts
+    opts = {
+      mappings = {
+        -- normal mode
+        n = {
+          -- quick save
+          ["<Leader><cr>"] = { ":w!<cr>", desc = "russ/save" },
+          ["<Leader>R"] = { "<cmd>AstroReload<cr>", desc = "Reload Astrovim config" },
+
+          -- telescope/m-x commands
+          ["<M-x>"] = { "<cmd>Telescope commands<cr>", desc = "M-x commands" },
+          ["<M-r>"] = { "<cmd>Telescope command_history<cr>", desc = "M-x history" },
+          ["<M-a>"] = { "<cmd>Telescope autocommands<cr>", desc = "M-x autocommands" },
+          ["<M-X>"] = { "<cmd>Telescope keymaps<cr>", desc = "M-x keymaps" },
+
+          -- project search
+          ["<Leader>a"] = { "<cmd>Telescope live_grep<cr>", desc = "russ/search" },
+          -- project find-file
+          -- TODO how to toggle/include hidden?
+          ["<Leader>p"] = { "<cmd>Telescope find_files<cr>", desc = "russ/open-file" },
+
+          -- ["<Leader>p"] = { ":CtrlP<CR>", desc = "Ctrl-p files" },
+          ["<Leader>P"] = { ":CtrlPClearAllCaches<CR>", desc = "Ctrl-p cache clear" },
+          ["<Leader>bb"] = { ":CtrlPBuffer<CR>", desc = "Ctrl-p buffers" },
+          ["<Leader>bm"] = { ":CtrlPMixed<CR>", desc = "Ctrl-p mixed" },
+          ["<Leader>bf"] = { ":CtrlPMRUFiles<CR>", desc = "Ctrl-p MRU files" },
+
+          -- load/switch session/project
+          ["<Leader>w"] = { switch_session, desc = "russ/load-session" },
+
+          -- quick terminal
+          ["<M-t>"] = { "<cmd>ToggleTerm direction=float<cr>", desc = "Toggle terminal" },
+
+          -- Buffer nav
+          ["<Leader><space>"] = { "<C-^>", desc = "last-visited buffer" },
+          ["]b"] = { next_buffer, desc = "Next tab" },
+          ["[b"] = { previous_buffer, desc = "Previous tab" },
+          ["<Leader>l"] = { next_buffer, desc = "Next tab" },
+          ["<Leader>h"] = { previous_buffer, desc = "Previous tab" },
+
+          ["<Leader>bd"] = { close_tab, desc = "Close buffer from tabline" },
+
+          -- Kill menu
+          ["<Leader>k"] = { desc = "Kill" },
+          ["<Leader>kb"] = { desc = "Kill This Buffer" },
+          ["<Leader>kf"] = { desc = "Delete This File" },
+
+          -- git
+          ["gm"] = { function() require("neogit").open() end, desc = "Magit" },
+        },
+      },
+    },
+  },
+  {
+    "AstroNvim/astrolsp",
+    ---@type AstroLSPOpts
+    opts = {
+      -- mappings to be set up on attaching of a language server
+      mappings = {
+        n = {
+          -- a `cond` key can provided as the string of a server capability to be required to attach, or a function with `client` and `bufnr` parameters from the `on_attach` that returns a boolean
+          gD = {
+            function() vim.lsp.buf.declaration() end,
+            desc = "Declaration of current symbol",
+            cond = "textDocument/declaration",
+          },
+          ["<Leader>uY"] = {
+            function() require("astrolsp.toggles").buffer_semantic_tokens() end,
+            desc = "Toggle LSP semantic highlight (buffer)",
+            cond = function(client)
+              return client.supports_method "textDocument/semanticTokens/full" and vim.lsp.semantic_tokens ~= nil
+            end,
+          },
+        },
+      },
+    },
+  },
+}
