@@ -8,6 +8,20 @@ local function plugins_update_packages() require("astrocore").update_packages() 
 
 local function hover_diagnostics() vim.diagnostic.open_float() end
 
+local cmds = {
+  { "PluginsInstall", plugins_install, {} },
+  { "PluginsStatus", plugins_status, {} },
+  { "PluginsSync", plugins_sync, {} },
+  { "PluginsCheckUpdates", plugins_check_updates, {} },
+  { "PluginsUpdate", plugins_update, {} },
+  { "PluginsUpdatePackages", plugins_update_packages, {} },
+  { "HoverDiagnostics", hover_diagnostics, {} },
+}
+
+for _i, cmd in pairs(cmds) do
+  vim.api.nvim_create_user_command(cmd[1], cmd[2], cmd[3])
+end
+
 ---@type LazySpec
 return {
   -- treesitter
