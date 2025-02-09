@@ -7,6 +7,8 @@ end
 
 local function switch_session() require("resession").load() end
 
+local function magit() require("neogit").open() end
+
 ---@type LazySpec
 return {
   {
@@ -59,7 +61,40 @@ return {
           ["<Leader>kf"] = { desc = "Delete This File" },
 
           -- git
-          ["gm"] = { function() require("neogit").open() end, desc = "Magit" },
+          ["gm"] = { magit, desc = "Magit" },
+
+          -- Plugin Manager
+          -- ["<Leader>p"] = false,
+          ["<Leader>pi"] = false,
+          ["<Leader>ps"] = false,
+          ["<Leader>pS"] = false,
+          ["<Leader>pu"] = false,
+          ["<Leader>pU"] = false,
+          ["<Leader>pa"] = false,
+          ["<Leader>pm"] = false,
+          ["<Leader>pM"] = false,
+
+          -- nuke these bindings so leader-l works without delay
+          -- ["<Leader>l"] = false,
+          ["<Leader>la"] = false,
+          ["<Leader>lA"] = false,
+
+          ["<Leader>ll"] = false,
+          ["<Leader>lL"] = false,
+          ["<Leader>lf"] = false,
+
+          ["<Leader>lR"] = false,
+          ["<Leader>lr"] = false,
+          ["<Leader>lh"] = false,
+
+          ["<Leader>lg"] = false,
+          ["<Leader>lG"] = false,
+          ["<Leader>li"] = false,
+          ["<Leader>lI"] = false,
+          ["<Leader>ld"] = false,
+          ["<Leader>lD"] = false,
+          ["<Leader>ls"] = false,
+          ["<Leader>lS"] = false,
         },
       },
     },
@@ -84,6 +119,28 @@ return {
               return client.supports_method "textDocument/semanticTokens/full" and vim.lsp.semantic_tokens ~= nil
             end,
           },
+
+          -- nuke these bindings so leader-l works without delay
+          -- ["<Leader>l"] = false,
+          ["<Leader>la"] = false,
+          ["<Leader>lA"] = false,
+
+          ["<Leader>ll"] = false,
+          ["<Leader>lL"] = false,
+          ["<Leader>lf"] = false,
+
+          ["<Leader>lR"] = false,
+          ["<Leader>lr"] = false,
+          ["<Leader>lh"] = false,
+
+          ["<Leader>lg"] = false,
+          ["<Leader>lG"] = false,
+          ["<Leader>li"] = false,
+          ["<Leader>lI"] = false,
+          ["<Leader>ld"] = false,
+          ["<Leader>lD"] = false,
+          ["<Leader>ls"] = false,
+          ["<Leader>lS"] = false,
         },
       },
     },

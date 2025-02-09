@@ -1,3 +1,13 @@
+-- Plugin funcs
+local function plugins_install() require("lazy").install() end
+local function plugins_status() require("lazy").home() end
+local function plugins_sync() require("lazy").sync() end
+local function plugins_check_updates() require("lazy").check() end
+local function plugins_update() require("lazy").update() end
+local function plugins_update_packages() require("astrocore").update_packages() end
+
+local function hover_diagnostics() vim.diagnostic.open_float() end
+
 ---@type LazySpec
 return {
   -- treesitter
