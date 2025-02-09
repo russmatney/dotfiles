@@ -25,7 +25,7 @@ Config.options.defaults.cond = function(plugin) return vim.tbl_contains(plugins,
 -- prevent neovim messages opening vscode output (not working!?)
 -- https://stackoverflow.com/questions/78611905/turn-off-neovim-messages-in-vscode
 -- https://github.com/vscode-neovim/vscode-neovim/issues/2099
-vim.g.cmdheight = 4
+vim.g.cmdheight = 0
 
 ---@type LazySpec
 return {
@@ -40,21 +40,33 @@ return {
 
           -- leader key bindings
           -- (vscode doesn't handle chords starting with Space)
+
+          -- leader keys to disable
+          ["<Leader>c"] = false, -- closing the window makes vscode very confused
+
+          -- filetree
           ["<Leader>e"] = "<CMD>call VSCodeNotify('workbench.view.explorer')<CR>",
           ["<Leader>o"] = "<CMD>call VSCodeNotify('workbench.files.action.focusFilesExplorer')<CR>",
+
+          -- quick save
           ["<Leader><CR>"] = "<CMD>call VSCodeNotify('workbench.action.files.saveAll')<CR>",
-          ["<Leader><Space>"] = "<CMD>call VSCodeNotify('workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup')<CR>",
-          ["<Leader>ff"] = "<CMD>Find<CR>",
-          ["<Leader>p"] = "<CMD>Find<CR>",
-          ["<Leader>a"] = "<CMD>call VSCodeNotify('workbench.action.findInFiles')<CR>",
-          ["<Leader>w"] = "<CMD>call VSCodeNotify('projectManager.listProjects')<CR>",
+
+          -- buffer nav
+          ["<Leader><Space>"] = "<CMD>call VSCodeNotify('workbench.action.openPreviousEditorFromHistory')<CR>",
           ["[b"] = "<CMD>call VSCodeNotify('workbench.action.previousEditor')<CR>",
           ["]b"] = "<CMD>call VSCodeNotify('workbench.action.nextEditor')<CR>",
           ["<Leader>h"] = "<CMD>call VSCodeNotify('workbench.action.previousEditor')<CR>",
           ["<Leader>l"] = "<CMD>call VSCodeNotify('workbench.action.nextEditor')<CR>",
 
-          -- leader keys to disable
-          ["<Leader>c"] = false, -- closing the window makes vscode very confused
+          -- project find-file
+          ["<Leader>ff"] = "<CMD>Find<CR>",
+          ["<Leader>p"] = "<CMD>Find<CR>",
+
+          -- project search
+          ["<Leader>a"] = "<CMD>call VSCodeNotify('workbench.action.findInFiles')<CR>",
+
+          -- project switch
+          ["<Leader>w"] = "<CMD>call VSCodeNotify('projectManager.listProjects')<CR>",
         },
       },
     },
