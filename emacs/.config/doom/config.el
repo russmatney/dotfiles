@@ -42,12 +42,27 @@
 (setq backup-directory-alist `(("." . "~/.emacs-tmp/")))
 (setq auto-save-file-name-transforms `((".*" "~/.emacs-tmp/" t)))
 
+;;;;;;;;;;;;;;;;;;;;;;;;
 ;; PATH
+
 (add-to-list 'exec-path "/home/russ/.nix-profile/bin")
 (add-to-list 'exec-path "/home/russ/.pyenv/shims")
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Auto revert-mode
+
 (global-auto-revert-mode t)
+(setq auto-revert-verbose nil)
+;; (remove-hook 'after-save-hook #'doom-auto-revert-buffers-h)
+
+;; (setq startup-notified nil)
+;; (when (not startup-notified)
+;;   (require 'notifications)
+;;   (notifications-notify
+;;    :title "Emacs started!"
+;;    :body "Start your engines.")
+;;   (setq startup-notified t))
+
 
 ;; https://github.com/d12frosted/homebrew-emacs-plus/issues/383
 (if IS-MAC
@@ -160,6 +175,7 @@ reload dir-locals."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; clawe
 
+;; TODO this needs an `after' hook or something...
 (add-to-list 'display-buffer-alist
              (cons "\\*clawebb.*" (cons #'display-buffer-no-window nil)))
 
@@ -205,13 +221,6 @@ reload dir-locals."
 (setq typescript-indent-level 2)
 (setq js-indent-level 2)
 (setq css-indent-offset 2)
-
-;; (when (not startup-notified)
-;;   (require 'notifications)
-;;   (notifications-notify
-;;    :title "Emacs started!"
-;;    :body "Start your engines.")
-;;   (setq startup-notified t))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ultra-scroll
