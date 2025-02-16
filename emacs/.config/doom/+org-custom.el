@@ -8,19 +8,30 @@
 
 (use-package! org-rich-yank)
 
-(use-package! org
-  :config
-  (add-hook 'after-save-hook
-            #'(lambda ()
-                (if (derived-mode-p 'org-mode)
-                    (clawe/doctor-ingest-this-file)))))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org Settings
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(setq org-archive-location (concat "~/Dropbox/todo/archive/" (format-time-string "%Y-%m") ".org::"))
+;; save hooks
+(advice-add 'org-archive-subtree
+            :after
+            (lambda (&rest _)
+              (org-save-all-org-buffers)))
 
+(advice-add 'org-refile
+            :after
+            (lambda (&rest _)
+              (org-save-all-org-buffers)))
+
+(advice-add 'org-agenda-redo :after 'org-save-all-org-buffers)
+
+(after! org 'turn-on-auto-fill)
+
+;; monthly archives
+(setq org-archive-location
+      (concat "~/Dropbox/todo/archive/"
+              (format-time-string "%Y-%m") ".org::"))
+
+;; todo keywords
 (setq org-todo-keywords
       '((sequence
          "[ ](T)"                       ; A task that needs doing
@@ -28,6 +39,7 @@
          "[?](W)"                       ; Task is being held up or paused
          "|"
          "[X](D)"      ; Task was completed
+         "(B)"      ; no longer a todo
          )
         (sequence
          "TODO(t)"               ; A task that needs doing & is ready to do
@@ -41,8 +53,7 @@
          "|"
          "DONE(d)"      ; Task successfully completed
          "SKIP(k)"     ; Skipped a recurring task
-         ;; "KILL(k)"
-         ;;     ;; Task was cancelled, aborted or is no longer applicable
+         "(b)"     ; no longer a todo
          ))
       org-todo-keyword-faces
       '(("[-]" . +org-todo-active)
@@ -56,21 +67,13 @@
         ("HOLD" . +org-todo-onhold))
 
       org-global-properties
-      '(("Effort_ALL" . "1 2 3 5 8 13 21 34 55")
-        )
-      )
+      '(("Effort_ALL" . "1 2 3 5 8 13 21 34 55")))
 
-;; allow refiling into a file without choosing a headline
-(setq org-refile-use-outline-path 'file
-      org-refile-allow-creating-parent-nodes 'confirm
-      org-refile-active-region-within-subtree t
-      org-outline-path-complete-in-steps nil
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Org Agenda
 
-      ;; startup folded by default (overwritable per file)
-      org-startup-folded t
-
+(setq org-log-done 'time
       ;; org-log-done 'note ;; <-- an interesting option
-      org-log-done 'time
       org-agenda-log-mode-items '(closed clock state)
 
       org-agenda-time-grid
@@ -83,11 +86,10 @@
       ;; don't show completed items in the agenda
       org-agenda-skip-scheduled-if-done t
       org-agenda-skip-deadline-if-done t
-      org-agenda-skip-scheduled-if-deadline-is-shown t
+      org-agenda-skip-scheduled-if-deadline-is-shown t)
 
-
-      org-garden-files (append (file-expand-wildcards "~/Dropbox/todo/garden/*.org")
-                               (file-expand-wildcards "~/Dropbox/todo/garden/**/*.org")))
+(setq org-garden-files
+      (append (file-expand-wildcards "~/Dropbox/todo/garden/*.org")))
 
 (setq org-agenda-files
       (cl-remove-if
@@ -101,62 +103,6 @@
           (s-contains? "reads" s)
           (s-contains? "watches" s)))
        (file-expand-wildcards "~/Dropbox/todo/*.org")))
-
-(setq org-trello-files '("~/Dropbox/todo/studio_trello.org")
-      org-trello-add-tags nil)
-
-(setq org-roam-file-exclude-regexp
-      ;; this is actually compared to a relative path, despite org-attach-id-dir not being one
-      (list org-attach-id-dir
-            "old/"
-            "archive/"
-            ;; (file-truename "~/todo/old/")
-            ;; (expand-file-name "~/todo/old/")
-            ))
-
-(defun russ/reset-refile-targets ()
-  (setq
-   org-todo-targets (file-expand-wildcards "~/Dropbox/todo/*.org")
-   org-journal-archive-targets (file-expand-wildcards "~/Dropbox/todo/journal/*.org")
-   org-dailies-targets (file-expand-wildcards "~/Dropbox/todo/daily/*.org")
-
-   org-refile-targets
-   '((org-journal-archive-targets :maxlevel . 1)
-     (nil :maxlevel . 9)
-     (org-todo-targets :maxlevel . 2)
-     (org-dailies-targets :maxlevel . 1))))
-
-(russ/reset-refile-targets)
-
-(comment
- (append
-  (cl-remove-if
-   (lambda (s)
-     (or
-      (s-contains? "icebox" s)
-      (s-contains? "goals" s)
-      (s-contains? "ideas" s)
-      (s-contains? "prompts" s)
-      (s-contains? "reads" s)
-      (s-contains? "watches" s)))
-   (file-expand-wildcards "~/Dropbox/todo/*.org"))
-  (file-expand-wildcards "~/Dropbox/todo/garden/**/*.org"))
- )
-
-
-
-(advice-add 'org-archive-subtree
-            :after
-            (lambda (&rest _)
-              (org-save-all-org-buffers)))
-
-(advice-add 'org-refile
-            :after
-            (lambda (&rest _)
-              (org-save-all-org-buffers)))
-
-(advice-add 'org-agenda-redo :after 'org-save-all-org-buffers)
-
 
 (setq org-agenda-custom-commands
       '(;; TODO note that this misses items scheduled beyond the current agenda
@@ -187,9 +133,7 @@
           (org-agenda-start-with-log-mode '(clock state))
           (org-agenda-archives-mode t)))))
 
-
 ;; https://www.reddit.com/r/orgmode/comments/grgzlb/display_file_path_in_agenda_view/
-
 (defun my-buffer-dir-name ()
   "Give the directory of (buffer-file-name), and replace the home path by '~'"
   (interactive)
@@ -212,10 +156,31 @@
         (tags  . "%?(my-buffer-dir-name)%i %-12:c")
         (search . "%?(my-buffer-dir-name)%i %-12:c")))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Org refile
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Org refile helpers
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; allow refiling into a file without choosing a headline
+(setq org-refile-use-outline-path 'file
+      org-refile-allow-creating-parent-nodes 'confirm
+      org-refile-active-region-within-subtree t
+      org-outline-path-complete-in-steps nil
+
+      ;; startup folded by default (overwritable per file)
+      org-startup-folded t)
+
+(defun russ/reset-refile-targets ()
+  (setq
+   org-todo-targets (file-expand-wildcards "~/Dropbox/todo/*.org")
+   org-journal-archive-targets (file-expand-wildcards "~/Dropbox/todo/journal/*.org")
+   org-dailies-targets (file-expand-wildcards "~/Dropbox/todo/daily/*.org")
+
+   org-refile-targets
+   '((org-journal-archive-targets :maxlevel . 1)
+     (nil :maxlevel . 9)
+     (org-todo-targets :maxlevel . 2)
+     (org-dailies-targets :maxlevel . 1))))
+
+(russ/reset-refile-targets)
 
 ;; from https://emacs.stackexchange.com/questions/8045/org-refile-to-a-known-fixed-location
 (defun russ/refile-to (file headline)
@@ -230,9 +195,8 @@
   ;; TODO this seems to sometimes nest the `daily/` an extra time :/
   (let ((file-s (format-time-string "~/todo/daily/%Y-%m-%d.org" (time-add (* n 86400) (current-time)))))
     (save-excursion
-      (org-roam-dailies-capture-tomorrow n t)
-      ;; TODO write the file?
-      )
+      (org-roam-dailies-capture-tomorrow n t))
+    ;; TODO write the file?
     (russ/refile-to file-s "new")))
 
 (comment
@@ -241,7 +205,6 @@
  (format-time-string "%Y-%m-%d.org" (time-add (* (- 1) 86400) (current-time))))
 
 (defhydra hydra-org-refile-daily (:exit t)
-  ;; TODO refile to today's daily note, create if it doesn't exist
   ("t" (russ/refile-to-daily 0) "Today")
   ("y" (russ/refile-to-daily -1) "Yesterday")
   ("T" (russ/refile-to-daily 1) "Tomorrow")
@@ -262,8 +225,26 @@
   ("b" russ/org-refile-to-bucket-note "To a bucket note, i.e. ideas/writing accumulation files"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Org bindings
+;; Org Capture
+
+(after! org-capture
+  (map! :map org-capture-mode-map
+        [remap evil-save-and-close]          #'org-capture-finalize
+        [remap evil-save-modified-and-close] #'org-capture-finalize
+        [remap evil-quit]                    #'org-capture-kill))
+
+(after! org-capture
+  (setq org-capture-templates
+        (doct '(("journal"
+                 :keys "j"
+                 :file "~/todo/journal.org"
+                 :template ("* %?"))
+                ("Garden Daily"
+                 :keys "d"
+                 :function org-roam-dailies-capture-today)))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Key bindings
 
 (after! org
   (map! :map org-mode-map
@@ -320,41 +301,63 @@
       :localleader
       "p" #'org-agenda-priority)
 
-(use-package! org-roam
-  :init
-  (map! :after org
-        :map org-mode-map
-        :localleader
-        :prefix ("m" . "org-roam")
-        ;; "b" #'org-roam-switch-to-buffer
-        ;; "f" #'org-roam-find-file
-        "f" #'russ/org-roam-find-file
-        "F" #'russ/org-roam-find-node-relevant
-        ;; "g" #'org-roam-graph
-        ;; "i" #'org-roam-insert
-        "i" #'russ/org-roam-insert-file
-        ;; "I" #'org-roam-insert-immediate
-        "I" #'russ/org-roam-insert-node-relevant
-        ;; "m" #'org-roam
-        ;; "t" #'org-roam-tag-add
-        ;; "T" #'org-roam-tag-delete
-        ;; (:prefix ("d" . "by date")
-        ;;  :desc "Find previous note" "b" #'org-roam-dailies-find-previous-note
-        ;;  :desc "Find date"          "d" #'org-roam-dailies-find-date
-        ;;  :desc "Find next note"     "f" #'org-roam-dailies-find-next-note
-        ;;  :desc "Find tomorrow"      "m" #'org-roam-dailies-find-tomorrow
-        ;;  :desc "Capture today"      "n" #'org-roam-dailies-capture-today
-        ;;  :desc "Find today"         "t" #'org-roam-dailies-find-today
-        ;;  :desc "Capture Date"       "v" #'org-roam-dailies-capture-date
-        ;;  :desc "Find yesterday"     "y" #'org-roam-dailies-find-yesterday
-        ;;  :desc "Find directory"     "." #'org-roam-dailies-find-directory)
-        ))
+(map! :after org-roam
+      :map org-mode-map
+      :localleader
+      :prefix ("m" . "org-roam")
+      ;; "f" #'org-roam-find-file
+      "f" #'russ/org-roam-find-file
+      "F" #'russ/org-roam-find-node-relevant
+      ;; "g" #'org-roam-graph
+      ;; "i" #'org-roam-insert
+      "i" #'russ/org-roam-insert-file
+      ;; "I" #'org-roam-insert-immediate
+      "I" #'russ/org-roam-insert-node-relevant
+      )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Org mode config
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; org projectile
 
-(after! org 'turn-on-auto-fill)
+;; (use-package! org-project-capture
+;;   :after org-capture
+;;   :config
+;;   ;; (setq org-project-capture-backend
+;;   ;;       (make-instance 'YOUR-CHOSEN-BACKEND))  ; Replace with your backend of choice
+;;   ;; (setq org-project-capture-projects-file "~/org/projects.org")
+;;   (setq org-projectile-per-project-filepath "todo.org")
+;;   (org-project-capture-per-project)
+;;   (push (org-projectile-project-todo-entry) org-capture-templates))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; org properties
+
+(defun org-hide-properties ()
+  "Hide all org-mode headline property drawers in buffer. Could be slow if it has a lot of overlays."
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (while (re-search-forward
+            "^ *:properties:\n\\( *:.+?:.*\n\\)+ *:end:\n" nil t)
+      (let ((ov_this (make-overlay (match-beginning 0) (match-end 0))))
+        (overlay-put ov_this 'display "")
+        (overlay-put ov_this 'hidden-prop-drawer t))))
+  (put 'org-toggle-properties-hide-state 'state 'hidden))
+
+(defun org-show-properties ()
+  "Show all org-mode property drawers hidden by org-hide-properties."
+  (interactive)
+  (remove-overlays (point-min) (point-max) 'hidden-prop-drawer t)
+  (put 'org-toggle-properties-hide-state 'state 'shown))
+
+(defun org-toggle-properties ()
+  "Toggle visibility of property drawers."
+  (interactive)
+  (if (eq (get 'org-toggle-properties-hide-state 'state) 'hidden)
+      (org-show-properties)
+    (org-hide-properties)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; common urls
 
 (setq russ/suggested-links
       '("https://danger.russmatney.com"
@@ -432,41 +435,25 @@
                                         russ/suggested-links)))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Org Capture
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Org Roam
 
-(after! org-capture
-  (map! :map org-capture-mode-map
-        [remap evil-save-and-close]          #'org-capture-finalize
-        [remap evil-save-modified-and-close] #'org-capture-finalize
-        [remap evil-quit]                    #'org-capture-kill))
-
-
-(comment
- (setq org-capture-templates
-       '(("t" "Todo [journal]" entry (file "~/todo/journal.org") "* [ ] %i%?")
-         ("r" "Prompt" entry (file "~/todo/prompts.org") "* [ ] %i%?")
-         ("d" "Garden Daily" entry #'org-roam-dailies-capture-today nil))))
-
-(after! org-capture
-  (setq org-capture-templates
-        (doct '(("Todo [journal]"
-                 :keys "t"
-                 :file "~/todo/journal.org"
-                 :template ("* [ ] %i%?"))
-                ("Prompt"
-                 :keys "r"
-                 :file "~/todo/prompts.org"
-                 :template ("* [ ] %i%?"))
-                ("Garden Daily"
-                 :keys "d"
-                 :function org-roam-dailies-capture-today)))))
+(setq org-roam-file-exclude-regexp
+      ;; this is actually compared to a relative path, despite org-attach-id-dir not being one
+      (list org-attach-id-dir
+            "old/"
+            "archive/"
+            ;; (file-truename "~/todo/old/")
+            ;; (expand-file-name "~/todo/old/")
+            ))
 
 (use-package! org-roam
   :config
   (require 'org-roam-dailies)
-  (setq recent-daily-dates (cl-loop for i from 0 below 60 collect
-                                    (format-time-string "%Y-%m-%d" (time-subtract (current-time) (days-to-time i))))
+
+  ;; add recent dailies to org-agenda-files
+  (setq recent-daily-dates
+        (cl-loop for i from 0 below 60 collect
+                 (format-time-string "%Y-%m-%d" (time-subtract (current-time) (days-to-time i))))
         recent-dailies (cl-remove-if-not
                         (lambda (s)
                           (member (file-name-base s) recent-daily-dates))
@@ -477,103 +464,28 @@
          (append org-agenda-files recent-dailies)
          :test #'string=)))
 
-;; TODO review these in light of v2
+(after! org-roam
+  ;; (setq org-roam-node-display-template)
+  )
+
 (after! org-roam
   (setq org-roam-capture-templates
-        '(("d" "default" plain
-           ;; (function org-roam--capture-get-point)
-           "%?"
-           :if-new
+        '(("d" "default" plain "%?"
+           :target
            (file+head "~/todo/garden/${slug}.org"
                       "#+TITLE: ${title}
 #+CREATED_AT: %<%Y%m%d:%H%M%S>
 #+startup: content")
-           :unnarrowed t))
-
-        org-roam-capture-ref-templates
-        '(("r" "ref" plain
-           ;; (function org-roam-capture--get-point)
-           "%?"
-           :if-new (file+head "~/todo/garden/websites/${slug}.org"
-                              "#+TITLE: ${title}
-#+CREATED_AT: %<%Y%m%d:%H%M%S>
-#+ROAM_KEY: ${ref}
-- source :: ${ref}")
            :unnarrowed t)))
 
   ;; https://org-roam.discourse.group/t/v2-error-running-org-roam-dailies-find-today/1511/4
   (setq org-roam-dailies-capture-templates
-        '(("d" "default" entry "* %?" :if-new
+        '(("d" "default" entry "* %?"
+           :target
            (file+head "%<%Y-%m-%d>.org"
                       "#+title: %<%Y-%m-%d>
 #+created_at: %<%Y%m%d:%H%M%S>
 #+startup: content")))))
-
-(defadvice org-capture
-    (after make-full-window-frame activate)
-  "Advise capture to be the only window when used as a popup"
-  (if (equal "doom-capture" (frame-parameter nil 'name))
-      (delete-other-windows)))
-
-(setq +org-roam-open-buffer-on-find-file nil)
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; org projectile
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(use-package! org-projectile
-  :after org-capture
-  :config
-  (org-projectile-per-project)
-  (setq org-projectile-per-project-filepath "todo.org"
-        ;; org-agenda-files (append org-agenda-files
-        ;;                          ;; TODO filter for existing
-        ;;                          ;; and maybe for contains /russmatney/teknql/
-        ;;                          (org-projectile-todo-files))
-        )
-
-  (push (org-projectile-project-todo-entry) org-capture-templates))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; org properties
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defun org-hide-properties ()
-  "Hide all org-mode headline property drawers in buffer. Could be slow if it has a lot of overlays."
-  (interactive)
-  (save-excursion
-    (goto-char (point-min))
-    (while (re-search-forward
-            "^ *:properties:\n\\( *:.+?:.*\n\\)+ *:end:\n" nil t)
-      (let ((ov_this (make-overlay (match-beginning 0) (match-end 0))))
-        (overlay-put ov_this 'display "")
-        (overlay-put ov_this 'hidden-prop-drawer t))))
-  (put 'org-toggle-properties-hide-state 'state 'hidden))
-
-(defun org-show-properties ()
-  "Show all org-mode property drawers hidden by org-hide-properties."
-  (interactive)
-  (remove-overlays (point-min) (point-max) 'hidden-prop-drawer t)
-  (put 'org-toggle-properties-hide-state 'state 'shown))
-
-(defun org-toggle-properties ()
-  "Toggle visibility of property drawers."
-  (interactive)
-  (if (eq (get 'org-toggle-properties-hide-state 'state) 'hidden)
-      (org-show-properties)
-    (org-hide-properties)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; org roam
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(after! org-roam
-  (setq org-roam-mode-section-functions
-        (list #'org-roam-backlinks-section
-              #'org-roam-reflinks-section
-              ;; #'org-roam-unlinked-references-section ;; note, can be slow!
-              )))
 
 (defun russ/org-roam--get-root-titles ()
   "Return all distinct titles and aliases in the Org-roam database."
@@ -598,10 +510,30 @@
             ;; of lower priority to run.
             :exclusive 'no))))
 
-;; overwrite completion functions here
-(setq org-roam-completion-functions
-      (list #'org-roam-complete-link-at-point
-            (cape-capf-case-fold #'russ/org-roam-complete-everywhere)))
+(after! org-roam
+  (setq org-roam-mode-sections
+        (list #'org-roam-backlinks-section
+              ;; #'org-roam-reflinks-section
+              ;; #'org-roam-unlinked-references-section ;; note, can be slow!
+              ))
+
+  ;; overwrite completion functions here
+  (setq org-roam-completion-functions
+        (list #'org-roam-complete-link-at-point
+              (cape-capf-case-fold #'russ/org-roam-complete-everywhere))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; org roam ui
+
+(use-package! org-roam-ui
+  :after org-roam
+  :hook (after-init . org-roam-ui-mode)
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow nil
+        org-roam-ui-update-on-save nil
+        org-roam-ui-open-on-start nil
+        ))
 
 ;;; sandbox ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -645,20 +577,15 @@
          (not (string-match-p
                "/old-nov-2020/\\|/old/\\|/drafts-journal/\\|/journal/\\|/archive/"
                (org-roam-node-file node)))
-         (not (member "reviewed" (org-roam-node-tags node)))))))
+         (not (member "reviewed" (org-roam-node-tags node))))))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; org roam ui
-
-(use-package! org-roam-ui
-  :after org-roam
-  :hook (after-init . org-roam-ui-mode)
-  :config
-  (setq org-roam-ui-sync-theme t
-        org-roam-ui-follow nil
-        org-roam-ui-update-on-save nil
-        org-roam-ui-open-on-start nil
-        ))
+ (org-roam-node-read
+  nil (lambda (node)
+        (and
+         (string-match-p
+          "/old-nov-2020/\\|/old/\\|/drafts-journal/\\|/journal/\\|/archive/\\|/garden/"
+          (org-roam-node-file node)))))
+ )
 
 (comment
 

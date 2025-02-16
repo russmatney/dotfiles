@@ -4,8 +4,18 @@
   "Comment out one or more s-expressions."
   nil)
 
+;; ;;;###autoload
+;; (setq clawe/ingest-on-save nil)
+
+;; ;;;###autoload
+;; (defun clawe/toggle-ingest-on-save ()
+;;   (interactive)
+;;   (let ((new-val (not clawe/ingest-on-save)))
+;;     (print! "setting clawe ingest-on-save: %s" new-val)
+;;     (setq clawe/ingest-on-save new-val)))
+
 ;;;###autoload
-(defun clawe/doctor-ingest-this-file-force ()
+(defun clawe/doctor-ingest-this-file ()
   (interactive)
   (unless (and buffer-file-name (file-exists-p buffer-file-name))
     (user-error "Buffer is not visiting any file"))
@@ -17,22 +27,6 @@
      ;; TODO add random int/timestamp to this buffer name
      ;; TODO add filename to command
      (concat "*clawebb-" (file-name-base (buffer-file-name)) "*"))))
-
-(setq clawe/ingest-on-save nil)
-
-;;;###autoload
-(defun clawe/toggle-ingest-on-save ()
-  (interactive)
-  (let ((new-val (not clawe/ingest-on-save)))
-    (print! "setting clawe ingest-on-save: %s" new-val)
-    (setq clawe/ingest-on-save new-val)))
-
-;;;###autoload
-(defun clawe/doctor-ingest-this-file ()
-  (interactive)
-  (if (not clawe/ingest-on-save)
-      (message "ingest on save disabled, nothing doing")
-    (clawe/doctor-ingest-this-file-force)))
 
 (comment
  (message "hi")

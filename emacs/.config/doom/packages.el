@@ -48,13 +48,11 @@
 ;; org
 (package! doct)
 (package! org-rich-yank)
-(package! org-projectile)
+(package! org-project-capture)
+(package! org-roam-ui)
 
 ;; nov.el
 ;; (package! nov)
-
-;; magit
-(package! magit-org-todos)
 
 (package! browse-at-remote)
 (package! git-link :recipe (:host github :repo "sshaw/git-link"))
@@ -81,7 +79,5 @@
 
 (package! fabb :recipe (:local-repo "fabb" :build (:not compile)))
 (package! ink-mode :recipe (:local-repo "ink-mode" :build (:not compile)))
-
-(package! org-roam-ui)
 
 (package! ultra-scroll :recipe (:host github :repo "jdtsmith/ultra-scroll"))

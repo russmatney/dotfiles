@@ -90,18 +90,5 @@
   ;; duplicate in most situations, but idc, it's annoys me when it's hidden
   (magit-add-section-hook 'magit-status-sections-hook 'magit-insert-recent-commits nil t))
 
-;; (use-package! magit-todos
-;;   :config
-;;   (setq magit-todos-rg-extra-args '("--hidden")
-;;         magit-todos-branch-list 'branch
-;;         magit-todos-branch-list-merge-base-ref "origin/main"
-;;         ))
-
-
-;; (use-package! magit-org-todos
-;;   :config
-;;   (magit-org-todos-autoinsert))
-
 (use-package! forge)
-
 (use-package! browse-at-remote)

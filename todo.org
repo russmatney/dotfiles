@@ -5,3 +5,4 @@
 rewrite doom keybindings as hydras
 * [ ] emacs profile switcher
 https://github.com/plexus/chemacs2
+* TODO prevent .config.el from constant re-eval?
