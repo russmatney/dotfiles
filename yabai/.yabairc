@@ -56,6 +56,8 @@ yabai -m rule --add app=".*" sub-layer=normal
 
 # float system preferences
 yabai -m rule --add app="^System Settings$" manage=off
+yabai -m rule --add app="Finder" manage=off
+yabai -m rule --add app="1Password" manage=off
 yabai -m rule --add app="choose" manage=off
 yabai -m rule --add app="Kap" manage=off
 
