@@ -185,16 +185,9 @@ shift + ctrl - k : yabai -m window --resize bottom:0:-80 || yabai -m window --re
 #     dy will become its new position.
 
 # float / unfloat window and center on screen
-shift + cmd - f : yabai -m window --toggle float;\
-          yabai -m window --grid 12:9:1:1:7:10
-
-# TODO set floating, not toggle? the toggle is kind of nice
-shift + cmd - c : yabai -m window --toggle float; \
-                  yabai -m window --grid 50:50:1:1:48:48
-
-# TODO set floating, not toggle? the toggle is kind of nice
-shift + cmd - v : yabai -m window --toggle float; \
-                  yabai -m window --grid 50:50:14:2:34:46
+shift + cmd - f : yabai -m window --toggle float; yabai -m window --grid 12:9:1:1:7:10
+shift + cmd - c : yabai -m window --grid 50:50:1:1:48:48
+shift + cmd - v : yabai -m window --grid 50:50:14:2:34:46
 
 # TODO quit on super-q, etc
 cmd - q : yabai -m window --close
