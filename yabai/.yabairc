@@ -68,6 +68,7 @@ yabai -m rule --add app="Godot" manage=off
 yabai -m rule --add app="Dino" manage=off
 
 yabai -m rule --add title="tauri-doctor-topbar" sticky=on
+yabai -m rule --add app="Gather" sticky=on
 
 yabai -m signal --add event=window_created label=fix-topbar title="tauri-doctor-topbar" action="bb --config ~/russmatney/clawe/bb.edn -x ralphie.yabai/fix-topbar"
 
