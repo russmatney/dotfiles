@@ -67,6 +67,9 @@ return {
 
           -- project switch
           ["<Leader>w"] = "<CMD>call VSCodeNotify('projectManager.listProjects')<CR>",
+
+          -- magit
+          ["gm"] = "<CMD>call VSCodeNotify('magit.status')<CR>",
         },
       },
     },
