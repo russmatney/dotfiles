@@ -8,14 +8,41 @@ local function plugins_update_packages() require("astrocore").update_packages() 
 
 local function hover_diagnostics() vim.diagnostic.open_float() end
 
+-- Session funcs
+local function list_session() require("resession").load "Last Session" end
+local function save() require("resession").save() end
+local function save_dirsession() require("resession").save(vim.fn.getcwd()) end
+local function save_tab() require("resession").save_tab() end
+local function delete_session() require("ression").delete() end
+local function delete_dir_session() require("ression").delete(nil, { dir = "dirsession" }) end
+local function load_session() require("load_session").load() end
+local function load_dir_session() require("resession").load(nil, { dir = "dirsession" }) end
+local function load_current_dir_session() require("resession").load(vim.fn.getcwd(), { dir = "dirsession" }) end
+
+local session_cmds = {
+  { "RUSSListSession", list_session, {} },
+  { "RUSSSaveTHISsession", save, {} },
+  { "RUSSSaveDIRSession", save_dirsession, {} },
+  { "RUSSSaveTHISTabsSession", save_tab, {} },
+  { "RUSSDeleteSession", delete_session, {} },
+  { "RUSSDeleteDIRsession", delete_dir_session, {} },
+  { "RUSSLoadSession", load_session, {} },
+  { "RUSSLoadDIRSession", load_dir_session, {} },
+  { "RUSSLoadCurrentDIRSession", load_current_dir_session, {} },
+}
+
+for _i, cmd in pairs(session_cmds) do
+  vim.api.nvim_create_user_command(cmd[1], cmd[2], cmd[3])
+end
+
 local cmds = {
-  { "PluginsInstall", plugins_install, {} },
-  { "PluginsStatus", plugins_status, {} },
-  { "PluginsSync", plugins_sync, {} },
-  { "PluginsCheckUpdates", plugins_check_updates, {} },
-  { "PluginsUpdate", plugins_update, {} },
-  { "PluginsUpdatePackages", plugins_update_packages, {} },
-  { "HoverDiagnostics", hover_diagnostics, {} },
+  { "RussPluginsInstall", plugins_install, { desc = "Install Plugins" } },
+  { "RussPluginsStatus", plugins_status, {} },
+  { "RussPluginsSync", plugins_sync, {} },
+  { "RussPluginsCheckUpdates", plugins_check_updates, {} },
+  { "RussPluginsUpdate", plugins_update, {} },
+  { "RussPluginsUpdatePackages", plugins_update_packages, {} },
+  { "RussHoverDiagnostics", hover_diagnostics, {} },
 }
 
 for _i, cmd in pairs(cmds) do
