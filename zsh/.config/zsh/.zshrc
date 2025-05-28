@@ -64,7 +64,7 @@ if hash keychain 2>/dev/null; then
         eval $(keychain --agents gpg,ssh --eval --noask)
         ;;
       linux*)
-        eval $(keychain --agents gpg,ssh --eval --systemd --noask)
+        eval $(keychain --eval --systemd --noask)
         ;;
     esac
   fi;
