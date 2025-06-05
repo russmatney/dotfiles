@@ -61,7 +61,7 @@ if hash keychain 2>/dev/null; then
 
     case "$OSTYPE" in
       darwin*)
-        eval $(keychain --agents gpg,ssh --eval --noask)
+        eval $(keychain --eval --noask)
         ;;
       linux*)
         eval $(keychain --eval --systemd --noask)
