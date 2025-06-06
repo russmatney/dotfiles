@@ -81,3 +81,8 @@
 (package! ink-mode :recipe (:local-repo "ink-mode" :build (:not compile)))
 
 (package! ultra-scroll :recipe (:host github :repo "jdtsmith/ultra-scroll"))
+
+
+(package! aidermacs)
+(package! copilot
+  :recipe (:host github :repo "copilot-emacs/copilot.el" :files ("*.el")))

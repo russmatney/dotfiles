@@ -41,3 +41,4 @@ python/.ipython/profile_default/history.sqlite
 .zsh_plugins.zsh
 
 lazy-lock.json
+.aider*

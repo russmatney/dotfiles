@@ -43,3 +43,8 @@ export LSP_USE_PLISTS=true
 
 # disable husky git hooks
 export HUSKY=0
+
+# ollama ###########################################
+
+export OLLAMA_CONTEXT_LENGTH=8192
+export OLLAMA_API_BASE=http://127.0.0.1:11434
