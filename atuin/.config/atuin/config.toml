@@ -179,6 +179,8 @@ enabled = true
 [keys]
 scroll_exits = true
 prefix = 'a'
+exit_past_line_start = false
+exit_past_line_end = false
 
 [preview]
 strategy = "auto"
