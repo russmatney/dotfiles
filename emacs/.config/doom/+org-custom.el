@@ -259,7 +259,8 @@
         "S-<right>" nil
         "S-<up>" nil
         "S-<down>" nil
-        "C-j" nil
+        :n "C-j" nil
+        :n "C-k" nil
         :n "z a"   #'org-cycle
         :i [tab] #'completion-at-point
         :i "M-TAB" #'russ/org-roam-insert-file
