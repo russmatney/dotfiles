@@ -259,6 +259,8 @@
         "S-<right>" nil
         "S-<up>" nil
         "S-<down>" nil
+        "C-j" nil
+        "C-k" nil
         :n "C-j" nil
         :n "C-k" nil
         :n "z a"   #'org-cycle
