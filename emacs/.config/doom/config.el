@@ -183,6 +183,15 @@ reload dir-locals."
 ;;   ;; tryna hide/prevent any kind of popup from showing...
 ;;   '(("^\\*clawebb\\*" :quit t :ttl 0)))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; rainbow delimiters
+
+;; Or enable it in *most* places:
+(add-hook! '(prog-mode-hook
+             text-mode-hook
+             conf-mode-hook)
+           #'rainbow-delimiters-mode)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; other config files
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

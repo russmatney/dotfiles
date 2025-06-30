@@ -4,6 +4,9 @@
 ;; ignore doom snippets
 ;; (package! doom-snippets :ignore t)
 
+;; formerly doom core
+(package! rainbow-delimiters)
+
 ;; lisp
 (package! dash)
 
