@@ -154,7 +154,8 @@
 cmd - h : yabai -m window --focus west
 cmd - l : yabai -m window --focus east
 cmd - j : yabai -m window --focus south
-cmd - k : yabai -m window --focus north
+# cmd - k : yabai -m window --focus north # raycast being greedy
+shift + cmd - k : yabai -m window --focus north
 
 # toggle window split type
 # TODO use semi ;
@@ -265,6 +266,7 @@ cmd + alt - p : yabai -m window --toggle aseprite || clawebb -x clawe.toggle/tog
 cmd + alt - o : yabai -m window --toggle obsidian || clawebb -x clawe.toggle/toggle --key obsidian
 cmd + alt - n : yabai -m window --toggle neovide || clawebb -x clawe.toggle/toggle --key neovide
 cmd + alt - v : yabai -m window --toggle vscode || clawebb -x clawe.toggle/toggle --key vscode
+cmd + alt - u : yabai -m window --toggle ticktick
 
 cmd + shift - d : clawebb -x clawe.rules/clean-up-workspaces
 cmd + shift - x : clawebb -x clawe.mx/mx

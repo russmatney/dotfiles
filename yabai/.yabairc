@@ -78,7 +78,7 @@ yabai -m signal --add event=window_destroyed label=focus-after-destroy active=ye
 # most apps do this without trouble, but sometimes opening via emacsclient misses for some reason
 
 # TODO need to ignore some windows here (notifications!!!)
-yabai -m signal --add event=window_created label=focus-after-create app="^Emacs$" action='yabai -m window --focus $YABAI_WINDOW_ID'
+yabai -m signal --add event=window_created label=focus-after-create app="^Emacs$" action="yabai -m window --focus $YABAI_WINDOW_ID"
 
 # apps
 yabai -m rule --add app="^Spotify$" scratchpad=spotify grid=11:11:1:1:9:9
@@ -96,6 +96,7 @@ yabai -m rule --add app="^Aseprite$" scratchpad=aseprite grid=11:11:1:1:9:9
 yabai -m rule --add app="^Obsidian$" scratchpad=obsidian grid=11:11:1:1:9:9
 yabai -m rule --add app="^Neovide$" scratchpad=neovide grid=11:11:1:1:9:9
 yabai -m rule --add app="^Code$" scratchpad=vscode grid=11:11:1:1:9:9
+yabai -m rule --add app="^TickTick$" scratchpad=ticktick grid=11:11:1:1:9:9
 
 # clawe
 yabai -m rule --add title="tauri-doctor-dashboard" scratchpad=clawe-dashboard grid=11:11:1:1:9:9
