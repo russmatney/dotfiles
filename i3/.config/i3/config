@@ -196,7 +196,7 @@ for_window [class="Aseprite"] move scratchpad, scratchpad show
 for_window [class="firefox*"] move scratchpad, scratchpad show
 for_window [class="neovide"] move scratchpad, scratchpad show
 for_window [class="^Code$"] move scratchpad, scratchpad show
-for_window [class="^ticktick"] move scratchpad, scratchpad show
+for_window [class="ticktick"] move scratchpad, scratchpad show
 
 # cycle all scratchpads
 # tick ` == grave
@@ -262,7 +262,7 @@ bindsym $mod+$alt+v exec --no-startup-id i3-msg '[class="^Code$"]' scratchpad sh
   clawebb-log -x clawe.toggle/toggle --key vscode
 
 # toggle VSCode
-bindsym $mod+$alt+u exec --no-startup-id i3-msg '[class="^ticktick"]' scratchpad show || \
+bindsym $mod+$alt+u exec --no-startup-id i3-msg '[class="ticktick"]' scratchpad show || \
   clawebb-log -x clawe.toggle/toggle --key ticktick
 
 # toggle Godot
