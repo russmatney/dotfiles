@@ -19,7 +19,7 @@
 
 (defun rm/search ()
   (interactive)
-  (evil-ex "pg "))
+  (evil-ex "pgrep "))
 
 (map! :leader "a" #'rm/search)
 ;; (map! :leader "a" #'+vertico/project-search)
