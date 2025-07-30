@@ -133,6 +133,9 @@ bindsym $mod+Tab focus parent; focus next
 # toggle floating
 bindsym $mod+Shift+f floating toggle
 
+# toggle floating
+bindsym $mod+Shift+t sticky toggle
+
 # toggle fullscreen
 bindsym $mod+Shift+space fullscreen toggle
 
