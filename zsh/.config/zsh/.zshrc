@@ -539,7 +539,7 @@ case "$OSTYPE" in
     alias godotsteam='~/.local/share/godotsteam/GodotEditor.app/Contents/MacOS/godot'
     ;;
   linux*)
-    alias godotsteam='~/.local/share/godotsteam/linux-421-editor.x86_64'
+    alias godotsteam='~/.local/share/godotsteam/godotsteam.441.editor.linux.x86_64'
     ;;
 esac
 
