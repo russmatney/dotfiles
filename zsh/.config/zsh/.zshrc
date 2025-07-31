@@ -536,7 +536,7 @@ alias gutw='godot --path . -d -s addons/gut/gut_cmdln.gd'
 
 case "$OSTYPE" in
   darwin*)
-    alias godotsteam='~/.local/share/godotsteam/GodotEditor.app/Contents/MacOS/godot'
+    alias godotsteam='~/.local/share/godotsteam/GodotSteam.app/Contents/MacOS/godot'
     ;;
   linux*)
     alias godotsteam='~/.local/share/godotsteam/godotsteam.441.editor.linux.x86_64'
