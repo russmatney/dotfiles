@@ -31,6 +31,9 @@ if [ -f /usr/share/zsh-antidote/antidote.zsh ]; then
 elif [ -f /opt/homebrew/opt/antidote/share/antidote/antidote.zsh ]; then
   source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
   antidote load
+elif [ -f /run/current-system/sw/share/antidote/antidote.zsh ]; then
+  source '/run/current-system/sw/share/antidote/antidote.zsh'
+  antidote load
 fi
 
 if type brew &>/dev/null
