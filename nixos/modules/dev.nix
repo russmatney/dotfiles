@@ -1,7 +1,6 @@
 { pkgs, config, ...}:
 
 {
-
   # programs
   programs.firefox.enable = true;
   programs.git.enable = true;
@@ -19,6 +18,7 @@
     wget
     atuin # <C-r>
     tmux
+    powerline
     fzf
     httpie # curl
     stow
@@ -73,16 +73,17 @@
   systemd.user.services.tmux = {
     wantedBy = [ "default.target" ];
     description = "tmux: A terminal multiplexer";
-    environment = {
-        DISPLAY = ":0";
-    };
     serviceConfig = {
         Type = "forking";
         ExecStart = "${pkgs.tmux}/bin/tmux new-session -s debug -d";
         ExecStop = "${pkgs.tmux}/bin/tmux kill-session -t debug";
-        Environment = "PATH=/run/current-system/sw/bin/";
         KillMode = "process";
     };
+  };
+
+  services.emacs = {
+      enable = true;
+      package = pkgs.emacs;
   };
 
 }
