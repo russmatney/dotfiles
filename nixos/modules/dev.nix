@@ -91,8 +91,10 @@
   systemd.user.services.tmux = {
     wantedBy = [ "default.target" ];
     description = "tmux: A terminal multiplexer";
+    path = [ pkgs.powerline ];
     environment = {
         DISPLAY = ":0";
+        SHELL = "${pkgs.zsh}/bin/zsh";
     };
     serviceConfig = {
         Type = "forking";
