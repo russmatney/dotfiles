@@ -82,6 +82,7 @@ fi
 alias wa='wal -Req'
 
 alias ns='nix-shell'
+alias nrs='sudo nixos-rebuild switch'
 
 ################################################################################
 # vim-mode
@@ -319,9 +320,14 @@ alias clean-merged-branches="!f() { git checkout -q ${1-master} && git branch-me
 case "$OSTYPE" in
   linux*)
     alias sc='systemctl'
+    alias scu='systemctl --user'
     alias scr='systemctl restart'
+    alias scur='systemctl --user restart'
     alias scs='systemctl status'
     alias jc='journalctl'
+    alias jcf='journalctl -f'
+    alias jcu='journalctl --user-unit'
+    alias jcfu='journalctl -f --lines 500 --user-unit'
 esac
 
 ################################################################################

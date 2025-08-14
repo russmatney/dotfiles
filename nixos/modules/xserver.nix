@@ -2,22 +2,47 @@
 
 {
 
+  services.displayManager.defaultSession = "none+i3";
+  # Enable the X11 windowing system.
+  services.xserver.enable = true;
+
+  # display manager
+  services.xserver.displayManager = {
+    session = [];
+
+    # lightdm = {
+    #   enable = true;
+    #   greeter.enable = true;
+    # };
+    gdm.enable = true;
+    gdm.banner = ''WHAT UP'';
+  };
+
+  services.xserver.desktopManager.gnome.flashback.customSessions = [
+    {
+      wmName = "xmonad";
+      wmLabel = "XMonad";
+      wmCommand = "${pkgs.haskellPackages.xmonad}/bin/xmonad";
+      enableGnomePanel = false;
+    }
+    {
+      wmName = "i3";
+      wmLabel = "i3";
+      wmCommand = "${pkgs.i3}/bin/i3";
+      enableGnomePanel = false;
+    }
+  ];
+
+  # desktop and window managers
   services.xserver = {
-    # Enable the X11 windowing system.
-    enable = true;
+    desktopManager.gnome.enable = true;
+    desktopManager.xterm.enable = true;
+    windowManager.i3.enable = true;
+    windowManager.bspwm.enable = true;
+  };
 
-    displayManager = {
-      gdm.enable = true;
-      # lightdm.enable = true;
-      # defaultSession = "none+i3";
-    };
-
-    desktopManager = {
-      gnome.enable = true;
-    };
-
-    # windowManager.i3.enable = true;
-
+  # keyboard options
+  services.xserver = {
     autoRepeatDelay = 150;
     autoRepeatInterval = 80;
 
@@ -28,6 +53,7 @@
       options = "caps:escape";
     };
   };
+
 
   services.keyd = {
     enable = true;

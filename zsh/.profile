@@ -1,7 +1,7 @@
 #!/bin/sh
 
 export XDG_CONFIG_HOME=$HOME/.config
-export SHELL=/usr/bin/zsh
+export SHELL=/usr/bin/env zsh
 
 export BROWSER=/usr/bin/firefox
 
