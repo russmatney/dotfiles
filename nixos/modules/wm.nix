@@ -4,15 +4,21 @@
   environment.systemPackages = with pkgs; [
     # wms
     i3
+    # sway
 
     # wm tools
+    arandr
     rofi
-    variety
+    # variety
+    feh
     polybar
     psmisc
     picom
 
   ];
+
+  programs.sway.enable = true;
+  programs.waybar.enable = true;
 
   services.displayManager.defaultSession = "none+i3";
   # Enable the X11 windowing system.

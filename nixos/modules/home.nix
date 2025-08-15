@@ -3,37 +3,23 @@
 let
   sym = config.lib.file.mkOutOfStoreSymlink;
 in {
-
   programs.home-manager.enable = true;
   home.stateVersion = "25.05";
 
-  # dconf = {
-  #   enable = true;
-  # };
-
-  # home.username = "russ";
-  # home.homeDirectory = "/home/russ";
-
-  # xsession.enable = true;
-
-  # xdg.configFile = {
   home.file = { # and add ~/.config prefix
     ".config/atuin/config.toml".source = sym ../../atuin/.config/atuin/config.toml;
 
     # zsh
     ".config/zsh/.zshrc" = {
       source = sym ../../zsh/.config/zsh/.zshrc;
-      # executable = true;
     };
     ".zshenv".source = sym ../../zsh/.zshenv;
     ".profile".source = sym ../../zsh/.profile;
     ".config/zsh/fzf.zsh" = {
       source = sym ../../zsh/.config/zsh/fzf.zsh;
-      # executable = true;
     };
     ".config/zsh/fuzzy-sys.zsh" = {
       source = sym ../../zsh/.config/zsh/fuzzy-sys.zsh;
-      # executable = true;
     };
     ".config/zsh/.zsh_plugins.txt" = {
       source = sym ../../zsh/.config/zsh/.zsh_plugins.txt;
@@ -50,6 +36,7 @@ in {
 
     # i3
     ".config/i3/config".source = sym ../../i3/.config/i3/config;
+    ".local/bin/set-monitor-config".source = sym ../../i3/.local/bin/set-monitor-config;
 
     ".config/polybar/launch.sh".source = sym ../../polybar/.config/polybar/launch.sh;
     ".config/polybar/config.ini".source = sym ../../polybar/.config/polybar/config.ini;
@@ -57,6 +44,12 @@ in {
     ".config/polybar/scripts/isactive-bluetooth.sh".source = sym ../../polybar/.config/polybar/scripts/inactive-bluetooth.sh;
     ".config/polybar/scripts/openweather-fullfeatured.sh".source = sym ../../polybar/.config/polybar/scripts/openweather-fullfeatured.sh;
     ".config/polybar/scripts/spotify_status.py".source = sym ../../polybar/.config/polybar/scripts/spotify_status.py;
+
+    # sway
+    # NOTE not tested/working, just roughed out
+    ".config/sway/config".source = sym ../../sway/.config/sway/config;
+    ".config/sway/config.d/russ.conf".source = sym ../../sway/.config/sway/config.d/russ.conf;
+    ".config/waybar/config.jsonc".source = sym ../../sway/.config/waybar/config.jsonc;
 
     # alacritty
     ".config/alacritty/alacritty.toml".source = sym ../../alacritty/.config/alacritty/alacritty.toml;
