@@ -5,13 +5,13 @@
   systemd.user.services.doctor-backend = {
     wantedBy = [ "default.target" ];
     description = "clawe/doctor-backend: A server for clawe things";
-    path = [ pkgs.zsh pkgs.bash pkgs.clojure pkgs.libnotify ];
     environment = {
         DISPLAY = ":0";
     };
     serviceConfig = {
         Type = "simple";
-        # Environment = "PATH=/run/current-system/sw/bin";
+        WorkingDirectory = "/home/russ/russmatney/clawe";
+        Environment = "PATH=/run/wrappers/bin:/run/current-system/sw/bin";
         ExecStart = "${pkgs.babashka}/bin/bb --config /home/russ/russmatney/clawe/bb.edn doctor-be";
         KillMode = "process";
     };
@@ -20,13 +20,13 @@
   systemd.user.services.doctor-frontend = {
     wantedBy = [ "default.target" ];
     description = "clawe/doctor-frontend: Web views for clawe things";
-    path = [ pkgs.zsh pkgs.bash pkgs.clojure pkgs.libnotify ];
     environment = {
         DISPLAY = ":0";
     };
     serviceConfig = {
         Type = "simple";
-        # Environment = "PATH=/home/russ/.local/bin:/home/russ/.nix-profile/bin:/bin:/usr/bin:/usr/local/bin:/usr/local/sbin";
+        WorkingDirectory = "/home/russ/russmatney/clawe";
+        Environment = "PATH=/run/wrappers/bin:/run/current-system/sw/bin";
         ExecStart = "${pkgs.babashka}/bin/bb --config /home/russ/russmatney/clawe/bb.edn doctor-fe";
         KillMode = "process";
     };
@@ -42,8 +42,8 @@
     };
     serviceConfig = {
         Type = "simple";
-        # Environment = "PATH=/home/russ/.local/bin:/home/russ/.nix-profile/bin:/bin:/usr/bin:/usr/local/bin:/usr/local/sbin";
-        ExecStart = "${pkgs.babashka}/bin/bb --config /home/russ/russmatney/clawe/bb.edn doctor-topbar";
+        Environment = "PATH=/run/wrappers/bin:/run/current-system/sw/bin:/home/russ/.cargo/bin";
+        ExecStart = "${pkgs.babashka}/bin/bb --config /home/russ/russmatney/clawe/bb.edn topbar";
         KillMode = "process";
     };
   };
@@ -58,8 +58,8 @@
     };
     serviceConfig = {
         Type = "simple";
-        # Environment = "PATH=/home/russ/.local/bin:/home/russ/.nix-profile/bin:/bin:/usr/bin:/usr/local/bin:/usr/local/sbin";
-        ExecStart = "${pkgs.babashka}/bin/bb --config /home/russ/russmatney/clawe/bb.edn doctor-dashboard";
+        Environment = "PATH=/run/wrappers/bin:/run/current-system/sw/bin:/home/russ/.cargo/bin";
+        ExecStart = "${pkgs.babashka}/bin/bb --config /home/russ/russmatney/clawe/bb.edn dashboard";
         KillMode = "process";
     };
   };
