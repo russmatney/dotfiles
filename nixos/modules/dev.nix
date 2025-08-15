@@ -43,6 +43,7 @@
     pandoc
     shellcheck
     sqlite
+    playerctl
 
     # terminals
     alacritty
