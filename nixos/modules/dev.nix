@@ -20,6 +20,9 @@
     xclip # required for neovim paste
     gcc
     unzip
+
+    # notifs
+    notify-osd
     libnotify
 
     # zsh
