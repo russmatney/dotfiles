@@ -3,6 +3,17 @@
 let
   sym = config.lib.file.mkOutOfStoreSymlink;
 in {
+  imports = [
+    # home manager
+    (import "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/release-25.05.tar.gz}/nixos")
+  ];
+
+  home-manager = {
+    useUserPackages = true;
+    # users.default = import ./modules/home.nix;
+    users.russ = import ./modules/home.nix;
+  };
+
   programs.home-manager.enable = true;
   home.stateVersion = "25.05";
 

@@ -16,7 +16,7 @@
     };
     serviceConfig = {
         Type = "forking";
-        Environment = "PATH=/run/current-system/sw/bin/";
+        Environment = "PATH=/run/wrappers/bin:/run/current-system/sw/bin";
         ExecStart = "${pkgs.tmux}/bin/tmux -v new-session -s debug -d";
         ExecStop = "${pkgs.tmux}/bin/tmux -v kill-session -t debug";
         KillMode = "process";

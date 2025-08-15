@@ -8,15 +8,13 @@
   imports = [
     /etc/nixos/hardware-configuration.nix
 
-    # home manager
-    (import "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/release-25.05.tar.gz}/nixos")
-
     ./modules/apps.nix
     ./modules/clawe.nix
     ./modules/core.nix
     ./modules/dev.nix
     ./modules/dropbox.nix
     ./modules/editor.nix
+    ./modules/fonts.nix
     ./modules/keyboard.nix
     ./modules/security.nix
     ./modules/tmux.nix
@@ -43,11 +41,6 @@
       shell = pkgs.zsh;
       isNormalUser = true;
     };
-  };
-  home-manager = {
-    useUserPackages = true;
-    # users.default = import ./modules/home.nix;
-    users.russ = import ./modules/home.nix;
   };
 
   # Before changing this value read the documentation for this option
