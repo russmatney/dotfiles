@@ -11,7 +11,7 @@
     rofi
     # variety
     feh
-    polybar
+    polybarFull
     psmisc
     picom
 
