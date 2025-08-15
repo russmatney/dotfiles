@@ -13,7 +13,6 @@
         WorkingDirectory = "/home/russ/russmatney/clawe";
         Environment = "PATH=/run/wrappers/bin:/run/current-system/sw/bin";
         ExecStart = "${pkgs.babashka}/bin/bb --config /home/russ/russmatney/clawe/bb.edn doctor-be";
-        KillMode = "process";
     };
   };
 
@@ -28,7 +27,6 @@
         WorkingDirectory = "/home/russ/russmatney/clawe";
         Environment = "PATH=/run/wrappers/bin:/run/current-system/sw/bin";
         ExecStart = "${pkgs.babashka}/bin/bb --config /home/russ/russmatney/clawe/bb.edn doctor-fe";
-        KillMode = "process";
     };
   };
 
@@ -44,7 +42,6 @@
         Type = "simple";
         Environment = "PATH=/run/wrappers/bin:/run/current-system/sw/bin:/home/russ/.cargo/bin";
         ExecStart = "${pkgs.babashka}/bin/bb --config /home/russ/russmatney/clawe/bb.edn topbar";
-        KillMode = "process";
     };
   };
 
@@ -60,7 +57,6 @@
         Type = "simple";
         Environment = "PATH=/run/wrappers/bin:/run/current-system/sw/bin:/home/russ/.cargo/bin";
         ExecStart = "${pkgs.babashka}/bin/bb --config /home/russ/russmatney/clawe/bb.edn dashboard";
-        KillMode = "process";
     };
   };
 

@@ -83,6 +83,7 @@ alias wa='wal -Req'
 
 alias ns='nix-shell'
 alias nrs='sudo nixos-rebuild switch'
+alias nsp='nix-shell -p'
 
 ################################################################################
 # vim-mode
@@ -323,11 +324,13 @@ case "$OSTYPE" in
     alias scu='systemctl --user'
     alias scr='systemctl restart'
     alias scur='systemctl --user restart'
+    alias scud='systemctl --user stop'
     alias scs='systemctl status'
     alias jc='journalctl'
     alias jcf='journalctl -f'
     alias jcu='journalctl --user-unit'
     alias jcfu='journalctl -f --lines 500 --user-unit'
+    alias jcuf='journalctl -f --lines 500 --user-unit'
 esac
 
 ################################################################################
