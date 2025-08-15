@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 choice=${1}
 
-supported="laptop laptop-hr work home home-monitor-only algo"
+supported="yoshi yoshi-plus-monitor yoshi-only-monitor algo"
 
 if [ -z $choice ]; then
   select opt in $supported; do
@@ -20,28 +20,20 @@ fi
 
 echo "Switching to configuration: $choice"
 
-if [ $choice == "laptop" ]; then
+if [ $choice == "yoshi" ]; then
     xrandr \
-        --output eDP-1 --pos 0x0 --mode 1920x1080 \
-        --output DP1 --off \
-        --output DP3 --off
+        --output eDP-1 --auto \
+        --output DP-2 --off
     i3-msg mode "default"
-elif [ $choice == "laptop-hr" ]; then
+elif [ $choice == "yoshi-plus-monitor" ]; then
     xrandr \
-        --output eDP-1 --pos 0x0 --mode 2560x1440 \
-        --output DP1 --off \
-        --output DP3 --off
+        --output eDP-1 --auto \
+        --output DP-2 --above eDP-1
     i3-msg mode "default"
-elif [ $choice == "home" ]; then
-    xrandr \
-        --output eDP-1 --pos 2560x540 --mode 1920x1080 \
-        --output DP1 --off \
-        --output DP3 --mode 2560x1440 --pos 0x0
-    i3-msg mode "default"
-elif [ $choice == "home-monitor-only" ]; then
+elif [ $choice == "yoshi-only-monitor" ]; then
     xrandr \
         --output eDP-1 --off \
-        --output DP3 --mode 2560x1440 --pos 0x0
+        --output DP-2 --auto
     i3-msg mode "default"
 elif [ $choice == "algo" ]; then
     xrandr \
