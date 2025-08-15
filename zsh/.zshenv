@@ -11,17 +11,17 @@ fi
 
 
 # moved here to allow non-interactive modes to use it
-export PATH="$HOME/.local/bin/:$HOME/n/bin:$PATH"
+export PATH="$PATH:$HOME/.local/bin/:$HOME/n/bin"
 
 # Gerbil
 if [ -f '/opt/gerbil/bin/gerbil' ]; then
-  export PATH="/opt/gerbil/bin/:$PATH";
+  export PATH="$PATH:/opt/gerbil/bin";
 fi
 
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
+export PATH="$PATH:$PYENV_ROOT/bin"
 
-export PATH="$HOME/.poetry/bin:$PATH"
+export PATH="$PATH:$HOME/.poetry/bin"
 (( $+commands[pyenv] )) && eval "$(pyenv init --path)"
 
 [ -s "$HOME/.secrets" ] && source "$HOME/.secrets"

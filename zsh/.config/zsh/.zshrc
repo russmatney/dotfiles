@@ -365,13 +365,13 @@ export NVM_DIR="$HOME/.nvm"
 #   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # call when you want it
 # }
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
 
 ################################################################################
 # Rust
 ################################################################################
 
-export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$PATH:$HOME/.cargo/bin"
 
 alias ps=procs
 alias du=dua
@@ -385,7 +385,7 @@ export _ZO_ECHO=1
 # Doom emacs
 ################################################################################
 
-export PATH="$HOME/.config/emacs/bin:$PATH"
+export PATH="$PATH:$HOME/.config/emacs/bin"
 
 # Added by n-install (see http://git.io/n-install-repo).
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
@@ -437,7 +437,7 @@ function delete_from_history () {
 # Ruby
 ################################################################################
 
-export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
+export PATH="$PATH:$HOME/.gem/ruby/2.7.0/bin"
 
 eval "$(direnv hook zsh)"
 
@@ -526,7 +526,7 @@ timezsh() {
 # aseprite
 ################################################################################
 
-PATH=$PATH:~/.local/share/Steam/steamapps/common/Aseprite
+export PATH="$PATH:~/.local/share/Steam/steamapps/common/Aseprite"
 
 case "$OSTYPE" in
   darwin*)
@@ -560,10 +560,10 @@ case "$OSTYPE" in
     export HOMEBREW_NO_AUTO_UPDATE=1
 
     # gls in emacs
-    PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+    export PATH="$PATH:/opt/homebrew/opt/coreutils/libexec/gnubin"
 
     # java for clojure/babashka
-    PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+    export PATH="$PATH:/opt/homebrew/opt/openjdk/bin"
 
     # homebrew
     alias b="brew"
