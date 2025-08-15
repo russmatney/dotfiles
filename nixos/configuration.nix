@@ -11,11 +11,16 @@
     # home manager
     (import "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/release-25.05.tar.gz}/nixos")
 
+    ./modules/apps.nix
+    ./modules/clawe.nix
     ./modules/core.nix
     ./modules/dev.nix
-    ./modules/ssh.nix
-    ./modules/xserver.nix
     ./modules/dropbox.nix
+    ./modules/editor.nix
+    ./modules/keyboard.nix
+    ./modules/security.nix
+    ./modules/tmux.nix
+    ./modules/wm.nix
 
     ];
 
