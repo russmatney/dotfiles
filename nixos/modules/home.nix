@@ -58,6 +58,11 @@ in {
     # picom
     ".config/picom/picom.conf".source = sym ../../picom/.config/picom/picom.conf;
 
+    # rofi
+    ".config/rofi/config".source = sym ../../rofi/.config/rofi/config;
+    ".config/rofi/config.rasi".source = sym ../../rofi/.config/rofi/config.rasi;
+    ".config/rofi/slate.rasi".source = sym ../../rofi/.config/rofi/slate.rasi;
+
     # clawe
     ".local/bin/clawebb".source = sym ../../clawe/.local/bin/clawebb;
     ".local/bin/clawebb-log".source = sym ../../clawe/.local/bin/clawebb-log;

@@ -10,13 +10,13 @@
   systemd.user.services.tmux = {
     wantedBy = [ "default.target" ];
     description = "tmux: A terminal multiplexer";
-    path = [ pkgs.powerline ];
     environment = {
         DISPLAY = ":0";
-        SHELL = "${pkgs.zsh}/bin/zsh";
+        SHELL = "/usr/bin/env zsh";
     };
     serviceConfig = {
         Type = "forking";
+        Environment = "PATH=/run/current-system/sw/bin/";
         ExecStart = "${pkgs.tmux}/bin/tmux -v new-session -s debug -d";
         ExecStop = "${pkgs.tmux}/bin/tmux -v kill-session -t debug";
         KillMode = "process";
