@@ -17,8 +17,10 @@
 
   ];
 
+  # sway
   programs.sway.enable = true;
   programs.waybar.enable = true;
+  programs.light.enable = true; # plus user 'video' group
 
   services.displayManager.defaultSession = "none+i3";
   # Enable the X11 windowing system.

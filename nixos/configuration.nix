@@ -37,7 +37,7 @@
     # };
     users.russ = {
       home = "/home/russ";
-      extraGroups = [ "networkmanager" "wheel" ];
+      extraGroups = [ "networkmanager" "wheel" "video" ];
       shell = pkgs.zsh;
       isNormalUser = true;
     };
