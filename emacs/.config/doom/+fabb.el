@@ -32,8 +32,8 @@
    :nv "r" #'fabb-task-reinvoke-task-prompt
    :nv "R" #'fabb-task-reinvoke-task-no-prompt
 
-   "q" nil
-   :n "q" nil))
+   "q" #'fabb-status
+   :n "q" #'fabb-status))
 
  (:map compilation-mode-map
   :n "C-k" nil
