@@ -4,6 +4,10 @@
 
   # programs
   programs.firefox.enable = true;
+  programs.obs-studio = {
+    enable = true;
+    enableVirtualCamera = true;
+  };
 
   # packages
   environment.systemPackages = with pkgs; [
@@ -21,5 +25,9 @@
     # gamedev
     godot
     aseprite
+
+    # video
+    obs-studio
+    kdePackages.kdenlive
   ];
 }

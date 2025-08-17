@@ -17,10 +17,14 @@
   (gdscript-mode . eglot-ensure)
   :config
 
+  (setq gdscript-eglot-version "4.4")
+
   (setq gdscript-use-tab-indents t)
   (setq gdscript-indent-offset 4)
   (if IS-MAC (setq gdscript-godot-executable "/opt/homebrew/bin/godot")
-    (setq gdscript-godot-executable "/usr/bin/godot"))
+    ;; (setq gdscript-godot-executable "/usr/bin/godot")
+    (setq gdscript-godot-executable "/run/current-system/sw/bin/godot")
+    )
   ;; (setq gdscript-godot-executable "/usr/bin/godot-mono")
   (setq gdscript-gdformat-save-and-format nil)
 

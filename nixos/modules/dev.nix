@@ -20,9 +20,10 @@
     xclip # required for neovim paste
     gcc
     unzip
+    htop
 
     # notifs
-    notify-osd
+    dunst
     libnotify
 
     # zsh
@@ -44,6 +45,8 @@
     shellcheck
     sqlite
     playerctl
+    _1password-gui
+    _1password-cli
 
     # terminals
     alacritty
@@ -53,5 +56,8 @@
     clojure
     nodejs_24
     python3
+    yarn
+
+    copilot-language-server-fhs
   ];
 }
