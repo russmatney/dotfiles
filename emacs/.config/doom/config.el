@@ -241,3 +241,8 @@ reload dir-locals."
         scroll-margin 0)
   :config
   (ultra-scroll-mode 1))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; journalctl
+
+(use-package! journalctl-mode)
