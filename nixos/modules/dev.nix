@@ -47,6 +47,7 @@
     playerctl
     _1password-gui
     _1password-cli
+    acpi
 
     # terminals
     alacritty

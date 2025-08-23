@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+#
+
+echo "YOSHII!!!!!"
+
 # TODO add notes up here with links to zsh-managment docs
 
 # enable profiling
