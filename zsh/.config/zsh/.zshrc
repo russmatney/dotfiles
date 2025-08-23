@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 
-echo "YOSHII!!!!!"
+echo "!!\n!!\n!!\t\tYOSHI: Lost in HYPRLAND!!!!!\n!!\n!!\n"
 
 # TODO add notes up here with links to zsh-managment docs
 
