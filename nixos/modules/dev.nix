@@ -37,7 +37,7 @@
     gitAndTools.git-extras
     gitAndTools.gh
     procs # ps
-    ripgrep # grep
+    ripgrep # rg
 
     # util
     babashka

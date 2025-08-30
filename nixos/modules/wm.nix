@@ -23,9 +23,9 @@
   ];
 
   # sway
-  programs.sway.enable = true;
-  programs.waybar.enable = true;
-  programs.light.enable = true; # backlight support - requires user 'video' group
+  # programs.sway.enable = true;
+  # programs.waybar.enable = true;
+  # programs.light.enable = true; # backlight support - requires user 'video' group
 
   programs.hyprland = {
     enable = true;
