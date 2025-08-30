@@ -33,6 +33,14 @@
     xwayland.enable = true;
   };
 
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  # goes in home manager stuff :eyeroll:
+  # wayland.windowManager.hyprland.plugins = with pkgs.hyprlandPlugins; [
+  #   hyprwinwrap
+  #   hyprexpo
+  # ];
+
   # services.displayManager.defaultSession = "none+i3";
   # # Enable the X11 windowing system.
   # services.xserver.enable = true;

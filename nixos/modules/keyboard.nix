@@ -3,6 +3,7 @@
 {
 
   # keyboard options
+  # surpassed by hyprland config
   services.xserver = {
     autoRepeatDelay = 150;
     autoRepeatInterval = 80;
@@ -29,5 +30,11 @@
     };
   };
 
+  hardware.keyboard.zsa.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    wally-cli
+    keymapp
+  ];
 
 }

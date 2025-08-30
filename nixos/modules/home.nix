@@ -60,7 +60,7 @@ in {
     # NOTE not tested/working, just roughed out
     ".config/sway/config".source = sym ../../sway/.config/sway/config;
     ".config/sway/config.d/russ.conf".source = sym ../../sway/.config/sway/config.d/russ.conf;
-    ".config/waybar/config.jsonc".source = sym ../../sway/.config/waybar/config.jsonc;
+    # ".config/waybar/config.jsonc".source = sym ../../sway/.config/waybar/config.jsonc;
 
     # alacritty
     ".config/alacritty/alacritty.toml".source = sym ../../alacritty/.config/alacritty/alacritty.toml;
@@ -77,6 +77,9 @@ in {
     # clawe
     ".local/bin/clawebb".source = sym ../../clawe/.local/bin/clawebb;
     ".local/bin/clawebb-log".source = sym ../../clawe/.local/bin/clawebb-log;
+
+    # hypr things
+    # ".config/waybar/config.jsonc".source = sym ../../waybar/config.jsonc;
 
   };
 
