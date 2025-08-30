@@ -124,7 +124,7 @@ Commands that stick around (this hydra supports multiple presses).
   ("y" org-roam-dailies-goto-yesterday "Yesterday")
   ("Y" org-roam-dailies-goto-previous-note "Previous Daily")
   ("b" org-roam-dailies-goto-previous-note "Previous Daily")
-  ("N" org-roam-dailies-goto-next-note "Next Daily")
+  ("n" org-roam-dailies-goto-next-note "Next Daily")
   ("f" org-roam-dailies-goto-next-note "Next Daily")
   ("d" org-roam-dailies-goto-date "Daily file")
 
@@ -140,6 +140,8 @@ Commands that stick around (this hydra supports multiple presses).
   ("c" russ/open-emacs-config-file "Open DOOM config file ~/.config/doom/")
   ;; ("b" (find-file "~/.config/doom/+bindings.el") "Open emacs +bindings.el")
   ("h" (find-file "~/.config/doom/+hydra.el") "Open emacs +hydra.el")
+  ("H" (find-file "~/.config/hypr/hyprland.conf") "Open Hyprland config")
+  ("N" (find-file "~/dotfiles/nixos/configuration.nix") "Open Nixos config")
 
   ("B" (find-file "~/russmatney/clawe/src/clawe/defs/bindings.clj")
    "defs/bindings.clj" :column "clawe")
