@@ -28,9 +28,9 @@ return {
       ---@diagnostic disable: missing-fields
       config = {
         -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
-        csharp_ls = {
-          root_dir = require("lspconfig.util").root_pattern ".git",
-        },
+        -- csharp_ls = {
+        --   root_dir = require("lspconfig.util").root_pattern ".git",
+        -- },
       },
       autocmds = {
         -- first key is the `augroup` to add the auto commands to (:h augroup)
@@ -81,7 +81,7 @@ return {
     opts = {
       ensure_installed = {
         "lua_ls",
-        "csharp_ls",
+        -- "csharp_ls",
       },
     },
   },

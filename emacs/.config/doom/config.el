@@ -154,7 +154,10 @@ reload dir-locals."
 
 (use-package! evil
   :preface
-  (setq evil-ex-substitute-global t))
+  (setq evil-ex-substitute-global t)
+  (setq evil-escape-key-sequence (kbd "fd")) ;; also C-g
+  ;; blah
+  )
 
 
 ;; https://github.com/Malabarba/aggressive-indent-mode/issues/138
