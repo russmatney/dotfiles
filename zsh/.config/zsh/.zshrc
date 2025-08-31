@@ -289,7 +289,7 @@ alias gpff='git push --force-with-lease --no-verify' # aka git push f***ing forc
 alias gds='git diff --staged'
 alias gfx='git commit --fixup'
 alias gri='git rebase -i --autosquash'
-alias grim='git rebase -i --autosquash master'
+# alias grim='git rebase -i --autosquash master'
 alias gbm='git branch --merged'
 alias gwip="git commit -m 'wip'"
 alias pulls='open "https://github.com:/$(git remote -v | command ggrep -oP "'"(?<=git@github.com:).+(?=\.git)"'" | head -n 1)/pulls"'

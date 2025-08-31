@@ -18,7 +18,9 @@
     wofi
     kitty
     kdePackages.dolphin
-
+    grim
+    slurp
+    hyprpaper
 
   ];
 
@@ -27,11 +29,13 @@
   # programs.waybar.enable = true;
   # programs.light.enable = true; # backlight support - requires user 'video' group
 
+  # hypr
   programs.hyprland = {
     enable = true;
     withUWSM = true;
     xwayland.enable = true;
   };
+  programs.uwsm.enable = true;
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 

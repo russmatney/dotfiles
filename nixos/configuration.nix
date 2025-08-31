@@ -24,8 +24,6 @@
 
   networking.hostName = "yoshi";
 
-  nixpkgs.config.allowUnfree = true;
-
   # users
   users = {
     # mutableUsers = false;
