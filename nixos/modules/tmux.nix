@@ -8,18 +8,20 @@
   ];
 
   systemd.user.services.tmux = {
-    wantedBy = [ "default.target" ];
+    wantedBy = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
     description = "tmux: A terminal multiplexer";
     environment = {
         DISPLAY = ":0";
-        SHELL = "/usr/bin/env zsh";
+        # SHELL = "/run/current-system/sw/bin/zsh";
+        # SHELL = "/usr/bin/env zsh";
     };
     serviceConfig = {
         Type = "forking";
-        Environment = "PATH=/run/wrappers/bin:/run/current-system/sw/bin";
+        Environment = "PATH=/run/wrappers/bin:/run/current-system/sw/bin:/home/russ/.local/bin";
         ExecStart = "${pkgs.tmux}/bin/tmux -v new-session -s debug -d";
-        ExecStop = "${pkgs.tmux}/bin/tmux -v kill-session -t debug";
-        KillMode = "process";
+        ExecStop = "${pkgs.tmux}/bin/tmux -v kill-server";
+        # KillMode = "process";
     };
   };
 

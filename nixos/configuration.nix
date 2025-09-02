@@ -8,6 +8,8 @@
   imports = [
     /etc/nixos/hardware-configuration.nix
 
+    ./modules/user.nix
+
     ./modules/apps.nix
     ./modules/clawe.nix
     ./modules/core.nix
@@ -23,23 +25,6 @@
     ];
 
   networking.hostName = "yoshi";
-
-  # users
-  users = {
-    # mutableUsers = false;
-    # users.default = {
-    #   home = "/home/${toString config.users.users.default.name}";
-    #   extraGroups = [ "networkmanager" "wheel" ];
-    #   shell = pkgs.zsh;
-    #   isNormalUser = true;
-    # };
-    users.russ = {
-      home = "/home/russ";
-      extraGroups = [ "networkmanager" "wheel" "video" ];
-      shell = pkgs.zsh;
-      isNormalUser = true;
-    };
-  };
 
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).

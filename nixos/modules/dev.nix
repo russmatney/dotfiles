@@ -8,6 +8,11 @@
   programs.git.enable = true;
   programs.zsh.enable = true;
 
+
+  environment.variables = {
+      ANTIDOTE_PATH = "${pkgs.antidote}/share/antidote/antidote.zsh";
+  };
+
   # packages
   environment.systemPackages = with pkgs; [
     # nix
@@ -21,13 +26,15 @@
     gcc
     unzip
     htop
+    fd
 
     # notifs
     dunst
     libnotify
 
     # zsh
-    antidote # zsh pkg mgr
+    antidote
+    # zsh pkg mgr
 
     # fancy cli
     atuin # <C-r>
@@ -56,7 +63,7 @@
     # langs
     clojure
     nodejs_24
-    python3
+    python3Full
     yarn
 
     copilot-language-server-fhs

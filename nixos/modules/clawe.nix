@@ -4,6 +4,7 @@
 
   systemd.user.services.doctor-backend = {
     wantedBy = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
     description = "clawe/doctor-backend: A server for clawe things";
     environment = {
         DISPLAY = ":0";
@@ -18,6 +19,7 @@
 
   systemd.user.services.doctor-frontend = {
     wantedBy = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
     description = "clawe/doctor-frontend: Web views for clawe things";
     environment = {
         DISPLAY = ":0";
@@ -32,6 +34,7 @@
 
   systemd.user.services.doctor-topbar = {
     wantedBy = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
     description = "clawe/doctor-topbar: A wanna-be ClaweWM bar";
     path = [ pkgs.zsh pkgs.bash pkgs.clojure ];
     environment = {
@@ -47,6 +50,7 @@
 
   systemd.user.services.doctor-dashboard = {
     wantedBy = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
     description = "clawe/doctor-dashboard: A client for doctor's main webview";
     path = [ pkgs.zsh pkgs.bash pkgs.clojure ];
     environment = {

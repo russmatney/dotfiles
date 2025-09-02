@@ -15,6 +15,7 @@
     psmisc
     picom
 
+    waybar
     wofi
     kitty
     kdePackages.dolphin
