@@ -50,8 +50,11 @@
     // -------------------------------------------------------------------------
 
     "hyprland/workspaces": {
-        "format": "{icon}",
+        "format": "{name}",
         "on-click": "activate",
+        // "persistent-only": true,
+        "show-special": true,
+        // "special-visible-only": true,
         // "format-icons": {
             // "1": "dotfiles", // "",
             // "2": "journal", // "",
@@ -62,7 +65,12 @@
             // "active": "",
             // "default": ""
         // },
-        "sort-by-number": true
+        // "sort-by-number": true,
+        // "persistent-workspaces": {
+            // "1": [],
+            // "2": [],
+            // "5": [],
+        // }
     },
 
     "battery": {
