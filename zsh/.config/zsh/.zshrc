@@ -616,3 +616,18 @@ case "$OSTYPE" in
   linux*)
     ;;
 esac
+
+# hyprctl #########################################################################
+
+alias hc='hyprctl'
+alias hcaw='hyprctl activewindow'
+alias hcc='hyprctl clients'
+alias hcm='hyprctl monitors'
+alias hcms='hyprctl monitors all'
+alias hcma='hyprctl monitors all'
+alias hcw='hyprctl activeworkspace'
+alias hcws='hyprctl workspaces'
+alias hcb='hyprctl binds'
+alias hcr='hyprctl reload'
+alias hclog='hyprctl rollinglog'
+alias hclogf='hyprctl rollinglog -f'
