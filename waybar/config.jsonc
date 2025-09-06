@@ -50,27 +50,29 @@
     // -------------------------------------------------------------------------
 
     "hyprland/workspaces": {
-        "format": "{name}",
-        "on-click": "activate",
-        // "persistent-only": true,
+        "format": "{icon}  {name}  {windows}",
+
         "show-special": true,
-        // "special-visible-only": true,
-        // "format-icons": {
-            // "1": "dotfiles", // "",
-            // "2": "journal", // "",
-            // "3": "dev", // "",
-            // "4": "",
-            // "5": "",
-            // "urgent": "",
-            // "active": "",
-            // "default": ""
-        // },
-        // "sort-by-number": true,
-        // "persistent-workspaces": {
-            // "1": [],
-            // "2": [],
-            // "5": [],
-        // }
+        "format-icons": {
+            "urgent": "",
+            "active": "",
+            "default": "."
+        },
+        "sort-by-number": true,
+
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1",
+        "on-click": "activate",
+        "window-rewrite-default": "",
+        "window-rewrite": {
+            "title<.*youtube.*>": "",
+            "class<firefox>": "",
+            "title<.*github.*>": "",
+            "class<google-chrome>": "",
+            "class<Alacritty>": "",
+            "class<Emacs>": "e",
+        },
+
     },
 
     "battery": {
