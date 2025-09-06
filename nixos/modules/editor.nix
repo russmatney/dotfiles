@@ -4,7 +4,7 @@
   # packages
   environment.systemPackages = with pkgs; [
     # editor
-    emacs
+    emacs-pgtk
     neovide
     neovim
     nodePackages.prettier
@@ -17,6 +17,6 @@
 
   services.emacs = {
       enable = true;
-      package = pkgs.emacs;
+      package = pkgs.emacs-pgtk;
   };
 }

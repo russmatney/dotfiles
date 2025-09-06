@@ -27,6 +27,8 @@
     unzip
     htop
     fd
+    jq
+    tldr
 
     # notifs
     dunst
