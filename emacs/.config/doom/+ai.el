@@ -24,5 +24,6 @@
               ("C-<tab>" . 'copilot-accept-completion)
               ("C-l" . 'copilot-accept-completion))
   :config
-  (setq copilot-idle-delay 3)
+  ;; (setq copilot-idle-delay 1) ;; ?
+  (setq copilot-idle-delay 2)
   )
