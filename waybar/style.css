@@ -45,7 +45,7 @@ button {
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 button:hover {
   background: inherit;
-  box-shadow: inset 0 -3px #ffffff;
+  box-shadow: inset 0 -3px #a37800;
 }
 
 /* you can set a style on hover for any module like this */
@@ -67,21 +67,26 @@ button:hover {
 
 /********* workspaces ********************/
 
-/* #workspaces button { */
-/*   padding: 0 5px; */
-/*   background-color: #ffffff; */
-/*   color: #2e3440; */
-/* } */
+#workspaces button {
+  margin: 4px 4px;
+  padding: 12px 12px;
+  background-color: #bababa;
+
+  border: 2px solid;
+  border-radius: 16px 4px;
+  border-color: #4d4d4d;
+}
 
 #workspaces button.active {
-  box-shadow: inset 0 -4px white;
-  /* background-color: darkgray; */
+  box-shadow: inset 0 -8px #a37800;
+  background-color: teal;
 }
 
 #workspaces button {
   padding: 0 5px;
   background-color: transparent;
   color: #ffffff;
+  background-color: darkgray;
 }
 
 #workspaces button:hover {
@@ -90,7 +95,7 @@ button:hover {
 
 #workspaces button.focused {
   /* background-color: #64727d; */
-  box-shadow: inset 0 -3px #ffffff;
+  box-shadow: inset 0 -3px #a37800;
 }
 
 #workspaces button.urgent {
@@ -121,8 +126,15 @@ button:hover {
 #scratchpad,
 #power-profiles-daemon,
 #mpd {
-  padding: 0 10px;
+  /* padding: 0 10px; */
   color: #ffffff;
+  margin: 4px 4px;
+  padding: 12px 12px;
+  background-color: #bababa;
+  border-radius: 16px 4px;
+  border: 4px;
+  border-color: #4d4d4d;
+  /* min-width: 25px; */
 }
 
 #window,
