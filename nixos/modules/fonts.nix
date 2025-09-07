@@ -13,5 +13,7 @@
 
     material-icons
     weather-icons
+
+    xkcd-font
   ];
 }

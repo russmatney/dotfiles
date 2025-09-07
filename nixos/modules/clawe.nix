@@ -33,8 +33,8 @@
   };
 
   systemd.user.services.doctor-topbar = {
-    wantedBy = [ "graphical-session.target" ];
-    after = [ "graphical-session.target" ];
+    # wantedBy = [ "graphical-session.target" ];
+    # after = [ "graphical-session.target" ];
     description = "clawe/doctor-topbar: A wanna-be ClaweWM bar";
     path = [ pkgs.zsh pkgs.bash pkgs.clojure ];
     environment = {
@@ -49,8 +49,8 @@
   };
 
   systemd.user.services.doctor-dashboard = {
-    wantedBy = [ "graphical-session.target" ];
-    after = [ "graphical-session.target" ];
+    # wantedBy = [ "graphical-session.target" ];
+    # after = [ "graphical-session.target" ];
     description = "clawe/doctor-dashboard: A client for doctor's main webview";
     path = [ pkgs.zsh pkgs.bash pkgs.clojure ];
     environment = {

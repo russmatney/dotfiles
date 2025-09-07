@@ -8,6 +8,9 @@
   programs.git.enable = true;
   programs.zsh.enable = true;
 
+  services.udisks2.enable = true;
+  services.devmon.enable = true;
+  services.gvfs.enable = true;
 
   environment.variables = {
       ANTIDOTE_PATH = "${pkgs.antidote}/share/antidote/antidote.zsh";
@@ -54,8 +57,6 @@
     shellcheck
     sqlite
     playerctl
-    _1password-gui
-    _1password-cli
     acpi
 
     # terminals

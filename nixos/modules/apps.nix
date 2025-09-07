@@ -47,5 +47,9 @@
     # video
     obs-studio
     kdePackages.kdenlive
+
+    # password
+    _1password-gui
+    _1password-cli
   ];
 }

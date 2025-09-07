@@ -53,10 +53,12 @@
         "format": "{icon}  {name}  {windows}",
 
         "show-special": true,
+        "special-visible-only": true,
         "format-icons": {
             "urgent": "",
             "active": "",
-            "default": "."
+            "default": ".",
+            "special": ">"
         },
         "sort-by-number": true,
 
