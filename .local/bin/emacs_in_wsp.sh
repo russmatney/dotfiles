@@ -14,6 +14,9 @@ echo $wsp_name
 # TODO impl clawebb helper like:
 # initial_file=$(clawebb wsp->first-file "$wsp_name")
 
+# start_dir=$(clawebb -x clawe.cli/workspace-def-j --title "$wsp_name" | jq -r '.["workspace/directory"]')
+# start_dir=$(echo "$start_dir" | sed "s|^~|$HOME|")
+
 emacsclient --no-wait --create-frame \
     -F "((name . $wsp_name))" \
     --eval "(progn (russ/open-workspace $wsp_name))"
