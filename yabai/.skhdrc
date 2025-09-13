@@ -189,7 +189,7 @@ shift + ctrl - k : yabai -m window --resize bottom:0:-80 || yabai -m window --re
 shift + cmd - f : yabai -m window --toggle float; yabai -m window --grid 12:9:1:1:7:10
 shift + cmd - c : yabai -m window --grid 50:50:1:1:48:48
 shift + cmd - v : yabai -m window --grid 50:50:14:2:34:46
-alt + cmd - t : yabai -m window --toggle sticky
+shift + cmd - t : yabai -m window --toggle sticky
 
 # TODO quit on super-q, etc
 cmd - q : yabai -m window --close
@@ -268,6 +268,7 @@ cmd + alt - o : yabai -m window --toggle obsidian || clawebb -x clawe.toggle/tog
 cmd + alt - n : yabai -m window --toggle neovide || clawebb -x clawe.toggle/toggle --key neovide
 cmd + alt - v : yabai -m window --toggle vscode || clawebb -x clawe.toggle/toggle --key vscode
 cmd + alt - u : yabai -m window --toggle ticktick
+cmd + alt - t : yabai -m window --toggle aichat
 
 cmd + shift - d : clawebb -x clawe.rules/clean-up-workspaces
 cmd + shift - x : clawebb -x clawe.mx/mx

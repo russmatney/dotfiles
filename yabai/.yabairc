@@ -97,6 +97,7 @@ yabai -m rule --add app="^Obsidian$" scratchpad=obsidian grid=11:11:1:1:9:9
 yabai -m rule --add app="^Neovide$" scratchpad=neovide grid=11:11:1:1:9:9
 yabai -m rule --add app="^Code$" scratchpad=vscode grid=11:11:1:1:9:9
 yabai -m rule --add app="^TickTick$" scratchpad=ticktick grid=11:11:1:1:9:9
+yabai -m rule --add app="^Raycast$" title="AI Chat" scratchpad=aichat grid=11:11:1:1:9:9
 
 # clawe
 yabai -m rule --add title="tauri-doctor-dashboard" scratchpad=clawe-dashboard grid=11:11:1:1:9:9

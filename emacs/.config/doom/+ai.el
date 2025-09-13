@@ -18,7 +18,9 @@
 
 (use-package! copilot
   ;; consider more modes, but don't opt into everything
-  :hook (gdscript-mode . copilot-mode)
+  :hook
+  (gdscript-mode . copilot-mode)
+  (csharp-ts-mode . copilot-mode)
   :bind (:map copilot-completion-map
               ("C-TAB" . 'copilot-accept-completion)
               ("C-<tab>" . 'copilot-accept-completion)
