@@ -58,6 +58,12 @@
     sqlite
     playerctl
     acpi
+    acpid
+    inotify-tools
+
+    # ai
+    aider-chat-full
+    aichat
 
     # terminals
     alacritty
