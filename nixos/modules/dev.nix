@@ -60,6 +60,7 @@
     acpi
     acpid
     inotify-tools
+    brightnessctl
 
     # ai
     aider-chat-full
