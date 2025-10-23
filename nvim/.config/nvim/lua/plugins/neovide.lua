@@ -18,6 +18,21 @@ local function reset_scale_factor() vim.g.neovide_scale_factor = vim.g.neovide_i
 ---@param clamp? boolean
 local function change_scale_factor(increment, clamp) set_scale_factor(vim.g.neovide_scale_factor + increment, clamp) end
 
+if vim.g.neovide then
+  vim.keymap.set("n", "<D-s>", ":w<CR>") -- Save
+  vim.keymap.set("v", "<D-c>", '"+y') -- Copy
+  vim.keymap.set("n", "<D-v>", '"+P') -- Paste normal mode
+  vim.keymap.set("v", "<D-v>", '"+P') -- Paste visual mode
+  vim.keymap.set("c", "<D-v>", "<C-R>+") -- Paste command mode
+  vim.keymap.set("i", "<D-v>", '<ESC>l"+Pli') -- Paste insert mode
+end
+
+-- Allow clipboard copy paste in neovim
+vim.api.nvim_set_keymap("", "<D-v>", "+p<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("!", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("t", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+
 ---@type LazySpec
 return {
   "AstroNvim/astrocore",
@@ -31,7 +46,7 @@ return {
         neovide_initial_scale_factor = vim.g.neovide_scale_factor or 1,
         neovide_scale_factor = vim.g.neovide_scale_factor or 1,
 
-        neovide_input_macos_option_key_is_meta = 'both',
+        neovide_input_macos_option_key_is_meta = "both",
       },
     },
     commands = {

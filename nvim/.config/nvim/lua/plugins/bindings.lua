@@ -9,6 +9,13 @@ local function switch_session() require("resession").load() end
 
 local function magit() require("neogit").open() end
 
+local function find_commands() require("snacks.picker").commands() end
+local function find_commands_history() require("snacks.picker").command_history() end
+local function find_autocmds() require("snacks.picker").autocmds() end
+local function find_keymaps() require("snacks.picker").keymaps() end
+local function search_files() require("snacks.picker").grep() end
+local function find_files() require("snacks.picker").files() end
+
 ---@type LazySpec
 return {
   {
@@ -22,17 +29,17 @@ return {
           ["<Leader><cr>"] = { ":w!<cr>", desc = "russ/save" },
           ["<Leader>R"] = { "<cmd>AstroReload<cr>", desc = "Reload Astrovim config" },
 
-          -- telescope/m-x commands
-          ["<M-x>"] = { "<cmd>Telescope commands<cr>", desc = "M-x commands" },
-          ["<M-r>"] = { "<cmd>Telescope command_history<cr>", desc = "M-x history" },
-          ["<M-a>"] = { "<cmd>Telescope autocommands<cr>", desc = "M-x autocommands" },
-          ["<M-X>"] = { "<cmd>Telescope keymaps<cr>", desc = "M-x keymaps" },
+          -- snacks commands
+          ["<M-x>"] = { find_commands, desc = "M-x commands" },
+          ["<M-r>"] = { find_commands_history, desc = "M-x history" },
+          ["<M-a>"] = { find_autocmds, desc = "M-x autocommands" },
+          ["<M-X>"] = { find_keymaps, desc = "M-x keymaps" },
 
           -- project search
-          ["<Leader>a"] = { "<cmd>Telescope live_grep<cr>", desc = "russ/search" },
+          ["<Leader>a"] = { search_files, desc = "russ/search" },
           -- project find-file
           -- TODO how to toggle/include hidden?
-          ["<Leader>p"] = { "<cmd>Telescope find_files<cr>", desc = "russ/open-file" },
+          ["<Leader>p"] = { find_files, desc = "russ/open-file" },
 
           -- ["<Leader>p"] = { ":CtrlP<CR>", desc = "Ctrl-p files" },
           ["<Leader>P"] = { ":CtrlPClearAllCaches<CR>", desc = "Ctrl-p cache clear" },

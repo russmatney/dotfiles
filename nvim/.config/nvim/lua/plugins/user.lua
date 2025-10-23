@@ -10,6 +10,7 @@ local function hover_diagnostics() vim.diagnostic.open_float() end
 
 -- Session funcs
 local function list_session() require("resession").load "Last Session" end
+
 local function save() require("resession").save() end
 local function save_dirsession() require("resession").save(vim.fn.getcwd()) end
 local function save_tab() require("resession").save_tab() end
@@ -61,25 +62,6 @@ return {
   -- magit
   { "NeogitOrg/neogit", lazy = true },
 
-  -- telescope
-  {
-    "nvim-telescope/telescope.nvim",
-    dependencies = { -- add a new dependency to telescope that is our new plugin
-      "nvim-telescope/telescope-media-files.nvim",
-      "nvim-telescope/telescope-project.nvim",
-    },
-    -- the first parameter is the plugin specification
-    -- the second is the table of options as set up in Lazy with the `opts` key
-    config = function(plugin, opts)
-      -- run the core AstroNvim configuration function with the options table
-      require "astronvim.plugins.configs.telescope"(plugin, opts)
-
-      -- require telescope and load extensions as necessary
-      require("telescope").load_extension "media_files"
-      require("telescope").load_extension "project"
-    end,
-  },
-
   -- ctrl-p
   -- (originally from https://github.com/twinlock/dotfiles/blob/9fc1576c7eccd4494db14f83ed7ad3ff9fb3def5/config/nvim/lua/plugins.lua#L62)
   {
@@ -110,5 +92,12 @@ return {
                       \ }
       ]]
     end,
+  },
+
+  "andweeb/presence.nvim",
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "BufRead",
+    config = function() require("lsp_signature").setup() end,
   },
 }
