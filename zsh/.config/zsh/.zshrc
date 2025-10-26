@@ -14,9 +14,11 @@ echo "!!\n!!\n!!\t\tYOSHI: Lost in HYPRLAND!!!!!\n!!\n!!\n"
 
 # export EDITOR='emacsclient -nw'
 # export VISUAL='emacsclient -nw'
+
 export EDITOR='nvim'
 export VISUAL='nvim'
 export PAGER='less'
+export LANG='en_US.UTF-8'
 
 export RANGER_LOAD_DEFAULT_RC=FALSE
 
@@ -345,7 +347,7 @@ alias jk='bat ./readme.org'
 alias nf='neofetch'
 alias pd='pandoc'
 
-source ~/.config/zsh/grfn.zsh-theme
+source ~/.config/zsh/aspn.zsh-theme
 
 ################################################################################
 # Haskell
