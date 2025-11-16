@@ -40,6 +40,9 @@ elif [ -f /opt/homebrew/opt/antidote/share/antidote/antidote.zsh ]; then
 elif [ -f /run/current-system/sw/share/antidote/antidote.zsh ]; then
   source '/run/current-system/sw/share/antidote/antidote.zsh'
   antidote load
+elif [ -f $ANTIDOTE_PATH ]; then
+  source $ANTIDOTE_PATH
+  antidote load
 fi
 
 if type brew &>/dev/null
