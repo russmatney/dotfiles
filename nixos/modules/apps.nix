@@ -18,6 +18,14 @@
     # };
   };
 
+  xdg.mime.defaultApplications = {
+    "text/html" = "org.firefox.desktop";
+    "x-scheme-handler/http" = "org.firefox.desktop";
+    "x-scheme-handler/https" = "org.firefox.desktop";
+    "x-scheme-handler/about" = "org.firefox.desktop";
+    "x-scheme-handler/unknown" = "org.firefox.desktop";
+  };
+
   programs.obs-studio = {
     enable = true;
     enableVirtualCamera = true;
@@ -51,5 +59,8 @@
     # password
     _1password-gui
     _1password-cli
+
+    # ai
+    lmstudio
   ];
 }
