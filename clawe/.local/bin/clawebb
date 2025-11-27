@@ -2,7 +2,8 @@
 
 set -e
 
-echo "Running 'clawebb' $*"
+# leave commented out to support printing json to std-out
+# echo "Running 'clawebb' $*"
 
 CLAWE_BB_PATH="$HOME/russmatney/clawe/bb.edn"
 

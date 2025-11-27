@@ -65,3 +65,8 @@ fi
 
 # disable all husky git hooks
 export HUSKY=0
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/russ/.lmstudio/bin"
+# End of LM Studio CLI section
+
