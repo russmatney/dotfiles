@@ -1,6 +1,15 @@
 { config, lib, pkgs, ... }:
 
 {
+
+  # add-unstable-packages = final: _prev: {
+  #   unstable = import nixpkgs-unstable {
+  #     system = "x86_64-linux";
+  #   };
+  # };
+
+  # nixpkgs.overlays = [add-unstable-packages];
+
   # packages
   environment.systemPackages = with pkgs; [
     # editor
@@ -11,6 +20,7 @@
     vim
 
     claude-code
+    # unstable.code-cursor
     code-cursor
   ];
 

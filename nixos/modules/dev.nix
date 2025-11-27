@@ -52,6 +52,7 @@
     procs # ps
     ripgrep # rg
     lazygit
+    delta
 
     # util
     babashka

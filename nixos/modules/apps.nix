@@ -45,7 +45,8 @@
     obsidian
 
     # gamedev
-    godot
+    # godot
+    godotPackages_4_5.godot
     aseprite
 
     # browsers
