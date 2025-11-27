@@ -26,6 +26,7 @@
     wget
     stow
     xclip # required for neovim paste
+    wl-clipboard-rs
     gcc
     unzip
     htop
@@ -50,6 +51,7 @@
     gitAndTools.gh
     procs # ps
     ripgrep # rg
+    lazygit
 
     # util
     babashka
@@ -61,10 +63,14 @@
     acpid
     inotify-tools
     brightnessctl
+    imagemagick
+    trashy
+    mermaid-cli
 
     # ai
     aider-chat-full
     aichat
+    copilot-language-server-fhs
 
     # terminals
     alacritty
@@ -73,9 +79,12 @@
     # langs
     clojure
     nodejs_24
-    python3Full
     yarn
-
-    copilot-language-server-fhs
+    python3Full
+    python313Packages.pip
+    luajitPackages.luarocks
+    go
+    ruby
+    rustup
   ];
 }
