@@ -5,7 +5,12 @@ set -e
 # leave commented out to support printing json to std-out
 # echo "Running 'clawebb' $*"
 
-CLAWE_BB_PATH="$HOME/russmatney/clawe/bb.edn"
+CLAWE_BB_DIR="$HOME/russmatney/clawe"
+# CLAWE_BB_PATH="$HOME/russmatney/clawe/bb.edn"
+
 
 # TODO redirect to a useful log file
-bb --config "$CLAWE_BB_PATH" "$@"
+# bb --config "$CLAWE_BB_PATH" "$@"
+
+cd "$CLAWE_BB_DIR"
+bb "$@"

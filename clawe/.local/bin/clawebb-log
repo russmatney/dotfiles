@@ -2,5 +2,9 @@
 
 set -e
 
+# mkdir -p ~/.log/clawe/
+# touch ~/.log/clawe/clawebb.out.txt
+# touch ~/.log/clawe/clawebb.err.txt
+
 # TODO proper temp file logs
 ~/.local/bin/clawebb "$@" >> ~/.log/clawe/clawebb.out.txt 2>>~/.log/clawe/clawebb.err.txt
