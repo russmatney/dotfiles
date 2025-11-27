@@ -36,11 +36,20 @@
 ;;           (str '{:deps {russmatney/clawe {:local/root "/home/russ/russmatney/clawe"}}}))
 ;;       :out string/trim))
 
-(require '[ralphie.hyprland :as r.hypr])
+(require
+  '[ralphie.hyprland :as r.hypr]
+  '[clawe.hyprland :as c.hypr]
+  )
 
 (comment
   (r.hypr/hc! "workspaces")
-  )
+  (->
+    (r.hypr/get-active-window)
+    :hypr/title)
+
+  (->
+    (c.hypr/current-workspace nil)
+    :workspace/title))
 
 
 (defn hypr-dispatch [cmd]
