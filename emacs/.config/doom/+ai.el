@@ -27,5 +27,6 @@
               ("C-l" . 'copilot-accept-completion))
   :config
   ;; (setq copilot-idle-delay 1) ;; ?
-  (setq copilot-idle-delay 2)
+  ;; (setq copilot-idle-delay 2)
+  (setq copilot-idle-delay 0.5)
   )

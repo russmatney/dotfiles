@@ -1,6 +1,6 @@
 [general]
-# import = ["/home/russ/.config/alacritty/alacritty.linux.toml"]
-import = ["/Users/russ/.config/alacritty/alacritty.osx.toml"]
+import = ["/home/russ/.config/alacritty/alacritty.linux.toml"]
+# import = ["/Users/russ/.config/alacritty/alacritty.osx.toml"]
 live_config_reload = true
 # "debug.render_timer" = false
 
@@ -976,7 +976,8 @@ semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 
 [window]
 dynamic_title = true
-opacity = 0.7
+# opacity = 0.7
+opacity = 1.0
 
 [window.dimensions]
 columns = 80
