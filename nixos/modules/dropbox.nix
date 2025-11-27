@@ -11,7 +11,7 @@
   systemd.user.services.maestral = {
     description = "Maestral daemon";
 
-    wantedBy = [ "default.target" ];
+    wantedBy = [ "graphical-session.target" ];
 
     serviceConfig = {
       Type = "notify";

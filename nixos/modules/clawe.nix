@@ -28,7 +28,7 @@
         Type = "simple";
         WorkingDirectory = "/home/russ/russmatney/clawe";
         Environment = "PATH=/run/wrappers/bin:/run/current-system/sw/bin";
-        ExecStart = "${pkgs.babashka}/bin/bb --config /home/russ/russmatney/clawe/bb.edn doctor-fe";
+        ExecStart = "cd /home/russ/russmatney/clawe && ${pkgs.babashka}/bin/bb doctor-fe";
     };
   };
 

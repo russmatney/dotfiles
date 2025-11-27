@@ -9,6 +9,9 @@
     neovim
     nodePackages.prettier
     vim
+
+    claude-code
+    code-cursor
   ];
 
   ## services ############################
