@@ -2,6 +2,20 @@
 
 {
 
+  # bb nrepl
+  systemd.user.services.bb-nrepl = {
+    wantedBy = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+    description = "babashka nrepl: running on 1337";
+    environment = {};
+    serviceConfig = {
+        Type = "simple";
+        WorkingDirectory = "/home/russ/dotfiles";
+        Environment = "PATH=/run/wrappers/bin:/run/current-system/sw/bin";
+        ExecStart = "${pkgs.runtimeShell} -c 'source ${config.system.build.setEnvironment}; ${pkgs.babashka}/bin/bb --nrepl-server 1337'";
+    };
+  };
+
   systemd.user.services.doctor-backend = {
     wantedBy = [ "graphical-session.target" ];
     after = [ "graphical-session.target" ];

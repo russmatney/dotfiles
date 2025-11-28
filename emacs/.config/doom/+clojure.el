@@ -391,7 +391,10 @@
         #'cider-eval-if-cider-buffer)))
 
   (setq cider-known-endpoints
-        '(("system-babashka" "localhost" "1667")
+        '(
+          ("system-babashka" "localhost" "1667")
+          ("brain-babashka" "localhost" "1337")
+
           ("doctor-be" "localhost" "3336")
           ("doctor-fe" "localhost" "3335")
           ("godot-arcadia" "localhost" "3722")))
