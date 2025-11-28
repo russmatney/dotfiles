@@ -1,70 +1,30 @@
 #!/run/current-system/sw/bin/bb
 
-(println (+ 1 2 3))
-
-(def home "/home/russ")
-
-(require '[clojure.string :as string])
-
-(require '[babashka.process :as p :refer [process]]
-         '[babashka.tasks :as tasks])
-
-
-(tasks/shell {:dir home} "echo hi")
-
-(->
-  (process {:dir home :inherit true} "echo hey there")
-  (p/check))
-
-
-;; dynamically adding clawe?!
 (require '[babashka.deps :as deps])
 (deps/add-deps
   {:deps {'russmatney/clawe
-          {:local/root (str home "/russmatney/clawe")}}})
-
-(require '[clawe.cli :as clawe-cli])
-
-(clawe-cli/repo-dirs nil)
-
-;; dynamically adding clawe via classpath?
-;; (require '[babashka.classpath :as classpath]
-;;          '[clojure.java.shell :refer [sh]])
-
-;; (classpath/add-classpath
-;;   (-> (sh "clojure" "-Spath" "-Sdeps"
-;;           (str '{:deps {russmatney/clawe {:local/root "/home/russ/russmatney/clawe"}}}))
-;;       :out string/trim))
+          {:local/root "/home/russ/russmatney/clawe"}}})
 
 (require
   '[ralphie.hyprland :as r.hypr]
-  '[clawe.hyprland :as c.hypr]
-  )
+  '[clawe.hyprland :as c.hypr])
+
+(comment
+  (->
+    (r.hypr/get-active-window)
+    :hypr/title))
+
+;; force float
+(r.hypr/set-floating)
+(r.hypr/resize-client {:x "90%" :y "90%"})
+(r.hypr/center-client)
+(r.hypr/resize-client {:x "70%" :y "70%"})
+(r.hypr/move-client {:relative? true :x "360" :y "0"})
 
 (comment
   (r.hypr/hc! "workspaces")
-  (->
-    (r.hypr/get-active-window)
-    :hypr/title)
 
   (->
     (c.hypr/current-workspace nil)
     :workspace/title))
 
-
-(defn hypr-dispatch [cmd]
-  (->
-    (process {:dir home :inherit true :out :string}
-             cmd)
-    (p/check)
-    :out
-    string/trim))
-
-(comment
-  (hypr-dispatch "echo hey there")
-  )
-
-(->
-  (process {:dir home :inherit true}
-           "echo hey there")
-  (p/check))
