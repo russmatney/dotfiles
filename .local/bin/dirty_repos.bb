@@ -9,36 +9,87 @@
   '[clawe.config :as clawe.config]
   )
 
-(defn log [msg] (r.hypr/notify (str "Dirty Repo! " msg)))
+(defn log [msg] (r.hypr/notify (str "dirty_repo.bb: " msg)))
 
-(defn wsp->is-repo? [def]
+(defn wsp->is-repo?
+  [def]
   (some-> def :workspace/directory r.git/dir-is-repo?))
 
-(defn repo-dirs []
-  (->>
-    (clawe.config/workspace-defs)
-    (filter (fn [[_ def]] (wsp->is-repo? def)))
-    (map (fn [[k def]] [k (:workspace/directory def)]))))
+(defn wsp->name [def] (:workspace/title def))
 
-(defn my-repo-dirs []
+(defn repo-workspaces []
   (->>
-    (clawe.config/workspace-defs)
+    (clawe.config/workspace-defs-with-titles)
     (filter (fn [[_ def]] (wsp->is-repo? def)))
-    (filter (fn [[_ def]]
-              (or
-                (string/includes? (:workspace/directory def) "russmatney")
-                (string/includes? (:workspace/directory def) "dotfiles"))))
-    (map (fn [[k def]]
-           [k
-            (-> def
-                :workspace/directory
-                r.git/status
-                )]))
-    ;; (map str)
-    ;; (string/join "\n")
-    (into {})
-    ))
+    (map second)))
+
+(defn is-my-repo? [def]
+  (let [path (:workspace/directory def)]
+    (and path
+         (or
+           (string/includes? path "russmatney")
+           (string/includes? path "dotfiles")))))
+
+(defn my-repos []
+  (->> (repo-workspaces) (filter is-my-repo?)))
+
+(defn my-repo-statuses []
+  (->> (my-repos)
+       (map (fn [def] (merge def (-> def :workspace/directory r.git/status))))))
+
+(defn notify-dirty
+  [def]
+  (when (seq (:git/dirty? def))
+    (r.hypr/notify (str "[" (wsp->name def) "]: Dirty!")
+                   {:level :warning :til 10000})))
+
+(defn notify-needs-pull
+  [def]
+  (when (seq (:git/needs-pull? def))
+    (r.hypr/notify (str "[" (wsp->name def) "]: Needs Pull!")
+                   {:level :error :til 15000})))
+
+(defn notify-needs-push
+  [def]
+  (when (seq (:git/needs-push? def))
+    (r.hypr/notify (str "[" (wsp->name def) "]: Needs Push!")
+                   {:level :error :til 15000})))
+
+(defn clean? [{:git/keys [needs-pull? needs-push? dirty?]}]
+  (not (or dirty? needs-pull? needs-push?)))
+
+(defn notify-clean
+  [def]
+  (when (clean? def)
+    (r.hypr/notify (str "[" (wsp->name def) "]: Clean!")
+                   {:level :info :til 5000})))
+
+(defn notify-status
+  "Not sure these all run..."
+  [def]
+  (notify-clean def)
+  (notify-dirty def)
+  (notify-needs-pull def)
+  (notify-needs-push def))
+
+(defn notify-dirty-repos []
+  (let [defs (my-repo-statuses)]
+    (run! notify-needs-pull defs)
+    (run! notify-needs-push defs)
+    (run! notify-dirty defs)
+    (run! notify-clean defs)))
+
+;; (update-my-repos)
+(notify-dirty-repos)
+
+(defn update-my-repos []
+  (->>
+    (my-repos)
+    (map second)
+    (map r.git/fetch-via-tmux)) )
 
 (comment
-  (my-repo-dirs)
+  (notify-dirty-repos)
+  (update-my-repos)
   )
+
