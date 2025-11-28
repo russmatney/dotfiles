@@ -7,7 +7,12 @@
 
 (require
   '[ralphie.hyprland :as r.hypr]
-  '[clawe.hyprland :as c.hypr])
+  '[ralphie.notify :as r.notify])
+
+(defn log [msg]
+  (r.notify/notify
+    {:body    msg
+     :subject "[CYCLE WINDOW POSITIONS]"}))
 
 (comment
   (->
@@ -21,10 +26,8 @@
 (r.hypr/resize-client {:x "70%" :y "70%"})
 (r.hypr/move-client {:relative? true :x "360" :y "0"})
 
-(comment
-  (r.hypr/hc! "workspaces")
+(log "POSITION1")
 
-  (->
-    (c.hypr/current-workspace nil)
-    :workspace/title))
+(comment
+  (r.hypr/hc! "workspaces"))
 
