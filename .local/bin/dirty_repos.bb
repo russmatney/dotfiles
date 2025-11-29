@@ -41,7 +41,7 @@
   [def]
   (when (seq (:git/dirty? def))
     (r.hypr/notify (str "[" (wsp->name def) "]: Dirty!")
-                   {:level :warning :til 10000})))
+                   {:level :info :til 10000})))
 
 (defn notify-needs-pull
   [def]
@@ -53,7 +53,7 @@
   [def]
   (when (seq (:git/needs-push? def))
     (r.hypr/notify (str "[" (wsp->name def) "]: Needs Push!")
-                   {:level :error :til 15000})))
+                   {:level :warning :til 15000})))
 
 (defn clean? [{:git/keys [needs-pull? needs-push? dirty?]}]
   (not (or dirty? needs-pull? needs-push?)))
@@ -62,7 +62,7 @@
   [def]
   (when (clean? def)
     (r.hypr/notify (str "[" (wsp->name def) "]: Clean!")
-                   {:level :info :til 5000})))
+                   {:level :ok :til 5000})))
 
 (defn notify-status
   "Not sure these all run..."

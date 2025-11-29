@@ -11,5 +11,7 @@
 (defn log [msg] (r.hypr/notify (str (:hypr/name workspace) " " msg)))
 
 (log (str "Emacsin'"))
-(emacs/open {:workspace/title (:hypr/name workspace)})
+(emacs/open {:workspace/title                (:hypr/name workspace)
+             :emacs.open/ignore-dead-server? true})
+
 
