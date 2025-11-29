@@ -40,19 +40,19 @@
 (defn notify-dirty
   [def]
   (when (seq (:git/dirty? def))
-    (r.hypr/notify (str "[" (wsp->name def) "]: Dirty!")
+    (r.hypr/notify (str "fontsize:48 [" (wsp->name def) "]: Dirty!")
                    {:level :info :til 10000})))
 
 (defn notify-needs-pull
   [def]
   (when (seq (:git/needs-pull? def))
-    (r.hypr/notify (str "[" (wsp->name def) "]: Needs Pull!")
+    (r.hypr/notify (str "fontsize:48 [" (wsp->name def) "]: Needs Pull!")
                    {:level :error :til 15000})))
 
 (defn notify-needs-push
   [def]
   (when (seq (:git/needs-push? def))
-    (r.hypr/notify (str "[" (wsp->name def) "]: Needs Push!")
+    (r.hypr/notify (str "fontsize:48 [" (wsp->name def) "]: Needs Push!")
                    {:level :warning :til 15000})))
 
 (defn clean? [{:git/keys [needs-pull? needs-push? dirty?]}]
@@ -61,7 +61,7 @@
 (defn notify-clean
   [def]
   (when (clean? def)
-    (r.hypr/notify (str "[" (wsp->name def) "]: Clean!")
+    (r.hypr/notify (str "fontsize:24 [" (wsp->name def) "]: Clean!")
                    {:level :ok :til 5000})))
 
 (defn notify-status
