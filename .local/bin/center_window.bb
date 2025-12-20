@@ -4,8 +4,15 @@
 (deps/add-deps {:deps {'russmatney/clawe {:local/root "/home/russ/russmatney/clawe"}}})
 (require '[ralphie.hyprland :as r.hypr])
 
-(def window (r.hypr/get-active-window))
-(def workspace (r.hypr/get-active-workspace))
+(try
+  (def window (r.hypr/get-active-window))
+  (def workspace (r.hypr/get-active-workspace))
+
+  (catch Exception err
+    (do
+      (r.hypr/notify "error centering!")
+      (println err))))
+
 (defn log [msg] (r.hypr/notify (str (:hypr/title window) " " msg)))
 
 (comment
@@ -14,8 +21,7 @@
     :hypr/tags)
 
   (r.hypr/add-tag-to-current "hiya")
-  (r.hypr/get-current-tags)
-  )
+  (r.hypr/get-current-tags))
 
 ;; force float
 (r.hypr/set-floating)
@@ -30,8 +36,7 @@
            :next   "pos1"}
    "pos1" {:resize {:x "70%" :y "70%"}
            :move   {:x "360" :y "0" :relative? true}
-           :next   "pos2"
-           }
+           :next   "pos2"}
    "pos2" {:resize {:x "85%" :y "85%"}
            :move   {:x "180" :y "0" :relative? true}}})
 
