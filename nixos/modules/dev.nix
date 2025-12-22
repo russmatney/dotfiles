@@ -33,6 +33,7 @@
     fd
     jq
     tldr
+    framework-tool
 
     # notifs
     dunst

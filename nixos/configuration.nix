@@ -6,6 +6,8 @@
 
 {
   imports = [
+    <nixos-hardware/framework/16-inch/amd-ai-300-series>
+
     /etc/nixos/hardware-configuration.nix
 
     ./modules/user.nix

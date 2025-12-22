@@ -26,10 +26,10 @@
     "x-scheme-handler/unknown" = "org.firefox.desktop";
   };
 
-  programs.obs-studio = {
-    enable = true;
-    enableVirtualCamera = true;
-  };
+  # programs.obs-studio = {
+  #   enable = true;
+  #   enableVirtualCamera = true;
+  # };
 
   # packages
   environment.systemPackages = with pkgs; [
@@ -54,7 +54,7 @@
     chromium
 
     # video
-    obs-studio
+    # obs-studio
     kdePackages.kdenlive
 
     # password
