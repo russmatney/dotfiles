@@ -215,7 +215,7 @@
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ;
        ;;(java +meghanada) ; the poster child for carpal tunnel syndrome
-       (javascript +lsp)        ; all(hope(abandon(ye(who(enter(here))))))
+       (javascript +lsp +tree-sitter)        ; all(hope(abandon(ye(who(enter(here))))))
        json              ; At least it ain't XML
        ;;julia             ; a better, faster MATLAB
        ;;kotlin
@@ -259,7 +259,7 @@
        ;;solidity
        ;; swift             ; who asked for emoji variables?
        ;;terra
-       ;; web               ; the tubes
+       (web +lsp +tree-sitter) ; the tubes
        yaml
        (zig +lsp +tree-sitter)
 
