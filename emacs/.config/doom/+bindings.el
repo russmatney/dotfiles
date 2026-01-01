@@ -142,7 +142,7 @@
     (find-file filename)))
 
 (defhydra hydra-kill (:exit t)
-  ("k" kill-this-buffer "kill-this-buffer" :column "THIS")
+  ("k" kill-current-buffer "kill-current-buffer" :column "THIS")
   ("K" delete-window "kill-this-window")
   ("f" doom/delete-this-file "doom/delete-this-file")
   ("r" russ/kill-and-reopen-this-buffer "russ/kill-and-reopen-this-buffer")
