@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 #
 
-echo "!!\n!!\n!!\t\tYOSHI: Lost in HYPRLAND!!!!!\n!!\n!!\n"
+if [ -f ~/dotfiles/welcome.txt ]; then
+    cat ~/dotfiles/welcome.txt
+else
+    echo "!!\n!!\n!!\t\tHowdy!\n!!\n!!\n"
+fi
 
 # TODO add notes up here with links to zsh-managment docs
 

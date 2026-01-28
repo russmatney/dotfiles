@@ -23,6 +23,8 @@
     slurp
     hyprpaper
 
+    hyprlock
+    hypridle
   ];
 
   # programs.waybar.enable = true;
