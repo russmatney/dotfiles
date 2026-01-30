@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-#
 
 if [ -f ~/dotfiles/welcome.txt ]; then
     cat ~/dotfiles/welcome.txt
@@ -7,17 +6,12 @@ else
     echo "!!\n!!\n!!\t\tHowdy!\n!!\n!!\n"
 fi
 
-# TODO add notes up here with links to zsh-managment docs
-
 # enable profiling
 # zmodload zsh/zprof
 
 ################################################################################
 # Environment Vars
 ################################################################################
-
-# export EDITOR='emacsclient -nw'
-# export VISUAL='emacsclient -nw'
 
 export EDITOR='nvim'
 export VISUAL='nvim'
