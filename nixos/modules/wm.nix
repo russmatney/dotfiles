@@ -8,7 +8,7 @@
 
     # wm tools
     arandr
-    rofi-wayland
+    # rofi-wayland
     # variety
     feh
     polybarFull

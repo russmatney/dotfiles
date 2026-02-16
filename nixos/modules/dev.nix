@@ -48,8 +48,8 @@
     direnv
     eza # ls
     fzf
-    gitAndTools.git-extras
-    gitAndTools.gh
+    git-extras
+    gh
     procs # ps
     ripgrep # rg
     lazygit
@@ -72,7 +72,7 @@
     # ai
     aider-chat-full
     aichat
-    copilot-language-server-fhs
+    copilot-language-server
 
     # terminals
     alacritty
@@ -82,7 +82,7 @@
     clojure
     nodejs_24
     yarn
-    python3Full
+    python3
     python313Packages.pip
     luajitPackages.luarocks
     go

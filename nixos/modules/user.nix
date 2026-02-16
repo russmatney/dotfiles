@@ -2,7 +2,7 @@
 
 {
   imports = [
-    (import "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/release-25.05.tar.gz}/nixos")
+    (import "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/release-25.11.tar.gz}/nixos")
   ];
 
   users = {

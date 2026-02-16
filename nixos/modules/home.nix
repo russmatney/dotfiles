@@ -7,5 +7,5 @@ in {
 
   wayland.windowManager.hyprland.systemd.enable = false;
 
-  home.stateVersion = "25.05";
+  home.stateVersion = "25.11";
 }
