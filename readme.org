@@ -28,6 +28,8 @@
 
 Welcome to my dotfiles!
 
+* Lately
+Jan 2026: This repo is now hosted [[https://codeberg.org/russmatney/dotfiles][on codeberg]], with commits mirrored to here.
 
 * Clawe
 #+begin_src quote
