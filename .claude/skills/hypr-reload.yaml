@@ -1,0 +1,22 @@
+name: hypr-reload
+description: Reload Hyprland window manager configuration
+prompt: |
+  Reload the Hyprland window manager configuration.
+
+  Steps:
+  1. First check for syntax errors in hyprland.conf and included configs
+  2. Use `hyprctl reload` to reload the configuration
+  3. If there are errors, show them and help fix syntax issues
+  4. Verify the reload was successful
+  5. Test critical bindings if requested
+
+  Key config files to be aware of:
+  - hypr/hyprland.conf (main config)
+  - hypr/bindings.conf (keybindings)
+  - hypr/monitors.conf (display setup)
+  - hypr/workspaces.conf (workspace config)
+  - hypr/clients.conf (window rules)
+  - hypr/look_and_feel.conf (styling)
+
+  Note: Some changes (like monitor configuration) may require a full Hyprland restart,
+  not just a reload. Offer to restart Hyprland if needed.

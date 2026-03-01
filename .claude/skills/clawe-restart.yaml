@@ -1,0 +1,24 @@
+name: clawe-restart
+description: Restart Clawe window management services
+prompt: |
+  Restart the Clawe window management system services.
+
+  Available services:
+  - doctor-backend: Core backend service
+  - doctor-frontend: Frontend UI components
+  - doctor-topbar: Top bar widget
+  - doctor-dashboard: Dashboard interface
+
+  Steps:
+  1. If specific service(s) mentioned, restart only those
+  2. If no service specified, ask which ones to restart or offer to restart all
+  3. Use systemd user services: `systemctl --user restart <service>`
+  4. Check service status after restart
+  5. Show relevant logs if there are issues: `journalctl --user -u <service> -n 20`
+  6. Verify the services are running correctly
+
+  Common issues to check:
+  - Babashka (bb) availability
+  - Working directory access: /home/russ/russmatney/clawe
+  - DISPLAY environment variable for GUI components
+  - Dependencies between services

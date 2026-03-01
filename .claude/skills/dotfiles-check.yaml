@@ -1,0 +1,20 @@
+name: dotfiles-check
+description: Verify dotfiles configuration health
+prompt: |
+  Run a comprehensive health check on the dotfiles configuration.
+
+  Check the following:
+  1. **Stow symlinks**: Verify critical symlinks are in place and not broken
+  2. **NixOS config**: Check for syntax errors in configuration.nix
+  3. **Hyprland config**: Validate hyprland.conf syntax
+  4. **Clawe services**: Check if Clawe services are running and healthy
+  5. **Shell config**: Verify zsh configuration loads without errors
+  6. **Git status**: Show uncommitted changes in dotfiles repo
+
+  For each area:
+  - Report status (OK/Warning/Error)
+  - Provide details on any issues found
+  - Suggest fixes for problems
+
+  Output a summary at the end with overall health status.
+  Offer to fix any issues found automatically where possible.

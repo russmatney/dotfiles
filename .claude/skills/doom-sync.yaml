@@ -1,0 +1,25 @@
+name: doom-sync
+description: Sync Doom Emacs configuration
+prompt: |
+  Sync and update Doom Emacs configuration.
+
+  Steps:
+  1. Run `doom sync` to synchronize packages with config
+  2. If there are package errors, help resolve them
+  3. If requested or if there are issues, run `doom doctor` to check for problems
+  4. Optionally run `doom upgrade` to update Doom and packages
+  5. Show summary of what was updated
+
+  Config files location:
+  - emacs/.config/doom/init.el (enabled modules)
+  - emacs/.config/doom/config.el (main config)
+  - emacs/.config/doom/packages.el (package declarations)
+  - emacs/.config/doom/+*.el (custom modules)
+
+  Common tasks:
+  - After adding packages to packages.el
+  - After changing enabled modules in init.el
+  - After pulling Doom updates
+  - When fixing configuration issues
+
+  Remind user to restart Emacs after sync if daemon is running.

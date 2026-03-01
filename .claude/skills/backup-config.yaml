@@ -1,0 +1,21 @@
+name: backup-config
+description: Create a backup before making significant config changes
+prompt: |
+  Create a backup of current configuration state before making changes.
+
+  Steps:
+  1. Create a git stash with a descriptive name including timestamp
+  2. Alternatively, create a git branch for the backup (e.g., backup-YYYYMMDD-HHMMSS)
+  3. For NixOS: optionally save current generation number for easy rollback
+  4. Show what was backed up and how to restore
+
+  Restoration instructions to provide:
+  - Git: `git stash pop` or `git checkout <backup-branch>`
+  - NixOS: `sudo nixos-rebuild switch --rollback` or boot into previous generation
+  - Stow: `stow -D <package>` to remove current symlinks first
+
+  This is useful before:
+  - Major configuration refactoring
+  - Testing experimental changes
+  - System upgrades
+  - Installing new WM or DE configurations

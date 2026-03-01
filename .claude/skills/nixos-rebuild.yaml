@@ -1,0 +1,19 @@
+name: nixos-rebuild
+description: Rebuild and switch NixOS configuration with error handling
+prompt: |
+  Rebuild the NixOS configuration by running `sudo nixos-rebuild switch`.
+
+  Steps:
+  1. Check for any syntax errors in configuration.nix first
+  2. Run the rebuild command
+  3. If there are errors, analyze them and suggest fixes
+  4. If successful, verify the new configuration is active
+  5. Offer to restart any affected services if needed
+
+  Handle common errors like:
+  - Syntax errors in Nix files
+  - Missing packages or options
+  - Service dependency issues
+  - Network issues during package downloads
+
+  After successful rebuild, show a summary of what changed.

@@ -1,0 +1,21 @@
+name: stow-install
+description: Install dotfile packages using GNU Stow
+prompt: |
+  Install one or more dotfile configuration packages using GNU Stow.
+
+  Steps:
+  1. If no package name provided, list available packages (top-level directories)
+  2. Show what will be symlinked before applying
+  3. Run `stow <package>` from the repository root
+  4. Handle conflicts (existing files/symlinks) gracefully
+  5. Verify symlinks were created correctly
+  6. If the package has special post-install steps (like sourcing configs), mention them
+
+  Available package categories:
+  - Shell: zsh
+  - Editors: emacs, nvim
+  - WM: hypr
+  - System: nixos, git, tmux, etc.
+
+  Use `stow -n <package>` to simulate (dry-run) before actual install.
+  Use `stow -R <package>` to restow (useful after config updates).
