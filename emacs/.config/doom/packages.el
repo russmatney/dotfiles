@@ -15,6 +15,10 @@
 (package! rjsx-mode)
 (package! add-node-modules-path)
 
+;; astro
+(package! astro-ts-mode)
+(package! treesit-auto)
+
 ;; lsp
 (package! lsp-mode)
 (package! lsp-ui :recipe (:host github :repo "emacs-lsp/lsp-ui"))
