@@ -20,6 +20,7 @@
   environment.systemPackages = with pkgs; [
     # nix
     home-manager
+    # github:jzbor/nix-sweep
 
     # cli
     git

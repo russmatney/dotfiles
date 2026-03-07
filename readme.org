@@ -1,35 +1,7 @@
 #+title: dotfiles
 #+STARTUP: content
 
-#+html: <div id="header" align="center">
-#+html: <div id="badges">
-#+html:   <a href="https://russmatney.itch.io">
-#+html:     <img src="https://img.shields.io/badge/Itch.io-red?style=for-the-badge&logo=itch.io&logoColor=white" alt="Itch.io Badge"/>
-#+html:   </a>
-#+html:   <a href="https://mastodon.gamedev.place/@russmatney">
-#+html:     <img src="https://img.shields.io/badge/Mastodon-teal?style=for-the-badge&logo=mastodon&logoColor=white" alt="Mastodon Badge"/>
-#+html:   </a>
-#+html:   <a href="https://www.twitch.tv/russmatney">
-#+html:     <img src="https://img.shields.io/badge/Twitch-purple?style=for-the-badge&logo=twitch&logoColor=white" alt="Twitch Badge"/>
-#+html:   </a>
-#+html:   <a href="https://www.patreon.com/russmatney">
-#+html:     <img src="https://img.shields.io/badge/Patreon-red?style=for-the-badge&logo=patreon&logoColor=white" alt="Patreon Badge"/>
-#+html:   </a>
-#+html:   <a href="https://discord.gg/PQvfdApHFQ">
-#+html:     <img alt="Discord" src="https://img.shields.io/discord/758750490015563776?style=for-the-badge&logo=discord&logoColor=fff&label=discord" />
-#+html:   </a>
-#+html: </div>
-#+html:
-#+html: <h1>
-#+html:   Hi there! I'm Russ!
-#+html:   <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="30px"/>
-#+html: </h1>
-#+html: </div>
-
 Welcome to my dotfiles!
-
-* Lately
-Jan 2026: This repo is now hosted [[https://codeberg.org/russmatney/dotfiles][on codeberg]], with commits mirrored to here.
 
 * Clawe
 #+begin_src quote
