@@ -546,7 +546,8 @@
   :config
   ;; Set the directory to your Obsidian vault
   ;; Adjust this path to point to your actual Obsidian vault
-  (setq obsidian-directory (expand-file-name "~/Dropbox/todo/garden"))
+  ;; (setq obsidian-directory (expand-file-name "~/Dropbox/todo/garden"))
+  (setq obsidian-directory (expand-file-name "~/Documents/Danger Russ Remote Vault"))
 
   ;; Use org-roam for ID management
   (setq obsidian-use-org-roam t)
