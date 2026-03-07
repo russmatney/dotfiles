@@ -50,18 +50,36 @@
          (filter #(= (:hypr/name %) special-name))
          (some #(not (:hypr/hidden %))))))
 
+(defn is-workspace-empty? [wsp-name]
+  "Check if a special workspace has no windows/clients"
+  (let [clients (r.hypr/list-clients)
+        special-name (str "special:" wsp-name)]
+    (->> clients
+         (filter #(= (:workspace-name %) special-name))
+         empty?)))
+
+(defn clean-empty-workspaces [stack]
+  "Remove all empty workspaces from the stack"
+  (filterv #(not (is-workspace-empty? %)) stack))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Core Toggle Logic
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defn toggle-workspace-stack [wsp-name]
   "Toggle a special workspace with stack-based navigation"
-  (let [{:keys [stack active]} (read-stack-cache)]
+  (let [{:keys [stack active]} (read-stack-cache)
+        ;; Clean any empty workspaces from the stack first
+        cleaned-stack (clean-empty-workspaces stack)
+        ;; Update active if it was cleaned out
+        cleaned-active (when (some #{active} cleaned-stack) active)]
     (cond
       ;; Scenario A: Toggle OFF the active workspace
-      (= wsp-name active)
-      (let [new-stack (vec (butlast stack))
-            prev-wsp  (last new-stack)]
+      (= wsp-name cleaned-active)
+      (let [new-stack (vec (butlast cleaned-stack))
+            ;; Find the first non-empty workspace in the stack
+            prev-wsp  (some #(when-not (is-workspace-empty? %) %)
+                           (reverse new-stack))]
         (r.hypr/issue-dispatch "togglespecialworkspace" wsp-name)
         (when prev-wsp
           (r.hypr/issue-dispatch "togglespecialworkspace" prev-wsp))
@@ -74,7 +92,7 @@
 
       ;; Scenario B/C: Toggle ON a workspace (new or buried)
       :else
-      (let [new-stack (-> stack
+      (let [new-stack (-> cleaned-stack
                           (remove-from-stack wsp-name)
                           (conj wsp-name))]
         (r.hypr/issue-dispatch "togglespecialworkspace" wsp-name)
