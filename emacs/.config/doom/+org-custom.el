@@ -538,6 +538,28 @@
         org-roam-ui-open-on-start nil
         ))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; obsidian
+
+(use-package! obsidian
+  :after org-roam
+  :config
+  ;; Set the directory to your Obsidian vault
+  ;; Adjust this path to point to your actual Obsidian vault
+  (setq obsidian-directory (expand-file-name "~/Dropbox/todo/garden"))
+
+  ;; Use org-roam for ID management
+  (setq obsidian-use-org-roam t)
+
+  ;; Specify the inbox location for quick captures
+  (setq obsidian-inbox-file (expand-file-name "inbox.org" obsidian-directory))
+
+  ;; Daily notes directory
+  (setq obsidian-daily-notes-directory "daily")
+
+  ;; Enable obsidian-mode in org-mode files
+  (global-obsidian-mode t))
+
 ;;; sandbox ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (comment

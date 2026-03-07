@@ -53,6 +53,7 @@
 (package! org-rich-yank)
 (package! org-project-capture)
 (package! org-roam-ui)
+(package! obsidian)
 
 ;; nov.el
 ;; (package! nov)

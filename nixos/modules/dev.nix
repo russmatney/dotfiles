@@ -45,6 +45,7 @@
 
     # fancy cli
     atuin # <C-r>
+    bat
     direnv
     eza # ls
     fzf
