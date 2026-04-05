@@ -33,5 +33,12 @@ return {
       },
       g = {},
     },
+
+    -- treesitter
+    treesitter = {
+      ensure_installed = { "vim", "lua" },
+      highlight = true,
+    },
   },
 }
+
