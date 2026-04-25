@@ -1,5 +1,25 @@
 ;;; ../../dotfiles/emacs/.config/doom/+ai.el -*- lexical-binding: t; -*-
 
+(use-package! eca
+  :bind (("C-c e" . eca))
+  :config
+  ;; Optional: Configure chat window position
+  ;; (setq eca-chat-use-side-window t)
+  ;; (setq eca-chat-window-side 'right)
+
+  ;; Optional: Auto-add repository context
+  ;; (setq eca-chat-auto-add-repomap t)
+
+  ;; Optional: Set completion delay
+  ;; (setq eca-completion-idle-delay 0.5)
+
+  ;; Optional: Custom model selection
+  ;; (setq eca-chat-custom-model "claude-sonnet-4")
+
+  ;; Optional: Pass extra args for debugging
+  ;; (setq eca-extra-args '("--verbose"))
+  )
+
 (use-package! aidermacs
   :bind (("C-c a" . aidermacs-transient-menu))
 

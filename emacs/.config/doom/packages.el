@@ -16,8 +16,8 @@
 (package! add-node-modules-path)
 
 ;; astro
-(package! astro-ts-mode)
-(package! treesit-auto)
+; (package! astro-ts-mode)
+; (package! treesit-auto)
 
 ;; lsp
 (package! lsp-mode)
@@ -94,5 +94,7 @@
 (package! aidermacs)
 (package! copilot
   :recipe (:host github :repo "copilot-emacs/copilot.el" :files ("*.el")))
+
+(package! eca :recipe (:host github :repo "editor-code-assistant/eca-emacs" :files ("*.el")))
 
 (package! journalctl-mode)

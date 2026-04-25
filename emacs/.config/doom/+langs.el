@@ -121,20 +121,20 @@
 (setq typescript-indent-level 2)
 
 ;; Astro
-(use-package! treesit-auto
-  :config
-  (setq treesit-auto-install 'prompt)
-  (global-treesit-auto-mode))
-
-(use-package! astro-ts-mode
-  :mode "\\.astro\\'"
-  :hook (astro-ts-mode . lsp-deferred)
-  :config
-  ;; Configure Prettier formatter for Astro
-  (set-formatter! 'prettier-astro
-    '("npx" "prettier" "--parser=astro"
-      "--stdin-filepath" "%s")
-    :modes '(astro-ts-mode)))
+; (use-package! treesit-auto
+;   :config
+;   (setq treesit-auto-install 'prompt)
+;   (global-treesit-auto-mode))
+;
+; (use-package! astro-ts-mode
+;   :mode "\\.astro\\'"
+;   :hook (astro-ts-mode . lsp-deferred)
+;   :config
+;   ;; Configure Prettier formatter for Astro
+;   (set-formatter! 'prettier-astro
+;     '("npx" "prettier" "--parser=astro"
+;       "--stdin-filepath" "%s")
+;     :modes '(astro-ts-mode)))
 
 (use-package! prettier-js
   :config
