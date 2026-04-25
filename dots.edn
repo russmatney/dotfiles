@@ -14,7 +14,24 @@
   {:from "config/emacs/doom"                 :to "~/.config/doom"}
   {:from "config/emacs/applications"         :to "~/.local/share/applications"
    :link-contents true}
+  {:from "config/hypr"                       :to "~/.config/hypr"}
   {:from "home/.gitconfig"                   :to "~/.gitconfig"}
   {:from "scripts"                           :to "~/.local/bin" :link-contents true}]
 
- :machines {}}
+ :machines
+ {"yoshi"    [{:from "config/hypr/machines/yoshi/monitors.conf"
+               :to   "~/.config/hypr/monitors-machine.conf"}
+              {:from "config/hypr/machines/yoshi/overrides.conf"
+               :to   "~/.config/hypr/overrides-machine.conf"}]
+  "brain"    [{:from "config/hypr/machines/brain/monitors.conf"
+               :to   "~/.config/hypr/monitors-machine.conf"}
+              {:from "config/hypr/machines/brain/overrides.conf"
+               :to   "~/.config/hypr/overrides-machine.conf"}]
+  "walt"     [{:from "config/hypr/machines/walt/monitors.conf"
+               :to   "~/.config/hypr/monitors-machine.conf"}
+              {:from "config/hypr/machines/walt/overrides.conf"
+               :to   "~/.config/hypr/overrides-machine.conf"}]
+  "wordnerd" [{:from "config/hypr/machines/wordnerd/monitors.conf"
+               :to   "~/.config/hypr/monitors-machine.conf"}
+              {:from "config/hypr/machines/wordnerd/overrides.conf"
+               :to   "~/.config/hypr/overrides-machine.conf"}]}}
