@@ -8,6 +8,8 @@
 
  :links
  [{:from "config/foot"      :to "~/.config/foot"}
-  {:from "config/alacritty" :to "~/.config/alacritty"}]
+  {:from "config/alacritty" :to "~/.config/alacritty"}
+  {:from "home/.gitconfig"  :to "~/.gitconfig"}
+  {:from "scripts"          :to "~/.local/bin" :link-contents true}]
 
  :machines {}}

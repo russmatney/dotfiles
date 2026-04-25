@@ -9,6 +9,13 @@
 ;;   link      — create missing symlinks; skip valid existing; warn conflicts
 ;;   unlink    — remove all managed symlinks
 ;;   --dry-run — (with link) print what would change without applying
+;;
+;; Link entry shapes in dots.edn:
+;;   {:from "config/foot"  :to "~/.config/foot"}
+;;     — symlinks the whole dir: ~/.config/foot -> <dotfiles>/config/foot
+;;
+;;   {:from "scripts"  :to "~/.local/bin"  :link-contents true}
+;;     — symlinks each file inside scripts/ individually into ~/.local/bin/
 
 (require '[babashka.fs :as fs]
          '[clojure.string :as str]
@@ -40,9 +47,7 @@
     (str home-dir (subs path 1))
     path))
 
-(defn resolve-src
-  "Absolute path to the source file/dir inside the dotfiles repo."
-  [from]
+(defn resolve-src [from]
   (str (fs/path dotfiles-dir from)))
 
 (defn load-config []
@@ -50,18 +55,39 @@
     (edn/read-string (slurp config-path))
     {:links []}))
 
-(defn all-links
-  "Base links merged with machine-specific links for this hostname."
-  [config]
+(defn all-links [config]
   (concat (:links config [])
           (get-in config [:machines hostname] [])))
 
 ;; ---------------------------------------------------------------------------
-;; Link status
+;; Expand :link-contents entries into per-file link maps
 
-(defn link-status
-  "Returns a map with :status one of :ok :missing :conflict :source-missing."
-  [{:keys [from to]}]
+(defn expand-link
+  "If :link-contents true, returns one link map per file in :from dir.
+   Otherwise returns the link map as-is in a single-element vector."
+  [{:keys [from to link-contents] :as link}]
+  (if-not link-contents
+    [link]
+    (let [src-dir (resolve-src from)
+          dst-dir (expand-home to)]
+      (if-not (fs/exists? src-dir)
+        [link]  ;; will surface as :source-missing in status
+        (->> (fs/list-dir src-dir)
+             (filter fs/regular-file?)
+             (sort-by str)
+             (map (fn [f]
+                    (let [fname (str (fs/file-name f))]
+                      {:from          (str from "/" fname)
+                       :to            (str to "/" fname)
+                       :_link-contents-parent from}))))))))
+
+(defn expand-all-links [links]
+  (mapcat expand-link links))
+
+;; ---------------------------------------------------------------------------
+;; Link status (operates on already-expanded single links)
+
+(defn link-status [{:keys [from to]}]
   (let [src (resolve-src from)
         dst (expand-home to)]
     (cond
@@ -70,20 +96,17 @@
        :from from :to to :src src :dst dst
        :detail "source path does not exist in repo"}
 
-      ;; dst is a symlink — check if it points to the right place
       (fs/sym-link? dst)
       (if (= (str (fs/read-link dst)) src)
         {:status :ok      :from from :to to :src src :dst dst}
         {:status :conflict :from from :to to :src src :dst dst
-         :detail (str "symlink points elsewhere → " (fs/read-link dst))})
+         :detail (str "points elsewhere → " (fs/read-link dst))})
 
-      ;; dst exists but is not a symlink (real file/dir)
       (fs/exists? dst)
       {:status :conflict
        :from from :to to :src src :dst dst
-       :detail "target exists but is not a symlink — move it first"}
+       :detail "exists but is not a symlink — move it first"}
 
-      ;; dst doesn't exist — ready to link
       :else
       {:status :missing :from from :to to :src src :dst dst})))
 
@@ -92,7 +115,7 @@
 
 (defn cmd-status []
   (let [config        (load-config)
-        links         (all-links config)]
+        links         (expand-all-links (all-links config))]
     (if (empty? links)
       (do (println "No links configured.") (System/exit 0))
       (let [statuses      (mapv link-status links)
@@ -105,39 +128,39 @@
                        :conflict       "⚠"
                        :source-missing "?"
                        "?")]
-            (println (format "%s  %-35s → %s%s"
+            (println (format "%s  %-40s → %s%s"
                              icon from dst
                              (if detail (str "  [" detail "]") "")))))
         (System/exit (if has-problems? 1 0))))))
 
 (defn cmd-link [dry-run?]
   (let [config (load-config)
-        links  (all-links config)]
+        links  (expand-all-links (all-links config))]
     (if (empty? links)
       (println "No links configured.")
       (doseq [link links]
         (let [{:keys [status src dst detail]} (link-status link)]
           (case status
             :ok
-            (println (format "✓  %-35s already linked" (:from link)))
+            (println (format "✓  %-40s already linked" (:from link)))
 
             :missing
             (if dry-run?
-              (println (format "→  %-35s would link → %s" (:from link) dst))
+              (println (format "→  %-40s would link → %s" (:from link) dst))
               (do
                 (fs/create-dirs (fs/parent dst))
                 (fs/create-sym-link dst src)
-                (println (format "✓  %-35s → %s" (:from link) dst))))
+                (println (format "✓  %-40s → %s" (:from link) dst))))
 
             :conflict
-            (println (format "⚠  %-35s skipping  [%s]" (:from link) detail))
+            (println (format "⚠  %-40s skipping  [%s]" (:from link) detail))
 
             :source-missing
-            (println (format "?  %-35s skipping  [%s]" (:from link) detail))))))))
+            (println (format "?  %-40s skipping  [%s]" (:from link) detail))))))))
 
 (defn cmd-unlink []
   (let [config (load-config)
-        links  (all-links config)]
+        links  (expand-all-links (all-links config))]
     (if (empty? links)
       (println "No links configured.")
       (doseq [link links]
@@ -145,8 +168,8 @@
           (if (= status :ok)
             (do
               (fs/delete dst)
-              (println (format "✗  %-35s unlinked" (:from link))))
-            (println (format "—  %-35s skipping (%s)" (:from link) (name status)))))))))
+              (println (format "✗  %-40s unlinked" (:from link))))
+            (println (format "—  %-40s skipping (%s)" (:from link) (name status)))))))))
 
 (defn print-usage []
   (println "Usage: bb dots [link|status|unlink] [--dry-run]")
