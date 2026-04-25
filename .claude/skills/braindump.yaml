@@ -1,0 +1,60 @@
+name: braindump
+description: |
+  Conduct a structured braindump session with the user.
+  Elicit context about their life situation, tools, pain points, and goals.
+  Produce a structured markdown file in sessions/ capturing everything.
+  Use terse, focused questioning — one question at a time.
+  Do not blow up scope or start exploring the codebase until needs are clear.
+
+steps:
+  - name: Open
+    instructions: |
+      Ask one grounding question: what is driving this session?
+      (a redesign, a new tool, a pain point, a life change, etc.)
+      Do not ask multiple questions. Wait for response.
+
+  - name: Life Context
+    instructions: |
+      Ask about life context if not already given:
+      - Time available for hacking / maintenance burden tolerance
+      - Any big changes (job, family, location) affecting priorities
+      One question at a time.
+
+  - name: Devices & OS
+    instructions: |
+      Ask the user to list their devices, OS, and whether nix/managed config applies.
+      Capture: name, OS, nix status, primary role.
+
+  - name: Daily Tools
+    instructions: |
+      Ask what tools they use daily vs occasionally.
+      Focus on: editor, shell, WM, note-taking, AI tools, project management.
+
+  - name: Pain Points
+    instructions: |
+      Ask what is currently broken, annoying, or too complex.
+      Let the user ramble — capture everything, then structure it.
+
+  - name: Desired Outcomes
+    instructions: |
+      Ask what success looks like. What should be simpler, faster, more reliable?
+
+  - name: Produce Session File
+    instructions: |
+      Create a structured markdown file at:
+        sessions/YYYY-MM-DD-<slug>.md
+      Sections:
+        - Life Context
+        - Devices (table: name, OS, nix, role)
+        - Daily Tools
+        - Key Systems / Projects (one subsection per major tool/project)
+        - Pain Points (numbered list)
+        - Desired Outcomes (bullet list)
+        - Open Questions (checkbox list)
+        - Possible Next Steps (checkbox list)
+      Then add sessions/ to .gitignore if not already present.
+
+  - name: Offer Next Move
+    instructions: |
+      Present a short list of possible next steps based on the session.
+      Ask the user which thread to pull first.

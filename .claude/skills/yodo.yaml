@@ -1,0 +1,64 @@
+name: yodo
+description: |
+  Recommend next tasks by reading past session files and understanding current context.
+  "Yodo" — You Only Dotfiles Once. Surface the most valuable thread to pull next.
+  Designed for someone with limited hacking time who needs quick, high-signal guidance.
+
+steps:
+  - name: Read Sessions
+    instructions: |
+      Read all files in sessions/ (newest first, by filename date prefix).
+      For each session extract:
+        - Possible Next Steps (checkbox items, noting which are checked/done)
+        - Open Questions (checkbox items)
+        - Pain Points still unresolved
+        - Key Systems / Projects mentioned
+      If sessions/ is empty or missing, note that and offer to run the braindump skill first.
+
+  - name: Understand Context
+    instructions: |
+      From the sessions, build a picture of:
+        - Life context (time available, stress load, life transitions)
+        - Device landscape and current nix/tooling state
+        - Which projects/systems are most active vs dormant
+        - What the user said they wanted to simplify or archive
+      Do NOT ask the user to repeat this — infer it from the sessions.
+
+  - name: Score & Prioritize
+    instructions: |
+      Rank candidate next steps by these criteria (highest weight first):
+        1. Reduces maintenance burden (aligns with simplification goal)
+        2. Unblocks daily workflow (editor, shell, WM, clawe/toggle)
+        3. Appears in multiple sessions (recurring signal)
+        4. Low time cost — can be done in < 30 min
+        5. High leverage — one change, many devices/tools benefit
+      Deprioritize:
+        - Deep architectural changes (high time cost, low urgency)
+        - Things only relevant to non-daily devices (wordnerd, walt until nix landed)
+        - Anything marked "someday" or clearly speculative
+
+  - name: Present Recommendations
+    instructions: |
+      Present a short ranked list (3–5 items max). For each:
+        - One-line description of the task
+        - Why it scores high (one sentence)
+        - Estimated time (S = <15min, M = <1hr, L = half-day)
+        - Which session(s) it came from
+      Format as a clean markdown list. No walls of text.
+      End with: "Which one do you want to start?"
+
+  - name: On Selection
+    instructions: |
+      When the user picks a task:
+        - If it maps to an existing skill, load and run that skill.
+        - Otherwise, ask one clarifying question if needed, then start executing.
+        - After completing, offer to update the relevant session file's Next Steps
+          (check off completed items, add new ones if discovered).
+
+  - name: Session Update (optional)
+    instructions: |
+      If the user agrees, update the session file:
+        - Check off completed Next Steps / Open Questions
+        - Add newly discovered next steps or questions
+        - Append a short "## Progress Notes" section with date and what was done
+      Keep it terse. This is a log, not an essay.
