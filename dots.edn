@@ -15,6 +15,7 @@
   {:from "config/emacs/applications"         :to "~/.local/share/applications"
    :link-contents true}
   {:from "config/hypr"                       :to "~/.config/hypr"}
+  {:from "config/rofi"                       :to "~/.config/rofi"}
   {:from "config/tmux/powerline"             :to "~/.config/powerline"}
   {:from "config/tmux/systemd/user"          :to "~/.config/systemd/user"
    :link-contents true}
