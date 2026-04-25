@@ -44,3 +44,6 @@ lazy-lock.json
 .aider*
 sessions/
 welcome.txt
+
+config/hypr/monitors-machine.conf
+config/hypr/overrides-machine.conf
