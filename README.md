@@ -34,38 +34,22 @@ Override with `$DOTS_HOSTNAME`.
 
 ## What's wired up
 
-### Shared links
-
-| Source | Destination | Notes |
-|---|---|---|
-| `config/foot` | `~/.config/foot` | Wayland terminal |
-| `config/alacritty` | `~/.config/alacritty` | Cross-platform terminal |
-| `config/nvim` | `~/.config/nvim` | AstroVim (Lua) |
-| `config/nvim.fnl` | `~/.config/nvim.fnl` | Fennel nvim config |
-| `config/emacs/doom` | `~/.config/doom` | Doom Emacs |
-| `config/emacs/applications` | `~/.local/share/applications` | `.desktop` files, link-contents |
-| `config/hypr` | `~/.config/hypr` | Hyprland WM |
-| `config/rofi` | `~/.config/rofi` | App launcher |
-| `config/tmux/powerline` | `~/.config/powerline` | Tmux Powerline theme |
-| `config/tmux/systemd/user` | `~/.config/systemd/user` | Tmux systemd unit, link-contents |
-| `home/.tmux.conf` | `~/.tmux.conf` | |
-| `home/.zshenv` | `~/.zshenv` | |
-| `home/.profile` | `~/.profile` | |
-| `home/.gitconfig` | `~/.gitconfig` | |
-| `config/zsh` | `~/.config/zsh` | Zsh config + themes, link-contents |
-| `config/zsh/completion` | `~/.config/zsh/completion` | Completions dir |
-| `scripts` | `~/.local/bin` | All scripts, link-contents |
-
-### Per-machine links (Hyprland monitor layout)
-
-Each machine gets its own monitor config and overrides linked into `~/.config/hypr/`:
-
-| Machine | Source |
-|---|---|
-| `yoshi` | `config/hypr/machines/yoshi/` |
-| `brain` | `config/hypr/machines/brain/` |
-| `walt` | `config/hypr/machines/walt/` |
-| `wordnerd` | `config/hypr/machines/wordnerd/` |
+- **nvim** — AstroNvim (Lua); fennel config also linked separately
+- **doom** — Doom Emacs
+- **hypr** — Hyprland WM; per-machine monitor/override confs merged at link time
+- **waybar** — Wayland status bar
+- **foot** — Wayland terminal
+- **alacritty** — cross-platform terminal
+- **rofi** — app launcher
+- **zsh** — config, themes, completions
+- **tmux** — `.tmux.conf` + Powerline theme
+- **atuin** — shell history
+- **clojure** — `deps.edn`, `rebel_readline.edn`
+- **flake8**, **luaformatter** — linter/formatter configs
+- **nixpkgs** — user-level nixpkgs config
+- **ipython**, **ghci**, **psql** — REPL configs
+- **scripts** — all `scripts/` wired to `~/.local/bin`
+- **dotfiles** — `~/.fennelrc`, `~/.gitconfig`, `~/.zshenv`, `~/.profile`, `~/.inputrc`, `~/.ignore`
 
 ---
 
