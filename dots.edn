@@ -11,14 +11,12 @@
   {:from "config/alacritty"                  :to "~/.config/alacritty"}
   {:from "config/nvim"                       :to "~/.config/nvim"}
   {:from "config/nvim.fnl"                   :to "~/.config/nvim.fnl"}
-  {:from "config/emacs/doom"                 :to "~/.config/doom"}
-  {:from "config/emacs/applications"         :to "~/.local/share/applications"
+  {:from "config/doom"                       :to "~/.config/doom"}
+  {:from "home/applications"                 :to "~/.local/share/applications"
    :link-contents true}
   {:from "config/hypr"                       :to "~/.config/hypr"}
   {:from "config/rofi"                       :to "~/.config/rofi"}
-  {:from "config/tmux/powerline"             :to "~/.config/powerline"}
-  {:from "config/tmux/systemd/user"          :to "~/.config/systemd/user"
-   :link-contents true}
+  {:from "config/powerline"                  :to "~/.config/powerline"}
   {:from "home/.tmux.conf"                   :to "~/.tmux.conf"}
   {:from "home/.zshenv"                      :to "~/.zshenv"}
   {:from "home/.profile"                     :to "~/.profile"}
@@ -29,10 +27,10 @@
   {:from "scripts"                           :to "~/.local/bin" :link-contents true}
 
   ;; config/ dirs
-  {:from "config/clojure/deps.edn"           :to "~/.clojure/deps.edn"}
-  {:from "config/clojure/rebel_readline.edn" :to "~/.clojure/rebel_readline.edn"}
-  {:from "config/python/flake8"              :to "~/.config/flake8"}
-  {:from "config/python/ipython"             :to "~/.ipython"}
+  {:from "home/.clojure/deps.edn"            :to "~/.clojure/deps.edn"}
+  {:from "home/.clojure/rebel_readline.edn"  :to "~/.clojure/rebel_readline.edn"}
+  {:from "config/flake8"                     :to "~/.config/flake8"}
+  {:from "home/.ipython"                     :to "~/.ipython"}
   {:from "config/ranger"                     :to "~/.config/ranger"}
     {:from "config/atuin"        :to "~/.config/atuin"}
     {:from "config/nixpkgs"      :to "~/.config/nixpkgs"}

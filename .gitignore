@@ -16,7 +16,7 @@ zsh/.zsh/completion/_ralphie
 
 
 tmux-client-*.log
-config/emacs/doom/+custom.el
+config/doom/+custom.el
 urbint
 focus/.local/bin/focus
 X/.Xauthority
