@@ -16,13 +16,6 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./configuration.nix
-
-          # Add peon-ping to system packages
-          ({ pkgs, inputs, ... }: {
-            environment.systemPackages = [
-              inputs.peon-ping.packages.${pkgs.system}.default
-            ];
-          })
         ];
       };
     };

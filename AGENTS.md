@@ -70,6 +70,10 @@ new machine, the dir will be empty; run the `braindump` skill to rebuild context
 - Follow the structure in any existing session file (Life Context → Devices → Daily
   Tools → Key Systems → Pain Points → Desired Outcomes → Open Questions → Next Steps)
 
+**After a meaningful work session** (config change, new tool wired up, etc.) it's
+worth dropping a short note in `sessions/`. Not required — use judgment. A few lines
+on what changed and where is enough. Future-you will thank you.
+
 ## Package Management
 
 Always add new tools through NixOS modules — never install manually:

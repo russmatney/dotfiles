@@ -4,14 +4,14 @@
   :bind (("C-c e" . eca))
   :config
   ;; Optional: Configure chat window position
-  ;; (setq eca-chat-use-side-window t)
-  ;; (setq eca-chat-window-side 'right)
+  (setq eca-chat-use-side-window t)
+  (setq eca-chat-window-side 'left)
 
   ;; Optional: Auto-add repository context
-  ;; (setq eca-chat-auto-add-repomap t)
+  (setq eca-chat-auto-add-repomap t)
 
   ;; Optional: Set completion delay
-  ;; (setq eca-completion-idle-delay 0.5)
+  (setq eca-completion-idle-delay 0.5)
 
   ;; Optional: Custom model selection
   ;; (setq eca-chat-custom-model "claude-sonnet-4")
