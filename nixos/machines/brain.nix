@@ -9,6 +9,8 @@
     /etc/nixos/hardware-configuration.nix
   ];
 
+  networking.hostName = "brain";
+
   # hardware = {
   #   modules = [ "amd-ai-300-series" ];
   # };

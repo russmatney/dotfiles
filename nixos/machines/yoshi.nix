@@ -6,6 +6,8 @@
     /etc/nixos/hardware-configuration.nix
   ];
 
+  networking.hostName = "yoshi";
+
   # Machine role: Primary development workstation
   # Hardware: Framework 13-inch AMD
 

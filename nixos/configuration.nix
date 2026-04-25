@@ -6,13 +6,12 @@
 
 let
   # Determine hostname - reads from /etc/hostname or falls back to "yoshi"
-  # hostname = builtins.readFile /etc/hostname;
+  hostname = builtins.readFile /etc/hostname;
   # # Strip whitespace/newlines
   # cleanHostname = builtins.replaceStrings ["\n" " "] ["" ""] hostname;
-  cleanHostname = "yoshi";
 
   # Machine-specific configuration path
-  machineConfig = ./machines + "/${cleanHostname}.nix";
+  machineConfig = ./machines + "/${hostname}.nix";
 in
 {
   imports = [
