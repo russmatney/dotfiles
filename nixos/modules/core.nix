@@ -87,4 +87,14 @@
     #   ];
   };
 
+  # Enable nix-ld for running dynamically linked executables
+  # This solves the classic "cannot execute binary file" / stub-ld error
+  # when trying to run pre-built binaries from npm, cargo, pip, etc.
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    stdenv.cc.cc
+    zlib
+    openssl
+  ];
+
 }

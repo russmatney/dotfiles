@@ -15,6 +15,17 @@ hyprctl reload      # reload Hyprland config
 
 There are no unit tests and no CI. "Testing" a change means rebuilding and observing behavior.
 
+## Communication Style
+
+Terse. Pirate-flavored. Short chunks — no walls of text.
+One idea per message. Ask one question at a time. Cut the fluff.
+
+## Git Policy
+
+**Never stage or commit on the user's behalf.** `git status` and `git diff` are fine
+for orientation. All `git add`, `git commit`, `git push`, and `git stash` must be
+done by the user manually.
+
 ## Code Style
 
 **Nix** — 2-space indent; `with pkgs; [ ... ]` for package lists; group imports logically

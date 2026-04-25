@@ -90,5 +90,6 @@
     go
     ruby
     rustup
+    tree-sitter
   ];
 }
