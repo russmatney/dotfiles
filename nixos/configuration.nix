@@ -4,11 +4,24 @@
 
 { config, pkgs, ... }:
 
+let
+  # Determine hostname - reads from /etc/hostname or falls back to "yoshi"
+  hostname = 
+  # ((builtins.readFile /etc/hostname) or)
+  #   (( builtins.getEnv "HOSTNAME") or)
+    "yoshi";
+  # Strip whitespace/newlines
+  cleanHostname = builtins.replaceStrings ["\n" " "] ["" ""] hostname;
+
+  # Machine-specific configuration path
+  machineConfig = ./machines + "/${cleanHostname}.nix";
+in
 {
   imports = [
-    <nixos-hardware/framework/16-inch/amd-ai-300-series>
+    # <nixos-hardware/framework/16-inch/amd-ai-300-series>
 
-    /etc/nixos/hardware-configuration.nix
+    # Import machine-specific configuration (includes hardware-configuration.nix)
+    machineConfig
 
     ./modules/user.nix
 
@@ -23,10 +36,9 @@
     ./modules/security.nix
     ./modules/tmux.nix
     ./modules/wm.nix
-
     ];
 
-  networking.hostName = "yoshi";
+  networking.hostName = cleanHostname;
 
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
