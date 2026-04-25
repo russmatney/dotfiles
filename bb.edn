@@ -1,3 +1,6 @@
 {:tasks
  {say-it-aint-so (shell "echo 'it aint so'")
-  doom-up        (shell "doom up -!")}}
+  doom-up        (shell "doom up -!")
+
+  dots           {:doc  "Symlink manager — args: link | status | unlink [--dry-run]"
+                  :task (load-file "dots.bb")}}}

@@ -1,0 +1,11 @@
+{;; Symlink manifest — source of truth for all dotfile links.
+ ;; Managed by dots.bb. Run `bb dots link` to apply, `bb dots status` to check.
+ ;;
+ ;; :from  — path relative to this repo root
+ ;; :to    — destination path (~/ expanded to $HOME)
+ ;;
+ ;; Links are applied in order. Machine-specific links are merged on top.
+
+ :links []
+
+ :machines {}}
