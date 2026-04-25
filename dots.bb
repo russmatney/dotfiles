@@ -49,7 +49,9 @@
     path))
 
 (defn resolve-src [from]
-  (str (fs/path dotfiles-dir from)))
+  (if (str/starts-with? from "~/")
+    (expand-home from)
+    (str (fs/path dotfiles-dir from))))
 
 (defn load-config []
   (if (fs/exists? config-path)
@@ -119,7 +121,7 @@
         links         (expand-all-links (all-links config))]
     (if (empty? links)
       (do (println "No links configured.") (System/exit 0))
-      (let [statuses      (mapv link-status links)
+      (let [statuses      (sort-by :from (mapv link-status links))
             has-problems? (some (comp #{:missing :conflict :source-missing} :status)
                                 statuses)]
         (doseq [{:keys [status from dst detail]} statuses]

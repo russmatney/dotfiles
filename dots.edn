@@ -12,6 +12,8 @@
   {:from "config/nvim"                       :to "~/.config/nvim"}
   {:from "config/nvim.fnl"                   :to "~/.config/nvim.fnl"}
   {:from "config/doom"                       :to "~/.config/doom"}
+  {:from "~/teknql/fabb"                     :to "~/.config/doom/fabb"}
+  {:from "~/russmatney/ink-mode"             :to "~/.config/doom/ink-mode"}
   {:from "home/applications"                 :to "~/.local/share/applications"
    :link-contents true}
   {:from "config/hypr"                       :to "~/.config/hypr"}
