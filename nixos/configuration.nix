@@ -6,10 +6,10 @@
 
 let
   # Determine hostname - reads from /etc/hostname or falls back to "yoshi"
-  raw = builtins.readFile /etc/hostname;
-  hostname = builtins.replaceStrings ["\n"] [""] raw;
-  # Strip whitespace/newlines
-  cleanHostname = builtins.replaceStrings ["\n" " "] ["" ""] hostname;
+  # hostname = builtins.readFile /etc/hostname;
+  # # Strip whitespace/newlines
+  # cleanHostname = builtins.replaceStrings ["\n" " "] ["" ""] hostname;
+  cleanHostname = "yoshi";
 
   # Machine-specific configuration path
   machineConfig = ./machines + "/${cleanHostname}.nix";
@@ -37,7 +37,7 @@ in
 
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.11"; # Did you read the comment?
+  system.stateVersion = "26.05"; # Did you read the comment?
 
 }
 

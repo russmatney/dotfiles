@@ -550,16 +550,22 @@
   (setq obsidian-directory (expand-file-name "~/Documents/Danger Russ Remote Vault"))
 
   ;; Use org-roam for ID management
-  (setq obsidian-use-org-roam t)
+  ;; (setq obsidian-use-org-roam t)
 
   ;; Specify the inbox location for quick captures
-  (setq obsidian-inbox-file (expand-file-name "inbox.org" obsidian-directory))
+  ;; (setq obsidian-inbox-file (expand-file-name "inbox.org" obsidian-directory))
+  (setq obsidian-inbox-directory "inbox")
+  (setq markdown-enable-wiki-links t)
 
   ;; Daily notes directory
   (setq obsidian-daily-notes-directory "daily")
 
-  ;; Enable obsidian-mode in org-mode files
-  (global-obsidian-mode t))
+  (global-obsidian-mode t)
+  (obsidian-backlinks-mode t))
+
+(comment
+ (obsidian-update)
+ )
 
 ;;; sandbox ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
