@@ -7,6 +7,7 @@
  ;; Links are applied in order. Machine-specific links are merged on top.
 
  :links
- [{:from "config/foot" :to "~/.config/foot"}]
+ [{:from "config/foot"      :to "~/.config/foot"}
+  {:from "config/alacritty" :to "~/.config/alacritty"}]
 
  :machines {}}
