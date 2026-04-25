@@ -9,6 +9,8 @@
  :links
  [{:from "config/foot"      :to "~/.config/foot"}
   {:from "config/alacritty" :to "~/.config/alacritty"}
+  {:from "config/nvim"      :to "~/.config/nvim"}
+  {:from "config/nvim.fnl"  :to "~/.config/nvim.fnl"}
   {:from "home/.gitconfig"  :to "~/.gitconfig"}
   {:from "scripts"          :to "~/.local/bin" :link-contents true}]
 
