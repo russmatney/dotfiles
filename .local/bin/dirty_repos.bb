@@ -5,11 +5,86 @@
 (require
   '[ralphie.hyprland :as r.hypr]
   '[ralphie.git :as r.git]
+  '[ralphie.bb :as r.bb]
+  '[ralphie.zsh :as r.zsh]
   '[clojure.string :as string]
   '[clawe.config :as clawe.config]
+  '[babashka.process :refer [$]]
   )
 
 (defn log [msg] (r.hypr/notify (str "dirty_repo.bb: " msg)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Enhanced git status checks
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn get-remotes [repo-path]
+  "Get all git remotes for a repo with their URLs"
+  (try
+    (let [output (r.bb/run-proc
+                   {:error-message (str "Error getting remotes for " repo-path)}
+                   ^{:dir (r.zsh/expand repo-path)}
+                   ($ git remote -v))]
+      (->> output
+           (map #(when-let [[_ name url type] (re-matches #"(\S+)\s+(\S+)\s+\((\w+)\)" %)]
+                   {:remote/name name
+                    :remote/url url
+                    :remote/type type}))
+           (filter some?)
+           (filter #(= "push" (:remote/type %)))))
+    (catch Exception _e [])))
+
+(defn has-codeberg-remote? [remotes]
+  "Check if any remote points to codeberg"
+  (some #(string/includes? (:remote/url %) "codeberg") remotes))
+
+(defn get-preferred-remote [repo-path]
+  "Get preferred remote, preferring codeberg over others"
+  (let [remotes (get-remotes repo-path)]
+    (if (has-codeberg-remote? remotes)
+      (first (filter #(string/includes? (:remote/url %) "codeberg") remotes))
+      (first (filter #(= "origin" (:remote/name %)) remotes)))))
+
+(defn get-detailed-status [repo-path remote-name]
+  "Get detailed git status including commit counts"
+  (try
+    (let [output (r.bb/run-proc
+                   {:error-message (str "Error getting detailed status for " repo-path)}
+                   ^{:dir (r.zsh/expand repo-path)}
+                   ($ git status -sb))]
+      (when (seq output)
+        (let [first-line (first output)
+              ahead-match (re-find #"ahead (\d+)" first-line)
+              behind-match (re-find #"behind (\d+)" first-line)]
+          {:git/ahead-count (when ahead-match (parse-long (second ahead-match)))
+           :git/behind-count (when behind-match (parse-long (second behind-match)))})))
+    (catch Exception _e {})))
+
+(defn get-dirty-file-count [repo-path]
+  "Count number of dirty files"
+  (try
+    (let [output (r.bb/run-proc
+                   {:error-message (str "Error getting dirty files for " repo-path)}
+                   ^{:dir (r.zsh/expand repo-path)}
+                   ($ git status --porcelain))]
+      (count output))
+    (catch Exception _e 0)))
+
+(defn time-since-fetch [timestamp]
+  "Calculate time since last fetch in human readable format"
+  (when timestamp
+    (let [instant (if (instance? java.nio.file.attribute.FileTime timestamp)
+                    (.toInstant timestamp)
+                    timestamp)
+          now (java.time.Instant/now)
+          duration (java.time.Duration/between instant now)
+          hours (.toHours duration)
+          days (.toDays duration)]
+      (cond
+        (> days 7) (str days " days")
+        (> days 1) (str days " days")
+        (> hours 1) (str hours " hours")
+        :else "< 1 hour"))))
 
 (defn wsp->is-repo?
   [def]
@@ -35,25 +110,60 @@
 
 (defn my-repo-statuses []
   (->> (my-repos)
-       (map (fn [def] (merge def (-> def :workspace/directory r.git/status))))))
+       (map (fn [def]
+              (let [repo-path (:workspace/directory def)
+                    base-status (r.git/status repo-path)
+                    remote (get-preferred-remote repo-path)
+                    detailed (get-detailed-status repo-path (:remote/name remote))
+                    dirty-count (get-dirty-file-count repo-path)]
+                (merge def base-status detailed
+                       {:git/preferred-remote remote
+                        :git/dirty-file-count dirty-count}))))))
 
 (defn notify-dirty
   [def]
   (when (seq (:git/dirty? def))
-    (r.hypr/notify (str "fontsize:48 [" (wsp->name def) "]: Dirty!")
-                   {:level :info :til 10000})))
+    (let [file-count (:git/dirty-file-count def)
+          msg (str "fontsize:42 [" (wsp->name def) "]: Dirty!\n"
+                   "fontsize:24 " file-count " file" (when (> file-count 1) "s") " modified")]
+      (r.hypr/notify msg {:level :info :til 10000}))))
 
 (defn notify-needs-pull
   [def]
   (when (seq (:git/needs-pull? def))
-    (r.hypr/notify (str "fontsize:48 [" (wsp->name def) "]: Needs Pull!")
-                   {:level :error :til 15000})))
+    (let [behind-count (:git/behind-count def)
+          msg (str "fontsize:42 [" (wsp->name def) "]: Needs Pull!\n"
+                   (when behind-count
+                     (str "fontsize:24 " behind-count " commit" (when (> behind-count 1) "s") " behind")))]
+      (r.hypr/notify msg {:level :error :til 15000}))))
 
 (defn notify-needs-push
   [def]
   (when (seq (:git/needs-push? def))
-    (r.hypr/notify (str "fontsize:48 [" (wsp->name def) "]: Needs Push!")
-                   {:level :warning :til 15000})))
+    (let [ahead-count (:git/ahead-count def)
+          remote (:git/preferred-remote def)
+          remote-name (or (:remote/name remote) "origin")
+          remote-indicator (when (and remote (string/includes? (:remote/url remote) "codeberg"))
+                            " → codeberg")
+          msg (str "fontsize:42 [" (wsp->name def) "]: Needs Push!" remote-indicator "\n"
+                   (when ahead-count
+                     (str "fontsize:24 " ahead-count " commit" (when (> ahead-count 1) "s") " ahead of " remote-name)))]
+      (r.hypr/notify msg {:level :warning :til 15000}))))
+
+(defn notify-stale-fetch
+  [def]
+  (let [last-fetch (:git/last-fetch-timestamp def)
+        time-ago (time-since-fetch last-fetch)]
+    (when (and last-fetch time-ago)
+      (let [instant (if (instance? java.nio.file.attribute.FileTime last-fetch)
+                      (.toInstant last-fetch)
+                      last-fetch)
+            duration (java.time.Duration/between instant (java.time.Instant/now))
+            days (.toDays duration)]
+        (when (> days 3)
+          (let [msg (str "fontsize:36 [" (wsp->name def) "]: Stale!\n"
+                         "fontsize:24 Last fetch: " time-ago " ago")]
+            (r.hypr/notify msg {:level :warning :til 12000})))))))
 
 (defn clean? [{:git/keys [needs-pull? needs-push? dirty?]}]
   (not (or dirty? needs-pull? needs-push?)))
@@ -61,8 +171,14 @@
 (defn notify-clean
   [def]
   (when (clean? def)
-    (r.hypr/notify (str "fontsize:24 [" (wsp->name def) "]: Clean!")
-                   {:level :ok :til 5000})))
+    (let [last-fetch (:git/last-fetch-timestamp def)
+          time-ago (time-since-fetch last-fetch)
+          remote (:git/preferred-remote def)
+          remote-indicator (when (and remote (string/includes? (:remote/url remote) "codeberg"))
+                            " (codeberg)")
+          msg (str "fontsize:24 [" (wsp->name def) "]: Clean!" remote-indicator
+                   (when time-ago (str "\nfontsize:18 Last fetch: " time-ago " ago")))]
+      (r.hypr/notify msg {:level :ok :til 5000}))))
 
 (defn notify-status
   "Not sure these all run..."
@@ -77,6 +193,7 @@
     (run! notify-needs-pull defs)
     (run! notify-needs-push defs)
     (run! notify-dirty defs)
+    (run! notify-stale-fetch defs)
     (run! notify-clean defs)))
 
 ;; (update-my-repos)
