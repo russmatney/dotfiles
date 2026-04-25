@@ -28,6 +28,13 @@
   {:from "config/zsh/completion"             :to "~/.config/zsh/completion"}
   {:from "scripts"                           :to "~/.local/bin" :link-contents true}
 
+  ;; config/ dirs
+  {:from "config/atuin"        :to "~/.config/atuin"}
+  {:from "config/luaformatter" :to "~/.config/luaformatter"}
+  {:from "config/neofetch"     :to "~/.config/neofetch"}
+  {:from "config/deadd"        :to "~/.config/deadd"}
+  {:from "config/waybar"       :to "~/.config/waybar"}
+
   ;; Home dotfiles (file lives at $HOME root)
   {:from "home/.fennelrc"    :to "~/.fennelrc"}
   {:from "home/.ghci"        :to "~/.ghci"}
