@@ -7,7 +7,7 @@
   ];
 
   # Machine role: Primary development workstation
-  # Hardware: Framework 16-inch AMD
+  # Hardware: Framework 13-inch AMD
 
   # Machine-specific packages
   environment.systemPackages = with pkgs; [

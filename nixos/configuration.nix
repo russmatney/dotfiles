@@ -6,10 +6,8 @@
 
 let
   # Determine hostname - reads from /etc/hostname or falls back to "yoshi"
-  hostname = 
-  # ((builtins.readFile /etc/hostname) or)
-  #   (( builtins.getEnv "HOSTNAME") or)
-    "yoshi";
+  raw = builtins.readFile /etc/hostname;
+  hostname = builtins.replaceStrings ["\n"] [""] raw;
   # Strip whitespace/newlines
   cleanHostname = builtins.replaceStrings ["\n" " "] ["" ""] hostname;
 
@@ -18,8 +16,6 @@ let
 in
 {
   imports = [
-    # <nixos-hardware/framework/16-inch/amd-ai-300-series>
-
     # Import machine-specific configuration (includes hardware-configuration.nix)
     machineConfig
 
@@ -38,7 +34,6 @@ in
     ./modules/wm.nix
     ];
 
-  networking.hostName = cleanHostname;
 
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
