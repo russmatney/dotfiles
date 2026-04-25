@@ -7,11 +7,14 @@
  ;; Links are applied in order. Machine-specific links are merged on top.
 
  :links
- [{:from "config/foot"      :to "~/.config/foot"}
-  {:from "config/alacritty" :to "~/.config/alacritty"}
-  {:from "config/nvim"      :to "~/.config/nvim"}
-  {:from "config/nvim.fnl"  :to "~/.config/nvim.fnl"}
-  {:from "home/.gitconfig"  :to "~/.gitconfig"}
-  {:from "scripts"          :to "~/.local/bin" :link-contents true}]
+ [{:from "config/foot"                       :to "~/.config/foot"}
+  {:from "config/alacritty"                  :to "~/.config/alacritty"}
+  {:from "config/nvim"                       :to "~/.config/nvim"}
+  {:from "config/nvim.fnl"                   :to "~/.config/nvim.fnl"}
+  {:from "config/emacs/doom"                 :to "~/.config/doom"}
+  {:from "config/emacs/applications"         :to "~/.local/share/applications"
+   :link-contents true}
+  {:from "home/.gitconfig"                   :to "~/.gitconfig"}
+  {:from "scripts"                           :to "~/.local/bin" :link-contents true}]
 
  :machines {}}
