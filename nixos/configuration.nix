@@ -6,9 +6,7 @@
 
 let
   # Determine hostname - reads from /etc/hostname or falls back to "yoshi"
-  hostname = builtins.readFile /etc/hostname;
-  # # Strip whitespace/newlines
-  # cleanHostname = builtins.replaceStrings ["\n" " "] ["" ""] hostname;
+  hostname = builtins.replaceStrings ["\n" " "] ["" ""] (builtins.readFile /etc/hostname);
 
   # Machine-specific configuration path
   machineConfig = ./machines + "/${hostname}.nix";
