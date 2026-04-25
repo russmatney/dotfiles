@@ -26,7 +26,14 @@
   {:from "config/zsh"                        :to "~/.config/zsh"
    :link-contents true}
   {:from "config/zsh/completion"             :to "~/.config/zsh/completion"}
-  {:from "scripts"                           :to "~/.local/bin" :link-contents true}]
+  {:from "scripts"                           :to "~/.local/bin" :link-contents true}
+
+  ;; Home dotfiles (file lives at $HOME root)
+  {:from "home/.fennelrc"    :to "~/.fennelrc"}
+  {:from "home/.ghci"        :to "~/.ghci"}
+  {:from "home/.psqlrc"      :to "~/.psqlrc"}
+  {:from "home/.inputrc"     :to "~/.inputrc"}
+  {:from "home/.ignore"      :to "~/.ignore"}]
 
  :machines
  {"yoshi"    [{:from "config/hypr/machines/yoshi/monitors.conf"
