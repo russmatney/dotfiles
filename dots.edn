@@ -29,7 +29,12 @@
   {:from "scripts"                           :to "~/.local/bin" :link-contents true}
 
   ;; config/ dirs
-  {:from "config/atuin"        :to "~/.config/atuin"}
+  {:from "config/clojure/deps.edn"           :to "~/.clojure/deps.edn"}
+  {:from "config/clojure/rebel_readline.edn" :to "~/.clojure/rebel_readline.edn"}
+  {:from "config/python/flake8"              :to "~/.config/flake8"}
+  {:from "config/python/ipython"             :to "~/.ipython"}
+  {:from "config/ranger"                     :to "~/.config/ranger"}
+  {:from "config/atuin"                      :to "~/.config/atuin"}
   {:from "config/luaformatter" :to "~/.config/luaformatter"}
   {:from "config/neofetch"     :to "~/.config/neofetch"}
   {:from "config/deadd"        :to "~/.config/deadd"}
