@@ -561,7 +561,8 @@
   (setq obsidian-daily-notes-directory "daily")
 
   (global-obsidian-mode t)
-  (obsidian-backlinks-mode t))
+  ;; (obsidian-backlinks-mode t)
+  )
 
 (comment
  (obsidian-update)
