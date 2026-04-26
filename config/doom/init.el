@@ -38,10 +38,6 @@
 (defvar +workspaces-main "todo")
 (defvar +workspaces-switch-project-function #'magit-status)
 
-(when noninteractive
-  ;; allow for connection to ssh-agent
-  (add-to-list 'doom-env-whitelist "^SSH_"))
-
 (setq native-comp-always-compile t)
 (setq native-comp-jit-compilation nil)
 (setq package-native-compile t)
