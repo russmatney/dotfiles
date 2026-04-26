@@ -49,6 +49,14 @@
 (add-to-list 'exec-path "/home/russ/.nix-profile/bin")
 (add-to-list 'exec-path "/home/russ/.pyenv/shims")
 
+;;;;;;;;;;;;;;;;;;;;;;;;
+;; SSH / GPG agent env sync
+;; When running as a daemon, Emacs inherits a stale env.
+;; Refresh SSH_AUTH_SOCK and GPG_AGENT_INFO from keychain on startup.
+
+(when (daemonp)
+  (add-hook 'after-init-hook #'keychain-refresh-environment))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Auto revert-mode
 
