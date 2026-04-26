@@ -87,6 +87,7 @@
 
 (package! fabb :recipe (:local-repo "fabb" :build (:not compile)))
 (package! ink-mode :recipe (:local-repo "ink-mode" :build (:not compile)))
+(package! puzz-mode :recipe (:local-repo "puzz-mode" :build (:not compile)))
 
 (package! ultra-scroll :recipe (:host github :repo "jdtsmith/ultra-scroll"))
 

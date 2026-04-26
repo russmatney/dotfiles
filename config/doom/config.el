@@ -258,3 +258,8 @@ reload dir-locals."
 ;; journalctl
 
 (use-package! journalctl-mode)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; puzz — game puzzle files
+
+(use-package! puzz-mode)
