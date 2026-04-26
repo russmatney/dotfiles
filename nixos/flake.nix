@@ -7,9 +7,13 @@
       url = "github:PeonPing/peon-ping";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprpaper = {
+      url = "github:hyprwm/hyprpaper";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, peon-ping, ... }@inputs: {
+  outputs = { self, nixpkgs, peon-ping, hyprpaper, ... }@inputs: {
     nixosConfigurations = {
       yoshi = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";

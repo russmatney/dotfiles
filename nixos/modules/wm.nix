@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -21,7 +21,7 @@
     kdePackages.dolphin
     grim
     slurp
-    hyprpaper
+    inputs.hyprpaper.packages.${pkgs.system}.hyprpaper
 
     hyprlock
     hypridle
