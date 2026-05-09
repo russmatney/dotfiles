@@ -58,7 +58,9 @@
             :to   "~/.config/hypr/overrides-machine.conf"}]
 
   "walt" [{:from "home/.yabairc" :to "~/.yabairc"}
-          {:from "home/.skhdrc" :to "~/.skhdrc"}]
+          {:from "home/.skhdrc" :to "~/.skhdrc"}
+          {:from          "home/Library/LaunchAgents" :to "~/Library/LaunchAgents"
+           :link-contents true}]
 
   "wordnerd" [{:from "config/hypr/machines/wordnerd/monitors.conf"
                :to   "~/.config/hypr/monitors-machine.conf"}
