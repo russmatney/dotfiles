@@ -35,7 +35,9 @@
 
 (def hostname
   (or (System/getenv "DOTS_HOSTNAME")
-      (str/trim (slurp "/etc/hostname"))))
+    (if (fs/exists? "/etc/hostname")
+      (str/trim (slurp "/etc/hostname")
+    "walt"))))
 
 (def config-path
   (str (fs/path dotfiles-dir "dots.edn")))

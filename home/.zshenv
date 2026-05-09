@@ -1,4 +1,6 @@
 
+export DOTS_HOSTNAME=walt
+
 export ZDOTDIR=~/.config/zsh
 
 if [ -e /bin/godot ]; then

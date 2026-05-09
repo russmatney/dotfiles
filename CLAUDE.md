@@ -4,14 +4,22 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-This is Russ's personal dotfiles repository, organized using GNU Stow for symlink-based configuration management. The repository contains configuration files for a complete Linux development environment running NixOS with Hyprland window manager.
+This is Russ's personal dotfiles repository, managed with a custom Babashka-based symlink system called `dots`. The repository contains configuration files for a complete Linux development environment running NixOS with Hyprland window manager.
 
 ## Core Architecture
 
-### Stow-Based Structure
-- Each top-level directory represents a configuration "package" that can be installed independently
-- Use `stow <directory>` from the repository root to symlink configurations to home directory
-- Configuration files are structured as if the package directory is the home directory (e.g., `zsh/.config/zsh/.zshrc` maps to `~/.config/zsh/.zshrc`)
+### Dots Symlink System
+- Symlink manifest: `dots.edn` — declares all links as `{:from <repo-relative-path> :to <destination>}`
+- Manager script: `dots.bb` — reads the manifest and applies/checks/removes symlinks
+- Machine-specific links are declared under `:machines` keyed by hostname
+- `:link-contents true` on an entry symlinks each file inside the directory individually (rather than the directory itself)
+
+```bash
+bb dots status        # print state of all declared links
+bb dots link          # create missing symlinks
+bb dots link --dry-run  # preview what would change
+bb dots unlink        # remove all managed symlinks
+```
 
 ### Key Configuration Areas
 
@@ -46,8 +54,11 @@ This is Russ's personal dotfiles repository, organized using GNU Stow for symlin
 # Rebuild NixOS configuration
 sudo nixos-rebuild switch
 
-# Install dotfile configuration
-stow <directory>  # e.g., stow zsh, stow emacs
+# Apply dotfile symlinks
+bb dots link
+
+# Check symlink status
+bb dots status
 
 # Restart Clawe services
 systemctl --user restart doctor-backend

@@ -29,8 +29,8 @@ return {
     },
     workspaces = {
       {
-        name = "danger russ vault",
-        path = "~/Documents/Danger Russ Remote Vault",
+        name = "danger russ games",
+        path = "~/Documents/Danger Russ Games Vault",
       },
     },
     frontmatter = {

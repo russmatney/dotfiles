@@ -53,20 +53,21 @@ end
 
 
 -- Hotkeys to toggle scratchpads
-hs.hotkey.bind({"cmd"}, "t", function() toggleApp("Google Chrome") end)
-hs.hotkey.bind({"cmd", "alt"}, "s", function() toggleApp("Spotify") end)
-hs.hotkey.bind({"cmd", "alt"}, "v", function() toggleApp("Code") end)
-hs.hotkey.bind({"cmd", "alt"}, "b", function() toggleApp("Cursor") end)
-hs.hotkey.bind({"cmd", "alt"}, "t", function() toggleApp("Raycast") end)
-hs.hotkey.bind({"cmd", "alt"}, "a", function() toggleApp("Slack") end)
+-- hs.hotkey.bind({"cmd", "alt"}, "b", function() toggleApp("Cursor") end)
+-- hs.hotkey.bind({"cmd", "alt"}, "t", function() toggleApp("Raycast") end)
+-- hs.hotkey.bind({"cmd", "alt"}, "p", function() toggleApp("pomofocus") end)
+-- hs.hotkey.bind({"cmd"}, "u", function() toggleApp("Obsidian") end)
+-- hs.hotkey.bind({"cmd"}, "t", function() toggleApp("Google Chrome") end)
+-- hs.hotkey.bind({"cmd", "alt"}, "s", function() toggleApp("Spotify") end)
+-- hs.hotkey.bind({"cmd", "alt"}, "v", function() toggleApp("Code") end)
+-- hs.hotkey.bind({"cmd", "alt"}, "a", function() toggleApp("Slack") end)
 hs.hotkey.bind({"cmd", "alt"}, "o", function() toggleApp("Obsidian") end)
-hs.hotkey.bind({"cmd", "alt"}, "p", function() toggleApp("pomofocus") end)
-hs.hotkey.bind({"cmd"}, "u", function() toggleApp("Obsidian") end)
+-- hs.hotkey.bind({"cmd"}, "u", function() toggleApp("Obsidian") end)
 hs.hotkey.bind({"cmd", "alt"}, "n", function() toggleApp("Neovide") end)
 -- hs.hotkey.bind({"cmd", "alt"}, "d", function() toggleApp("Discord") end)
 -- hs.hotkey.bind({"cmd"}, "e", function() toggleEmacs("floating-emacs") end)
 -- hs.hotkey.bind({"cmd"}, "u", function() toggleEmacs("journal") end)
-hs.hotkey.bind({"cmd"}, "e", function() toggleApp("Emacs") end)
+-- hs.hotkey.bind({"cmd"}, "e", function() toggleApp("Emacs") end)
 
 
 -- Optional: Display a notification when toggling
