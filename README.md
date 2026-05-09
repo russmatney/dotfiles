@@ -50,6 +50,9 @@ Override with `$DOTS_HOSTNAME`.
 - **ipython**, **ghci**, **psql** — REPL configs
 - **scripts** — all `scripts/` wired to `~/.local/bin`
 - **dotfiles** — `~/.fennelrc`, `~/.gitconfig`, `~/.zshenv`, `~/.profile`, `~/.inputrc`, `~/.ignore`
+- **hammerspoon** — `home/.hammerspoon/init.lua` → `~/.hammerspoon/init.lua`
+- **yabai** — `home/.yabairc` → `~/.yabairc`
+- **skhd** — `home/.skhdrc` → `~/.skhdrc`
 
 ---
 
@@ -65,12 +68,3 @@ sudo nixos-rebuild switch --flake /home/russ/dotfiles/nixos#yoshi
 Packages and services are managed through NixOS modules (`nixos/modules/`).
 Adding a new tool means editing a module there, not installing manually.
 
----
-
-## macOS
-
-Hammerspoon (`hammerspoon/`) and yabai/skhd (`yabai/`) configs exist in the
-repo but are not wired into `dots.edn` yet. Migration is deferred until back on
-`walt`. The plan leans toward hammerspoon as the primary macOS WM layer.
-
-See `sessions/2025-04-25-dots-migration.md` for the full porting roadmap.
