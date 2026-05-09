@@ -16,6 +16,11 @@
 ;;
 ;;   {:from "scripts"  :to "~/.local/bin"  :link-contents true}
 ;;     — symlinks each file inside scripts/ individually into ~/.local/bin/
+;;
+;;   {:from "config/hypr"  :to "~/.config/hypr"  :os :linux}
+;;   {:from "home/.hammerspoon"  :to "~/.hammerspoon"  :os :macos}
+;;     — :os :linux or :os :macos restricts the link to that platform only;
+;;       omit :os to apply on all platforms
 
 (require '[babashka.fs :as fs]
          '[clojure.string :as str]
@@ -42,6 +47,14 @@
 (def config-path
   (str (fs/path dotfiles-dir "dots.edn")))
 
+(def os-type
+  "Detected OS: :linux or :macos (nil if unrecognised)."
+  (let [os (str/lower-case (System/getProperty "os.name" ""))]
+    (cond
+      (str/starts-with? os "linux") :linux
+      (str/starts-with? os "mac")   :macos
+      :else                          nil)))
+
 ;; ---------------------------------------------------------------------------
 ;; Helpers
 
@@ -60,9 +73,13 @@
     (edn/read-string (slurp config-path))
     {:links []}))
 
+(defn os-matches? [{:keys [os]}]
+  (or (nil? os) (= os os-type)))
+
 (defn all-links [config]
-  (concat (:links config [])
-          (get-in config [:machines hostname] [])))
+  (->> (concat (:links config [])
+               (get-in config [:machines hostname] []))
+       (filter os-matches?)))
 
 ;; ---------------------------------------------------------------------------
 ;; Expand :link-contents entries into per-file link maps

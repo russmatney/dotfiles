@@ -1,5 +1,5 @@
 
-export DOTS_HOSTNAME=walt
+# export DOTS_HOSTNAME=walt
 
 export ZDOTDIR=~/.config/zsh
 

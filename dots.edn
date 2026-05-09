@@ -3,12 +3,13 @@
  ;;
  ;; :from  — path relative to this repo root
  ;; :to    — destination path (~/ expanded to $HOME)
+ ;; :os    — optional; :linux or :macos to restrict to that platform only
  ;;
  ;; Links are applied in order. Machine-specific links are merged on top.
 
  :links
  [
-  {:from "config/foot" :to "~/.config/foot"}
+  {:from "config/foot" :to "~/.config/foot" :os :linux}
   {:from "config/alacritty" :to "~/.config/alacritty"}
   {:from "config/nvim" :to "~/.config/nvim"}
   {:from "config/nvim.fnl" :to "~/.config/nvim.fnl"}
@@ -16,9 +17,9 @@
   {:from "~/teknql/fabb" :to "~/.config/doom/fabb"}
   {:from "~/russmatney/ink-mode" :to "~/.config/doom/ink-mode"}
   {:from          "home/applications" :to "~/.local/share/applications"
-   :link-contents true}
-  {:from "config/hypr" :to "~/.config/hypr"}
-  {:from "config/rofi" :to "~/.config/rofi"}
+   :link-contents true                :os :linux}
+  {:from "config/hypr" :to "~/.config/hypr" :os :linux}
+  {:from "config/rofi" :to "~/.config/rofi" :os :linux}
   {:from "config/powerline" :to "~/.config/powerline"}
   {:from "home/.tmux.conf" :to "~/.tmux.conf"}
   {:from "home/.zshenv" :to "~/.zshenv"}
@@ -37,7 +38,7 @@
   {:from "config/atuin" :to "~/.config/atuin"}
   {:from "config/nixpkgs" :to "~/.config/nixpkgs"}
   {:from "config/luaformatter" :to "~/.config/luaformatter"}
-  {:from "config/waybar" :to "~/.config/waybar"}
+  {:from "config/waybar" :to "~/.config/waybar" :os :linux}
 
   ;; Home dotfiles (file lives at $HOME root)
   {:from "home/.hammerspoon" :to "~/.hammerspoon" :link-contents true}
@@ -62,7 +63,6 @@
           {:from          "home/Library/LaunchAgents" :to "~/Library/LaunchAgents"
            :link-contents true}]
 
-  "wordnerd" [{:from "config/hypr/machines/wordnerd/monitors.conf"
-               :to   "~/.config/hypr/monitors-machine.conf"}
-              {:from "config/hypr/machines/wordnerd/overrides.conf"
-               :to   "~/.config/hypr/overrides-machine.conf"}]}}
+  "wordnerd" [[{:from "home/.yabairc" :to "~/.yabairc"}
+               {:from "home/.skhdrc" :to "~/.skhdrc"}]
+              ]}}
