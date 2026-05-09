@@ -8,41 +8,67 @@
  ;; Links are applied in order. Machine-specific links are merged on top.
 
  :links
- [
+ [;; terminals
   {:from "config/foot" :to "~/.config/foot" :os :linux}
   {:from "config/alacritty" :to "~/.config/alacritty"}
-  {:from "config/nvim" :to "~/.config/nvim"}
-  {:from "config/nvim.fnl" :to "~/.config/nvim.fnl"}
-  {:from "config/doom" :to "~/.config/doom"}
-  {:from "~/teknql/fabb" :to "~/.config/doom/fabb"}
-  {:from "~/russmatney/ink-mode" :to "~/.config/doom/ink-mode"}
-  {:from          "home/applications" :to "~/.local/share/applications"
-   :link-contents true                :os :linux}
-  {:from "config/hypr" :to "~/.config/hypr" :os :linux}
-  {:from "config/rofi" :to "~/.config/rofi" :os :linux}
-  {:from "config/powerline" :to "~/.config/powerline"}
+
+  ;;tmux
   {:from "home/.tmux.conf" :to "~/.tmux.conf"}
+  {:from "config/powerline" :to "~/.config/powerline"}
+
+  ;; zsh
   {:from "home/.zshenv" :to "~/.zshenv"}
   {:from "home/.profile" :to "~/.profile"}
-  {:from "home/.gitconfig" :to "~/.gitconfig"}
   {:from          "config/zsh" :to "~/.config/zsh"
    :link-contents true}
   {:from "config/zsh/completion" :to "~/.config/zsh/completion"}
+
+  ;; editors
+  ;; neovim
+  {:from "config/nvim" :to "~/.config/nvim"}
+  {:from "config/nvim.fnl" :to "~/.config/nvim.fnl"}
+  ;; emacs
+  {:from "config/doom" :to "~/.config/doom"}
+  {:from "~/teknql/fabb" :to "~/.config/doom/fabb"}
+  {:from "~/russmatney/ink-mode" :to "~/.config/doom/ink-mode"}
+
+  ;; wms
+  ;; hyprland
+  {:from "config/hypr" :to "~/.config/hypr" :os :linux}
+  {:from "config/waybar" :to "~/.config/waybar" :os :linux}
+  ;; yabai
+  {:from "home/.yabairc" :to "~/.yabairc" :os :macos}
+  {:from "home/.skhdrc" :to "~/.skhdrc" :os :macos}
+  ;; hammerspoon
+  {:from "home/.hammerspoon" :to "~/.hammerspoon" :link-contents true}
+
+  ;; rofi
+  {:from "config/rofi" :to "~/.config/rofi" :os :linux}
+
+  ;; atuin
+  {:from "config/atuin" :to "~/.config/atuin"}
+
+  ;; scripts
   {:from "scripts" :to "~/.local/bin" :link-contents true}
 
-  ;; config/ dirs
+  ;; nix
+  {:from "config/nixpkgs" :to "~/.config/nixpkgs"}
+
+  ;; langs
+  ;; clojure
   {:from "home/.clojure/deps.edn" :to "~/.clojure/deps.edn"}
   {:from "home/.clojure/rebel_readline.edn" :to "~/.clojure/rebel_readline.edn"}
+  ;; python
   {:from "config/flake8" :to "~/.config/flake8"}
   {:from "home/.ipython" :to "~/.ipython"}
-  {:from "config/atuin" :to "~/.config/atuin"}
-  {:from "config/nixpkgs" :to "~/.config/nixpkgs"}
+  ;; lua
   {:from "config/luaformatter" :to "~/.config/luaformatter"}
-  {:from "config/waybar" :to "~/.config/waybar" :os :linux}
-
-  ;; Home dotfiles (file lives at $HOME root)
-  {:from "home/.hammerspoon" :to "~/.hammerspoon" :link-contents true}
   {:from "home/.fennelrc" :to "~/.fennelrc"}
+
+  ;; misc
+  {:from          "home/applications" :to "~/.local/share/applications"
+   :link-contents true                :os :linux}
+  {:from "home/.gitconfig" :to "~/.gitconfig"}
   {:from "home/.ghci" :to "~/.ghci"}
   {:from "home/.psqlrc" :to "~/.psqlrc"}
   {:from "home/.inputrc" :to "~/.inputrc"}
@@ -53,16 +79,13 @@
             :to   "~/.config/hypr/monitors-machine.conf"}
            {:from "config/hypr/machines/yoshi/overrides.conf"
             :to   "~/.config/hypr/overrides-machine.conf"}]
+
   "brain" [{:from "config/hypr/machines/brain/monitors.conf"
             :to   "~/.config/hypr/monitors-machine.conf"}
            {:from "config/hypr/machines/brain/overrides.conf"
             :to   "~/.config/hypr/overrides-machine.conf"}]
 
-  "walt" [{:from "home/.yabairc" :to "~/.yabairc"}
-          {:from "home/.skhdrc" :to "~/.skhdrc"}
-          {:from          "home/Library/LaunchAgents" :to "~/Library/LaunchAgents"
+  "walt" [{:from          "home/Library/LaunchAgents" :to "~/Library/LaunchAgents"
            :link-contents true}]
 
-  "wordnerd" [[{:from "home/.yabairc" :to "~/.yabairc"}
-               {:from "home/.skhdrc" :to "~/.skhdrc"}]
-              ]}}
+  "wordnerd" []}}
